@@ -1,76 +1,80 @@
-import { __ } from '@wordpress/i18n';
-import { useCallback, useEffect, useState, useRef } from '@wordpress/element';
+// import { __ } from '@wordpress/i18n'
+// import { useCallback, useEffect, useState, useRef } from '@wordpress/element'
 
-import '@johanaarstein/dotlottie-player'
-
-// import { Popover, TextControl, ToolbarButton } from '@wordpress/components';
+// import { Popover, TextControl, ToolbarButton } from '@wordpress/components'
 
 import {
-	// BlockControls,
-	// InspectorControls,
-	// RichText,
+	AlignmentToolbar,
+	BlockControls,
+	InspectorControls,
 	useBlockProps,
-	__experimentalLinkControl as LinkControl,
 } from '@wordpress/block-editor';
+import { ToolbarGroup } from '@wordpress/components';
 
-import { /*displayShortcut,*/ isKeyboardEvent } from '@wordpress/keycodes';
-// import { link, linkOff } from '@wordpress/icons';
-import { useMergeRefs } from '@wordpress/compose';
+import {
+	AnimationSettings,
+}
+
+// import { displayShortcut, isKeyboardEvent } from '@wordpress/keycodes'
+// import { link, linkOff } from '@wordpress/icons'
+// import { useMergeRefs } from '@wordpress/compose'
 
 import './editor.scss';
 
-export default function Edit( { attributes, setAttributes, isSelected } ) {
-	const { content, option, url } = attributes,
-		// onSetOption = useCallback(
-		// 	( value ) => {
-		// 		setAttributes( { option: value } );
-		// 	},
-		// 	[ setAttributes ]
-		// ),
-		ref = useRef(),
-		richTextRef = useRef(),
-		onKeyDown = ( event ) => {
-			if ( isKeyboardEvent.primary( event, 'k' ) ) {
-				startEditing( event );
-			} else if ( isKeyboardEvent.primaryShift( event, 'k' ) ) {
-				unlink();
-				richTextRef.current?.focus();
-			}
-		},
-		// [ popoverAnchor, setPopoverAnchor ] = useState( null ),
-		blockProps = useBlockProps( {
-			ref: useMergeRefs( [ setPopoverAnchor, ref ] ),
-			onKeyDown,
-		} ),
-		// [ isEditingURL, setIsEditingURL ] = useState( false ),
-		// isURLSet = !! url,
-		// saveChanges = ( value ) => {
-		// 	setAttributes( { content: value } );
-		// },
-		startEditing = ( event ) => {
-			event.preventDefault();
-			setIsEditingURL( true );
-		},
-		unlink = () => {
-			setAttributes( {
-				url: undefined,
-			} );
-			setIsEditingURL( false );
-		};
+export const LottieControls = ( {
+	attributes = {},
+	setAttributes = () => {},
+} = {} ) => {
+	return (
+		<>
+			<BlockControls key="Lottie Block Controls">
+				<ToolbarGroup>
+					<AlignmentToolbar
+						value={ attributes.contentAlign }
+						onChange={ ( value ) =>
+							setAttributes({
+								contentAlign:
+									value === 'undefined'
+										? attributes.contentAlign
+										: value,
+							})
+						}
+					/>
+				</ToolbarGroup>
+			</BlockControls>
 
-	useEffect( () => {
-		if ( ! isSelected ) {
-			setIsEditingURL( false );
-		}
-	}, [ isSelected ] );
+			<InspectorControls>
+				<AnimationSettings attributes={attributes} setAttributes={setAttributes} />
+				<BackgroundSettings attributes={attributes} setAttributes={setAttributes} />
+				<AdvancedSettings attributes={attributes} setAttributes={setAttributes} />
+			</InspectorControls>
+		</>
+	)
+}
+
+export default function Edit({
+	attributes = {},
+	setAttributes = () => {},
+	// isSelected
+} = {}) {
+	const saveChanges = value => {
+		setAttributes({ 
+			content: value
+		})
+	}
 
 	return (
-		<div { ...blockProps }>
-			<dotlottie-player
-				autoplay
-				loop
-				src="https://storage.googleapis.com/aarsteinmedia/intro.lottie"
+		<>
+			<LottieControls
+				attributes={attributes}
+				setAttributes={setAttributes}
 			/>
-		</div>
-	);
+			<div {...useBlockProps()}>
+				<Placeholder
+					attributes={attributes}
+					setAttributes={setAttributes}
+				/>
+			</div>
+		</>
+	)
 }

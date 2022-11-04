@@ -1,36 +1,40 @@
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
 import { useBlockProps } from '@wordpress/block-editor';
+import '@johanaarstein/dotlottie-player';
 
-/**
- * The save function defines the way in which the different attributes should
- * be combined into the final markup, which is then serialized by the block
- * editor into `post_content`.
- *
- * @param  root0
- * @param  root0.attributes
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
- *
- * @return {WPElement} Element to render.
- */
+import { aspectRatio } from './functions';
+
 export default function save( { attributes } ) {
-	const { content, option, url } = attributes;
+	const {
+		align,
+		alt,
+		autoplay,
+		background,
+		controls,
+		direction,
+		id,
+		loop,
+		mode,
+		objectFit,
+		src,
+	} = attributes;
+
 	return (
-		<div
+		<figure
+			id={ id }
+			className={ align }
 			{ ...useBlockProps.save() }
-			style={ { display: 'flex', clear: 'both' } }
+			style={ { backgroundColor: background } }
 		>
-			<a
-				href={ url }
-				data-option={ option }
-				className="btn cta-btn react-link aligncenter read-more"
-			>
-				{ content }
-			</a>
-		</div>
+			<dotlottie-player
+				autoplay={ autoplay }
+				controls={ controls }
+				description={ alt }
+				direction={ direction }
+				loop={ loop }
+				mode={ mode }
+				preserveAspectRatio={ aspectRatio( objectFit ) }
+				src={ src }
+			/>
+		</figure>
 	);
 }

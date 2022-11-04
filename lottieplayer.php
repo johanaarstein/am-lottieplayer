@@ -40,15 +40,20 @@ function lottie_filetypes($data, $file, $filename, $mimes, $real_mime) {
     return $data;
   }
   $wp_file_type = wp_check_filetype($filename, $mimes);
-  if ('json' === $wp_file_type['ext']) {
-    $data['ext']  = 'json';
-    $data['type'] = 'text/plain';
-  } elseif ('txt' === $wp_file_type['ext']) {
-    $data['ext']  = 'txt';
-    $data['type'] = 'text/plain';
-  } elseif ('lottie' === $wp_file_type['ext']) {
-		$data['ext']  = 'lottie';
-    $data['type'] = 'application/zip';
-	}
+
+  switch ($wp_file_type['ext']) {
+    case 'json':
+      $data['ext']  = 'json';
+      $data['type'] = 'text/plain';
+      break;
+    case 'txt':
+      $data['ext']  = 'txt';
+      $data['type'] = 'text/plain';
+      break;
+    case 'lottie':
+      $data['ext']  = 'lottie';
+      $data['type'] = 'application/zip';
+  }
+
   return $data;
 }

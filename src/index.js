@@ -1,60 +1,68 @@
-/**
- * Registers a new block provided a unique name and an object defining its behavior.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
- */
 import { registerBlockType } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
 
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * All files containing `style` keyword are bundled together. The code used
- * gets applied both to the front of your site and to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
 import './style.scss';
 
-/**
- * Internal dependencies
- */
 import Edit from './edit';
 import save from './save';
 import metadata from './block.json';
+import { Lottie } from './assets/icons';
 
-/**
- * Every block starts by registering a new block type definition.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
- */
 registerBlockType( metadata.name, {
-	/**
-	 * @see ./edit.js
-	 */
-
+	icon: Lottie,
+	keywords: [
+		__( 'animation' ),
+		__( 'gif' ),
+		__( 'motion' ),
+		__( 'vector' ),
+	],
 	attributes: {
-		content: {
+		align: {
 			type: 'string',
-			source: 'html',
-			selector: 'a',
+			default: 'none',
 		},
-		url: {
+		alt: {
 			type: 'string',
-			source: 'attribute',
-			selector: 'a',
-			attribute: 'href',
+			default: 'Lottie animation',
 		},
-		option: {
+		autoplay: {
+			type: 'boolean',
+			default: true,
+		},
+		background: {
 			type: 'string',
-			source: 'attribute',
-			selector: 'a',
-			attribute: 'data-option',
+			default: 'transparent',
+		},
+		controls: {
+			type: 'boolean',
+			default: true,
+		},
+		direction: {
+			type: 'number',
+			default: 1,
+		},
+		id: {
+			type: 'string',
+			default: '',
+		},
+		loop: {
+			type: 'boolean',
+			default: false,
+		},
+		mode: {
+			type: 'string',
+			default: 'normal',
+		},
+		objectFit: {
+			type: 'string',
+			default: 'contain',
+		},
+		src: {
+			type: 'string',
 		},
 	},
 
 	edit: Edit,
 
-	/**
-	 * @see ./save.js
-	 */
 	save,
 } );

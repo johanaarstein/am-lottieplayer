@@ -1,4 +1,4 @@
-# LottiePlayer
+# LottiePlayer – WordPress plugin
 
 ## Vector animations for WordPress
 
@@ -26,12 +26,12 @@ Automatic installation is the easiest option — WordPress will handle the file 
 4. Click **Install Now** and WordPress will take it from there
 5. Activate the plugin through the **Plugins** menu in WordPress
 
-= Manual installation =
+#### Manual installation
 
 1. Upload the entire 'lottieplayer' folder to your plugins directory
 2. Activate the plugin through the **Plugins** menu in WordPress
 
-= After activation =
+#### After activation
 
 1. Go to the WordPress Block/Gutenberg Editor
 2. Search For **Lottie**
