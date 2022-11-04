@@ -9,42 +9,7 @@ import { __ } from '@wordpress/i18n';
 import { InputLabel, SwitchLabel } from '../form';
 
 const AnimationSettings = ( { attributes, setAttributes } ) => {
-	const { controls, loop } = attributes;
-	const onChangeMode = ( val ) => {
-		switch ( val ) {
-			case 'scroll':
-				setAttributes( {
-					animationType: val,
-					interactivitymode: val,
-					interactivitytype: 'seek',
-					hover: false,
-					state: 'none',
-					loop: false,
-					autoplay: false,
-				} );
-				break;
-			case 'none':
-				setAttributes( {
-					animationType: val,
-					interactivitymode: val,
-					interactivitytype: val,
-					state: 'autoplay',
-					loop: true,
-					autoplay: true,
-				} );
-				break;
-			default:
-				setAttributes( {
-					animationType: val,
-					interactivitymode: val,
-					interactivitytype: val,
-					state: 'none',
-					hover: false,
-					loop: false,
-					autoplay: false,
-				} );
-		}
-	};
+	const { controls, interactivityType, loop } = attributes;
 
 	return (
 		<Panel>
@@ -54,8 +19,13 @@ const AnimationSettings = ( { attributes, setAttributes } ) => {
 			>
 				<SelectControl
 					label={ __( 'Play animation on' ) }
-					value={ attributes.animationType }
-					onChange={ ( val ) => onChangeMode( val ) }
+					value={ interactivityType }
+					onChange={ ( val ) =>
+						setAttributes( {
+							...attributes,
+							interactivityType: val,
+						} )
+					}
 					options={ [
 						{ value: 'none', label: __( 'Page Load' ) },
 						{ value: 'hold', label: __( 'Hover' ) },
@@ -68,8 +38,7 @@ const AnimationSettings = ( { attributes, setAttributes } ) => {
 					subTitle={ __( 'Repeat animation' ) }
 					value={ loop }
 					onChange={ ( value ) => {
-						const newValue = value ?? null;
-
+						const newValue = value ?? false;
 						setAttributes( { loop: newValue } );
 					} }
 				/>
@@ -101,18 +70,6 @@ const AnimationSettings = ( { attributes, setAttributes } ) => {
 						}
 					/>
 				</PanelRow>
-				{ /* <PanelRow>
-          <InputLabel
-            label={__('Width')}
-            value={attributes.width}
-            onChange={value=> setAttributes({ width: value })}
-          />
-          <InputLabel
-            label={__('Height')}
-            value={attributes.height}
-            onChange={value => setAttributes({ height: value })}
-          />
-        </PanelRow> */ }
 			</PanelBody>
 		</Panel>
 	);

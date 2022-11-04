@@ -28,7 +28,7 @@ export default function Placeholder( {
 
 	return (
 		<div { ...useBlockProps() }>
-			{ src === '' ? (
+			{ src === '' || ! src ? (
 				<div className={ `components-placeholder` }>
 					<div className="components-placeholder__label">
 						<Lottie /> { __( 'Lottie Animation' ) }

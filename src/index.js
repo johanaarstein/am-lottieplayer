@@ -45,6 +45,10 @@ registerBlockType( metadata.name, {
 			type: 'string',
 			default: '',
 		},
+		interactivityType: {
+			type: 'string',
+			default: 'none',
+		},
 		loop: {
 			type: 'boolean',
 			default: false,

@@ -4,18 +4,14 @@
 // import { Popover, TextControl, ToolbarButton } from '@wordpress/components'
 
 import {
-	AlignmentToolbar,
+	BlockAlignmentToolbar,
 	BlockControls,
 	InspectorControls,
 	useBlockProps,
 } from '@wordpress/block-editor';
 import { ToolbarGroup } from '@wordpress/components';
 
-import {
-	AdvancedSettings,
-	AnimationSettings,
-	BackgroundSettings,
-} from './components/settings';
+import { AdvancedSettings, AnimationSettings } from './components/settings';
 
 import Placeholder from './components/Placeholder';
 
@@ -29,18 +25,16 @@ export const LottieControls = ( {
 	attributes = {},
 	setAttributes = () => {},
 } = {} ) => {
+	const { align } = attributes;
 	return (
 		<>
 			<BlockControls key="Lottie Block Controls">
 				<ToolbarGroup>
-					<AlignmentToolbar
-						value={ attributes.contentAlign }
+					<BlockAlignmentToolbar
+						value={ align }
 						onChange={ ( value ) =>
 							setAttributes( {
-								contentAlign:
-									value === 'undefined'
-										? attributes.contentAlign
-										: value,
+								align: value ?? align,
 							} )
 						}
 					/>
@@ -49,10 +43,6 @@ export const LottieControls = ( {
 
 			<InspectorControls>
 				<AnimationSettings
-					attributes={ attributes }
-					setAttributes={ setAttributes }
-				/>
-				<BackgroundSettings
 					attributes={ attributes }
 					setAttributes={ setAttributes }
 				/>
@@ -68,14 +58,7 @@ export const LottieControls = ( {
 export default function Edit( {
 	attributes = {},
 	setAttributes = () => {},
-	// isSelected
 } = {} ) {
-	// const saveChanges = ( value ) => {
-	// 	setAttributes( {
-	// 		content: value,
-	// 	} );
-	// };
-
 	return (
 		<>
 			<LottieControls

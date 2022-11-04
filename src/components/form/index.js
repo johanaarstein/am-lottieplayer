@@ -1,6 +1,6 @@
 import { FormToggle, PanelRow } from '@wordpress/components';
 
-import styles from './form.scss';
+import './form.scss';
 
 export const InputLabel = ( {
 	className = '',
@@ -14,13 +14,13 @@ export const InputLabel = ( {
 	...rest
 } = {} ) => {
 	return (
-		<div className={ `${ className } ${ styles.inputControl }` }>
-			<label className={ styles.label } htmlFor={ id }>
+		<div className={ `${ className } lottie-inputControl` }>
+			<label className={ 'lottie-label' } htmlFor={ id }>
 				{ label }
 			</label>
 			<input
 				id={ id }
-				className={ styles.input }
+				className={ 'lottie-input' }
 				type={ type }
 				placeholder={ placeholder }
 				value={ value }
@@ -41,7 +41,7 @@ export const SwitchLabel = ( {
 } = {} ) => {
 	return (
 		<PanelRow>
-			<label className={ styles.label } htmlFor={ id }>
+			<label className={ 'lottie-label' } htmlFor={ id }>
 				{ title }
 				<div>{ subTitle }</div>
 			</label>

@@ -1,25 +1,25 @@
 <?php
 /**
+ * @package LottiePlayer
+ */
+/**
  * Plugin Name:       LottiePlayer
  * Description:       Upload Lottie animations to WordPress and add them in Gutenberg. Choose between renderers and fill mode.
  * Requires at least: 5.9
  * Requires PHP:      7.0
- * Version:           0.1.0
+ * Version:           1.0.0
  * Author:            Johan Martin Aarstein
+ * Author URI:        https://www.aarstein.media
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       lottieplayer
- *
- * @package 					LottiePlayer
  */
 
-/**
- * Registers the block using the metadata loaded from the `block.json` file.
- * Behind the scenes, it registers also all assets so they can be enqueued
- * through the block editor in the corresponding context.
- *
- * @see https://developer.wordpress.org/reference/functions/register_block_type/
- */
+// Make sure we don't expose any info if called directly
+if ( !function_exists( 'add_action' ) ) {
+	echo 'Hi there!  I\'m just a plugin, not much I can do when called directly.';
+	exit;
+}
 
 add_action('init', 'create_block_lottieplayer_block_init');
 function create_block_lottieplayer_block_init() {
