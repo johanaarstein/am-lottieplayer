@@ -1,3 +1,4 @@
+import { useEffect, useRef } from '@wordpress/element';
 import { useBlockProps } from '@wordpress/block-editor';
 import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -13,21 +14,42 @@ export default function Placeholder( {
 	setAttributes = () => {},
 } = {} ) {
 	const {
-		align,
 		alt,
 		autoplay,
-		background,
 		controls,
 		direction,
 		id,
 		loop,
 		mode,
 		objectFit,
+		speed,
 		src,
 	} = attributes;
 
+	const player = useRef( null );
+
+	useEffect( () => {
+		if ( player.current ) {
+			if ( controls ) {
+				player.current.setAttribute( 'controls', true );
+			} else {
+				player.current.removeAttribute( 'controls' );
+			}
+			if ( loop ) {
+				player.current.setAttribute( 'loop', true );
+			} else {
+				player.current.removeAttribute( 'loop' );
+			}
+			if ( autoplay ) {
+				player.current.setAttribute( 'autoplay', true );
+			} else {
+				player.current.removeAttribute( 'autoplay' );
+			}
+		}
+	}, [ autoplay, controls, loop ] );
+
 	return (
-		<div { ...useBlockProps() }>
+		<div className="w-full" { ...useBlockProps() }>
 			{ src === '' || ! src ? (
 				<div className={ `components-placeholder` }>
 					<div className="components-placeholder__label">
@@ -54,28 +76,16 @@ export default function Placeholder( {
 					</div>
 				</div>
 			) : (
-				<div
-					className={ `components-placeholder wp-block` }
-					data-align={ align }
-					style={ { backgroundColor: background } }
-				>
-					<div
-						className="w-full flex"
-						id={ `lottie-wrapper-${ id }` }
-					>
-						<div className={ align }>
-							<dotlottie-player
-								autoplay={ autoplay }
-								controls={ controls }
-								description={ alt }
-								direction={ direction }
-								loop={ loop }
-								mode={ mode }
-								preserveAspectRatio={ aspectRatio( objectFit ) }
-								src={ src }
-							/>
-						</div>
-					</div>
+				<div id={ `lottie-wrapper-${ id }` }>
+					<dotlottie-player
+						description={ alt }
+						direction={ direction }
+						mode={ mode }
+						preserveAspectRatio={ aspectRatio( objectFit ) }
+						ref={ player }
+						speed={ speed }
+						src={ src }
+					/>
 				</div>
 			) }
 		</div>

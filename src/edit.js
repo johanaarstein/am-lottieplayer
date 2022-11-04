@@ -59,13 +59,20 @@ export default function Edit( {
 	attributes = {},
 	setAttributes = () => {},
 } = {} ) {
+	const { align } = attributes;
+
 	return (
 		<>
 			<LottieControls
 				attributes={ attributes }
 				setAttributes={ setAttributes }
 			/>
-			<div { ...useBlockProps() }>
+			<div
+				{ ...useBlockProps() }
+				className={ `wp-block${
+					align !== 'none' ? ' align' + align : ''
+				}` }
+			>
 				<Placeholder
 					attributes={ attributes }
 					setAttributes={ setAttributes }

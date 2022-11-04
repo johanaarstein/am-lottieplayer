@@ -8,7 +8,6 @@ export default function save( { attributes } ) {
 		align,
 		alt,
 		autoplay,
-		background,
 		controls,
 		direction,
 		id,
@@ -19,12 +18,7 @@ export default function save( { attributes } ) {
 	} = attributes;
 
 	return (
-		<figure
-			id={ id }
-			className={ align }
-			{ ...useBlockProps.save() }
-			style={ { backgroundColor: background } }
-		>
+		<figure id={ id } className={ align } { ...useBlockProps.save() }>
 			<dotlottie-player
 				autoplay={ autoplay }
 				controls={ controls }

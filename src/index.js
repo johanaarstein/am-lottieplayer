@@ -61,6 +61,10 @@ registerBlockType( metadata.name, {
 			type: 'string',
 			default: 'contain',
 		},
+		speed: {
+			type: 'number',
+			default: 1,
+		},
 		src: {
 			type: 'string',
 		},

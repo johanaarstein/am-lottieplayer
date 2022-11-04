@@ -2,14 +2,15 @@ import {
 	Panel,
 	PanelBody,
 	PanelRow,
+	RangeControl,
 	SelectControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import { InputLabel, SwitchLabel } from '../form';
+import { SwitchLabel } from '../form';
 
 const AnimationSettings = ( { attributes, setAttributes } ) => {
-	const { controls, interactivityType, loop } = attributes;
+	const { controls, interactivityType, loop, speed } = attributes;
 
 	return (
 		<Panel>
@@ -20,12 +21,9 @@ const AnimationSettings = ( { attributes, setAttributes } ) => {
 				<SelectControl
 					label={ __( 'Play animation on' ) }
 					value={ interactivityType }
-					onChange={ ( val ) =>
-						setAttributes( {
-							...attributes,
-							interactivityType: val,
-						} )
-					}
+					onChange={ ( val ) => {
+						setAttributes( { interactivityType: val } );
+					} }
 					options={ [
 						{ value: 'none', label: __( 'Page Load' ) },
 						{ value: 'hold', label: __( 'Hover' ) },
@@ -38,8 +36,7 @@ const AnimationSettings = ( { attributes, setAttributes } ) => {
 					subTitle={ __( 'Repeat animation' ) }
 					value={ loop }
 					onChange={ ( value ) => {
-						const newValue = value ?? false;
-						setAttributes( { loop: newValue } );
+						setAttributes( { loop: value } );
 					} }
 				/>
 				<SwitchLabel
@@ -47,26 +44,18 @@ const AnimationSettings = ( { attributes, setAttributes } ) => {
 					subTitle={ __( 'Display animation controls' ) }
 					value={ controls }
 					onChange={ ( value ) => {
-						setAttributes( { controls: value ?? null } );
+						setAttributes( { controls: value } );
 					} }
 				/>
 				<PanelRow>
-					<InputLabel
+					<RangeControl
 						label={ __( 'Speed' ) }
-						type="number"
-						min="0"
-						max="5"
-						value={ attributes.speed }
+						min={ 0.5 }
+						max={ 5 }
+						step={ 0.5 }
+						value={ speed }
 						onChange={ ( value ) =>
 							setAttributes( { speed: value } )
-						}
-					/>
-					<input
-						type="range"
-						value={ attributes.speed }
-						max="5"
-						onChange={ ( { target } ) =>
-							setAttributes( { speed: target.value } )
 						}
 					/>
 				</PanelRow>

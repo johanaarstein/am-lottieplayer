@@ -1,9 +1,15 @@
-/**
- * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
- */
+// .wp-block-custom-block-lottieplayer, .flex {
+// 	display: flex;
+// }
 
-.wp-block-custom-block-lottieplayer {
-	display: flex;
+.w-full {
+	width: 100%;
+}
+
+.alignfull {
+	width: calc(var(--wp--style--root--padding-left) * 2 + 100%);
+}
+
+.alignleft, .alignright {
+	max-width: 600px;
 }
