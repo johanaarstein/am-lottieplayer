@@ -12,8 +12,12 @@ import {
 import { ToolbarGroup } from '@wordpress/components';
 
 import {
+	AdvancedSettings,
 	AnimationSettings,
-}
+	BackgroundSettings,
+} from './components/settings';
+
+import Placeholder from './components/Placeholder';
 
 // import { displayShortcut, isKeyboardEvent } from '@wordpress/keycodes'
 // import { link, linkOff } from '@wordpress/icons'
@@ -32,49 +36,58 @@ export const LottieControls = ( {
 					<AlignmentToolbar
 						value={ attributes.contentAlign }
 						onChange={ ( value ) =>
-							setAttributes({
+							setAttributes( {
 								contentAlign:
 									value === 'undefined'
 										? attributes.contentAlign
 										: value,
-							})
+							} )
 						}
 					/>
 				</ToolbarGroup>
 			</BlockControls>
 
 			<InspectorControls>
-				<AnimationSettings attributes={attributes} setAttributes={setAttributes} />
-				<BackgroundSettings attributes={attributes} setAttributes={setAttributes} />
-				<AdvancedSettings attributes={attributes} setAttributes={setAttributes} />
+				<AnimationSettings
+					attributes={ attributes }
+					setAttributes={ setAttributes }
+				/>
+				<BackgroundSettings
+					attributes={ attributes }
+					setAttributes={ setAttributes }
+				/>
+				<AdvancedSettings
+					attributes={ attributes }
+					setAttributes={ setAttributes }
+				/>
 			</InspectorControls>
 		</>
-	)
-}
+	);
+};
 
-export default function Edit({
+export default function Edit( {
 	attributes = {},
 	setAttributes = () => {},
 	// isSelected
-} = {}) {
-	const saveChanges = value => {
-		setAttributes({ 
-			content: value
-		})
-	}
+} = {} ) {
+	// const saveChanges = ( value ) => {
+	// 	setAttributes( {
+	// 		content: value,
+	// 	} );
+	// };
 
 	return (
 		<>
 			<LottieControls
-				attributes={attributes}
-				setAttributes={setAttributes}
+				attributes={ attributes }
+				setAttributes={ setAttributes }
 			/>
-			<div {...useBlockProps()}>
+			<div { ...useBlockProps() }>
 				<Placeholder
-					attributes={attributes}
-					setAttributes={setAttributes}
+					attributes={ attributes }
+					setAttributes={ setAttributes }
 				/>
 			</div>
 		</>
-	)
+	);
 }
