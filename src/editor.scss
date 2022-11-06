@@ -2,6 +2,23 @@
 // 	display: flex;
 // }
 
+.lottie-switch-label {
+	> div {
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
+.flex {
+	display: flex;
+	&.space-around {
+		justify-content: space-around;
+	}
+	&.space-between {
+		justify-content: space-between;
+	}
+}
+
 .w-full {
 	width: 100%;
 }
@@ -12,4 +29,16 @@
 
 .alignleft, .alignright {
 	max-width: 600px;
+}
+
+.lottie-dimensions {
+	gap: 1em;
+	margin-bottom: 1em;
+	.lottie-number-wrapper {
+		flex: 1;
+		margin-bottom: 0!important;
+		input {
+			width: 100%;
+		}
+	}
 }

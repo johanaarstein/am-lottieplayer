@@ -2,15 +2,22 @@ import {
 	Panel,
 	PanelBody,
 	PanelRow,
-	RangeControl,
 	SelectControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import { SwitchLabel } from '../form';
+import { NumberInput, SwitchLabel } from '../form';
 
 const AnimationSettings = ( { attributes, setAttributes } ) => {
-	const { controls, interactivityType, loop, speed } = attributes;
+	const {
+		align,
+		controls,
+		height,
+		interactivityType,
+		loop,
+		objectFit,
+		width,
+	} = attributes;
 
 	return (
 		<Panel>
@@ -22,7 +29,10 @@ const AnimationSettings = ( { attributes, setAttributes } ) => {
 					label={ __( 'Play animation on' ) }
 					value={ interactivityType }
 					onChange={ ( val ) => {
-						setAttributes( { interactivityType: val } );
+						setAttributes( {
+							interactivityType: val,
+							autoplay: val === 'none',
+						} );
 					} }
 					options={ [
 						{ value: 'none', label: __( 'Page Load' ) },
@@ -47,18 +57,42 @@ const AnimationSettings = ( { attributes, setAttributes } ) => {
 						setAttributes( { controls: value } );
 					} }
 				/>
-				<PanelRow>
-					<RangeControl
-						label={ __( 'Speed' ) }
-						min={ 0.5 }
-						max={ 5 }
-						step={ 0.5 }
-						value={ speed }
-						onChange={ ( value ) =>
-							setAttributes( { speed: value } )
+				<PanelRow className="lottie-dimensions">
+					<NumberInput
+						title={ __( 'Width' ) }
+						value={ ! width || width === '0' ? null : width }
+						onChange={ ( val ) => {
+							setAttributes( { width: val ?? null } );
+						} }
+						disabled={ align === 'full' || align === 'wide' }
+						placeholder={
+							align === 'full' || align === 'wide'
+								? '100%'
+								: 'auto'
 						}
 					/>
+					<NumberInput
+						title={ __( 'Height' ) }
+						value={ ! height || height === '0' ? null : height }
+						onChange={ ( val ) => {
+							setAttributes( { height: val ?? null } );
+						} }
+						placeholder={ 'auto' }
+					/>
 				</PanelRow>
+				<SelectControl
+					label={ __( 'Object fit' ) }
+					value={ objectFit }
+					onChange={ ( val ) => {
+						setAttributes( { objectFit: val } );
+					} }
+					options={ [
+						{ value: 'contain', label: __( 'Contain' ) },
+						{ value: 'cover', label: __( 'Cover' ) },
+						{ value: 'fill', label: __( 'Fill' ) },
+						{ value: 'none', label: __( 'None' ) },
+					] }
+				/>
 			</PanelBody>
 		</Panel>
 	);

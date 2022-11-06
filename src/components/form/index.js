@@ -1,55 +1,49 @@
-import { FormToggle, PanelRow } from '@wordpress/components';
+// import { useCallback, useEffect } from '@wordpress/element';
+import { BaseControl, FormToggle, TextControl } from '@wordpress/components';
 
-import './form.scss';
+import { isModifierKey, isNumericInput } from '../../functions';
 
-export const InputLabel = ( {
-	className = '',
-	disabled = false,
-	id = '',
-	label = '',
-	onChange = () => {},
-	placeholder = '',
-	type = '',
-	value = '',
-	...rest
-} = {} ) => {
-	return (
-		<div className={ `${ className } lottie-inputControl` }>
-			<label className={ 'lottie-label' } htmlFor={ id }>
-				{ label }
-			</label>
-			<input
-				id={ id }
-				className={ 'lottie-input' }
-				type={ type }
-				placeholder={ placeholder }
-				value={ value }
-				disabled={ disabled }
-				onChange={ ( event ) => onChange( event.target.value ) }
-				{ ...rest }
-			/>
-		</div>
-	);
-};
-
-export const SwitchLabel = ( {
+const SwitchLabel = ( {
 	onChange = () => {},
 	subTitle = '',
 	title = '',
-	id = '',
 	value = false,
 } = {} ) => {
 	return (
-		<PanelRow>
-			<label className={ 'lottie-label' } htmlFor={ id }>
-				{ title }
-				<div>{ subTitle }</div>
-			</label>
+		<BaseControl help={ subTitle } className={ 'lottie-switch-label' }>
+			<BaseControl.VisualLabel>{ title }</BaseControl.VisualLabel>
 			<FormToggle
-				id={ id }
 				checked={ value }
 				onChange={ () => onChange( ! value ) }
 			/>
-		</PanelRow>
+		</BaseControl>
 	);
 };
+
+const NumberInput = ( {
+	onChange = () => {},
+	title = '',
+	value = null,
+	disabled = false,
+	placeholder = '',
+} = {} ) => {
+	const keydownHandler = ( e ) => {
+		if ( isModifierKey( e ) ) return;
+		// eslint-disable-next-line no-unused-expressions
+		! isNumericInput( e ) && e.preventDefault();
+	};
+
+	return (
+		<BaseControl help={ title } className={ 'lottie-number-wrapper' }>
+			<TextControl
+				value={ value }
+				onChange={ ( n ) => onChange( Number( n ) ) }
+				onKeyDown={ keydownHandler }
+				disabled={ disabled }
+				placeholder={ placeholder }
+			/>
+		</BaseControl>
+	);
+};
+
+export { NumberInput, SwitchLabel };

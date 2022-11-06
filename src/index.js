@@ -41,6 +41,10 @@ registerBlockType( metadata.name, {
 			type: 'number',
 			default: 1,
 		},
+		height: {
+			type: 'number',
+			default: null,
+		},
 		id: {
 			type: 'string',
 			default: '',
@@ -67,6 +71,10 @@ registerBlockType( metadata.name, {
 		},
 		src: {
 			type: 'string',
+		},
+		width: {
+			type: 'number',
+			default: null,
 		},
 	},
 

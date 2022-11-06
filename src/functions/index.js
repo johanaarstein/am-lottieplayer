@@ -21,6 +21,28 @@ const aspectRatio = ( objectFit ) => {
 				func( ...args );
 			}, timeout );
 		};
+	},
+	isModifierKey = ( { ctrlKey, key, metaKey, shiftKey } ) => {
+		return (
+			shiftKey ||
+			key === 'End' ||
+			key === 'Home' ||
+			key === 'Backspace' ||
+			key === 'Tab' ||
+			key === 'Enter' ||
+			key === 'Delete' ||
+			( ( ctrlKey || metaKey ) &&
+				( key === 'a' ||
+					key === 'c' ||
+					key === 'v' ||
+					key === 'x' ||
+					key === 'z' ||
+					key === 't' ||
+					key === 'r' ) )
+		);
+	},
+	isNumericInput = ( { key } ) => {
+		return key >= 0 && key <= 9;
 	};
 
-export { aspectRatio, debounce };
+export { aspectRatio, debounce, isModifierKey, isNumericInput };

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from '@wordpress/element';
+import { useCallback, useEffect, useRef } from '@wordpress/element';
 import { useBlockProps } from '@wordpress/block-editor';
 import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -14,19 +14,51 @@ export default function Placeholder( {
 	setAttributes = () => {},
 } = {} ) {
 	const {
+		// align,
 		alt,
 		autoplay,
 		controls,
 		direction,
+		height,
 		id,
 		loop,
 		mode,
 		objectFit,
 		speed,
 		src,
+		width,
 	} = attributes;
 
-	const player = useRef( null );
+	const player = useRef( null ),
+		objectFitSVG = useCallback( () => {
+			player?.current?.shadowRoot
+				?.querySelector( 'svg' )
+				?.setAttribute(
+					'preserveAspectRatio',
+					aspectRatio( objectFit )
+				);
+		}, [ aspectRatio, objectFit ] );
+
+	// const fixSize = useCallback( () => {
+	// 	const { offsetHeight, offsetWidth } = player.current;
+	// 	if ( ! width && align !== 'full' ) {
+	// 		setAttributes( { width: offsetWidth } );
+	// 	}
+	// 	if ( ! height ) {
+	// 		setAttributes( { height: offsetHeight } );
+	// 	}
+	// }, [ align, height, width ] );
+
+	// useEffect( () => {
+	// 	player?.current?.addEventListener( 'rendered', fixSize, false );
+
+	// 	return () =>
+	// 		player?.current?.removeEventListener( 'rendered', fixSize, false );
+	// }, [ fixSize ] );
+
+	useEffect( () => {
+		objectFitSVG();
+	}, [ objectFit, objectFitSVG ] );
 
 	useEffect( () => {
 		if ( player.current ) {
@@ -67,7 +99,7 @@ export default function Placeholder( {
 									setAttributes( { src: newSrc } )
 								}
 								render={ ( { open } ) => (
-									<Button variant="link" onClick={ open }>
+									<Button variant="primary" onClick={ open }>
 										{ __( 'Media Library' ) }
 									</Button>
 								) }
@@ -76,7 +108,19 @@ export default function Placeholder( {
 					</div>
 				</div>
 			) : (
-				<div id={ `lottie-wrapper-${ id }` }>
+				<div
+					id={ `lottie-wrapper-${ id }` }
+					style={ {
+						width:
+							width && typeof width === 'number'
+								? `${ width }px`
+								: null,
+						height:
+							height && typeof height === 'number'
+								? `${ height }px`
+								: null,
+					} }
+				>
 					<dotlottie-player
 						description={ alt }
 						direction={ direction }
