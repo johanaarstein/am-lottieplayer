@@ -6,10 +6,19 @@ const AdvanceSettings = ( {
 	attributes = {},
 	setAttributes = () => {},
 } = {} ) => {
-	const { direction, mode, speed } = attributes;
+	const { direction, mode, renderer, speed } = attributes;
 
 	return (
 		<InspectorAdvancedControls key="inspector">
+			<SelectControl
+				label={ __( 'Renderer' ) }
+				value={ renderer }
+				onChange={ ( val ) => setAttributes( { renderer: val } ) }
+				options={ [
+					{ value: 'svg', label: __( 'SVG' ) },
+					{ value: 'canvas', label: __( 'Canvas' ) },
+				] }
+			/>
 			<RangeControl
 				label={ __( 'Speed' ) }
 				min={ 0.5 }

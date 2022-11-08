@@ -8,7 +8,10 @@ import { __ } from '@wordpress/i18n';
 
 import { NumberInput, SwitchLabel } from '../form';
 
-const AnimationSettings = ( { attributes, setAttributes } ) => {
+const AnimationSettings = ( {
+	attributes = {},
+	setAttributes = () => {},
+} = {} ) => {
 	const {
 		align,
 		controls,

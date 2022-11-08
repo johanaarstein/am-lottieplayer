@@ -11,7 +11,11 @@ import {
 } from '@wordpress/block-editor';
 import { ToolbarGroup } from '@wordpress/components';
 
-import { AdvancedSettings, AnimationSettings } from './components/settings';
+import {
+	AdvancedSettings,
+	AnimationSettings,
+	BackgroundSettings,
+} from './components/settings';
 
 import Placeholder from './components/Placeholder';
 
@@ -46,6 +50,10 @@ export const LottieControls = ( {
 					attributes={ attributes }
 					setAttributes={ setAttributes }
 				/>
+				<BackgroundSettings
+					attributes={ attributes }
+					setAttributes={ setAttributes }
+				/>
 				<AdvancedSettings
 					attributes={ attributes }
 					setAttributes={ setAttributes }
@@ -69,7 +77,7 @@ export default function Edit( {
 			/>
 			<div
 				{ ...useBlockProps() }
-				className={ `wp-block${
+				className={ `wp-lottieplayer wp-block${
 					align !== 'none' ? ' align' + align : ''
 				}` }
 			>

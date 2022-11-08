@@ -17,6 +17,7 @@ export default function Placeholder( {
 		// align,
 		alt,
 		autoplay,
+		background,
 		controls,
 		direction,
 		height,
@@ -24,61 +25,41 @@ export default function Placeholder( {
 		loop,
 		mode,
 		objectFit,
+		renderer,
 		speed,
 		src,
 		width,
 	} = attributes;
 
 	const player = useRef( null ),
-		objectFitSVG = useCallback( () => {
-			player?.current?.shadowRoot
-				?.querySelector( 'svg' )
-				?.setAttribute(
-					'preserveAspectRatio',
-					aspectRatio( objectFit )
-				);
-		}, [ aspectRatio, objectFit ] );
-
-	// const fixSize = useCallback( () => {
-	// 	const { offsetHeight, offsetWidth } = player.current;
-	// 	if ( ! width && align !== 'full' ) {
-	// 		setAttributes( { width: offsetWidth } );
-	// 	}
-	// 	if ( ! height ) {
-	// 		setAttributes( { height: offsetHeight } );
-	// 	}
-	// }, [ align, height, width ] );
-
-	// useEffect( () => {
-	// 	player?.current?.addEventListener( 'rendered', fixSize, false );
-
-	// 	return () =>
-	// 		player?.current?.removeEventListener( 'rendered', fixSize, false );
-	// }, [ fixSize ] );
+		initialRender = useRef( true ),
+		reloadPlayer = useCallback( () => {
+			player.current.reload();
+			setTimeout( () => {
+				const canvas =
+					player?.current?.shadowRoot?.querySelector( 'canvas' );
+				// eslint-disable-next-line no-unused-expressions
+				renderer === 'svg' && canvas && canvas.remove();
+			}, 100 );
+		}, [ renderer ] );
 
 	useEffect( () => {
-		objectFitSVG();
-	}, [ objectFit, objectFitSVG ] );
-
-	useEffect( () => {
-		if ( player.current ) {
-			if ( controls ) {
-				player.current.setAttribute( 'controls', true );
-			} else {
-				player.current.removeAttribute( 'controls' );
-			}
-			if ( loop ) {
-				player.current.setAttribute( 'loop', true );
-			} else {
-				player.current.removeAttribute( 'loop' );
-			}
-			if ( autoplay ) {
-				player.current.setAttribute( 'autoplay', true );
-			} else {
-				player.current.removeAttribute( 'autoplay' );
-			}
+		if ( ! initialRender.current ) {
+			reloadPlayer();
 		}
-	}, [ autoplay, controls, loop ] );
+		initialRender.current = false;
+	}, [ objectFit, reloadPlayer, renderer, speed ] );
+
+	useEffect( () => {
+		if (
+			player.current &&
+			player.current.currentState !== 'playing' &&
+			loop &&
+			autoplay
+		) {
+			player.current.play();
+		}
+	}, [ autoplay, loop ] );
 
 	return (
 		<div className="w-full" { ...useBlockProps() }>
@@ -119,14 +100,19 @@ export default function Placeholder( {
 							height && typeof height === 'number'
 								? `${ height }px`
 								: null,
+						backgroundColor: background,
 					} }
 				>
 					<dotlottie-player
+						autoplay={ autoplay ? '' : null }
+						controls={ controls ? '' : null }
 						description={ alt }
 						direction={ direction }
+						loop={ loop ? '' : null }
 						mode={ mode }
 						preserveAspectRatio={ aspectRatio( objectFit ) }
 						ref={ player }
+						renderer={ renderer }
 						speed={ speed }
 						src={ src }
 					/>

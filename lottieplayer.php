@@ -8,7 +8,7 @@
  * Requires at least: 5.9
  * Requires PHP:      7.0
  * Version:           1.0.0
- * Author:            Johan Martin Aarstein
+ * Author:            Aarstein Media
  * Author URI:        https://www.aarstein.media
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
