@@ -25,7 +25,7 @@ registerBlockType( metadata.name, {
 		},
 		alt: {
 			type: 'string',
-			default: __('Lottie animation'),
+			default: __( 'Lottie animation' ),
 		},
 		autoplay: {
 			type: 'boolean',
@@ -35,12 +35,22 @@ registerBlockType( metadata.name, {
 			type: 'boolean',
 			default: false,
 		},
+		content: {
+			type: 'string',
+		},
+		contentPosition: {
+			type: 'string',
+		},
 		direction: {
 			type: 'number',
 			default: 1,
 		},
 		focalPoint: {
-			type: 'object'
+			type: 'object',
+		},
+		height: {
+			type: 'number',
+			default: null,
 		},
 		id: {
 			type: 'string',
@@ -48,7 +58,7 @@ registerBlockType( metadata.name, {
 		},
 		loop: {
 			type: 'boolean',
-			default: false,
+			default: true,
 		},
 		minHeight: {
 			type: 'number',
@@ -79,7 +89,46 @@ registerBlockType( metadata.name, {
 		src: {
 			type: 'string',
 		},
+		width: {
+			type: 'number',
+			default: null,
+		},
 	},
+
+	usesContext: [ 'postId', 'postType' ],
+	supports: {
+		anchor: true,
+		align: true,
+		html: false,
+		spacing: {
+			padding: true,
+			margin: [ 'top', 'bottom' ],
+			__experimentalDefaultControls: {
+				padding: true,
+			},
+		},
+		color: {
+			__experimentalDuotone:
+				'> .wp-block-cover__image-background, > .wp-block-cover__video-background',
+			text: false,
+			background: false,
+		},
+		typography: {
+			fontSize: true,
+			lineHeight: true,
+			__experimentalFontFamily: true,
+			__experimentalFontWeight: true,
+			__experimentalFontStyle: true,
+			__experimentalTextTransform: true,
+			__experimentalTextDecoration: true,
+			__experimentalLetterSpacing: true,
+			__experimentalDefaultControls: {
+				fontSize: true,
+			},
+		},
+	},
+	editorStyle: 'wp-block-cover-editor',
+	style: 'wp-block-cover',
 
 	edit: Edit,
 

@@ -57,7 +57,6 @@ export const LottieControls = ( {
 export default function Edit( {
 	attributes = {},
 	setAttributes = () => {},
-	isSelected = false,
 } = {} ) {
 	const { align } = attributes;
 
@@ -68,10 +67,9 @@ export default function Edit( {
 				setAttributes={ setAttributes }
 			/>
 			<div
-				{ ...useBlockProps() }
-				className={ `wp-lottieplayer wp-block${
-					align !== 'none' ? ' align' + align : ''
-				}${ isSelected ? ' is-selected' : '' }` }
+				{ ...useBlockProps( {
+					className: align !== 'none' ? ' align' + align : '',
+				} ) }
 			>
 				<Placeholder
 					attributes={ attributes }

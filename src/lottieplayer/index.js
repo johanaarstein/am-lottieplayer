@@ -21,7 +21,7 @@ registerBlockType( metadata.name, {
 		},
 		alt: {
 			type: 'string',
-			default: __('Lottie animation'),
+			default: __( 'Lottie animation' ),
 		},
 		autoplay: {
 			type: 'boolean',

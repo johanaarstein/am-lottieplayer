@@ -10,17 +10,17 @@ import { aspectRatio } from '../functions';
 
 export default function Placeholder( {
 	attributes = {},
+	className = '',
 	setAttributes = () => {},
 } = {} ) {
 	const {
-		// align,
+		align,
 		alt,
 		autoplay,
 		background,
 		controls,
 		direction,
 		height,
-		id,
 		loop,
 		mode,
 		objectFit,
@@ -40,7 +40,15 @@ export default function Placeholder( {
 				// eslint-disable-next-line no-unused-expressions
 				renderer === 'svg' && canvas && canvas.remove();
 			}, 100 );
-		}, [ renderer ] );
+		}, [ renderer ] ),
+		parseWidth = useCallback(
+			( num ) => {
+				if ( align === 'wide' || align === 'full' ) return '100%';
+				if ( num && typeof num === 'number' ) return `${ num }px`;
+				return null;
+			},
+			[ align ]
+		);
 
 	useEffect( () => {
 		if ( ! initialRender.current ) {
@@ -89,12 +97,9 @@ export default function Placeholder( {
 				</div>
 			) : (
 				<div
-					id={ `lottie-wrapper-${ id }` }
+					className={ className }
 					style={ {
-						width:
-							width && typeof width === 'number'
-								? `${ width }px`
-								: null,
+						width: parseWidth( width ),
 						height:
 							height && typeof height === 'number'
 								? `${ height }px`
