@@ -1,0 +1,16 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "gb/lottiecover",
+	"version": "1.0.0",
+	"title": "LottieCover",
+	"category": "media",
+	"description": "Add a Lottie animation with a text overlay — great for headers.",
+	"supports": {
+		"html": false
+	},
+	"textdomain": "lottieplayer",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

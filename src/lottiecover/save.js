@@ -1,24 +1,36 @@
 import { useBlockProps } from '@wordpress/block-editor';
-import '@johanaarstein/dotlottie-player';
 
-import { aspectRatio } from './functions';
+import { aspectRatio } from '../functions';
 
 export default function save( { attributes } ) {
 	const {
 		align,
 		alt,
 		autoplay,
+		background,
 		controls,
 		direction,
+		height,
 		id,
 		loop,
 		mode,
 		objectFit,
 		src,
+		width,
 	} = attributes;
 
 	return (
-		<figure id={ id } className={ align } { ...useBlockProps.save() }>
+		<figure
+			id={ id }
+			{ ...useBlockProps.save( {
+				className: `align${ align }`,
+			} ) }
+			style={ {
+				backgroundColor: background,
+				height: ! height || height === '0' ? 'auto' : height,
+				width: ! width || width === '0' ? 'auto' : width,
+			} }
+		>
 			<dotlottie-player
 				autoplay={ autoplay }
 				controls={ controls }

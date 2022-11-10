@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef } from '@wordpress/element';
 import { useBlockProps } from '@wordpress/block-editor';
 import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import '@johanaarstein/dotlottie-player';
 
 import { Lottie } from '../assets/icons';
 import Upload from './Upload';
@@ -53,9 +52,9 @@ export default function Placeholder( {
 	useEffect( () => {
 		if (
 			player.current &&
-			player.current.currentState !== 'playing' &&
 			loop &&
-			autoplay
+			autoplay &&
+			player.current.currentState !== 'playing'
 		) {
 			player.current.play();
 		}

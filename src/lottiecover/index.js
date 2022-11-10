@@ -6,7 +6,7 @@ import './style.scss';
 import Edit from './edit';
 import save from './save';
 import metadata from './block.json';
-import { Lottie } from './assets/icons';
+import { Lottie } from '../assets/icons';
 
 registerBlockType( metadata.name, {
 	icon: Lottie,
@@ -15,6 +15,8 @@ registerBlockType( metadata.name, {
 		__( 'gif' ),
 		__( 'motion' ),
 		__( 'vector' ),
+		__( 'cover' ),
+		__( 'background' ),
 	],
 	attributes: {
 		align: {
@@ -23,39 +25,37 @@ registerBlockType( metadata.name, {
 		},
 		alt: {
 			type: 'string',
-			default: 'Lottie animation',
+			default: __('Lottie animation'),
 		},
 		autoplay: {
 			type: 'boolean',
 			default: true,
 		},
-		background: {
-			type: 'string',
-			default: 'transparent',
-		},
 		controls: {
 			type: 'boolean',
-			default: true,
+			default: false,
 		},
 		direction: {
 			type: 'number',
 			default: 1,
 		},
-		height: {
-			type: 'number',
-			default: null,
+		focalPoint: {
+			type: 'object'
 		},
 		id: {
 			type: 'string',
-			default: '',
-		},
-		interactivityType: {
-			type: 'string',
-			default: 'none',
+			default: null,
 		},
 		loop: {
 			type: 'boolean',
 			default: false,
+		},
+		minHeight: {
+			type: 'number',
+		},
+		minHeightUnit: {
+			type: 'string',
+			default: 'px',
 		},
 		mode: {
 			type: 'string',
@@ -63,7 +63,10 @@ registerBlockType( metadata.name, {
 		},
 		objectFit: {
 			type: 'string',
-			default: 'contain',
+			default: 'cover',
+		},
+		overlayColor: {
+			type: 'string',
 		},
 		renderer: {
 			type: 'string',
@@ -75,10 +78,6 @@ registerBlockType( metadata.name, {
 		},
 		src: {
 			type: 'string',
-		},
-		width: {
-			type: 'number',
-			default: null,
 		},
 	},
 

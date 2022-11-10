@@ -1,8 +1,3 @@
-// import { __ } from '@wordpress/i18n'
-// import { useCallback, useEffect, useState, useRef } from '@wordpress/element'
-
-// import { Popover, TextControl, ToolbarButton } from '@wordpress/components'
-
 import {
 	BlockAlignmentToolbar,
 	BlockControls,
@@ -15,13 +10,9 @@ import {
 	AdvancedSettings,
 	AnimationSettings,
 	BackgroundSettings,
-} from './components/settings';
+} from '../components/settings';
 
-import Placeholder from './components/Placeholder';
-
-// import { displayShortcut, isKeyboardEvent } from '@wordpress/keycodes'
-// import { link, linkOff } from '@wordpress/icons'
-// import { useMergeRefs } from '@wordpress/compose'
+import Placeholder from '../components/Placeholder';
 
 import './editor.scss';
 
@@ -66,6 +57,7 @@ export const LottieControls = ( {
 export default function Edit( {
 	attributes = {},
 	setAttributes = () => {},
+	isSelected = false,
 } = {} ) {
 	const { align } = attributes;
 
@@ -79,7 +71,7 @@ export default function Edit( {
 				{ ...useBlockProps() }
 				className={ `wp-lottieplayer wp-block${
 					align !== 'none' ? ' align' + align : ''
-				}` }
+				}${ isSelected ? ' is-selected' : '' }` }
 			>
 				<Placeholder
 					attributes={ attributes }

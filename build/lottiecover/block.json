@@ -1,11 +1,11 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
-  "name": "gb/lottieplayer",
+  "name": "gb/lottiecover",
   "version": "1.0.0",
-  "title": "LottiePlayer",
+  "title": "LottieCover",
   "category": "media",
-  "description": "Upload Lottie animations to WordPress and add them in Gutenberg. Choose between renderers and fill mode.",
+  "description": "Add a Lottie animation with a text overlay — great for headers.",
   "supports": {
     "html": false
   },

@@ -18,6 +18,7 @@ const BackgroundSettings = ( {
 					onChange={ ( color ) => {
 						setAttributes( { background: color } );
 					} }
+					enableAlpha
 				/>
 			</PanelBody>
 		</Panel>

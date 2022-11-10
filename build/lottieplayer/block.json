@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "gb/lottieplayer",
+  "version": "1.0.0",
+  "title": "LottiePlayer",
+  "category": "media",
+  "description": "Upload Lottie animations to WordPress and add them in Gutenberg. Choose between renderers and fill mode.",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "lottieplayer",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css"
+}
