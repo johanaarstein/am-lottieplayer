@@ -3,30 +3,27 @@ import {
 	DropZoneProvider,
 	ResizableBox,
 } from '@wordpress/components';
-import { BlockEdit, useBlockProps } from '@wordpress/block-editor';
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
+import LottieControls from '../components/LottieControls';
 import Placeholder from '../components/Placeholder';
 
 import './editor.scss';
 
 export default function Edit( {
 	attributes = {},
-	clientId = '',
 	setAttributes = () => {},
-	isSelected = false,
 	toggleSelection = () => {},
 } = {} ) {
-	const { content, minHeight, src } = attributes;
+	const { minHeight, src } = attributes;
 
 	return (
 		<>
-			<div
-				{ ...useBlockProps() }
-				// className={ `wp-lottiecover wp-block${
-				// 	align !== 'none' ? ' align' + align : ''
-				// }${ isSelected ? ' is-selected' : '' }` }
-				style={ { minHeight } }
-			>
+			<LottieControls
+				attributes={ attributes }
+				setAttributes={ setAttributes }
+			/>
+			<div { ...useBlockProps() } style={ { minHeight } }>
 				<ResizableBox
 					enable={ {
 						top: false,
@@ -60,11 +57,8 @@ export default function Edit( {
 				{ src === '' || ! src ? (
 					''
 				) : (
-					<BlockEdit
-						attributes={ { content } }
-						clientId={ clientId }
-						isSelected={ isSelected }
-						setAttributes={ setAttributes }
+					<InnerBlocks
+						allowedBlocks={ [ 'core/image', 'core/paragraph' ] }
 					/>
 				) }
 			</div>

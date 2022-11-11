@@ -9,10 +9,7 @@ const BackgroundSettings = ( {
 
 	return (
 		<Panel>
-			<PanelBody
-				title={ __( 'Background Settings' ) }
-				initialOpen={ false }
-			>
+			<PanelBody title={ __( 'Background Color' ) } initialOpen={ false }>
 				<ColorPicker
 					color={ background }
 					onChange={ ( color ) => {

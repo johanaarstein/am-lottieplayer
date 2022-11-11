@@ -6,7 +6,7 @@ const AdvanceSettings = ( {
 	attributes = {},
 	setAttributes = () => {},
 } = {} ) => {
-	const { direction, mode, renderer, speed } = attributes;
+	const { direction, interactivityType, mode, renderer, speed } = attributes;
 
 	return (
 		<InspectorAdvancedControls key="inspector">
@@ -17,6 +17,22 @@ const AdvanceSettings = ( {
 				options={ [
 					{ value: 'svg', label: __( 'SVG' ) },
 					{ value: 'canvas', label: __( 'Canvas' ) },
+				] }
+			/>
+			<SelectControl
+				label={ __( 'Play animation on' ) }
+				value={ interactivityType }
+				onChange={ ( val ) => {
+					setAttributes( {
+						interactivityType: val,
+						autoplay: val === 'none',
+					} );
+				} }
+				options={ [
+					{ value: 'none', label: __( 'Page Load' ) },
+					{ value: 'hold', label: __( 'Hover' ) },
+					{ value: 'click', label: __( 'Click' ) },
+					{ value: 'scroll', label: __( 'Scroll' ) },
 				] }
 			/>
 			<RangeControl

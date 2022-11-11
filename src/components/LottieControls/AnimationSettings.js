@@ -1,3 +1,4 @@
+import { useCallback } from '@wordpress/element';
 import {
 	Panel,
 	PanelBody,
@@ -12,15 +13,15 @@ const AnimationSettings = ( {
 	attributes = {},
 	setAttributes = () => {},
 } = {} ) => {
-	const {
-		align,
-		controls,
-		height,
-		interactivityType,
-		loop,
-		objectFit,
-		width,
-	} = attributes;
+	const { align, controls, height, loop, objectFit, width } = attributes;
+
+	const parseWidth = useCallback(
+		( num ) => {
+			if ( align === 'full' || align === 'wide' ) return '100%';
+			return ! num || num === '0' ? null : num;
+		},
+		[ align ]
+	);
 
 	return (
 		<Panel>
@@ -28,22 +29,6 @@ const AnimationSettings = ( {
 				title={ __( 'Animation Settings' ) }
 				initialOpen={ true }
 			>
-				<SelectControl
-					label={ __( 'Play animation on' ) }
-					value={ interactivityType }
-					onChange={ ( val ) => {
-						setAttributes( {
-							interactivityType: val,
-							autoplay: val === 'none',
-						} );
-					} }
-					options={ [
-						{ value: 'none', label: __( 'Page Load' ) },
-						{ value: 'hold', label: __( 'Hover' ) },
-						{ value: 'click', label: __( 'Click' ) },
-						{ value: 'scroll', label: __( 'Scroll' ) },
-					] }
-				/>
 				<SwitchLabel
 					title={ __( 'Loop' ) }
 					subTitle={ __( 'Repeat animation' ) }
@@ -63,7 +48,7 @@ const AnimationSettings = ( {
 				<PanelRow className="lottie-dimensions">
 					<NumberInput
 						title={ __( 'Width' ) }
-						value={ ! width || width === '0' ? null : width }
+						value={ parseWidth( width ) }
 						onChange={ ( val ) => {
 							setAttributes( { width: val ?? null } );
 						} }

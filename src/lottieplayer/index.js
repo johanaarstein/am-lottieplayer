@@ -80,6 +80,8 @@ registerBlockType( metadata.name, {
 		},
 	},
 
+	usesContext: [ 'postId', 'postType' ],
+
 	edit: Edit,
 
 	save,

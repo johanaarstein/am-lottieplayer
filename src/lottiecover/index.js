@@ -35,9 +35,6 @@ registerBlockType( metadata.name, {
 			type: 'boolean',
 			default: false,
 		},
-		content: {
-			type: 'string',
-		},
 		contentPosition: {
 			type: 'string',
 		},
@@ -108,8 +105,6 @@ registerBlockType( metadata.name, {
 			},
 		},
 		color: {
-			__experimentalDuotone:
-				'> .wp-block-cover__image-background, > .wp-block-cover__video-background',
 			text: false,
 			background: false,
 		},
@@ -127,8 +122,6 @@ registerBlockType( metadata.name, {
 			},
 		},
 	},
-	editorStyle: 'wp-block-cover-editor',
-	style: 'wp-block-cover',
 
 	edit: Edit,
 

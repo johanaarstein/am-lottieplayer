@@ -6,9 +6,6 @@
 	"title": "LottieCover",
 	"category": "media",
 	"description": "Add a Lottie animation with a text overlay — great for headers.",
-	"supports": {
-		"html": false
-	},
 	"textdomain": "lottieplayer",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",

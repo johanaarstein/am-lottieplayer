@@ -5,8 +5,10 @@
   "version": "1.0.0",
   "title": "LottiePlayer",
   "category": "media",
-  "description": "Upload Lottie animations to WordPress and add them in Gutenberg. Choose between renderers and fill mode.",
+  "description": "Add Lottie animations to you post.",
   "supports": {
+    "align": true,
+    "anchor": true,
     "html": false
   },
   "textdomain": "lottieplayer",
