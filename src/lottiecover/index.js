@@ -23,6 +23,9 @@ registerBlockType( metadata.name, {
 			type: 'string',
 			default: 'none',
 		},
+		allowedBlocks: {
+			type: 'array',
+		},
 		alt: {
 			type: 'string',
 			default: __( 'Lottie animation' ),
@@ -49,6 +52,10 @@ registerBlockType( metadata.name, {
 			type: 'number',
 			default: null,
 		},
+		heightUnit: {
+			type: 'string',
+			default: 'px',
+		},
 		id: {
 			type: 'string',
 			default: null,
@@ -56,13 +63,6 @@ registerBlockType( metadata.name, {
 		loop: {
 			type: 'boolean',
 			default: true,
-		},
-		minHeight: {
-			type: 'number',
-		},
-		minHeightUnit: {
-			type: 'string',
-			default: 'px',
 		},
 		mode: {
 			type: 'string',
@@ -86,13 +86,15 @@ registerBlockType( metadata.name, {
 		src: {
 			type: 'string',
 		},
+		templateLock: {
+			type: [ 'string', 'boolean' ],
+			enum: [ 'all', 'insert', 'contentOnly', false ],
+		},
 		width: {
 			type: 'number',
 			default: null,
 		},
 	},
-
-	usesContext: [ 'postId', 'postType' ],
 	supports: {
 		anchor: true,
 		align: true,
