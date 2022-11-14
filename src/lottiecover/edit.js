@@ -1,47 +1,59 @@
+import classnames from 'classnames';
+
+import { useEffect, useRef } from '@wordpress/element';
 import {
-	RichText,
+	store as blockEditorStore,
 	useBlockProps,
 	useInnerBlocksProps,
 	useSetting,
 } from '@wordpress/block-editor';
-import { DropZone, ResizableBox } from '@wordpress/components';
-import { useDispatch } from '@wordpress/data';
-import { store as noticesStore } from '@wordpress/notices';
+import { useSelect } from '@wordpress/data';
+import { __ } from '@wordpress/i18n';
 
 import LottieControls from '../components/LottieControls';
 import Placeholder from '../components/Placeholder';
-import { __ } from '@wordpress/i18n';
+import ResizableCover from '../components/ResizableCover';
 
 import './editor.scss';
 
+function getInnerBlocksTemplate( attributes ) {
+	return [
+		[
+			'core/paragraph',
+			{
+				align: 'center',
+				placeholder: __( 'Write title…' ),
+				...attributes,
+			},
+		],
+	];
+}
+
 export default function Edit( {
 	attributes = {},
+	clientId = '',
 	isSelected = false,
 	setAttributes = () => {},
 	toggleSelection = () => {},
 } = {} ) {
 	const { allowedBlocks, background, height, heightUnit, src, templateLock } =
 			attributes,
-		{ createErrorNotice } = useDispatch( noticesStore ),
-		getInnerBlocksTemplate = ( attr ) => {
-			return [
-				[
-					'core/paragraph',
-					{
-						align: 'center',
-						placeholder: __( 'Write title…' ),
-						...attr,
-					},
-				],
-			];
-		},
+		isPlaceholder = useRef( true ),
+		ref = useRef(),
+		blockProps = useBlockProps( { ref } ),
+		hasInnerBlocks = useSelect(
+			( select ) =>
+				select( blockEditorStore ).getBlock( clientId ).innerBlocks
+					.length > 0,
+			[ clientId ]
+		),
 		hasFontSizes = !! useSetting( 'typography.fontSizes' )?.length,
 		innerBlocksTemplate = getInnerBlocksTemplate( {
 			fontSize: hasFontSizes ? 'large' : undefined,
 		} ),
 		innerBlocksProps = useInnerBlocksProps(
 			{
-				className: 'wp-block-cover__inner-container',
+				className: 'wp-block-gb-lottiecover__inner-container',
 			},
 			{
 				template: ! hasInnerBlocks ? innerBlocksTemplate : undefined,
@@ -50,17 +62,15 @@ export default function Edit( {
 				templateLock,
 			}
 		),
-		onUploadError = ( message ) => {
-			createErrorNotice( message, { type: 'snackbar' } );
-		},
-		handleDrop = ( e ) => {
-			console.log( e );
-		},
 		heightWithUnit =
 			height && heightUnit ? `${ height }${ heightUnit }` : height,
 		style = {
 			minHeight: heightWithUnit || undefined,
 		};
+
+	useEffect( () => {
+		isPlaceholder.current = ! src || src === '';
+	}, [ src ] );
 
 	return (
 		<>
@@ -68,28 +78,26 @@ export default function Edit( {
 				attributes={ attributes }
 				setAttributes={ setAttributes }
 			/>
-			<div { ...useBlockProps() } style={ style }>
-				<ResizableBox
-					// size={ { height } }
-					enable={ {
-						top: false,
-						right: false,
-						bottom: true,
-						left: false,
-						topRight: false,
-						bottomRight: false,
-						bottomLeft: false,
-						topLeft: false,
-					} }
-					minHeight={ 10 }
-					onResizeStop={ ( event, direction, elt, delta ) => {
-						setAttributes( {
-							height: parseInt( height + delta.height, 10 ),
-						} );
-						toggleSelection( true );
-					} }
+			<div
+				{ ...blockProps }
+				className={ classnames(
+					isPlaceholder.current && 'is-placeholder',
+					blockProps.className
+				) }
+				style={ { ...style, ...blockProps.style } }
+			>
+				<ResizableCover
+					className={ 'block-library-lottiecover__resize-container' }
 					onResizeStart={ () => {
+						setAttributes( { heightUnit: 'px' } );
 						toggleSelection( false );
+					} }
+					onResize={ ( value ) => {
+						setAttributes( { height: value } );
+					} }
+					onResizeStop={ ( value ) => {
+						setAttributes( { height: value } );
+						toggleSelection( true );
 					} }
 					showHandle={ isSelected }
 				/>
@@ -97,36 +105,14 @@ export default function Edit( {
 					aria-hidden="true"
 					className={ `background` }
 					style={ { backgroundColor: background } }
-					hidden={ src === '' || ! src }
+					hidden={ isPlaceholder.current }
 				/>
 				<Placeholder
 					attributes={ attributes }
 					setAttributes={ setAttributes }
+					isPlaceholder={ isPlaceholder.current }
 				/>
-				{ src === '' || ! src ? (
-					''
-				) : (
-					<>
-						<DropZone
-							onFilesDrop={ handleDrop }
-							onHTMLDrop={ handleDrop }
-							onDrop={ handleDrop }
-						/>
-						<DropZone
-							onFilesDrop={ handleDrop }
-							onHTMLDrop={ handleDrop }
-							onDrop={ handleDrop }
-							className="wp-block-gb-lottiecover__inner-container"
-						>
-							{ /* <div className="wp-block-gb-lottiecover__inner-container"> */ }
-							<RichText
-								tagName="p"
-								placeholder={ __( 'Write title' ) }
-							/>
-							{ /* </div> */ }
-						</DropZone>
-					</>
-				) }
+				{ ! isPlaceholder.current && <div { ...innerBlocksProps } /> }
 			</div>
 		</>
 	);

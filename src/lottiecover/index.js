@@ -25,6 +25,7 @@ registerBlockType( metadata.name, {
 		},
 		allowedBlocks: {
 			type: 'array',
+			default: [ 'core/paragraph', 'core/heading', 'core/buttons' ],
 		},
 		alt: {
 			type: 'string',

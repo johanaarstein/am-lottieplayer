@@ -15,7 +15,7 @@
 .wp-block-gb-lottiecover {
 	position: relative;
 	background-position: 50%;
-	min-height: 430px;
+	min-height: 240px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -25,7 +25,7 @@
 		min-height: auto !important;
 		padding: 0 !important;
 
-		.block-library-cover__resize-container {
+		.block-library-lottiecover__resize-container {
 			display: none;
 		}
 
@@ -34,7 +34,7 @@
 			justify-content: flex-start;
 			z-index: 1;
 
-			+.block-library-cover__resize-container {
+			+.block-library-lottiecover__resize-container {
 				min-height: 240px;
 				display: block;
 			}
@@ -113,11 +113,11 @@
 	width: 100%;
 }
 
-.block-library-cover__reset-button {
+.block-library-lottiecover__reset-button {
 	margin-left: auto;
 }
 
-.block-library-cover__resize-container {
+.block-library-lottiecover__resize-container {
 	position: absolute !important;
 	top: 0;
 	left: 0;

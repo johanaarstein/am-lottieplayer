@@ -12,6 +12,25 @@ const aspectRatio = ( objectFit ) => {
 				return 'xMidYMid meet';
 		}
 	},
+	attributesFromMedia = ( setAttributes, dimRatio = null ) => {
+		return ( media ) => {
+			if ( ! media || ! media.url ) {
+				setAttributes( { src: undefined, id: undefined } );
+				return;
+			}
+
+			setAttributes( {
+				dimRatio: dimRatio === 100 ? 50 : dimRatio,
+				src: media.url,
+				id: media.id,
+				alt: media?.alt,
+				// focalPoint: undefined,
+				// ...( mediaType === VIDEO_BACKGROUND_TYPE
+				// 	? { hasParallax: undefined }
+				// 	: {} ),
+			} );
+		};
+	},
 	debounce = ( func = () => {}, timeout = 100 ) => {
 		let timer;
 
@@ -45,4 +64,10 @@ const aspectRatio = ( objectFit ) => {
 		return key >= 0 && key <= 9;
 	};
 
-export { aspectRatio, debounce, isModifierKey, isNumericInput };
+export {
+	aspectRatio,
+	attributesFromMedia,
+	debounce,
+	isModifierKey,
+	isNumericInput,
+};

@@ -53,7 +53,7 @@ registerBlockType( metadata.name, {
 		},
 		loop: {
 			type: 'boolean',
-			default: false,
+			default: true,
 		},
 		mode: {
 			type: 'string',
