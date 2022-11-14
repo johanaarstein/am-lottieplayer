@@ -25,6 +25,7 @@ export default function Placeholder( {
 				<UploadComponent
 					onSelectMedia={ onSelectMedia }
 					onError={ onUploadError }
+					disableMediaButtons={ ! isPlaceholder }
 				/>
 			) : (
 				<PlayerComponent attributes={ attributes } />
@@ -37,6 +38,7 @@ const UploadComponent = ( {
 	children,
 	onSelectMedia = () => {},
 	onError = () => {},
+	disableMediaButtons = false,
 } = {} ) => {
 	return (
 		<MediaPlaceholder
@@ -48,13 +50,14 @@ const UploadComponent = ( {
 				),
 			} }
 			onSelect={ onSelectMedia }
-			accept={ '.lottie, application/json, application/zip, text/plain' }
+			accept={ '.lottie, .json' }
 			allowedTypes={ [
 				'application/json',
 				'application/zip',
 				'text/plain',
 			] }
 			onError={ onError }
+			disableMediaButtons={ disableMediaButtons }
 		>
 			{ children }
 		</MediaPlaceholder>
