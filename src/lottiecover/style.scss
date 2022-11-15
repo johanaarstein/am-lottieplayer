@@ -1,10 +1,30 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
-
-.wp-block-custom-block-lottiecover {
-	background-color: transparent;
+.wp-block-gb-lottiecover {
+	position: relative;
+	background-position: 50%;
+	min-height: 430px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1em;
+	box-sizing: border-box;
+	.lottie-element {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 100% !important;
+		max-width: none;
+		max-height: none;
+		outline: none;
+		border: none;
+		box-shadow: none;
+	}
+	.wp-block-gb-lottiecover__inner-container {
+		width: 100%;
+		z-index: 1;
+	}
 }

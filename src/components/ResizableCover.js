@@ -14,7 +14,7 @@ export default function ResizableCover( {
 
 	return (
 		<ResizableBox
-			className={ classnames( className, isResizing && 'is-resizing' ) }
+			className={ classnames( className, { 'is-resizing': isResizing } ) }
 			enable={ {
 				top: false,
 				right: false,

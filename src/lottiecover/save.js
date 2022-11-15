@@ -1,59 +1,69 @@
-import classnames from 'classnames';
-
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 
-import Placeholder from '../components/Placeholder';
-
-import './editor.scss';
+import { aspectRatio } from '../functions';
 
 export default function save( { attributes = {} } = {} ) {
-	const { background, height, heightUnit, src, templateLock } = attributes,
-		blockProps = useBlockProps( { ref } ),
-		hasInnerBlocks = useSelect(
-			( select ) =>
-				select( blockEditorStore ).getBlock( clientId ).innerBlocks
-					.length > 0,
-			[ clientId ]
-		),
-		hasFontSizes = !! useSetting( 'typography.fontSizes' )?.length,
-		innerBlocksTemplate = getInnerBlocksTemplate( {
-			fontSize: hasFontSizes ? 'large' : undefined,
-		} ),
-		innerBlocksProps = useInnerBlocksProps(
-			{
-				className: 'wp-block-gb-lottiecover__inner-container',
-			},
-			{
-				template: ! hasInnerBlocks ? innerBlocksTemplate : undefined,
-				templateInsertUpdatesSelection: true,
-				templateLock,
-			}
-		),
+	const {
+			align,
+			alt,
+			autoplay,
+			background,
+			controls,
+			direction,
+			height,
+			heightUnit,
+			loop,
+			mode,
+			objectFit,
+			renderer,
+			speed,
+			src,
+			width,
+		} = attributes,
 		heightWithUnit =
 			height && heightUnit ? `${ height }${ heightUnit }` : height,
 		style = {
 			minHeight: heightWithUnit || undefined,
+		},
+		parseWidth = ( num ) => {
+			if ( align === 'wide' || align === 'full' ) return '100%';
+			if ( num && typeof num === 'number' ) return `${ num }px`;
+			return null;
 		};
 
 	return (
-		<div
-			{ ...blockProps }
-			className={ classnames(
-				isPlaceholder.current && 'is-placeholder',
-				blockProps.className
-			) }
-			style={ { ...style, ...blockProps.style } }
-		>
+		<div { ...useBlockProps.save( { style } ) }>
 			<span
 				aria-hidden="true"
-				className={ `background` }
+				className={ `wp-block-gb-lottiecover__background` }
 				style={ { backgroundColor: background } }
-				hidden={ isPlaceholder.current }
 			/>
-			<Placeholder
-				attributes={ attributes }
+			<dotlottie-player
+				class="lottie-element"
+				autoplay={ autoplay ? '' : null }
+				controls={ controls ? '' : null }
+				description={ alt }
+				direction={ direction }
+				loop={ loop ? '' : null }
+				mode={ mode }
+				preserveAspectRatio={ aspectRatio( objectFit ) }
+				renderer={ renderer }
+				speed={ speed }
+				src={ src }
+				style={ {
+					width: parseWidth( width ),
+					height:
+						height && typeof height === 'number'
+							? `${ height }px`
+							: null,
+					backgroundColor: background,
+				} }
 			/>
-			{ ! isPlaceholder.current && <div { ...innerBlocksProps } /> }
+			<div
+				{ ...useInnerBlocksProps.save( {
+					className: 'wp-block-gb-lottiecover__inner-container',
+				} ) }
+			/>
 		</div>
 	);
 }

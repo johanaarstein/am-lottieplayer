@@ -81,7 +81,7 @@ export default function Edit( {
 			<div
 				{ ...blockProps }
 				className={ classnames(
-					isPlaceholder.current && 'is-placeholder',
+					{ 'is-placeholder': isPlaceholder.current },
 					blockProps.className
 				) }
 				style={ { ...style, ...blockProps.style } }
@@ -103,7 +103,7 @@ export default function Edit( {
 				/>
 				<span
 					aria-hidden="true"
-					className={ `background` }
+					className={ `wp-block-gb-lottiecover__background` }
 					style={ { backgroundColor: background } }
 					hidden={ isPlaceholder.current }
 				/>
