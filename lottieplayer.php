@@ -23,10 +23,11 @@ if ( !function_exists( 'add_action' ) ) {
 
 add_action('init', 'lottie_blocks_init');
 function lottie_blocks_init() {
-	register_block_type( __DIR__ . '/build/lottieplayer' );
-  register_block_type( __DIR__ . '/build/lottiecover' );
+  add_shortcode('lottieplayer', 'render_lottieplayer_shortcode');
+	register_block_type(__DIR__ . '/build/lottieplayer');
+  register_block_type(__DIR__ . '/build/lottiecover');
 
-  $version = '1.2.15';
+  $version = '1.2.18';
 
   wp_register_script(
     'lottiePlayer',
@@ -38,34 +39,6 @@ function lottie_blocks_init() {
   wp_enqueue_script('lottiePlayer');
 }
 
-add_filter('upload_mimes', 'lottie_mimetypes');
-function lottie_mimetypes($mimes) {
-  $mimes['txt'] = 'text/plain';
-  $mimes['json'] = 'text/plain';
-	$mimes['lottie'] = 'application/zip';
-  return $mimes;
-}
-
-add_filter('wp_check_filetype_and_ext', 'lottie_filetypes', 10, 5);
-function lottie_filetypes($data, $file, $filename, $mimes, $real_mime) {
-  if (!empty($data['ext']) && !empty($data['type'])) {
-    return $data;
-  }
-  $wp_file_type = wp_check_filetype($filename, $mimes);
-
-  switch ($wp_file_type['ext']) {
-    case 'json':
-      $data['ext']  = 'json';
-      $data['type'] = 'text/plain';
-      break;
-    case 'txt':
-      $data['ext']  = 'txt';
-      $data['type'] = 'text/plain';
-      break;
-    case 'lottie':
-      $data['ext']  = 'lottie';
-      $data['type'] = 'application/zip';
-  }
-
-  return $data;
-}
+include __DIR__ . '/build/includes/shortcodes.php';
+include __DIR__ . '/build/includes/uploadFilter.php';
+include __DIR__ . '/build/includes/diviModules.php';

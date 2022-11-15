@@ -12,7 +12,8 @@
 		"lint:js": "wp-scripts lint-js",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start"
+		"start": "wp-scripts start",
+		"stash": "npm run build && npm run plugin-zip"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^24.5.0",
