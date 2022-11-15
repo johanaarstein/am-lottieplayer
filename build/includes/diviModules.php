@@ -4,10 +4,18 @@ function registerDiviModules() {
   if (class_exists('ET_Builder_Module')) {
     class ET_Builder_Module_LottiePlayer extends ET_Builder_Module {
       public function init() {
-        $this -> name = esc_html__( 'Lottie', 'lottieplayer' );
-        $this -> plural = esc_html__( 'Lotties', 'lottieplayer' );
+        $this -> name = esc_html__('Lottie', 'lottieplayer');
+        $this -> plural = esc_html__('Lotties', 'lottieplayer');
         $this -> slug = 'et_lottieplayer';
         $this -> vb_support = 'on';
+
+        $this -> settings_modal_toggles = [
+          'general' => [
+            'toggles' => [
+              'main_content' => esc_html__('Animation', 'lottieplayer')
+            ]
+          ]
+        ];
       }
 
       public function get_fields() {
@@ -47,7 +55,7 @@ function registerDiviModules() {
               'off' => et_builder_i18n('No'),
               'on'  => et_builder_i18n('Yes'),
             ],
-            'default_on_front' => true,
+            'default_on_front' => 'on',
             'affects' => ['__lottie'],
             'toggle_slug' => 'main_content',
           ],
@@ -56,7 +64,7 @@ function registerDiviModules() {
             'type' => 'upload',
             'option_category' => 'basic_option',
             'data_type' => 'application',
-            'upload_button_text' => esc_attr__('Upload a Lottie JSON or a dotLottie', 'lottieplayer'),
+            'upload_button_text' => esc_attr__('Use animation', 'lottieplayer'),
             'choose_text' => esc_attr__('Choose a Lottie JSON or a dotLottie file', 'lottieplayer'),
             'update_text'  => esc_attr__('Set As Lottie', 'lottieplayer'),
             'description' => esc_html__('Upload your desired animation in Lottie JSON format, dotLottie format, or type in the URL to the Lottie you would like to display', 'lottieplayer'),
