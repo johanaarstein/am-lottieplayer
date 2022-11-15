@@ -11,7 +11,7 @@ import { aspectRatio, attributesFromMedia } from '../functions';
 export default function Placeholder( {
 	attributes = {},
 	setAttributes = () => {},
-	isPlaceholder = true,
+	isPlaceholder = false,
 } = {} ) {
 	const { createErrorNotice } = useDispatch( noticesStore ),
 		onUploadError = ( message ) => {

@@ -39,6 +39,9 @@ registerBlockType( metadata.name, {
 			type: 'boolean',
 			default: false,
 		},
+		content: {
+			type: 'string',
+		},
 		contentPosition: {
 			type: 'string',
 		},

@@ -1,46 +1,59 @@
-import { useBlockProps } from '@wordpress/block-editor';
+import classnames from 'classnames';
 
-import { aspectRatio } from '../functions';
+import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 
-export default function save( { attributes } ) {
-	const {
-		align,
-		alt,
-		autoplay,
-		background,
-		controls,
-		direction,
-		height,
-		id,
-		loop,
-		mode,
-		objectFit,
-		src,
-		width,
-	} = attributes;
+import Placeholder from '../components/Placeholder';
+
+import './editor.scss';
+
+export default function save( { attributes = {} } = {} ) {
+	const { background, height, heightUnit, src, templateLock } = attributes,
+		blockProps = useBlockProps( { ref } ),
+		hasInnerBlocks = useSelect(
+			( select ) =>
+				select( blockEditorStore ).getBlock( clientId ).innerBlocks
+					.length > 0,
+			[ clientId ]
+		),
+		hasFontSizes = !! useSetting( 'typography.fontSizes' )?.length,
+		innerBlocksTemplate = getInnerBlocksTemplate( {
+			fontSize: hasFontSizes ? 'large' : undefined,
+		} ),
+		innerBlocksProps = useInnerBlocksProps(
+			{
+				className: 'wp-block-gb-lottiecover__inner-container',
+			},
+			{
+				template: ! hasInnerBlocks ? innerBlocksTemplate : undefined,
+				templateInsertUpdatesSelection: true,
+				templateLock,
+			}
+		),
+		heightWithUnit =
+			height && heightUnit ? `${ height }${ heightUnit }` : height,
+		style = {
+			minHeight: heightWithUnit || undefined,
+		};
 
 	return (
-		<figure
-			id={ id }
-			{ ...useBlockProps.save( {
-				className: `align${ align }`,
-			} ) }
-			style={ {
-				backgroundColor: background,
-				height: ! height || height === '0' ? 'auto' : height,
-				width: ! width || width === '0' ? 'auto' : width,
-			} }
+		<div
+			{ ...blockProps }
+			className={ classnames(
+				isPlaceholder.current && 'is-placeholder',
+				blockProps.className
+			) }
+			style={ { ...style, ...blockProps.style } }
 		>
-			<dotlottie-player
-				autoplay={ autoplay }
-				controls={ controls }
-				description={ alt }
-				direction={ direction }
-				loop={ loop }
-				mode={ mode }
-				preserveAspectRatio={ aspectRatio( objectFit ) }
-				src={ src }
+			<span
+				aria-hidden="true"
+				className={ `background` }
+				style={ { backgroundColor: background } }
+				hidden={ isPlaceholder.current }
 			/>
-		</figure>
+			<Placeholder
+				attributes={ attributes }
+			/>
+			{ ! isPlaceholder.current && <div { ...innerBlocksProps } /> }
+		</div>
 	);
 }
