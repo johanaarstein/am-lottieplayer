@@ -43,7 +43,7 @@ function registerDiviModules() {
         $this -> advanced_fields = [
           'margin_padding' => [
             'css' => [
-              'important' => 'custom_margin',
+              'important' => ['custom_margin'],
             ],
           ],
           'borders' => [
@@ -108,23 +108,21 @@ function registerDiviModules() {
             'type' => 'text',
             'option_category' => 'basic_option',
             'depends_show_if' => 'on',
-            'depends_on' => 'src',
+            'depends_on' => ['src'],
             'description' => esc_html__('This defines the HTML ALT text. A short description of your animation can be placed here. Helpful for screen readers.', 'lottieplayer'),
             'tab_slug' => 'custom_css',
             'toggle_slug' => 'attributes',
             'dynamic_content' => 'text',
           ],
-          'title_text'          => [
-            'label'           => esc_html__('Animation Title Text', 'lottieplayer'),
-            'type'            => 'text',
+          'title_text' => [
+            'label' => esc_html__('Animation Title Text', 'lottieplayer'),
+            'type'  => 'text',
             'option_category' => 'basic_option',
             'depends_show_if' => 'on',
-            'depends_on'      => [
-              'src',
-            ],
-            'description'     => esc_html__('This defines the HTML Title text.', 'et_builder'),
-            'tab_slug'        => 'custom_css',
-            'toggle_slug'     => 'attributes',
+            'depends_on' => ['src'],
+            'description' => esc_html__('This defines the HTML Title text.', 'et_builder'),
+            'tab_slug' => 'custom_css',
+            'toggle_slug' => 'attributes',
             'dynamic_content' => 'text',
           ],
           'show_in_lightbox'    => [
@@ -208,17 +206,17 @@ function registerDiviModules() {
             'mobile_options'  => true,
             'sticky'          => true,
           ],
-          'hover_icon'          => [
-            'label'           => esc_html__('Hover Icon Picker', 'et_builder'),
-            'type'            => 'select_icon',
+          'hover_icon' => [
+            'label' => esc_html__('Hover Icon Picker', 'et_builder'),
+            'type' => 'select_icon',
             'option_category' => 'configuration',
-            'class'           => ['et-pb-font-icon'],
+            'class' => ['et-pb-font-icon'],
             'depends_show_if' => 'on',
-            'tab_slug'        => 'advanced',
-            'toggle_slug'     => 'overlay',
-            'description'     => esc_html__('Here you can define a custom icon for the overlay', 'et_builder'),
-            'mobile_options'  => true,
-            'sticky'          => true,
+            'tab_slug' => 'advanced',
+            'toggle_slug' => 'overlay',
+            'description' => esc_html__('Here you can define a custom icon for the overlay', 'et_builder'),
+            'mobile_options' => true,
+            'sticky' => true,
           ],
           'show_bottom_space'   => [
             'label'            => esc_html__('Show Space Below The Animation', 'lottieplayer'),
@@ -317,27 +315,6 @@ function registerDiviModules() {
       }
 
       public function render($attrs = [], $content = null, $render_slug) {
-        // $defaults = [
-        //   'alt' => __('Lottie animation', 'lottieplayer'),
-        //   'autoplay' => 'on',
-        //   'background' => 'transparent',
-        //   'controls' => 'on',
-        //   'direction' => 1,
-        //   'height' => null,
-        //   'interactivityType' => 'none',
-        //   'loop' => 'on',
-        //   'mode' => 'normal',
-        //   'objectFit' => 'contain',
-        //   'renderer' => 'svg',
-        //   'speed' => 1,
-        //   'src' => '',
-        //   'width' => null,
-        // ];
-
-        // $attrs = wp_parse_args($attrs, $defaults);
-        // if (empty($attrs['src'])) {
-        //   return '';
-        // }
 
         $align = $this -> get_alignment();
         $align_phone = $this -> get_alignment('phone');
@@ -453,7 +430,7 @@ function registerDiviModules() {
             [
               'hover'          => false,
               'base_attr_name' => 'overlay_icon_color',
-              'selector'       => '%%order_class%% .et_overlay:before',
+              'selector'       => '%%order_class%% .et_overlay::before',
               'css_property'   => 'color',
               'render_slug'    => $render_slug,
               'important'      => true,
@@ -517,7 +494,7 @@ function registerDiviModules() {
           $responsive_width     = et_pb_responsive_options() -> get_property_values($this -> props, 'width');
           $responsive_height    = et_pb_responsive_options() -> get_property_values($this -> props, 'height');
           $responsive_max_width = et_pb_responsive_options() -> get_property_values($this -> props, 'max_height');
-          $lottie_style_width    = [];
+          $lottie_style_width   = [];
           $modes                = [ 'desktop', 'tablet', 'phone' ];
 
           foreach ($modes as $mode) {
@@ -620,7 +597,18 @@ function registerDiviModules() {
 
     wp_register_style('lottie_et_styles', false);
     wp_enqueue_style('lottie_et_styles');
-    wp_add_inline_style('lottie_et_styles', '.et-fb-modules-list ul > li.et_pb_lottieplayer::before{content:""!important;background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbDpzcGFjZT0icHJlc2VydmUiIHZpZXdCb3g9IjAgMCAxNiAxNiI+CiAgPHBhdGggY2xhc3M9ImxvdHRpZWNvbG9yIiBmaWxsPSIjMmI4N2RhIiBkPSJNMTIgMEg0QzEuOCAwIDAgMS44IDAgNHY3LjlDMCAxNC4yIDEuOCAxNiA0IDE2aDcuOWMyLjIgMCA0LjEtMS44IDQuMS00VjRjMC0yLjItMS44LTQtNC00em0uMSA1LjJjLTEuNyAwLTIuMyAxLTMuMiAyLjdsLS41IDFjLS44IDEuNS0xLjggMy41LTQuNiAzLjUtLjUgMC0uOC0uNC0uOC0uOCAwLS41LjQtLjguOC0uOCAxLjcgMCAyLjMtMSAzLjItMi43bC42LTFjLjgtMS41IDEuOC0zLjUgNC42LTMuNS40IDAgLjguMy43LjggMCAuNS0uNC44LS44Ljh6Ii8+Cjwvc3ZnPgo=);width:16px;height:16px;background-repeat:no-repeat;margin:auto;}');
+
+    $customStyle = '
+      .et-fb-modules-list ul > li.et_fb_lottieplayer::before {
+        content: "" !important;
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbDpzcGFjZT0icHJlc2VydmUiIHZpZXdCb3g9IjAgMCAxNiAxNiI+CiAgPHBhdGggY2xhc3M9ImxvdHRpZWNvbG9yIiBmaWxsPSIjMmI4N2RhIiBkPSJNMTIgMEg0QzEuOCAwIDAgMS44IDAgNHY3LjlDMCAxNC4yIDEuOCAxNiA0IDE2aDcuOWMyLjIgMCA0LjEtMS44IDQuMS00VjRjMC0yLjItMS44LTQtNC00em0uMSA1LjJjLTEuNyAwLTIuMyAxLTMuMiAyLjdsLS41IDFjLS44IDEuNS0xLjggMy41LTQuNiAzLjUtLjUgMC0uOC0uNC0uOC0uOCAwLS41LjQtLjguOC0uOCAxLjcgMCAyLjMtMSAzLjItMi43bC42LTFjLjgtMS41IDEuOC0zLjUgNC42LTMuNS40IDAgLjguMy43LjggMCAuNS0uNC44LS44Ljh6Ii8+Cjwvc3ZnPgo=);
+        width: 16px;
+        height: 16px;
+        background-repeat: no-repeat;
+        margin: auto;
+      }';
+
+    wp_add_inline_style('lottie_et_styles', $customStyle);
 
     if (et_builder_should_load_all_module_data()) {
       new ET_Builder_Module_LottiePlayer;
