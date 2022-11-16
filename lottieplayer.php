@@ -16,8 +16,8 @@
  */
 
 // Make sure we don't expose any info if called directly
-if ( !function_exists( 'add_action' ) ) {
-	echo 'Hi there!  I\'m just a plugin, not much I can do when called directly.';
+if (!function_exists('add_action')) {
+	echo 'New phone, who diz?';
 	exit;
 }
 
@@ -27,18 +27,16 @@ function lottie_blocks_init() {
 	register_block_type(__DIR__ . '/build/lottieplayer');
   register_block_type(__DIR__ . '/build/lottiecover');
 
-  $version = '1.2.18';
-
   wp_register_script(
     'lottiePlayer',
-    'https://unpkg.com/@johanaarstein/dotlottie-player@' . $version . '/dist/dotlottie-player.js',
+    __DIR__ . '/js/dotlottie-player.js',
     null,
-    null,
+    '1.2.18',
     true
   );
   wp_enqueue_script('lottiePlayer');
 }
 
-include __DIR__ . '/build/includes/shortcodes.php';
-include __DIR__ . '/build/includes/uploadFilter.php';
-include __DIR__ . '/build/includes/diviModules.php';
+include __DIR__ . '/includes/shortcodes.php';
+include __DIR__ . '/includes/uploadFilter.php';
+include __DIR__ . '/includes/diviModules.php';
