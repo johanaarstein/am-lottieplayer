@@ -602,38 +602,16 @@ function registerDiviModules() {
 
         $output = sprintf(
           '<div%3$s class="%2$s">
-            %5$s
             %4$s
-            %6$s
-            %7$s
+            %5$s
             %1$s
           </div>',
           $output,
           $this -> module_classname($render_slug),
           $this -> module_id(),
-          $video_background,
-          $parallax_image_background,
-          et_core_esc_previously($this -> background_pattern()), // #6
-          et_core_esc_previously($this -> background_mask()) // #7
+          et_core_esc_previously($this -> background_pattern()), // #4
+          et_core_esc_previously($this -> background_mask()) // #5
         );
-
-        // $output = sprintf(
-        //   '<figure%1$ class="%2$s">
-        //     <dotlottie-player
-        //       src="%3$s"
-        //       %4$s
-        //       %5$s
-        //       %6$s
-        //     >
-        //     </dotlottie-player>
-        //   </figure>',
-        //   $this -> module_id(),
-        //   $this -> module_classname($render_slug),
-        //   $src,
-        //   ($autoplay !== 'off' ? 'autoplay' : ''),
-        //   ($controls !== 'off' ? 'controls' : ''),
-        //   ($loop !== 'off' ? 'loop' : ''),
-        // );
 
         return $output;
       }
