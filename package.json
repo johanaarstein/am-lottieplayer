@@ -15,8 +15,9 @@
 	},
 	"files": [
 		"build",
+		"includes",
 		"js",
-		"includes"
+		"lottieplayer.php"
 	],
 	"main": "build/index.js",
 	"dependencies": {},
