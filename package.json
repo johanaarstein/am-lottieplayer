@@ -4,24 +4,35 @@
 	"description": "Upload Lottie animations to WordPress and add them in Gutenberg. Choose between renderers and fill mode.",
 	"author": "Johan Martin Aarstein",
 	"license": "GPL-2.0-or-later",
-	"main": "build/index.js",
-	"scripts": {
-		"build": "wp-scripts build",
-		"format": "wp-scripts format",
-		"lint:css": "wp-scripts lint-style",
-		"lint:js": "wp-scripts lint-js",
-		"packages-update": "wp-scripts packages-update",
-		"zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start",
-		"stash": "wp-scripts build && wp-scripts plugin-zip"
+	"keywords": ["animation", "gif", "motion", "motion graphics", "vector"],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/johanaarstein/lottieplayer"
 	},
-	"devDependencies": {
-		"@wordpress/scripts": "^24.5.0",
-		"classnames": "^2.3.2"
+	"bugs": {
+		"url": "https://github.com/johanaarstein/lottieplayer/issues",
+		"email": "johan@aarstein.media"
 	},
 	"files": [
 		"build",
 		"js",
 		"includes"
-	]
+	],
+	"main": "build/index.js",
+	"dependencies": {},
+	"devDependencies": {
+		"@wordpress/scripts": "^24.6.0",
+		"classnames": "^2.3.2"
+	},
+	"scripts": {
+		"build": "wp-scripts build",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"lint:pkg-json": "wp-scripts lint-pkg-json",
+		"packages-update": "wp-scripts packages-update",
+		"zip": "wp-scripts plugin-zip",
+		"start": "wp-scripts start",
+		"stash": "wp-scripts build && wp-scripts plugin-zip"
+	}
 }
