@@ -8,6 +8,7 @@ function registerDiviModules() {
         $this -> plural = esc_html__('Lotties', 'lottieplayer');
         $this -> slug = 'et_pb_lottieplayer';
         $this -> vb_support = 'on';
+        $this -> icon_path = plugin_dir_path(__FILE__) . 'icon.svg';
 
         $this -> settings_modal_toggles = [
           'general' => [
@@ -595,20 +596,20 @@ function registerDiviModules() {
 
     }
 
-    wp_register_style('lottie_et_styles', false);
-    wp_enqueue_style('lottie_et_styles');
+    // wp_register_style('lottie_et_styles', false);
+    // wp_enqueue_style('lottie_et_styles');
 
-    $customStyle = '
-      .et-fb-modules-list ul > li.et_fb_lottieplayer::before {
-        content: "" !important;
-        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbDpzcGFjZT0icHJlc2VydmUiIHZpZXdCb3g9IjAgMCAxNiAxNiI+CiAgPHBhdGggY2xhc3M9ImxvdHRpZWNvbG9yIiBmaWxsPSIjMmI4N2RhIiBkPSJNMTIgMEg0QzEuOCAwIDAgMS44IDAgNHY3LjlDMCAxNC4yIDEuOCAxNiA0IDE2aDcuOWMyLjIgMCA0LjEtMS44IDQuMS00VjRjMC0yLjItMS44LTQtNC00em0uMSA1LjJjLTEuNyAwLTIuMyAxLTMuMiAyLjdsLS41IDFjLS44IDEuNS0xLjggMy41LTQuNiAzLjUtLjUgMC0uOC0uNC0uOC0uOCAwLS41LjQtLjguOC0uOCAxLjcgMCAyLjMtMSAzLjItMi43bC42LTFjLjgtMS41IDEuOC0zLjUgNC42LTMuNS40IDAgLjguMy43LjggMCAuNS0uNC44LS44Ljh6Ii8+Cjwvc3ZnPgo=);
-        width: 16px;
-        height: 16px;
-        background-repeat: no-repeat;
-        margin: auto;
-      }';
+    // $customStyle = '
+    //   .et-fb-modules-list ul > li.et_fb_lottieplayer::before {
+    //     content: "" !important;
+    //     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbDpzcGFjZT0icHJlc2VydmUiIHZpZXdCb3g9IjAgMCAxNiAxNiI+CiAgPHBhdGggY2xhc3M9ImxvdHRpZWNvbG9yIiBmaWxsPSIjMmI4N2RhIiBkPSJNMTIgMEg0QzEuOCAwIDAgMS44IDAgNHY3LjlDMCAxNC4yIDEuOCAxNiA0IDE2aDcuOWMyLjIgMCA0LjEtMS44IDQuMS00VjRjMC0yLjItMS44LTQtNC00em0uMSA1LjJjLTEuNyAwLTIuMyAxLTMuMiAyLjdsLS41IDFjLS44IDEuNS0xLjggMy41LTQuNiAzLjUtLjUgMC0uOC0uNC0uOC0uOCAwLS41LjQtLjguOC0uOCAxLjcgMCAyLjMtMSAzLjItMi43bC42LTFjLjgtMS41IDEuOC0zLjUgNC42LTMuNS40IDAgLjguMy43LjggMCAuNS0uNC44LS44Ljh6Ii8+Cjwvc3ZnPgo=);
+    //     width: 16px;
+    //     height: 16px;
+    //     background-repeat: no-repeat;
+    //     margin: auto;
+    //   }';
 
-    wp_add_inline_style('lottie_et_styles', $customStyle);
+    // wp_add_inline_style('lottie_et_styles', $customStyle);
 
     if (et_builder_should_load_all_module_data()) {
       new ET_Builder_Module_LottiePlayer;

@@ -29,7 +29,7 @@ function lottie_blocks_init() {
 
   wp_register_script(
     'lottiePlayer',
-    __DIR__ . '/js/dotlottie-player.js',
+    __DIR__ . '/scripts/dotlottie-player.js',
     null,
     '1.2.18',
     true

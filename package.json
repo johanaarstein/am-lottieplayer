@@ -16,7 +16,7 @@
 	"files": [
 		"build",
 		"includes",
-		"js",
+		"scripts",
 		"lottieplayer.php"
 	],
 	"main": "build/index.js",
