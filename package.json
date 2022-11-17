@@ -4,7 +4,13 @@
 	"description": "Upload Lottie animations to WordPress and add them in Gutenberg. Choose between renderers and fill mode.",
 	"author": "Johan Martin Aarstein",
 	"license": "GPL-2.0-or-later",
-	"keywords": ["animation", "gif", "motion", "motion graphics", "vector"],
+	"keywords": [
+		"animation",
+		"gif",
+		"motion",
+		"motion graphics",
+		"vector"
+	],
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/johanaarstein/lottieplayer"
@@ -20,7 +26,6 @@
 		"lottieplayer.php"
 	],
 	"main": "build/index.js",
-	"dependencies": {},
 	"devDependencies": {
 		"@wordpress/scripts": "^24.6.0",
 		"classnames": "^2.3.2"
