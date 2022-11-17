@@ -1,70 +1,8 @@
-import { BlockIcon, MediaPlaceholder } from '@wordpress/block-editor';
 import { useCallback, useEffect, useRef } from '@wordpress/element';
-import { useDispatch } from '@wordpress/data';
-import { store as noticesStore } from '@wordpress/notices';
-import { __ } from '@wordpress/i18n';
 
-import { Lottie } from '../assets/icons';
+import { aspectRatio } from '../../functions';
 
-import { aspectRatio, attributesFromMedia } from '../functions';
-
-export default function Placeholder( {
-	attributes = {},
-	setAttributes = () => {},
-	isPlaceholder = false,
-} = {} ) {
-	const { createErrorNotice } = useDispatch( noticesStore ),
-		onUploadError = ( message ) => {
-			createErrorNotice( message, { type: 'snackbar' } );
-		},
-		onSelectMedia = attributesFromMedia( setAttributes );
-
-	return (
-		<>
-			{ isPlaceholder ? (
-				<UploadComponent
-					onSelectMedia={ onSelectMedia }
-					onError={ onUploadError }
-					disableMediaButtons={ ! isPlaceholder }
-				/>
-			) : (
-				<PlayerComponent attributes={ attributes } />
-			) }
-		</>
-	);
-}
-
-const UploadComponent = ( {
-	children,
-	onSelectMedia = () => {},
-	onError = () => {},
-	disableMediaButtons = false,
-} = {} ) => {
-	return (
-		<MediaPlaceholder
-			icon={ <BlockIcon icon={ Lottie } /> }
-			labels={ {
-				title: __( 'Lottie Animation' ),
-				instructions: __(
-					'Upload Lottie animations to WordPress and add them in Gutenberg.'
-				),
-			} }
-			onSelect={ onSelectMedia }
-			accept={ '.lottie, .json' }
-			allowedTypes={ [
-				'application/json',
-				'application/zip',
-				'text/plain',
-			] }
-			onError={ onError }
-			disableMediaButtons={ disableMediaButtons }
-		>
-			{ children }
-		</MediaPlaceholder>
-	);
-};
-
-const PlayerComponent = ( { attributes = {} } = {} ) => {
+export default function PlayerComponent( { attributes = {} } = {} ) {
 	const {
 			align,
 			alt,
@@ -143,6 +81,4 @@ const PlayerComponent = ( { attributes = {} } = {} ) => {
 			} }
 		/>
 	);
-};
-
-export { PlayerComponent, UploadComponent };
+}

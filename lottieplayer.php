@@ -21,22 +21,28 @@ if (!function_exists('add_action')) {
 	exit;
 }
 
-add_action('init', 'lottie_blocks_init');
-function lottie_blocks_init() {
-  add_shortcode('lottieplayer', 'render_lottieplayer_shortcode');
-	register_block_type(__DIR__ . '/build/lottieplayer');
-  register_block_type(__DIR__ . '/build/lottiecover');
+if (!function_exists('lottie_blocks_init')) {
+  add_action('init', 'lottie_blocks_init');
+  function lottie_blocks_init() {
+    register_block_type(plugin_dir_path(__FILE__) . 'build/lottieplayer');
+    register_block_type(plugin_dir_path(__FILE__) . 'build/lottiecover');
 
-  wp_register_script(
-    'lottiePlayer',
-    __DIR__ . '/scripts/dotlottie-player.js',
-    null,
-    '1.2.18',
-    true
-  );
-  wp_enqueue_script('lottiePlayer');
+    wp_register_script(
+      'lottiePlayer',
+      plugin_dir_url(__FILE__) . 'scripts/dotlottie-player.js',
+      null,
+      '1.2.18',
+      true
+    );
+    wp_enqueue_script('lottiePlayer');
+  }
+
+  include plugin_dir_path(__FILE__) . 'includes/uploadFilter.php';
 }
 
-include __DIR__ . '/includes/shortcodes.php';
-include __DIR__ . '/includes/uploadFilter.php';
-include __DIR__ . '/includes/diviModules.php';
+if (!function_exists('initialize_lottie_extension')) {
+  add_action('divi_extensions_init', 'initialize_lottie_extension');
+  function initialize_lottie_extension() {
+    require_once plugin_dir_path(__FILE__) . 'includes/LottieDiviModules.php';
+  }
+}

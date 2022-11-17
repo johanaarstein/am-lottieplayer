@@ -17,11 +17,11 @@ function aspectRatio($objectFit) {
 function render_lottieplayer($atts) {
   ob_start(); ?>
   <dotlottie-player
-    <?php echo $atts['autoplay'] ? 'autoplay' : ''; ?>
+    <?php echo $atts['autoplay'] === 'on' ? 'autoplay' : ''; ?>
     background="<?php echo $atts['background'] ?? 'transparent'; ?>"
-    <?php echo $atts['controls'] ? 'controls' : ''; ?>
+    <?php echo $atts['controls'] === 'on' ? 'controls' : ''; ?>
     description="<?php echo $atts['alt']; ?>"
-    <?php echo $atts['loop'] ? 'loop' : ''; ?>
+    <?php echo $atts['loop'] === 'on' ? 'loop' : ''; ?>
     mode="<?php echo $atts['mode']; ?>"
     preserveaspectratio="<?php echo aspectRatio($atts['objectFit']); ?>"
     src="<?php echo strip_tags($atts['src']); ?>"
@@ -31,7 +31,7 @@ function render_lottieplayer($atts) {
   return ob_get_clean();
 }
 
-function render_lottieplayer_shortcode($atts) {
+function render_et_lottieplayer($atts) {
   if (empty($atts['src'])) {
     return '';
   }
@@ -39,14 +39,14 @@ function render_lottieplayer_shortcode($atts) {
   $atts = shortcode_atts([
     'align' => 'none',
 		'alt' => __( 'Lottie animation' ),
-		'autoplay' => true,
+		'autoplay' => 'on',
 		'background' => 'transparent',
-		'controls' => true,
+		'controls' => 'on',
 		'direction' => 1,
 		'height' => null,
 		'id' => null,
 		'interactivityType' => 'none',
-		'loop' => true,
+		'loop' => 'on',
 		'mode' => 'normal',
 		'objectFit' => 'contain',
 		'renderer' => 'svg',
