@@ -334,7 +334,9 @@ class ET_Builder_Module_LottiePlayer extends ET_Builder_Module {
 		if (!function_exists('aspectRatio')) {
 			function aspectRatio($objectFit) {
 				switch ($objectFit) {
-					case 'contain' || 'scale-down':
+					case 'contain':
+						return 'xMidYMid meet';
+					case 'scale-down':
 						return 'xMidYMid meet';
 					case 'cover':
 						return 'xMidYMid slice';
