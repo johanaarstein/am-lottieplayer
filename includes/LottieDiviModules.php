@@ -1,7 +1,7 @@
 <?php
-if (class_exists('DiviExtension')) {
-  class LottieDiviModules extends DiviExtension {
-    public $gettext_domain = 'lottieplayer';
+if (class_exists('DiviExtension') && !class_exists('AM_LottieDiviModules')) {
+  class AM_LottieDiviModules extends DiviExtension {
+    public $gettext_domain = 'am_lottieplayer';
     public $name = 'lottieplayer';
     public $version = '1.0.0';
 
@@ -12,10 +12,10 @@ if (class_exists('DiviExtension')) {
     }
   }
 
-  new LottieDiviModules;
+  new AM_LottieDiviModules;
 
-  wp_register_style('lottie_et_styles', false);
-  wp_enqueue_style('lottie_et_styles');
+  wp_register_style('am_lottie_et_styles', false);
+  wp_enqueue_style('am_lottie_et_styles');
 
   $customStyle = '
     .et-fb-modules-list ul > li.et-fb-has-svg-icon .et-fb-icon {
@@ -26,6 +26,6 @@ if (class_exists('DiviExtension')) {
       margin: 0 auto 5px !important;
     }';
 
-  wp_add_inline_style('lottie_et_styles', $customStyle);
+  wp_add_inline_style('am_lottie_et_styles', $customStyle);
 
 }
