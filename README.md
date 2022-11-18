@@ -1,4 +1,4 @@
-# LottiePlayer – WordPress plugin
+# AM LottiePlayer – WordPress plugin
 
 ## Vector animations for WordPress
 
@@ -22,17 +22,17 @@ Automatic installation is the easiest option — WordPress will handle the file 
 
 1. Log in to your WordPress dashboard
 2. Navigate to the **Plugins** menu
-3. Search for **LottiePlayer**
+3. Search for **AM LottiePlayer**
 4. Click **Install Now** and WordPress will take it from there
 5. Activate the plugin through the **Plugins** menu in WordPress
 
 #### Manual installation
 
-1. Upload the entire 'lottieplayer' folder to your plugins directory
+1. Upload the entire 'am-lottieplayer' folder to your plugins directory
 2. Activate the plugin through the **Plugins** menu in WordPress
 
 #### After activation
 
 1. Go to the WordPress Block/Gutenberg Editor or the Divi Editor
 2. Search For **Lottie**
-3. Click on the **LottiePlayer** to add the block/module
+3. Click on the **AM LottiePlayer** to add the block/module

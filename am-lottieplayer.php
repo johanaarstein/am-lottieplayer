@@ -3,7 +3,7 @@
  * @package LottiePlayer
  */
 /**
- * Plugin Name:       LottiePlayer
+ * Plugin Name:       AM LottiePlayer
  * Description:       Lightweight, versatile and easy to use! Upload Lottie animations to WordPress and add them in Gutenberg or the Divi Builder.
  * Requires at least: 5.9
  * Requires PHP:      7.0

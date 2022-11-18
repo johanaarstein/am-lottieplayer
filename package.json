@@ -1,8 +1,8 @@
 {
-	"name": "lottieplayer",
+	"name": "am-lottieplayer",
 	"version": "1.0.0",
 	"description": "Lightweight, versatile and easy to use! Upload Lottie animations to WordPress and add them in Gutenberg or the Divi Builder.",
-	"author": "Johan Martin Aarstein",
+	"author": "Aarstein Media",
 	"license": "GPL-2.0-or-later",
 	"keywords": [
 		"animation",
@@ -13,10 +13,10 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/johanaarstein/lottieplayer"
+		"url": "https://github.com/johanaarstein/am-lottieplayer"
 	},
 	"bugs": {
-		"url": "https://github.com/johanaarstein/lottieplayer/issues",
+		"url": "https://github.com/johanaarstein/am-lottieplayer/issues",
 		"email": "johan@aarstein.media"
 	},
 	"files": [

@@ -1,19 +1,23 @@
 export default function Lottie() {
 	return (
 		<svg
-			className="custom-icon custom-icon-lottie"
 			role="img"
 			xmlns="http://www.w3.org/2000/svg"
 			xmlSpace="preserve"
 			viewBox="0 0 80 80"
 		>
+			<defs>
+				<radialGradient id="a" cx=".2" cy="1.07" r="1.2">
+					<stop offset="0%" stopColor="#92003b" />
+					<stop offset="5%" stopColor="#ff4a9e" />
+					<stop offset="45%" stopColor="#24708f" />
+					<stop offset="60%" stopColor="#24708f" />
+					<stop offset="90%" stopColor="#00c1a2" />
+				</radialGradient>
+			</defs>
 			<path
-				d="M59.8 0H20.2C9.1 0 0 9.1 0 20.2v39.5C0 70.9 9.1 80 20.2 80h39.5C70.9 80 80 70.9 80 59.8V20.2C80 9.1 70.9 0 59.8 0z"
-				fill="#00ddb3"
-			/>
-			<path
-				d="M60.8 17.9c-13.8 0-18.9 9.8-23 17.7l-2.7 5c-4.3 8.4-7.6 13.5-16 13.5-2.2 0-4 1.7-4 3.9s1.7 4 3.9 4h.1c13.8 0 18.9-9.8 23-17.7l2.7-5c4.3-8.4 7.6-13.5 16-13.5 2.2 0 4-1.7 4-3.9s-1.7-4-3.9-4h-.1z"
-				fill="#fff"
+				fill="url(#a)"
+				d="M60 0H20C9 0 0 9 0 20v39.5C0 71 9 80 20 80h39.5c11 0 20.5-9 20.5-20V20C80 9 71 0 60 0zm4.9 59.7h-7.4V37.1c0-3.2.3-8.2.3-8.2h-.1s-.9 4.7-1.7 7.5l-6.8 23.3h-4l-11-30.2c-.8-2.2-2-5.8-2-5.8h-.1s-1.1 3.4-1.9 5.8L18.7 59.7H15l15-39.4h4.2l11.4 30c.3-1.4 1.2-6.1 2.4-10.2l5.6-19.8H65v39.4z"
 			/>
 		</svg>
 	);
