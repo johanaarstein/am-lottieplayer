@@ -3,9 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LottiePlayer 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/divi-extension-"
-"example\n"
-"POT-Creation-Date: 2022-11-18 15:25:53+00:00\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/lottieplayer\n"
+"POT-Creation-Date: 2022-11-18 17:00:55+00:00\n"
 "PO-Revision-Date: 2022-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,171 +24,171 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 "X-Generator: grunt-wp-i18n1.0.2\n"
 
-#: includes/modules/LottiePlayer/index.php:5
-#: includes/modules/LottiePlayer/index.php:91
+#: includes/modules/LottiePlayer/index.php:6
+#: includes/modules/LottiePlayer/index.php:92
 msgid "Lottie"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:6
+#: includes/modules/LottiePlayer/index.php:7
 msgid "Lotties"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:14
-#: includes/modules/LottiePlayer/index.php:31
+#: includes/modules/LottiePlayer/index.php:15
+#: includes/modules/LottiePlayer/index.php:32
 msgid "Animation"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:21
+#: includes/modules/LottiePlayer/index.php:22
 msgid "Alignment"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:35
+#: includes/modules/LottiePlayer/index.php:36
 msgid "Attributes"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:95
+#: includes/modules/LottiePlayer/index.php:96
 msgid "Use animation"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:96
+#: includes/modules/LottiePlayer/index.php:97
 msgid "Choose a Lottie JSON or a dotLottie"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:97
+#: includes/modules/LottiePlayer/index.php:98
 msgid "Set As Lottie"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:100
+#: includes/modules/LottiePlayer/index.php:101
 msgid ""
 "Upload your desired animation in Lottie JSON format, dotLottie format, or "
 "type in the URL to the Lottie you would like to display"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:107
+#: includes/modules/LottiePlayer/index.php:108
 msgid "Animation Alternative Text"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:112
+#: includes/modules/LottiePlayer/index.php:113
 msgid ""
 "This defines the HTML ALT text. A short description of your animation can be "
 "placed here. Helpful for screen readers."
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:118
+#: includes/modules/LottiePlayer/index.php:119
 msgid "Animation Title Text"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:123
+#: includes/modules/LottiePlayer/index.php:124
 msgid "This defines the HTML Title text."
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:145
+#: includes/modules/LottiePlayer/index.php:146
 msgid "Animation Link URL"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:149
+#: includes/modules/LottiePlayer/index.php:150
 msgid ""
 "If you would like your Lottie to be a link, input your destination URL here. "
 "No link will be created if this field is left blank."
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:154
+#: includes/modules/LottiePlayer/index.php:155
 msgid "Animation Link Target"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:158
+#: includes/modules/LottiePlayer/index.php:159
 msgid "In The Same Window"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:159
+#: includes/modules/LottiePlayer/index.php:160
 msgid "In The New Tab"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:164
+#: includes/modules/LottiePlayer/index.php:165
 msgid "Here you can choose whether or not your link opens in a new window"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:222
+#: includes/modules/LottiePlayer/index.php:223
 msgid "Show Space Below The Animation"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:232
+#: includes/modules/LottiePlayer/index.php:233
 msgid ""
 "Here you can choose whether or not the animation should have a space below "
 "it."
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:248
+#: includes/modules/LottiePlayer/index.php:249
 msgid "Force Fullwidth"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:249
+#: includes/modules/LottiePlayer/index.php:250
 msgid ""
 "When enabled, this will force your animation to extend 100% of the width of "
 "the column it's in."
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:265
+#: includes/modules/LottiePlayer/index.php:266
 msgid "Autoplay"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:266
+#: includes/modules/LottiePlayer/index.php:267
 msgid "Control whether the animation plays on page load or not."
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:277
+#: includes/modules/LottiePlayer/index.php:278
 msgid "Controls"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:278
+#: includes/modules/LottiePlayer/index.php:279
 msgid "Show or hide controls."
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:289
+#: includes/modules/LottiePlayer/index.php:290
 msgid "Loop"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:290
+#: includes/modules/LottiePlayer/index.php:291
 msgid "Loop the animation."
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:301
+#: includes/modules/LottiePlayer/index.php:302
 msgid "Object Fit"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:302
+#: includes/modules/LottiePlayer/index.php:303
 msgid "Choose how to scale the animation"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:306
+#: includes/modules/LottiePlayer/index.php:307
 msgid "Contain"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:307
+#: includes/modules/LottiePlayer/index.php:308
 msgid "Cover"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:308
+#: includes/modules/LottiePlayer/index.php:309
 msgid "Fill"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:309
+#: includes/modules/LottiePlayer/index.php:310
 msgid "None"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:315
+#: includes/modules/LottiePlayer/index.php:316
 msgid "Renderer"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:316
+#: includes/modules/LottiePlayer/index.php:317
 msgid "Choose renderer"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:320
+#: includes/modules/LottiePlayer/index.php:321
 msgid "SVG"
 msgstr ""
 
-#: includes/modules/LottiePlayer/index.php:321
+#: includes/modules/LottiePlayer/index.php:322
 msgid "Canvas"
 msgstr ""
 
@@ -200,7 +199,7 @@ msgstr ""
 #. Description of the plugin/theme
 msgid ""
 "Lightweight, versatile and easy to use! Upload Lottie animations to "
-"WordPress and add them in Gutenberg."
+"WordPress and add them in Gutenberg or the Divi Builder."
 msgstr ""
 
 #. Author of the plugin/theme
