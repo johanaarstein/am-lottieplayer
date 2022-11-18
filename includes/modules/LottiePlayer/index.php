@@ -101,7 +101,7 @@ class ET_Builder_Module_LottiePlayer extends ET_Builder_Module {
 				'toggle_slug' => 'main_content',
 				'mobile_options' => true,
 				'hover' => 'tabs',
-        'default' => 'https://assets8.lottiefiles.com/packages/lf20_kjclizjz.json'
+				'default' => 'https://assets8.lottiefiles.com/packages/lf20_kjclizjz.json',
 			],
 			'alt' => [
 				'label' => esc_html__('Animation Alternative Text', 'lottieplayer'),
@@ -297,7 +297,7 @@ class ET_Builder_Module_LottiePlayer extends ET_Builder_Module {
 				'default_on_front' => 'on',
 				'toggle_slug' => 'main_content',
 			],
-			'objectFit' => [
+			'object_fit' => [
 				'label' => esc_html__('Object Fit', 'lottieplayer'),
 				'description' => esc_html__('Choose how to scale the animation', 'lottieplayer'),
 				'type' => 'select',
@@ -370,7 +370,7 @@ class ET_Builder_Module_LottiePlayer extends ET_Builder_Module {
 			($this -> props['controls'] !== 'off' ? 'controls' : ''), #6
 			esc_html($this -> props['alt']), #7
 			esc_html($this -> props['renderer']), #8
-			aspectRatio(esc_html($this -> props['objectFit'])), #9
+			aspectRatio(esc_html($this -> props['object_fit'])), #9
 		);
 
 		return $output;

@@ -22,6 +22,7 @@
 	"files": [
 		"build",
 		"includes",
+		"languages",
 		"scripts",
 		"styles",
 		"lottieplayer.php"
