@@ -3,8 +3,8 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 	class AM_ET_Builder_Module_LottiePlayer extends ET_Builder_Module {
 
 		public function init() {
-			$this -> name = esc_html__('Lottie', 'am_lottieplayer');
-			$this -> plural = esc_html__('Lotties', 'am_lottieplayer');
+			$this -> name = esc_html__('AM Lottie', 'am_lottieplayer');
+			$this -> plural = esc_html__('AM Lotties', 'am_lottieplayer');
 			$this -> slug = 'et_pb_lottieplayer';
 			$this -> vb_support = 'on';
 			$this -> icon_path = plugin_dir_path(__FILE__) . 'icon.svg';
@@ -89,7 +89,7 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 		function get_fields() {
 			$fields = [
 				'src' => [
-					'label' => esc_html__('Lottie', 'am_lottieplayer'),
+					'label' => esc_html__('AM Lottie', 'am_lottieplayer'),
 					'type' => 'upload',
 					'option_category' => 'basic_option',
 					'data_type' => ['application/zip', 'application/json', 'text/plain'],

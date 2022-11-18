@@ -4,7 +4,7 @@
  */
 /**
  * Plugin Name:       AM LottiePlayer
- * Description:       Lightweight, versatile and easy to use! Upload Lottie animations to WordPress and add them in Gutenberg or the Divi Builder.
+ * Description:       The most complete Lottie Player yet. Lightweight, versatile and easy to use! Has integrations for Gutenberg and the Divi Builder, and is available via shortcode.
  * Requires at least: 5.9
  * Requires PHP:      7.0
  * Version:           1.0.0
@@ -24,6 +24,7 @@ if (!function_exists('add_action')) {
 if (!function_exists('am_lottie_blocks_init')) {
   add_action('init', 'am_lottie_blocks_init');
   function am_lottie_blocks_init() {
+    add_shortcode('am-lottieplayer', 'am_render_lottieplayer_shortcode');
     register_block_type(plugin_dir_path(__FILE__) . 'build/lottieplayer');
     register_block_type(plugin_dir_path(__FILE__) . 'build/lottiecover');
 
@@ -37,6 +38,7 @@ if (!function_exists('am_lottie_blocks_init')) {
     wp_enqueue_script('am_lottiePlayer');
   }
 
+  include plugin_dir_path(__FILE__) . 'includes/shortcodes.php';
   include plugin_dir_path(__FILE__) . 'includes/uploadFilter.php';
 }
 

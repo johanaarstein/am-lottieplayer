@@ -21,7 +21,7 @@ registerBlockType( metadata.name, {
 		},
 		alt: {
 			type: 'string',
-			default: __( 'Lottie animation' ),
+			default: __( 'AM Lottie animation' ),
 		},
 		autoplay: {
 			type: 'boolean',
@@ -79,8 +79,6 @@ registerBlockType( metadata.name, {
 			default: null,
 		},
 	},
-
-	usesContext: [ 'postId', 'postType' ],
 
 	edit: Edit,
 

@@ -13,7 +13,7 @@ export default function UploadComponent( {
 		<MediaPlaceholder
 			icon={ <BlockIcon icon={ Lottie } /> }
 			labels={ {
-				title: __( 'Lottie Animation' ),
+				title: __( 'AM Lottie Animation' ),
 				instructions: __(
 					'Upload Lottie animations to WordPress and add them in Gutenberg.'
 				),

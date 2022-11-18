@@ -9,11 +9,11 @@ Stable Tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Upload Lottie animations to WordPress and add them in Gutenberg or Divi. Choose between renderers, fill mode and more.
+Upload Lottie animations to WordPress and add them to Gutenberg, Divi or via shortcode [am-lottieplayer src="path-to-your-file"]. Choose between renderers, fill mode and more.
 
 == Description ==
 
-AM LottiePlayer is easy to use, and gives you, the user, total control over how to implement animations to your website. Choose either JSON of the optimized dotLottie files, choose whether to serve the files from a CDN or your own **Media Library**, choose whether to render the animations as crisp, malleable SVGs or performant Canvases, and choose how to scale the animation.
+The most complete Lottie Player yet. AM LottiePlayer is easy to use, lightweight, and gives you total control over how to implement animations to your website. Choose either JSON of the optimized dotLottie files, choose whether to serve the files from a CDN or your own **Media Library**, choose whether to render the animations as crisp, malleable SVGs or performant Canvases, and choose how to scale the animation.
 
 = Features =
 
@@ -21,7 +21,7 @@ AM LottiePlayer is easy to use, and gives you, the user, total control over how 
 – Upload Lottie files to your **Media Library**
 – Drag & drop a Lottie JSON file
 – Insert a Lottie animation from URL
-– Choose file type, renderer, scaling, speed, size, background color and more from the block settings in Gutenberg or in Divi Module settings.
+– Choose renderer, scaling, speed, size, background color and more from the block settings in Gutenberg. The same settings are accessible in the Divi Module menu. Alternatively you can use the shortcode [am-lottieplayer src="path-to-your-file"].
 
 == Installation ==
 
