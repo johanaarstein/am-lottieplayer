@@ -1,6 +1,6 @@
 <?php
 /**
- * @package LottiePlayer
+ * @package AM LottiePlayer
  */
 /**
  * Plugin Name:       AM LottiePlayer
