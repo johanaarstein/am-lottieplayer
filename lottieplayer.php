@@ -29,7 +29,7 @@ if (!function_exists('lottie_blocks_init')) {
 
     wp_register_script(
       'lottiePlayer',
-      plugin_dir_url(__FILE__) . 'scripts/dotlottie-player.js',
+      plugin_dir_url(__FILE__) . 'scripts/dotlottie-player.min.js',
       null,
       '1.2.18',
       true

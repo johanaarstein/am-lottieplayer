@@ -23,6 +23,7 @@
 		"build",
 		"includes",
 		"scripts",
+		"styles",
 		"lottieplayer.php"
 	],
 	"main": "build/index.js",
