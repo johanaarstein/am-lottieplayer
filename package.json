@@ -43,5 +43,9 @@
 		"zip": "wp-scripts plugin-zip",
 		"start": "wp-scripts start",
 		"stash": "wp-scripts build && wp-scripts plugin-zip"
+	},
+	"cde": {
+		"gettext": "am-lottieplayer",
+		"prefix": "am"
 	}
 }
