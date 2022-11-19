@@ -4,7 +4,7 @@
  */
 /**
  * Plugin Name:       AM LottiePlayer
- * Description:       The most complete Lottie Player yet. Lightweight, versatile and easy to use! Has integrations for Gutenberg and the Divi Builder, and is available via shortcode.
+ * Description:       The most complete Lottie Player plugin yet! Lightweight, versatile and easy to use. Has integrations for Gutenberg, Divi Builder, and is available via shortcode [am-lottieplayer].
  * Requires at least: 5.9
  * Requires PHP:      7.0
  * Version:           1.0.0
@@ -21,16 +21,24 @@ if (!function_exists('add_action')) {
 	exit;
 }
 
+if (!defined('AM_LOTTIEPLAYER_PATH')) {
+  define('AM_LOTTIEPLAYER_PATH', plugin_dir_path( __FILE__ ));
+}
+
+if (!defined('AM_LOTTIEPLAYER_URL')) {
+  define('AM_LOTTIEPLAYER_URL', plugin_dir_url( __FILE__ ));
+}
+
 if (!function_exists('am_lottie_blocks_init')) {
   add_action('init', 'am_lottie_blocks_init');
   function am_lottie_blocks_init() {
     add_shortcode('am-lottieplayer', 'am_render_lottieplayer_shortcode');
-    register_block_type(plugin_dir_path(__FILE__) . 'build/lottieplayer');
-    register_block_type(plugin_dir_path(__FILE__) . 'build/lottiecover');
+    register_block_type(AM_LOTTIEPLAYER_PATH . 'build/lottieplayer');
+    register_block_type(AM_LOTTIEPLAYER_PATH . 'build/lottiecover');
 
     wp_register_script(
       'am_lottiePlayer',
-      plugin_dir_url(__FILE__) . 'scripts/dotlottie-player.min.js',
+      AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player.min.js',
       null,
       '1.2.18',
       true
@@ -38,13 +46,13 @@ if (!function_exists('am_lottie_blocks_init')) {
     wp_enqueue_script('am_lottiePlayer');
   }
 
-  include plugin_dir_path(__FILE__) . 'includes/shortcodes.php';
-  include plugin_dir_path(__FILE__) . 'includes/uploadFilter.php';
+  include AM_LOTTIEPLAYER_PATH . 'includes/shortcodes.php';
+  include AM_LOTTIEPLAYER_PATH . 'includes/uploadFilter.php';
 }
 
 if (!function_exists('am_initialize_lottie_extension')) {
   add_action('divi_extensions_init', 'am_initialize_lottie_extension');
   function am_initialize_lottie_extension() {
-    require_once plugin_dir_path(__FILE__) . 'includes/LottieDiviModules.php';
+    require_once AM_LOTTIEPLAYER_PATH . 'includes/LottieDiviModules.php';
   }
 }

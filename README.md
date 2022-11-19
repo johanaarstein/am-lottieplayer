@@ -2,7 +2,7 @@
 
 ## Vector animations for WordPress
 
-#### Upload Lottie animations to WordPress and add them in Gutenberg, the Divi Builder or via shortcode \[am-lottieplayer src="path-to-your-file"\].
+#### Upload Lottie animations to WordPress and add them in Gutenberg, the Divi Builder or via shortcode \[am-lottieplayer\].
 
 The most complete Lottie Player yet. AM LottiePlayer is easy to use, lightweight, and gives you total control over how to implement animations to your website. Choose between JSON or the optimized dotLottie format, choose whether to serve the files from a CDN or your own **Media Library**, choose whether to render the animations as crisp, malleable SVGs or performant Canvases, and choose how to scale the animation.
 
@@ -12,7 +12,7 @@ The most complete Lottie Player yet. AM LottiePlayer is easy to use, lightweight
 - Upload Lottie files to your **Media Library**
 - Drag & drop a Lottie file
 - Insert a Lottie animation from URL
-- Choose renderer, scaling, speed, size, background color and more from the block settings in Gutenberg. The same settings are accessible in the Divi Module menu. Alternatively you can use the shortcode \[am-lottieplayer src="path-to-your-file"\].
+- Choose renderer, scaling, speed, size, background color and more from the block settings in Gutenberg. The same settings are accessible in the Divi Module menu. Alternatively you can use the shortcode \[am-lottieplayer src="*" autoplay="true/false" controls="true/false" loop="true/false" objectFit="cover/contain/none"\].
 
 ### Installation
 

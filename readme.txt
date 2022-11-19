@@ -9,7 +9,7 @@ Stable Tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Upload Lottie animations to WordPress and add them to Gutenberg, Divi or via shortcode [am-lottieplayer src="path-to-your-file"]. Choose between renderers, fill mode and more.
+Upload Lottie animations to WordPress and add them to Gutenberg, Divi or via shortcode [am-lottieplayer src="*" autoplay="true/false" controls="true/false" loop="true/false" objectFit="cover/contain/none"]. Choose between renderers, fill mode and more.
 
 == Description ==
 
@@ -21,7 +21,7 @@ The most complete Lottie Player yet. AM LottiePlayer is easy to use, lightweight
 – Upload Lottie files to your **Media Library**
 – Drag & drop a Lottie JSON file
 – Insert a Lottie animation from URL
-– Choose renderer, scaling, speed, size, background color and more from the block settings in Gutenberg. The same settings are accessible in the Divi Module menu. Alternatively you can use the shortcode [am-lottieplayer src="path-to-your-file"].
+– Choose renderer, scaling, speed, size, background color and more from the block settings in Gutenberg. The same settings are accessible in the Divi Module menu. Alternatively you can use the shortcode [am-lottieplayer src="*" autoplay="true/false" controls="true/false" loop="true/false" objectFit="cover/contain/none"].
 
 == Installation ==
 

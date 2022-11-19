@@ -25,7 +25,8 @@
 		"languages",
 		"scripts",
 		"styles",
-		"am-lottieplayer.php"
+		"am-lottieplayer.php",
+		"am-lottie.lottie"
 	],
 	"main": "build/index.js",
 	"devDependencies": {

@@ -20,14 +20,14 @@ if (!function_exists('am_render_lottieplayer')) {
   function am_render_lottieplayer($atts) {
     ob_start(); ?>
     <dotlottie-player
-      <?php echo $atts['autoplay'] ? 'autoplay' : ''; ?>
+      <?php echo $atts['autoplay'] && $atts['autoplay'] !== 'false' ? 'autoplay' : ''; ?>
       background="<?php echo $atts['background'] ?? 'transparent'; ?>"
-      <?php echo $atts['controls'] ? 'controls' : ''; ?>
+      <?php echo $atts['controls'] && $atts['controls'] !== 'false'  ? 'controls' : ''; ?>
       description="<?php echo $atts['alt']; ?>"
-      <?php echo $atts['loop'] ? 'loop' : ''; ?>
-      mode="<?php echo $atts['mode']; ?>"
-      preserveaspectratio="<?php echo aspectRatio($atts['objectFit']); ?>"
-      src="<?php echo strip_tags($atts['src']); ?>"
+      <?php echo $atts['loop'] && $atts['loop'] !== 'false' ? 'loop' : ''; ?>
+      mode="<?php echo esc_html($atts['mode']); ?>"
+      preserveaspectratio="<?php echo aspectRatio(esc_html($atts['objectFit'])); ?>"
+      src="<?php echo strip_tags(esc_html($atts['src'])); ?>"
     >
     </dotlottie-player>
     <?php
@@ -62,11 +62,11 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
 
     ob_start(); ?>
     <figure
-      class="wp-block-gb-lottieplayer align<?php echo $atts['align'] ?? 'none'; ?>"
+      class="wp-block-gb-lottieplayer align<?php echo esc_html($atts['align']) ?? 'none'; ?>"
       style="
         background-color: <?php echo $atts['background']; ?>;
-        height: <?php echo $atts['height'] ? $atts['height'] . 'px' : 'auto'; ?>;
-        width: <?php echo $atts['width'] ? $atts['width'] . 'px' : 'auto'; ?>;
+        height: <?php echo $atts['height'] ? esc_html($atts['height']) . 'px' : 'auto'; ?>;
+        width: <?php echo $atts['width'] ? esc_html($atts['width']) . 'px' : 'auto'; ?>;
       "
     >
       <?php echo am_render_lottieplayer($atts); ?>
