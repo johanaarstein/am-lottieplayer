@@ -11,7 +11,7 @@
 		"anchor": true,
 		"html": false
 	},
-	"textdomain": "am_lottieplayer",
+	"textdomain": "am-lottieplayer",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css"
 }

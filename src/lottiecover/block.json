@@ -6,7 +6,7 @@
 	"title": "AM LottieCover",
 	"category": "media",
 	"description": "Add a Lottie animation with a text overlay — great for headers.",
-	"textdomain": "am_lottieplayer",
+	"textdomain": "am-lottieplayer",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css"

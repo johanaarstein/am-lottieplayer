@@ -1,7 +1,7 @@
 <?php
 if (class_exists('DiviExtension') && !class_exists('AM_LottieDiviModules')) {
   class AM_LottieDiviModules extends DiviExtension {
-    public $gettext_domain = 'am_lottieplayer';
+    public $gettext_domain = 'am-lottieplayer';
     public $name = 'am-lottieplayer';
     public $version = '1.0.0';
 
