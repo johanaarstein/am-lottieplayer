@@ -51,9 +51,19 @@ if (!function_exists('am_lottie_blocks_init')) {
   include AM_LOTTIEPLAYER_PATH . 'includes/uploadFilter.php';
 }
 
+//DIVI
 if (!function_exists('am_initialize_lottie_extension')) {
   add_action('divi_extensions_init', 'am_initialize_lottie_extension');
   function am_initialize_lottie_extension() {
     require_once AM_LOTTIEPLAYER_PATH . 'includes/LottieDiviModules.php';
+  }
+}
+
+//ELEMENTOR
+if (!function_exists('am_register_lottie_widget')) {
+  add_action('elementor/widgets/register', 'am_register_lottie_widget');
+  function am_register_lottie_widget($widgets_manager) {
+    require_once AM_LOTTIEPLAYER_PATH . '/includes/widgets/am-lottieplayer.php';
+    $widgets_manager -> register(new \Elementor_AM_LottiePlayer());
   }
 }
