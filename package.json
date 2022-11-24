@@ -2,7 +2,12 @@
 	"name": "am-lottieplayer",
 	"version": "1.0.0",
 	"description": "Lightweight, versatile and easy to use! Upload Lottie animations to WordPress and add them in Gutenberg or the Divi Builder.",
-	"author": "Aarstein Media",
+	"author": {
+		"name": "Aarstein Media",
+		"email": "johan@aarstein.media",
+		"url": "https://www.aarstein.media",
+		"organization": "Aarstein Media"
+	},
 	"license": "GPL-2.0-or-later",
 	"keywords": [
 		"animation",

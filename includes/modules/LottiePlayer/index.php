@@ -102,8 +102,7 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 					'toggle_slug' => 'main_content',
 					'mobile_options' => true,
 					'hover' => 'tabs',
-					// 'default' => 'https://assets8.lottiefiles.com/packages/lf20_kjclizjz.json',
-					'default' => AM_LOTTIEPLAYER_URL . 'am-lottie.lottie',
+					'default' => 'https://storage.googleapis.com/aarsteinmedia/am-lottie.lottie',
 				],
 				'alt' => [
 					'label' => esc_html__('Animation Alternative Text', 'am-lottieplayer'),
