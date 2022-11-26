@@ -2,7 +2,7 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
   "name": "gb/lottiecover",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "title": "AM LottieCover",
   "category": "media",
   "description": "Add a Lottie animation with a text overlay — great for headers.",

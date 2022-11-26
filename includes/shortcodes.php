@@ -20,14 +20,14 @@ if (!function_exists('am_render_lottieplayer')) {
   function am_render_lottieplayer($atts) {
     ob_start(); ?>
     <dotlottie-player
-      <?php echo $atts['autoplay'] && $atts['autoplay'] !== 'false' ? 'autoplay' : ''; ?>
-      background="<?php echo $atts['background'] ?? 'transparent'; ?>"
-      <?php echo $atts['controls'] && $atts['controls'] !== 'false'  ? 'controls' : ''; ?>
-      description="<?php echo $atts['alt']; ?>"
-      <?php echo $atts['loop'] && $atts['loop'] !== 'false' ? 'loop' : ''; ?>
+      <?php echo esc_html($atts['autoplay']) && esc_html($atts['autoplay']) !== 'false' ? 'autoplay' : ''; ?>
+      background="<?php echo esc_html($atts['background']) ?? 'transparent'; ?>"
+      <?php echo esc_html($atts['controls']) && esc_html($atts['controls']) !== 'false'  ? 'controls' : ''; ?>
+      description="<?php echo esc_html($atts['alt']); ?>"
+      <?php echo esc_html($atts['loop']) && esc_html($atts['loop']) !== 'false' ? 'loop' : ''; ?>
       mode="<?php echo esc_html($atts['mode']); ?>"
       preserveaspectratio="<?php echo aspectRatio(esc_html($atts['objectFit'])); ?>"
-      src="<?php echo strip_tags(esc_html($atts['src'])); ?>"
+      src="<?php echo esc_url($atts['src']); ?>"
     >
     </dotlottie-player>
     <?php
@@ -37,7 +37,7 @@ if (!function_exists('am_render_lottieplayer')) {
 
 if (!function_exists('am_render_lottieplayer_shortcode')) {
   function am_render_lottieplayer_shortcode($atts) {
-    if (empty($atts['src'])) {
+    if (empty(esc_url($atts['src']))) {
       return '';
     }
 
@@ -65,8 +65,8 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
       class="wp-block-gb-lottieplayer align<?php echo esc_html($atts['align']) ?? 'none'; ?>"
       style="
         background-color: <?php echo $atts['background']; ?>;
-        height: <?php echo $atts['height'] ? esc_html($atts['height']) . 'px' : 'auto'; ?>;
-        width: <?php echo $atts['width'] ? esc_html($atts['width']) . 'px' : 'auto'; ?>;
+        height: <?php echo esc_html($atts['height']) ? esc_html($atts['height']) . 'px' : 'auto'; ?>;
+        width: <?php echo esc_html($atts['width']) ? esc_html($atts['width']) . 'px' : 'auto'; ?>;
       "
     >
       <?php echo am_render_lottieplayer($atts); ?>

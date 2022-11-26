@@ -1,11 +1,11 @@
 === AM LottiePlayer – Vector animations for WordPress ===
 Author URI: https://www.aarstein.media
-Plugin URI: https://www.aarstein.media/plugins/wordpress
-Tags: lottie, bodymovin, gutenberg, animation, animations
+Plugin URI: https://www.aarstein.media/wordpress-plugins
+Tags: lottie, bodymovin, gutenberg, animation, animations, vector, divi, elementor
 Requires at least: 5.9
 Tested up to: 6.1.1
 Requires PHP: 7
-Stable Tag: 2.0.0
+Stable Tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
