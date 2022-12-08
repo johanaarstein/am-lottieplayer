@@ -59,11 +59,11 @@ if (!function_exists('am_initialize_lottie_extension')) {
   }
 }
 
-//ELEMENTOR
-if (!function_exists('am_register_lottie_widget')) {
-  add_action('elementor/widgets/register', 'am_register_lottie_widget');
-  function am_register_lottie_widget($widgets_manager) {
-    require_once AM_LOTTIEPLAYER_PATH . '/includes/widgets/elementor-am-lottieplayer.php';
-    $widgets_manager -> register(new \Elementor_AM_LottiePlayer());
-  }
-}
+// //ELEMENTOR
+// if (!function_exists('am_register_lottie_widget')) {
+//   add_action('elementor/widgets/register', 'am_register_lottie_widget');
+//   function am_register_lottie_widget($widgets_manager) {
+//     require_once AM_LOTTIEPLAYER_PATH . '/includes/widgets/elementor-am-lottieplayer.php';
+//     $widgets_manager -> register(new \Elementor_AM_LottiePlayer());
+//   }
+// }
