@@ -45,3 +45,8 @@ Automatic installation is the easiest option — WordPress will handle the file 
 1. Go to the WordPress Block/Gutenberg Editor
 2. Search For **Lottie **
 3. Click on the **Lottie** to add the block
+
+== Screenshots ==
+
+1. AM LottiePlayer works with Gutenberg…
+2. …as well as Divi Builder
