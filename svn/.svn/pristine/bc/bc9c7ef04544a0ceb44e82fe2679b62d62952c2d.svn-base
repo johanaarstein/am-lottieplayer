@@ -37,7 +37,7 @@ class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 				'label' => esc_html__('Choose animation', 'am-lottieplayer'),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
-					'url' => 'https://storage.googleapis.com/aarsteinmedia/placeholder.lottie' //\Elementor\Utils::get_placeholder_image_src(),
+					'url' => 'https://storage.googleapis.com/aarsteinmedia/am-lottie.lottie' //\Elementor\Utils::get_placeholder_image_src(),
 				],
 			]
 		);

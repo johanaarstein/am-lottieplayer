@@ -9,15 +9,11 @@ Stable Tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The most complete Lottie Player yet. Lightweight, easy to use, and works with Gutenberg and Divi Builder.
+Upload Lottie animations to WordPress and add them to Gutenberg, Divi or via shortcode [am-lottieplayer src="*" autoplay="true/false" controls="true/false" loop="true/false" objectFit="cover/contain/none"]. Choose between renderers, fill mode and more.
 
 == Description ==
 
-**The most complete Lottie Player yet.**
-
-AM LottiePlayer is easy to use, lightweight, and gives you total control over how to implement animations to your website. Choose either JSON of the optimized dotLottie files, choose whether to serve the files from a CDN or your own **Media Library**, choose whether to render the animations as crisp, malleable SVGs or performant Canvases, and choose how to scale the animation.
-
-Upload Lottie animations to WordPress and add them to Gutenberg, Divi or via shortcode [am-lottieplayer src="*" autoplay="true/false" controls="true/false" loop="true/false" objectFit="cover/contain/none"]. Choose between renderers, fill mode and more.
+The most complete Lottie Player yet. AM LottiePlayer is easy to use, lightweight, and gives you total control over how to implement animations to your website. Choose either JSON of the optimized dotLottie files, choose whether to serve the files from a CDN or your own **Media Library**, choose whether to render the animations as crisp, malleable SVGs or performant Canvases, and choose how to scale the animation.
 
 = Features =
 

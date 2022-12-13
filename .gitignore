@@ -32,5 +32,3 @@ node_modules/
 .DS_Store
 *.pem
 .vscode
-
-svn
