@@ -1,7 +1,7 @@
 === AM LottiePlayer – Vector animations for WordPress ===
 Author URI: https://www.aarstein.media
 Plugin URI: https://www.aarstein.media/wordpress-plugins
-Tags: lottie, bodymovin, gutenberg, animation, animations, vector, divi
+Tags: lottie, dotlottie, bodymovin, gutenberg, animation, animations, vector, divi
 Requires at least: 5.9
 Tested up to: 6.1.1
 Requires PHP: 7.0
@@ -9,7 +9,7 @@ Stable Tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The most complete Lottie Player yet. Lightweight, easy to use, and works with Gutenberg and Divi Builder.
+The most complete Lottie / dotLottie Player yet. Lightweight, easy to use, and works with Gutenberg and Divi Builder.
 
 == Description ==
 
@@ -22,9 +22,9 @@ Upload Lottie animations to WordPress and add them to Gutenberg, Divi or via sho
 = Features =
 
 – Use the Gutenberg Editor or the Divi Builder to add animations to your website
-– Upload Lottie files to your **Media Library**
-– Drag & drop a Lottie JSON file
-– Insert a Lottie animation from URL
+– Upload Lottie JSON or dotLottie files to your **Media Library**
+– Drag & drop a Lottie JSON or dotLottie file
+– Insert a Lottie JSON or dotLottie animation from URL
 – Choose renderer, scaling, speed, size, background color and more from the block settings in Gutenberg. The same settings are accessible in the Divi Module menu. Alternatively you can use the shortcode [am-lottieplayer src="*" autoplay="true/false" controls="true/false" loop="true/false" objectFit="cover/contain/none"].
 
 == Installation ==

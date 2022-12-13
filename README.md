@@ -9,9 +9,9 @@ The most complete Lottie Player yet. AM LottiePlayer is easy to use, lightweight
 ### Features
 
 - Use the Gutenberg Editor or the Divi Builder to add animations to your website
-- Upload Lottie files to your **Media Library**
-- Drag & drop a Lottie file
-- Insert a Lottie animation from URL
+- Upload LottieJSON or dotLottie files to your **Media Library**
+- Drag & drop a LottieJSON or dotLottie  file
+- Insert a LottieJSON or dotLottie animation from URL
 - Choose renderer, scaling, speed, size, background color and more from the block settings in Gutenberg. The same settings are accessible in the Divi Module menu. Alternatively you can use the shortcode \[am-lottieplayer src="*" autoplay="true/false" controls="true/false" loop="true/false" objectFit="cover/contain/none"\].
 
 ### Installation
