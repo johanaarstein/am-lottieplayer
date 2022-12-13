@@ -7,7 +7,7 @@
  * Description:       The most complete Lottie Player plugin yet! Lightweight, versatile and easy to use. This plugin contains two Gutenberg blocks, a Divi Builder module, and the shortcode [am-lottieplayer].
  * Requires at least: 5.9
  * Requires PHP:      7.0
- * Version:           1.0.1
+ * Version:           1.0.2
  * Author:            Aarstein Media
  * Author URI:        https://www.aarstein.media
  * License:           GPL-2.0-or-later

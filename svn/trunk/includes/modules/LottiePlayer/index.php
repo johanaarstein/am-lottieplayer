@@ -126,22 +126,6 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 					'toggle_slug' => 'attributes',
 					'dynamic_content' => 'text',
 				],
-				// 'show_in_lightbox' => [
-				// 	'label' => esc_html__('Open in Lightbox', 'et_builder'),
-				// 	'type'  => 'yes_no_button',
-				// 	'option_category'  => 'configuration',
-				// 	'options'       => [
-				// 		'off' => et_builder_i18n('No'),
-				// 		'on'  => et_builder_i18n('Yes'),
-				// 	],
-				// 	'default_on_front' => 'off',
-				// 	'affects'       => [
-				// 		'url',
-				// 		'url_new_window',
-				// 	],
-				// 	'toggle_slug'   => 'link',
-				// 	'description'   => esc_html__('Here you can choose whether or not the Lottie should open in Lightbox. Note: if you select to open the Lottie in Lightbox, url options below will be ignored.', 'am-lottieplayer'),
-				// ],
 				'url'      => [
 					'label'        => esc_html__('Animation Link URL', 'am-lottieplayer'),
 					'type' => 'text',
@@ -335,7 +319,8 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 			if (!function_exists('aspectRatio')) {
 				function aspectRatio($objectFit) {
 					switch ($objectFit) {
-						case 'contain' || 'scale-down':
+						case 'contain':
+						case 'scale-down':
 							return 'xMidYMid meet';
 						case 'cover':
 							return 'xMidYMid slice';

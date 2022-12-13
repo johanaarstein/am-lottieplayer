@@ -1,6 +1,7 @@
 const aspectRatio = ( objectFit ) => {
 		switch ( objectFit ) {
-			case 'contain' || 'scale-down':
+			case 'contain':
+			case 'scale-down':
 				return 'xMidYMid meet';
 			case 'cover':
 				return 'xMidYMid slice';

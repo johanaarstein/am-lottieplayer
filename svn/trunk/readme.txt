@@ -54,3 +54,8 @@ Automatic installation is the easiest option — WordPress will handle the file 
 
 1. AM LottiePlayer works with Gutenberg…
 2. …as well as Divi Builder
+
+== Changelog ==
+
+= 1.0.2 =
+* Bugfix: typo in dotLottie decompression, causing base64 encryption of bitmap images to break.
