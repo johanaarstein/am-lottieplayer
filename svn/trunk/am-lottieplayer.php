@@ -4,7 +4,7 @@
  */
 /**
  * Plugin Name:       AM LottiePlayer
- * Description:       The most complete Lottie / dotLottie Player plugin yet! Lightweight, versatile and easy to use. This plugin contains two Gutenberg blocks, a Divi Builder module, and the shortcode [am-lottieplayer].
+ * Description:       The most complete Lottie Player plugin yet! Lightweight, versatile and easy to use. This plugin accepts LottieJSON and dotLottie, contains two Gutenberg blocks, a Divi Builder module, and the shortcode [am-lottieplayer].
  * Requires at least: 5.9
  * Requires PHP:      7.0
  * Version:           1.0.2

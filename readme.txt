@@ -9,7 +9,7 @@ Stable Tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The most complete Lottie / dotLottie Player yet. Lightweight, easy to use, and works with Gutenberg and Divi Builder.
+The most complete Lottie Player yet. Lightweight, easy to use, accepts LottieJSON and dotLottie, and works with Gutenberg and Divi Builder.
 
 == Description ==
 
