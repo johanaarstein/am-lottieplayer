@@ -14,7 +14,11 @@
 		"gif",
 		"motion",
 		"motion graphics",
-		"vector"
+		"vector",
+		"lottie",
+		"dotlottie",
+		"svg",
+		"canvas"
 	],
 	"repository": {
 		"type": "git",
