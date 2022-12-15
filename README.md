@@ -1,6 +1,6 @@
-# AM LottiePlayer – WordPress plugin
+# AM LottiePlayer – Vector animations for WordPress
 
-## Vector animations for WordPress
+![Awesome Vector Animations](/svn/assets/banner-1544x500.png)
 
 #### Upload Lottie animations to WordPress and add them in Gutenberg, the Divi Builder or via shortcode \[am-lottieplayer\].
 
