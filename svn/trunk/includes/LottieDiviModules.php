@@ -3,7 +3,7 @@ if (class_exists('DiviExtension') && !class_exists('AM_LottieDiviModules')) {
   class AM_LottieDiviModules extends DiviExtension {
     public $gettext_domain = 'am-lottieplayer';
     public $name = 'am-lottieplayer';
-    public $version = '1.0.2';
+    public $version = '1.0.3';
 
     public function __construct($name = 'am-lottieplayer', $args = []) {
       $this -> plugin_dir = plugin_dir_path(__FILE__);

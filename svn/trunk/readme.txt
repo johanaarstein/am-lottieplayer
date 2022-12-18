@@ -57,5 +57,8 @@ Automatic installation is the easiest option — WordPress will handle the file 
 
 == Changelog ==
 
+= 1.0.3 =
+* Optimization: Updates to animation engine. Faster and even more lightweight!
+
 = 1.0.2 =
 * Bugfix: typo in dotLottie decompression, causing base64 encryption of bitmap images to break.
