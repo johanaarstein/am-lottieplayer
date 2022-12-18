@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "gb/lottieplayer",
+  "version": "1.0.3",
+  "title": "AM LottiePlayer",
+  "category": "media",
+  "description": "Add Lottie animations to you post.",
+  "supports": {
+    "align": true,
+    "anchor": true,
+    "html": false
+  },
+  "textdomain": "am-lottieplayer",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css"
+}
