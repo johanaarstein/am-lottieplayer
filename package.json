@@ -31,7 +31,6 @@
 	"files": [
 		"build",
 		"includes",
-		"languages",
 		"scripts",
 		"styles",
 		"am-lottieplayer.php"
