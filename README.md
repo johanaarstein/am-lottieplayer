@@ -2,11 +2,11 @@
 
 ![Awesome Vector Animations](/svn/assets/banner-1544x500.png)
 
-#### Upload Lottie animations to WordPress and add them in Gutenberg, the Divi Builder or via shortcode \[am-lottieplayer\].
+**Upload Lottie animations to WordPress and add them in Gutenberg, the Divi Builder or via shortcode \[am-lottieplayer\].**
 
 The most complete Lottie Player yet. AM LottiePlayer is easy to use, lightweight, and gives you total control over how to implement animations to your website. Choose between JSON or the optimized dotLottie format, choose whether to serve the files from a CDN or your own **Media Library**, choose whether to render the animations as crisp, malleable SVGs or performant Canvases, and choose how to scale the animation.
 
-### Features
+## Features
 
 - Use the Gutenberg Editor or the Divi Builder to add animations to your website
 - Upload LottieJSON or dotLottie files to your **Media Library**
@@ -14,9 +14,9 @@ The most complete Lottie Player yet. AM LottiePlayer is easy to use, lightweight
 - Insert a LottieJSON or dotLottie animation from URL
 - Choose renderer, scaling, speed, size, background color and more from the block settings in Gutenberg. The same settings are accessible in the Divi Module menu. Alternatively you can use the shortcode \[am-lottieplayer src="*" autoplay="true/false" controls="true/false" loop="true/false" objectFit="cover/contain/none"\].
 
-### Installation
+## Installation
 
-#### Automatic installation
+### Automatic installation
 
 Automatic installation is the easiest option — WordPress will handle the file transfer, and you won’t need to leave your web browser.
 
@@ -26,12 +26,12 @@ Automatic installation is the easiest option — WordPress will handle the file 
 4. Click **Install Now** and WordPress will take it from there
 5. Activate the plugin through the **Plugins** menu in WordPress
 
-#### Manual installation
+### Manual installation
 
 1. Upload the entire 'am-lottieplayer' folder to your plugins directory
 2. Activate the plugin through the **Plugins** menu in WordPress
 
-#### After activation
+### After activation
 
 1. Go to the WordPress Block/Gutenberg Editor or the Divi Editor
 2. Search For **Lottie**

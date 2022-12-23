@@ -1,6 +1,10 @@
 <?php
 class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 
+	// public function get_script_depends() {
+  //   return ['am_lottiePlayer'];
+  // }
+
 	public function get_name() {
 		return 'am_lottieplayer_widget';
 	}
@@ -14,17 +18,17 @@ class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 	}
 
 	public function get_categories() {
-		return ['basic'];
+		return ['general'];
 	}
 
 	public function get_keywords() {
-		return ['lottie', 'gutenberg', 'animation', 'motion graphic', 'vector'];
+		return ['lottie', 'gutenberg', 'animation', 'motion graphic', 'vector', 'svg'];
 	}
 
 	protected function register_controls() {
 
 		$this -> start_controls_section(
-			'section_title',
+			'animation_section',
 			[
 				'label' => esc_html__('AM Lottie', 'am-lottieplayer'),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
@@ -36,46 +40,277 @@ class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 			[
 				'label' => esc_html__('Choose animation', 'am-lottieplayer'),
 				'type' => \Elementor\Controls_Manager::MEDIA,
+				'media_type' => [
+					'application/json',
+					'application/zip',
+					// 'text/plain'
+				],
 				'default' => [
-					'url' => 'https://storage.googleapis.com/aarsteinmedia/placeholder.lottie' //\Elementor\Utils::get_placeholder_image_src(),
+					'url' => 'https://storage.googleapis.com/aarsteinmedia/am.lottie',
 				],
 			]
 		);
+
+		$this -> add_control(
+			'separator_animation_options',
+			[
+				'type'  => \Elementor\Controls_Manager::DIVIDER,
+				'style' => 'thick',
+			]
+    );
+
+		$this -> add_control(
+			'autoplay',
+			[
+				'label' => __('Autoplay', 'am-lottieplayer'),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => __('On', 'am-lottieplayer'),
+				'label_off' => __('Off', 'am-lottieplayer'),
+				'default' => 'yes',
+			]
+		);
+
+		$this -> add_control(
+			'controls',
+			[
+				'label' => __('Controls', 'am-lottieplayer'),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => __('Show', 'am-lottieplayer'),
+				'label_off' => __('Hide', 'am-lottieplayer'),
+				'default' => 'yes'
+			]
+		);
+
+		$this -> add_control(
+			'reverse',
+			[
+				'label' => __('Reverse', 'am-lottieplayer'),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => __('Yes', 'am-lottieplayer'),
+				'label_off' => __('No', 'am-lottieplayer')
+			]
+		);
+
+		$this -> add_control(
+			'loop',
+			[
+				'label' => __('Loop', 'am-lottieplayer'),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => __('On', 'am-lottieplayer'),
+				'label_off' => __('Off', 'am-lottieplayer'),
+			]
+		);
+
+		$this -> add_control(
+			'speed',
+			[
+				'label' => __('Speed', 'am-lottieplayer'),
+				'description' => __('Playback speed'),
+				'type' => \Elementor\Controls_Manager::NUMBER,
+				'step' => '0.1',
+				'placeholder' => '1',
+				'default' => '1'
+			]
+		);
+
+		$this -> add_control(
+			'separator_animation_options',
+			[
+				'type' => \Elementor\Controls_Manager::DIVIDER,
+				'style' => 'thin',
+			]
+    );
+
+		$this -> add_control(
+      'onmouseover',
+      [
+        'label' => __('Play on mouseover', 'am-lottieplayer'),
+        'type' => \Elementor\Controls_Manager::SWITCHER,
+        'label_on' => __('Yes', 'am-lottieplayer'),
+        'label_off' => __('No', 'am-lottieplayer')
+			]
+    );
+
+    $this -> add_control(
+      'onmouseout',
+      [
+        'label' => __('On mouseout', 'am-lottieplayer'),
+        'type' => \Elementor\Controls_Manager::SELECT,
+        'options' => [
+          'void' => __('No event', 'am-lottieplayer'),
+          'stop' => __('Stop', 'am-lottieplayer'),
+          'pause' => __('Pause', 'am-lottieplayer'),
+          'reverse' => __('Reverse', 'am-lottieplayer')
+				],
+        'default' => 'stop',
+        'condition' => [
+          'onmouseover' => 'yes',
+				],
+			]
+    );
+
+		$this -> add_control(
+			'separator_style_options',
+			[
+				'type'  => \Elementor\Controls_Manager::DIVIDER,
+				'style' => 'thick',
+			]
+    );
+
+		$this -> add_responsive_control(
+			'width',
+			[
+				'label' => __('Width', 'am-lottieplayer'),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'default' => [
+					'unit' => '%',
+					'size' => '100'
+				],
+				'tablet_default' => [
+					'unit' => '%',
+				],
+				'mobile_default' => [
+					'unit' => '%',
+				],
+				'size_units' => [
+					'%',
+					'px',
+					'vw'
+				],
+				'range' => [
+					'%' => [
+						'min' => 1,
+						'max' => 100
+					],
+					'px' => [
+						'min' => 1,
+						'max' => 1000
+					],
+					'vw' => [
+						'min' => 1,
+						'max' => 100
+					],
+				],
+			]
+		);
+
+		$this -> add_responsive_control(
+			'height_auto',
+			[
+        'label' => __('Height', 'am-lottieplayer'),
+        'type' => \Elementor\Controls_Manager::SWITCHER,
+        'label_on' => __('Fixed', 'am-lottieplayer'),
+        'label_off' => __('Auto', 'am-lottieplayer')
+			]
+		);
+
+		$this -> add_responsive_control(
+			'height_fixed',
+			[
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'default' => [
+					'unit' => 'px',
+				],
+				'tablet_default' => [
+					'unit' => 'px',
+				],
+				'mobile_default' => [
+					'unit' => 'px',
+				],
+				'size_units' => [
+					'%',
+					'px',
+					'vw'
+				],
+				'range' => [
+					'%' => [
+						'min' => 1,
+						'max' => 100
+					],
+					'px' => [
+						'min' => 1,
+						'max' => 1000
+					],
+					'vw' => [
+						'min' => 1,
+						'max' => 100
+					],
+				],
+				'condition' => [
+          'height_auto' => 'yes',
+				],
+			]
+		);
+
+		$this -> add_control(
+			'object_fit',
+			[
+				'label' => __('Object fit', 'am-lottieplayer'),
+				'type' => \Elementor\Controls_Manager::SELECT,
+        'options' => [
+          'contain' => __('Contain', 'am-lottieplayer'),
+          'cover' => __('Cover', 'am-lottieplayer'),
+          'fill' => __('Fill', 'am-lottieplayer'),
+          'none' => __('None', 'am-lottieplayer')
+				],
+				'default' => 'contain',
+			]
+		);
+
 		$this -> end_controls_section();
-
-
-		// $this -> start_controls_section(
-		// 	'section_title_style',
-		// 	[
-		// 		'label' => esc_html__( 'Title', 'elementor-addon' ),
-		// 		'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-		// 	]
-		// );
-
-		// $this->add_control(
-		// 	'title_color',
-		// 	[
-		// 		'label' => esc_html__( 'Text Color', 'elementor-addon' ),
-		// 		'type' => \Elementor\Controls_Manager::COLOR,
-		// 		'selectors' => [
-		// 			'{{WRAPPER}} .hello-world' => 'color: {{VALUE}};',
-		// 		],
-		// 	]
-		// );
-
-		// $this->end_controls_section();
 
 	}
 
+	private function switcher_value($setting, $on_val, $off_val) {
+    return $setting === 'yes' ? $on_val : $off_val;
+  }
+
 	protected function render() {
+		$widget_id = $this -> get_id();
 		$settings = $this -> get_settings_for_display();
-		?>
+
+		if (!isset($settings['lottie']['url']) || empty($settings['lottie']['url'])) {
+			return;
+		}
+
+		$src = $settings['lottie']['url'];
+		$ext = pathinfo($src, PATHINFO_EXTENSION);
+
+		if ($ext !== 'json' && $ext !== 'lottie') {
+			return;
+		}
+		
+		$autoplay = $this -> switcher_value($settings['autoplay'], 'autoplay', '');
+		$controls = $this -> switcher_value($settings['controls'], 'controls', '');
+		$loop = $this -> switcher_value($settings['loop'], 'loop', '');
+		$direction = $this -> switcher_value($settings['reverse'], '-1', '1');
+
+		$onMouseOver = $settings['onmouseover'];
+		$onMouseOut = $settings['onmouseout'];
+		$objectFit = aspectRatio($settings['object_fit']);
+		$speed = $settings['speed'];
+		$heightSize = $settings['height_fixed']['size'];
+		$heightUnit = $settings['height_fixed']['unit'];
+		$height = $this -> switcher_value(
+			$settings['height_auto'],
+			$heightSize . $heightUnit,
+			'auto'
+		);
+		$widthSize = $settings['width']['size'];
+		$widthUnit = $settings['width']['unit'];
+		$width = $widthSize . $widthUnit; ?>
 
 		<dotlottie-player
-			autoplay
-			loop
-			controls
-			src="<?php echo esc_url($settings['image']['url']); ?>"
+			<?php echo esc_html($autoplay); ?>
+			<?php echo esc_html($controls); ?>
+			<?php echo esc_html($loop); ?>
+			direction="<?php echo esc_html($direction); ?>"
+			preserveAspectRatio="<?php echo esc_html($objectFit); ?>"
+			src="<?php echo esc_url($src); ?>"
+			style="
+				width: <?php echo esc_html($width); ?>;
+				height: <?php echo esc_html($height); ?>;
+			"
 		>
 		</dotlottie-player>
 
@@ -84,11 +319,42 @@ class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 
 	protected function content_template() {
 		?>
+		<#
+			const aspectRatio = ( objectFit ) => {
+				switch ( objectFit ) {
+					case 'contain':
+					case 'scale-down':
+						return 'xMidYMid meet';
+					case 'cover':
+						return 'xMidYMid slice';
+					case 'fill':
+						return 'none';
+					case 'none':
+						return 'xMinYMin slice';
+					default:
+						return 'xMidYMid meet';
+				}
+			},
+			
+				autoplay = settings.autoplay === 'yes' ? 'autoplay' : '',
+				controls = settings.controls === 'yes' ? 'controls' : '',
+				loop = settings.loop === 'yes' ? 'loop' : '',
+				objectFit = aspectRatio(settings.object_fit),
+				{ height_auto, height_fixed, lottie, reverse, width } = settings,
+				direction = reverse === 'yes' ? '-1' : '1',
+				height = height_auto !== 'yes' || !height_fixed.size ? 'auto' : height_fixed.size + height_fixed.unit
+		#>
 		<dotlottie-player
-			autoplay
-			loop
-			controls
-			src="{{{ settings.lottie.url }}}"
+			{{{ autoplay }}}
+			{{{ controls }}}
+			{{{ loop }}}
+			direction="{{{ direction }}}"
+			preserveAspectRatio="{{{ objectFit }}}"
+			src="{{{ lottie.url }}}"
+			style="
+				width: {{{ width.size }}}{{{ width.unit }}};
+				height: {{{ height }}};
+			"
 		>
 		</dotlottie-player>
 		<?php

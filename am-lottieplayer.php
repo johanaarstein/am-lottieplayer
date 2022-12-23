@@ -40,7 +40,7 @@ if (!function_exists('am_lottie_blocks_init')) {
       'am_lottiePlayer',
       AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player.min.js',
       null,
-      '1.2.18',
+      '1.2.24',
       true
     );
     wp_enqueue_script('am_lottiePlayer');
@@ -48,6 +48,34 @@ if (!function_exists('am_lottie_blocks_init')) {
 
   include AM_LOTTIEPLAYER_PATH . 'includes/shortcodes.php';
   include AM_LOTTIEPLAYER_PATH . 'includes/uploadFilter.php';
+}
+
+if (!defined('AM_LOTTIEPLAYER_VERSION')) {
+  define(
+    'AM_LOTTIEPLAYER_VERSION',
+    get_file_data(
+      AM_LOTTIEPLAYER_PATH,
+      ['Version' => 'Version'],
+      'plugin'
+    )['Version']);
+}
+
+if (!function_exists('aspectRatio')) {
+  function aspectRatio($objectFit) {
+    switch ($objectFit) {
+      case 'contain':
+      case 'scale-down':
+        return 'xMidYMid meet';
+      case 'cover':
+        return 'xMidYMid slice';
+      case 'fill':
+        return 'none';
+      case 'none':
+        return 'xMinYMin slice';
+      default:
+        return 'xMidYMid meet';
+    }
+  }
 }
 
 //DIVI
@@ -58,11 +86,11 @@ if (!function_exists('am_initialize_lottie_extension')) {
   }
 }
 
-// //ELEMENTOR
-// if (!function_exists('am_register_lottie_widget')) {
-//   add_action('elementor/widgets/register', 'am_register_lottie_widget');
-//   function am_register_lottie_widget($widgets_manager) {
-//     require_once AM_LOTTIEPLAYER_PATH . '/includes/widgets/elementor-am-lottieplayer.php';
-//     $widgets_manager -> register(new \Elementor_AM_LottiePlayer());
-//   }
-// }
+//ELEMENTOR
+if (!function_exists('am_register_lottie_widget')) {
+  add_action('elementor/widgets/register', 'am_register_lottie_widget');
+  function am_register_lottie_widget($widgets_manager) {
+    require_once AM_LOTTIEPLAYER_PATH . '/includes/widgets/elementor-am-lottieplayer.php';
+    $widgets_manager -> register(new \Elementor_AM_LottiePlayer());
+  }
+}
