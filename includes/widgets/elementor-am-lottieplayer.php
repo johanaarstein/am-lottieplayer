@@ -1,9 +1,9 @@
 <?php
 class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 
-	// public function get_script_depends() {
-  //   return ['am_lottiePlayer'];
-  // }
+	public function get_script_depends() {
+    return ['elementor_frontend'];
+  }
 
 	public function get_name() {
 		return 'am_lottieplayer_widget';
@@ -282,13 +282,13 @@ class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 		
 		$autoplay = $this -> switcher_value($settings['autoplay'], 'autoplay', '');
 		$controls = $this -> switcher_value($settings['controls'], 'controls', '');
-		$loop = $this -> switcher_value($settings['loop'], 'loop', '');
 		$direction = $this -> switcher_value($settings['reverse'], '-1', '1');
+		$loop = $this -> switcher_value($settings['loop'], 'loop', '');
+		$onMouseOver = $this -> switcher_value($settings['onmouseover'], true, false);
 
-		$onMouseOver = $settings['onmouseover'];
 		$onMouseOut = $settings['onmouseout'];
 		$objectFit = aspectRatio($settings['object_fit']);
-		$speed = $settings['speed'];
+		$speed = !$settings['speed'] || empty($settings['speed']) ? '1' : $settings['speed'];
 		$heightSize = $settings['height_fixed']['size'];
 		$heightUnit = $settings['height_fixed']['unit'];
 		$height = $this -> switcher_value(
@@ -305,12 +305,15 @@ class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 			<?php echo esc_html($controls); ?>
 			<?php echo esc_html($loop); ?>
 			direction="<?php echo esc_html($direction); ?>"
+			data-direction="<?php echo esc_html($direction); ?>"
+			data-mouseover="<?php echo esc_html($onMouseOver); ?>"
+			data-mouseout="<?php echo esc_html($onMouseOut); ?>"
+			onmouseover="amElementorMouseOver"
+			onmouseout="amElementorMouseOut"
 			preserveAspectRatio="<?php echo esc_html($objectFit); ?>"
+			speed="<?php echo esc_html($speed); ?>"
 			src="<?php echo esc_url($src); ?>"
-			style="
-				width: <?php echo esc_html($width); ?>;
-				height: <?php echo esc_html($height); ?>;
-			"
+			style="width:<?php echo esc_html($width); ?>;height:<?php echo esc_html($height); ?>;"
 		>
 		</dotlottie-player>
 
@@ -340,21 +343,19 @@ class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 				controls = settings.controls === 'yes' ? 'controls' : '',
 				loop = settings.loop === 'yes' ? 'loop' : '',
 				objectFit = aspectRatio(settings.object_fit),
-				{ height_auto, height_fixed, lottie, reverse, width } = settings,
+				{ height_auto, height_fixed, lottie, reverse, speed, width } = settings,
 				direction = reverse === 'yes' ? '-1' : '1',
-				height = height_auto !== 'yes' || !height_fixed.size ? 'auto' : height_fixed.size + height_fixed.unit
-		#>
+				height = height_auto !== 'yes' || !height_fixed.size ? 'auto' : height_fixed.size + height_fixed.unit,
+				playbackSpeed = !speed || speed === '' ? '1' : speed #>
 		<dotlottie-player
 			{{{ autoplay }}}
 			{{{ controls }}}
 			{{{ loop }}}
 			direction="{{{ direction }}}"
 			preserveAspectRatio="{{{ objectFit }}}"
+			speed="{{{ playbackSpeed }}}"
 			src="{{{ lottie.url }}}"
-			style="
-				width: {{{ width.size }}}{{{ width.unit }}};
-				height: {{{ height }}};
-			"
+			style="width:{{{ width.size }}}{{{ width.unit }}};height:{{{ height }}};"
 		>
 		</dotlottie-player>
 		<?php

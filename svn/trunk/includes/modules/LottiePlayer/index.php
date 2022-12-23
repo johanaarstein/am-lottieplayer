@@ -316,24 +316,6 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 
 		public function render($attrs = [], $content = null, $render_slug ) {
 
-			if (!function_exists('aspectRatio')) {
-				function aspectRatio($objectFit) {
-					switch ($objectFit) {
-						case 'contain':
-						case 'scale-down':
-							return 'xMidYMid meet';
-						case 'cover':
-							return 'xMidYMid slice';
-						case 'fill':
-							return 'none';
-						case 'none':
-							return 'xMinYMin slice';
-						default:
-							return 'xMidYMid meet';
-					}
-				}
-			}
-
 			$output = sprintf(
 				'<figure%1$s class="%2$s">
 					<dotlottie-player

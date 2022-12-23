@@ -2,8 +2,8 @@
 if (!function_exists('am_lottie_mimetypes')) {
   add_filter('upload_mimes', 'am_lottie_mimetypes');
   function am_lottie_mimetypes($mimes) {
-    $mimes['txt'] = 'text/plain';
-    $mimes['json'] = 'text/plain';
+    // $mimes['txt'] = 'text/plain';
+    $mimes['json'] = 'application/json';
     $mimes['lottie'] = 'application/zip';
     return $mimes;
   }
@@ -20,12 +20,12 @@ if (!function_exists('am_lottie_filetypes')) {
     switch ($wp_file_type['ext']) {
       case 'json':
         $data['ext']  = 'json';
-        $data['type'] = 'text/plain';
+        $data['type'] = 'application/json';
         break;
-      case 'txt':
-        $data['ext']  = 'txt';
-        $data['type'] = 'text/plain';
-        break;
+      // case 'txt':
+      //   $data['ext']  = 'txt';
+      //   $data['type'] = 'text/plain';
+      //   break;
       case 'lottie':
         $data['ext']  = 'lottie';
         $data['type'] = 'application/zip';
