@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import { useCallback } from '@wordpress/element';
 import {
 	Panel,
@@ -11,17 +11,7 @@ import { __ } from '@wordpress/i18n';
 
 import { NumberInput, SwitchLabel } from '../form';
 
-import { LottiePlayer } from '../../global.d';
-
-type AnimationSettingsProps = {
-	attributes: LottiePlayer;
-	setAttributes: Dispatch< SetStateAction< Partial< LottiePlayer > > >;
-};
-
-const AnimationSettings = ( {
-	attributes,
-	setAttributes,
-}: AnimationSettingsProps ) => {
+const AnimationSettings = ( { attributes, setAttributes } ) => {
 	const {
 		align,
 		autoplay,
@@ -31,7 +21,7 @@ const AnimationSettings = ( {
 		hover,
 		loop,
 		mouseout,
-		speed,
+		speed = 1,
 		width,
 	} = attributes;
 
@@ -60,7 +50,7 @@ const AnimationSettings = ( {
 				<SwitchLabel
 					id="am-lottieplayer-loop-settings"
 					title={ __( 'Loop' ) }
-					value={ loop as boolean }
+					value={ loop }
 					onChange={ () => {
 						setAttributes( { loop: ! loop } );
 					} }
@@ -70,10 +60,8 @@ const AnimationSettings = ( {
 					min={ 0.5 }
 					max={ 5 }
 					step={ 0.5 }
-					value={ speed as number }
-					onChange={ ( value: number ) =>
-						setAttributes( { speed: value } )
-					}
+					value={ speed }
+					onChange={ ( value ) => setAttributes( { speed: value } ) }
 				/>
 				<SwitchLabel
 					id="am-lottieplayer-reverse-settings"
@@ -94,15 +82,15 @@ const AnimationSettings = ( {
 				<SwitchLabel
 					id="am-lottieplayer-hover-settings"
 					title={ __( 'Play on mouseover' ) }
-					value={ hover as boolean }
-					onChange={ ( value: boolean ) =>
+					value={ hover }
+					onChange={ ( value ) =>
 						setAttributes( { hover: ! value } )
 					}
 				/>
 				<SelectControl
 					label={ __( 'On mouseout' ) }
 					value={ mouseout }
-					onChange={ ( val: string ) => {
+					onChange={ ( val ) => {
 						setAttributes( {
 							mouseout: val,
 						} );
@@ -120,7 +108,7 @@ const AnimationSettings = ( {
 						id="am-lottieplayer-width-settings"
 						title={ __( 'Width' ) }
 						value={ parseWidth( width ) }
-						onChange={ ( val: number ) => {
+						onChange={ ( val ) => {
 							setAttributes( { width: val ?? null } );
 						} }
 						disabled={ align === 'full' || align === 'wide' }
@@ -138,7 +126,7 @@ const AnimationSettings = ( {
 								? null
 								: height
 						}
-						onChange={ ( val: number ) => {
+						onChange={ ( val ) => {
 							setAttributes( { height: val ?? null } );
 						} }
 						placeholder={ 'auto' }

@@ -4,19 +4,11 @@ import { __ } from '@wordpress/i18n';
 
 import { Lottie } from '../../assets/icons';
 
-type UploadComponentProps = {
-	children: never | undefined;
-	onSelectMedia: (
-		value: { id: number } & { [ k: string ]: unknown }
-	) => void;
-	onError?: ( value: string ) => void;
-};
-
 export default function UploadComponent( {
 	children,
 	onSelectMedia,
 	onError,
-}: UploadComponentProps ) {
+} ) {
 	return (
 		<MediaPlaceholder
 			icon={ <BlockIcon icon={ Lottie } /> }

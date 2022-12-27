@@ -1,23 +1,9 @@
-import React, { KeyboardEvent, KeyboardEventHandler } from 'react';
+import React from 'react';
 import { BaseControl, FormToggle, TextControl } from '@wordpress/components';
 
 import { isModifierKey, isNumericInput } from '../../functions';
 
-type SwitchLabelProps = {
-	id: string;
-	onChange: ( value: boolean ) => void;
-	subTitle?: string;
-	title?: string;
-	value: boolean;
-};
-
-const SwitchLabel = ( {
-	id = '',
-	onChange,
-	subTitle,
-	title,
-	value,
-}: SwitchLabelProps ) => {
+const SwitchLabel = ( { id = '', onChange, subTitle, title, value } ) => {
 	return (
 		<BaseControl
 			id={ id }
@@ -33,15 +19,6 @@ const SwitchLabel = ( {
 	);
 };
 
-type NumberInputProps = {
-	id: string;
-	onChange: ( value: number ) => void;
-	title?: string;
-	value: number | null;
-	disabled?: boolean;
-	placeholder?: string;
-};
-
 const NumberInput = ( {
 	id = '',
 	onChange,
@@ -49,10 +26,8 @@ const NumberInput = ( {
 	value = null,
 	disabled,
 	placeholder = '',
-}: NumberInputProps ) => {
-	const keydownHandler: KeyboardEventHandler = (
-		e: KeyboardEvent< HTMLInputElement >
-	) => {
+} ) => {
+	const keydownHandler = ( e ) => {
 		if ( isModifierKey( e ) ) return;
 		// eslint-disable-next-line no-unused-expressions
 		! isNumericInput( e ) && e.preventDefault();
@@ -65,7 +40,7 @@ const NumberInput = ( {
 			className={ 'lottie-number-wrapper' }
 		>
 			<TextControl
-				value={ value as number }
+				value={ value }
 				onChange={ ( n ) => onChange( +n ) }
 				onKeyDown={ keydownHandler }
 				disabled={ disabled }

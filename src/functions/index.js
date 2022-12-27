@@ -1,7 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
-import { LottiePlayer, MediaObject } from '../global.d';
-
-const aspectRatio = ( objectFit: string ) => {
+const aspectRatio = ( objectFit ) => {
 		switch ( objectFit ) {
 			case 'contain':
 			case 'scale-down':
@@ -16,11 +13,8 @@ const aspectRatio = ( objectFit: string ) => {
 				return 'xMidYMid meet';
 		}
 	},
-	attributesFromMedia = (
-		setAttributes: Dispatch< SetStateAction< Partial< LottiePlayer > > >,
-		dimRatio = null
-	) => {
-		return ( media: MediaObject ) => {
+	attributesFromMedia = ( setAttributes, dimRatio = null ) => {
+		return ( media ) => {
 			if ( ! media || ! media.url ) {
 				setAttributes( { src: undefined, id: undefined } );
 				return;
@@ -38,10 +32,10 @@ const aspectRatio = ( objectFit: string ) => {
 			} );
 		};
 	},
-	debounce = ( func: ( value: unknown ) => void, timeout = 100 ) => {
-		let timer: NodeJS.Timeout;
+	debounce = ( func, timeout = 100 ) => {
+		let timer;
 
-		return ( ...args: unknown[] ) => {
+		return ( ...args ) => {
 			clearTimeout( timer );
 			timer = setTimeout( () => {
 				func( [ ...args ] );

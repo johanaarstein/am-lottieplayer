@@ -3,8 +3,6 @@ import { useBlockProps } from '@wordpress/block-editor';
 
 import { aspectRatio, isTouch } from '../functions';
 
-import { LottiePlayer } from '../global.d';
-
 export default function save( { attributes } ) {
 	const {
 		align,
@@ -24,7 +22,7 @@ export default function save( { attributes } ) {
 		speed,
 		src,
 		width,
-	} = attributes as LottiePlayer;
+	} = attributes;
 
 	const mouseOver = ( { target } ) => {
 			if ( isTouch() || ! hover ) return;
@@ -72,7 +70,7 @@ export default function save( { attributes } ) {
 				onmouseover={ mouseOver }
 				onmouseout={ mouseOut }
 				mode={ mode }
-				preserveAspectRatio={ aspectRatio( objectFit as string ) }
+				preserveAspectRatio={ aspectRatio( objectFit ) }
 				renderer={ renderer }
 				src={ src }
 				speed={ speed }

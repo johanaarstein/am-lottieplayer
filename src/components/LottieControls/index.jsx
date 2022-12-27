@@ -1,21 +1,11 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import { InspectorControls } from '@wordpress/block-editor'; //FocalPointPicker,
 
 import AdvancedSettings from './AdvancedSettings';
 import AnimationSettings from './AnimationSettings';
 import BackgroundSettings from './BackgroundSettings';
 
-import { LottiePlayer } from '../../global.d';
-
-type LottieControlsProps = {
-	attributes: LottiePlayer;
-	setAttributes: Dispatch< SetStateAction< Partial< LottiePlayer > > >;
-};
-
-export default function LottieControls( {
-	attributes,
-	setAttributes,
-}: LottieControlsProps ) {
+export default function LottieControls( { attributes, setAttributes } ) {
 	return (
 		<InspectorControls>
 			<AnimationSettings

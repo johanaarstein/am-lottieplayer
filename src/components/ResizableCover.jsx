@@ -4,14 +4,6 @@ import classnames from 'classnames';
 import { useState } from '@wordpress/element';
 import { ResizableBox } from '@wordpress/components';
 
-type ResizableCoverProps = {
-	className: string;
-	onResizeStart: ( value: number ) => void;
-	onResize: ( value: number ) => void;
-	onResizeStop: ( value: number ) => void;
-	showHandle: boolean;
-};
-
 export default function ResizableCover( {
 	className,
 	onResizeStart,
@@ -19,7 +11,7 @@ export default function ResizableCover( {
 	onResizeStop,
 	showHandle,
 	...rest
-}: ResizableCoverProps ) {
+} ) {
 	const [ isResizing, setIsResizing ] = useState( false );
 
 	return (

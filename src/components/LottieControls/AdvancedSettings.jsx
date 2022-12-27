@@ -1,30 +1,21 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import { InspectorAdvancedControls } from '@wordpress/block-editor';
 import { SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import { PlayMode } from '@johanaarstein/dotlottie-player';
-import { LottiePlayer } from '../../global.d';
-
-type AdvanceSettingsProps = {
-	attributes: LottiePlayer;
-	setAttributes: Dispatch< SetStateAction< Partial< LottiePlayer > > >;
-};
-
-const AdvanceSettings = ( {
-	attributes,
-	setAttributes,
-}: AdvanceSettingsProps ) => {
-	const { mode, objectFit, renderer } = attributes;
+const AdvanceSettings = ( { attributes, setAttributes } ) => {
+	const {
+		mode = 'normal',
+		objectFit = 'contain',
+		renderer = 'svg',
+	} = attributes;
 
 	return (
 		<InspectorAdvancedControls key="inspector">
 			<SelectControl
 				label={ __( 'Renderer' ) }
 				value={ renderer }
-				onChange={ ( val: 'svg' | 'canvas' ) =>
-					setAttributes( { renderer: val } )
-				}
+				onChange={ ( val ) => setAttributes( { renderer: val } ) }
 				options={ [
 					{ value: 'svg', label: __( 'SVG' ) },
 					{ value: 'canvas', label: __( 'Canvas' ) },
@@ -49,7 +40,7 @@ const AdvanceSettings = ( {
 			<SelectControl
 				label={ __( 'Object fit' ) }
 				value={ objectFit }
-				onChange={ ( val: string ) => {
+				onChange={ ( val ) => {
 					setAttributes( { objectFit: val } );
 				} }
 				options={ [
@@ -63,7 +54,7 @@ const AdvanceSettings = ( {
 				label={ __( 'Play mode' ) }
 				value={ mode }
 				name="mode"
-				onChange={ ( val: PlayMode ) => setAttributes( { mode: val } ) }
+				onChange={ ( val ) => setAttributes( { mode: val } ) }
 				options={ [
 					{ value: 'normal', label: 'Normal' },
 					{ value: 'bounce', label: 'Bounce' },

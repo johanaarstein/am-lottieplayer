@@ -17,9 +17,7 @@ import ResizableCover from '../components/ResizableCover';
 
 import './editor.scss';
 
-import { EditProps } from '../global.d';
-
-const getInnerBlocksTemplate = ( attributes: any ) => {
+const getInnerBlocksTemplate = ( attributes ) => {
 	return [
 		[
 			'core/paragraph',
@@ -38,7 +36,7 @@ export default function Edit( {
 	isSelected,
 	setAttributes,
 	toggleSelection,
-}: EditProps ) {
+} ) {
 	const { allowedBlocks, background, height, heightUnit, src, templateLock } =
 			attributes,
 		isPlaceholder = useRef( true ),

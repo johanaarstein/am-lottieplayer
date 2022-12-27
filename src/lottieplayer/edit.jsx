@@ -7,9 +7,7 @@ import Placeholder from '../components/Placeholder';
 
 import './editor.scss';
 
-import { EditProps } from '../global.d';
-
-export default function Edit( { attributes, setAttributes }: EditProps ) {
+export default function Edit( { attributes, setAttributes } ) {
 	const { src } = attributes,
 		isPlaceholder = useRef( true );
 
