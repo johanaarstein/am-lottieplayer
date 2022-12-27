@@ -1,25 +1,36 @@
+import React, { Dispatch, SetStateAction } from 'react';
 import { InspectorAdvancedControls } from '@wordpress/block-editor';
-import { RangeControl, SelectControl } from '@wordpress/components';
+import { SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
+import { PlayMode } from '@johanaarstein/dotlottie-player';
+import { LottiePlayer } from '../../global.d';
+
+type AdvanceSettingsProps = {
+	attributes: LottiePlayer;
+	setAttributes: Dispatch< SetStateAction< Partial< LottiePlayer > > >;
+};
+
 const AdvanceSettings = ( {
-	attributes = {},
-	setAttributes = () => {},
-} = {} ) => {
-	const { direction, interactivityType, mode, renderer, speed } = attributes;
+	attributes,
+	setAttributes,
+}: AdvanceSettingsProps ) => {
+	const { mode, objectFit, renderer } = attributes;
 
 	return (
 		<InspectorAdvancedControls key="inspector">
 			<SelectControl
 				label={ __( 'Renderer' ) }
 				value={ renderer }
-				onChange={ ( val ) => setAttributes( { renderer: val } ) }
+				onChange={ ( val: 'svg' | 'canvas' ) =>
+					setAttributes( { renderer: val } )
+				}
 				options={ [
 					{ value: 'svg', label: __( 'SVG' ) },
 					{ value: 'canvas', label: __( 'Canvas' ) },
 				] }
 			/>
-			<SelectControl
+			{ /* <SelectControl
 				label={ __( 'Play animation on' ) }
 				value={ interactivityType }
 				onChange={ ( val ) => {
@@ -34,32 +45,28 @@ const AdvanceSettings = ( {
 					{ value: 'click', label: __( 'Click' ) },
 					{ value: 'scroll', label: __( 'Scroll' ) },
 				] }
-			/>
-			<RangeControl
-				label={ __( 'Speed' ) }
-				min={ 0.5 }
-				max={ 5 }
-				step={ 0.5 }
-				value={ speed }
-				onChange={ ( value ) => setAttributes( { speed: value } ) }
+			/> */ }
+			<SelectControl
+				label={ __( 'Object fit' ) }
+				value={ objectFit }
+				onChange={ ( val: string ) => {
+					setAttributes( { objectFit: val } );
+				} }
+				options={ [
+					{ value: 'contain', label: __( 'Contain' ) },
+					{ value: 'cover', label: __( 'Cover' ) },
+					{ value: 'fill', label: __( 'Fill' ) },
+					{ value: 'none', label: __( 'None' ) },
+				] }
 			/>
 			<SelectControl
 				label={ __( 'Play mode' ) }
 				value={ mode }
 				name="mode"
-				onChange={ ( val ) => setAttributes( { mode: val } ) }
+				onChange={ ( val: PlayMode ) => setAttributes( { mode: val } ) }
 				options={ [
 					{ value: 'normal', label: 'Normal' },
 					{ value: 'bounce', label: 'Bounce' },
-				] }
-			/>
-			<SelectControl
-				label={ __( 'Direction' ) }
-				value={ direction }
-				onChange={ ( val ) => setAttributes( { direction: val } ) }
-				options={ [
-					{ value: '1', label: __( 'Forward' ) },
-					{ value: '-1', label: __( 'Backward' ) },
 				] }
 			/>
 		</InspectorAdvancedControls>

@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 
 import Edit from './edit';
 import save from './save';
-import metadata from './block.json';
+import metadata from './block.json' assert { type: 'json' };
 import { Lottie } from '../assets/icons';
 
 registerBlockType( metadata.name, {
@@ -13,6 +13,9 @@ registerBlockType( metadata.name, {
 		__( 'gif' ),
 		__( 'motion' ),
 		__( 'vector' ),
+		__( 'SVG' ),
+		__( 'Lottie' ),
+		__( 'dotLottie' ),
 	],
 	attributes: {
 		align: {
@@ -43,6 +46,9 @@ registerBlockType( metadata.name, {
 			type: 'number',
 			default: null,
 		},
+		hover: {
+			type: 'boolean',
+		},
 		id: {
 			type: 'string',
 			default: null,
@@ -58,6 +64,10 @@ registerBlockType( metadata.name, {
 		mode: {
 			type: 'string',
 			default: 'normal',
+		},
+		mouseout: {
+			type: 'string',
+			default: 'stop',
 		},
 		objectFit: {
 			type: 'string',

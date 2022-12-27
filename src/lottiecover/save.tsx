@@ -1,6 +1,9 @@
+import React from 'react';
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 
 import { aspectRatio } from '../functions';
+
+import { LottiePlayer } from '../global.d';
 
 export default function save( { attributes = {} } = {} ) {
 	const {
@@ -19,7 +22,7 @@ export default function save( { attributes = {} } = {} ) {
 			speed,
 			src,
 			width,
-		} = attributes,
+		} = attributes as LottiePlayer,
 		heightWithUnit =
 			height && heightUnit ? `${ height }${ heightUnit }` : height,
 		style = {
@@ -46,7 +49,7 @@ export default function save( { attributes = {} } = {} ) {
 				direction={ direction }
 				loop={ loop ? '' : null }
 				mode={ mode }
-				preserveAspectRatio={ aspectRatio( objectFit ) }
+				preserveAspectRatio={ aspectRatio( objectFit as string ) }
 				renderer={ renderer }
 				speed={ speed }
 				src={ src }

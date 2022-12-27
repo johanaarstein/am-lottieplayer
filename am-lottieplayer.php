@@ -37,13 +37,13 @@ if (!function_exists('am_lottie_blocks_init')) {
     register_block_type(AM_LOTTIEPLAYER_PATH . 'build/lottiecover');
 
     wp_register_script(
-      'am_lottiePlayer',
+      'dotlottie-player',
       AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player.min.js',
       null,
-      '1.2.31',
+      '1.2.33',
       true
     );
-    wp_enqueue_script('am_lottiePlayer');
+    // wp_enqueue_script('dotlottie-player');
   }
 
   include AM_LOTTIEPLAYER_PATH . 'includes/shortcodes.php';
@@ -83,6 +83,15 @@ if (!function_exists('am_initialize_lottie_extension')) {
   add_action('divi_extensions_init', 'am_initialize_lottie_extension');
   function am_initialize_lottie_extension() {
     require_once AM_LOTTIEPLAYER_PATH . 'includes/LottieDiviModules.php';
+
+    wp_register_script(
+      'am-frontend',
+      AM_LOTTIEPLAYER_URL . 'scripts/am-frontend.min.js',
+      ['dotlottie-player'],
+      '1.0.0',
+      true
+    );
+    wp_enqueue_script('am-frontend');
   }
 }
 
@@ -90,14 +99,13 @@ if (!function_exists('am_initialize_lottie_extension')) {
 if (!function_exists('am_register_lottie_widget')) {
   add_action('elementor/widgets/register', 'am_register_lottie_widget');
   function am_register_lottie_widget($widgets_manager) {
-    if (!class_exists(\Elementor\Widget_Base)) return;
     require_once AM_LOTTIEPLAYER_PATH . '/includes/widgets/elementor-am-lottieplayer.php';
     $widgets_manager -> register(new \Elementor_AM_LottiePlayer());
 
     wp_register_script(
-      'elementor_frontend',
-      AM_LOTTIEPLAYER_URL . 'scripts/elementor-frontend.min.js',
-      ['am_lottiePlayer'],
+      'am-frontend',
+      AM_LOTTIEPLAYER_URL . 'scripts/am-frontend.min.js',
+      ['dotlottie-player'],
       '1.0.0',
       true
     );

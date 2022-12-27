@@ -5,7 +5,7 @@ import './style.scss';
 
 import Edit from './edit';
 import save from './save';
-import metadata from './block.json';
+import metadata from './block.json' assert { type: 'json' };
 import { Lottie } from '../assets/icons';
 
 registerBlockType( metadata.name, {
@@ -45,6 +45,10 @@ registerBlockType( metadata.name, {
 		contentPosition: {
 			type: 'string',
 		},
+		dimRatio: {
+			type: 'number',
+			default: 50,
+		},
 		direction: {
 			type: 'number',
 			default: 1,
@@ -59,6 +63,10 @@ registerBlockType( metadata.name, {
 		heightUnit: {
 			type: 'string',
 			default: 'px',
+		},
+		hover: {
+			type: 'boolean',
+			default: false,
 		},
 		id: {
 			type: 'string',
@@ -78,6 +86,10 @@ registerBlockType( metadata.name, {
 		},
 		overlayColor: {
 			type: 'string',
+		},
+		mouseOut: {
+			type: 'string',
+			default: 'stop',
 		},
 		renderer: {
 			type: 'string',

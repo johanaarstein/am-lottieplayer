@@ -1,14 +1,22 @@
+import React from 'react';
 import { BlockIcon, MediaPlaceholder } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
 import { Lottie } from '../../assets/icons';
 
+type UploadComponentProps = {
+	children: never | undefined;
+	onSelectMedia: (
+		value: { id: number } & { [ k: string ]: unknown }
+	) => void;
+	onError?: ( value: string ) => void;
+};
+
 export default function UploadComponent( {
 	children,
-	onSelectMedia = () => {},
-	onError = () => {},
-	disableMediaButtons = false,
-} = {} ) {
+	onSelectMedia,
+	onError,
+}: UploadComponentProps ) {
 	return (
 		<MediaPlaceholder
 			icon={ <BlockIcon icon={ Lottie } /> }
@@ -23,10 +31,9 @@ export default function UploadComponent( {
 			allowedTypes={ [
 				'application/json',
 				'application/zip',
-				'text/plain',
+				// 'text/plain',
 			] }
 			onError={ onError }
-			disableMediaButtons={ disableMediaButtons }
 		>
 			{ children }
 		</MediaPlaceholder>

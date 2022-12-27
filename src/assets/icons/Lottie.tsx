@@ -1,3 +1,4 @@
+import React from 'react';
 import { Path, SVG } from '@wordpress/components';
 
 export default function Lottie() {
@@ -20,11 +21,22 @@ export default function Lottie() {
 			</style>
 			<defs>
 				<radialGradient id="a" cx=".2" cy="1.07" r="1.2">
-					<stop offset="0%" stopColor="#92003b" />
-					<stop offset="5%" stopColor="#ff4a9e" />
-					<stop offset="45%" stopColor="#24708f" />
-					<stop offset="60%" stopColor="#24708f" />
-					<stop offset="90%" stopColor="#00c1a2" />
+					<stop offset="10%">
+						<animate
+							attributeName="stop-color"
+							values="#24708f;#e18d4c;#1f374c;#85c6e0;#24708f;"
+							dur="3s"
+							repeatCount="indefinite"
+						/>
+					</stop>
+					<stop offset="90%">
+						<animate
+							attributeName="stop-color"
+							values="#85c6e0;#24708f;#e18d4c;#1f374c;#85c6e0;"
+							dur="6s"
+							repeatCount="indefinite"
+						/>
+					</stop>
 				</radialGradient>
 			</defs>
 			<Path

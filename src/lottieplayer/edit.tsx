@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useRef } from '@wordpress/element';
 import { useBlockProps } from '@wordpress/block-editor';
 
@@ -6,10 +7,9 @@ import Placeholder from '../components/Placeholder';
 
 import './editor.scss';
 
-export default function Edit( {
-	attributes = {},
-	setAttributes = () => {},
-} = {} ) {
+import { EditProps } from '../global.d';
+
+export default function Edit( { attributes, setAttributes }: EditProps ) {
 	const { src } = attributes,
 		isPlaceholder = useRef( true );
 

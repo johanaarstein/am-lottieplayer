@@ -2,7 +2,7 @@
 class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 
 	public function get_script_depends() {
-    return ['elementor_frontend'];
+    return ['am-frontend'];
   }
 
 	public function get_name() {
@@ -257,6 +257,19 @@ class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 			]
 		);
 
+		$this -> add_control(
+			'renderer',
+			[
+				'label' => __('Renderer', 'am-lottieplayer'),
+				'type' => \Elementor\Controls_Manager::SELECT,
+        'options' => [
+          'svg' => __('SVG', 'am-lottieplayer'),
+          'canvas' => __('Canvas', 'am-lottieplayer'),
+				],
+				'default' => 'svg',
+			]
+		);
+
 		$this -> end_controls_section();
 
 	}
@@ -289,8 +302,8 @@ class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 		$onMouseOut = $settings['onmouseout'];
 		$objectFit = aspectRatio($settings['object_fit']);
 		$speed = !$settings['speed'] || empty($settings['speed']) ? '1' : $settings['speed'];
-		$heightSize = $settings['height_fixed']['size'];
-		$heightUnit = $settings['height_fixed']['unit'];
+		$heightSize = $settings['height_fixed'] ? $settings['height_fixed']['size'] : 'auto';
+		$heightUnit = $settings['height_fixed'] ? $settings['height_fixed']['unit'] : '';
 		$height = $this -> switcher_value(
 			$settings['height_auto'],
 			$heightSize . $heightUnit,
@@ -298,18 +311,18 @@ class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 		);
 		$widthSize = $settings['width']['size'];
 		$widthUnit = $settings['width']['unit'];
-		$width = $widthSize . $widthUnit; ?>
+		$width = $widthSize . $widthUnit;
+		$renderer = $settings['renderer']; ?>
 
 		<dotlottie-player
 			<?php echo esc_html($autoplay); ?>
 			<?php echo esc_html($controls); ?>
 			<?php echo esc_html($loop); ?>
+			renderer="<?php echo esc_html($renderer); ?>"
 			direction="<?php echo esc_html($direction); ?>"
 			data-direction="<?php echo esc_html($direction); ?>"
 			data-mouseover="<?php echo esc_html($onMouseOver); ?>"
 			data-mouseout="<?php echo esc_html($onMouseOut); ?>"
-			onmouseover="amElementorMouseOver"
-			onmouseout="amElementorMouseOut"
 			preserveAspectRatio="<?php echo esc_html($objectFit); ?>"
 			speed="<?php echo esc_html($speed); ?>"
 			src="<?php echo esc_url($src); ?>"

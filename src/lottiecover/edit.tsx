@@ -1,3 +1,4 @@
+import React from 'react';
 import classnames from 'classnames';
 
 import { useEffect, useRef } from '@wordpress/element';
@@ -16,7 +17,9 @@ import ResizableCover from '../components/ResizableCover';
 
 import './editor.scss';
 
-function getInnerBlocksTemplate( attributes ) {
+import { EditProps } from '../global.d';
+
+const getInnerBlocksTemplate = ( attributes: any ) => {
 	return [
 		[
 			'core/paragraph',
@@ -27,15 +30,15 @@ function getInnerBlocksTemplate( attributes ) {
 			},
 		],
 	];
-}
+};
 
 export default function Edit( {
-	attributes = {},
-	clientId = '',
-	isSelected = false,
-	setAttributes = () => {},
-	toggleSelection = () => {},
-} = {} ) {
+	attributes,
+	clientId,
+	isSelected,
+	setAttributes,
+	toggleSelection,
+}: EditProps ) {
 	const { allowedBlocks, background, height, heightUnit, src, templateLock } =
 			attributes,
 		isPlaceholder = useRef( true ),

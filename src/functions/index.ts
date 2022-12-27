@@ -1,4 +1,7 @@
-const aspectRatio = ( objectFit ) => {
+import { Dispatch, SetStateAction } from 'react';
+import { LottiePlayer, MediaObject } from '../global.d';
+
+const aspectRatio = ( objectFit: string ) => {
 		switch ( objectFit ) {
 			case 'contain':
 			case 'scale-down':
@@ -13,8 +16,11 @@ const aspectRatio = ( objectFit ) => {
 				return 'xMidYMid meet';
 		}
 	},
-	attributesFromMedia = ( setAttributes, dimRatio = null ) => {
-		return ( media ) => {
+	attributesFromMedia = (
+		setAttributes: Dispatch< SetStateAction< Partial< LottiePlayer > > >,
+		dimRatio = null
+	) => {
+		return ( media: MediaObject ) => {
 			if ( ! media || ! media.url ) {
 				setAttributes( { src: undefined, id: undefined } );
 				return;
@@ -32,13 +38,13 @@ const aspectRatio = ( objectFit ) => {
 			} );
 		};
 	},
-	debounce = ( func = () => {}, timeout = 100 ) => {
-		let timer;
+	debounce = ( func: ( value: unknown ) => void, timeout = 100 ) => {
+		let timer: NodeJS.Timeout;
 
-		return ( ...args ) => {
+		return ( ...args: unknown[] ) => {
 			clearTimeout( timer );
 			timer = setTimeout( () => {
-				func( ...args );
+				func( [ ...args ] );
 			}, timeout );
 		};
 	},
@@ -63,6 +69,9 @@ const aspectRatio = ( objectFit ) => {
 	},
 	isNumericInput = ( { key } ) => {
 		return key >= 0 && key <= 9;
+	},
+	isTouch = () => {
+		return window && 'ontouchstart' in window;
 	};
 
 export {
@@ -71,4 +80,5 @@ export {
 	debounce,
 	isModifierKey,
 	isNumericInput,
+	isTouch,
 };

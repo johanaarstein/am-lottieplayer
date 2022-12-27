@@ -102,7 +102,7 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 					'toggle_slug' => 'main_content',
 					'mobile_options' => true,
 					'hover' => 'tabs',
-					'default' => 'https://storage.googleapis.com/aarsteinmedia/placeholder.lottie',
+					'default' => 'https://storage.googleapis.com/aarsteinmedia/am.lottie',
 				],
 				'alt' => [
 					'label' => esc_html__('Animation Alternative Text', 'am-lottieplayer'),
@@ -148,61 +148,6 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 					'toggle_slug'   => 'link',
 					'description'   => esc_html__('Here you can choose whether or not your link opens in a new window', 'et_builder'),
 				],
-				// 'use_overlay'      => [
-				// 	'label' => esc_html__('Animation Overlay', 'am-lottieplayer'),
-				// 	'type'  => 'yes_no_button',
-				// 	'option_category'  => 'layout',
-				// 	'options'       => [
-				// 		'off' => et_builder_i18n('Off'),
-				// 		'on'  => et_builder_i18n('On'),
-				// 	],
-				// 	'default_on_front' => 'off',
-				// 	'affects'       => [
-				// 		'overlay_icon_color',
-				// 		'hover_overlay_color',
-				// 		'hover_icon',
-				// 	],
-				// 	'show_if'       => [
-				// 		'function.showLottieUseOverlayField' => 'on',
-				// 	],
-				// 	'tab_slug'      => 'advanced',
-				// 	'toggle_slug'   => 'overlay',
-				// 	'description'   => esc_html__('If enabled, an overlay color and icon will be displayed when a visitors hovers over the animation', 'am-lottieplayer'),
-				// ],
-				// 'overlay_icon_color'  => [
-				// 	'label'        => esc_html__('Overlay Icon Color', 'et_builder'),
-				// 	'type' => 'color-alpha',
-				// 	'custom_color' => true,
-				// 	'depends_show_if' => 'on',
-				// 	'tab_slug'     => 'advanced',
-				// 	'toggle_slug'  => 'overlay',
-				// 	'description'  => esc_html__('Here you can define a custom color for the overlay icon', 'et_builder'),
-				// 	'mobile_options'  => true,
-				// 	'sticky'       => true,
-				// ],
-				// 'hover_overlay_color' => [
-				// 	'label'        => esc_html__('Hover Overlay Color', 'et_builder'),
-				// 	'type' => 'color-alpha',
-				// 	'custom_color' => true,
-				// 	'depends_show_if' => 'on',
-				// 	'tab_slug'     => 'advanced',
-				// 	'toggle_slug'  => 'overlay',
-				// 	'description'  => esc_html__('Here you can define a custom color for the overlay', 'et_builder'),
-				// 	'mobile_options'  => true,
-				// 	'sticky'       => true,
-				// ],
-				// 'hover_icon' => [
-				// 	'label' => esc_html__('Hover Icon Picker', 'et_builder'),
-				// 	'type' => 'select_icon',
-				// 	'option_category' => 'configuration',
-				// 	'class' => ['et-pb-font-icon'],
-				// 	'depends_show_if' => 'on',
-				// 	'tab_slug' => 'advanced',
-				// 	'toggle_slug' => 'overlay',
-				// 	'description' => esc_html__('Here you can define a custom icon for the overlay', 'et_builder'),
-				// 	'mobile_options' => true,
-				// 	'sticky' => true,
-				// ],
 				'show_bottom_space'   => [
 					'label' => esc_html__('Show Space Below The Animation', 'am-lottieplayer'),
 					'type'  => 'yes_no_button',
@@ -217,18 +162,6 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 					'description'   => esc_html__('Here you can choose whether or not the animation should have a space below it.', 'am-lottieplayer'),
 					'mobile_options'   => true,
 				],
-				// 'align'    => [
-				// 	'label' => esc_html__('Lottie Alignment', 'am-lottieplayer'),
-				// 	'type'  => 'text_align',
-				// 	'option_category'  => 'layout',
-				// 	'options'       => et_builder_get_text_orientation_options(['justified']),
-				// 	'default_on_front' => 'left',
-				// 	'tab_slug'      => 'advanced',
-				// 	'toggle_slug'   => 'alignment',
-				// 	'description'   => esc_html__('Here you can choose the Lottie alignment.', 'am-lottieplayer'),
-				// 	'options_icon'  => 'module_align',
-				// 	'mobile_options'   => true,
-				// ],
 				'force_fullwidth'  => [
 					'label' => esc_html__('Force Fullwidth', 'et_builder'),
 					'description'   => esc_html__("When enabled, this will force your animation to extend 100% of the width of the column it's in.", 'am-lottieplayer'),
@@ -259,7 +192,7 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 					'toggle_slug' => 'main_content',
 				],
 				'controls' => [
-					'label' => esc_html__('Controls', 'am-lottieplayer'),
+					'label' => esc_html__('Show controls', 'am-lottieplayer'),
 					'description' => esc_html__('Show or hide controls.', 'am-lottieplayer'),
 					'type' => 'yes_no_button',
 					'option_category' => 'basic_option',
@@ -280,6 +213,56 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 						'on'  => et_builder_i18n('Yes'),
 					],
 					'default_on_front' => 'on',
+					'toggle_slug' => 'main_content',
+				],
+				'speed' => [
+					'label' => __('Playback speed', 'am-lottieplayer'),
+					'type' => 'range',
+					'default' => '1',
+					'range_settings' => [
+						'max' => '10',
+						'step' => '0.1',
+					],
+					'toggle_slug' => 'main_content',
+				],
+				'reverse' => [
+					'label' => esc_html__('Reverse', 'am-lottieplayer'),
+					'description' => esc_html__('Reverse the animation.', 'am-lottieplayer'),
+					'type' => 'yes_no_button',
+					'option_category' => 'basic_option',
+					'options'  => [
+						'off' => et_builder_i18n('No'),
+						'on'  => et_builder_i18n('Yes'),
+					],
+					'toggle_slug' => 'main_content',
+				],
+				'onmouseover' => [
+					'label' => __('Play on mouseover', 'am-lottieplayer'),
+					'type' => 'yes_no_button',
+					'option_category' => 'basic_option',
+					'options'  => [
+						'off' => et_builder_i18n('No'),
+						'on'  => et_builder_i18n('Yes'),
+					],
+					'affects' => [
+						'onmouseout',
+					],
+					'depends_show_if_not' => 'off',
+					'toggle_slug' => 'main_content',
+				],
+				'onmouseout' => [
+					'label' => __('On mouseout', 'am-lottieplayer'),
+					'type' => 'select',
+					'options' => [
+						'void' => __('No event', 'am-lottieplayer'),
+						'stop' => __('Stop', 'am-lottieplayer'),
+						'pause' => __('Pause', 'am-lottieplayer'),
+						'reverse' => __('Reverse', 'am-lottieplayer')
+					],
+					'default' => 'stop',
+					'condition' => [
+						'onmouseover' => 'yes',
+					],
 					'toggle_slug' => 'main_content',
 				],
 				'object_fit' => [
@@ -306,7 +289,6 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 						'canvas' => esc_html__('Canvas', 'am-lottieplayer'),
 					],
 					'default' => 'svg',
-					// 'tab_slug' => 'advanced',
 					'toggle_slug' => 'main_content',
 				],
 			];
@@ -327,6 +309,11 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 						description="%7$s"
 						renderer="%8$s"
 						preserveaspectratio="%9$s"
+						direction="%10$s"
+						data-direction="%10$s"
+						data-mouseover="%11$s"
+						data-mouseout="%12$s"
+						speed="%13$s"
 					>
 					</dotlottie-player>
 				</figure>',
@@ -339,6 +326,10 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 				esc_html($this -> props['alt']), #7
 				esc_html($this -> props['renderer']), #8
 				aspectRatio(esc_html($this -> props['object_fit'])), #9
+				$this -> props['reverse'] !== 'on' ? '1' : '-1', #10
+				$this -> props['onmouseover'] !== 'on' ? 'false' : 'true', #11
+				esc_html($this -> props['onmouseout']), #12
+				esc_html($this -> props['speed']), #13
 			);
 
 			return $output;
