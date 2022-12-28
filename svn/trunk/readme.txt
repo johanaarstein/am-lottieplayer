@@ -56,14 +56,14 @@ Automatic installation is the easiest option — WordPress will handle the file 
 == Screenshots ==
 
 1. AM LottiePlayer works with Gutenberg…
-2. …as well as Divi Builder
-3. …and Elementor
+2. …as well as Divi Builder…
+3. …and even Elementor!
 
 == Changelog ==
 
 = 2.0.0 =
 * New Feature: Added support for Elementor.
-* Optimization: Made scripts load dynamically only when needed
+* Optimization: Made scripts load dynamically only when used
 * Bugfix: Minor bugfixes
 
 = 1.0.3 =
