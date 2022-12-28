@@ -5,7 +5,7 @@ import './style.scss';
 
 import Edit from './edit';
 import save from './save';
-import metadata from './block.json' assert { type: 'json' };
+import metadata from './block.json';
 import { Lottie } from '../assets/icons';
 
 registerBlockType( metadata.name, {
@@ -41,9 +41,15 @@ registerBlockType( metadata.name, {
 		},
 		content: {
 			type: 'string',
+			default: '',
 		},
 		contentPosition: {
 			type: 'string',
+			default: '',
+		},
+		click: {
+			type: 'boolean',
+			default: false,
 		},
 		dimRatio: {
 			type: 'number',
@@ -55,6 +61,7 @@ registerBlockType( metadata.name, {
 		},
 		focalPoint: {
 			type: 'object',
+			default: {},
 		},
 		height: {
 			type: 'number',
@@ -86,6 +93,7 @@ registerBlockType( metadata.name, {
 		},
 		overlayColor: {
 			type: 'string',
+			default: 'transparent',
 		},
 		mouseOut: {
 			type: 'string',
@@ -101,6 +109,7 @@ registerBlockType( metadata.name, {
 		},
 		src: {
 			type: 'string',
+			default: '',
 		},
 		templateLock: {
 			type: [ 'string', 'boolean' ],

@@ -1,7 +1,4 @@
-import React from 'react';
-import classnames from 'classnames';
-
-import { useEffect, useRef } from '@wordpress/element';
+import { useEffect, useRef, useState } from '@wordpress/element';
 import {
 	store as blockEditorStore,
 	useBlockProps,
@@ -10,6 +7,8 @@ import {
 } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
+
+import classnames from 'classnames';
 
 import LottieControls from '../components/LottieControls';
 import Placeholder from '../components/Placeholder';
@@ -39,8 +38,8 @@ export default function Edit( {
 } ) {
 	const { allowedBlocks, background, height, heightUnit, src, templateLock } =
 			attributes,
-		isPlaceholder = useRef( true ),
 		ref = useRef(),
+		[ isPlaceholder, setIsPlaceholder ] = useState( true ),
 		blockProps = useBlockProps( { ref } ),
 		hasInnerBlocks = useSelect(
 			( select ) =>
@@ -70,7 +69,7 @@ export default function Edit( {
 		};
 
 	useEffect( () => {
-		isPlaceholder.current = ! src || src === '';
+		setIsPlaceholder( ! src || src === '' );
 	}, [ src ] );
 
 	return (
@@ -82,7 +81,7 @@ export default function Edit( {
 			<div
 				{ ...blockProps }
 				className={ classnames(
-					{ 'is-placeholder': isPlaceholder.current },
+					{ 'is-placeholder': isPlaceholder },
 					blockProps.className
 				) }
 				style={ { ...style, ...blockProps.style } }
@@ -106,14 +105,14 @@ export default function Edit( {
 					aria-hidden="true"
 					className={ `wp-block-gb-lottiecover__background` }
 					style={ { backgroundColor: background } }
-					hidden={ isPlaceholder.current }
+					hidden={ isPlaceholder }
 				/>
 				<Placeholder
 					attributes={ attributes }
 					setAttributes={ setAttributes }
-					isPlaceholder={ isPlaceholder.current }
+					isPlaceholder={ isPlaceholder }
 				/>
-				{ ! isPlaceholder.current && <div { ...innerBlocksProps } /> }
+				{ ! isPlaceholder && <div { ...innerBlocksProps } /> }
 			</div>
 		</>
 	);

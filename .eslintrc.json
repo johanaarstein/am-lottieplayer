@@ -1,5 +1,4 @@
 {
-	"parser": "@typescript-eslint/parser",
 	"env": {
 		"browser": true,
 		"node": true,
@@ -7,12 +6,10 @@
 	},
 	"plugins": [
 		"react",
-		"react-hooks",
-		"@typescript-eslint"
+		"react-hooks"
 	],
 	"extends": [
 		"eslint:recommended",
-		"plugin:@typescript-eslint/recommended",
 		"plugin:@wordpress/eslint-plugin/recommended"
 	],
 	"globals": {

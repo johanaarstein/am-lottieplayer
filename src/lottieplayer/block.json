@@ -4,7 +4,6 @@
 	"name": "gb/lottieplayer",
 	"title": "AM LottiePlayer",
 	"category": "media",
-	"description": "Add Lottie animations to you post.",
 	"supports": {
 		"align": true,
 		"anchor": true,

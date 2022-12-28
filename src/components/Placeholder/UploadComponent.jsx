@@ -1,4 +1,3 @@
-import React from 'react';
 import { BlockIcon, MediaPlaceholder } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 

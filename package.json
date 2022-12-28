@@ -1,7 +1,7 @@
 {
 	"name": "am-lottieplayer",
-	"version": "1.0.3",
-	"description": "Lightweight, versatile and easy to use! Upload Lottie animations to WordPress and add them in Gutenberg or the Divi Builder.",
+	"version": "2.0.0",
+	"description": "Lightweight, versatile and easy to use! Add vectorized Lottie animations to your page with Gutenberg, the Divi Builder or Elementor.",
 	"author": {
 		"name": "Aarstein Media",
 		"email": "johan@aarstein.media",
@@ -36,10 +36,7 @@
 		"styles",
 		"am-lottieplayer.php"
 	],
-	"main": "build/index.js",
-	"dependencies": {
-		"@johanaarstein/dotlottie-player": "^1.2.33"
-	},
+	"main": "build/lottieplayer/index.js",
 	"devDependencies": {
 		"@wordpress/i18n": "^4.23.0",
 		"@wordpress/scripts": "^25.0.0",

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 
 import { aspectRatio } from '../functions';
@@ -10,11 +9,14 @@ export default function save( { attributes = {} } = {} ) {
 			autoplay,
 			background,
 			controls,
+			click,
 			direction,
 			height,
 			heightUnit,
+			hover,
 			loop,
 			mode,
+			mouseout,
 			objectFit,
 			renderer,
 			speed,
@@ -45,6 +47,10 @@ export default function save( { attributes = {} } = {} ) {
 				controls={ controls ? '' : null }
 				description={ alt }
 				direction={ direction }
+				data-direction={ direction }
+				data-mouseover={ hover }
+				data-mouseout={ mouseout }
+				data-click={ click }
 				loop={ loop ? '' : null }
 				mode={ mode }
 				preserveAspectRatio={ aspectRatio( objectFit ) }

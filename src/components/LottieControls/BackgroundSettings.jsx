@@ -1,4 +1,3 @@
-import React from 'react';
 import { ColorPicker, Panel, PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 

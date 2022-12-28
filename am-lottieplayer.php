@@ -4,10 +4,10 @@
  */
 /**
  * Plugin Name:       AM LottiePlayer
- * Description:       The most complete Lottie Player plugin yet! Lightweight, versatile and easy to use. This plugin accepts LottieJSON and dotLottie, contains two Gutenberg blocks, a Divi Builder module, and the shortcode [am-lottieplayer].
+ * Description:       The most complete Lottie Player plugin yet! Lightweight, versatile and easy to use. This plugin accepts LottieJSON and dotLottie, contains two Gutenberg blocks, a Divi Builder module, an Elementor widget and the a shortcode.
  * Requires at least: 5.9
  * Requires PHP:      7.0
- * Version:           1.0.3
+ * Version:           2.0.0
  * Author:            Aarstein Media
  * Author URI:        https://www.aarstein.media
  * License:           GPL-2.0-or-later
@@ -36,6 +36,10 @@ if (!function_exists('am_lottie_blocks_init')) {
     register_block_type(AM_LOTTIEPLAYER_PATH . 'build/lottieplayer');
     register_block_type(AM_LOTTIEPLAYER_PATH . 'build/lottiecover');
 
+    if (is_admin()) {
+      wp_enqueue_script('dotlottie-player');
+    }
+
     wp_register_script(
       'dotlottie-player',
       AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player.min.js',
@@ -43,11 +47,27 @@ if (!function_exists('am_lottie_blocks_init')) {
       '1.2.33',
       true
     );
-    // wp_enqueue_script('dotlottie-player');
+
+    wp_register_script(
+      'am-frontend',
+      AM_LOTTIEPLAYER_URL . 'scripts/am-frontend.min.js',
+      ['dotlottie-player'],
+      '1.2.0',
+      true
+    );
   }
 
   include AM_LOTTIEPLAYER_PATH . 'includes/shortcodes.php';
   include AM_LOTTIEPLAYER_PATH . 'includes/uploadFilter.php';
+}
+
+if (!function_exists('am_lottie_block_enqeue')) {
+  add_action('wp_enqueue_scripts', 'am_lottie_block_enqeue');
+  function am_lottie_block_enqeue() {
+    if (!is_admin() && (has_block('gb/lottieplayer') || has_block('gb/lottiecover'))) {
+      wp_enqueue_script('am-frontend');
+    }
+  }
 }
 
 if (!defined('AM_LOTTIEPLAYER_VERSION')) {
@@ -83,15 +103,9 @@ if (!function_exists('am_initialize_lottie_extension')) {
   add_action('divi_extensions_init', 'am_initialize_lottie_extension');
   function am_initialize_lottie_extension() {
     require_once AM_LOTTIEPLAYER_PATH . 'includes/LottieDiviModules.php';
-
-    wp_register_script(
-      'am-frontend',
-      AM_LOTTIEPLAYER_URL . 'scripts/am-frontend.min.js',
-      ['dotlottie-player'],
-      '1.0.0',
-      true
-    );
-    wp_enqueue_script('am-frontend');
+    if (!is_admin()) {
+      wp_enqueue_script('am-frontend');
+    }
   }
 }
 
@@ -101,13 +115,5 @@ if (!function_exists('am_register_lottie_widget')) {
   function am_register_lottie_widget($widgets_manager) {
     require_once AM_LOTTIEPLAYER_PATH . '/includes/widgets/elementor-am-lottieplayer.php';
     $widgets_manager -> register(new \Elementor_AM_LottiePlayer());
-
-    wp_register_script(
-      'am-frontend',
-      AM_LOTTIEPLAYER_URL . 'scripts/am-frontend.min.js',
-      ['dotlottie-player'],
-      '1.0.0',
-      true
-    );
   }
 }

@@ -122,6 +122,16 @@ class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
     );
 
 		$this -> add_control(
+      'onclick',
+      [
+        'label' => __('Play on click', 'am-lottieplayer'),
+        'type' => \Elementor\Controls_Manager::SWITCHER,
+        'label_on' => __('Yes', 'am-lottieplayer'),
+        'label_off' => __('No', 'am-lottieplayer')
+			]
+    );
+
+		$this -> add_control(
       'onmouseover',
       [
         'label' => __('Play on mouseover', 'am-lottieplayer'),
@@ -297,6 +307,7 @@ class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 		$controls = $this -> switcher_value($settings['controls'], 'controls', '');
 		$direction = $this -> switcher_value($settings['reverse'], '-1', '1');
 		$loop = $this -> switcher_value($settings['loop'], 'loop', '');
+		$onClick = $this -> switcher_value($settings['onclick'], true, false);
 		$onMouseOver = $this -> switcher_value($settings['onmouseover'], true, false);
 
 		$onMouseOut = $settings['onmouseout'];
@@ -323,10 +334,11 @@ class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 			data-direction="<?php echo esc_html($direction); ?>"
 			data-mouseover="<?php echo esc_html($onMouseOver); ?>"
 			data-mouseout="<?php echo esc_html($onMouseOut); ?>"
+			data-click="<?php echo esc_html($onClick); ?>"
 			preserveAspectRatio="<?php echo esc_html($objectFit); ?>"
 			speed="<?php echo esc_html($speed); ?>"
 			src="<?php echo esc_url($src); ?>"
-			style="width:<?php echo esc_html($width); ?>;height:<?php echo esc_html($height); ?>;"
+			style="width:<?php echo esc_html($width); ?>;height:<?php echo esc_html($height); ?>;margin:0 auto;"
 		>
 		</dotlottie-player>
 

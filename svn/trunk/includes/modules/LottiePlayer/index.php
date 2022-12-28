@@ -102,7 +102,7 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 					'toggle_slug' => 'main_content',
 					'mobile_options' => true,
 					'hover' => 'tabs',
-					'default' => 'https://storage.googleapis.com/aarsteinmedia/placeholder.lottie',
+					'default' => 'https://storage.googleapis.com/aarsteinmedia/am.lottie',
 				],
 				'alt' => [
 					'label' => esc_html__('Animation Alternative Text', 'am-lottieplayer'),
@@ -215,9 +215,29 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 					'default_on_front' => 'on',
 					'toggle_slug' => 'main_content',
 				],
+				'speed' => [
+					'label' => __('Playback speed', 'am-lottieplayer'),
+					'type' => 'range',
+					'default' => '1',
+					'range_settings' => [
+						'max' => '10',
+						'step' => '0.1',
+					],
+					'toggle_slug' => 'main_content',
+				],
 				'reverse' => [
 					'label' => esc_html__('Reverse', 'am-lottieplayer'),
 					'description' => esc_html__('Reverse the animation.', 'am-lottieplayer'),
+					'type' => 'yes_no_button',
+					'option_category' => 'basic_option',
+					'options'  => [
+						'off' => et_builder_i18n('No'),
+						'on'  => et_builder_i18n('Yes'),
+					],
+					'toggle_slug' => 'main_content',
+				],
+				'onclick' => [
+					'label' => __('Play on click', 'am-lottieplayer'),
 					'type' => 'yes_no_button',
 					'option_category' => 'basic_option',
 					'options'  => [
@@ -303,6 +323,8 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 						data-direction="%10$s"
 						data-mouseover="%11$s"
 						data-mouseout="%12$s"
+						data-click="%13$s"
+						speed="%14$s"
 					>
 					</dotlottie-player>
 				</figure>',
@@ -317,7 +339,9 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 				aspectRatio(esc_html($this -> props['object_fit'])), #9
 				$this -> props['reverse'] !== 'on' ? '1' : '-1', #10
 				$this -> props['onmouseover'] !== 'on' ? 'false' : 'true', #11
-				esc_html($this -> props['onmouseout']) #12
+				esc_html($this -> props['onmouseout']), #12
+				esc_html($this -> props['onclick'] !== 'on' ? 'false' : 'true'), #13
+				esc_html($this -> props['speed']), #14
 			);
 
 			return $output;

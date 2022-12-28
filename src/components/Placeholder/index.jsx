@@ -1,10 +1,7 @@
-import React from 'react';
 import { Notice } from '@wordpress/components';
 
 import UploadComponent from './UploadComponent';
 import PlayerComponent from './PlayerComponent';
-
-import { attributesFromMedia } from '../../functions';
 
 export default function Placeholder( {
 	attributes,
@@ -17,7 +14,17 @@ export default function Placeholder( {
 		onUploadError = ( message ) => {
 			ErrorNotice( message );
 		},
-		onSelectMedia = () => attributesFromMedia( setAttributes );
+		onSelectMedia = ( { id, url, alt } ) => {
+			if ( ! url ) {
+				setAttributes( { src: undefined, id: null } );
+				return;
+			}
+			setAttributes( {
+				src: url,
+				id,
+				alt,
+			} );
+		};
 
 	return (
 		<>

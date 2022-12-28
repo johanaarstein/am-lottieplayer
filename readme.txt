@@ -9,19 +9,21 @@ Stable Tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The most complete Lottie Player yet. Lightweight, easy to use, accepts LottieJSON and dotLottie, and works with Gutenberg and Divi Builder.
+The most complete Lottie Player yet. Lightweight, easy to use, accepts LottieJSON and dotLottie, and works with Gutenberg, Divi Builder and Elementor.
 
 == Description ==
 
 **The most complete Lottie Player yet.**
 
-AM LottiePlayer is easy to use, lightweight, and gives you total control over how to implement animations to your website. Choose either JSON of the optimized dotLottie files, choose whether to serve the files from a CDN or your own **Media Library**, choose whether to render the animations as crisp, malleable SVGs or performant Canvases, and choose how to scale the animation.
+AM LottiePlayer is easy to use, lightweight, and gives you total control over how to implement crisp, vectorized animations to your website. Easily set up user interactions, choose between JSON or the optimized dotLottie format, choose whether to serve the files from a CDN or your own **Media Library**, choose whether to render the animations as malleable SVGs or performant Canvases, and choose how to scale the animation.
 
-Upload Lottie animations to WordPress and add them to Gutenberg, Divi or via shortcode [am-lottieplayer src="*" autoplay="true/false" controls="true/false" loop="true/false" objectFit="cover/contain/none"]. Choose between renderers, fill mode and more.
+Upload Lottie animations to WordPress and add them to Gutenberg, Divi, Elementor or via shortcode [am-lottieplayer]. Choose between user interactions, renderers, aspect ratio and more.
 
 = Features =
 
-– Use the Gutenberg Editor or the Divi Builder to add animations to your website
+– Contains two Gutenberg blocks: a player and a cover block with text overlay – great for headers.
+– Contains a Divi Builder Module
+– Contains an Elementor Widget
 – Upload Lottie JSON or dotLottie files to your **Media Library**
 – Drag & drop a Lottie JSON or dotLottie file
 – Insert a Lottie JSON or dotLottie animation from URL
@@ -46,16 +48,23 @@ Automatic installation is the easiest option — WordPress will handle the file 
 
 = After activation =
 
-1. Go to the WordPress Block/Gutenberg Editor
-2. Search For **Lottie **
-3. Click on the **Lottie** to add the block
+1. Go to the WordPress Block Editor / Elementor / Divi Builder
+2. Add new block / widget / module
+3. Search For **Lottie **
+4. Click on the **Lottie** to add the block
 
 == Screenshots ==
 
 1. AM LottiePlayer works with Gutenberg…
 2. …as well as Divi Builder
+3. …and Elementor
 
 == Changelog ==
+
+= 2.0.0 =
+* New Feature: Added support for Elementor.
+* Optimization: Made scripts load dynamically only when needed
+* Bugfix: Minor bugfixes
 
 = 1.0.3 =
 * Optimization: Updates to animation engine. Faster and even more lightweight!

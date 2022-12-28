@@ -1,4 +1,3 @@
-import React from 'react';
 import { useCallback, useEffect, useRef } from '@wordpress/element';
 
 import { aspectRatio } from '../../functions';
@@ -55,7 +54,7 @@ export default function PlayerComponent( { attributes = {} } = {} ) {
 			autoplay &&
 			player.current.currentState !== 'playing'
 		) {
-			player.current.play();
+			player.current?.play();
 		}
 	}, [ autoplay, loop ] );
 
@@ -80,6 +79,7 @@ export default function PlayerComponent( { attributes = {} } = {} ) {
 						? `${ height }px`
 						: null,
 				backgroundColor: background,
+				margin: '0 auto',
 			} }
 		/>
 	);

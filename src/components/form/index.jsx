@@ -1,4 +1,3 @@
-import React from 'react';
 import { BaseControl, FormToggle, TextControl } from '@wordpress/components';
 
 import { isModifierKey, isNumericInput } from '../../functions';

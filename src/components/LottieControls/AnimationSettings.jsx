@@ -1,4 +1,3 @@
-import React from 'react';
 import { useCallback } from '@wordpress/element';
 import {
 	Panel,
@@ -16,6 +15,7 @@ const AnimationSettings = ( { attributes, setAttributes } ) => {
 		align,
 		autoplay,
 		controls,
+		click,
 		direction,
 		height,
 		hover,
@@ -43,16 +43,16 @@ const AnimationSettings = ( { attributes, setAttributes } ) => {
 					id="am-lottieplayer-autoplay-settings"
 					title={ __( 'Autoplay' ) }
 					value={ autoplay }
-					onChange={ () => {
-						setAttributes( { autoplay: ! autoplay } );
+					onChange={ ( value ) => {
+						setAttributes( { autoplay: value } );
 					} }
 				/>
 				<SwitchLabel
 					id="am-lottieplayer-loop-settings"
 					title={ __( 'Loop' ) }
 					value={ loop }
-					onChange={ () => {
-						setAttributes( { loop: ! loop } );
+					onChange={ ( value ) => {
+						setAttributes( { loop: value } );
 					} }
 				/>
 				<RangeControl
@@ -67,50 +67,50 @@ const AnimationSettings = ( { attributes, setAttributes } ) => {
 					id="am-lottieplayer-reverse-settings"
 					title={ __( 'Reverse' ) }
 					value={ direction === -1 }
-					onChange={ ( value ) => {
-						setAttributes( { direction: ! value ? 1 : -1 } );
-					} }
+					onChange={ ( value ) =>
+						setAttributes( { direction: ! value ? 1 : -1 } )
+					}
 				/>
 				<SwitchLabel
 					id="am-lottieplayer-controls-settings"
 					title={ __( 'Show controls' ) }
 					value={ controls }
-					onChange={ () => {
-						setAttributes( { controls: ! controls } );
-					} }
+					onChange={ ( value ) =>
+						setAttributes( { controls: value } )
+					}
+				/>
+				<SwitchLabel
+					id="am-lottieplayer-click-settings"
+					title={ __( 'Play on click' ) }
+					value={ click }
+					onChange={ ( value ) => setAttributes( { click: value } ) }
 				/>
 				<SwitchLabel
 					id="am-lottieplayer-hover-settings"
 					title={ __( 'Play on mouseover' ) }
 					value={ hover }
-					onChange={ ( value ) =>
-						setAttributes( { hover: ! value } )
-					}
+					onChange={ ( value ) => setAttributes( { hover: value } ) }
 				/>
 				<SelectControl
 					label={ __( 'On mouseout' ) }
 					value={ mouseout }
-					onChange={ ( val ) => {
-						setAttributes( {
-							mouseout: val,
-						} );
-					} }
+					onChange={ ( val ) => setAttributes( { mouseout: val } ) }
 					options={ [
 						{ value: 'void', label: __( 'No event' ) },
 						{ value: 'stop', label: __( 'Stop' ) },
 						{ value: 'pause', label: __( 'Pause' ) },
 						{ value: 'reverse', label: __( 'Reverse' ) },
 					] }
-					hidden={ ! hover }
+					disabled={ ! hover }
 				/>
 				<PanelRow className="lottie-dimensions">
 					<NumberInput
 						id="am-lottieplayer-width-settings"
 						title={ __( 'Width' ) }
 						value={ parseWidth( width ) }
-						onChange={ ( val ) => {
-							setAttributes( { width: val ?? null } );
-						} }
+						onChange={ ( val ) =>
+							setAttributes( { width: val ?? null } )
+						}
 						disabled={ align === 'full' || align === 'wide' }
 						placeholder={
 							align === 'full' || align === 'wide'
@@ -126,9 +126,9 @@ const AnimationSettings = ( { attributes, setAttributes } ) => {
 								? null
 								: height
 						}
-						onChange={ ( val ) => {
-							setAttributes( { height: val ?? null } );
-						} }
+						onChange={ ( val ) =>
+							setAttributes( { height: val ?? null } )
+						}
 						placeholder={ 'auto' }
 					/>
 				</PanelRow>

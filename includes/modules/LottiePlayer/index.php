@@ -236,6 +236,16 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 					],
 					'toggle_slug' => 'main_content',
 				],
+				'onclick' => [
+					'label' => __('Play on click', 'am-lottieplayer'),
+					'type' => 'yes_no_button',
+					'option_category' => 'basic_option',
+					'options'  => [
+						'off' => et_builder_i18n('No'),
+						'on'  => et_builder_i18n('Yes'),
+					],
+					'toggle_slug' => 'main_content',
+				],
 				'onmouseover' => [
 					'label' => __('Play on mouseover', 'am-lottieplayer'),
 					'type' => 'yes_no_button',
@@ -313,7 +323,8 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 						data-direction="%10$s"
 						data-mouseover="%11$s"
 						data-mouseout="%12$s"
-						speed="%13$s"
+						data-click="%13$s"
+						speed="%14$s"
 					>
 					</dotlottie-player>
 				</figure>',
@@ -329,7 +340,8 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 				$this -> props['reverse'] !== 'on' ? '1' : '-1', #10
 				$this -> props['onmouseover'] !== 'on' ? 'false' : 'true', #11
 				esc_html($this -> props['onmouseout']), #12
-				esc_html($this -> props['speed']), #13
+				esc_html($this -> props['onclick'] !== 'on' ? 'false' : 'true'), #13
+				esc_html($this -> props['speed']), #14
 			);
 
 			return $output;

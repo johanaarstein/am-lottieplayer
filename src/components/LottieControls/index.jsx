@@ -1,4 +1,3 @@
-import React from 'react';
 import { InspectorControls } from '@wordpress/block-editor'; //FocalPointPicker,
 
 import AdvancedSettings from './AdvancedSettings';

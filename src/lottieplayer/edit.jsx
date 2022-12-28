@@ -1,5 +1,4 @@
-import React from 'react';
-import { useEffect, useRef } from '@wordpress/element';
+import { useEffect, useState } from '@wordpress/element';
 import { useBlockProps } from '@wordpress/block-editor';
 
 import LottieControls from '../components/LottieControls';
@@ -9,12 +8,11 @@ import './editor.scss';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const { src } = attributes,
-		isPlaceholder = useRef( true );
+		[ isPlaceholder, setIsPlaceholder ] = useState( true );
 
 	useEffect( () => {
-		isPlaceholder.current = ! src || src === '';
+		setIsPlaceholder( ! src || src === '' );
 	}, [ src ] );
-
 	return (
 		<>
 			<LottieControls
@@ -25,7 +23,7 @@ export default function Edit( { attributes, setAttributes } ) {
 				<Placeholder
 					attributes={ attributes }
 					setAttributes={ setAttributes }
-					isPlaceholder={ isPlaceholder.current }
+					isPlaceholder={ isPlaceholder }
 				/>
 			</div>
 		</>
