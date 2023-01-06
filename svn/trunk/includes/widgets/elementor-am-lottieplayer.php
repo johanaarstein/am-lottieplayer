@@ -43,10 +43,9 @@ class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 				'media_type' => [
 					'application/json',
 					'application/zip',
-					// 'text/plain'
 				],
 				'default' => [
-					'url' => 'https://storage.googleapis.com/aarsteinmedia/am.lottie',
+					'url' => esc_url(!is_wp_error(am_lottie_asset()) ? wp_get_attachment_url(am_lottie_asset()) : am_lottie_asset(true)),
 				],
 			]
 		);

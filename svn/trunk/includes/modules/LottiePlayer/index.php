@@ -102,7 +102,7 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 					'toggle_slug' => 'main_content',
 					'mobile_options' => true,
 					'hover' => 'tabs',
-					'default' => 'https://storage.googleapis.com/aarsteinmedia/am.lottie',
+					'default' => esc_url(!is_wp_error(am_lottie_asset()) ? wp_get_attachment_url(am_lottie_asset()) : am_lottie_asset(true)),
 				],
 				'alt' => [
 					'label' => esc_html__('Animation Alternative Text', 'am-lottieplayer'),
@@ -330,7 +330,7 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 				</figure>',
 				$this -> module_id(), #1
 				$this -> module_classname($render_slug), #2
-				esc_html($this -> props['src']), #3
+				esc_url($this -> props['src']), #3
 				($this -> props['autoplay'] !== 'off' ? 'autoplay' : ''), #4
 				($this -> props['loop'] !== 'off' ? 'loop' : ''), #5
 				($this -> props['controls'] !== 'off' ? 'controls' : ''), #6

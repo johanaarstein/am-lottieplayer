@@ -1,6 +1,6 @@
 {
 	"name": "am-lottieplayer",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "Lightweight, versatile and easy to use! Add vectorized Lottie animations to your page with Gutenberg, the Divi Builder or Elementor.",
 	"author": {
 		"name": "Aarstein Media",
@@ -38,8 +38,8 @@
 	],
 	"main": "build/lottieplayer/index.js",
 	"devDependencies": {
-		"@wordpress/i18n": "^4.23.0",
-		"@wordpress/scripts": "^25.0.0",
+		"@wordpress/i18n": "^4.24.0",
+		"@wordpress/scripts": "^25.1.0",
 		"classnames": "^2.3.2",
 		"eslint-plugin-react": "^7.31.11",
 		"eslint-plugin-react-hooks": "^4.6.0",
