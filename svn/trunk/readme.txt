@@ -21,13 +21,13 @@ Upload Lottie animations to WordPress and add them to Gutenberg, Divi, Elementor
 
 = Features =
 
-– Contains two Gutenberg blocks: a player and a cover block with text overlay – great for headers.
-– Contains a Divi Builder Module
-– Contains an Elementor Widget
-– Upload Lottie JSON or dotLottie files to your **Media Library**
-– Drag & drop a Lottie JSON or dotLottie file
-– Insert a Lottie JSON or dotLottie animation from URL
-– Choose renderer, scaling, speed, size, background color and more from the block settings in Gutenberg. The same settings are accessible in the Divi Module menu. Alternatively you can use the shortcode [am-lottieplayer src="*" autoplay="true/false" controls="true/false" loop="true/false" objectFit="cover/contain/none"].
+- Contains two Gutenberg blocks: a player and a cover block with text overlay – great for headers.
+- Contains a Divi Builder Module
+- Contains an Elementor Widget
+- Upload Lottie JSON or dotLottie files to your **Media Library**
+- Drag & drop a Lottie JSON or dotLottie file
+- Insert a Lottie JSON or dotLottie animation from URL
+- Choose renderer, scaling, speed, size, background color and more from the block settings in Gutenberg. The same settings are accessible in the Divi Module menu. Alternatively you can use the shortcode [am-lottieplayer].
 
 == Installation ==
 
@@ -52,6 +52,14 @@ Automatic installation is the easiest option — WordPress will handle the file 
 2. Add new block / widget / module
 3. Search For **Lottie **
 4. Click on the **Lottie** to add the block
+
+If you wish to use the shortcode [am-lottieplayer], it has the following parameters:
+
+- src: string (required)
+- autoplay: true | false
+- controls: true | false
+- loop: true | false
+- objectFit: cover | contain | none
 
 == Screenshots ==
 
