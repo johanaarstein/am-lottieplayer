@@ -12,7 +12,7 @@ The most complete Lottie Player yet. AM LottiePlayer is easy to use, lightweight
 - Upload LottieJSON or dotLottie files to your **Media Library**
 - Drag & drop a LottieJSON or dotLottie  file
 - Insert a LottieJSON or dotLottie animation from URL
-- Choose user interactions renderer, scaling, speed, size, background color and more from the block settings in Gutenberg. The same settings are accessible in the Divi Module menu and the Elementor widget menu. Alternatively you can use the shortcode \[am-lottieplayer src="*" autoplay="true/false" controls="true/false" loop="true/false" objectFit="cover/contain/none"\].
+- Choose user interactions renderer, scaling, speed, size, background color and more from the block settings in Gutenberg. The same settings are accessible in the Divi Module menu and the Elementor widget menu. Alternatively you can use the shortcode \[am-lottieplayer\].
 
 ## Installation
 
@@ -24,7 +24,7 @@ Automatic installation is the easiest option — WordPress will handle the file 
 2. Navigate to the **Plugins** menu
 3. Search for **AM LottiePlayer**
 4. Click **Install Now** and WordPress will take it from there
-5. Activate the plugin through the **Plugins** menu in WordPress
+5. Activate the plugin through the **Plugins menu** in WordPress
 
 ### Manual installation
 
@@ -33,6 +33,14 @@ Automatic installation is the easiest option — WordPress will handle the file 
 
 ### After activation
 
-1. Go to the WordPress Block/Gutenberg Editor or the Divi Editor
+1. Go to the WordPress Block/Gutenberg Editor, Elementor or the Divi Editor
 2. Search For **Lottie**
-3. Click on the **AM LottiePlayer** to add the block/module
+3. Click on the **AM LottiePlayer** to add the block/module/widget
+
+If you wish to use the shortcode \[am-lottieplayer\], it has the following parameters:
+
+- src: string (required)
+- autoplay: true | false
+- controls: true | false
+- loop: true | false
+- objectFit: cover | contain | none
