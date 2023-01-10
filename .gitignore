@@ -33,6 +33,4 @@ node_modules/
 *.pem
 .vscode
 
-./svn/.*
-
 .svn
