@@ -50,7 +50,7 @@ Automatic installation is the easiest option — WordPress will handle the file 
 
 1. Go to the WordPress Block Editor / Elementor / Divi Builder
 2. Add new block / widget / module
-3. Search For **Lottie **
+3. Search For **Lottie**
 4. Click on the **Lottie** to add the block
 
 If you wish to use the shortcode [am-lottieplayer], it has the following parameters:
