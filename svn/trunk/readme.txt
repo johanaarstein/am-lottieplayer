@@ -69,6 +69,9 @@ If you wish to use the shortcode [am-lottieplayer], it has the following paramet
 
 == Changelog ==
 
+= 2.0.2 =
+* Optimization: Less weight – same functionality!
+
 = 2.0.0 =
 * New Feature: Added support for Elementor.
 * Optimization: Made scripts load dynamically only when used
