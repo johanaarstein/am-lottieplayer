@@ -39,9 +39,11 @@ if (!function_exists('am_render_lottieplayer')) {
 
 if (!function_exists('am_render_lottieplayer_shortcode')) {
   function am_render_lottieplayer_shortcode($atts) {
-    if (empty(esc_url($atts['src']))) {
-      return '';
-    }
+    // if (!esc_url($atts['src']) || empty(esc_url($atts['src']))) {
+    //   // error_log('Empty src in AM LottiePlayer');
+    //   // return '';
+    //   $atts['src'] =
+    // }
 
     $atts = shortcode_atts([
       'align' => 'none',
@@ -58,7 +60,7 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
       'objectFit' => 'contain',
       'renderer' => 'svg',
       'speed' => 1,
-      'src' => '',
+      'src' => 'https://storage.googleapis.com/aarsteinmedia/am.lottie',
       'width' => null,
     ], $atts);
 

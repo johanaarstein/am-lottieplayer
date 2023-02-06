@@ -124,10 +124,10 @@ if (!function_exists('am_register_lottie_widget')) {
 }
 
 //FLATSOME
-// if (!function_exists('add_ux_builder_shortcode')) {
-//   add_action('after_setup_theme', 'am_register_lottie_flatsome_shortcode');
-//   function am_register_lottie_flatsome_shortcode() {
-//     if (!function_exists('add_ux_builder_shortcode')) return;
-//     require_once AM_LOTTIEPLAYER_PATH . '/includes/flatsome/ux_am_lottie.php';
-//   }
-// }
+if (!function_exists('add_ux_builder_shortcode')) {
+  add_action('after_setup_theme', 'am_register_lottie_flatsome_shortcode');
+  function am_register_lottie_flatsome_shortcode() {
+    if (!function_exists('add_ux_builder_shortcode')) return;
+    require_once AM_LOTTIEPLAYER_PATH . '/includes/flatsome/ux_am_lottie.php';
+  }
+}

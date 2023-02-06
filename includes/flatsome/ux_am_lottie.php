@@ -16,36 +16,62 @@ $position_options['options']['position_y']['on_change'] = array(
   'class' => 'y{{ value }} md-y{{ value }} lg-y{{ value }}'
 );
 
-add_ux_builder_shortcode('ux_am_lottie', [
+add_ux_builder_shortcode('am-lottieplayer', [
   'name' => 'LottiePlayer',
   'category' => __('Content'),
   'template' => getTemplate(),
   'toolbar_thumbnail' => 'img',
-	'thumbnail'         => AM_LOTTIEPLAYER_URL . '/includes/flatsome/icon.svg',
+	'thumbnail' => AM_LOTTIEPLAYER_URL . '/includes/flatsome/icon.svg',
   'allow_in' => ['text_box'],
   'wrap' => false,
   'options' => [
+
     'src' => [
-      'type' => 'textfield',
+      'type' => 'image',
       'full_width' => true,
       'default' => 'https://storage.googleapis.com/aarsteinmedia/am.lottie',
-      'heading' => 'Lottie url',
-      'description' => __('Animation Link URL', 'am-lottieplayer'),
+      'heading' => __('Choose animation', 'am-lottieplayer'),
     ],
 
-    'height' => [
-      'type' => 'scrubfield',
-      'heading' => __('Height'),
-      'default' => '56.25%',
-      'placeholder' => __('Auto'),
-      'min' => 0,
-      'max' => 1000,
-      'step' => 1,
-      'helpers' => require( __DIR__ . '/image-heights.php' ),
-        'on_change' => [
-          'selector' => '.dotlottie-player',
-          'style' => 'padding-top: {{ value }}'
-        ]
+    'animation_options' => [
+      'type' => 'group',
+      'heading' => __('Animation Options', 'am-lottieplayer'),
+      'options' => [
+        'autoplay' => [
+          'type' => 'checkbox',
+          'heading' => __('Autoplay', 'am-lottieplayer'),
+        ],
+
+        'controls' => [
+          'type' => 'checkbox',
+          'heading' => __('Controls', 'am-lottieplayer'),
+        ],
+
+        'loop' => [
+          'type' => 'checkbox',
+          'heading' => __('Loop', 'am-lottieplayer'),
+        ],
+
+        'reverse' => [
+          'type' => 'checkbox',
+          'heading' => __('Reverse', 'am-lottieplayer'),
+          'description' => __('Reverse the animation.', 'am-lottieplayer')
+        ],
+      ],
+    ],
+
+    'layout_options' => [
+      'type' => 'group',
+      'heading' => __('Layout Options', 'am-lottieplayer'),
+      'options' => [
+        'width' => [
+          'type' => 'scrubfield',
+          'heading' => __('Width', 'am-lottieplayer'),
+          'placeholder' => __('Width in px', 'am-lottieplayer'),
+          'default' => '',
+          'min' => '0',
+        ],
+      ],
     ],
 
     'position_options' => $position_options,
