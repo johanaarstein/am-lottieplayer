@@ -32,6 +32,7 @@ if (!function_exists('am_render_lottieplayer')) {
     >
     </dotlottie-player>
     <?php
+    wp_enqueue_script('dotlottie-player');
     return ob_get_clean();
   }
 }

@@ -69,6 +69,9 @@ If you wish to use the shortcode [am-lottieplayer], it has the following paramet
 
 == Changelog ==
 
+= 2.0.4 =
+* Bugfix: An error caused shortcode not to load necessary scripts.
+
 = 2.0.3 =
 * Optimization: WCAG compliance
 

@@ -7,7 +7,7 @@
  * Description:       The most complete Lottie Player plugin yet! Lightweight, versatile and easy to use. This plugin accepts LottieJSON and dotLottie, contains two Gutenberg blocks, a Divi Builder module, an Elementor widget and a shortcode.
  * Requires at least: 5.9
  * Requires PHP:      7.0
- * Version:           2.0.4
+ * Version:           2.0.5
  * Author:            Aarstein Media
  * Author URI:        https://www.aarstein.media
  * License:           GPL-2.0-or-later
@@ -44,7 +44,7 @@ if (!function_exists('am_lottie_blocks_init')) {
       'dotlottie-player',
       AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player.min.js',
       null,
-      '1.3.13',
+      '1.4.1',
       true
     );
 
@@ -57,7 +57,7 @@ if (!function_exists('am_lottie_blocks_init')) {
     );
   }
 
-  include AM_LOTTIEPLAYER_PATH . 'includes/shortcodes.php';
+  include AM_LOTTIEPLAYER_PATH . 'includes/functions.php';
   include AM_LOTTIEPLAYER_PATH . 'includes/upload.php';
 
   register_activation_hook(
@@ -122,3 +122,12 @@ if (!function_exists('am_register_lottie_widget')) {
     $widgets_manager -> register(new \Elementor_AM_LottiePlayer());
   }
 }
+
+//FLATSOME
+// if (!function_exists('add_ux_builder_shortcode')) {
+//   add_action('after_setup_theme', 'am_register_lottie_flatsome_shortcode');
+//   function am_register_lottie_flatsome_shortcode() {
+//     if (!function_exists('add_ux_builder_shortcode')) return;
+//     require_once AM_LOTTIEPLAYER_PATH . '/includes/flatsome/ux_am_lottie.php';
+//   }
+// }
