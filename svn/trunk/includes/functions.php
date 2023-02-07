@@ -29,7 +29,7 @@ if (!function_exists('am_render_lottieplayer')) {
       mode="<?php echo esc_html($atts['mode']); ?>"
       preserveaspectratio="<?php echo aspectRatio(esc_html($atts['objectFit'])); ?>"
       src="<?php echo esc_url($atts['src']); ?>"
-      renderer="<? echo esc_html($atts['renderer']); ?>"
+      renderer="<?php echo esc_html($atts['renderer']); ?>"
       speed="<?php echo esc_html($atts['speed']); ?>"
       direction="<?php echo esc_html($atts['direction']); ?>"
     >
