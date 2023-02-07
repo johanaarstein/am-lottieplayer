@@ -1,7 +1,9 @@
 === AM LottiePlayer – Vector animations for WordPress ===
+Contributors: johanaarstein
+Donate link: https://www.paypal.com/donate/?hosted_button_id=E7C7DMN8KSQ6A
 Author URI: https://www.aarstein.media
 Plugin URI: https://wordpress.org/plugins/am-lottieplayer/
-Tags: lottie, dotlottie, bodymovin, gutenberg, animation, animations, vector, divi, svg, gif
+Tags: lottie, dotlottie, bodymovin, gutenberg, elementor, divi, animation, vector, svg, gif
 Requires at least: 5.9
 Tested up to: 6.1.1
 Requires PHP: 7.0
@@ -15,19 +17,21 @@ The most complete Lottie Player yet. Lightweight, easy to use, accepts LottieJSO
 
 **The most complete Lottie Player yet.**
 
-AM LottiePlayer is easy to use, lightweight, and gives you total control over how to implement crisp, vectorized animations to your website. Easily set up user interactions, choose between JSON or the optimized dotLottie format, choose whether to serve the files from a CDN or your own **Media Library**, choose whether to render the animations as malleable SVGs or performant Canvases, and choose how to scale the animation.
+AM LottiePlayer is easy to use, lightweight, and gives you total control over how to implement crisp, vectorized animations to your website. Easily set up user interactions, choose between JSON or the optimized dotLottie format, choose whether to serve the files from a CDN or your own *Media Library*, choose whether to render the animations as malleable SVGs or performant Canvases, and choose how to scale the animation. You can add a description for screenreaders and search eninge crawlers.
 
-Upload Lottie animations to WordPress and add them to Gutenberg, Divi, Elementor or via shortcode [am-lottieplayer]. Choose between user interactions, renderers, aspect ratio and more.
+Upload Lottie animations to WordPress and add them to Gutenberg, Divi, Elementor or via the shortcode [am-lottieplayer].
 
 = Features =
 
 - Contains two Gutenberg blocks: a player and a cover block with text overlay – great for headers.
 - Contains a Divi Builder Module
 - Contains an Elementor Widget
-- Upload Lottie JSON or dotLottie files to your **Media Library**
+- Contains the shortcode `[am-lottieplayer]`
+- Scripts are only loaded for pages where the player is used
+- Upload Lottie JSON or dotLottie files to your *Media Library*
 - Drag & drop a Lottie JSON or dotLottie file
 - Insert a Lottie JSON or dotLottie animation from URL
-- Choose renderer, scaling, speed, size, background color and more from the block settings in Gutenberg. The same settings are accessible in the Divi Module menu. Alternatively you can use the shortcode [am-lottieplayer].
+- Choose renderer, scaling, speed, size, background color, interactions and more from the block settings in Gutenberg. The same settings are accessible in the Divi Module menu and the Elementor Widget menu.
 
 == Installation ==
 
@@ -50,36 +54,48 @@ Automatic installation is the easiest option — WordPress will handle the file 
 
 1. Go to the WordPress Block Editor / Elementor / Divi Builder
 2. Add new block / widget / module
-3. Search For **Lottie**
-4. Click on the **Lottie** to add the block
+3. Search for *Lottie*
+4. Click on *Lottie* to add the block
 
-If you wish to use the shortcode [am-lottieplayer], it has the following parameters:
+If you want to use the shortcode `[am-lottieplayer]`, it has the following parameters:
 
-- src: string (required)
-- autoplay: true | false, default: false
-- controls: true | false, default: false
-- loop: true | false, default: false
-- objectFit: cover | contain | none, default: contain
-- speed: number (1 – 5), default: 1
+- src: `string` (required)
+- autoplay: `true` | `false`, default: `false`
+- controls: `true` | `false`, default: `false`
+- loop: `true` | `false`, default: `false`
+- objectFit: `cover` | `contain` | `none`, default: `contain`
+- speed: `number` (1 – 5), default: 1
 - direction: 1 | -1, default: 1
-- renderer: svg | canvas | html, default: svg
+- renderer: `svg` | `canvas` | `html`, default: `svg`
+
+== Feedback ==
+
+We'd love to [hear from you](mailto:johan@aarstein.media)!
+
+Thanks for using our plugin! Please take a moment to [rate it](https://wordpress.org/support/view/plugin-reviews/am-lottieplayer?filter=#postform).
+
+== Translations ==
+
+You can [contribute your translation here](https://translate.wordpress.org/projects/wp-plugins/am-lottieplayer).
+
+New to Translating WordPress? Read through the [Translator Handbook](https://make.wordpress.org/polyglots/handbook/tools/glotpress-translate-wordpress-org/) to get started.
 
 == Frequently Asked Questions ==
 
 = What is the structure of the shortcode? =
 
-The shortcode [am-lottieplayer] has the following parameters:
+The shortcode `[am-lottieplayer]` has the following parameters:
 
-- src: string (required)
-- autoplay: true | false, default: false
-- controls: true | false, default: false
-- loop: true | false, default: false
-- objectFit: cover | contain | none, default: contain
-- speed: number (1 – 5), default: 1
+- src: `string` (required)
+- autoplay: `true` | `false`, default: `false`
+- controls: `true` | `false`, default: `false`
+- loop: `true` | `false`, default: `false`
+- objectFit: `cover` | `contain` | `none`, default: `contain`
+- speed: `number` (1 – 5), default: 1
 - direction: 1 | -1, default: 1
-- renderer: svg | canvas | html, default: svg
+- renderer: `svg` | `canvas` | `html`, default: `svg`
 
-Here's an example: [am-lottieplayer src="https://storage.googleapis.com/aarsteinmedia/am.lottie" controls="true" ]
+Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarsteinmedia/am.lottie" controls="true" ]`
 
 == Screenshots ==
 
