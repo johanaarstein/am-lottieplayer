@@ -279,6 +279,14 @@ class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 			]
 		);
 
+		$this -> add_control(
+			'description',
+			[
+				'label' => __('Description', 'am-lottieplayer'),
+				'type' => \Elementor\Controls_Manager::TEXT
+			]
+		);
+
 		$this -> end_controls_section();
 
 	}
@@ -322,25 +330,28 @@ class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 		$widthSize = $settings['width']['size'];
 		$widthUnit = $settings['width']['unit'];
 		$width = $widthSize . $widthUnit;
-		$renderer = $settings['renderer']; ?>
+		$renderer = $settings['renderer'];
+		
+		$description = $settings['description']; ?>
 
-		<dotlottie-player
-			<?php echo esc_html($autoplay); ?>
-			<?php echo esc_html($controls); ?>
-			<?php echo esc_html($loop); ?>
-			renderer="<?php echo esc_html($renderer); ?>"
-			direction="<?php echo esc_html($direction); ?>"
-			data-direction="<?php echo esc_html($direction); ?>"
-			data-mouseover="<?php echo esc_html($onMouseOver); ?>"
-			data-mouseout="<?php echo esc_html($onMouseOut); ?>"
-			data-click="<?php echo esc_html($onClick); ?>"
-			preserveAspectRatio="<?php echo esc_html($objectFit); ?>"
-			speed="<?php echo esc_html($speed); ?>"
-			src="<?php echo esc_url($src); ?>"
-			style="width:<?php echo esc_html($width); ?>;height:<?php echo esc_html($height); ?>;margin:0 auto;"
-		>
-		</dotlottie-player>
-
+		<figure style="width:<?php echo esc_html($width); ?>;height:<?php echo esc_html($height); ?>;margin:0 auto;">
+			<dotlottie-player
+				<?php echo esc_html($autoplay); ?>
+				<?php echo esc_html($controls); ?>
+				<?php echo esc_html($loop); ?>
+				renderer="<?php echo esc_html($renderer); ?>"
+				direction="<?php echo esc_html($direction); ?>"
+				data-direction="<?php echo esc_html($direction); ?>"
+				data-mouseover="<?php echo esc_html($onMouseOver); ?>"
+				data-mouseout="<?php echo esc_html($onMouseOut); ?>"
+				data-click="<?php echo esc_html($onClick); ?>"
+				preserveAspectRatio="<?php echo esc_html($objectFit); ?>"
+				speed="<?php echo esc_html($speed); ?>"
+				src="<?php echo esc_url($src); ?>"
+				description="<?php echo esc_html($description) ?>"
+			>
+			</dotlottie-player>
+		</figure>
 		<?php
 	}
 

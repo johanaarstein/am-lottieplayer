@@ -2,6 +2,10 @@
 if (!function_exists('aspectRatio')) {
   function aspectRatio($objectFit) {
     switch ($objectFit) {
+      case 'xMidYMid meet':
+      case 'xMidYMid slice':
+      case 'xMinYMin slice':
+        return $objectFit;
       case 'contain':
       case 'scale-down':
         return 'xMidYMid meet';
@@ -48,10 +52,14 @@ if (!function_exists('am_render_lottieplayer')) {
       renderer="<?php echo esc_html($atts['renderer']); ?>"
       speed="<?php echo esc_html($atts['speed']); ?>"
       direction="<?php echo animationDirection(esc_html($atts['direction'])); ?>"
+      data-direction="<?php echo esc_html($atts['direction']); ?>"
+      data-mouseover="<?php echo esc_html($atts['onmouseover']); ?>"
+      data-mouseout="<?php echo esc_html($atts['onmouseout']); ?>"
+      data-click="<?php echo esc_html($atts['onclick']); ?>"
     >
     </dotlottie-player>
     <?php
-    wp_enqueue_script('dotlottie-player');
+    wp_enqueue_script('am-frontend');
     return ob_get_clean();
   }
 }
@@ -79,8 +87,11 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
       'objectFit' => 'contain',
       'renderer' => 'svg',
       'speed' => 1,
-      'src' => 'https://storage.googleapis.com/aarsteinmedia/am.lottie',
+      'src' => AM_LOTTIEPLAYER_URL . '/includes/am.lottie',
       'width' => null,
+      'onmouseover' => false,
+      'onclick' => false,
+      'onmouseout' => 'void'
     ], $atts);
 
     ob_start(); ?>

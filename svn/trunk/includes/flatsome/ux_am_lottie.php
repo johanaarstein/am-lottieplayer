@@ -1,7 +1,7 @@
 <?php
 
 function getTemplate() {
-  wp_enqueue_script('dotlottie-player');
+  wp_enqueue_script('am-backend');
   ob_start();
   include __DIR__ . '/ux_am_lottie.html';
   return ob_get_clean();
@@ -30,7 +30,7 @@ add_ux_builder_shortcode('am-lottieplayer', [
     'src' => [
       'type' => 'textfield',
       'full_width' => true,
-      'default' => 'https://storage.googleapis.com/aarsteinmedia/am.lottie',
+      'default' => AM_LOTTIEPLAYER_URL . '/includes/am.lottie',
       'heading' => __('Lottie url', 'am-lottieplayer'),
       'description' => __('Paste in url to Lottie, either from CDN or you local Media Library.', 'am-lottieplayer')
     ],
@@ -60,12 +60,35 @@ add_ux_builder_shortcode('am-lottieplayer', [
           'default' => 1,
           'min' => 1,
           'max' => 5,
-          'step' => 1
+          'step' => 1,
+          'unit' => '',
         ],
 
-        'reverse' => [
+        'direction' => [
           'type' => 'checkbox',
           'heading' => __('Reverse', 'am-lottieplayer'),
+        ],
+
+        'onclick' => [
+          'type' => 'checkbox',
+          'heading' => __('Play on click', 'am-lottieplayer'),
+        ],
+
+        'onmouseover' => [
+          'type' => 'checkbox',
+          'heading' => __('Play on mouseover', 'am-lottieplayer'),
+        ],
+
+        'onmouseout' => [
+          'type' => 'select',
+          'heading' => __('On mouseout', 'am-lottieplayer'),
+          'conditions' => 'onmouseover === "true"',
+          'options' => [
+            'void' => __('No event', 'am-lottieplayer'),
+						'stop' => __('Stop', 'am-lottieplayer'),
+						'pause' => __('Pause', 'am-lottieplayer'),
+						'reverse' => __('Reverse', 'am-lottieplayer')
+          ]
         ],
       ],
     ],
@@ -74,12 +97,21 @@ add_ux_builder_shortcode('am-lottieplayer', [
       'type' => 'group',
       'heading' => __('Layout Options', 'am-lottieplayer'),
       'options' => [
+        'height' => [
+          'type' => 'scrubfield',
+          'heading' => __('Height', 'am-lottieplayer'),
+          'placeholder' => __('Height in px', 'am-lottieplayer'),
+          'default' => null,
+          'min' => 0,
+          'unit' => '',
+        ],
         'width' => [
           'type' => 'scrubfield',
           'heading' => __('Width', 'am-lottieplayer'),
           'placeholder' => __('Width in px', 'am-lottieplayer'),
-          'default' => '',
+          'default' => null,
           'min' => 0,
+          'unit' => '',
         ],
 
         'objectFit' => [
@@ -96,7 +128,7 @@ add_ux_builder_shortcode('am-lottieplayer', [
       ],
     ],
 
-    // 'position_options' => $position_options,
+    'position_options' => $position_options,
 
     'advanced_options' => [
       'type' => 'group',

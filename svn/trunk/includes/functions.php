@@ -2,6 +2,10 @@
 if (!function_exists('aspectRatio')) {
   function aspectRatio($objectFit) {
     switch ($objectFit) {
+      case 'xMidYMid meet':
+      case 'xMidYMid slice':
+      case 'xMinYMin slice':
+        return $objectFit;
       case 'contain':
       case 'scale-down':
         return 'xMidYMid meet';
@@ -13,6 +17,22 @@ if (!function_exists('aspectRatio')) {
         return 'xMinYMin slice';
       default:
         return 'xMidYMid meet';
+    }
+  }
+}
+
+if (!function_exists('animationDirection')) {
+  function animationDirection($input) {
+    switch ($input) {
+      case 'true':
+      case true:
+        return -1;
+      case '0':
+      case 0:
+      case false:
+        return 1;
+      default:
+        return $input;
     }
   }
 }
@@ -31,11 +51,15 @@ if (!function_exists('am_render_lottieplayer')) {
       src="<?php echo esc_url($atts['src']); ?>"
       renderer="<?php echo esc_html($atts['renderer']); ?>"
       speed="<?php echo esc_html($atts['speed']); ?>"
-      direction="<?php echo esc_html($atts['direction']); ?>"
+      direction="<?php echo animationDirection(esc_html($atts['direction'])); ?>"
+      data-direction="<?php echo esc_html($atts['direction']); ?>"
+      data-mouseover="<?php echo esc_html($atts['onmouseover']); ?>"
+      data-mouseout="<?php echo esc_html($atts['onmouseout']); ?>"
+      data-click="<?php echo esc_html($atts['onclick']); ?>"
     >
     </dotlottie-player>
     <?php
-    wp_enqueue_script('dotlottie-player');
+    wp_enqueue_script('am-frontend');
     return ob_get_clean();
   }
 }
@@ -63,8 +87,11 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
       'objectFit' => 'contain',
       'renderer' => 'svg',
       'speed' => 1,
-      'src' => 'https://storage.googleapis.com/aarsteinmedia/am.lottie',
+      'src' => AM_LOTTIEPLAYER_URL . '/includes/am.lottie',
       'width' => null,
+      'onmouseover' => false,
+      'onclick' => false,
+      'onmouseout' => 'void'
     ], $atts);
 
     ob_start(); ?>

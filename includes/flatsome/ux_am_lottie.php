@@ -30,7 +30,7 @@ add_ux_builder_shortcode('am-lottieplayer', [
     'src' => [
       'type' => 'textfield',
       'full_width' => true,
-      'default' => 'https://storage.googleapis.com/aarsteinmedia/am.lottie',
+      'default' => AM_LOTTIEPLAYER_URL . '/includes/am.lottie',
       'heading' => __('Lottie url', 'am-lottieplayer'),
       'description' => __('Paste in url to Lottie, either from CDN or you local Media Library.', 'am-lottieplayer')
     ],
@@ -68,6 +68,28 @@ add_ux_builder_shortcode('am-lottieplayer', [
           'type' => 'checkbox',
           'heading' => __('Reverse', 'am-lottieplayer'),
         ],
+
+        'onclick' => [
+          'type' => 'checkbox',
+          'heading' => __('Play on click', 'am-lottieplayer'),
+        ],
+
+        'onmouseover' => [
+          'type' => 'checkbox',
+          'heading' => __('Play on mouseover', 'am-lottieplayer'),
+        ],
+
+        'onmouseout' => [
+          'type' => 'select',
+          'heading' => __('On mouseout', 'am-lottieplayer'),
+          'conditions' => 'onmouseover === "true"',
+          'options' => [
+            'void' => __('No event', 'am-lottieplayer'),
+						'stop' => __('Stop', 'am-lottieplayer'),
+						'pause' => __('Pause', 'am-lottieplayer'),
+						'reverse' => __('Reverse', 'am-lottieplayer')
+          ]
+        ],
       ],
     ],
 
@@ -75,12 +97,21 @@ add_ux_builder_shortcode('am-lottieplayer', [
       'type' => 'group',
       'heading' => __('Layout Options', 'am-lottieplayer'),
       'options' => [
+        'height' => [
+          'type' => 'scrubfield',
+          'heading' => __('Height', 'am-lottieplayer'),
+          'placeholder' => __('Height in px', 'am-lottieplayer'),
+          'default' => null,
+          'min' => 0,
+          'unit' => '',
+        ],
         'width' => [
           'type' => 'scrubfield',
           'heading' => __('Width', 'am-lottieplayer'),
           'placeholder' => __('Width in px', 'am-lottieplayer'),
-          'default' => '',
+          'default' => null,
           'min' => 0,
+          'unit' => '',
         ],
 
         'objectFit' => [

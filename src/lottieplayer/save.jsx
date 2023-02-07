@@ -24,33 +24,6 @@ export default function save( { attributes } ) {
 		width,
 	} = attributes;
 
-	// const mouseOver = ( { target } ) => {
-	// 		// eslint-disable-next-line no-console
-	// 		console.log( 'foo' );
-	// 		if ( isTouch() || ! hover ) return;
-	// 		target.setDirection( direction );
-	// 		target.play();
-	// 	},
-	// 	mouseOut = ( { target } ) => {
-	// 		if ( isTouch() || ! hover ) return;
-	// 		switch ( mouseout ) {
-	// 			case 'void':
-	// 				break;
-	// 			case 'stop':
-	// 				target?.stop();
-	// 				break;
-	// 			case 'pause':
-	// 				target?.pause();
-	// 				break;
-	// 			case 'reverse':
-	// 				target?.setDirection( direction * -1 );
-	// 				target?.play();
-	// 				break;
-	// 			default:
-	// 				target?.stop();
-	// 		}
-	// 	};
-
 	return (
 		<figure
 			id={ id }

@@ -3,7 +3,7 @@ Contributors: johanaarstein
 Donate link: https://www.paypal.com/donate/?hosted_button_id=E7C7DMN8KSQ6A
 Author URI: https://www.aarstein.media
 Plugin URI: https://wordpress.org/plugins/am-lottieplayer/
-Tags: lottie, dotlottie, bodymovin, gutenberg, elementor, divi, animation, vector, svg, gif
+Tags: lottie, dotlottie, bodymovin, gutenberg, elementor, divi, flatsome, animation, vector, svg, gif
 Requires at least: 5.9
 Tested up to: 6.1.1
 Requires PHP: 7.0
@@ -11,7 +11,7 @@ Stable Tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The most complete Lottie Player yet. Lightweight, easy to use, accepts LottieJSON and dotLottie, and works with Gutenberg, Divi Builder and Elementor.
+The most complete Lottie Player yet. Lightweight, easy to use, accepts LottieJSON and dotLottie, and works with Gutenberg, Divi Builder, Elementor and Flatsome UX Builder.
 
 == Description ==
 
@@ -19,7 +19,7 @@ The most complete Lottie Player yet. Lightweight, easy to use, accepts LottieJSO
 
 AM LottiePlayer is easy to use, lightweight, and gives you total control over how to implement crisp, vectorized animations to your website. Easily set up user interactions, choose between JSON or the optimized dotLottie format, choose whether to serve the files from a CDN or your own *Media Library*, choose whether to render the animations as malleable SVGs or performant Canvases, and choose how to scale the animation. You can add a description for screenreaders and search eninge crawlers.
 
-Upload Lottie animations to WordPress and add them to Gutenberg, Divi, Elementor or via the shortcode [am-lottieplayer].
+Upload Lottie animations to WordPress and add them to Gutenberg, Divi, Elementor, Flatsome UX Builder, or via the shortcode [am-lottieplayer].
 
 = Features =
 
@@ -27,11 +27,12 @@ Upload Lottie animations to WordPress and add them to Gutenberg, Divi, Elementor
 - Contains a Divi Builder Module
 - Contains an Elementor Widget
 - Contains the shortcode `[am-lottieplayer]`
+- The shorcode is compatible with Flatsome UX Builder
 - Scripts are only loaded for pages where the player is used
 - Upload Lottie JSON or dotLottie files to your *Media Library*
 - Drag & drop a Lottie JSON or dotLottie file
 - Insert a Lottie JSON or dotLottie animation from URL
-- Choose renderer, scaling, speed, size, background color, interactions and more from the block settings in Gutenberg. The same settings are accessible in the Divi Module menu and the Elementor Widget menu.
+- Choose renderer, scaling, speed, size, background color, interactions and more from the block settings in Gutenberg. The same settings are accessible in the Divi Module menu, the Elementor Widget menu and the Flatsome UX Builder menu.
 
 == Installation ==
 
@@ -52,7 +53,7 @@ Automatic installation is the easiest option — WordPress will handle the file 
 
 = After activation =
 
-1. Go to the WordPress Block Editor / Elementor / Divi Builder
+1. Go to the WordPress Block Editor / Elementor / Divi Builder / Flatsome UX Builder
 2. Add new block / widget / module
 3. Search for *Lottie*
 4. Click on *Lottie* to add the block
@@ -64,9 +65,12 @@ If you want to use the shortcode `[am-lottieplayer]`, it has the following param
 - controls: `true` | `false`, default: `false`
 - loop: `true` | `false`, default: `false`
 - objectFit: `cover` | `contain` | `none`, default: `contain`
-- speed: `number` (1 – 5), default: 1
-- direction: 1 | -1, default: 1
+- speed: `number` (1 – 5), default: `1`
+- direction: `1` | `-1`, default: `1`
 - renderer: `svg` | `canvas` | `html`, default: `svg`
+- onclick: `true` | `false`, default: `false`
+- onmouseover: `true` | `false`, default: `false`
+- onmouseout: `void` | `stop` | `pause` | `reverse`, default: `void`
 
 == Feedback ==
 
@@ -91,9 +95,12 @@ The shortcode `[am-lottieplayer]` has the following parameters:
 - controls: `true` | `false`, default: `false`
 - loop: `true` | `false`, default: `false`
 - objectFit: `cover` | `contain` | `none`, default: `contain`
-- speed: `number` (1 – 5), default: 1
-- direction: 1 | -1, default: 1
+- speed: `number` (1 – 5), default: `1`
+- direction: `1` | `-1`, default: `1`
 - renderer: `svg` | `canvas` | `html`, default: `svg`
+- onclick: `true` | `false`, default: `false`
+- onmouseover: `true` | `false`, default: `false`
+- onmouseout: `void` | `stop` | `pause` | `reverse`, default: `void`
 
 Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarsteinmedia/am.lottie" controls="true" ]`
 
@@ -101,9 +108,13 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 1. AM LottiePlayer works with Gutenberg…
 2. …as well as Divi Builder…
-3. …and even Elementor!
+3. …Elementor…
+4. …and even Flatsome!
 
 == Changelog ==
+
+= 2.1.0 =
+* New Feature: Added support for Flatsome UX Builder
 
 = 2.0.4 =
 * Bugfix: An error caused shortcode not to load necessary scripts.
