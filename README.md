@@ -2,17 +2,27 @@
 
 ![Awesome Vector Animations](/svn/assets/banner-1544x500.png)
 
-**Add vectorized Lottie animations to your page with Gutenberg, the Divi Builder, Elementor or via shortcode \[am-lottieplayer\].**
+The most complete Lottie Player yet. Lightweight, easy to use, accepts LottieJSON and dotLottie, and works with Gutenberg, Divi Builder and Elementor.
 
-The most complete Lottie Player yet. AM LottiePlayer is easy to use, lightweight, and gives you total control over how to implement crisp, vectorized animations to your website. Easily set up user interactions, choose between JSON or the optimized dotLottie format, choose whether to serve the files from a CDN or your own **Media Library**, choose whether to render the animations as malleable SVGs or performant Canvases, and choose how to scale the animation.
+## Description
 
-## Features
+**The most complete Lottie Player yet.**
 
-- Use the Gutenberg Editor, the Divi Builder or Gutenberg to add animations to your website. The player is also available via shortcode \[am-lottieplayer\]
-- Upload LottieJSON or dotLottie files to your **Media Library**
-- Drag & drop a LottieJSON or dotLottie  file
-- Insert a LottieJSON or dotLottie animation from URL
-- Choose user interactions renderer, scaling, speed, size, background color and more from the block settings in Gutenberg. The same settings are accessible in the Divi Module menu and the Elementor widget menu. Alternatively you can use the shortcode \[am-lottieplayer\].
+AM LottiePlayer is easy to use, lightweight, and gives you total control over how to implement crisp, vectorized animations to your website. Easily set up user interactions, choose between JSON or the optimized dotLottie format, choose whether to serve the files from a CDN or your own *Media Library*, choose whether to render the animations as malleable SVGs or performant Canvases, and choose how to scale the animation. You can add a description for screenreaders and search eninge crawlers.
+
+Upload Lottie animations to WordPress and add them to Gutenberg, Divi, Elementor or via the shortcode `[am-lottieplayer]`.
+
+### Features
+
+- Contains two Gutenberg blocks: a player and a cover block with text overlay – great for headers.
+- Contains a Divi Builder Module
+- Contains an Elementor Widget
+- Contains the shortcode `[am-lottieplayer]`
+- Scripts are only loaded for pages where the player is used
+- Upload Lottie JSON or dotLottie files to your *Media Library*
+- Drag & drop a Lottie JSON or dotLottie file
+- Insert a Lottie JSON or dotLottie animation from URL
+- Choose renderer, scaling, speed, size, background color, interactions and more from the block settings in Gutenberg. The same settings are accessible in the Divi Module menu and the Elementor Widget menu.
 
 ## Installation
 
@@ -24,7 +34,7 @@ Automatic installation is the easiest option — WordPress will handle the file 
 2. Navigate to the **Plugins** menu
 3. Search for **AM LottiePlayer**
 4. Click **Install Now** and WordPress will take it from there
-5. Activate the plugin through the **Plugins menu** in WordPress
+5. Activate the plugin through the **Plugins** menu in WordPress
 
 ### Manual installation
 
@@ -33,14 +43,18 @@ Automatic installation is the easiest option — WordPress will handle the file 
 
 ### After activation
 
-1. Go to the WordPress Block/Gutenberg Editor, Elementor or the Divi Editor
-2. Search For **Lottie**
-3. Click on the **AM LottiePlayer** to add the block/module/widget
+1. Go to the WordPress Block Editor / Elementor / Divi Builder
+2. Add new block / widget / module
+3. Search for *Lottie*
+4. Click on *Lottie* to add the block
 
-If you wish to use the shortcode \[am-lottieplayer\], it has the following parameters:
+If you want to use the shortcode `[am-lottieplayer]`, it has the following parameters:
 
-- src: string (required)
-- autoplay: true | false
-- controls: true | false
-- loop: true | false
-- objectFit: cover | contain | none
+- src: `string` (required)
+- autoplay: `true` | `false`, default: `false`
+- controls: `true` | `false`, default: `false`
+- loop: `true` | `false`, default: `false`
+- objectFit: `cover` | `contain` | `none`, default: `contain`
+- speed: `number` (1 – 5), default: 1
+- direction: 1 | -1, default: 1
+- renderer: `svg` | `canvas` | `html`, default: `svg`
