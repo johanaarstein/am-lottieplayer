@@ -29,6 +29,9 @@ if (!function_exists('am_render_lottieplayer')) {
       mode="<?php echo esc_html($atts['mode']); ?>"
       preserveaspectratio="<?php echo aspectRatio(esc_html($atts['objectFit'])); ?>"
       src="<?php echo esc_url($atts['src']); ?>"
+      renderer="<? echo esc_html($atts['renderer']); ?>"
+      speed="<?php echo esc_html($atts['speed']); ?>"
+      direction="<?php echo esc_html($atts['direction']); ?>"
     >
     </dotlottie-player>
     <?php
@@ -48,14 +51,14 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
     $atts = shortcode_atts([
       'align' => 'none',
       'alt' => __( 'Lottie animation' ),
-      'autoplay' => true,
+      'autoplay' => false,
       'background' => 'transparent',
-      'controls' => true,
+      'controls' => false,
       'direction' => 1,
       'height' => null,
       'id' => null,
       'interactivityType' => 'none',
-      'loop' => true,
+      'loop' => false,
       'mode' => 'normal',
       'objectFit' => 'contain',
       'renderer' => 'svg',

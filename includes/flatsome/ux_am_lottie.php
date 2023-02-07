@@ -1,12 +1,13 @@
 <?php
 
 function getTemplate() {
+  wp_enqueue_script('dotlottie-player');
   ob_start();
   include __DIR__ . '/ux_am_lottie.html';
   return ob_get_clean();
 }
 
-$position_options = require( __DIR__ . '/position.php' );
+$position_options = require __DIR__ . '/position.php';
 $position_options['options']['position_x']['on_change'] = array(
   'recompile' => false,
   'class' => 'x{{ value }} md-x{{ value }} lg-x{{ value }}'
@@ -27,10 +28,11 @@ add_ux_builder_shortcode('am-lottieplayer', [
   'options' => [
 
     'src' => [
-      'type' => 'image',
+      'type' => 'textfield',
       'full_width' => true,
       'default' => 'https://storage.googleapis.com/aarsteinmedia/am.lottie',
-      'heading' => __('Choose animation', 'am-lottieplayer'),
+      'heading' => __('Lottie url', 'am-lottieplayer'),
+      'description' => __('Paste in url to Lottie, either from CDN or you local Media Library.', 'am-lottieplayer')
     ],
 
     'animation_options' => [
@@ -52,10 +54,18 @@ add_ux_builder_shortcode('am-lottieplayer', [
           'heading' => __('Loop', 'am-lottieplayer'),
         ],
 
+        'speed' => [
+          'type' => 'scrubfield',
+          'heading' => __('Speed', 'am-lottieplayer'),
+          'default' => 1,
+          'min' => 1,
+          'max' => 5,
+          'step' => 1
+        ],
+
         'reverse' => [
           'type' => 'checkbox',
           'heading' => __('Reverse', 'am-lottieplayer'),
-          'description' => __('Reverse the animation.', 'am-lottieplayer')
         ],
       ],
     ],
@@ -69,12 +79,50 @@ add_ux_builder_shortcode('am-lottieplayer', [
           'heading' => __('Width', 'am-lottieplayer'),
           'placeholder' => __('Width in px', 'am-lottieplayer'),
           'default' => '',
-          'min' => '0',
+          'min' => 0,
+        ],
+
+        'objectFit' => [
+          'type' => 'select',
+          'heading' => __('Object fit', 'am-lottieplayer'),
+          'default' => 'xMidYMid meet',
+          'options' => [
+            'xMidYMid meet' => __('Contain', 'am-lottieplayer'),
+            'xMidYMid slice' => __('Cover', 'am-lottieplayer'),
+            'none' => __('Fill', 'am-lottieplayer'),
+            'xMinYMin slice' => __('None', 'am-lottieplayer')
+          ],
         ],
       ],
     ],
 
-    'position_options' => $position_options,
-    'advanced_options' => require( __DIR__ . '/advanced.php'),
+    // 'position_options' => $position_options,
+
+    'advanced_options' => [
+      'type' => 'group',
+      'heading' => __('Advanced Options', 'am-lottieplayer'),
+      'options' => [
+
+        'renderer' => [
+          'type' => 'select',
+          'heading' => __('Renderer', 'am-lottieplayer'),
+          'default' => 'svg',
+          'options' => [
+            'svg' => 'SVG',
+            'canvas' => 'Canvas',
+            'html' => 'HTML'
+          ]
+        ],
+
+        'class' => [
+          'type' => 'textfield',
+          'heading' => 'Class',
+          'param_name' => 'class',
+          'default' => '',
+        ],
+
+        'visibility'  => require( __DIR__ . '/visibility.php' ),
+      ],
+    ],
   ]
 ]);
