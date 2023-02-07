@@ -17,6 +17,22 @@ if (!function_exists('aspectRatio')) {
   }
 }
 
+if (!function_exists('animationDirection')) {
+  function animationDirection($input) {
+    switch ($input) {
+      case 'true':
+      case true:
+        return -1;
+      case '0':
+      case 0:
+      case false:
+        return 1;
+      default:
+        return $input;
+    }
+  }
+}
+
 if (!function_exists('am_render_lottieplayer')) {
   function am_render_lottieplayer($atts) {
     ob_start(); ?>
@@ -31,7 +47,7 @@ if (!function_exists('am_render_lottieplayer')) {
       src="<?php echo esc_url($atts['src']); ?>"
       renderer="<?php echo esc_html($atts['renderer']); ?>"
       speed="<?php echo esc_html($atts['speed']); ?>"
-      direction="<?php echo esc_html($atts['direction']); ?>"
+      direction="<?php echo animationDirection(esc_html($atts['direction'])); ?>"
     >
     </dotlottie-player>
     <?php

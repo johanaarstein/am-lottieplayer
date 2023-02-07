@@ -1,7 +1,7 @@
 <?php
 
 function getTemplate() {
-  wp_enqueue_script('dotlottie-player');
+  wp_enqueue_script('am-backend');
   ob_start();
   include __DIR__ . '/ux_am_lottie.html';
   return ob_get_clean();
@@ -60,10 +60,11 @@ add_ux_builder_shortcode('am-lottieplayer', [
           'default' => 1,
           'min' => 1,
           'max' => 5,
-          'step' => 1
+          'step' => 1,
+          'unit' => '',
         ],
 
-        'reverse' => [
+        'direction' => [
           'type' => 'checkbox',
           'heading' => __('Reverse', 'am-lottieplayer'),
         ],
@@ -96,7 +97,7 @@ add_ux_builder_shortcode('am-lottieplayer', [
       ],
     ],
 
-    // 'position_options' => $position_options,
+    'position_options' => $position_options,
 
     'advanced_options' => [
       'type' => 'group',

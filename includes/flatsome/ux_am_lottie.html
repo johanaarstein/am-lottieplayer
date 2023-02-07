@@ -3,15 +3,15 @@
   {{ shortcode.options.class }}"
   style="width: {{ shortcode.options.width }}%">
   <dotlottie-player
-    autoplay="{{ shortcode.options.autoplay }}"
-    controls="{{ shortcode.options.controls }}"
-    loop="{{ shortcode.options.loop }}"
     class="lottie-element"
+    data-autoplay="{{ shortcode.options.autoplay }}"
+    data-controls="{{ shortcode.options.controls }}"
+    data-loop="{{ shortcode.options.loop }}"
     src="{{ shortcode.options.src }}"
     description="{{ shortcode.options.description }}"
     renderer="{{ shortcode.options.renderer }}"
     preserveaspectratio="{{ shortcode.options.objectFit }}"
-    direction="{{ shortcode.options.direction }}"
+    direction="{{ shortcode.options.direction === 'true' ? -1 : 1 }}"
     speed="{{ shortcode.options.speed }}">
   </dotlottie-player>
 </figure>
