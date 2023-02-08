@@ -65,7 +65,7 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
       'objectfit' => 'contain',
       'renderer' => 'svg',
       'speed' => 1,
-      'src' => AM_LOTTIEPLAYER_URL . '/includes/am.lottie',
+      'src' => AM_LOTTIEPLAYER_URL . 'includes/am.lottie',
       'width' => null,
       'onmouseover' => false,
       'onclick' => false,

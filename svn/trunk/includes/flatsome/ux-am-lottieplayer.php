@@ -3,7 +3,7 @@
 function getTemplate() {
   wp_enqueue_script('am-backend');
   ob_start();
-  include __DIR__ . '/ux_am_lottie.html';
+  include __DIR__ . '/ux-am-lottieplayer.html';
   return ob_get_clean();
 }
 
@@ -22,7 +22,7 @@ add_ux_builder_shortcode('am-lottieplayer', [
   'category' => __('Content'),
   'template' => getTemplate(),
   'toolbar_thumbnail' => 'img',
-	'thumbnail' => AM_LOTTIEPLAYER_URL . '/includes/flatsome/icon.svg',
+	'thumbnail' => AM_LOTTIEPLAYER_URL . 'includes/flatsome/icon.svg',
   'allow_in' => ['text_box'],
   'wrap' => false,
   'options' => [
@@ -30,7 +30,7 @@ add_ux_builder_shortcode('am-lottieplayer', [
     'src' => [
       'type' => 'textfield',
       'full_width' => true,
-      'default' => AM_LOTTIEPLAYER_URL . '/includes/am.lottie',
+      'default' => AM_LOTTIEPLAYER_URL . 'includes/am.lottie',
       'heading' => __('Lottie url', 'am-lottieplayer'),
       'description' => __('Paste in url to Lottie, either from CDN or you local Media Library.', 'am-lottieplayer')
     ],
@@ -97,18 +97,19 @@ add_ux_builder_shortcode('am-lottieplayer', [
       'type' => 'group',
       'heading' => __('Layout Options', 'am-lottieplayer'),
       'options' => [
-        'height' => [
-          'type' => 'scrubfield',
-          'heading' => __('Height', 'am-lottieplayer'),
-          'placeholder' => __('Height in px', 'am-lottieplayer'),
-          'default' => null,
-          'min' => 0,
-          'unit' => '',
-        ],
         'width' => [
           'type' => 'scrubfield',
           'heading' => __('Width', 'am-lottieplayer'),
           'placeholder' => __('Width in px', 'am-lottieplayer'),
+          'default' => null,
+          'min' => 0,
+          'unit' => '',
+        ],
+        
+        'height' => [
+          'type' => 'scrubfield',
+          'heading' => __('Height', 'am-lottieplayer'),
+          'placeholder' => __('Height in px', 'am-lottieplayer'),
           'default' => null,
           'min' => 0,
           'unit' => '',

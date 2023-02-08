@@ -118,6 +118,15 @@ if (!function_exists('add_ux_builder_shortcode')) {
   add_action('after_setup_theme', 'am_register_lottie_flatsome_shortcode');
   function am_register_lottie_flatsome_shortcode() {
     if (!function_exists('add_ux_builder_shortcode')) return;
-    require_once AM_LOTTIEPLAYER_PATH . '/includes/flatsome/ux_am_lottie.php';
+    require_once AM_LOTTIEPLAYER_PATH . '/includes/flatsome/ux-am-lottieplayer.php';
   }
 }
+
+//WPBakery
+// if (!function_exists('vc_am_lottieplayer')) {
+//   add_action('init','vc_am_lottieplayer'); 
+//   function vc_am_lottieplayer() {
+//     if (!defined('WPB_VC_VERSION')) return;
+//     require_once AM_LOTTIEPLAYER_PATH . '/includes/vc/vc-am-lottieplayer.php';
+//   }
+// }
