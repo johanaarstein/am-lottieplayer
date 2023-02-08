@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useRef } from '@wordpress/element';
 
-import { aspectRatio } from '../../functions';
-
 export default function PlayerComponent( { attributes = {} } = {} ) {
 	const {
 			align,
@@ -67,7 +65,7 @@ export default function PlayerComponent( { attributes = {} } = {} ) {
 			direction={ direction }
 			loop={ loop ? '' : null }
 			mode={ mode }
-			preserveAspectRatio={ aspectRatio( objectFit ) }
+			objectfit={ objectFit }
 			ref={ player }
 			renderer={ renderer }
 			speed={ speed }

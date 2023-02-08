@@ -1,7 +1,5 @@
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 
-import { aspectRatio } from '../functions';
-
 export default function save( { attributes = {} } = {} ) {
 	const {
 			align,
@@ -53,7 +51,7 @@ export default function save( { attributes = {} } = {} ) {
 				data-click={ click }
 				loop={ loop ? '' : null }
 				mode={ mode }
-				preserveAspectRatio={ aspectRatio( objectFit ) }
+				objectfit={ objectFit }
 				renderer={ renderer }
 				speed={ speed }
 				src={ src }

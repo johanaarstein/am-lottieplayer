@@ -114,15 +114,15 @@ add_ux_builder_shortcode('am-lottieplayer', [
           'unit' => '',
         ],
 
-        'objectFit' => [
+        'objectfit' => [
           'type' => 'select',
           'heading' => __('Object fit', 'am-lottieplayer'),
-          'default' => 'xMidYMid meet',
+          'default' => 'contain',
           'options' => [
-            'xMidYMid meet' => __('Contain', 'am-lottieplayer'),
-            'xMidYMid slice' => __('Cover', 'am-lottieplayer'),
-            'none' => __('Fill', 'am-lottieplayer'),
-            'xMinYMin slice' => __('None', 'am-lottieplayer')
+            'contain' => __('Contain', 'am-lottieplayer'),
+            'cover' => __('Cover', 'am-lottieplayer'),
+            'fill' => __('Fill', 'am-lottieplayer'),
+            'none' => __('None', 'am-lottieplayer')
           ],
         ],
       ],

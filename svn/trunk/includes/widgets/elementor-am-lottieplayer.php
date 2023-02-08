@@ -318,7 +318,7 @@ class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 		$onMouseOver = $this -> switcher_value($settings['onmouseover'], true, false);
 
 		$onMouseOut = $settings['onmouseout'];
-		$objectFit = aspectRatio($settings['object_fit']);
+		$objectFit = $settings['object_fit'];
 		$speed = !$settings['speed'] || empty($settings['speed']) ? '1' : $settings['speed'];
 		$heightSize = $settings['height_fixed'] ? $settings['height_fixed']['size'] : 'auto';
 		$heightUnit = $settings['height_fixed'] ? $settings['height_fixed']['unit'] : '';
@@ -345,7 +345,7 @@ class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 				data-mouseover="<?php echo esc_html($onMouseOver); ?>"
 				data-mouseout="<?php echo esc_html($onMouseOut); ?>"
 				data-click="<?php echo esc_html($onClick); ?>"
-				preserveAspectRatio="<?php echo esc_html($objectFit); ?>"
+				objectfit="<?php echo esc_html($objectFit); ?>"
 				speed="<?php echo esc_html($speed); ?>"
 				src="<?php echo esc_url($src); ?>"
 				description="<?php echo esc_html($description) ?>"
@@ -358,27 +358,10 @@ class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 	protected function content_template() {
 		?>
 		<#
-			const aspectRatio = ( objectFit ) => {
-				switch ( objectFit ) {
-					case 'contain':
-					case 'scale-down':
-						return 'xMidYMid meet';
-					case 'cover':
-						return 'xMidYMid slice';
-					case 'fill':
-						return 'none';
-					case 'none':
-						return 'xMinYMin slice';
-					default:
-						return 'xMidYMid meet';
-				}
-			},
-			
-				autoplay = settings.autoplay === 'yes' ? 'autoplay' : '',
+			const autoplay = settings.autoplay === 'yes' ? 'autoplay' : '',
 				controls = settings.controls === 'yes' ? 'controls' : '',
 				loop = settings.loop === 'yes' ? 'loop' : '',
-				objectFit = aspectRatio(settings.object_fit),
-				{ height_auto, height_fixed, lottie, reverse, speed, width } = settings,
+				{ height_auto, height_fixed, lottie, object_fit, reverse, speed, width } = settings,
 				direction = reverse === 'yes' ? '-1' : '1',
 				height = height_auto !== 'yes' || !height_fixed.size ? 'auto' : height_fixed.size + height_fixed.unit,
 				playbackSpeed = !speed || speed === '' ? '1' : speed #>
@@ -387,7 +370,7 @@ class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 			{{{ controls }}}
 			{{{ loop }}}
 			direction="{{{ direction }}}"
-			preserveAspectRatio="{{{ objectFit }}}"
+			objectfit="{{{ object_fit }}}"
 			speed="{{{ playbackSpeed }}}"
 			src="{{{ lottie.url }}}"
 			style="width:{{{ width.size }}}{{{ width.unit }}};height:{{{ height }}};"

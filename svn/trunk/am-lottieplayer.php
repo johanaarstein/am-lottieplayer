@@ -4,10 +4,10 @@
  */
 /**
  * Plugin Name:       AM LottiePlayer
- * Description:       The most complete Lottie Player plugin yet! Lightweight, versatile and easy to use. This plugin accepts LottieJSON and dotLottie, contains two Gutenberg blocks, a Divi Builder module, an Elementor widget and a shortcode.
+ * Description:       The most complete Lottie Player plugin yet! Lightweight, versatile and easy to use. This plugin accepts LottieJSON and dotLottie, contains two Gutenberg blocks, a Divi Builder module, an Elementor widget and a shortcode with intgration for Flatsome UX Builder.
  * Requires at least: 5.9
  * Requires PHP:      7.0
- * Version:           2.1.0
+ * Version:           2.1.1
  * Author:            Aarstein Media
  * Author URI:        https://www.aarstein.media
  * License:           GPL-2.0-or-later
@@ -44,13 +44,13 @@ if (!function_exists('am_lottie_blocks_init')) {
       'dotlottie-player',
       AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player.min.js',
       null,
-      '1.4.1',
+      '1.4.3',
       true
     );
 
     wp_register_script(
       'am-backend',
-      AM_LOTTIEPLAYER_URL . 'scripts/flatsome.min.js',
+      AM_LOTTIEPLAYER_URL . 'scripts/am-backend.min.js',
       ['dotlottie-player'],
       '1.0.0',
       true
@@ -91,24 +91,6 @@ if (!defined('AM_LOTTIEPLAYER_VERSION')) {
       ['Version' => 'Version'],
       'plugin'
     )['Version']);
-}
-
-if (!function_exists('aspectRatio')) {
-  function aspectRatio($objectFit) {
-    switch ($objectFit) {
-      case 'contain':
-      case 'scale-down':
-        return 'xMidYMid meet';
-      case 'cover':
-        return 'xMidYMid slice';
-      case 'fill':
-        return 'none';
-      case 'none':
-        return 'xMinYMin slice';
-      default:
-        return 'xMidYMid meet';
-    }
-  }
 }
 
 //DIVI

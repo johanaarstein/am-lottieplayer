@@ -1,26 +1,4 @@
 <?php
-if (!function_exists('aspectRatio')) {
-  function aspectRatio($objectFit) {
-    switch ($objectFit) {
-      case 'xMidYMid meet':
-      case 'xMidYMid slice':
-      case 'xMinYMin slice':
-        return $objectFit;
-      case 'contain':
-      case 'scale-down':
-        return 'xMidYMid meet';
-      case 'cover':
-        return 'xMidYMid slice';
-      case 'fill':
-        return 'none';
-      case 'none':
-        return 'xMinYMin slice';
-      default:
-        return 'xMidYMid meet';
-    }
-  }
-}
-
 if (!function_exists('animationDirection')) {
   function animationDirection($input) {
     switch ($input) {
@@ -47,12 +25,12 @@ if (!function_exists('am_render_lottieplayer')) {
       description="<?php echo esc_html($atts['alt']); ?>"
       <?php echo esc_html($atts['loop']) && esc_html($atts['loop']) !== 'false' ? 'loop' : ''; ?>
       mode="<?php echo esc_html($atts['mode']); ?>"
-      preserveaspectratio="<?php echo aspectRatio(esc_html($atts['objectFit'])); ?>"
+      objectfit="<?php echo esc_html($atts['objectfit']); ?>"
       src="<?php echo esc_url($atts['src']); ?>"
       renderer="<?php echo esc_html($atts['renderer']); ?>"
       speed="<?php echo esc_html($atts['speed']); ?>"
       direction="<?php echo animationDirection(esc_html($atts['direction'])); ?>"
-      data-direction="<?php echo esc_html($atts['direction']); ?>"
+      data-direction="<?php echo animationDirection(esc_html($atts['direction'])); ?>"
       data-mouseover="<?php echo esc_html($atts['onmouseover']); ?>"
       data-mouseout="<?php echo esc_html($atts['onmouseout']); ?>"
       data-click="<?php echo esc_html($atts['onclick']); ?>"
@@ -84,7 +62,7 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
       'interactivityType' => 'none',
       'loop' => false,
       'mode' => 'normal',
-      'objectFit' => 'contain',
+      'objectfit' => 'contain',
       'renderer' => 'svg',
       'speed' => 1,
       'src' => AM_LOTTIEPLAYER_URL . '/includes/am.lottie',

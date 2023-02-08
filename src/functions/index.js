@@ -1,19 +1,4 @@
-const aspectRatio = ( objectFit ) => {
-		switch ( objectFit ) {
-			case 'contain':
-			case 'scale-down':
-				return 'xMidYMid meet';
-			case 'cover':
-				return 'xMidYMid slice';
-			case 'fill':
-				return 'none';
-			case 'none':
-				return 'xMinYMin slice';
-			default:
-				return 'xMidYMid meet';
-		}
-	},
-	attributesFromMedia = ( setAttributes, dimRatio = null ) => {
+const attributesFromMedia = ( setAttributes, dimRatio = null ) => {
 		return ( media ) => {
 			if ( ! media || ! media.url ) {
 				setAttributes( { src: undefined, id: undefined } );
@@ -69,7 +54,6 @@ const aspectRatio = ( objectFit ) => {
 	};
 
 export {
-	aspectRatio,
 	attributesFromMedia,
 	debounce,
 	isModifierKey,

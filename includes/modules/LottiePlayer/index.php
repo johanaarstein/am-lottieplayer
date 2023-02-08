@@ -318,7 +318,7 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 						%6$s
 						description="%7$s"
 						renderer="%8$s"
-						preserveaspectratio="%9$s"
+						objectfit="%9$s"
 						direction="%10$s"
 						data-direction="%10$s"
 						data-mouseover="%11$s"
@@ -336,7 +336,7 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 				($this -> props['controls'] !== 'off' ? 'controls' : ''), #6
 				esc_html($this -> props['alt']), #7
 				esc_html($this -> props['renderer']), #8
-				aspectRatio(esc_html($this -> props['object_fit'])), #9
+				esc_html($this -> props['object_fit']), #9
 				$this -> props['reverse'] !== 'on' ? '1' : '-1', #10
 				$this -> props['onmouseover'] !== 'on' ? 'false' : 'true', #11
 				esc_html($this -> props['onmouseout']), #12

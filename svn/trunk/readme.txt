@@ -64,7 +64,7 @@ If you want to use the shortcode `[am-lottieplayer]`, it has the following param
 - autoplay: `true` | `false`, default: `false`
 - controls: `true` | `false`, default: `false`
 - loop: `true` | `false`, default: `false`
-- objectFit: `cover` | `contain` | `none`, default: `contain`
+- objectfit: `cover` | `contain` | `none`, default: `contain`
 - speed: `number` (1 – 5), default: `1`
 - direction: `1` | `-1`, default: `1`
 - renderer: `svg` | `canvas` | `html`, default: `svg`
@@ -94,7 +94,7 @@ The shortcode `[am-lottieplayer]` has the following parameters:
 - autoplay: `true` | `false`, default: `false`
 - controls: `true` | `false`, default: `false`
 - loop: `true` | `false`, default: `false`
-- objectFit: `cover` | `contain` | `none`, default: `contain`
+- objectfit: `cover` | `contain` | `none`, default: `contain`
 - speed: `number` (1 – 5), default: `1`
 - direction: `1` | `-1`, default: `1`
 - renderer: `svg` | `canvas` | `html`, default: `svg`
@@ -112,6 +112,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 4. …and even Flatsome!
 
 == Changelog ==
+
+= 2.1.1 =
+* Optimization: Minor patches
 
 = 2.1.0 =
 * New Feature: Added support for Flatsome UX Builder
