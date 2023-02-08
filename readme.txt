@@ -113,6 +113,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 2.1.2 =
+* Optimization: Bugfix in frontend script
+
 = 2.1.1 =
 * Optimization: Minor patches
 

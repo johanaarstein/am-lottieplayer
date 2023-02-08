@@ -9,7 +9,7 @@ vc_map(
     'category' => __('Animation', 'am-lottieplayer'),
     'admin_enqueue_js' => [
       AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player.min.js',
-      AM_LOTTIEPLAYER_URL . 'scripts/am-backend.min.js',
+      // AM_LOTTIEPLAYER_URL . 'scripts/am-backend.min.js',
     ],
     // 'custom_markup' => '<a class="gallery_widget_add_images" href="javascript:;" use-single="true" title="Add Lottie"><i class="vc-composer-icon vc-c-icon-add"></i>Add Lottie</a>',
     'params' => [
@@ -19,7 +19,7 @@ vc_map(
       //   'param_name' => 'source',
       //   'value' => [
       //     esc_html__('Media library', 'js_composer') => 'media_library',
-			// 	  esc_html__('External links', 'js_composer') => 'external_link',
+      // 	  esc_html__('External links', 'js_composer') => 'external_link',
       //   ],
       //   'std' => 'media_library'
       // ],
@@ -33,7 +33,7 @@ vc_map(
       //   ],
       // ],
       [
-        'type' => 'exploded_textarea_safe',
+        'type' => 'textfield',
         'heading' => esc_html__('Lottie url', 'am-lottieplayer'),
         'std' => AM_LOTTIEPLAYER_URL . 'includes/am.lottie',
         'param_name' => 'src',
