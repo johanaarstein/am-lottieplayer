@@ -27,7 +27,7 @@ Upload Lottie animations to WordPress and add them to Gutenberg, Divi, Elementor
 - Contains a Divi Builder Module
 - Contains an Elementor Widget
 - Contains the shortcode `[am-lottieplayer]`
-- The shorcode is compatible with Flatsome UX Builder
+- The shortcode is compatible with Flatsome UX Builder
 - Scripts are only loaded for pages where the player is used
 - Upload Lottie JSON or dotLottie files to your *Media Library*
 - Drag & drop a Lottie JSON or dotLottie file
