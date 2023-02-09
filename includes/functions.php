@@ -26,13 +26,7 @@ if (!function_exists('am_render_lottieplayer')) {
       <?php echo esc_html($atts['loop']) && esc_html($atts['loop']) !== 'false' ? 'loop' : ''; ?>
       mode="<?php echo esc_html($atts['mode']); ?>"
       objectfit="<?php echo esc_html($atts['objectfit']); ?>"
-      src="<?php
-        if (function_exists('vc_build_link')) {
-          $src = vc_build_link($atts['src']);
-          echo esc_url($src['url']);
-        } else {
-          echo esc_url($atts['src']);
-        } ?>"
+      src="<?php echo esc_url($atts['src']); ?>"
       renderer="<?php echo esc_html($atts['renderer']); ?>"
       speed="<?php echo esc_html($atts['speed']); ?>"
       direction="<?php echo animationDirection(esc_html($atts['direction'])); ?>"

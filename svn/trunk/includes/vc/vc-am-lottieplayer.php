@@ -7,10 +7,10 @@ vc_map(
     'controls' => 'full',
     'icon' => AM_LOTTIEPLAYER_URL . 'includes/vc/icon.svg',
     'category' => __('Animation', 'am-lottieplayer'),
-    'admin_enqueue_js' => [
-      AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player.min.js',
-      // AM_LOTTIEPLAYER_URL . 'scripts/am-backend.min.js',
-    ],
+    // 'admin_enqueue_js' => [
+    //   AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player.min.js',
+    //   // AM_LOTTIEPLAYER_URL . 'scripts/am-backend.min.js',
+    // ],
     // 'custom_markup' => '<a class="gallery_widget_add_images" href="javascript:;" use-single="true" title="Add Lottie"><i class="vc-composer-icon vc-c-icon-add"></i>Add Lottie</a>',
     'params' => [
       // [
