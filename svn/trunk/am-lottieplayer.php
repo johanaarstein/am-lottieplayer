@@ -7,7 +7,7 @@
  * Description:       The most complete Lottie Player plugin yet! Lightweight, versatile and easy to use. Accepts JSON and dotLottie, and has integrations for Gutenberg, Divi, Elementor and Flatsome UX Builder.
  * Requires at least: 5.9
  * Requires PHP:      7.0
- * Version:           2.1.2
+ * Version:           2.1.3
  * Author:            Aarstein Media
  * Author URI:        https://www.aarstein.media
  * License:           GPL-2.0-or-later

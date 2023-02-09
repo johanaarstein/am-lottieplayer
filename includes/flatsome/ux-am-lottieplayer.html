@@ -1,6 +1,6 @@
 <figure class="dotlottie-player
-  {{ shortcode.options.pos }}
-  {{ shortcode.options.class }}"
+  {{ shortcode.options.class }}
+  {{ shortcode.options.pos }}"
   style="
     width: {{ shortcode.options.width ? shortcode.options.width + 'px' : 'auto' }};
     height: {{ shortcode.options.height ? shortcode.options.height + 'px' : 'auto' }};
@@ -11,7 +11,7 @@
     data-controls="{{ shortcode.options.controls }}"
     data-loop="{{ shortcode.options.loop }}"
     src="{{ shortcode.options.src }}"
-    description="{{ shortcode.options.description }}"
+    description="{{ shortcode.options.alt }}"
     renderer="{{ shortcode.options.renderer }}"
     objectfit="{{ shortcode.options.objectfit }}"
     direction="{{ shortcode.options.direction === 'true' ? -1 : 1 }}"

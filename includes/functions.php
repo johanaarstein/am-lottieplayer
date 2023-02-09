@@ -1,17 +1,8 @@
 <?php
 if (!function_exists('animationDirection')) {
   function animationDirection($input) {
-    switch ($input) {
-      case 'true':
-      case true:
-        return -1;
-      case '0':
-      case 0:
-      case false:
-        return 1;
-      default:
-        return $input;
-    }
+    if ($input === 1 || $input === '1' || $input === '0') return 1;
+    return -1;
   }
 }
 
@@ -44,17 +35,12 @@ if (!function_exists('am_render_lottieplayer')) {
 
 if (!function_exists('am_render_lottieplayer_shortcode')) {
   function am_render_lottieplayer_shortcode($atts) {
-    // if (!esc_url($atts['src']) || empty(esc_url($atts['src']))) {
-    //   // error_log('Empty src in AM LottiePlayer');
-    //   // return '';
-    //   $atts['src'] =
-    // }
-
     $atts = shortcode_atts([
       'align' => 'none',
-      'alt' => __( 'Lottie animation' ),
+      'alt' => __('Lottie animation', 'am-lottieplayer'),
       'autoplay' => false,
       'background' => 'transparent',
+      'class' => '',
       'controls' => false,
       'direction' => 1,
       'height' => null,
@@ -74,7 +60,7 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
 
     ob_start(); ?>
     <figure
-      class="wp-block-gb-lottieplayer align<?php echo esc_html($atts['align']) ?? 'none'; ?>"
+      class="am-lottieplayer align<?php echo esc_html($atts['align']) ?? 'none'; echo ' ' . esc_html($atts['class']); ?>"
       style="
         background-color: <?php echo $atts['background']; ?>;
         height: <?php echo esc_html($atts['height']) ? esc_html($atts['height']) . 'px' : 'auto'; ?>;

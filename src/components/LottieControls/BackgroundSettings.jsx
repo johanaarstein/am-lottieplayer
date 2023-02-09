@@ -6,7 +6,10 @@ const BackgroundSettings = ( { attributes, setAttributes } ) => {
 
 	return (
 		<Panel>
-			<PanelBody title={ __( 'Background Color' ) } initialOpen={ false }>
+			<PanelBody
+				title={ __( 'Background Color', 'am-lottieplayer' ) }
+				initialOpen={ false }
+			>
 				<ColorPicker
 					color={ background }
 					onChangeComplete={ ( color ) => {

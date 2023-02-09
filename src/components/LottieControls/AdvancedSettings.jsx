@@ -1,9 +1,10 @@
 import { InspectorAdvancedControls } from '@wordpress/block-editor';
-import { SelectControl } from '@wordpress/components';
+import { SelectControl, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 const AdvanceSettings = ( { attributes, setAttributes } ) => {
 	const {
+		alt,
 		mode = 'normal',
 		objectFit = 'contain',
 		renderer = 'svg',
@@ -16,26 +17,10 @@ const AdvanceSettings = ( { attributes, setAttributes } ) => {
 				value={ renderer }
 				onChange={ ( val ) => setAttributes( { renderer: val } ) }
 				options={ [
-					{ value: 'svg', label: __( 'SVG' ) },
-					{ value: 'canvas', label: __( 'Canvas' ) },
+					{ value: 'svg', label: 'SVG' },
+					{ value: 'canvas', label: 'Canvas' },
 				] }
 			/>
-			{ /* <SelectControl
-				label={ __( 'Play animation on' ) }
-				value={ interactivityType }
-				onChange={ ( val ) => {
-					setAttributes( {
-						interactivityType: val,
-						autoplay: val === 'none',
-					} );
-				} }
-				options={ [
-					{ value: 'none', label: __( 'Page Load' ) },
-					{ value: 'hold', label: __( 'Hover' ) },
-					{ value: 'click', label: __( 'Click' ) },
-					{ value: 'scroll', label: __( 'Scroll' ) },
-				] }
-			/> */ }
 			<SelectControl
 				label={ __( 'Object fit' ) }
 				value={ objectFit }
@@ -43,21 +28,35 @@ const AdvanceSettings = ( { attributes, setAttributes } ) => {
 					setAttributes( { objectFit: val } );
 				} }
 				options={ [
-					{ value: 'contain', label: __( 'Contain' ) },
-					{ value: 'cover', label: __( 'Cover' ) },
-					{ value: 'fill', label: __( 'Fill' ) },
-					{ value: 'none', label: __( 'None' ) },
+					{
+						value: 'contain',
+						label: __( 'Contain', 'am-lottieplayer' ),
+					},
+					{ value: 'cover', label: __( 'Cover', 'am-lottieplayer' ) },
+					{ value: 'fill', label: __( 'Fill', 'am-lottieplayer' ) },
+					{ value: 'none', label: __( 'None', 'am-lottieplayer' ) },
 				] }
 			/>
 			<SelectControl
-				label={ __( 'Play mode' ) }
+				label={ __( 'Play mode', 'am-lottieplayer' ) }
 				value={ mode }
 				name="mode"
 				onChange={ ( val ) => setAttributes( { mode: val } ) }
 				options={ [
-					{ value: 'normal', label: 'Normal' },
-					{ value: 'bounce', label: 'Bounce' },
+					{
+						value: 'normal',
+						label: __( 'Normal', 'am-lottieplayer' ),
+					},
+					{
+						value: 'bounce',
+						label: __( 'Bounce', 'am-lottieplayer' ),
+					},
 				] }
+			/>
+			<TextControl
+				label={ __( 'Description', 'am-lottieplayer' ) }
+				value={ alt }
+				onChange={ ( value ) => setAttributes( { alt: value } ) }
 			/>
 		</InspectorAdvancedControls>
 	);

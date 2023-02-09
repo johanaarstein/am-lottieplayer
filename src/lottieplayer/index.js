@@ -8,14 +8,15 @@ import { Lottie } from '../assets/icons';
 
 registerBlockType( metadata.name, {
 	icon: Lottie,
+	title: metadata.title,
 	keywords: [
-		__( 'animation' ),
-		__( 'gif' ),
-		__( 'motion' ),
-		__( 'vector' ),
-		__( 'SVG' ),
-		__( 'Lottie' ),
-		__( 'dotLottie' ),
+		__( 'animation', 'am-lottieplayer' ),
+		'gif',
+		__( 'motion', 'am-lottieplayer' ),
+		__( 'vector', 'am-lottieplayer' ),
+		'SVG',
+		'Lottie',
+		'dotLottie',
 	],
 	attributes: {
 		align: {
@@ -24,7 +25,7 @@ registerBlockType( metadata.name, {
 		},
 		alt: {
 			type: 'string',
-			default: __( 'AM Lottie animation' ),
+			default: __( 'AM Lottie animation', 'am-lottieplayer' ),
 		},
 		autoplay: {
 			type: 'boolean',

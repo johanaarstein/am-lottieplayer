@@ -1,5 +1,19 @@
 <?php
 
+vc_add_shortcode_param('attach_lottie', 'attach_field_settings');
+function attach_field_settings($settings) {
+  return
+  '<div class="am-upload">
+    <button
+      id="' . esc_attr($settings['param_name']) . '-button"
+      style="all:unset;cursor:pointer;background:#007cba;color:#fff;font-size:13px;padding:6px 12px;border-radius:2px;height:36px;align-items:center;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;appearance:none;"
+      class="' . esc_attr($settings['param_name']) . ' ' . esc_attr($settings['type']) . '_field"
+    >' . __('Media Library', 'am-lottieplayer') . '
+    </button>
+  </div>
+  <script src="' . AM_LOTTIEPLAYER_URL . 'scripts/am-backend-vc.min.js" defer></script>';
+}
+
 vc_map(
   [
     'name' => __('AM LottiePlayer', 'am-lottieplayer'),
@@ -7,40 +21,18 @@ vc_map(
     'controls' => 'full',
     'icon' => AM_LOTTIEPLAYER_URL . 'includes/vc/icon.svg',
     'category' => __('Animation', 'am-lottieplayer'),
-    // 'admin_enqueue_js' => [
-    //   AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player.min.js',
-    //   // AM_LOTTIEPLAYER_URL . 'scripts/am-backend.min.js',
-    // ],
-    // 'custom_markup' => '<a class="gallery_widget_add_images" href="javascript:;" use-single="true" title="Add Lottie"><i class="vc-composer-icon vc-c-icon-add"></i>Add Lottie</a>',
     'params' => [
-      // [
-      //   'type' => 'dropdown',
-      //   'heading' => __('Animation source', 'am-lottieplayer'),
-      //   'param_name' => 'source',
-      //   'value' => [
-      //     esc_html__('Media library', 'js_composer') => 'media_library',
-      // 	  esc_html__('External links', 'js_composer') => 'external_link',
-      //   ],
-      //   'std' => 'media_library'
-      // ],
-      // [
-      //   'heading' => __('Choose animation', 'am-lottieplayer'),
-      //   'param_name' => 'src',
-      //   'value' => '',
-      //   'dependency' => [
-      //     'element' => 'source',
-      //     'value' => 'media_library',
-      //   ],
-      // ],
       [
         'type' => 'textfield',
-        'heading' => esc_html__('Lottie url', 'am-lottieplayer'),
-        'std' => AM_LOTTIEPLAYER_URL . 'includes/am.lottie',
+        'heading' => __('Lottie url', 'am-lottieplayer'),
+        'value' => AM_LOTTIEPLAYER_URL . 'includes/am.lottie',
         'param_name' => 'src',
-        // 'dependency' => [
-        //   'element' => 'source',
-        //   'value' => 'external_link',
-        // ],
+      ],
+      [
+        'type' => 'attach_lottie',
+        'heading' => __('Choose Lottie', 'am-lottieplayer'),
+        'value' => '',
+        'param_name' => 'attach_src'
       ],
       [
         'type' => 'checkbox',
@@ -49,7 +41,7 @@ vc_map(
       ],
       [
         'type' => 'checkbox',
-        'heading' => __('Controls', 'am-lottieplayer'),
+        'heading' => __('Show controls', 'am-lottieplayer'),
         'param_name' => 'controls',
       ],
       [

@@ -55,7 +55,7 @@ add_ux_builder_shortcode('am-lottieplayer', [
         ],
 
         'speed' => [
-          'type' => 'scrubfield',
+          'type' => 'slider',
           'heading' => __('Speed', 'am-lottieplayer'),
           'default' => 1,
           'min' => 1,
@@ -100,19 +100,25 @@ add_ux_builder_shortcode('am-lottieplayer', [
         'width' => [
           'type' => 'scrubfield',
           'heading' => __('Width', 'am-lottieplayer'),
-          'placeholder' => __('Width in px', 'am-lottieplayer'),
+          'responsive' => true,
           'default' => null,
-          'min' => 0,
+          'min' => 10,
           'unit' => '',
+          'on_change' => [
+            'style' => 'width: {{ value }}px'
+          ]
         ],
         
         'height' => [
           'type' => 'scrubfield',
           'heading' => __('Height', 'am-lottieplayer'),
-          'placeholder' => __('Height in px', 'am-lottieplayer'),
+          'placeholder' => 'auto',
           'default' => null,
-          'min' => 0,
+          'min' => 10,
           'unit' => '',
+          'on_change' => [
+            'style' => 'height: {{ value }}px'
+          ]
         ],
 
         'objectfit' => [
@@ -149,9 +155,15 @@ add_ux_builder_shortcode('am-lottieplayer', [
 
         'class' => [
           'type' => 'textfield',
-          'heading' => 'Class',
+          'heading' => __('CSS-class', 'am-lottieplayer'),
           'param_name' => 'class',
           'default' => '',
+        ],
+
+        'alt' => [
+          'type' => 'textfield',
+          'heading' => __('Description', 'am-lottieplayer'),
+          'description' => __('Helpful for screen readers and search engines', 'am-lottieplayer'),
         ],
 
         'visibility'  => require( __DIR__ . '/visibility.php' ),

@@ -12,18 +12,15 @@ export default function UploadComponent( {
 		<MediaPlaceholder
 			icon={ <BlockIcon icon={ Lottie } /> }
 			labels={ {
-				title: __( 'AM Lottie Animation' ),
+				title: __( 'AM Lottie Animation', 'am-lottieplayer' ),
 				instructions: __(
-					'Upload Lottie animations to WordPress and add them in Gutenberg.'
+					'Upload Lottie animations to WordPress and add them in Gutenberg.',
+					'am-lottieplayer'
 				),
 			} }
 			onSelect={ onSelectMedia }
 			accept={ '.lottie, .json' }
-			allowedTypes={ [
-				'application/json',
-				'application/zip',
-				// 'text/plain',
-			] }
+			allowedTypes={ [ 'application/json', 'application/zip' ] }
 			onError={ onError }
 		>
 			{ children }

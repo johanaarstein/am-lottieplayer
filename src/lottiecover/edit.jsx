@@ -22,7 +22,7 @@ const getInnerBlocksTemplate = ( attributes ) => {
 			'core/paragraph',
 			{
 				align: 'center',
-				placeholder: __( 'Write title…' ),
+				placeholder: __( 'Write title…', 'am-lottieplayer' ),
 				...attributes,
 			},
 		],

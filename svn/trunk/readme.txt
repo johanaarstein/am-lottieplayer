@@ -113,6 +113,10 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 2.1.3 =
+* Bugfix: Minor errors in shortcode
+* Optimization: More options for screen readers
+
 = 2.1.2 =
 * Optimization: Bugfix in frontend script
 
