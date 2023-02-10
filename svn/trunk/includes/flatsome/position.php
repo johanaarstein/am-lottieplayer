@@ -1,4 +1,5 @@
 <?php
+if (!defined('ABSPATH')) exit('New phone, who diz?');
 
 return [
     'type' => 'group',

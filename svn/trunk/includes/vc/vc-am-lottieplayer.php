@@ -1,4 +1,5 @@
 <?php
+if (!defined('ABSPATH')) exit('New phone, who diz?');
 
 vc_add_shortcode_param('attach_lottie', 'attach_field_settings');
 function attach_field_settings($settings) {
@@ -123,6 +124,13 @@ vc_map(
           __('HTML', 'am-lottieplayer') => 'html',
         ],
         'std' => 'svg',
+        'group' => __('Advanced Options', 'am-lottieplayer' ),
+      ],
+      [
+        'type' => 'textfield',
+        'heading' => __('Description', 'am-lottieplayer'),
+        'param_name' => 'alt',
+        'description' => __('Helpful for screen readers and search engines', 'am-lottieplayer'),
         'group' => __('Advanced Options', 'am-lottieplayer' ),
       ],
     ]

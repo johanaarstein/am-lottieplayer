@@ -1,4 +1,5 @@
 <?php
+if (!defined('ABSPATH')) exit('New phone, who diz?');
 
 vc_add_shortcode_param('attach_lottie', 'attach_field_settings');
 function attach_field_settings($settings) {

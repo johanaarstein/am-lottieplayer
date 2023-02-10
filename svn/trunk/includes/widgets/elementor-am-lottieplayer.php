@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit('New phone, who diz?');
+
 class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 
 	public function get_script_depends() {
@@ -365,17 +367,22 @@ class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 				direction = reverse === 'yes' ? '-1' : '1',
 				height = height_auto !== 'yes' || !height_fixed.size ? 'auto' : height_fixed.size + height_fixed.unit,
 				playbackSpeed = !speed || speed === '' ? '1' : speed #>
-		<dotlottie-player
-			{{{ autoplay }}}
-			{{{ controls }}}
-			{{{ loop }}}
-			direction="{{{ direction }}}"
-			objectfit="{{{ object_fit }}}"
-			speed="{{{ playbackSpeed }}}"
-			src="{{{ lottie.url }}}"
+		<figure
 			style="width:{{{ width.size }}}{{{ width.unit }}};height:{{{ height }}};"
 		>
-		</dotlottie-player>
+			<dotlottie-player
+				{{{ autoplay }}}
+				{{{ controls }}}
+				{{{ loop }}}
+				direction="{{{ direction }}}"
+				objectfit="{{{ object_fit }}}"
+				speed="{{{ playbackSpeed }}}"
+				src="{{{ lottie.url }}}"
+			>
+			</dotlottie-player>
+		</figure>
 		<?php
 	}
 }
+
+$widgets_manager -> register(new \Elementor_AM_LottiePlayer());

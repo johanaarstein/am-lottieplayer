@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit('New phone, who diz?');
+
 if (!class_exists('ET_Builder_Element')) {
   return;
 }

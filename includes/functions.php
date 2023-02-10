@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit('New phone, who diz?');
+
 if (!function_exists('animationDirection')) {
   function animationDirection($input) {
     if ($input === 1 || $input === '1' || $input === '0') return 1;
@@ -28,7 +30,6 @@ if (!function_exists('am_render_lottieplayer')) {
     >
     </dotlottie-player>
     <?php
-    if (!is_admin()) wp_enqueue_script('am-frontend');
     return ob_get_clean();
   }
 }

@@ -1,7 +1,8 @@
 <?php
+if (!defined('ABSPATH')) exit('New phone, who diz?');
 
 function getTemplate() {
-  wp_enqueue_script('am-backend');
+  wp_enqueue_script('am-backend-ux');
   ob_start();
   include __DIR__ . '/ux-am-lottieplayer.html';
   return ob_get_clean();

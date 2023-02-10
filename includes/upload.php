@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit('New phone, who diz?');
+
 if (!function_exists('am_lottie_mimetypes')) {
   add_filter('upload_mimes', 'am_lottie_mimetypes');
   function am_lottie_mimetypes($mimes) {
@@ -96,7 +98,7 @@ if (!function_exists('media_sideload_lottie')) {
 
 if (!function_exists('am_lottie_asset')) {
   function am_lottie_asset($default = false) {
-    $url = 'https://storage.googleapis.com/aarsteinmedia/am-lottieplayer-animation.lottie';
+    $url = 'https://storage.googleapis.com/aarsteinmedia/am.lottie';
     if ($default) {
       return $url;
     }

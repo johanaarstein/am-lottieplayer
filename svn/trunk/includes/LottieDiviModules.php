@@ -1,4 +1,6 @@
 <?php
+if (!defined('ABSPATH')) exit('New phone, who diz?');
+
 if (class_exists('DiviExtension') && !class_exists('AM_LottieDiviModules')) {
   class AM_LottieDiviModules extends DiviExtension {
     public $gettext_domain = 'am-lottieplayer';
