@@ -28,7 +28,7 @@ if (!function_exists('am_render_lottieplayer')) {
     >
     </dotlottie-player>
     <?php
-    wp_enqueue_script('am-frontend');
+    if (!is_admin()) wp_enqueue_script('am-frontend');
     return ob_get_clean();
   }
 }

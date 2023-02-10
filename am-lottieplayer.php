@@ -36,9 +36,7 @@ if (!function_exists('am_lottie_blocks_init')) {
     register_block_type(AM_LOTTIEPLAYER_PATH . 'build/lottieplayer');
     register_block_type(AM_LOTTIEPLAYER_PATH . 'build/lottiecover');
 
-    if (is_admin()) {
-      wp_enqueue_script('dotlottie-player');
-    }
+    if (is_admin()) wp_enqueue_script('dotlottie-player');
 
     wp_register_script(
       'dotlottie-player',

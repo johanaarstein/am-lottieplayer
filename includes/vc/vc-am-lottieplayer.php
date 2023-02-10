@@ -125,6 +125,13 @@ vc_map(
         'std' => 'svg',
         'group' => __('Advanced Options', 'am-lottieplayer' ),
       ],
+      [
+        'type' => 'textfield',
+        'heading' => __('Description', 'am-lottieplayer'),
+        'param_name' => 'alt',
+        'description' => __('Helpful for screen readers and search engines', 'am-lottieplayer'),
+        'group' => __('Advanced Options', 'am-lottieplayer' ),
+      ],
     ]
   ]
 );
