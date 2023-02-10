@@ -285,7 +285,8 @@ class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
 			'description',
 			[
 				'label' => __('Description', 'am-lottieplayer'),
-				'type' => \Elementor\Controls_Manager::TEXT
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __('AM LottiePlayer animation', 'am-lottieplayer')
 			]
 		);
 

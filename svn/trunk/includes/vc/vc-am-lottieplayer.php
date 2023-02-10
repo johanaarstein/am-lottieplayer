@@ -20,13 +20,13 @@ vc_map(
     'name' => __('AM LottiePlayer', 'am-lottieplayer'),
     'base' => 'am-lottieplayer',
     'controls' => 'full',
-    'icon' => AM_LOTTIEPLAYER_URL . 'includes/vc/icon.svg',
+    'icon' => AM_LOTTIEPLAYER_URL . 'assets/vc-icon.svg',
     'category' => __('Animation', 'am-lottieplayer'),
     'params' => [
       [
         'type' => 'textfield',
         'heading' => __('Lottie url', 'am-lottieplayer'),
-        'value' => AM_LOTTIEPLAYER_URL . 'includes/am.lottie',
+        'value' => esc_url(!is_wp_error(am_lottie_asset()) ? wp_get_attachment_url(am_lottie_asset()) : am_lottie_asset(true)),
         'param_name' => 'src',
       ],
       [

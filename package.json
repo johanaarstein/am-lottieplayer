@@ -1,6 +1,6 @@
 {
 	"name": "am-lottieplayer",
-	"version": "2.1.4",
+	"version": "2.1.5",
 	"description": "Lightweight, versatile and easy to use! Add vectorized Lottie animations to your page with Gutenberg, the Divi Builder, Elementor or Flatsome UX Builder.",
 	"author": {
 		"name": "Aarstein Media",
@@ -30,6 +30,7 @@
 		"email": "johan@aarstein.media"
 	},
 	"files": [
+		"assets",
 		"build",
 		"includes",
 		"scripts",
@@ -60,7 +61,7 @@
 		"test:e2e": "wp-scripts test-e2e",
 		"test:unit": "wp-scripts test-unit-js",
 		"stash": "wp-scripts build && wp-scripts plugin-zip",
-		"svn": "cp -R ./build ./includes ./scripts ./styles ./svn/trunk && cp ./am-lottieplayer.php ./LICENSE ./package.json ./readme.txt ./svn/trunk"
+		"svn": "cp -R ./assets ./build ./includes ./scripts ./styles ./svn/trunk && cp ./am-lottieplayer.php ./LICENSE ./package.json ./readme.txt ./svn/trunk"
 	},
 	"cde": {
 		"gettext": "am-lottieplayer",

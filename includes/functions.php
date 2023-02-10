@@ -38,7 +38,7 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
   function am_render_lottieplayer_shortcode($atts) {
     $atts = shortcode_atts([
       'align' => 'none',
-      'alt' => __('Lottie animation', 'am-lottieplayer'),
+      'alt' => __('AM LottiePlayer animation', 'am-lottieplayer'),
       'autoplay' => false,
       'background' => 'transparent',
       'class' => '',
@@ -52,7 +52,7 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
       'objectfit' => 'contain',
       'renderer' => 'svg',
       'speed' => 1,
-      'src' => AM_LOTTIEPLAYER_URL . 'includes/am.lottie',
+      'src' => esc_url(!is_wp_error(am_lottie_asset()) ? wp_get_attachment_url(am_lottie_asset()) : am_lottie_asset(true)),
       'width' => null,
       'onmouseover' => false,
       'onclick' => false,

@@ -23,7 +23,7 @@ add_ux_builder_shortcode('am-lottieplayer', [
   'category' => __('Content'),
   'template' => getTemplate(),
   'toolbar_thumbnail' => 'img',
-	'thumbnail' => AM_LOTTIEPLAYER_URL . 'includes/flatsome/icon.svg',
+	'thumbnail' => AM_LOTTIEPLAYER_URL . 'assets/ux-icon.svg',
   'allow_in' => ['text_box'],
   'wrap' => false,
   'options' => [
@@ -31,7 +31,7 @@ add_ux_builder_shortcode('am-lottieplayer', [
     'src' => [
       'type' => 'textfield',
       'full_width' => true,
-      'default' => AM_LOTTIEPLAYER_URL . 'includes/am.lottie',
+      'default' => esc_url(!is_wp_error(am_lottie_asset()) ? wp_get_attachment_url(am_lottie_asset()) : am_lottie_asset(true)),
       'heading' => __('Lottie url', 'am-lottieplayer'),
       'description' => __('Paste in url to Lottie, either from CDN or you local Media Library.', 'am-lottieplayer')
     ],

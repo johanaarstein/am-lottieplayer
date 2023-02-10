@@ -113,6 +113,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 2.1.5 =
+* Optimization: Minor patches
+
 = 2.1.4 =
 * New Feature: Added partial support for WPBakery
 

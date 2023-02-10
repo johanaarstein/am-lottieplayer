@@ -9,7 +9,7 @@ if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 			$this -> plural = esc_html__('AM Lotties', 'am-lottieplayer');
 			$this -> slug = 'et_pb_lottieplayer';
 			$this -> vb_support = 'on';
-			$this -> icon_path = plugin_dir_path(__FILE__) . 'icon.svg';
+			$this -> icon_path = AM_LOTTIEPLAYER_PATH . 'assets/divi-icon.svg';
 
 			$this -> settings_modal_toggles = [
 				'general' => [

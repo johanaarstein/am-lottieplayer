@@ -30,7 +30,7 @@ registerBlockType( metadata.name, {
 		},
 		alt: {
 			type: 'string',
-			default: __( 'AM Lottie animation', 'am-lottieplayer' ),
+			default: __( 'AM LottiePlayer animation', 'am-lottieplayer' ),
 		},
 		autoplay: {
 			type: 'boolean',
