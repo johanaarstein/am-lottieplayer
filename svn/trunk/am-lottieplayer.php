@@ -7,7 +7,7 @@
  * Description:       The most complete Lottie Player plugin yet! Lightweight, versatile and easy to use. Accepts JSON and dotLottie, and has integrations for Gutenberg, Divi, Elementor and Flatsome UX Builder.
  * Requires at least: 5.9
  * Requires PHP:      7.0
- * Version:           2.1.5
+ * Version:           2.2.0
  * Author:            Aarstein Media
  * Author URI:        https://www.aarstein.media
  * License:           GPL-2.0-or-later
@@ -26,8 +26,8 @@ if (!defined('AM_LOTTIEPLAYER_URL')) {
   define('AM_LOTTIEPLAYER_URL', plugin_dir_url( __FILE__ ));
 }
 
+add_action('init', 'am_lottie_blocks_init');
 if (!function_exists('am_lottie_blocks_init')) {
-  add_action('init', 'am_lottie_blocks_init');
   function am_lottie_blocks_init() {
     add_shortcode('am-lottieplayer', 'am_render_lottieplayer_shortcode');
     
@@ -38,7 +38,7 @@ if (!function_exists('am_lottie_blocks_init')) {
       'dotlottie-player',
       AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player.min.js',
       null,
-      '1.4.3',
+      '1.4.5',
       true
     );
 
@@ -59,26 +59,34 @@ if (!function_exists('am_lottie_blocks_init')) {
     );
   }
 
-  include AM_LOTTIEPLAYER_PATH . 'includes/functions.php';
-  include AM_LOTTIEPLAYER_PATH . 'includes/upload.php';
-
   register_activation_hook(
     __FILE__,
     'am_lottie_asset'
   );
 }
 
-//Add scripts for back-end
+//Includes
+include AM_LOTTIEPLAYER_PATH . 'includes/functions.php';
+include AM_LOTTIEPLAYER_PATH . 'includes/upload.php';
+
+//Add scripts and styles for back-end
+add_action('admin_enqueue_scripts', 'am_backend_enqeue');
 if (!function_exists('am_backend_enqeue')) {
-  add_action('admin_enqueue_scripts', 'am_backend_enqeue');
   function am_backend_enqeue() {
+    wp_register_style('am-backend-style', null);
+    wp_enqueue_style('am-backend-style');
+    $style = '
+      .attachment-media-view.landscape .thumbnail-text,.attachment-media-view.landscape .thumbnail-application{position:relative;}
+      .attachment-media-view.landscape dotlottie-player{position:absolute;height:calc(100% - 42px);width:calc(100% - 42px);}';
+    wp_add_inline_style('am-backend-style', $style);
+    
     wp_enqueue_script('dotlottie-player');
   }
 }
 
 //Add scripts for front-end
+add_action('wp_enqueue_scripts', 'am_frontend_enqueue');
 if (!function_exists('am_frontend_enqueue')) {
-  add_action('wp_enqueue_scripts', 'am_frontend_enqueue');
   function am_frontend_enqueue() {
     global $post;
     $content = '';
@@ -127,24 +135,24 @@ if (!defined('AM_LOTTIEPLAYER_VERSION')) {
 }
 
 //DIVI
+add_action('divi_extensions_init', 'am_initialize_lottie_extension');
 if (!function_exists('am_initialize_lottie_extension')) {
-  add_action('divi_extensions_init', 'am_initialize_lottie_extension');
   function am_initialize_lottie_extension() {
     require_once AM_LOTTIEPLAYER_PATH . 'includes/LottieDiviModules.php';
   }
 }
 
 //ELEMENTOR
+add_action('elementor/widgets/register', 'am_register_lottie_widget');
 if (!function_exists('am_register_lottie_widget')) {
-  add_action('elementor/widgets/register', 'am_register_lottie_widget');
   function am_register_lottie_widget($widgets_manager) {
     require_once AM_LOTTIEPLAYER_PATH . '/includes/widgets/elementor-am-lottieplayer.php';
   }
 }
 
 //FLATSOME
+add_action('after_setup_theme', 'am_register_lottie_flatsome_shortcode');
 if (!function_exists('add_ux_builder_shortcode')) {
-  add_action('after_setup_theme', 'am_register_lottie_flatsome_shortcode');
   function am_register_lottie_flatsome_shortcode() {
     if (!function_exists('add_ux_builder_shortcode')) return;
     require_once AM_LOTTIEPLAYER_PATH . '/includes/flatsome/ux-am-lottieplayer.php';
@@ -152,8 +160,8 @@ if (!function_exists('add_ux_builder_shortcode')) {
 }
 
 //WPBakery
+add_action('vc_before_init','vc_am_lottieplayer'); 
 if (!function_exists('vc_am_lottieplayer')) {
-  add_action('vc_before_init','vc_am_lottieplayer'); 
   function vc_am_lottieplayer() {
     require_once AM_LOTTIEPLAYER_PATH . '/includes/vc/vc-am-lottieplayer.php';
   }

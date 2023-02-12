@@ -5,6 +5,7 @@ import {
 	PanelRow,
 	RangeControl,
 	SelectControl,
+	TextareaControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -13,6 +14,7 @@ import { NumberInput, SwitchLabel } from '../form';
 const AnimationSettings = ( { attributes, setAttributes } ) => {
 	const {
 		align,
+		alt,
 		autoplay,
 		controls,
 		click,
@@ -114,6 +116,15 @@ const AnimationSettings = ( { attributes, setAttributes } ) => {
 						},
 					] }
 					disabled={ ! hover }
+				/>
+				<TextareaControl
+					label={ __( 'Description', 'am-lottieplayer' ) }
+					help={ __(
+						'Describe the animation. This is helpful for screen readers and search engines.',
+						'am-lottieplayer'
+					) }
+					value={ alt }
+					onChange={ ( value ) => setAttributes( { alt: value } ) }
 				/>
 				<PanelRow className="lottie-dimensions">
 					<NumberInput

@@ -1,18 +1,20 @@
 <?php
 if (!defined('ABSPATH')) exit('New phone, who diz?');
 
-vc_add_shortcode_param('attach_lottie', 'attach_field_settings');
-function attach_field_settings($settings) {
-  return
-  '<div class="am-upload">
-    <button
-      id="' . esc_attr($settings['param_name']) . '-button"
-      style="all:unset;cursor:pointer;background:#007cba;color:#fff;font-size:13px;padding:6px 12px;border-radius:2px;height:36px;align-items:center;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;appearance:none;"
-      class="' . esc_attr($settings['param_name']) . ' ' . esc_attr($settings['type']) . '_field"
-    >' . __('Media Library', 'am-lottieplayer') . '
-    </button>
-  </div>
-  <script src="' . AM_LOTTIEPLAYER_URL . 'scripts/am-backend-vc.min.js" defer></script>';
+vc_add_shortcode_param('attach_lottie', 'am_vc_attach_field_settings');
+if (!function_exists('am_vc_attach_field_settings')) {
+  function am_vc_attach_field_settings($settings) {
+    return
+    '<div class="am-upload">
+      <button
+        id="' . esc_attr($settings['param_name']) . '-button"
+        style="all:unset;cursor:pointer;background:#007cba;color:#fff;font-size:13px;padding:6px 12px;border-radius:2px;height:36px;align-items:center;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;appearance:none;"
+        class="' . esc_attr($settings['param_name']) . ' ' . esc_attr($settings['type']) . '_field"
+      >' . __('Media Library', 'am-lottieplayer') . '
+      </button>
+    </div>
+    <script src="' . AM_LOTTIEPLAYER_URL . 'scripts/am-backend-vc.min.js" defer></script>';
+  }
 }
 
 vc_map(

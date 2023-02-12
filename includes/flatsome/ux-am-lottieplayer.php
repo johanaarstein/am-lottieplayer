@@ -1,11 +1,13 @@
 <?php
 if (!defined('ABSPATH')) exit('New phone, who diz?');
 
-function getTemplate() {
-  wp_enqueue_script('am-backend-ux');
-  ob_start();
-  include __DIR__ . '/ux-am-lottieplayer.html';
-  return ob_get_clean();
+if (!function_exists('am_ux_get_template')) {
+  function am_ux_get_template() {
+    wp_enqueue_script('am-backend-ux');
+    ob_start();
+    include __DIR__ . '/ux-am-lottieplayer.html';
+    return ob_get_clean();
+  }
 }
 
 $position_options = require __DIR__ . '/position.php';
@@ -21,7 +23,7 @@ $position_options['options']['position_y']['on_change'] = array(
 add_ux_builder_shortcode('am-lottieplayer', [
   'name' => 'LottiePlayer',
   'category' => __('Content'),
-  'template' => getTemplate(),
+  'template' => am_ux_get_template(),
   'toolbar_thumbnail' => 'img',
 	'thumbnail' => AM_LOTTIEPLAYER_URL . 'assets/ux-icon.svg',
   'allow_in' => ['text_box'],

@@ -16,7 +16,7 @@ if (class_exists('DiviExtension') && !class_exists('AM_LottieDiviModules')) {
 
   new AM_LottieDiviModules;
 
-  wp_register_style('am_lottie_et_styles', false);
+  wp_register_style('am_lottie_et_styles', null);
   wp_enqueue_style('am_lottie_et_styles');
 
   $customStyle = '

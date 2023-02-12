@@ -24,7 +24,7 @@ export default function Lottie() {
 						<animate
 							attributeName="stop-color"
 							values="#24708f;#e18d4c;#1f374c;#85c6e0;#24708f;"
-							dur="3s"
+							dur="12s"
 							repeatCount="indefinite"
 						/>
 					</stop>
@@ -32,7 +32,7 @@ export default function Lottie() {
 						<animate
 							attributeName="stop-color"
 							values="#85c6e0;#24708f;#e18d4c;#1f374c;#85c6e0;"
-							dur="6s"
+							dur="24s"
 							repeatCount="indefinite"
 						/>
 					</stop>

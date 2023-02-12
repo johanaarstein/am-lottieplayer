@@ -1,10 +1,9 @@
 import { InspectorAdvancedControls } from '@wordpress/block-editor';
-import { SelectControl, TextControl } from '@wordpress/components';
+import { SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 const AdvanceSettings = ( { attributes, setAttributes } ) => {
 	const {
-		alt,
 		mode = 'normal',
 		objectFit = 'contain',
 		renderer = 'svg',
@@ -52,11 +51,6 @@ const AdvanceSettings = ( { attributes, setAttributes } ) => {
 						label: __( 'Bounce', 'am-lottieplayer' ),
 					},
 				] }
-			/>
-			<TextControl
-				label={ __( 'Description', 'am-lottieplayer' ) }
-				value={ alt }
-				onChange={ ( value ) => setAttributes( { alt: value } ) }
 			/>
 		</InspectorAdvancedControls>
 	);
