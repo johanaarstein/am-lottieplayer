@@ -113,6 +113,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 2.2.1 =
+* Optimization: Preparatioins for future functionality expansion
+
 = 2.2.0 =
 * New Feature: Adding preview of animations in Media Library
 
