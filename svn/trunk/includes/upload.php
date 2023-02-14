@@ -1,6 +1,7 @@
 <?php
 if (!defined('ABSPATH')) exit('New phone, who diz?');
 
+//Adding Lottie mime types to list over accepted uploads
 add_filter('upload_mimes', 'am_lottie_mimetypes');
 if (!function_exists('am_lottie_mimetypes')) {
   function am_lottie_mimetypes($mimes) {
@@ -96,6 +97,7 @@ if (!function_exists('media_sideload_lottie')) {
   }
 }
 
+//Get default Lottie animation
 if (!function_exists('am_lottie_asset')) {
   function am_lottie_asset($default = false) {
     $url = AM_LOTTIEPLAYER_URL . 'assets/am.lottie';

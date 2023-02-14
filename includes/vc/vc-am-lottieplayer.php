@@ -13,7 +13,7 @@ if (!function_exists('am_vc_attach_field_settings')) {
       >' . __('Media Library', 'am-lottieplayer') . '
       </button>
     </div>
-    <script src="' . AM_LOTTIEPLAYER_URL . 'scripts/am-backend-vc.min.js" defer></script>';
+    <script src="' . AM_LOTTIEPLAYER_URL . 'scripts/am-backend-vc-options.min.js" defer></script>';
   }
 }
 
@@ -24,6 +24,9 @@ vc_map(
     'controls' => 'full',
     'icon' => AM_LOTTIEPLAYER_URL . 'assets/vc-icon.svg',
     'category' => __('Animation', 'am-lottieplayer'),
+    // 'admin_enqueue_js' => AM_LOTTIEPLAYER_URL . 'scripts/am-backend-vc-editor.min.js',
+    // 'front_enqueue_js' => AM_LOTTIEPLAYER_URL . 'scripts/am-frontend-vc-editor.min.js',
+    // 'js_view' => 'AMLottiePlayerView',
     'params' => [
       [
         'type' => 'textfield',

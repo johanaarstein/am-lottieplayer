@@ -18,13 +18,16 @@
 // Make sure we don't expose any info if called directly
 if (!function_exists('add_action')) exit('New phone, who diz?');
 
-if (!defined('AM_LOTTIEPLAYER_PATH')) {
-  define('AM_LOTTIEPLAYER_PATH', plugin_dir_path( __FILE__ ));
-}
-
-if (!defined('AM_LOTTIEPLAYER_URL')) {
-  define('AM_LOTTIEPLAYER_URL', plugin_dir_url( __FILE__ ));
-}
+define('AM_LOTTIEPLAYER_PATH', plugin_dir_path( __FILE__ ));
+define('AM_LOTTIEPLAYER_URL', plugin_dir_url( __FILE__ ));
+define('AM_LOTTIEPLAYER_BASE', plugin_basename( __FILE__ ));
+define('AM_LOTTIEPLAYER_VERSION',
+  get_file_data(
+    AM_LOTTIEPLAYER_PATH,
+    ['Version' => 'Version'],
+    'plugin'
+  )['Version']
+);
 
 add_action('init', 'am_lottie_blocks_init');
 if (!function_exists('am_lottie_blocks_init')) {
@@ -38,7 +41,7 @@ if (!function_exists('am_lottie_blocks_init')) {
       'dotlottie-player',
       AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player.min.js',
       null,
-      '1.4.5',
+      '1.4.6',
       true
     );
 
@@ -66,8 +69,12 @@ if (!function_exists('am_lottie_blocks_init')) {
 }
 
 //Includes
-include AM_LOTTIEPLAYER_PATH . 'includes/functions.php';
-include AM_LOTTIEPLAYER_PATH . 'includes/upload.php';
+if (file_exists(AM_LOTTIEPLAYER_PATH . 'includes/functions.php')) {
+  include AM_LOTTIEPLAYER_PATH . 'includes/functions.php';
+}
+if (file_exists(AM_LOTTIEPLAYER_PATH . 'includes/upload.php')) {
+  include AM_LOTTIEPLAYER_PATH . 'includes/upload.php';
+}
 
 //Add scripts and styles for back-end
 add_action('admin_enqueue_scripts', 'am_backend_enqeue');
@@ -122,16 +129,6 @@ if (!function_exists('am_frontend_enqueue')) {
       }
     }
   }
-}
-
-if (!defined('AM_LOTTIEPLAYER_VERSION')) {
-  define(
-    'AM_LOTTIEPLAYER_VERSION',
-    get_file_data(
-      AM_LOTTIEPLAYER_PATH,
-      ['Version' => 'Version'],
-      'plugin'
-    )['Version']);
 }
 
 //DIVI

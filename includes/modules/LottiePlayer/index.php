@@ -1,7 +1,7 @@
 <?php
 if (!defined('ABSPATH')) exit('New phone, who diz?');
 
-if (!class_exists('AM_ET_Builder_Module_LottiePlayer')) {
+if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_LottiePlayer')) {
 	class AM_ET_Builder_Module_LottiePlayer extends ET_Builder_Module {
 
 		public function init() {
