@@ -8,9 +8,9 @@ The most complete Lottie Player yet. Lightweight, easy to use, accepts LottieJSO
 
 **The most complete Lottie Player yet.**
 
-AM LottiePlayer is easy to use, lightweight, and gives you total control over how to implement crisp, vectorized animations to your website. Easily set up user interactions, choose between JSON or the optimized dotLottie format, choose whether to serve the files from a CDN or your own *Media Library*, choose whether to render the animations as malleable SVGs or performant Canvases, and choose how to scale the animation. You can add a description for screenreaders and search eninge crawlers.
+AM LottiePlayer is easy to use, lightweight, and gives you total control over how to implement crisp, vectorized animations to your website. Easily set up user interactions, choose between JSON or the optimized dotLottie format, choose whether to serve the files from a CDN or your own *Media Library*, choose whether to render the animations as malleable SVGs or performant Canvases, choose how to scale the animation, add a nice description for screen readers and search eninge crawlers, and bada bing bada boom!
 
-Upload Lottie animations to WordPress and add them to Gutenberg, Divi, Elementor or via the shortcode `[am-lottieplayer]`.
+Upload Lottie animations to WordPress and add them to Gutenberg, Divi, Elementor, Flatsome UX Builder, or via the shortcode `[am-lottieplayer]`. This plugin also offer partial support for WPBakery (formerly Visual Studio).
 
 ### Features
 
@@ -18,12 +18,13 @@ Upload Lottie animations to WordPress and add them to Gutenberg, Divi, Elementor
 - Contains a Divi Builder Module
 - Contains an Elementor Widget
 - Contains the shortcode `[am-lottieplayer]`
-- The shortcode is compatible with Flatsome UX Builder
+- Has intergration for Flatsome UX Builder
+- Has partial support for WPBakery (formerly Visual Studio)
 - Scripts are only loaded for pages where the player is used
 - Upload Lottie JSON or dotLottie files to your *Media Library*
 - Drag & drop a Lottie JSON or dotLottie file
 - Insert a Lottie JSON or dotLottie animation from URL
-- Choose renderer, scaling, speed, size, background color, interactions and more from the block settings in Gutenberg. The same settings are accessible in the Divi Module menu, the Elementor Widget menu and the Flatsome UX Builder menu.
+- Choose renderer, scaling, speed, size, background color, interactions and more from the block settings in Gutenberg. The same settings are accessible in the Divi Module menu, the Elementor Widget menu, the Flatsome UX Builder menu, and WPBakery menu.
 
 ## Installation
 
