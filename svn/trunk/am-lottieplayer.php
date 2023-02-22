@@ -4,7 +4,7 @@
  */
 /**
  * Plugin Name:       AM LottiePlayer
- * Description:       The most complete Lottie Player plugin yet! Lightweight, versatile and easy to use. Accepts JSON and dotLottie, and has integrations for Gutenberg, Divi, Elementor and Flatsome UX Builder.
+ * Description:       The most complete Lottie Player plugin yet! Accepts JSON and dotLottie, and has integrations for Gutenberg, Divi, Elementor Flatsome and WPBakery.
  * Requires at least: 5.9
  * Requires PHP:      7.0
  * Version:           2.2.1
