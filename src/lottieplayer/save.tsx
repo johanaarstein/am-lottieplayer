@@ -1,5 +1,7 @@
 import { useBlockProps } from '@wordpress/block-editor';
 
+import type { PlayerComponentProps } from '../types';
+
 export default function save( { attributes } ) {
 	const {
 		align,
@@ -7,7 +9,7 @@ export default function save( { attributes } ) {
 		autoplay,
 		background,
 		controls,
-		click,
+		clickEvent,
 		direction,
 		height,
 		hover,
@@ -20,7 +22,7 @@ export default function save( { attributes } ) {
 		speed,
 		src,
 		width,
-	} = attributes;
+	}: PlayerComponentProps = attributes;
 
 	return (
 		<figure
@@ -43,7 +45,7 @@ export default function save( { attributes } ) {
 				data-direction={ direction }
 				data-mouseover={ hover }
 				data-mouseout={ mouseout }
-				data-click={ click }
+				data-click={ clickEvent }
 				loop={ loop }
 				mode={ mode }
 				objectfit={ objectFit }

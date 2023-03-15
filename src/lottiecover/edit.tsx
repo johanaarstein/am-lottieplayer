@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from '@wordpress/element';
 import {
-	store as blockEditorStore,
+	// store as blockEditorStore,
 	useBlockProps,
-	useInnerBlocksProps,
-	useSetting,
+	// useInnerBlocksProps,
+	// useSetting,
 } from '@wordpress/block-editor';
-import { useSelect } from '@wordpress/data';
+// import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
 import classnames from 'classnames';
@@ -16,52 +16,57 @@ import ResizableCover from '../components/ResizableCover';
 
 import './editor.scss';
 
-const getInnerBlocksTemplate = ( attributes ) => {
-	return [
-		[
-			'core/paragraph',
-			{
-				align: 'center',
-				placeholder: __( 'Write title…', 'am-lottieplayer' ),
-				...attributes,
-			},
-		],
-	];
-};
+// const getInnerBlocksTemplate = ( attributes ) => {
+// 	return [
+// 		[
+// 			'core/paragraph',
+// 			{
+// 				align: 'center',
+// 				placeholder: __( 'Write title…', 'am-lottieplayer' ),
+// 				...attributes,
+// 			},
+// 		],
+// 	];
+// };
 
 export default function Edit( {
 	attributes,
-	clientId,
+	// clientId,
 	isSelected,
 	setAttributes,
 	toggleSelection,
 } ) {
-	const { allowedBlocks, background, height, heightUnit, src, templateLock } =
-			attributes,
+	const {
+			/*allowedBlocks,*/ background,
+			height,
+			heightUnit,
+			src,
+			// templateLock,
+		} = attributes,
 		ref = useRef(),
 		[ isPlaceholder, setIsPlaceholder ] = useState( true ),
 		blockProps = useBlockProps( { ref } ),
-		hasInnerBlocks = useSelect(
-			( select ) =>
-				select( blockEditorStore ).getBlock( clientId ).innerBlocks
-					.length > 0,
-			[ clientId ]
-		),
-		hasFontSizes = !! useSetting( 'typography.fontSizes' )?.length,
-		innerBlocksTemplate = getInnerBlocksTemplate( {
-			fontSize: hasFontSizes ? 'large' : undefined,
-		} ),
-		innerBlocksProps = useInnerBlocksProps(
-			{
-				className: 'wp-block-gb-lottiecover__inner-container',
-			},
-			{
-				template: ! hasInnerBlocks ? innerBlocksTemplate : undefined,
-				templateInsertUpdatesSelection: true,
-				allowedBlocks,
-				templateLock,
-			}
-		),
+		// hasInnerBlocks = useSelect(
+		// 	( select ) =>
+		// 		select( blockEditorStore ).getBlock( clientId ).innerBlocks
+		// 			.length > 0,
+		// 	[ clientId ]
+		// ),
+		// hasFontSizes = !! useSetting( 'typography.fontSizes' )?.length,
+		// innerBlocksTemplate = getInnerBlocksTemplate( {
+		// 	fontSize: hasFontSizes ? 'large' : undefined,
+		// } ),
+		// innerBlocksProps = useInnerBlocksProps(
+		// 	{
+		// 		className: 'wp-block-gb-lottiecover__inner-container',
+		// 	},
+		// 	{
+		// 		// template: ! hasInnerBlocks ? innerBlocksTemplate : undefined,
+		// 		templateInsertUpdatesSelection: true,
+		// 		allowedBlocks,
+		// 		templateLock,
+		// 	}
+		// ),
 		heightWithUnit =
 			height && heightUnit ? `${ height }${ heightUnit }` : height,
 		style = {

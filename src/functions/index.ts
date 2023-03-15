@@ -10,20 +10,16 @@ const attributesFromMedia = ( setAttributes, dimRatio = null ) => {
 				src: media.url,
 				id: media.id,
 				alt: media?.alt,
-				// focalPoint: undefined,
-				// ...( mediaType === VIDEO_BACKGROUND_TYPE
-				// 	? { hasParallax: undefined }
-				// 	: {} ),
 			} );
 		};
 	},
-	debounce = ( func, timeout = 100 ) => {
-		let timer;
+	debounce = ( callBack: ( x: unknown ) => unknown, timeout = 100 ) => {
+		let timer: ReturnType< typeof setTimeout >;
 
-		return ( ...args ) => {
+		return ( ...args: unknown[] ) => {
 			clearTimeout( timer );
 			timer = setTimeout( () => {
-				func( [ ...args ] );
+				callBack( [ ...args ] );
 			}, timeout );
 		};
 	},

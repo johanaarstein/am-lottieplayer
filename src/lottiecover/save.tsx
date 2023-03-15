@@ -1,13 +1,15 @@
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 
-export default function save( { attributes = {} } = {} ) {
+import type { PlayerComponentProps } from '../types';
+
+export default function save( { attributes } ) {
 	const {
 			align,
 			alt,
 			autoplay,
 			background,
 			controls,
-			click,
+			clickEvent,
 			direction,
 			height,
 			heightUnit,
@@ -20,13 +22,13 @@ export default function save( { attributes = {} } = {} ) {
 			speed,
 			src,
 			width,
-		} = attributes,
+		}: PlayerComponentProps = attributes,
 		heightWithUnit =
 			height && heightUnit ? `${ height }${ heightUnit }` : height,
 		style = {
 			minHeight: heightWithUnit || undefined,
 		},
-		parseWidth = ( num ) => {
+		parseWidth = ( num: number ) => {
 			if ( align === 'wide' || align === 'full' ) return '100%';
 			if ( num && typeof num === 'number' ) return `${ num }px`;
 			return null;
@@ -48,7 +50,7 @@ export default function save( { attributes = {} } = {} ) {
 				data-direction={ direction }
 				data-mouseover={ hover }
 				data-mouseout={ mouseout }
-				data-click={ click }
+				data-click={ clickEvent }
 				loop={ loop ? '' : null }
 				mode={ mode }
 				objectfit={ objectFit }
@@ -56,7 +58,7 @@ export default function save( { attributes = {} } = {} ) {
 				speed={ speed }
 				src={ src }
 				style={ {
-					width: parseWidth( width ),
+					width: parseWidth( width as number ),
 					height:
 						height && typeof height === 'number'
 							? `${ height }px`

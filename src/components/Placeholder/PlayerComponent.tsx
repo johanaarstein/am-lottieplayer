@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useRef } from '@wordpress/element';
 
-export default function PlayerComponent( { attributes = {} } = {} ) {
+import type { DotLottiePlayer } from '@johanaarstein/dotlottie-player';
+import type { PlayerComponentProps } from '../../types';
+
+export default function PlayerComponent( { attributes } ) {
 	const {
 			align,
 			alt,
@@ -16,8 +19,8 @@ export default function PlayerComponent( { attributes = {} } = {} ) {
 			speed,
 			src,
 			width,
-		} = attributes,
-		player = useRef( null ),
+		}: PlayerComponentProps = attributes,
+		player = useRef< DotLottiePlayer >( null ),
 		initialRender = useRef( true ),
 		reloadPlayer = useCallback( () => {
 			if ( ! player.current ) return;
@@ -30,7 +33,7 @@ export default function PlayerComponent( { attributes = {} } = {} ) {
 			}, 100 );
 		}, [ renderer ] ),
 		parseWidth = useCallback(
-			( num ) => {
+			( num: number ) => {
 				if ( align === 'wide' || align === 'full' ) return '100%';
 				if ( num && typeof num === 'number' ) return `${ num }px`;
 				return null;
@@ -71,7 +74,7 @@ export default function PlayerComponent( { attributes = {} } = {} ) {
 			speed={ speed }
 			src={ src }
 			style={ {
-				width: parseWidth( width ),
+				width: typeof width === 'number' ? parseWidth( width ) : null,
 				height:
 					height && typeof height === 'number'
 						? `${ height }px`

@@ -46,7 +46,7 @@
 			"type": "string",
 			"default": ""
 		},
-		"click": {
+		"clickEvent": {
 			"type": "boolean",
 			"default": false
 		},

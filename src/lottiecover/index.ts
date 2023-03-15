@@ -1,6 +1,8 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
+// import type { BlockConfiguration } from '@wordpress/blocks';
+
 import './style.scss';
 
 import Edit from './edit';
