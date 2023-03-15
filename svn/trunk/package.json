@@ -81,9 +81,5 @@
 	"funding": {
 		"type": "paypal",
 		"url": "https://www.paypal.com/donate/?hosted_button_id=E7C7DMN8KSQ6A"
-	},
-	"dependencies": {
-		"colord": "^2.9.3",
-		"fast-average-color": "^9.3.0"
 	}
 }
