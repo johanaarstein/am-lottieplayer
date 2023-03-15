@@ -1,77 +1,106 @@
+import classnames from 'classnames';
+
 import { useEffect, useRef, useState } from '@wordpress/element';
 import {
-	// store as blockEditorStore,
 	useBlockProps,
-	// useInnerBlocksProps,
-	// useSetting,
+	useInnerBlocksProps,
+	store as blockEditorStore,
+	useSetting,
 } from '@wordpress/block-editor';
-// import { useSelect } from '@wordpress/data';
+import { Spinner } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { useSelect } from '@wordpress/data';
+import { isBlobURL } from '@wordpress/blob';
 
-import classnames from 'classnames';
+import type { EditProps, PlayerComponentProps } from '../types';
 
 import LottieControls from '../components/LottieControls';
 import Placeholder from '../components/Placeholder';
 import ResizableCover from '../components/ResizableCover';
 
+// import { attributesFromMedia, mediaPosition } from '../functions';
+
 import './editor.scss';
 
-// const getInnerBlocksTemplate = ( attributes ) => {
-// 	return [
-// 		[
-// 			'core/paragraph',
-// 			{
-// 				align: 'center',
-// 				placeholder: __( 'Write title…', 'am-lottieplayer' ),
-// 				...attributes,
-// 			},
-// 		],
-// 	];
-// };
+const getInnerBlocksTemplate = ( attributes: object ) => [
+		[
+			'core/paragraph',
+			{
+				align: 'center',
+				placeholder: __( 'Write title…', 'am-lottieplayer' ),
+				...attributes,
+			},
+		],
+	],
+	isTemporaryMedia = ( id: string, url: string ) => ! id && isBlobURL( url );
 
 export default function Edit( {
 	attributes,
-	// clientId,
+	clientId,
 	isSelected,
 	setAttributes,
 	toggleSelection,
-} ) {
+}: EditProps ) {
 	const {
-			/*allowedBlocks,*/ background,
+			allowedBlocks = [
+				'core/paragraph',
+				'core/heading',
+				'core/buttons',
+			],
+			// alt,
+			background,
+			// contentPosition,
+			// dimRatio,
+			// focalPoint,
+			// hasParallax,
 			height,
-			heightUnit,
+			heightUnit = 'px',
+			id,
+			// isDark,
 			src,
-			// templateLock,
-		} = attributes,
+			templateLock,
+		}: PlayerComponentProps = attributes,
+		// { gradientClass, gradientValue } = __experimentalUseGradient(),
+		// onSelectMedia = attributesFromMedia( setAttributes, dimRatio ),
+		isUploadingMedia = isTemporaryMedia( id as string, src as string ),
 		ref = useRef(),
 		[ isPlaceholder, setIsPlaceholder ] = useState( true ),
 		blockProps = useBlockProps( { ref } ),
-		// hasInnerBlocks = useSelect(
-		// 	( select ) =>
-		// 		select( blockEditorStore ).getBlock( clientId ).innerBlocks
-		// 			.length > 0,
-		// 	[ clientId ]
-		// ),
-		// hasFontSizes = !! useSetting( 'typography.fontSizes' )?.length,
-		// innerBlocksTemplate = getInnerBlocksTemplate( {
-		// 	fontSize: hasFontSizes ? 'large' : undefined,
-		// } ),
-		// innerBlocksProps = useInnerBlocksProps(
-		// 	{
-		// 		className: 'wp-block-gb-lottiecover__inner-container',
-		// 	},
-		// 	{
-		// 		// template: ! hasInnerBlocks ? innerBlocksTemplate : undefined,
-		// 		templateInsertUpdatesSelection: true,
-		// 		allowedBlocks,
-		// 		templateLock,
-		// 	}
-		// ),
 		heightWithUnit =
 			height && heightUnit ? `${ height }${ heightUnit }` : height,
 		style = {
 			minHeight: heightWithUnit || undefined,
-		};
+		},
+		// backgroundPosition = focalPoint
+		// 	? mediaPosition( focalPoint )
+		// 	: undefined,
+		// bgStyle = { backgroundColor: overlayColor?.color },
+		// mediaStyle = {
+		// 	objectPosition: focalPoint
+		// 		? mediaPosition( focalPoint )
+		// 		: undefined,
+		// },
+		hasInnerBlocks = useSelect(
+			( select ) =>
+				!! select( blockEditorStore ).getBlock( clientId ).innerBlocks
+					.length,
+			[ clientId ]
+		),
+		hasFontSizes = !! useSetting( 'typography.fontSizes' )?.length,
+		innerBlocksTemplate = getInnerBlocksTemplate( {
+			fontSize: hasFontSizes ? 'large' : undefined,
+		} ),
+		innerBlocksProps = useInnerBlocksProps(
+			{
+				className: 'wp-block-gb-lottiecover__inner-container',
+			},
+			{
+				template: ! hasInnerBlocks ? innerBlocksTemplate : undefined,
+				templateInsertUpdatesSelection: true,
+				allowedBlocks,
+				templateLock,
+			}
+		);
 
 	useEffect( () => {
 		setIsPlaceholder( ! src || src === '' );
@@ -95,14 +124,14 @@ export default function Edit( {
 					className={ 'block-library-lottiecover__resize-container' }
 					onResizeStart={ () => {
 						setAttributes( { heightUnit: 'px' } );
-						toggleSelection( false );
+						if ( toggleSelection ) toggleSelection( false );
 					} }
-					onResize={ ( value ) => {
+					onResize={ ( value: number ) => {
 						setAttributes( { height: value } );
 					} }
-					onResizeStop={ ( value ) => {
+					onResizeStop={ ( value: number ) => {
 						setAttributes( { height: value } );
-						toggleSelection( true );
+						if ( toggleSelection ) toggleSelection( true );
 					} }
 					showHandle={ isSelected }
 				/>
@@ -112,6 +141,7 @@ export default function Edit( {
 					style={ { backgroundColor: background } }
 					hidden={ isPlaceholder }
 				/>
+				{ isUploadingMedia && <Spinner /> }
 				<Placeholder
 					attributes={ attributes }
 					setAttributes={ setAttributes }

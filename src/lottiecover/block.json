@@ -62,6 +62,10 @@
 			"type": "object",
 			"default": {}
 		},
+		"hasParallax": {
+			"type": "boolean",
+			"default": false
+		},
 		"height": {
 			"type": "number",
 			"default": null
@@ -77,6 +81,10 @@
 		"id": {
 			"type": "string",
 			"default": null
+		},
+		"isDark": {
+			"type": "boolean",
+			"default": true
 		},
 		"loop": {
 			"type": "boolean",

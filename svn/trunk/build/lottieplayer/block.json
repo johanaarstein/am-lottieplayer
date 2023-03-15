@@ -40,7 +40,7 @@
       "selector": "dotlottie-player",
       "attribute": "controls"
     },
-    "click": {
+    "clickEvent": {
       "type": "boolean",
       "default": false
     },

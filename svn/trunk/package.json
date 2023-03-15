@@ -39,12 +39,23 @@
 	],
 	"main": "build/lottieplayer/index.js",
 	"devDependencies": {
-		"@wordpress/i18n": "^4.28.0",
-		"@wordpress/scripts": "^25.5.1",
+		"@johanaarstein/dotlottie-player": "^1.4.17",
+		"@types/node": "^18.15.3",
+		"@types/react": "^18.0.28",
+		"@types/wordpress__block-editor": "^11.0.1",
+		"@types/wordpress__components": "^23.0.1",
+		"@typescript-eslint/eslint-plugin": "^5.55.0",
+		"@wordpress/blob": "^3.29.0",
+		"@wordpress/compose": "^6.6.0",
+		"@wordpress/core-data": "^6.6.0",
+		"@wordpress/i18n": "^4.29.0",
+		"@wordpress/scripts": "^26.0.0",
 		"classnames": "^2.3.2",
 		"eslint-plugin-react": "^7.31.11",
 		"eslint-plugin-react-hooks": "^4.6.0",
-		"react": "^18.2.0"
+		"react": "^18.2.0",
+		"ts-loader": "^9.4.2",
+		"typescript": "^4.9.5"
 	},
 	"scripts": {
 		"build": "wp-scripts build && npm run svn",
@@ -70,5 +81,9 @@
 	"funding": {
 		"type": "paypal",
 		"url": "https://www.paypal.com/donate/?hosted_button_id=E7C7DMN8KSQ6A"
+	},
+	"dependencies": {
+		"colord": "^2.9.3",
+		"fast-average-color": "^9.3.0"
 	}
 }

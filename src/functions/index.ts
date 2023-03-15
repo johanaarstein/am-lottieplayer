@@ -1,4 +1,9 @@
-const attributesFromMedia = ( setAttributes, dimRatio = null ) => {
+import type { Dispatch, SetStateAction } from 'react';
+
+const attributesFromMedia = (
+		setAttributes: Dispatch< SetStateAction< object > >,
+		dimRatio?: number
+	) => {
 		return ( media ) => {
 			if ( ! media || ! media.url ) {
 				setAttributes( { src: undefined, id: undefined } );
@@ -47,6 +52,9 @@ const attributesFromMedia = ( setAttributes, dimRatio = null ) => {
 	},
 	isTouch = () => {
 		return window && 'ontouchstart' in window;
+	},
+	mediaPosition = ( { x = 0.5, y = 0.5 } ) => {
+		return `${ Math.round( x * 100 ) }% ${ Math.round( y * 100 ) }%`;
 	};
 
 export {
@@ -55,4 +63,5 @@ export {
 	isModifierKey,
 	isNumericInput,
 	isTouch,
+	mediaPosition,
 };
