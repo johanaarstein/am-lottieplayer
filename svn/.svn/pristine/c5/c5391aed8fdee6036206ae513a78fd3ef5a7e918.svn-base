@@ -4,10 +4,10 @@
  */
 /**
  * Plugin Name:       AM LottiePlayer
- * Description:       The most complete Lottie Player plugin yet! Accepts JSON and dotLottie, and has integrations for Gutenberg, Divi, Elementor Flatsome and WPBakery.
+ * Description:       The most complete Lottie Player plugin yet! Lightweight, versatile and easy to use. Accepts JSON and dotLottie, and has integrations for Gutenberg, Divi, Elementor and Flatsome UX Builder.
  * Requires at least: 5.9
  * Requires PHP:      7.0
- * Version:           2.2.2
+ * Version:           2.2.0
  * Author:            Aarstein Media
  * Author URI:        https://www.aarstein.media
  * License:           GPL-2.0-or-later
@@ -18,16 +18,13 @@
 // Make sure we don't expose any info if called directly
 if (!function_exists('add_action')) exit('New phone, who diz?');
 
-define('AM_LOTTIEPLAYER_PATH', plugin_dir_path( __FILE__ ));
-define('AM_LOTTIEPLAYER_URL', plugin_dir_url( __FILE__ ));
-define('AM_LOTTIEPLAYER_BASE', plugin_basename( __FILE__ ));
-define('AM_LOTTIEPLAYER_VERSION',
-  get_file_data(
-    AM_LOTTIEPLAYER_PATH,
-    ['Version' => 'Version'],
-    'plugin'
-  )['Version']
-);
+if (!defined('AM_LOTTIEPLAYER_PATH')) {
+  define('AM_LOTTIEPLAYER_PATH', plugin_dir_path( __FILE__ ));
+}
+
+if (!defined('AM_LOTTIEPLAYER_URL')) {
+  define('AM_LOTTIEPLAYER_URL', plugin_dir_url( __FILE__ ));
+}
 
 add_action('init', 'am_lottie_blocks_init');
 if (!function_exists('am_lottie_blocks_init')) {
@@ -41,7 +38,7 @@ if (!function_exists('am_lottie_blocks_init')) {
       'dotlottie-player',
       AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player.min.js',
       null,
-      '1.4.6',
+      '1.4.5',
       true
     );
 
@@ -69,12 +66,8 @@ if (!function_exists('am_lottie_blocks_init')) {
 }
 
 //Includes
-if (file_exists(AM_LOTTIEPLAYER_PATH . 'includes/functions.php')) {
-  include AM_LOTTIEPLAYER_PATH . 'includes/functions.php';
-}
-if (file_exists(AM_LOTTIEPLAYER_PATH . 'includes/upload.php')) {
-  include AM_LOTTIEPLAYER_PATH . 'includes/upload.php';
-}
+include AM_LOTTIEPLAYER_PATH . 'includes/functions.php';
+include AM_LOTTIEPLAYER_PATH . 'includes/upload.php';
 
 //Add scripts and styles for back-end
 add_action('admin_enqueue_scripts', 'am_backend_enqeue');
@@ -129,6 +122,16 @@ if (!function_exists('am_frontend_enqueue')) {
       }
     }
   }
+}
+
+if (!defined('AM_LOTTIEPLAYER_VERSION')) {
+  define(
+    'AM_LOTTIEPLAYER_VERSION',
+    get_file_data(
+      AM_LOTTIEPLAYER_PATH,
+      ['Version' => 'Version'],
+      'plugin'
+    )['Version']);
 }
 
 //DIVI

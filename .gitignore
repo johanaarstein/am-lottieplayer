@@ -25,6 +25,7 @@ node_modules/
 
 # Output of `wp-scripts plugin-zip`
 *.zip
+*.tar.gz
 
 # dotenv environment variables file
 .env
@@ -33,4 +34,10 @@ node_modules/
 *.pem
 .vscode
 
-.svn
+wp-cli.local.yml
+vendor/
+
+*.log
+phpunit.xml
+phpcs.xml
+.phpcs.xml

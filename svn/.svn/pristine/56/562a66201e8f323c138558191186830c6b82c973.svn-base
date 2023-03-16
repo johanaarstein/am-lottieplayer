@@ -1,7 +1,7 @@
 {
 	"name": "am-lottieplayer",
-	"version": "2.2.2",
-	"description": "Lightweight, versatile and easy to use! Add vectorized Lottie animations to your page with Gutenberg, the Divi Builder, Elementor or Flatsome UX Builder.",
+	"version": "2.1.3",
+	"description": "Lightweight, versatile and easy to use! Add vectorized Lottie animations to your page with Gutenberg, the Divi Builder or Elementor.",
 	"author": {
 		"name": "Aarstein Media",
 		"email": "johan@aarstein.media",
@@ -30,7 +30,6 @@
 		"email": "johan@aarstein.media"
 	},
 	"files": [
-		"assets",
 		"build",
 		"includes",
 		"scripts",
@@ -39,8 +38,8 @@
 	],
 	"main": "build/lottieplayer/index.js",
 	"devDependencies": {
-		"@wordpress/i18n": "^4.29.0",
-		"@wordpress/scripts": "^26.0.0",
+		"@wordpress/i18n": "^4.26.0",
+		"@wordpress/scripts": "^25.3.0",
 		"classnames": "^2.3.2",
 		"eslint-plugin-react": "^7.31.11",
 		"eslint-plugin-react-hooks": "^4.6.0",
@@ -61,7 +60,7 @@
 		"test:e2e": "wp-scripts test-e2e",
 		"test:unit": "wp-scripts test-unit-js",
 		"stash": "wp-scripts build && wp-scripts plugin-zip",
-		"svn": "cp -R ./assets ./build ./includes ./scripts ./styles ./svn/trunk && cp ./am-lottieplayer.php ./LICENSE ./package.json ./readme.txt ./svn/trunk"
+		"svn": "cp -R ./build ./includes ./scripts ./styles ./svn/trunk && cp ./am-lottieplayer.php ./LICENSE ./package.json ./readme.txt ./svn/trunk"
 	},
 	"cde": {
 		"gettext": "am-lottieplayer",

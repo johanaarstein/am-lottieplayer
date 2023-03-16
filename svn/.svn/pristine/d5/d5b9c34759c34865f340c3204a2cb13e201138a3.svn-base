@@ -1,13 +1,14 @@
 {
 	"name": "am-lottieplayer",
-	"version": "2.2.2",
-	"description": "Lightweight, versatile and easy to use! Add vectorized Lottie animations to your page with Gutenberg, the Divi Builder, Elementor or Flatsome UX Builder.",
+	"version": "2.0.4",
+	"description": "Lightweight, versatile and easy to use! Add vectorized Lottie animations to your page with Gutenberg, the Divi Builder or Elementor.",
 	"author": {
 		"name": "Aarstein Media",
 		"email": "johan@aarstein.media",
 		"url": "https://www.aarstein.media",
 		"organization": "Aarstein Media"
 	},
+	"homepage": "https://wordpress.org/plugins/am-lottieplayer",
 	"license": "GPL-2.0-or-later",
 	"keywords": [
 		"animation",
@@ -20,7 +21,6 @@
 		"svg",
 		"canvas"
 	],
-	"homepage": "https://wordpress.org/plugins/am-lottieplayer",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/johanaarstein/am-lottieplayer"
@@ -30,7 +30,6 @@
 		"email": "johan@aarstein.media"
 	},
 	"files": [
-		"assets",
 		"build",
 		"includes",
 		"scripts",
@@ -39,8 +38,8 @@
 	],
 	"main": "build/lottieplayer/index.js",
 	"devDependencies": {
-		"@wordpress/i18n": "^4.29.0",
-		"@wordpress/scripts": "^26.0.0",
+		"@wordpress/i18n": "^4.26.0",
+		"@wordpress/scripts": "^25.3.0",
 		"classnames": "^2.3.2",
 		"eslint-plugin-react": "^7.31.11",
 		"eslint-plugin-react-hooks": "^4.6.0",
@@ -61,14 +60,10 @@
 		"test:e2e": "wp-scripts test-e2e",
 		"test:unit": "wp-scripts test-unit-js",
 		"stash": "wp-scripts build && wp-scripts plugin-zip",
-		"svn": "cp -R ./assets ./build ./includes ./scripts ./styles ./svn/trunk && cp ./am-lottieplayer.php ./LICENSE ./package.json ./readme.txt ./svn/trunk"
+		"svn": "cp -R ./build ./includes ./scripts ./styles ./svn/trunk && cp ./am-lottieplayer.php ./LICENSE ./package.json ./readme.txt ./svn/trunk"
 	},
 	"cde": {
 		"gettext": "am-lottieplayer",
 		"prefix": "am"
-	},
-	"funding": {
-		"type": "paypal",
-		"url": "https://www.paypal.com/donate/?hosted_button_id=E7C7DMN8KSQ6A"
 	}
 }
