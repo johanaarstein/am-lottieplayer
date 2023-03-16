@@ -5,6 +5,15 @@
 	"title": "AM LottieCover",
 	"category": "media",
 	"description": "Add a Lottie animation with a text overlay — great for headers.",
+	"keywords": [
+		"animation",
+		"gif",
+		"motion",
+		"vector",
+		"SVG",
+		"Lottie",
+		"dotLottie"
+	],
 	"textdomain": "am-lottieplayer",
 	"attributes": {
 		"align": {

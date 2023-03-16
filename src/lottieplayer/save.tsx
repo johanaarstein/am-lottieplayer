@@ -1,8 +1,9 @@
 import { useBlockProps } from '@wordpress/block-editor';
 
+import type { BlockSaveProps } from 'wordpress__blocks';
 import type { PlayerComponentProps } from '../types';
 
-export default function save( { attributes } ) {
+export default function save( { attributes }: BlockSaveProps< object > ) {
 	const {
 		align,
 		alt,

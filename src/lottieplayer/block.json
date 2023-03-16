@@ -3,6 +3,16 @@
 	"apiVersion": 2,
 	"name": "gb/lottieplayer",
 	"title": "AM LottiePlayer",
+	"description": "Play Lottie animations on your WordPress website.",
+	"keywords": [
+		"animation",
+		"gif",
+		"motion",
+		"vector",
+		"SVG",
+		"Lottie",
+		"dotLottie"
+	],
 	"category": "media",
 	"supports": {
 		"align": true,

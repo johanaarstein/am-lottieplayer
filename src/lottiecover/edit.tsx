@@ -12,7 +12,8 @@ import { __ } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
 import { isBlobURL } from '@wordpress/blob';
 
-import type { EditProps, PlayerComponentProps } from '../types';
+import type { BlockEditProps } from 'wordpress__blocks';
+import type { PlayerComponentProps } from '../types';
 
 import LottieControls from '../components/LottieControls';
 import Placeholder from '../components/Placeholder';
@@ -34,13 +35,17 @@ const getInnerBlocksTemplate = ( attributes: object ) => [
 	],
 	isTemporaryMedia = ( id: string, url: string ) => ! id && isBlobURL( url );
 
+interface BlockCoverEditProps extends BlockEditProps< object > {
+	toggleSelection?: ( x: boolean ) => void;
+}
+
 export default function Edit( {
 	attributes,
 	clientId,
 	isSelected,
 	setAttributes,
 	toggleSelection,
-}: EditProps ) {
+}: BlockCoverEditProps ) {
 	const {
 			allowedBlocks = [
 				'core/paragraph',
