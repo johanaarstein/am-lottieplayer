@@ -13,6 +13,7 @@ import { useSelect } from '@wordpress/data';
 import { isBlobURL } from '@wordpress/blob';
 
 import type { BlockEditProps } from 'wordpress__blocks';
+import type { SelectFunction } from '@wordpress/data/src/types';
 import type { PlayerComponentProps } from '../types';
 
 import LottieControls from '../components/LottieControls';
@@ -86,7 +87,7 @@ export default function Edit( {
 		// 		: undefined,
 		// },
 		hasInnerBlocks = useSelect(
-			( select ) =>
+			( select: SelectFunction ) =>
 				!! select( blockEditorStore ).getBlock( clientId ).innerBlocks
 					.length,
 			[ clientId ]

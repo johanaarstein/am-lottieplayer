@@ -16,8 +16,11 @@
 		"plugin:@wordpress/eslint-plugin/recommended"
 	],
 	"ignorePatterns": [
-		"*.config.js"
+		"*.js"
 	],
+	"rules": {
+		"@typescript-eslint/no-namespace": "off"
+	},
 	"globals": {
 		"JSX": true,
 		"NodeJS": true

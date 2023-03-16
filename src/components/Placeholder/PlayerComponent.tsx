@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef } from '@wordpress/element';
 
-import type { DotLottiePlayer } from '@johanaarstein/dotlottie-player';
-import type { PlayerComponentProps } from '../../types';
+import type { DotLottiePlayer, PlayerComponentProps } from '../../types';
 
 export default function PlayerComponent( { attributes } ) {
 	const {
@@ -24,12 +23,12 @@ export default function PlayerComponent( { attributes } ) {
 		initialRender = useRef( true ),
 		reloadPlayer = useCallback( () => {
 			if ( ! player.current ) return;
-			player.current.reload();
+			if ( player.current.reload ) player.current.reload();
 			setTimeout( () => {
 				const canvas =
 					player.current?.shadowRoot?.querySelector( 'canvas' );
 				// eslint-disable-next-line no-unused-expressions
-				renderer === 'svg' && canvas && canvas.remove();
+				renderer === 'svg' && canvas?.remove();
 			}, 100 );
 		}, [ renderer ] ),
 		parseWidth = useCallback(
@@ -53,9 +52,10 @@ export default function PlayerComponent( { attributes } ) {
 			player.current &&
 			loop &&
 			autoplay &&
-			player.current.currentState !== 'playing'
+			player.current.currentState !== 'playing' &&
+			player.current.play
 		) {
-			player.current?.play();
+			player.current.play();
 		}
 	}, [ autoplay, loop ] );
 
@@ -72,7 +72,7 @@ export default function PlayerComponent( { attributes } ) {
 			ref={ player }
 			renderer={ renderer }
 			speed={ speed }
-			src={ src }
+			src={ src as string }
 			style={ {
 				width: typeof width === 'number' ? parseWidth( width ) : null,
 				height:

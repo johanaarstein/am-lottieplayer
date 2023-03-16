@@ -1,10 +1,8 @@
-import type { Dispatch, SetStateAction } from 'react';
-
 const attributesFromMedia = (
-		setAttributes: Dispatch< SetStateAction< object > >,
+		setAttributes: ( attrs: object ) => void,
 		dimRatio?: number
 	) => {
-		return ( media ) => {
+		return ( media: { url: string; id?: string; alt?: string } ) => {
 			if ( ! media || ! media.url ) {
 				setAttributes( { src: undefined, id: undefined } );
 				return;

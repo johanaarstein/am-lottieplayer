@@ -51,7 +51,7 @@ export default function save( { attributes }: BlockSaveProps< object > ) {
 				mode={ mode }
 				objectfit={ objectFit }
 				renderer={ renderer }
-				src={ src }
+				src={ src as string }
 				speed={ speed }
 			/>
 		</figure>
