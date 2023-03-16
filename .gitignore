@@ -41,3 +41,5 @@ vendor/
 phpunit.xml
 phpcs.xml
 .phpcs.xml
+
+.svn
