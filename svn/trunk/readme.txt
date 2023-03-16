@@ -114,6 +114,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 2.2.2 =
+* Bugfix: Issue prevented Gutenberg backend from working properly
+
 = 2.2.1 =
 * Optimization: Preparatioins for future functionality expansion
 
