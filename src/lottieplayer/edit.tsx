@@ -4,10 +4,16 @@ import { useBlockProps } from '@wordpress/block-editor';
 import LottieControls from '../components/LottieControls';
 import Placeholder from '../components/Placeholder';
 
+import type { BlockEditProps } from 'wordpress__blocks';
+import type { PlayerComponentProps } from '../types';
+
 import './editor.scss';
 
-export default function Edit( { attributes, setAttributes } ) {
-	const { src } = attributes,
+export default function Edit( {
+	attributes,
+	setAttributes,
+}: BlockEditProps< object > ) {
+	const { src }: PlayerComponentProps = attributes,
 		[ isPlaceholder, setIsPlaceholder ] = useState( true );
 
 	useEffect( () => {

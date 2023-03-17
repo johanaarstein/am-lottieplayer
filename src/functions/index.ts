@@ -1,5 +1,8 @@
-const attributesFromMedia = ( setAttributes, dimRatio ) => {
-		return ( media ) => {
+const attributesFromMedia = (
+		setAttributes: ( attrs: object ) => void,
+		dimRatio?: number
+	) => {
+		return ( media: { url: string; id?: string; alt?: string } ) => {
 			if ( ! media || ! media.url ) {
 				setAttributes( { src: undefined, id: undefined } );
 				return;
@@ -13,10 +16,10 @@ const attributesFromMedia = ( setAttributes, dimRatio ) => {
 			} );
 		};
 	},
-	debounce = ( callBack, timeout = 100 ) => {
-		let timer;
+	debounce = ( callBack: ( x: unknown ) => unknown, timeout = 100 ) => {
+		let timer: ReturnType< typeof setTimeout >;
 
-		return ( ...args ) => {
+		return ( ...args: unknown[] ) => {
 			clearTimeout( timer );
 			timer = setTimeout( () => {
 				callBack( [ ...args ] );

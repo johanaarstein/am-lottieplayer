@@ -28,7 +28,7 @@ const AnimationSettings = ( { attributes, setAttributes } ) => {
 	} = attributes;
 
 	const parseWidth = useCallback(
-		( num ) => {
+		( num: number | string ) => {
 			if ( align === 'full' || align === 'wide' ) return '100%';
 			return ! num || num === '0' ? undefined : num;
 		},

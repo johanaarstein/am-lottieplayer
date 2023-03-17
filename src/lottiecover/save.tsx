@@ -1,6 +1,9 @@
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 
-export default function save( { attributes } ) {
+import type { BlockSaveProps } from 'wordpress__blocks';
+import type { PlayerComponentProps } from '../types';
+
+export default function save( { attributes }: BlockSaveProps< object > ) {
 	const {
 			align,
 			alt,
@@ -20,13 +23,13 @@ export default function save( { attributes } ) {
 			speed,
 			src,
 			width,
-		} = attributes,
+		}: PlayerComponentProps = attributes,
 		heightWithUnit =
 			height && heightUnit ? `${ height }${ heightUnit }` : height,
 		style = {
 			minHeight: heightWithUnit || undefined,
 		},
-		parseWidth = ( num ) => {
+		parseWidth = ( num: number ) => {
 			if ( align === 'wide' || align === 'full' ) return '100%';
 			if ( num && typeof num === 'number' ) return `${ num }px`;
 			return null;
@@ -54,9 +57,9 @@ export default function save( { attributes } ) {
 				objectfit={ objectFit }
 				renderer={ renderer }
 				speed={ speed }
-				src={ src }
+				src={ src as string }
 				style={ {
-					width: parseWidth( width ),
+					width: parseWidth( width as number ),
 					height:
 						height && typeof height === 'number'
 							? `${ height }px`

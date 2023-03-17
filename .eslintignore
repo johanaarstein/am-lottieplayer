@@ -2,5 +2,5 @@
 **/node_modules
 
 # Build products
-./build/
-./scripts/
+./build/**/*
+./scripts/*

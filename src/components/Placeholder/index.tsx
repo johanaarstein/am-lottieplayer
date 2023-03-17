@@ -8,10 +8,10 @@ export default function Placeholder( {
 	setAttributes,
 	isPlaceholder,
 } ) {
-	const ErrorNotice = ( message ) => (
+	const ErrorNotice = ( message: string ) => (
 			<Notice status="error">{ message }</Notice>
 		),
-		onUploadError = ( message ) => {
+		onUploadError = ( message: string ) => {
 			ErrorNotice( message );
 		},
 		onSelectMedia = ( { id, url, alt } ) => {

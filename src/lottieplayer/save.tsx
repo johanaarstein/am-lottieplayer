@@ -1,6 +1,9 @@
 import { useBlockProps } from '@wordpress/block-editor';
 
-export default function save( { attributes } ) {
+import type { BlockSaveProps } from 'wordpress__blocks';
+import type { PlayerComponentProps } from '../types';
+
+export default function save( { attributes }: BlockSaveProps< object > ) {
 	const {
 		align,
 		alt,
@@ -20,7 +23,7 @@ export default function save( { attributes } ) {
 		speed,
 		src,
 		width,
-	} = attributes;
+	}: PlayerComponentProps = attributes;
 
 	return (
 		<figure
@@ -48,7 +51,7 @@ export default function save( { attributes } ) {
 				mode={ mode }
 				objectfit={ objectFit }
 				renderer={ renderer }
-				src={ src }
+				src={ src as string }
 				speed={ speed }
 			/>
 		</figure>

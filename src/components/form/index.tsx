@@ -2,7 +2,21 @@ import { BaseControl, FormToggle, TextControl } from '@wordpress/components';
 
 import { isModifierKey, isNumericInput } from '../../functions';
 
-const SwitchLabel = ( { id = '', onChange, subTitle, title, value } ) => {
+type SwitchLabelProps = {
+	id: string;
+	onChange: ( x: boolean ) => void;
+	subTitle?: string;
+	title?: string;
+	value?: boolean;
+};
+
+const SwitchLabel = ( {
+	id = '',
+	onChange,
+	subTitle,
+	title,
+	value,
+}: SwitchLabelProps ) => {
 	return (
 		<BaseControl
 			id={ id }
@@ -18,6 +32,15 @@ const SwitchLabel = ( { id = '', onChange, subTitle, title, value } ) => {
 	);
 };
 
+type NumberInputProps = {
+	id: string;
+	onChange: ( x: number ) => void;
+	title?: string;
+	value?: string | number;
+	disabled?: boolean;
+	placeholder?: string;
+};
+
 const NumberInput = ( {
 	id = '',
 	onChange,
@@ -25,7 +48,7 @@ const NumberInput = ( {
 	value = '',
 	disabled,
 	placeholder = '',
-} ) => {
+}: NumberInputProps ) => {
 	const keydownHandler = ( e ) => {
 		if ( isModifierKey( e ) ) return;
 		// eslint-disable-next-line no-unused-expressions
