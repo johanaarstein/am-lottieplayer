@@ -7,7 +7,7 @@ export default function save( { attributes } ) {
 		autoplay,
 		background,
 		controls,
-		click,
+		clickEvent,
 		direction,
 		height,
 		hover,
@@ -43,7 +43,7 @@ export default function save( { attributes } ) {
 				data-direction={ direction }
 				data-mouseover={ hover }
 				data-mouseout={ mouseout }
-				data-click={ click }
+				data-click={ clickEvent }
 				loop={ loop }
 				mode={ mode }
 				objectfit={ objectFit }

@@ -1,13 +1,13 @@
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 
-export default function save( { attributes = {} } = {} ) {
+export default function save( { attributes } ) {
 	const {
 			align,
 			alt,
 			autoplay,
 			background,
 			controls,
-			click,
+			clickEvent,
 			direction,
 			height,
 			heightUnit,
@@ -48,7 +48,7 @@ export default function save( { attributes = {} } = {} ) {
 				data-direction={ direction }
 				data-mouseover={ hover }
 				data-mouseout={ mouseout }
-				data-click={ click }
+				data-click={ clickEvent }
 				loop={ loop ? '' : null }
 				mode={ mode }
 				objectfit={ objectFit }

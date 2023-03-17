@@ -1,4 +1,4 @@
-import { InspectorControls } from '@wordpress/block-editor'; //FocalPointPicker,
+import { InspectorControls } from '@wordpress/block-editor';
 
 import AdvancedSettings from './AdvancedSettings';
 import AnimationSettings from './AnimationSettings';

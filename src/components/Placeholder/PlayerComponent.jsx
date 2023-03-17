@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from '@wordpress/element';
 
-export default function PlayerComponent( { attributes = {} } = {} ) {
+export default function PlayerComponent( { attributes } ) {
 	const {
 			align,
 			alt,
@@ -21,18 +21,18 @@ export default function PlayerComponent( { attributes = {} } = {} ) {
 		initialRender = useRef( true ),
 		reloadPlayer = useCallback( () => {
 			if ( ! player.current ) return;
-			player.current.reload();
+			if ( player.current.reload ) player.current.reload();
 			setTimeout( () => {
 				const canvas =
 					player.current?.shadowRoot?.querySelector( 'canvas' );
 				// eslint-disable-next-line no-unused-expressions
-				renderer === 'svg' && canvas && canvas.remove();
+				renderer === 'svg' && canvas?.remove();
 			}, 100 );
 		}, [ renderer ] ),
 		parseWidth = useCallback(
 			( num ) => {
 				if ( align === 'wide' || align === 'full' ) return '100%';
-				if ( num && typeof num === 'number' ) return `${ num }px`;
+				if ( num instanceof Number ) return `${ num }px`;
 				return null;
 			},
 			[ align ]
@@ -50,9 +50,10 @@ export default function PlayerComponent( { attributes = {} } = {} ) {
 			player.current &&
 			loop &&
 			autoplay &&
-			player.current.currentState !== 'playing'
+			player.current.currentState !== 'playing' &&
+			player.current.play
 		) {
-			player.current?.play();
+			player.current.play();
 		}
 	}, [ autoplay, loop ] );
 
@@ -71,7 +72,7 @@ export default function PlayerComponent( { attributes = {} } = {} ) {
 			speed={ speed }
 			src={ src }
 			style={ {
-				width: parseWidth( width ),
+				width: typeof width === 'number' ? parseWidth( width ) : null,
 				height:
 					height && typeof height === 'number'
 						? `${ height }px`

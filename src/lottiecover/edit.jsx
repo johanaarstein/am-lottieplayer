@@ -1,14 +1,16 @@
+import classnames from 'classnames';
+
 import { useEffect, useRef, useState } from '@wordpress/element';
 import {
-	store as blockEditorStore,
 	useBlockProps,
 	useInnerBlocksProps,
+	store as blockEditorStore,
 	useSetting,
 } from '@wordpress/block-editor';
-import { useSelect } from '@wordpress/data';
+import { Spinner } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-
-import classnames from 'classnames';
+import { useSelect } from '@wordpress/data';
+import { isBlobURL } from '@wordpress/blob';
 
 import LottieControls from '../components/LottieControls';
 import Placeholder from '../components/Placeholder';
@@ -17,17 +19,18 @@ import ResizableCover from '../components/ResizableCover';
 import './editor.scss';
 
 const getInnerBlocksTemplate = ( attributes ) => {
-	return [
-		[
-			'core/paragraph',
-			{
-				align: 'center',
-				placeholder: __( 'Write title…', 'am-lottieplayer' ),
-				...attributes,
-			},
-		],
-	];
-};
+		return [
+			[
+				'core/paragraph',
+				{
+					align: 'center',
+					placeholder: __( 'Write title…', 'am-lottieplayer' ),
+					...attributes,
+				},
+			],
+		];
+	},
+	isTemporaryMedia = ( id, url ) => ! id && isBlobURL( url );
 
 export default function Edit( {
 	attributes,
@@ -36,15 +39,32 @@ export default function Edit( {
 	setAttributes,
 	toggleSelection,
 } ) {
-	const { allowedBlocks, background, height, heightUnit, src, templateLock } =
-			attributes,
+	const {
+			allowedBlocks = [
+				'core/paragraph',
+				'core/heading',
+				'core/buttons',
+			],
+			background,
+			height,
+			heightUnit = 'px',
+			id,
+			src,
+			templateLock,
+		} = attributes,
+		isUploadingMedia = isTemporaryMedia( id, src ),
 		ref = useRef(),
 		[ isPlaceholder, setIsPlaceholder ] = useState( true ),
 		blockProps = useBlockProps( { ref } ),
+		heightWithUnit =
+			height && heightUnit ? `${ height }${ heightUnit }` : height,
+		style = {
+			minHeight: heightWithUnit || undefined,
+		},
 		hasInnerBlocks = useSelect(
 			( select ) =>
-				select( blockEditorStore ).getBlock( clientId ).innerBlocks
-					.length > 0,
+				!! select( blockEditorStore ).getBlock( clientId ).innerBlocks
+					.length,
 			[ clientId ]
 		),
 		hasFontSizes = !! useSetting( 'typography.fontSizes' )?.length,
@@ -61,12 +81,7 @@ export default function Edit( {
 				allowedBlocks,
 				templateLock,
 			}
-		),
-		heightWithUnit =
-			height && heightUnit ? `${ height }${ heightUnit }` : height,
-		style = {
-			minHeight: heightWithUnit || undefined,
-		};
+		);
 
 	useEffect( () => {
 		setIsPlaceholder( ! src || src === '' );
@@ -90,14 +105,14 @@ export default function Edit( {
 					className={ 'block-library-lottiecover__resize-container' }
 					onResizeStart={ () => {
 						setAttributes( { heightUnit: 'px' } );
-						toggleSelection( false );
+						if ( toggleSelection ) toggleSelection( false );
 					} }
 					onResize={ ( value ) => {
 						setAttributes( { height: value } );
 					} }
 					onResizeStop={ ( value ) => {
 						setAttributes( { height: value } );
-						toggleSelection( true );
+						if ( toggleSelection ) toggleSelection( true );
 					} }
 					showHandle={ isSelected }
 				/>
@@ -107,6 +122,7 @@ export default function Edit( {
 					style={ { backgroundColor: background } }
 					hidden={ isPlaceholder }
 				/>
+				{ isUploadingMedia && <Spinner /> }
 				<Placeholder
 					attributes={ attributes }
 					setAttributes={ setAttributes }

@@ -5,6 +5,15 @@
   "title": "AM LottieCover",
   "category": "media",
   "description": "Add a Lottie animation with a text overlay — great for headers.",
+  "keywords": [
+    "animation",
+    "gif",
+    "motion",
+    "vector",
+    "SVG",
+    "Lottie",
+    "dotLottie"
+  ],
   "textdomain": "am-lottieplayer",
   "attributes": {
     "align": {
@@ -48,7 +57,7 @@
       "type": "string",
       "default": ""
     },
-    "click": {
+    "clickEvent": {
       "type": "boolean",
       "default": false
     },
@@ -63,6 +72,10 @@
     "focalPoint": {
       "type": "object",
       "default": {}
+    },
+    "hasParallax": {
+      "type": "boolean",
+      "default": false
     },
     "height": {
       "type": "number",
@@ -79,6 +92,10 @@
     "id": {
       "type": "string",
       "default": null
+    },
+    "isDark": {
+      "type": "boolean",
+      "default": true
     },
     "loop": {
       "type": "boolean",

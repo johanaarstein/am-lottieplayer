@@ -1,4 +1,4 @@
-const attributesFromMedia = ( setAttributes, dimRatio = null ) => {
+const attributesFromMedia = ( setAttributes, dimRatio ) => {
 		return ( media ) => {
 			if ( ! media || ! media.url ) {
 				setAttributes( { src: undefined, id: undefined } );
@@ -10,20 +10,16 @@ const attributesFromMedia = ( setAttributes, dimRatio = null ) => {
 				src: media.url,
 				id: media.id,
 				alt: media?.alt,
-				// focalPoint: undefined,
-				// ...( mediaType === VIDEO_BACKGROUND_TYPE
-				// 	? { hasParallax: undefined }
-				// 	: {} ),
 			} );
 		};
 	},
-	debounce = ( func, timeout = 100 ) => {
+	debounce = ( callBack, timeout = 100 ) => {
 		let timer;
 
 		return ( ...args ) => {
 			clearTimeout( timer );
 			timer = setTimeout( () => {
-				func( [ ...args ] );
+				callBack( [ ...args ] );
 			}, timeout );
 		};
 	},
@@ -51,6 +47,9 @@ const attributesFromMedia = ( setAttributes, dimRatio = null ) => {
 	},
 	isTouch = () => {
 		return window && 'ontouchstart' in window;
+	},
+	mediaPosition = ( { x = 0.5, y = 0.5 } ) => {
+		return `${ Math.round( x * 100 ) }% ${ Math.round( y * 100 ) }%`;
 	};
 
 export {
@@ -59,4 +58,5 @@ export {
 	isModifierKey,
 	isNumericInput,
 	isTouch,
+	mediaPosition,
 };

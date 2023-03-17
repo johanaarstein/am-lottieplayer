@@ -22,7 +22,7 @@ const NumberInput = ( {
 	id = '',
 	onChange,
 	title,
-	value = null,
+	value = '',
 	disabled,
 	placeholder = '',
 } ) => {

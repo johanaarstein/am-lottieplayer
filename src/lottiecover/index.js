@@ -1,5 +1,4 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { __ } from '@wordpress/i18n';
 
 import './style.scss';
 
@@ -10,14 +9,6 @@ import { Lottie } from '../assets/icons';
 
 registerBlockType( metadata, {
 	icon: Lottie,
-	keywords: [
-		__( 'animation', 'am-lottieplayer' ),
-		'gif',
-		__( 'motion', 'am-lottieplayer' ),
-		__( 'vector', 'am-lottieplayer' ),
-		__( 'cover', 'am-lottieplayer' ),
-		__( 'background', 'am-lottieplayer' ),
-	],
 	edit: Edit,
 	save,
 } );
