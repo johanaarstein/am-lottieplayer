@@ -44,15 +44,15 @@ export default function save( { attributes }: BlockSaveProps< object > ) {
 			/>
 			<dotlottie-player
 				class="lottie-element"
-				autoplay={ autoplay ? '' : null }
-				controls={ controls ? '' : null }
+				autoplay={ autoplay }
+				controls={ controls }
 				description={ alt }
 				direction={ direction }
 				data-direction={ direction }
 				data-mouseover={ hover }
 				data-mouseout={ mouseout }
 				data-click={ clickEvent }
-				loop={ loop ? '' : null }
+				loop={ loop }
 				mode={ mode }
 				objectfit={ objectFit }
 				renderer={ renderer }

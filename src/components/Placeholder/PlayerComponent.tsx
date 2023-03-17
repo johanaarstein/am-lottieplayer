@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef } from '@wordpress/element';
 
-import type { DotLottiePlayer, PlayerComponentProps } from '../../types';
+import type { DotLottiePlayer } from '@johanaarstein/dotlottie-player';
+import type { PlayerComponentProps } from '../../types';
 
 export default function PlayerComponent( { attributes } ) {
 	const {
