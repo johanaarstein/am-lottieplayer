@@ -32,7 +32,7 @@ export default function PlayerComponent( { attributes } ) {
 		parseWidth = useCallback(
 			( num ) => {
 				if ( align === 'wide' || align === 'full' ) return '100%';
-				if ( num instanceof Number ) return `${ num }px`;
+				if ( num && typeof num === 'number' ) return `${ num }px`;
 				return null;
 			},
 			[ align ]
