@@ -18,7 +18,7 @@
   "attributes": {
     "align": {
       "type": "string",
-      "default": "none"
+      "default": "full"
     },
     "allowedBlocks": {
       "type": "array",
@@ -73,6 +73,10 @@
       "type": "object",
       "default": {}
     },
+    "fullscreen": {
+      "type": "boolean",
+      "default": false
+    },
     "hasParallax": {
       "type": "boolean",
       "default": false
@@ -124,6 +128,13 @@
       "type": "string",
       "default": "svg"
     },
+    "selector": {
+      "type": "object",
+      "default": {
+        "id": null,
+        "exclude": false
+      }
+    },
     "speed": {
       "type": "number",
       "default": 1
@@ -160,7 +171,8 @@
         "bottom"
       ],
       "__experimentalDefaultControls": {
-        "padding": true
+        "padding": true,
+        "margin": true
       }
     },
     "color": {

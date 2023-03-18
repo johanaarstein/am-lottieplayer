@@ -3,7 +3,9 @@ import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 import type { BlockSaveProps } from 'wordpress__blocks';
 import type { PlayerComponentProps } from '../types';
 
-export default function save( { attributes }: BlockSaveProps< object > ) {
+export default function save( {
+	attributes,
+}: BlockSaveProps< PlayerComponentProps > ) {
 	const {
 			align,
 			alt,
@@ -12,6 +14,7 @@ export default function save( { attributes }: BlockSaveProps< object > ) {
 			controls,
 			clickEvent,
 			direction,
+			fullscreen,
 			height,
 			heightUnit,
 			hover,
@@ -20,14 +23,15 @@ export default function save( { attributes }: BlockSaveProps< object > ) {
 			mouseout,
 			objectFit,
 			renderer,
+			selector,
 			speed,
 			src,
 			width,
-		}: PlayerComponentProps = attributes,
+		} = attributes,
 		heightWithUnit =
 			height && heightUnit ? `${ height }${ heightUnit }` : height,
 		style = {
-			minHeight: heightWithUnit || undefined,
+			minHeight: fullscreen ? '100vh' : heightWithUnit || undefined,
 		},
 		parseWidth = ( num: number ) => {
 			if ( align === 'wide' || align === 'full' ) return '100%';
@@ -52,6 +56,10 @@ export default function save( { attributes }: BlockSaveProps< object > ) {
 				data-mouseover={ hover }
 				data-mouseout={ mouseout }
 				data-click={ clickEvent }
+				data-selector={ {
+					id: selector?.id,
+					exclude: selector?.exclude,
+				} }
 				loop={ loop }
 				mode={ mode }
 				objectfit={ objectFit }

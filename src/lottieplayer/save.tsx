@@ -20,6 +20,7 @@ export default function save( { attributes }: BlockSaveProps< object > ) {
 		mouseout,
 		objectFit,
 		renderer,
+		selector,
 		speed,
 		src,
 		width,
@@ -47,6 +48,10 @@ export default function save( { attributes }: BlockSaveProps< object > ) {
 				data-mouseover={ hover }
 				data-mouseout={ mouseout }
 				data-click={ clickEvent }
+				data-selector={ {
+					id: selector?.id,
+					exclude: selector?.exclude,
+				} }
 				loop={ loop }
 				mode={ mode }
 				objectfit={ objectFit }

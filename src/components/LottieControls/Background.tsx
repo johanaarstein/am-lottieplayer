@@ -1,7 +1,13 @@
 import { ColorPicker, Panel, PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-const BackgroundSettings = ( { attributes, setAttributes } ) => {
+import type { BlockEditProps } from 'wordpress__blocks';
+import type { PlayerComponentProps } from '../../types';
+
+const Background = ( {
+	attributes,
+	setAttributes,
+}: BlockEditProps< PlayerComponentProps > ) => {
 	const { background } = attributes;
 
 	return (
@@ -21,4 +27,4 @@ const BackgroundSettings = ( { attributes, setAttributes } ) => {
 	);
 };
 
-export default BackgroundSettings;
+export default Background;

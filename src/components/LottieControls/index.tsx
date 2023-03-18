@@ -1,23 +1,63 @@
 import { InspectorControls } from '@wordpress/block-editor';
 
-import AdvancedSettings from './AdvancedSettings';
-import AnimationSettings from './AnimationSettings';
-import BackgroundSettings from './BackgroundSettings';
+import Advanced from './Advanced';
+import Animation from './Animation';
+import Background from './Background';
+import Interactions from './Interactions';
+import Spacing from './Spacing';
 
-export default function LottieControls( { attributes, setAttributes } ) {
+import type { BlockEditProps } from 'wordpress__blocks';
+import type { PlayerComponentProps } from '../../types';
+
+export default function LottieControls( {
+	attributes,
+	className,
+	clientId,
+	context,
+	isSelected,
+	setAttributes,
+}: BlockEditProps< PlayerComponentProps > ) {
 	return (
 		<InspectorControls>
-			<AnimationSettings
+			<Animation
 				attributes={ attributes }
 				setAttributes={ setAttributes }
+				clientId={ clientId }
+				isSelected={ isSelected }
+				context={ context }
+				className={ className }
 			/>
-			<BackgroundSettings
+			<Interactions
 				attributes={ attributes }
 				setAttributes={ setAttributes }
+				clientId={ clientId }
+				isSelected={ isSelected }
+				context={ context }
+				className={ className }
 			/>
-			<AdvancedSettings
+			<Spacing
 				attributes={ attributes }
 				setAttributes={ setAttributes }
+				clientId={ clientId }
+				isSelected={ isSelected }
+				context={ context }
+				className={ className }
+			/>
+			<Background
+				attributes={ attributes }
+				setAttributes={ setAttributes }
+				clientId={ clientId }
+				isSelected={ isSelected }
+				context={ context }
+				className={ className }
+			/>
+			<Advanced
+				attributes={ attributes }
+				setAttributes={ setAttributes }
+				clientId={ clientId }
+				isSelected={ isSelected }
+				context={ context }
+				className={ className }
 			/>
 		</InspectorControls>
 	);

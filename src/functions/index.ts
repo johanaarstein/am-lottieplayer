@@ -1,3 +1,5 @@
+import { isBlobURL } from '@wordpress/blob';
+
 const attributesFromMedia = (
 		setAttributes: ( attrs: object ) => void,
 		dimRatio?: number
@@ -48,6 +50,7 @@ const attributesFromMedia = (
 	isNumericInput = ( { key } ) => {
 		return key >= 0 && key <= 9;
 	},
+	isTemporaryMedia = ( id: string, url: string ) => ! id && isBlobURL( url ),
 	isTouch = () => {
 		return window && 'ontouchstart' in window;
 	},
@@ -60,6 +63,7 @@ export {
 	debounce,
 	isModifierKey,
 	isNumericInput,
+	isTemporaryMedia,
 	isTouch,
 	mediaPosition,
 };

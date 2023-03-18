@@ -72,4 +72,37 @@ const NumberInput = ( {
 	);
 };
 
-export { NumberInput, SwitchLabel };
+type TextInputProps = {
+	help?: string;
+	id?: string;
+	onChange: ( x: string ) => void;
+	title?: string;
+	value?: string;
+	placeholder?: string;
+};
+
+const TextInput = ( {
+	id = '',
+	onChange,
+	title,
+	help,
+	value = '',
+	placeholder = '',
+}: TextInputProps ) => {
+	return (
+		<BaseControl
+			id={ id }
+			help={ help }
+			className={ 'lottie-number-wrapper' }
+		>
+			<BaseControl.VisualLabel>{ title }</BaseControl.VisualLabel>
+			<TextControl
+				value={ value }
+				onChange={ ( n ) => onChange( n ) }
+				placeholder={ placeholder }
+			/>
+		</BaseControl>
+	);
+};
+
+export { NumberInput, SwitchLabel, TextInput };

@@ -3,11 +3,13 @@ import { __ } from '@wordpress/i18n';
 
 import { Lottie } from '../../assets/icons';
 
+import type { UploadProps } from '../../types';
+
 export default function UploadComponent( {
 	children,
 	onSelectMedia,
 	onError,
-} ) {
+}: UploadProps ) {
 	return (
 		<MediaPlaceholder
 			icon={ <BlockIcon icon={ Lottie } /> }

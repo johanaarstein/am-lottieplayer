@@ -1,5 +1,12 @@
 import type { EditorTemplateLock } from '@wordpress/block-editor';
+import type { BlockEditProps } from 'wordpress__blocks';
+import type { ResizeCallback, ResizeStartCallback } from 're-resizable';
 import type { DotLottiePlayer } from '@johanaarstein/dotlottie-player';
+
+export enum PlayMode {
+	Bounce = 'bounce',
+	Normal = 'normal',
+}
 
 export interface PlayerComponentProps extends Partial< DotLottiePlayer > {
 	align?: string;
@@ -12,6 +19,7 @@ export interface PlayerComponentProps extends Partial< DotLottiePlayer > {
 		x?: number;
 		y?: number;
 	};
+	fullscreen?: boolean;
 	hasParallax?: boolean;
 	height?: number;
 	heightUnit?: 'px' | '%';
@@ -19,6 +27,36 @@ export interface PlayerComponentProps extends Partial< DotLottiePlayer > {
 	isDark?: boolean;
 	mouseout?: string;
 	objectFit?: DotLottiePlayer[ 'objectfit' ];
+	selector?: {
+		id?: string;
+		exclude?: boolean;
+	};
 	templateLock?: EditorTemplateLock;
 	width?: number;
+}
+
+export interface BlockCoverEditProps
+	extends BlockEditProps< PlayerComponentProps > {
+	toggleSelection?: ( x: boolean ) => void;
+}
+
+export interface PlaceholderProps
+	extends BlockEditProps< PlayerComponentProps > {
+	isPlaceholder?: boolean;
+}
+
+export interface UploadProps {
+	children?: any;
+	onSelectMedia: ( value: { id: number; url: string; alt: string } ) => void;
+	onError: ( message: string ) => void;
+}
+
+export interface ResizableCoverProps {
+	className?: string;
+	fullscreen?: boolean;
+	onResizeStart: ResizeStartCallback;
+	onResize: ( n: number ) => void;
+	onResizeStop: ( n: number ) => void;
+	showHandle?: boolean;
+	[ x: string ]: unknown;
 }

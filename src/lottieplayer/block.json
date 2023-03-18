@@ -96,6 +96,13 @@
 			"type": "string",
 			"default": "svg"
 		},
+		"selector": {
+			"type": "object",
+			"default": {
+				"id": null,
+				"exclude": false
+			}
+		},
 		"speed": {
 			"type": "number",
 			"default": 1

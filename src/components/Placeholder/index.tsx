@@ -3,11 +3,13 @@ import { Notice } from '@wordpress/components';
 import UploadComponent from './UploadComponent';
 import PlayerComponent from './PlayerComponent';
 
+import type { PlaceholderProps } from '../../types';
+
 export default function Placeholder( {
 	attributes,
-	setAttributes,
 	isPlaceholder,
-} ) {
+	setAttributes,
+}: PlaceholderProps ) {
 	const ErrorNotice = ( message: string ) => (
 			<Notice status="error">{ message }</Notice>
 		),
@@ -16,8 +18,7 @@ export default function Placeholder( {
 		},
 		onSelectMedia = ( { id, url, alt } ) => {
 			if ( ! url ) {
-				setAttributes( { src: undefined, id: null } );
-				return;
+				return setAttributes( { src: undefined, id: undefined } );
 			}
 			setAttributes( {
 				src: url,

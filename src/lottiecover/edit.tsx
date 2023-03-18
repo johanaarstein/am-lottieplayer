@@ -10,39 +10,35 @@ import {
 import { Spinner } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
-import { isBlobURL } from '@wordpress/blob';
 
-import type { BlockEditProps } from 'wordpress__blocks';
-import type { SelectFunction } from '@wordpress/data/src/types';
-import type { PlayerComponentProps } from '../types';
+import type { BlockCoverEditProps } from '../types';
 
 import LottieControls from '../components/LottieControls';
 import Placeholder from '../components/Placeholder';
 import ResizableCover from '../components/ResizableCover';
 
-// import { attributesFromMedia, mediaPosition } from '../functions';
+import {
+	/*attributesFromMedia, mediaPosition,*/ isTemporaryMedia,
+} from '../functions';
 
 import './editor.scss';
 
 const getInnerBlocksTemplate = ( attributes: object ) => [
-		[
-			'core/paragraph',
-			{
-				align: 'center',
-				placeholder: __( 'Write title…', 'am-lottieplayer' ),
-				...attributes,
-			},
-		],
+	[
+		'core/paragraph',
+		{
+			align: 'center',
+			placeholder: __( 'Write title…', 'am-lottieplayer' ),
+			...attributes,
+		},
 	],
-	isTemporaryMedia = ( id: string, url: string ) => ! id && isBlobURL( url );
-
-interface BlockCoverEditProps extends BlockEditProps< object > {
-	toggleSelection?: ( x: boolean ) => void;
-}
+];
 
 export default function Edit( {
 	attributes,
+	className,
 	clientId,
+	context,
 	isSelected,
 	setAttributes,
 	toggleSelection,
@@ -55,6 +51,7 @@ export default function Edit( {
 			],
 			// alt,
 			background,
+			fullscreen,
 			// contentPosition,
 			// dimRatio,
 			// focalPoint,
@@ -65,7 +62,7 @@ export default function Edit( {
 			// isDark,
 			src,
 			templateLock,
-		}: PlayerComponentProps = attributes,
+		} = attributes,
 		// { gradientClass, gradientValue } = __experimentalUseGradient(),
 		// onSelectMedia = attributesFromMedia( setAttributes, dimRatio ),
 		isUploadingMedia = isTemporaryMedia( id as string, src as string ),
@@ -75,7 +72,7 @@ export default function Edit( {
 		heightWithUnit =
 			height && heightUnit ? `${ height }${ heightUnit }` : height,
 		style = {
-			minHeight: heightWithUnit || undefined,
+			minHeight: fullscreen ? '100vh' : heightWithUnit || undefined,
 		},
 		// backgroundPosition = focalPoint
 		// 	? mediaPosition( focalPoint )
@@ -87,7 +84,7 @@ export default function Edit( {
 		// 		: undefined,
 		// },
 		hasInnerBlocks = useSelect(
-			( select: SelectFunction ) =>
+			( select ) =>
 				!! select( blockEditorStore ).getBlock( clientId ).innerBlocks
 					.length,
 			[ clientId ]
@@ -117,6 +114,10 @@ export default function Edit( {
 			<LottieControls
 				attributes={ attributes }
 				setAttributes={ setAttributes }
+				clientId={ clientId }
+				isSelected={ false }
+				context={ context }
+				className={ className }
 			/>
 			<div
 				{ ...blockProps }
@@ -128,6 +129,7 @@ export default function Edit( {
 			>
 				<ResizableCover
 					className={ 'block-library-lottiecover__resize-container' }
+					fullscreen={ fullscreen }
 					onResizeStart={ () => {
 						setAttributes( { heightUnit: 'px' } );
 						if ( toggleSelection ) toggleSelection( false );
@@ -152,6 +154,10 @@ export default function Edit( {
 					attributes={ attributes }
 					setAttributes={ setAttributes }
 					isPlaceholder={ isPlaceholder }
+					clientId={ clientId }
+					isSelected={ false }
+					context={ context }
+					className={ className }
 				/>
 				{ ! isPlaceholder && <div { ...innerBlocksProps } /> }
 			</div>
