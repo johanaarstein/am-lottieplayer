@@ -58,7 +58,7 @@
 		"typescript": "^4.9.5"
 	},
 	"scripts": {
-		"build": "wp-scripts build && dep && npm run svn",
+		"build": "wp-scripts build && npm run dep && npm run svn",
 		"check-engines": "wp-scripts check-engines",
 		"check-licenses": "wp-scripts check-licenses",
 		"format": "wp-scripts format",
