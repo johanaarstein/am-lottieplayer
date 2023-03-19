@@ -1,4 +1,6 @@
 import { isBlobURL } from '@wordpress/blob';
+import type { DotLottiePlayer } from '@johanaarstein/dotlottie-player';
+import { OnMouseOut } from '../types';
 
 const attributesFromMedia = (
 		setAttributes: ( attrs: object ) => void,
@@ -56,6 +58,32 @@ const attributesFromMedia = (
 	},
 	mediaPosition = ( { x = 0.5, y = 0.5 } ) => {
 		return `${ Math.round( x * 100 ) }% ${ Math.round( y * 100 ) }%`;
+	},
+	mouseOutHandler = (
+		player: DotLottiePlayer,
+		interaction: OnMouseOut,
+		direction: 1 | -1
+	): void => {
+		switch ( interaction ) {
+			case OnMouseOut.Void:
+				break;
+			case OnMouseOut.Stop:
+				player?.stop();
+				break;
+			case OnMouseOut.Pause:
+				player?.pause();
+				break;
+			case OnMouseOut.Reverse:
+				player?.setDirection( direction * -1 );
+				player?.play();
+				break;
+			default:
+				player?.stop();
+		}
+	},
+	mouseOverHandler = ( player: DotLottiePlayer, direction: 1 | -1 ): void => {
+		player?.setDirection( direction );
+		player?.play();
 	};
 
 export {
@@ -66,4 +94,6 @@ export {
 	isTemporaryMedia,
 	isTouch,
 	mediaPosition,
+	mouseOutHandler,
+	mouseOverHandler,
 };

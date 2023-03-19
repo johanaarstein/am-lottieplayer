@@ -1,16 +1,29 @@
-import { Panel, PanelBody, RangeControl } from '@wordpress/components';
+import {
+	Panel,
+	PanelBody,
+	SelectControl,
+	RangeControl,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import { SwitchLabel } from '../form';
 
 import type { BlockEditProps } from 'wordpress__blocks';
+import { PlayMode } from '../../types';
 import type { PlayerComponentProps } from '../../types';
 
 const Animation = ( {
 	attributes,
 	setAttributes,
 }: BlockEditProps< PlayerComponentProps > ) => {
-	const { autoplay, controls, direction, loop, speed = 1 } = attributes;
+	const {
+		autoplay,
+		controls,
+		direction,
+		loop,
+		mode = PlayMode.Normal,
+		speed = 1,
+	} = attributes;
 
 	return (
 		<Panel>
@@ -57,6 +70,22 @@ const Animation = ( {
 					onChange={ ( value ) =>
 						setAttributes( { controls: value } )
 					}
+				/>
+				<SelectControl
+					label={ __( 'Play mode', 'am-lottieplayer' ) }
+					value={ mode }
+					name="mode"
+					onChange={ ( val ) => setAttributes( { mode: val } ) }
+					options={ [
+						{
+							value: PlayMode.Normal,
+							label: __( 'Normal', 'am-lottieplayer' ),
+						},
+						{
+							value: PlayMode.Bounce,
+							label: __( 'Boomerang', 'am-lottieplayer' ),
+						},
+					] }
 				/>
 			</PanelBody>
 		</Panel>

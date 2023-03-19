@@ -1,11 +1,18 @@
 import type { EditorTemplateLock } from '@wordpress/block-editor';
 import type { BlockEditProps } from 'wordpress__blocks';
-import type { ResizeCallback, ResizeStartCallback } from 're-resizable';
+import type { ResizeStartCallback } from 're-resizable';
 import type { DotLottiePlayer } from '@johanaarstein/dotlottie-player';
 
 export enum PlayMode {
 	Bounce = 'bounce',
 	Normal = 'normal',
+}
+
+export enum OnMouseOut {
+	Void = 'void',
+	Stop = 'stop',
+	Pause = 'pause',
+	Reverse = 'reverse',
 }
 
 export interface PlayerComponentProps extends Partial< DotLottiePlayer > {
@@ -25,7 +32,7 @@ export interface PlayerComponentProps extends Partial< DotLottiePlayer > {
 	heightUnit?: 'px' | '%';
 	id?: string;
 	isDark?: boolean;
-	mouseout?: string;
+	mouseout?: OnMouseOut;
 	objectFit?: DotLottiePlayer[ 'objectfit' ];
 	selector?: {
 		id?: string;
@@ -46,7 +53,7 @@ export interface PlaceholderProps
 }
 
 export interface UploadProps {
-	children?: any;
+	children?: never;
 	onSelectMedia: ( value: { id: number; url: string; alt: string } ) => void;
 	onError: ( message: string ) => void;
 }

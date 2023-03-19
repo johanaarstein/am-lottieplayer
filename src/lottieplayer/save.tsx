@@ -26,6 +26,8 @@ export default function save( { attributes }: BlockSaveProps< object > ) {
 		width,
 	}: PlayerComponentProps = attributes;
 
+	const dataSelector = JSON.stringify( selector );
+
 	return (
 		<figure
 			id={ id }
@@ -40,6 +42,9 @@ export default function save( { attributes }: BlockSaveProps< object > ) {
 			} }
 		>
 			<dotlottie-player
+				class={ `lottie-element ${
+					selector?.id ? 'has-selector' : ''
+				}` }
 				autoplay={ autoplay }
 				controls={ controls }
 				description={ alt }
@@ -48,10 +53,7 @@ export default function save( { attributes }: BlockSaveProps< object > ) {
 				data-mouseover={ hover }
 				data-mouseout={ mouseout }
 				data-click={ clickEvent }
-				data-selector={ {
-					id: selector?.id,
-					exclude: selector?.exclude,
-				} }
+				data-selector={ dataSelector }
 				loop={ loop }
 				mode={ mode }
 				objectfit={ objectFit }

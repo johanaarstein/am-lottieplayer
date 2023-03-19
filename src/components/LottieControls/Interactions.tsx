@@ -2,6 +2,7 @@ import { Panel, PanelBody, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import { SwitchLabel, TextInput } from '../form';
+import { OnMouseOut } from '../../types';
 
 import type { BlockEditProps } from 'wordpress__blocks';
 import type { PlayerComponentProps } from '../../types';
@@ -41,19 +42,19 @@ const Interactions = ( {
 						}
 						options={ [
 							{
-								value: 'void',
+								value: OnMouseOut.Void,
 								label: __( 'No event', 'am-lottieplayer' ),
 							},
 							{
-								value: 'stop',
+								value: OnMouseOut.Stop,
 								label: __( 'Stop', 'am-lottieplayer' ),
 							},
 							{
-								value: 'pause',
+								value: OnMouseOut.Pause,
 								label: __( 'Pause', 'am-lottieplayer' ),
 							},
 							{
-								value: 'reverse',
+								value: OnMouseOut.Reverse,
 								label: __( 'Reverse', 'am-lottieplayer' ),
 							},
 						] }
@@ -65,7 +66,7 @@ const Interactions = ( {
 							id="am-lottieplayer-settings"
 							title={ __( 'Selector', 'am-lottieplayer' ) }
 							help={ __(
-								'Anchor tag or id for an element you want the interaction to apply to.',
+								'Anchor tag (id) for an element you want the interaction to apply to.',
 								'am-lottieplayer'
 							) }
 							placeholder={ '#' }

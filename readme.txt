@@ -114,6 +114,10 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 2.3.0 =
+* New Feature: Added selector option for interactions
+* Bugfix: Fixed issue in Gutenberg where the player lost connection on block move
+
 = 2.2.2 =
 * Bugfix: Issue prevented Gutenberg backend from working properly
 

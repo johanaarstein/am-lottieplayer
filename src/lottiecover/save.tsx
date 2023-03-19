@@ -33,6 +33,7 @@ export default function save( {
 		style = {
 			minHeight: fullscreen ? '100vh' : heightWithUnit || undefined,
 		},
+		dataSelector = JSON.stringify( selector ),
 		parseWidth = ( num: number ) => {
 			if ( align === 'wide' || align === 'full' ) return '100%';
 			if ( num && typeof num === 'number' ) return `${ num }px`;
@@ -47,7 +48,9 @@ export default function save( {
 				style={ { backgroundColor: background } }
 			/>
 			<dotlottie-player
-				class="lottie-element"
+				class={ `lottie-element ${
+					selector?.id ? 'has-selector' : ''
+				}` }
 				autoplay={ autoplay }
 				controls={ controls }
 				description={ alt }
@@ -56,10 +59,7 @@ export default function save( {
 				data-mouseover={ hover }
 				data-mouseout={ mouseout }
 				data-click={ clickEvent }
-				data-selector={ {
-					id: selector?.id,
-					exclude: selector?.exclude,
-				} }
+				data-selector={ dataSelector }
 				loop={ loop }
 				mode={ mode }
 				objectfit={ objectFit }

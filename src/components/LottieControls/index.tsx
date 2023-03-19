@@ -4,7 +4,7 @@ import Advanced from './Advanced';
 import Animation from './Animation';
 import Background from './Background';
 import Interactions from './Interactions';
-import Spacing from './Spacing';
+import Dimensions from './Dimensions';
 
 import type { BlockEditProps } from 'wordpress__blocks';
 import type { PlayerComponentProps } from '../../types';
@@ -35,7 +35,7 @@ export default function LottieControls( {
 				context={ context }
 				className={ className }
 			/>
-			<Spacing
+			<Dimensions
 				attributes={ attributes }
 				setAttributes={ setAttributes }
 				clientId={ clientId }

@@ -12,7 +12,7 @@ import { NumberInput, SwitchLabel } from '../form';
 import type { BlockEditProps } from 'wordpress__blocks';
 import type { PlayerComponentProps } from '../../types';
 
-const Spacing = ( {
+const Dimensions = ( {
 	attributes,
 	setAttributes,
 }: BlockEditProps< PlayerComponentProps > ) => {
@@ -35,7 +35,7 @@ const Spacing = ( {
 	return (
 		<Panel>
 			<PanelBody
-				title={ __( 'Spacing', 'am-lottieplayer' ) }
+				title={ __( 'Dimensions', 'am-lottieplayer' ) }
 				initialOpen={ true }
 			>
 				{ ( ! fullscreen || align !== 'full' ) && (
@@ -110,4 +110,4 @@ const Spacing = ( {
 	);
 };
 
-export default Spacing;
+export default Dimensions;

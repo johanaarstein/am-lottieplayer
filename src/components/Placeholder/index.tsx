@@ -7,6 +7,7 @@ import type { PlaceholderProps } from '../../types';
 
 export default function Placeholder( {
 	attributes,
+	clientId,
 	isPlaceholder,
 	setAttributes,
 }: PlaceholderProps ) {
@@ -36,7 +37,10 @@ export default function Placeholder( {
 					children={ undefined }
 				/>
 			) : (
-				<PlayerComponent attributes={ attributes } />
+				<PlayerComponent
+					attributes={ attributes }
+					clientId={ clientId }
+				/>
 			) }
 		</>
 	);

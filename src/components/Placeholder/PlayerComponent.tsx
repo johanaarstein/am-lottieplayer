@@ -1,12 +1,15 @@
 import { useCallback, useEffect, useRef } from '@wordpress/element';
+import { useSelect } from '@wordpress/data';
 
 import type { DotLottiePlayer } from '@johanaarstein/dotlottie-player';
 import type { PlayerComponentProps } from '../../types';
 
 export default function PlayerComponent( {
 	attributes,
+	clientId,
 }: {
 	attributes: PlayerComponentProps;
+	clientId: string;
 } ) {
 	const {
 			align,
@@ -24,6 +27,8 @@ export default function PlayerComponent( {
 			src,
 			width,
 		} = attributes,
+		{ getBlockIndex } = useSelect( 'core/block-editor', [] ),
+		blockIndex = getBlockIndex( clientId ),
 		player = useRef< DotLottiePlayer >( null ),
 		initialRender = useRef( true ),
 		reloadPlayer = useCallback( () => {
@@ -50,7 +55,7 @@ export default function PlayerComponent( {
 			reloadPlayer();
 		}
 		initialRender.current = false;
-	}, [ objectFit, reloadPlayer, renderer, speed ] );
+	}, [ blockIndex, objectFit, reloadPlayer, renderer, speed ] );
 
 	useEffect( () => {
 		if (
