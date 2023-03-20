@@ -2,7 +2,7 @@
 
 ![Awesome Vector Animations](/svn/assets/banner-1544x500.png)
 
-The most complete Lottie Player yet. Lightweight, easy to use, accepts LottieJSON and dotLottie, and works with Gutenberg, Divi Builder and Elementor.
+The most complete Lottie Player yet. Lightweight, easy to use, accepts LottieJSON and dotLottie, and works with Gutenberg, Divi Builder, Elementor and Flatsome UX Builder.
 
 ## Description
 
