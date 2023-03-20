@@ -27,7 +27,10 @@ export default function PlayerComponent( {
 			src,
 			width,
 		} = attributes,
-		{ getBlockIndex } = useSelect( 'core/block-editor', [] ),
+		{ getBlockIndex } = useSelect(
+			( select ) => select( 'core/block-editor' ),
+			[]
+		),
 		blockIndex = getBlockIndex( clientId ),
 		player = useRef< DotLottiePlayer >( null ),
 		initialRender = useRef( true ),
@@ -41,33 +44,31 @@ export default function PlayerComponent( {
 				renderer === 'svg' && canvas?.remove();
 			}, 100 );
 		}, [ renderer ] ),
-		parseWidth = useCallback(
-			( num: number ) => {
-				if ( align === 'wide' || align === 'full' ) return '100%';
-				if ( num && typeof num === 'number' ) return `${ num }px`;
-				return null;
-			},
-			[ align ]
-		);
+		parseSize = ( num?: number ): string | null => {
+			if ( num && typeof num === 'number' ) return `${ num }px`;
+			return null;
+		},
+		parseWidth = ( num?: number ): string | null => {
+			if ( align === 'wide' || align === 'full' ) return '100%';
+			return parseSize( num );
+		};
 
 	useEffect( () => {
 		if ( ! initialRender.current ) {
 			reloadPlayer();
 		}
 		initialRender.current = false;
-	}, [ blockIndex, objectFit, reloadPlayer, renderer, speed ] );
-
-	useEffect( () => {
-		if (
-			player.current &&
-			loop &&
-			autoplay &&
-			player.current.currentState !== 'playing' &&
-			player.current.play
-		) {
-			player.current.play();
-		}
-	}, [ autoplay, loop ] );
+	}, [
+		autoplay,
+		blockIndex,
+		direction,
+		loop,
+		mode,
+		objectFit,
+		reloadPlayer,
+		renderer,
+		speed,
+	] );
 
 	return (
 		<dotlottie-player
@@ -84,12 +85,8 @@ export default function PlayerComponent( {
 			speed={ speed }
 			src={ src as string }
 			style={ {
-				width:
-					typeof width === 'number' ? parseWidth( width ) : undefined,
-				height:
-					height && typeof height === 'number'
-						? `${ height }px`
-						: undefined,
+				width: parseWidth( width ),
+				height: parseSize( height ),
 				backgroundColor: background,
 				margin: '0 auto',
 			} }

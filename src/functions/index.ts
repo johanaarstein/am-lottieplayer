@@ -1,5 +1,7 @@
 import { isBlobURL } from '@wordpress/blob';
 import type { DotLottiePlayer } from '@johanaarstein/dotlottie-player';
+import type { AnimationDirection } from 'lottie-web';
+
 import { OnMouseOut } from '../types';
 
 const attributesFromMedia = (
@@ -29,6 +31,14 @@ const attributesFromMedia = (
 				callBack( [ ...args ] );
 			}, timeout );
 		};
+	},
+	gcd = ( a: number, b: number ): number => {
+		return b ? gcd( b, a % b ) : a;
+	},
+	getAspectRatio = ( width?: number, height?: number ): string | null => {
+		if ( ! width || ! height ) return null;
+		const divisor = gcd( width, height );
+		return `${ width / divisor } / ${ height / divisor }`;
 	},
 	isModifierKey = ( { ctrlKey, key, metaKey, shiftKey } ) => {
 		return (
@@ -62,7 +72,7 @@ const attributesFromMedia = (
 	mouseOutHandler = (
 		player: DotLottiePlayer,
 		interaction: OnMouseOut,
-		direction: 1 | -1
+		direction: AnimationDirection
 	): void => {
 		switch ( interaction ) {
 			case OnMouseOut.Void:
@@ -74,7 +84,9 @@ const attributesFromMedia = (
 				player?.pause();
 				break;
 			case OnMouseOut.Reverse:
-				player?.setDirection( direction * -1 );
+				player?.setDirection(
+					( direction * -1 ) as AnimationDirection
+				);
 				player?.play();
 				break;
 			default:
@@ -89,6 +101,7 @@ const attributesFromMedia = (
 export {
 	attributesFromMedia,
 	debounce,
+	getAspectRatio,
 	isModifierKey,
 	isNumericInput,
 	isTemporaryMedia,

@@ -1,10 +1,6 @@
-import {
-	Panel,
-	PanelBody,
-	SelectControl,
-	RangeControl,
-} from '@wordpress/components';
+import { Panel, PanelBody, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+// import { PlayMode } from '@johanaarstein/dotlottie-player';
 
 import { SwitchLabel } from '../form';
 
@@ -45,8 +41,25 @@ const Animation = ( {
 					value={ loop as boolean }
 					onChange={ ( value ) => {
 						setAttributes( { loop: value } );
+						if ( ! value && mode === PlayMode.Bounce ) {
+							setAttributes( {
+								mode: PlayMode.Normal,
+							} );
+						}
 					} }
 				/>
+				{ loop && (
+					<SwitchLabel
+						id="am-lottieplayer-playmode-settings"
+						title={ __( 'Boomerang', 'am-lottieplayer' ) }
+						value={ mode === PlayMode.Bounce }
+						onChange={ ( value ) => {
+							setAttributes( {
+								mode: value ? PlayMode.Bounce : PlayMode.Normal,
+							} );
+						} }
+					/>
+				) }
 				<RangeControl
 					label={ __( 'Speed', 'am-lottieplayer' ) }
 					min={ 0.5 }
@@ -70,22 +83,6 @@ const Animation = ( {
 					onChange={ ( value ) =>
 						setAttributes( { controls: value } )
 					}
-				/>
-				<SelectControl
-					label={ __( 'Play mode', 'am-lottieplayer' ) }
-					value={ mode }
-					name="mode"
-					onChange={ ( val ) => setAttributes( { mode: val } ) }
-					options={ [
-						{
-							value: PlayMode.Normal,
-							label: __( 'Normal', 'am-lottieplayer' ),
-						},
-						{
-							value: PlayMode.Bounce,
-							label: __( 'Boomerang', 'am-lottieplayer' ),
-						},
-					] }
 				/>
 			</PanelBody>
 		</Panel>
