@@ -1,0 +1,199 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "gb/lottiecover",
+  "title": "AM LottieCover",
+  "category": "media",
+  "description": "Add a Lottie animation with a text overlay — great for headers.",
+  "keywords": [
+    "animation",
+    "gif",
+    "motion",
+    "vector",
+    "SVG",
+    "Lottie",
+    "dotLottie"
+  ],
+  "textdomain": "am-lottieplayer",
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "allowedBlocks": {
+      "type": "array",
+      "default": [
+        "core/paragraph",
+        "core/heading",
+        "core/buttons"
+      ]
+    },
+    "alt": {
+      "type": "string",
+      "source": "attribute",
+      "selector": "dotlottie-player",
+      "attribute": "description",
+      "default": "",
+      "__experimentalRole": "content"
+    },
+    "autoplay": {
+      "type": "boolean",
+      "source": "attribute",
+      "selector": "dotlottie-player",
+      "attribute": "autoplay",
+      "default": true
+    },
+    "controls": {
+      "type": "boolean",
+      "source": "attribute",
+      "selector": "dotlottie-player",
+      "attribute": "controls"
+    },
+    "content": {
+      "type": "string",
+      "default": ""
+    },
+    "contentPosition": {
+      "type": "string",
+      "default": ""
+    },
+    "clickEvent": {
+      "type": "boolean",
+      "default": false
+    },
+    "dimRatio": {
+      "type": "number",
+      "default": 50
+    },
+    "direction": {
+      "type": "number",
+      "default": 1
+    },
+    "focalPoint": {
+      "type": "object",
+      "default": {}
+    },
+    "fullscreen": {
+      "type": "boolean",
+      "default": false
+    },
+    "hasParallax": {
+      "type": "boolean",
+      "default": false
+    },
+    "height": {
+      "type": "number",
+      "default": null
+    },
+    "heightUnit": {
+      "type": "string",
+      "default": "px"
+    },
+    "hover": {
+      "type": "boolean",
+      "default": false
+    },
+    "id": {
+      "type": "string",
+      "default": null
+    },
+    "isDark": {
+      "type": "boolean",
+      "default": true
+    },
+    "loop": {
+      "type": "boolean",
+      "source": "attribute",
+      "selector": "dotlottie-player",
+      "attribute": "loop",
+      "default": true
+    },
+    "mode": {
+      "type": "string",
+      "default": "normal"
+    },
+    "objectFit": {
+      "type": "string",
+      "default": "cover"
+    },
+    "overlayColor": {
+      "type": "string",
+      "default": "transparent"
+    },
+    "mouseOut": {
+      "type": "string",
+      "default": "stop"
+    },
+    "renderer": {
+      "type": "string",
+      "default": "svg"
+    },
+    "selector": {
+      "type": "object",
+      "default": {
+        "id": null,
+        "exclude": false
+      }
+    },
+    "speed": {
+      "type": "number",
+      "default": 1
+    },
+    "src": {
+      "type": "string",
+      "default": ""
+    },
+    "templateLock": {
+      "type": [
+        "string",
+        "boolean"
+      ],
+      "enum": [
+        "all",
+        "insert",
+        "contentOnly",
+        false
+      ]
+    },
+    "width": {
+      "type": "number",
+      "default": null
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "align": true,
+    "html": false,
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ],
+      "__experimentalDefaultControls": {
+        "padding": true,
+        "margin": true
+      }
+    },
+    "color": {
+      "text": false,
+      "background": false
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalDefaultControls": {
+        "fontSize": true
+      }
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
