@@ -28,6 +28,14 @@ const Animation = ( {
 				initialOpen={ true }
 			>
 				<SwitchLabel
+					id="am-lottieplayer-controls-settings"
+					title={ __( 'Show controls', 'am-lottieplayer' ) }
+					value={ controls as boolean }
+					onChange={ ( value ) =>
+						setAttributes( { controls: value } )
+					}
+				/>
+				<SwitchLabel
 					id="am-lottieplayer-autoplay-settings"
 					title={ __( 'Autoplay', 'am-lottieplayer' ) }
 					value={ autoplay as boolean }
@@ -60,14 +68,6 @@ const Animation = ( {
 						} }
 					/>
 				) }
-				<RangeControl
-					label={ __( 'Speed', 'am-lottieplayer' ) }
-					min={ 0.5 }
-					max={ 5 }
-					step={ 0.5 }
-					value={ speed }
-					onChange={ ( value ) => setAttributes( { speed: value } ) }
-				/>
 				<SwitchLabel
 					id="am-lottieplayer-reverse-settings"
 					title={ __( 'Reverse', 'am-lottieplayer' ) }
@@ -76,13 +76,13 @@ const Animation = ( {
 						setAttributes( { direction: ! value ? 1 : -1 } )
 					}
 				/>
-				<SwitchLabel
-					id="am-lottieplayer-controls-settings"
-					title={ __( 'Show controls', 'am-lottieplayer' ) }
-					value={ controls as boolean }
-					onChange={ ( value ) =>
-						setAttributes( { controls: value } )
-					}
+				<RangeControl
+					label={ __( 'Speed', 'am-lottieplayer' ) }
+					min={ 0.5 }
+					max={ 5 }
+					step={ 0.5 }
+					value={ speed }
+					onChange={ ( value ) => setAttributes( { speed: value } ) }
 				/>
 			</PanelBody>
 		</Panel>

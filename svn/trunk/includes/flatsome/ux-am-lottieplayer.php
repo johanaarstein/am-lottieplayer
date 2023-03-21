@@ -42,19 +42,30 @@ add_ux_builder_shortcode('am-lottieplayer', [
       'type' => 'group',
       'heading' => __('Animation Options', 'am-lottieplayer'),
       'options' => [
-        'autoplay' => [
-          'type' => 'checkbox',
-          'heading' => __('Autoplay', 'am-lottieplayer'),
-        ],
-
         'controls' => [
           'type' => 'checkbox',
           'heading' => __('Controls', 'am-lottieplayer'),
         ],
 
+        'autoplay' => [
+          'type' => 'checkbox',
+          'heading' => __('Autoplay', 'am-lottieplayer'),
+        ],
+
         'loop' => [
           'type' => 'checkbox',
           'heading' => __('Loop', 'am-lottieplayer'),
+        ],
+
+        'mode' => [
+          'type' => 'checkbox',
+          'heading' => __('Boomerang', 'am-lottieplayer'),
+          'conditions' => 'loop === "true"',
+        ],
+
+        'direction' => [
+          'type' => 'checkbox',
+          'heading' => __('Reverse', 'am-lottieplayer'),
         ],
 
         'speed' => [
@@ -65,11 +76,6 @@ add_ux_builder_shortcode('am-lottieplayer', [
           'max' => 5,
           'step' => 1,
           'unit' => '',
-        ],
-
-        'direction' => [
-          'type' => 'checkbox',
-          'heading' => __('Reverse', 'am-lottieplayer'),
         ],
 
         'onclick' => [
@@ -92,6 +98,19 @@ add_ux_builder_shortcode('am-lottieplayer', [
 						'pause' => __('Pause', 'am-lottieplayer'),
 						'reverse' => __('Reverse', 'am-lottieplayer')
           ]
+        ],
+
+        'selector' => [
+          'type' => 'textfield',
+          'heading' => __('Selector', 'am-lottieplayer'),
+          'description' => __('Anchor tag (id) for an element you also want the interaction to apply to.', 'am-lottieplayer'),
+          'conditions' => 'onmouseover === "true" || onclick === "true"',
+        ],
+
+        'exclude' => [
+          'type' => 'checkbox',
+          'heading' => __('Apply interaction only to selector', 'am-lottieplayer'),
+          'conditions' => 'onmouseover === "true" || onclick === "true"',
         ],
       ],
     ],

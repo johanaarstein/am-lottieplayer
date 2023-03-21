@@ -62,17 +62,6 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			);
 
 			$this -> add_control(
-				'autoplay',
-				[
-					'label' => __('Autoplay', 'am-lottieplayer'),
-					'type' => \Elementor\Controls_Manager::SWITCHER,
-					'label_on' => __('On', 'am-lottieplayer'),
-					'label_off' => __('Off', 'am-lottieplayer'),
-					'default' => 'yes',
-				]
-			);
-
-			$this -> add_control(
 				'controls',
 				[
 					'label' => __('Controls', 'am-lottieplayer'),
@@ -84,12 +73,13 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			);
 
 			$this -> add_control(
-				'reverse',
+				'autoplay',
 				[
-					'label' => __('Reverse', 'am-lottieplayer'),
+					'label' => __('Autoplay', 'am-lottieplayer'),
 					'type' => \Elementor\Controls_Manager::SWITCHER,
-					'label_on' => __('Yes', 'am-lottieplayer'),
-					'label_off' => __('No', 'am-lottieplayer')
+					'label_on' => __('On', 'am-lottieplayer'),
+					'label_off' => __('Off', 'am-lottieplayer'),
+					'default' => 'yes',
 				]
 			);
 
@@ -100,6 +90,29 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 					'type' => \Elementor\Controls_Manager::SWITCHER,
 					'label_on' => __('On', 'am-lottieplayer'),
 					'label_off' => __('Off', 'am-lottieplayer'),
+				]
+			);
+
+			$this -> add_control(
+				'mode',
+				[
+					'label' => __('Boomerang', 'am-lottieplayer'),
+					'type' => \Elementor\Controls_Manager::SWITCHER,
+					'label_on' => __('On', 'am-lottieplayer'),
+					'label_off' => __('Off', 'am-lottieplayer'),
+					'condition' => [
+						'loop' => 'yes',
+					],
+				]
+			);
+
+			$this -> add_control(
+				'reverse',
+				[
+					'label' => __('Reverse', 'am-lottieplayer'),
+					'type' => \Elementor\Controls_Manager::SWITCHER,
+					'label_on' => __('Yes', 'am-lottieplayer'),
+					'label_off' => __('No', 'am-lottieplayer')
 				]
 			);
 
@@ -157,6 +170,39 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 					'default' => 'stop',
 					'condition' => [
 						'onmouseover' => 'yes',
+					],
+				]
+			);
+
+			$this -> add_control(
+				'selector',
+				[
+					'label' => __('Anchor tag (id) for an element you also want the interaction to apply to.', 'am-lottieplayer'),
+					'type' => \Elementor\Controls_Manager::TEXT,
+					'placeholder' => '#',
+					'conditions' => [
+						'relation' => 'or',
+						'terms' => [
+							['name' => 'onclick', 'operator' => '===', 'value' => 'yes'],
+							['name' => 'onmouseover', 'operator' => '===', 'value' => 'yes'],
+						]
+					],
+				]
+			);
+
+			$this -> add_control(
+				'exclude',
+				[
+					'label' => __('Apply interaction only to selector', 'am-lottieplayer'),
+					'type' => \Elementor\Controls_Manager::SWITCHER,
+					'label_on' => __('Yes', 'am-lottieplayer'),
+					'label_off' => __('No', 'am-lottieplayer'),
+					'conditions' => [
+						'relation' => 'or',
+						'terms' => [
+							['name' => 'onclick', 'operator' => '===', 'value' => 'yes'],
+							['name' => 'onmouseover', 'operator' => '===', 'value' => 'yes'],
+						]
 					],
 				]
 			);
@@ -318,11 +364,16 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			$controls = $this -> switcher_value($settings['controls'], 'controls', '');
 			$direction = $this -> switcher_value($settings['reverse'], '-1', '1');
 			$loop = $this -> switcher_value($settings['loop'], 'loop', '');
+			$mode = $this -> switcher_value($settings['mode'], 'bounce', 'normal');
 			$onClick = $this -> switcher_value($settings['onclick'], true, false);
 			$onMouseOver = $this -> switcher_value($settings['onmouseover'], true, false);
 
 			$onMouseOut = $settings['onmouseout'];
 			$objectFit = $settings['object_fit'];
+			$selector = json_encode([
+				"id" => $settings['selector'],
+				"exclude" => $this -> switcher_value($settings['exclude'], true, false),
+			]);
 			$speed = !$settings['speed'] || empty($settings['speed']) ? '1' : $settings['speed'];
 			$heightSize = $settings['height_fixed'] ? $settings['height_fixed']['size'] : 'auto';
 			$heightUnit = $settings['height_fixed'] ? $settings['height_fixed']['unit'] : '';
@@ -343,12 +394,14 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 					<?php echo esc_html($autoplay); ?>
 					<?php echo esc_html($controls); ?>
 					<?php echo esc_html($loop); ?>
+					mode="<?php echo esc_html($mode); ?>"
 					renderer="<?php echo esc_html($renderer); ?>"
 					direction="<?php echo esc_html($direction); ?>"
 					data-direction="<?php echo esc_html($direction); ?>"
 					data-mouseover="<?php echo esc_html($onMouseOver); ?>"
 					data-mouseout="<?php echo esc_html($onMouseOut); ?>"
 					data-click="<?php echo esc_html($onClick); ?>"
+					data-selector="<?php echo esc_html($selector); ?>"
 					objectfit="<?php echo esc_html($objectFit); ?>"
 					speed="<?php echo esc_html($speed); ?>"
 					src="<?php echo esc_url($src); ?>"
@@ -365,6 +418,7 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 				const autoplay = settings.autoplay === 'yes' ? 'autoplay' : '',
 					controls = settings.controls === 'yes' ? 'controls' : '',
 					loop = settings.loop === 'yes' ? 'loop' : '',
+					mode = settings.mode === 'yes' ? 'bounce' : 'normal',
 					{ height_auto, height_fixed, lottie, object_fit, reverse, speed, width } = settings,
 					direction = reverse === 'yes' ? '-1' : '1',
 					height = height_auto !== 'yes' || !height_fixed.size ? 'auto' : height_fixed.size + height_fixed.unit,
@@ -377,6 +431,7 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 					{{{ controls }}}
 					{{{ loop }}}
 					direction="{{{ direction }}}"
+					mode="{{{ mode }}}"
 					objectfit="{{{ object_fit }}}"
 					speed="{{{ playbackSpeed }}}"
 					src="{{{ lottie.url }}}"

@@ -181,9 +181,9 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'width',
 					],
 				],
-				'autoplay' => [
-					'label' => esc_html__('Autoplay', 'am-lottieplayer'),
-					'description' => esc_html__('Control whether the animation plays on page load or not.', 'am-lottieplayer'),
+				'controls' => [
+					'label' => esc_html__('Show controls', 'am-lottieplayer'),
+					'description' => esc_html__('Show or hide controls.', 'am-lottieplayer'),
 					'type' => 'yes_no_button',
 					'option_category' => 'basic_option',
 					'options'  => [
@@ -193,9 +193,9 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					'default_on_front' => 'on',
 					'toggle_slug' => 'main_content',
 				],
-				'controls' => [
-					'label' => esc_html__('Show controls', 'am-lottieplayer'),
-					'description' => esc_html__('Show or hide controls.', 'am-lottieplayer'),
+				'autoplay' => [
+					'label' => esc_html__('Autoplay', 'am-lottieplayer'),
+					'description' => esc_html__('Control whether the animation plays on page load or not.', 'am-lottieplayer'),
 					'type' => 'yes_no_button',
 					'option_category' => 'basic_option',
 					'options'  => [
@@ -215,15 +215,19 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'on'  => et_builder_i18n('Yes'),
 					],
 					'default_on_front' => 'on',
+					'depends_show_if_not' => 'off',
+					'affects' => [
+						'mode',
+					],
 					'toggle_slug' => 'main_content',
 				],
-				'speed' => [
-					'label' => __('Playback speed', 'am-lottieplayer'),
-					'type' => 'range',
-					'default' => '1',
-					'range_settings' => [
-						'max' => '10',
-						'step' => '0.1',
+				'mode' => [
+					'label' => esc_html__('Boomerang', 'am-lottieplayer'),
+					'type' => 'yes_no_button',
+					'option_category' => 'basic_option',
+					'options'  => [
+						'off' => et_builder_i18n('No'),
+						'on'  => et_builder_i18n('Yes'),
 					],
 					'toggle_slug' => 'main_content',
 				],
@@ -238,6 +242,16 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					],
 					'toggle_slug' => 'main_content',
 				],
+				'speed' => [
+					'label' => __('Playback speed', 'am-lottieplayer'),
+					'type' => 'range',
+					'default' => '1',
+					'range_settings' => [
+						'max' => '10',
+						'step' => '0.1',
+					],
+					'toggle_slug' => 'main_content',
+				],
 				'onclick' => [
 					'label' => __('Play on click', 'am-lottieplayer'),
 					'type' => 'yes_no_button',
@@ -245,6 +259,10 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					'options'  => [
 						'off' => et_builder_i18n('No'),
 						'on'  => et_builder_i18n('Yes'),
+					],
+					'affects' => [
+						'selector',
+						'exclude'
 					],
 					'toggle_slug' => 'main_content',
 				],
@@ -258,8 +276,9 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					],
 					'affects' => [
 						'onmouseout',
+						'selector',
+						'exclude'
 					],
-					'depends_show_if_not' => 'off',
 					'toggle_slug' => 'main_content',
 				],
 				'onmouseout' => [
@@ -273,7 +292,24 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					],
 					'default' => 'stop',
 					'condition' => [
-						'onmouseover' => 'yes',
+						'onmouseover' => 'on',
+					],
+					'toggle_slug' => 'main_content',
+				],
+				'selector' => [
+					'label' => esc_html__('Selector', 'am-lottieplayer'),
+					'type' => 'text',
+					'option_category' => 'basic_option',
+					'description' => esc_html__('Anchor tag (id) for an element you also want the interaction to apply to.', 'am-lottieplayer'),
+					'toggle_slug' => 'main_content',
+				],
+				'exclude' => [
+					'label' => esc_html__('Apply interaction only to selector', 'am-lottieplayer'),
+					'type' => 'yes_no_button',
+					'option_category' => 'basic_option',
+					'options'  => [
+						'off' => et_builder_i18n('No'),
+						'on'  => et_builder_i18n('Yes'),
 					],
 					'toggle_slug' => 'main_content',
 				],
@@ -327,6 +363,8 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						data-mouseout="%12$s"
 						data-click="%13$s"
 						speed="%14$s"
+						data-selector="%15$s"
+						mode="%16$s"
 					>
 					</dotlottie-player>
 				</figure>',
@@ -344,6 +382,11 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 				esc_html($this -> props['onmouseout']), #12
 				esc_html($this -> props['onclick'] !== 'on' ? 'false' : 'true'), #13
 				esc_html($this -> props['speed']), #14
+				json_encode([
+					"id" => esc_html($this -> props['selector']),
+					"exclude" => esc_html($this -> props['exclude'] === 'on'),
+				]), #15
+				esc_html($this -> props['mode'] !== 'on' ? 'normal' : 'bounce') #16
 			);
 
 			return $output;

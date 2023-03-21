@@ -42,13 +42,13 @@ vc_map(
       ],
       [
         'type' => 'checkbox',
-        'heading' => __('Autoplay', 'am-lottieplayer'),
-        'param_name' => 'autoplay',
+        'heading' => __('Show controls', 'am-lottieplayer'),
+        'param_name' => 'controls',
       ],
       [
         'type' => 'checkbox',
-        'heading' => __('Show controls', 'am-lottieplayer'),
-        'param_name' => 'controls',
+        'heading' => __('Autoplay', 'am-lottieplayer'),
+        'param_name' => 'autoplay',
       ],
       [
         'type' => 'checkbox',
@@ -56,15 +56,24 @@ vc_map(
         'param_name' => 'loop',
       ],
       [
-        'type' => 'textfield',
-        'heading' => __('Speed', 'am-lottieplayer'),
-        'param_name' => 'speed',
-        'value' => '1',
+        'type' => 'checkbox',
+        'heading' => __('Boomerang', 'am-lottieplayer'),
+        'param_name' => 'mode',
+        'dependency' => [
+          'element' => 'loop',
+          'value' => 'true'
+        ],
       ],
       [
         'type' => 'checkbox',
         'heading' => __('Reverse', 'am-lottieplayer'),
         'param_name' => 'direction',
+      ],
+      [
+        'type' => 'textfield',
+        'heading' => __('Speed', 'am-lottieplayer'),
+        'param_name' => 'speed',
+        'value' => '1',
       ],
       [
         'type' => 'checkbox',
@@ -91,6 +100,17 @@ vc_map(
           'element' => 'onmouseover',
           'value' => 'true'
         ],
+      ],
+      [
+        'type' => 'textfield',
+        'heading' => __('Selector', 'am-lottieplayer'),
+        'param_name' => 'selector',
+        'value' => '',
+      ],
+      [
+        'type' => 'checkbox',
+        'heading' => __('Exclude', 'am-lottieplayer'),
+        'param_name' => 'exclude',
       ],
       [
         'type' => 'textfield',

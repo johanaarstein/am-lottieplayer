@@ -7,7 +7,7 @@
  * Description:       The most complete Lottie Player plugin yet! Accepts JSON and dotLottie, and has integrations for Gutenberg, Divi, Elementor Flatsome and WPBakery.
  * Requires at least: 5.9
  * Requires PHP:      7.0
- * Version:           2.3.1
+ * Version:           2.3.2
  * Author:            Aarstein Media
  * Author URI:        https://www.aarstein.media
  * License:           GPL-2.0-or-later
@@ -41,7 +41,7 @@ if (!function_exists('am_lottie_blocks_init')) {
       'dotlottie-player',
       AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player.min.js',
       null,
-      '1.4.31',
+      '1.4.32',
       true
     );
 
@@ -57,7 +57,7 @@ if (!function_exists('am_lottie_blocks_init')) {
       'am-frontend',
       AM_LOTTIEPLAYER_URL . 'scripts/am-frontend.min.js',
       ['dotlottie-player'],
-      '1.2.0',
+      '1.2.1',
       true
     );
   }

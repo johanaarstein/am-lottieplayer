@@ -66,7 +66,7 @@ const Interactions = ( {
 							id="am-lottieplayer-settings"
 							title={ __( 'Selector', 'am-lottieplayer' ) }
 							help={ __(
-								'Anchor tag (id) for an element you want the interaction to apply to.',
+								'Anchor tag (id) for an element you also want the interaction to apply to.',
 								'am-lottieplayer'
 							) }
 							placeholder={ '#' }

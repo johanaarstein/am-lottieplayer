@@ -8,6 +8,33 @@ if (!function_exists('animationDirection')) {
   }
 }
 
+if (!function_exists('amTruish')) {
+  function amTruish($input) {
+    return $input === 'true' || $input === true || $input === 1 || $input === '1';
+  }
+}
+
+if (!function_exists('animationMode')) {
+  function animationMode($input) {
+    if ($input === 'bounce' ||
+      $input === 1 ||
+      $input === '1' ||
+      $input === 'true' ||
+      $input === true) return 'bounce';
+    return 'normal';
+  }
+}
+
+if (!function_exists('interactionSelector')) {
+  function interactionSelector($input, $exclude = false) {
+    if (!$input || is_object(json_decode($input))) return $input;
+    return json_encode([
+      "id" => $input,
+      "exclude" => amTruish($exclude),
+    ]);
+  }
+}
+
 if (!function_exists('am_render_lottieplayer')) {
   function am_render_lottieplayer($atts) {
     ob_start(); ?>
@@ -17,7 +44,7 @@ if (!function_exists('am_render_lottieplayer')) {
       <?php echo esc_html($atts['controls']) && esc_html($atts['controls']) !== 'false'  ? 'controls' : ''; ?>
       description="<?php echo esc_html($atts['alt']); ?>"
       <?php echo esc_html($atts['loop']) && esc_html($atts['loop']) !== 'false' ? 'loop' : ''; ?>
-      mode="<?php echo esc_html($atts['mode']); ?>"
+      mode="<?php echo animationMode(esc_html($atts['mode'])); ?>"
       objectfit="<?php echo esc_html($atts['objectfit']); ?>"
       src="<?php echo esc_url($atts['src']); ?>"
       renderer="<?php echo esc_html($atts['renderer']); ?>"
@@ -27,6 +54,7 @@ if (!function_exists('am_render_lottieplayer')) {
       data-mouseover="<?php echo esc_html($atts['onmouseover']); ?>"
       data-mouseout="<?php echo esc_html($atts['onmouseout']); ?>"
       data-click="<?php echo esc_html($atts['onclick']); ?>"
+      data-selector="<?php echo interactionSelector(esc_html($atts['selector']), esc_html($atts['exclude'])); ?>"
     >
     </dotlottie-player>
     <?php
@@ -52,6 +80,7 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
       'objectfit' => 'contain',
       'renderer' => 'svg',
       'speed' => 1,
+      'selector' => null,
       'src' => esc_url(!is_wp_error(am_lottie_asset()) ? wp_get_attachment_url(am_lottie_asset()) : am_lottie_asset(true)),
       'width' => null,
       'onmouseover' => false,

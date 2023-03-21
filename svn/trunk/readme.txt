@@ -114,6 +114,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 2.3.2 =
+* New Feature: Added support for selectors to Elementor, Flatsome, WPBakery and Divi
+
 = 2.3.1 =
 * Bugfix: Fixed issue with Boomerang
 
