@@ -59,10 +59,6 @@ vc_map(
         'type' => 'checkbox',
         'heading' => __('Boomerang', 'am-lottieplayer'),
         'param_name' => 'mode',
-        'dependency' => [
-          'element' => 'loop',
-          'value' => 'true'
-        ],
       ],
       [
         'type' => 'checkbox',
@@ -103,13 +99,14 @@ vc_map(
       ],
       [
         'type' => 'textfield',
-        'heading' => __('Selector', 'am-lottieplayer'),
+        'heading' => __('Trigger element', 'am-lottieplayer'),
+        'description' => __('Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer'),
         'param_name' => 'selector',
         'value' => '',
       ],
       [
         'type' => 'checkbox',
-        'heading' => __('Exclude', 'am-lottieplayer'),
+        'heading' => __('Apply interaction only to trigger element', 'am-lottieplayer'),
         'param_name' => 'exclude',
       ],
       [

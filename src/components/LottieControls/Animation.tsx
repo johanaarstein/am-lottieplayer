@@ -1,11 +1,11 @@
 import { Panel, PanelBody, RangeControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-// import { PlayMode } from '@johanaarstein/dotlottie-player';
+
+import { PlayMode } from '../../types';
 
 import { SwitchLabel } from '../form';
 
 import type { BlockEditProps } from 'wordpress__blocks';
-import { PlayMode } from '../../types';
 import type { PlayerComponentProps } from '../../types';
 
 const Animation = ( {
@@ -49,25 +49,18 @@ const Animation = ( {
 					value={ loop as boolean }
 					onChange={ ( value ) => {
 						setAttributes( { loop: value } );
-						if ( ! value && mode === PlayMode.Bounce ) {
-							setAttributes( {
-								mode: PlayMode.Normal,
-							} );
-						}
 					} }
 				/>
-				{ loop && (
-					<SwitchLabel
-						id="am-lottieplayer-playmode-settings"
-						title={ __( 'Boomerang', 'am-lottieplayer' ) }
-						value={ mode === PlayMode.Bounce }
-						onChange={ ( value ) => {
-							setAttributes( {
-								mode: value ? PlayMode.Bounce : PlayMode.Normal,
-							} );
-						} }
-					/>
-				) }
+				<SwitchLabel
+					id="am-lottieplayer-playmode-settings"
+					title={ __( 'Boomerang', 'am-lottieplayer' ) }
+					value={ mode === PlayMode.Bounce }
+					onChange={ ( value ) => {
+						setAttributes( {
+							mode: value ? PlayMode.Bounce : PlayMode.Normal,
+						} );
+					} }
+				/>
 				<SwitchLabel
 					id="am-lottieplayer-reverse-settings"
 					title={ __( 'Reverse', 'am-lottieplayer' ) }

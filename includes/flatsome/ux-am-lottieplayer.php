@@ -60,7 +60,6 @@ add_ux_builder_shortcode('am-lottieplayer', [
         'mode' => [
           'type' => 'checkbox',
           'heading' => __('Boomerang', 'am-lottieplayer'),
-          'conditions' => 'loop === "true"',
         ],
 
         'direction' => [
@@ -102,14 +101,14 @@ add_ux_builder_shortcode('am-lottieplayer', [
 
         'selector' => [
           'type' => 'textfield',
-          'heading' => __('Selector', 'am-lottieplayer'),
-          'description' => __('Anchor tag (id) for an element you also want the interaction to apply to.', 'am-lottieplayer'),
+          'heading' => __('Trigger element', 'am-lottieplayer'),
+          'description' => __('Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer'),
           'conditions' => 'onmouseover === "true" || onclick === "true"',
         ],
 
         'exclude' => [
           'type' => 'checkbox',
-          'heading' => __('Apply interaction only to selector', 'am-lottieplayer'),
+          'heading' => __('Apply interaction only to trigger element', 'am-lottieplayer'),
           'conditions' => 'onmouseover === "true" || onclick === "true"',
         ],
       ],

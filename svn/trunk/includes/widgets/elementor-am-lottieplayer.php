@@ -100,9 +100,6 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 					'type' => \Elementor\Controls_Manager::SWITCHER,
 					'label_on' => __('On', 'am-lottieplayer'),
 					'label_off' => __('Off', 'am-lottieplayer'),
-					'condition' => [
-						'loop' => 'yes',
-					],
 				]
 			);
 
@@ -119,8 +116,7 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			$this -> add_control(
 				'speed',
 				[
-					'label' => __('Speed', 'am-lottieplayer'),
-					'description' => __('Playback speed'),
+					'label' => __('Playback speed', 'am-lottieplayer'),
 					'type' => \Elementor\Controls_Manager::NUMBER,
 					'step' => '0.1',
 					'placeholder' => '1',
@@ -177,7 +173,8 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			$this -> add_control(
 				'selector',
 				[
-					'label' => __('Anchor tag (id) for an element you also want the interaction to apply to.', 'am-lottieplayer'),
+					'label' => __('Trigger element', 'am-lottieplayer'),
+					'description' => __('Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer'),
 					'type' => \Elementor\Controls_Manager::TEXT,
 					'placeholder' => '#',
 					'conditions' => [
@@ -193,7 +190,7 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			$this -> add_control(
 				'exclude',
 				[
-					'label' => __('Apply interaction only to selector', 'am-lottieplayer'),
+					'label' => __('Apply interaction only to trigger element', 'am-lottieplayer'),
 					'type' => \Elementor\Controls_Manager::SWITCHER,
 					'label_on' => __('Yes', 'am-lottieplayer'),
 					'label_off' => __('No', 'am-lottieplayer'),

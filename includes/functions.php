@@ -54,7 +54,7 @@ if (!function_exists('am_render_lottieplayer')) {
       data-mouseover="<?php echo esc_html($atts['onmouseover']); ?>"
       data-mouseout="<?php echo esc_html($atts['onmouseout']); ?>"
       data-click="<?php echo esc_html($atts['onclick']); ?>"
-      data-selector="<?php echo interactionSelector(esc_html($atts['selector']), esc_html($atts['exclude'])); ?>"
+      data-selector="<?php echo esc_html(interactionSelector($atts['selector'], $atts['exclude'])); ?>"
     >
     </dotlottie-player>
     <?php

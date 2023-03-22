@@ -215,10 +215,6 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'on'  => et_builder_i18n('Yes'),
 					],
 					'default_on_front' => 'on',
-					'depends_show_if_not' => 'off',
-					'affects' => [
-						'mode',
-					],
 					'toggle_slug' => 'main_content',
 				],
 				'mode' => [
@@ -297,14 +293,14 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					'toggle_slug' => 'main_content',
 				],
 				'selector' => [
-					'label' => esc_html__('Selector', 'am-lottieplayer'),
+					'label' => esc_html__('Trigger element', 'am-lottieplayer'),
 					'type' => 'text',
 					'option_category' => 'basic_option',
-					'description' => esc_html__('Anchor tag (id) for an element you also want the interaction to apply to.', 'am-lottieplayer'),
+					'description' => esc_html__('Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer'),
 					'toggle_slug' => 'main_content',
 				],
 				'exclude' => [
-					'label' => esc_html__('Apply interaction only to selector', 'am-lottieplayer'),
+					'label' => esc_html__('Apply interaction only to trigger element', 'am-lottieplayer'),
 					'type' => 'yes_no_button',
 					'option_category' => 'basic_option',
 					'options'  => [
@@ -382,10 +378,10 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 				esc_html($this -> props['onmouseout']), #12
 				esc_html($this -> props['onclick'] !== 'on' ? 'false' : 'true'), #13
 				esc_html($this -> props['speed']), #14
-				json_encode([
+				esc_html(json_encode([
 					"id" => esc_html($this -> props['selector']),
 					"exclude" => esc_html($this -> props['exclude'] === 'on'),
-				]), #15
+				])), #15
 				esc_html($this -> props['mode'] !== 'on' ? 'normal' : 'bounce') #16
 			);
 

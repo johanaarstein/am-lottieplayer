@@ -64,9 +64,9 @@ const Interactions = ( {
 					<>
 						<TextInput
 							id="am-lottieplayer-settings"
-							title={ __( 'Selector', 'am-lottieplayer' ) }
+							title={ __( 'Trigger element', 'am-lottieplayer' ) }
 							help={ __(
-								'Anchor tag (id) for an element you also want the interaction to apply to.',
+								'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.',
 								'am-lottieplayer'
 							) }
 							placeholder={ '#' }
@@ -80,7 +80,7 @@ const Interactions = ( {
 						<SwitchLabel
 							id="am-lottieplayer-selector-settings"
 							title={ __(
-								'Apply interaction only to selector',
+								'Apply interaction only to trigger element',
 								'am-lottieplayer'
 							) }
 							value={ selector?.exclude }
