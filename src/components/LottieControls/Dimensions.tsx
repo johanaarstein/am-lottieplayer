@@ -7,10 +7,10 @@ import {
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import { NumberInput, SwitchLabel } from '../form';
+import { NumberInput, SwitchLabel } from '@components/form';
 
 import type { BlockEditProps } from 'wordpress__blocks';
-import type { PlayerComponentProps } from '../../types';
+import type { PlayerComponentProps } from '@types';
 
 const Dimensions = ( {
 	attributes,

@@ -2,7 +2,7 @@ import { isBlobURL } from '@wordpress/blob';
 import type { DotLottiePlayer } from '@johanaarstein/dotlottie-player';
 import type { AnimationDirection } from 'lottie-web';
 
-import { OnMouseOut } from '../types';
+import { OnMouseOut } from '@types';
 
 const attributesFromMedia = (
 		setAttributes: ( attrs: object ) => void,

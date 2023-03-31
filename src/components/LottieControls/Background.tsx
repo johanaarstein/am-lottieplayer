@@ -2,7 +2,7 @@ import { ColorPicker, Panel, PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import type { BlockEditProps } from 'wordpress__blocks';
-import type { PlayerComponentProps } from '../../types';
+import type { PlayerComponentProps } from '@types';
 
 const Background = ( {
 	attributes,

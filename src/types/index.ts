@@ -2,6 +2,7 @@ import type { EditorTemplateLock } from '@wordpress/block-editor';
 import type { BlockEditProps } from 'wordpress__blocks';
 import type { ResizeStartCallback } from 're-resizable';
 import type { DotLottiePlayer } from '@johanaarstein/dotlottie-player';
+import type { AnimationSegment } from 'lottie-web';
 
 export enum PlayMode {
 	Bounce = 'bounce',
@@ -34,6 +35,7 @@ export interface PlayerComponentProps extends Partial< DotLottiePlayer > {
 	isDark?: boolean;
 	mouseout?: OnMouseOut;
 	objectFit?: DotLottiePlayer[ 'objectfit' ];
+	segment?: AnimationSegment;
 	selector?: {
 		id?: string;
 		exclude?: boolean;

@@ -1,11 +1,11 @@
 import { Panel, PanelBody, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import { SwitchLabel, TextInput } from '../form';
-import { OnMouseOut } from '../../types';
+import { SwitchLabel, TextInput } from '@components/form';
+import { OnMouseOut } from '@types';
 
 import type { BlockEditProps } from 'wordpress__blocks';
-import type { PlayerComponentProps } from '../../types';
+import type { PlayerComponentProps } from '@types';
 
 const Interactions = ( {
 	attributes,

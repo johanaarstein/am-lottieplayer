@@ -1,9 +1,9 @@
 import { BlockIcon, MediaPlaceholder } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
-import { Lottie } from '../../assets/icons';
+import { Lottie } from '@assets/icons';
 
-import type { UploadProps } from '../../types';
+import type { UploadProps } from '@types';
 
 export default function UploadComponent( {
 	children,

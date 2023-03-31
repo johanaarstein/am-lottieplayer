@@ -20,13 +20,19 @@ export default function save( { attributes }: BlockSaveProps< object > ) {
 		mouseout,
 		objectFit,
 		renderer,
+		segment,
 		selector,
 		speed,
 		src,
+		subframe,
 		width,
 	}: PlayerComponentProps = attributes;
 
-	const dataSelector = JSON.stringify( selector );
+	const dataSelector = JSON.stringify( selector ),
+		playSegment =
+			! segment || ! segment?.[ 1 ]
+				? undefined
+				: JSON.stringify( [ segment[ 0 ], segment[ 1 ] ] );
 
 	return (
 		<figure
@@ -58,8 +64,10 @@ export default function save( { attributes }: BlockSaveProps< object > ) {
 				mode={ mode }
 				objectfit={ objectFit }
 				renderer={ renderer }
+				segment={ playSegment }
 				src={ src as string }
 				speed={ speed }
+				subframe={ subframe }
 			/>
 		</figure>
 	);

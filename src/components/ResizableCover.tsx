@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { useState } from '@wordpress/element';
 import { ResizableBox } from '@wordpress/components';
 
-import type { ResizableCoverProps } from '../types';
+import type { ResizableCoverProps } from '@types';
 
 export default function ResizableCover( {
 	className,

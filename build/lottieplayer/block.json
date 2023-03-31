@@ -96,6 +96,10 @@
       "type": "string",
       "default": "svg"
     },
+    "segment": {
+      "type": "array",
+      "default": null
+    },
     "selector": {
       "type": "object",
       "default": {
@@ -114,6 +118,10 @@
       "selector": "dotlottie-player",
       "attribute": "src",
       "__experimentalRole": "content"
+    },
+    "subframe": {
+      "type": "boolean",
+      "default": false
     },
     "width": {
       "type": "number",

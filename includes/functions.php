@@ -72,6 +72,7 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
       'class' => '',
       'controls' => false,
       'direction' => 1,
+      'exclude' => false,
       'height' => null,
       'id' => null,
       'interactivityType' => 'none',

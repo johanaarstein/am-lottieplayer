@@ -96,6 +96,10 @@
       "type": "string",
       "default": "svg"
     },
+    "segment": {
+      "type": "array",
+      "default": null
+    },
     "selector": {
       "type": "object",
       "default": {

@@ -3,7 +3,7 @@ import { Notice } from '@wordpress/components';
 import UploadComponent from './UploadComponent';
 import PlayerComponent from './PlayerComponent';
 
-import type { PlaceholderProps } from '../../types';
+import type { PlaceholderProps } from '@types';
 
 export default function Placeholder( {
 	attributes,

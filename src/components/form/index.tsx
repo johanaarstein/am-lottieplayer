@@ -1,6 +1,8 @@
 import { BaseControl, FormToggle, TextControl } from '@wordpress/components';
 
-import { isModifierKey, isNumericInput } from '../../functions';
+import { isModifierKey, isNumericInput } from '@functions';
+
+import type { KeyboardEvent } from 'react';
 
 type SwitchLabelProps = {
 	id: string;
@@ -49,7 +51,8 @@ const NumberInput = ( {
 	disabled,
 	placeholder = '',
 }: NumberInputProps ) => {
-	const keydownHandler = ( e ) => {
+	const keydownHandler = ( e: KeyboardEvent< HTMLInputElement > ) => {
+		// console.log(e);
 		if ( isModifierKey( e ) ) return;
 		// eslint-disable-next-line no-unused-expressions
 		! isNumericInput( e ) && e.preventDefault();

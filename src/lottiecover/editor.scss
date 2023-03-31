@@ -138,4 +138,18 @@
 	margin-top: 24px;
 }
 
+.lottie-dimensions,
+.lottie-segment {
+	gap: 1em;
+	margin-bottom: 1em;
+	align-items: flex-start;
+	.lottie-number-wrapper {
+		flex: 1;
+		margin-bottom: 0 !important;
+
+		input {
+			width: 100%;
+		}
+	}
+}
 

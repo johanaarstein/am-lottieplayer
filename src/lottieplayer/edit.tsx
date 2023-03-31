@@ -2,13 +2,13 @@ import { useEffect, useState } from '@wordpress/element';
 import { useBlockProps } from '@wordpress/block-editor';
 import { Spinner } from '@wordpress/components';
 
-import LottieControls from '../components/LottieControls';
-import Placeholder from '../components/Placeholder';
+import LottieControls from '@components/LottieControls';
+import Placeholder from '@components/Placeholder';
 
-import { isTemporaryMedia } from '../functions';
+import { isTemporaryMedia } from '@functions';
 
 import type { BlockEditProps } from 'wordpress__blocks';
-import type { PlayerComponentProps } from '../types';
+import type { PlayerComponentProps } from '@types';
 
 import './editor.scss';
 

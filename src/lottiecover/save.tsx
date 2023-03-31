@@ -1,7 +1,7 @@
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 
 import type { BlockSaveProps } from 'wordpress__blocks';
-import type { PlayerComponentProps } from '../types';
+import type { PlayerComponentProps } from '@types';
 
 export default function save( {
 	attributes,
@@ -23,9 +23,11 @@ export default function save( {
 			mouseout,
 			objectFit,
 			renderer,
+			segment,
 			selector,
 			speed,
 			src,
+			subframe,
 			width,
 		} = attributes,
 		heightWithUnit =
@@ -34,6 +36,10 @@ export default function save( {
 			minHeight: fullscreen ? '100vh' : heightWithUnit || undefined,
 		},
 		dataSelector = JSON.stringify( selector ),
+		playSegment =
+			! segment || ! segment?.[ 1 ]
+				? undefined
+				: JSON.stringify( [ segment[ 0 ], segment[ 1 ] ] ),
 		parseWidth = ( num: number ) => {
 			if ( align === 'wide' || align === 'full' ) return '100%';
 			if ( num && typeof num === 'number' ) return `${ num }px`;
@@ -64,6 +70,7 @@ export default function save( {
 				mode={ mode }
 				objectfit={ objectFit }
 				renderer={ renderer }
+				segment={ playSegment }
 				speed={ speed }
 				src={ src as string }
 				style={ {
@@ -74,6 +81,7 @@ export default function save( {
 							: null,
 					backgroundColor: background,
 				} }
+				subframe={ subframe }
 			/>
 			<div
 				{ ...useInnerBlocksProps.save( {

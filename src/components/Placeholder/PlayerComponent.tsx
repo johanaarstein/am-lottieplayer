@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 
 import type { DotLottiePlayer } from '@johanaarstein/dotlottie-player';
-import type { PlayerComponentProps } from '../../types';
+import type { PlayerComponentProps } from '@types';
 
 export default function PlayerComponent( {
 	attributes,
@@ -23,8 +23,10 @@ export default function PlayerComponent( {
 			mode,
 			objectFit,
 			renderer,
+			segment,
 			speed,
 			src,
+			subframe,
 			width,
 		} = attributes,
 		{ getBlockIndex } = useSelect(
@@ -34,6 +36,10 @@ export default function PlayerComponent( {
 		blockIndex = getBlockIndex( clientId ),
 		player = useRef< DotLottiePlayer >( null ),
 		initialRender = useRef( true ),
+		playSegment =
+			! segment || ! segment?.[ 1 ]
+				? undefined
+				: JSON.stringify( [ segment[ 0 ], segment[ 1 ] ] ),
 		reloadPlayer = useCallback( () => {
 			if ( ! player.current ) return;
 			if ( player.current.reload ) player.current.reload();
@@ -67,7 +73,9 @@ export default function PlayerComponent( {
 		objectFit,
 		reloadPlayer,
 		renderer,
+		segment,
 		speed,
+		subframe,
 	] );
 
 	return (
@@ -82,7 +90,9 @@ export default function PlayerComponent( {
 			objectfit={ objectFit }
 			ref={ player }
 			renderer={ renderer }
+			segment={ playSegment }
 			speed={ speed }
+			subframe={ subframe ? '' : null }
 			src={ src as string }
 			style={ {
 				width: parseWidth( width ),

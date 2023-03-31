@@ -11,6 +11,20 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    "paths": {
+      "@assets/*": [
+        "./src/assets/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@functions": [
+        "./src/functions"
+      ],
+      "@types": [
+        "./src/types"
+      ]
+    }
   },
   "include": [
     "./src/**/*"
