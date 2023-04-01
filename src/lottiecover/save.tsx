@@ -54,11 +54,11 @@ export default function save( {
 				style={ { backgroundColor: background } }
 			/>
 			<dotlottie-player
-				class={ `lottie-element ${
-					selector?.id ? 'has-selector' : ''
+				class={ `lottie-element${
+					selector?.id ? ' has-selector' : ''
 				}` }
-				autoplay={ autoplay }
-				controls={ controls }
+				autoplay={ autoplay ? '' : null }
+				controls={ controls ? '' : null }
 				description={ alt }
 				direction={ direction }
 				data-direction={ direction }
@@ -66,7 +66,7 @@ export default function save( {
 				data-mouseout={ mouseout }
 				data-click={ clickEvent }
 				data-selector={ dataSelector }
-				loop={ loop }
+				loop={ loop ? '' : null }
 				mode={ mode }
 				objectfit={ objectFit }
 				renderer={ renderer }
@@ -81,7 +81,7 @@ export default function save( {
 							: null,
 					backgroundColor: background,
 				} }
-				subframe={ subframe }
+				subframe={ subframe ? '' : null }
 			/>
 			<div
 				{ ...useInnerBlocksProps.save( {

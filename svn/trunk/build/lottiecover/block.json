@@ -147,6 +147,10 @@
       "type": "string",
       "default": ""
     },
+    "subframe": {
+      "type": "boolean",
+      "default": false
+    },
     "templateLock": {
       "type": [
         "string",

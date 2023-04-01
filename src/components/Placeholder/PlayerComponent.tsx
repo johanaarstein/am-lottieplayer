@@ -42,7 +42,7 @@ export default function PlayerComponent( {
 				: JSON.stringify( [ segment[ 0 ], segment[ 1 ] ] ),
 		reloadPlayer = useCallback( () => {
 			if ( ! player.current ) return;
-			if ( player.current.reload ) player.current.reload();
+			if ( player.current.reload ) void player.current.reload();
 			setTimeout( () => {
 				const canvas =
 					player.current?.shadowRoot?.querySelector( 'canvas' );

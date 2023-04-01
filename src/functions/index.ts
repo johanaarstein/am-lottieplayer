@@ -1,6 +1,7 @@
 import { isBlobURL } from '@wordpress/blob';
 import type { DotLottiePlayer } from '@johanaarstein/dotlottie-player';
 import type { AnimationDirection } from 'lottie-web';
+import type { KeyboardEvent } from 'react';
 
 import { OnMouseOut } from '@types';
 
@@ -40,8 +41,8 @@ const attributesFromMedia = (
 		const divisor = gcd( width, height );
 		return `${ width / divisor } / ${ height / divisor }`;
 	},
-	isModifierKey = ( { ctrlKey, key, metaKey, shiftKey } ) => {
-		return (
+	isModifierKey = ( { ctrlKey, key, metaKey, shiftKey }: KeyboardEvent ) => {
+		return !! (
 			shiftKey ||
 			key === 'End' ||
 			key === 'Home' ||
@@ -59,8 +60,8 @@ const attributesFromMedia = (
 					key === 'r' ) )
 		);
 	},
-	isNumericInput = ( { key } ) => {
-		return key >= 0 && key <= 9;
+	isNumericInput = ( { key }: KeyboardEvent< Element > ) => {
+		return Number( key ) >= 0 && Number( key ) <= 9;
 	},
 	isTemporaryMedia = ( id: string, url: string ) => ! id && isBlobURL( url ),
 	isTouch = () => {

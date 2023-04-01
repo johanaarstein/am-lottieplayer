@@ -119,6 +119,10 @@
       "attribute": "src",
       "__experimentalRole": "content"
     },
+    "subframe": {
+      "type": "boolean",
+      "default": false
+    },
     "width": {
       "type": "number",
       "default": null

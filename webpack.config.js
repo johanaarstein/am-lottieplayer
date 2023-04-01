@@ -1,5 +1,5 @@
 const defaults = require('@wordpress/scripts/config/webpack.config'),
-	{ join } = require('path'),
+	{ join, resolve } = require('path'),
 	{ writeFile } = require('fs'),
 	{ sync } = require('glob'),
 
@@ -42,15 +42,25 @@ const defaults = require('@wordpress/scripts/config/webpack.config'),
 module.exports = {
 	...defaults,
 
-	module: {
-		...defaults.module,
-	},
+	// module: {
+	// 	...defaults.module,
+	// },
 	plugins: [
 		...defaults.plugins,
 		{
-			apply: ({ hooks }) =>{
+			apply: ({ hooks }) => {
 				hooks.afterEmit.tap('rename', rename)
 			}
 		}
-	]
+	],
+	resolve: {
+		...defaults.resolve,
+		alias: {
+			...defaults.resolve.alias,
+			'@assets': resolve(__dirname, './src/assets'),
+			'@components': resolve(__dirname, './src/components'),
+			'@functions': resolve(__dirname, './src/functions'),
+			'@types': resolve(__dirname, './src/types')
+		}
+	}
 }

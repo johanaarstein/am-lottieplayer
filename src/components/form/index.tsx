@@ -36,7 +36,7 @@ const SwitchLabel = ( {
 
 type NumberInputProps = {
 	id: string;
-	onChange: ( x: number ) => void;
+	onChange: ( x?: number ) => void;
 	title?: string;
 	value?: string | number;
 	disabled?: boolean;
@@ -52,7 +52,6 @@ const NumberInput = ( {
 	placeholder = '',
 }: NumberInputProps ) => {
 	const keydownHandler = ( e: KeyboardEvent< HTMLInputElement > ) => {
-		// console.log(e);
 		if ( isModifierKey( e ) ) return;
 		// eslint-disable-next-line no-unused-expressions
 		! isNumericInput( e ) && e.preventDefault();
@@ -66,7 +65,12 @@ const NumberInput = ( {
 		>
 			<TextControl
 				value={ value }
-				onChange={ ( n ) => onChange( +n ) }
+				onChange={ ( n ) => {
+					// eslint-disable-next-line no-unused-expressions
+					n === undefined || n === ''
+						? onChange( undefined )
+						: onChange( Number( n ) );
+				} }
 				onKeyDown={ keydownHandler }
 				disabled={ disabled }
 				placeholder={ placeholder }

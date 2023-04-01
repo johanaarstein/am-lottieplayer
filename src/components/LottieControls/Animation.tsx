@@ -127,10 +127,9 @@ const Animation = ( {
 						value={ segment?.[ 1 ] }
 						onChange={ ( val ) =>
 							setAttributes( {
-								segment:
-									val !== undefined
-										? [ segment?.[ 0 ] ?? 0, val ]
-										: undefined,
+								segment: val
+									? [ segment?.[ 0 ] ?? 0, val ]
+									: undefined,
 							} )
 						}
 						placeholder={ __( 'Last frame', 'am-lottieplayer' ) }

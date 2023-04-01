@@ -38,7 +38,7 @@ export default function save( { attributes }: BlockSaveProps< object > ) {
 		<figure
 			id={ id }
 			{ ...useBlockProps.save( {
-				className: `align${ align }`,
+				className: `align${ align ?? 'none' }`,
 			} ) }
 			style={ {
 				backgroundColor: background,
@@ -48,11 +48,11 @@ export default function save( { attributes }: BlockSaveProps< object > ) {
 			} }
 		>
 			<dotlottie-player
-				class={ `lottie-element ${
-					selector?.id ? 'has-selector' : ''
+				class={ `lottie-element${
+					selector?.id ? ' has-selector' : ''
 				}` }
-				autoplay={ autoplay }
-				controls={ controls }
+				autoplay={ autoplay ? '' : null }
+				controls={ controls ? '' : null }
 				description={ alt }
 				direction={ direction }
 				data-direction={ direction }
@@ -60,14 +60,14 @@ export default function save( { attributes }: BlockSaveProps< object > ) {
 				data-mouseout={ mouseout }
 				data-click={ clickEvent }
 				data-selector={ dataSelector }
-				loop={ loop }
+				loop={ loop ? '' : null }
 				mode={ mode }
 				objectfit={ objectFit }
 				renderer={ renderer }
 				segment={ playSegment }
 				src={ src as string }
 				speed={ speed }
-				subframe={ subframe }
+				subframe={ subframe ? '' : null }
 			/>
 		</figure>
 	);
