@@ -238,6 +238,17 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					],
 					'toggle_slug' => 'main_content',
 				],
+				'subframe' => [
+					'label' => esc_html__('Subframe', 'am-lottieplayer'),
+					'description' => esc_html__('Enabling this can sometimes reduce flicker', 'am-lottieplayer'),
+					'type' => 'yes_no_button',
+					'option_category' => 'basic_option',
+					'options'  => [
+						'off' => et_builder_i18n('No'),
+						'on'  => et_builder_i18n('Yes'),
+					],
+					'toggle_slug' => 'main_content',
+				],
 				'speed' => [
 					'label' => __('Playback speed', 'am-lottieplayer'),
 					'type' => 'range',
@@ -361,6 +372,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						speed="%14$s"
 						data-selector="%15$s"
 						mode="%16$s"
+						%17$s
 					>
 					</dotlottie-player>
 				</figure>',
@@ -382,7 +394,8 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					"id" => esc_html($this -> props['selector']),
 					"exclude" => esc_html($this -> props['exclude'] === 'on'),
 				])), #15
-				esc_html($this -> props['mode'] !== 'on' ? 'normal' : 'bounce') #16
+				esc_html($this -> props['mode'] !== 'on' ? 'normal' : 'bounce'), #16
+				($this -> props['subframe'] !== 'off' ? 'subframe' : '') #17
 			);
 
 			return $output;
