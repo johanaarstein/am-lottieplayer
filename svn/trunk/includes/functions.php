@@ -48,7 +48,9 @@ if (!function_exists('am_render_lottieplayer')) {
       objectfit="<?php echo esc_html($atts['objectfit']); ?>"
       src="<?php echo esc_url($atts['src']); ?>"
       renderer="<?php echo esc_html($atts['renderer']); ?>"
+      segment="<?php echo esc_html($atts['segment']); ?>"
       speed="<?php echo esc_html($atts['speed']); ?>"
+      <?php echo esc_html($atts['subframe']) && esc_html($atts['subframe']) !== 'false' ? 'subframe' : ''; ?>
       direction="<?php echo animationDirection(esc_html($atts['direction'])); ?>"
       data-direction="<?php echo animationDirection(esc_html($atts['direction'])); ?>"
       data-mouseover="<?php echo esc_html($atts['onmouseover']); ?>"
@@ -80,9 +82,11 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
       'mode' => 'normal',
       'objectfit' => 'contain',
       'renderer' => 'svg',
+      'segment' => null,
       'speed' => 1,
       'selector' => null,
       'src' => esc_url(!is_wp_error(am_lottie_asset()) ? wp_get_attachment_url(am_lottie_asset()) : am_lottie_asset(true)),
+      'subframe' => false,
       'width' => null,
       'onmouseover' => false,
       'onclick' => false,

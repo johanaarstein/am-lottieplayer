@@ -114,6 +114,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 2.4.1 =
+* New Feature: Expanded possibility to play segments to Divi Builder
+
 = 2.4 =
 * New Feature: Added possibility to play segments, in Gutenberg editor
 * Compability: Checked compability with new release of WordPress

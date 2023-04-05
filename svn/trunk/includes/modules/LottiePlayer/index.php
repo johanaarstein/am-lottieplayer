@@ -238,6 +238,17 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					],
 					'toggle_slug' => 'main_content',
 				],
+				'subframe' => [
+					'label' => esc_html__('Subframe', 'am-lottieplayer'),
+					'description' => esc_html__('Enabling this can sometimes reduce flicker', 'am-lottieplayer'),
+					'type' => 'yes_no_button',
+					'option_category' => 'basic_option',
+					'options'  => [
+						'off' => et_builder_i18n('No'),
+						'on'  => et_builder_i18n('Yes'),
+					],
+					'toggle_slug' => 'main_content',
+				],
 				'speed' => [
 					'label' => __('Playback speed', 'am-lottieplayer'),
 					'type' => 'range',
@@ -246,6 +257,18 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'max' => '10',
 						'step' => '0.1',
 					],
+					'toggle_slug' => 'main_content',
+				],
+				'segment_in' => [
+					'label' => __('Choose where to start', 'am-lottieplayer'),
+					'type' => 'range',
+					'default' => '0',
+					'toggle_slug' => 'main_content',
+				],
+				'segment_out' => [
+					'label' => __('And where to end', 'am-lottieplayer'),
+					'type' => 'range',
+					'default' => '0',
 					'toggle_slug' => 'main_content',
 				],
 				'onclick' => [
@@ -361,6 +384,8 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						speed="%14$s"
 						data-selector="%15$s"
 						mode="%16$s"
+						%17$s
+						segment="%18$s"
 					>
 					</dotlottie-player>
 				</figure>',
@@ -382,7 +407,16 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					"id" => esc_html($this -> props['selector']),
 					"exclude" => esc_html($this -> props['exclude'] === 'on'),
 				])), #15
-				esc_html($this -> props['mode'] !== 'on' ? 'normal' : 'bounce') #16
+				esc_html($this -> props['mode'] !== 'on' ? 'normal' : 'bounce'), #16
+				($this -> props['subframe'] !== 'off' ? 'subframe' : ''), #17,
+
+				($this -> props['segment_out'] !== '0' ?
+					esc_html('[' .
+					esc_html(intval($this -> props['segment_in'])) . ',' .
+					esc_html(intval($this -> props['segment_out']))
+				. ']') :
+				''
+				) #18
 			);
 
 			return $output;

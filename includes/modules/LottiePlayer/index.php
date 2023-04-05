@@ -259,6 +259,18 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					],
 					'toggle_slug' => 'main_content',
 				],
+				'segment_in' => [
+					'label' => __('Choose where to start', 'am-lottieplayer'),
+					'type' => 'range',
+					'default' => '0',
+					'toggle_slug' => 'main_content',
+				],
+				'segment_out' => [
+					'label' => __('And where to end', 'am-lottieplayer'),
+					'type' => 'range',
+					'default' => '0',
+					'toggle_slug' => 'main_content',
+				],
 				'onclick' => [
 					'label' => __('Play on click', 'am-lottieplayer'),
 					'type' => 'yes_no_button',
@@ -373,6 +385,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						data-selector="%15$s"
 						mode="%16$s"
 						%17$s
+						segment="%18$s"
 					>
 					</dotlottie-player>
 				</figure>',
@@ -395,7 +408,15 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					"exclude" => esc_html($this -> props['exclude'] === 'on'),
 				])), #15
 				esc_html($this -> props['mode'] !== 'on' ? 'normal' : 'bounce'), #16
-				($this -> props['subframe'] !== 'off' ? 'subframe' : '') #17
+				($this -> props['subframe'] !== 'off' ? 'subframe' : ''), #17,
+
+				($this -> props['segment_out'] !== '0' ?
+					esc_html('[' .
+					esc_html(intval($this -> props['segment_in'])) . ',' .
+					esc_html(intval($this -> props['segment_out']))
+				. ']') :
+				''
+				) #18
 			);
 
 			return $output;
