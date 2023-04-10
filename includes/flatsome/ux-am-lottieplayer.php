@@ -67,12 +67,35 @@ add_ux_builder_shortcode('am-lottieplayer', [
           'heading' => __('Reverse', 'am-lottieplayer'),
         ],
 
+        'subframe' => [
+          'type' => 'checkbox',
+          'heading' => __('Subframe', 'am-lottieplayer'),
+        ],
+
         'speed' => [
           'type' => 'slider',
           'heading' => __('Speed', 'am-lottieplayer'),
           'default' => 1,
           'min' => 1,
           'max' => 5,
+          'step' => 1,
+          'unit' => '',
+        ],
+
+        'segment_in' => [
+          'type' => 'slider',
+          'heading' => __('Choose where to start', 'am-lottieplayer'),
+          'default' => null,
+          'min' => 0,
+          'step' => 1,
+          'unit' => '',
+        ],
+
+        'segment_out' => [
+          'type' => 'slider',
+          'heading' => __('And where to end', 'am-lottieplayer'),
+          'default' => null,
+          'min' => 0,
           'step' => 1,
           'unit' => '',
         ],
