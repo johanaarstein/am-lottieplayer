@@ -23,6 +23,7 @@ export default function save( {
 			mouseout,
 			objectFit,
 			renderer,
+			scrollEvent,
 			segment,
 			selector,
 			speed,
@@ -65,6 +66,7 @@ export default function save( {
 				data-mouseover={ hover }
 				data-mouseout={ mouseout }
 				data-click={ clickEvent }
+				data-scroll={ scrollEvent }
 				data-selector={ dataSelector }
 				loop={ loop ? '' : null }
 				mode={ mode }

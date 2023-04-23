@@ -66,6 +66,11 @@ vc_map(
         'param_name' => 'direction',
       ],
       [
+        'type' => 'checkbox',
+        'heading' => __('Subframe', 'am-lottieplayer'),
+        'param_name' => 'subframe',
+      ],
+      [
         'type' => 'textfield',
         'heading' => __('Speed', 'am-lottieplayer'),
         'param_name' => 'speed',

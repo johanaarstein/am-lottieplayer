@@ -11,7 +11,7 @@ const Interactions = ( {
 	attributes,
 	setAttributes,
 }: BlockEditProps< PlayerComponentProps > ) => {
-	const { clickEvent, hover, mouseout, selector } = attributes;
+	const { clickEvent, hover, mouseout, scrollEvent, selector } = attributes;
 
 	return (
 		<Panel>
@@ -92,6 +92,17 @@ const Interactions = ( {
 						/>
 					</>
 				) }
+				<SwitchLabel
+					id="am-lottieplayer-scroll-settings"
+					title={ __(
+						'Play on scroll / when visible in viewport',
+						'am-lottieplayer'
+					) }
+					value={ scrollEvent }
+					onChange={ ( value ) =>
+						setAttributes( { scrollEvent: value } )
+					}
+				/>
 			</PanelBody>
 		</Panel>
 	);

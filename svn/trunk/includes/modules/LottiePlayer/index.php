@@ -410,13 +410,14 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 				esc_html($this -> props['mode'] !== 'on' ? 'normal' : 'bounce'), #16
 				($this -> props['subframe'] !== 'off' ? 'subframe' : ''), #17,
 
-				($this -> props['segment_out'] !== '0' ?
-					esc_html('[' .
-					esc_html(intval($this -> props['segment_in'])) . ',' .
-					esc_html(intval($this -> props['segment_out']))
-				. ']') :
-				''
-				) #18
+				($this -> props['segment_out'] &&
+					$this -> props['segment_out'] !== '0' ?
+						esc_html(
+							'[' .
+								(intval($this -> props['segment_in']) ?? 0) . ',' .
+								intval($this -> props['segment_out'])
+							. ']'
+						) : '') #18
 			);
 
 			return $output;

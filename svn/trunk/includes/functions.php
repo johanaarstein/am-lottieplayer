@@ -48,7 +48,11 @@ if (!function_exists('am_render_lottieplayer')) {
       objectfit="<?php echo esc_html($atts['objectfit']); ?>"
       src="<?php echo esc_url($atts['src']); ?>"
       renderer="<?php echo esc_html($atts['renderer']); ?>"
-      segment="<?php echo esc_html($atts['segment']); ?>"
+      segment="<?php
+        echo esc_html($atts['segment'] ??
+          ($atts['segment_out'] &&
+            $atts['segment_out'] !== '0' ?
+              '[' . (intval($atts['segment_in']) ?? 0) . ',' . $intval($atts['segment_out']) . ']' : '')); ?>"
       speed="<?php echo esc_html($atts['speed']); ?>"
       <?php echo esc_html($atts['subframe']) && esc_html($atts['subframe']) !== 'false' ? 'subframe' : ''; ?>
       direction="<?php echo animationDirection(esc_html($atts['direction'])); ?>"
@@ -83,6 +87,8 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
       'objectfit' => 'contain',
       'renderer' => 'svg',
       'segment' => null,
+      'segment_in' => null,
+      'segment_out' => null,
       'speed' => 1,
       'selector' => null,
       'src' => esc_url(!is_wp_error(am_lottie_asset()) ? wp_get_attachment_url(am_lottie_asset()) : am_lottie_asset(true)),

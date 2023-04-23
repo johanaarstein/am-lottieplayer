@@ -114,6 +114,16 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			);
 
 			$this -> add_control(
+				'subframe',
+				[
+					'label' => __('Subframe', 'am-lottieplayer'),
+					'type' => \Elementor\Controls_Manager::SWITCHER,
+					'label_on' => __('Yes', 'am-lottieplayer'),
+					'label_off' => __('No', 'am-lottieplayer')
+				]
+			);
+
+			$this -> add_control(
 				'speed',
 				[
 					'label' => __('Playback speed', 'am-lottieplayer'),
@@ -122,6 +132,30 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 					'placeholder' => '1',
 					'default' => '1'
 				]
+			);
+
+			$this -> add_control(
+				'segment_in',
+				[
+					'label' => __('Choose where to start', 'am-lottieplayer'),
+					'type' => \Elementor\Controls_Manager::NUMBER,
+					'default' => '0',
+					'step' => '1',
+					'min' => '0',
+					'default' => null
+				],
+			);
+
+			$this -> add_control(
+				'segment_out',
+				[
+					'label' => __('And where to end', 'am-lottieplayer'),
+					'type' => \Elementor\Controls_Manager::NUMBER,
+					'default' => '0',
+					'step' => '1',
+					'min' => '0',
+					'default' => null
+				],
 			);
 
 			$this -> add_control(
@@ -360,6 +394,7 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			$autoplay = $this -> switcher_value($settings['autoplay'], 'autoplay', '');
 			$controls = $this -> switcher_value($settings['controls'], 'controls', '');
 			$direction = $this -> switcher_value($settings['reverse'], '-1', '1');
+			$subframe = $this -> switcher_value($settings['subframe'], 'subframe', '');
 			$loop = $this -> switcher_value($settings['loop'], 'loop', '');
 			$mode = $this -> switcher_value($settings['mode'], 'bounce', 'normal');
 			$onClick = $this -> switcher_value($settings['onclick'], true, false);
@@ -384,13 +419,21 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			$width = $widthSize . $widthUnit;
 			$renderer = $settings['renderer'];
 			
-			$description = $settings['description']; ?>
+			$description = $settings['description'];
+			
+			$segment = $settings['segment_out'] &&
+				$settings['segment_out'] !== '0' ?
+					esc_html('[' .
+						(intval($settings['segment_in']) ?? 0) . ',' .
+						intval($settings['segment_out'])
+					. ']') : ''; ?>
 
 			<figure style="width:<?php echo esc_html($width); ?>;height:<?php echo esc_html($height); ?>;margin:0 auto;">
 				<dotlottie-player
 					<?php echo esc_html($autoplay); ?>
 					<?php echo esc_html($controls); ?>
 					<?php echo esc_html($loop); ?>
+					<?php echo esc_html($subframe); ?>
 					mode="<?php echo esc_html($mode); ?>"
 					renderer="<?php echo esc_html($renderer); ?>"
 					direction="<?php echo esc_html($direction); ?>"
@@ -402,7 +445,8 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 					objectfit="<?php echo esc_html($objectFit); ?>"
 					speed="<?php echo esc_html($speed); ?>"
 					src="<?php echo esc_url($src); ?>"
-					description="<?php echo esc_html($description) ?>"
+					description="<?php echo esc_html($description); ?>"
+					segment="<?php echo esc_html($segment); ?>"
 				>
 				</dotlottie-player>
 			</figure>
@@ -415,11 +459,13 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 				const autoplay = settings.autoplay === 'yes' ? 'autoplay' : '',
 					controls = settings.controls === 'yes' ? 'controls' : '',
 					loop = settings.loop === 'yes' ? 'loop' : '',
+					subframe = settings.subframe === 'yes' ? 'subframe' : '',
 					mode = settings.mode === 'yes' ? 'bounce' : 'normal',
-					{ height_auto, height_fixed, lottie, object_fit, reverse, speed, width } = settings,
+					{ height_auto, height_fixed, lottie, object_fit, reverse, segment_in, segment_out, speed, width } = settings,
 					direction = reverse === 'yes' ? '-1' : '1',
 					height = height_auto !== 'yes' || !height_fixed.size ? 'auto' : height_fixed.size + height_fixed.unit,
-					playbackSpeed = !speed || speed === '' ? '1' : speed #>
+					playbackSpeed = !speed || speed === '' ? '1' : speed,
+					segment = segment_in && segment_out && segment_out !== '0' ? JSON.stringify([segment_in, segment_out]) : undefined  #>
 			<figure
 				style="width:{{{ width.size }}}{{{ width.unit }}};height:{{{ height }}};margin:auto;"
 			>
@@ -427,11 +473,13 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 					{{{ autoplay }}}
 					{{{ controls }}}
 					{{{ loop }}}
+					{{{ subframe }}}
 					direction="{{{ direction }}}"
 					mode="{{{ mode }}}"
 					objectfit="{{{ object_fit }}}"
 					speed="{{{ playbackSpeed }}}"
 					src="{{{ lottie.url }}}"
+					segment="{{{ segment }}}"
 				>
 				</dotlottie-player>
 			</figure>
