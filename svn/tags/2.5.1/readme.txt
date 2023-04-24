@@ -114,6 +114,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 2.5.1 =
+* Bugfix: Added polyfill for Buffer, allowing bitmap assets for dotLottie animations.
+
 = 2.5.0 =
 * New Feature: Added play on scroll functionality
 
