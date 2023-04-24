@@ -61,6 +61,8 @@ if (!function_exists('am_render_lottieplayer')) {
       data-mouseout="<?php echo esc_html($atts['onmouseout']); ?>"
       data-click="<?php echo esc_html($atts['onclick']); ?>"
       data-selector="<?php echo esc_html(interactionSelector($atts['selector'], $atts['exclude'])); ?>"
+      data-scroll="<?php echo esc_html($atts['scroll']); ?>"
+      data-delay="<?php echo esc_html($atts['delay']); ?>
     >
     </dotlottie-player>
     <?php
@@ -77,6 +79,7 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
       'background' => 'transparent',
       'class' => '',
       'controls' => false,
+      'delay' => 100,
       'direction' => 1,
       'exclude' => false,
       'height' => null,
@@ -86,6 +89,7 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
       'mode' => 'normal',
       'objectfit' => 'contain',
       'renderer' => 'svg',
+      'scroll' => false,
       'segment' => null,
       'segment_in' => null,
       'segment_out' => null,

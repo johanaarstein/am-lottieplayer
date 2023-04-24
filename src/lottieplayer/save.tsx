@@ -21,6 +21,7 @@ export default function save( { attributes }: BlockSaveProps< object > ) {
 		objectFit,
 		renderer,
 		scrollEvent,
+		scrollDelay,
 		segment,
 		selector,
 		speed,
@@ -61,6 +62,7 @@ export default function save( { attributes }: BlockSaveProps< object > ) {
 				data-mouseout={ mouseout }
 				data-click={ clickEvent }
 				data-scroll={ scrollEvent }
+				data-delay={ scrollDelay }
 				data-selector={ dataSelector }
 				loop={ loop ? '' : null }
 				mode={ mode }

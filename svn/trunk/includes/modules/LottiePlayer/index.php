@@ -332,6 +332,33 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					],
 					'toggle_slug' => 'main_content',
 				],
+				'scroll' => [
+					'label' => esc_html__('Play on scroll, when visible in viewport', 'am-lottieplayer'),
+					'type' => 'yes_no_button',
+					'options_category' => 'basic_option',
+					'options'  => [
+						'off' => et_builder_i18n('No'),
+						'on'  => et_builder_i18n('Yes'),
+					],
+					'affects' => [
+						'delay'
+					],
+					'toggle_slug' => 'main_content',
+				],
+				'delay' => [
+					'label' => esc_html__('Delay, in 10th of a second', 'am-lottieplayer'),
+					'option_category' => 'basic_option',
+					'toggle_slug' => 'main_content',
+					'type' => 'range',
+					'default' => '1',
+					'range_settings' => [
+						'max' => '50',
+						'step' => '1',
+					],
+					'condition' => [
+						'scroll' => 'on',
+					],
+				],
 				'object_fit' => [
 					'label' => esc_html__('Object Fit', 'am-lottieplayer'),
 					'description' => esc_html__('Choose how to scale the animation', 'am-lottieplayer'),
@@ -386,6 +413,8 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						mode="%16$s"
 						%17$s
 						segment="%18$s"
+						data-scroll="%19$s"
+						data-delay="%20$s"
 					>
 					</dotlottie-player>
 				</figure>',
@@ -417,7 +446,10 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 								(intval($this -> props['segment_in']) ?? 0) . ',' .
 								intval($this -> props['segment_out'])
 							. ']'
-						) : '') #18
+						) : ''), #18
+				
+				esc_html($this -> props['scroll'] !== 'on' ? 'false' : 'true'), #19
+				esc_html($this -> props['delay']), #20
 			);
 
 			return $output;

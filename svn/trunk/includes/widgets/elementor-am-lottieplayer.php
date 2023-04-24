@@ -139,7 +139,6 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 				[
 					'label' => __('Choose where to start', 'am-lottieplayer'),
 					'type' => \Elementor\Controls_Manager::NUMBER,
-					'default' => '0',
 					'step' => '1',
 					'min' => '0',
 					'default' => null
@@ -151,7 +150,6 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 				[
 					'label' => __('And where to end', 'am-lottieplayer'),
 					'type' => \Elementor\Controls_Manager::NUMBER,
-					'default' => '0',
 					'step' => '1',
 					'min' => '0',
 					'default' => null
@@ -234,6 +232,31 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 							['name' => 'onclick', 'operator' => '===', 'value' => 'yes'],
 							['name' => 'onmouseover', 'operator' => '===', 'value' => 'yes'],
 						]
+					],
+				]
+			);
+
+			$this -> add_control(
+				'scroll',
+				[
+					'label' => __('Play on scroll, when visible in viewport', 'am-lottieplayer'),
+					'type' => \Elementor\Controls_Manager::SWITCHER,
+					'label_on' => __('Yes', 'am-lottieplayer'),
+					'label_off' => __('No', 'am-lottieplayer')
+				]
+			);
+
+			$this -> add_control(
+				'delay',
+				[
+					'label' => __('Delay, in 10th of a second', 'am-lottieplayer'),
+					'type' => \Elementor\Controls_Manager::NUMBER,
+					'step' => '1',
+					'min' => '0',
+					'max' => '50',
+					'default' => '1',
+					'condition' => [
+						'scroll' => 'yes',
 					],
 				]
 			);
@@ -399,6 +422,7 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			$mode = $this -> switcher_value($settings['mode'], 'bounce', 'normal');
 			$onClick = $this -> switcher_value($settings['onclick'], true, false);
 			$onMouseOver = $this -> switcher_value($settings['onmouseover'], true, false);
+			$scroll = $this -> switcher_value($settings['scroll'], true, false);
 
 			$onMouseOut = $settings['onmouseout'];
 			$objectFit = $settings['object_fit'];
@@ -442,6 +466,8 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 					data-mouseout="<?php echo esc_html($onMouseOut); ?>"
 					data-click="<?php echo esc_html($onClick); ?>"
 					data-selector="<?php echo esc_html($selector); ?>"
+					data-scroll="<?php echo esc_html($scroll); ?>"
+					data-delay="<?php echo esc_html($settings['delay']); ?>"
 					objectfit="<?php echo esc_html($objectFit); ?>"
 					speed="<?php echo esc_html($speed); ?>"
 					src="<?php echo esc_url($src); ?>"

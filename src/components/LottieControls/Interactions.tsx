@@ -1,4 +1,9 @@
-import { Panel, PanelBody, SelectControl } from '@wordpress/components';
+import {
+	Panel,
+	PanelBody,
+	RangeControl,
+	SelectControl,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import { SwitchLabel, TextInput } from '@components/form';
@@ -11,7 +16,8 @@ const Interactions = ( {
 	attributes,
 	setAttributes,
 }: BlockEditProps< PlayerComponentProps > ) => {
-	const { clickEvent, hover, mouseout, scrollEvent, selector } = attributes;
+	const { clickEvent, hover, mouseout, scrollEvent, scrollDelay, selector } =
+		attributes;
 
 	return (
 		<Panel>
@@ -95,7 +101,7 @@ const Interactions = ( {
 				<SwitchLabel
 					id="am-lottieplayer-scroll-settings"
 					title={ __(
-						'Play on scroll / when visible in viewport',
+						'Play on scroll, when visible in viewport',
 						'am-lottieplayer'
 					) }
 					value={ scrollEvent }
@@ -103,6 +109,21 @@ const Interactions = ( {
 						setAttributes( { scrollEvent: value } )
 					}
 				/>
+				{ scrollEvent && (
+					<RangeControl
+						label={ __(
+							'Delay, in 10th of a second',
+							'am-lottieplayer'
+						) }
+						min={ 0 }
+						max={ 50 }
+						step={ 1 }
+						value={ scrollDelay ?? 1 }
+						onChange={ ( value ) =>
+							setAttributes( { scrollDelay: value } )
+						}
+					/>
+				) }
 			</PanelBody>
 		</Panel>
 	);

@@ -132,6 +132,10 @@
 			"type": "boolean",
 			"default": false
 		},
+		"scrollDelay": {
+			"type": "number",
+			"default": null
+		},
 		"segment": {
 			"type": "array",
 			"default": null

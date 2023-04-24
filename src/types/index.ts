@@ -36,13 +36,14 @@ export interface PlayerComponentProps extends Partial< DotLottiePlayer > {
 	mouseout?: OnMouseOut;
 	objectFit?: DotLottiePlayer[ 'objectfit' ];
 	scrollEvent?: boolean;
+	scrollDelay?: number | null;
 	segment?: AnimationSegment;
 	selector?: {
 		id?: string;
 		exclude?: boolean;
 	};
 	templateLock?: EditorTemplateLock;
-	width?: number;
+	width?: number | null;
 }
 
 export interface BlockCoverEditProps

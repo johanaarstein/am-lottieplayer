@@ -114,6 +114,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 2.5.0 =
+* New Feature: Added play on scroll functionality
+
 = 2.4.1 =
 * New Feature: Expanded possibility to play segments to Divi Builder
 

@@ -115,6 +115,20 @@ vc_map(
         'param_name' => 'exclude',
       ],
       [
+        'type' => 'checkbox',
+        'heading' => __('Play on scroll, when visible in viewport', 'am-lottieplayer'),
+        'param_name' => 'scroll'
+      ],
+      [
+        'type' => 'textfield',
+        'heading' => __('Delay, in 10th of a second', 'am-lottieplayer'),
+        'param_name' => 'delay',
+        'dependency' => [
+          'element' => 'scroll',
+          'value' => 'true'
+        ]
+      ],
+      [
         'type' => 'textfield',
         'heading' => __('Width', 'am-lottieplayer'),
         'param_name' => 'width',

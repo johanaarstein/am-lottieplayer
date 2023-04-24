@@ -134,6 +134,21 @@ add_ux_builder_shortcode('am-lottieplayer', [
           'heading' => __('Apply interaction only to trigger element', 'am-lottieplayer'),
           'conditions' => 'onmouseover === "true" || onclick === "true"',
         ],
+
+        'scroll' => [
+          'type' => 'checkbox',
+          'heading' => __('Play on scroll, when visible in viewport', 'am-lottieplayer'),
+        ],
+
+        'delay' => [
+          'type' => 'slider',
+          'heading' => __('Delay, in 10th of a second', 'am-lottieplayer'),
+          'conditions' => 'scroll === "true"',
+          'default' => 1,
+          'min' => 0,
+          'max' => 50,
+          'step' => 1,
+        ]
       ],
     ],
 
