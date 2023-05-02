@@ -1,3 +1,4 @@
+// import { useEffect, useRef } from '@wordpress/element';
 import {
 	BaseControl,
 	Panel,
@@ -28,6 +29,11 @@ const Animation = ( {
 		speed = 1,
 		subframe,
 	} = attributes;
+	// totalFrames = useRef(0);
+
+	// useEffect(() => {
+
+	// }, [])
 
 	return (
 		<Panel>
@@ -106,10 +112,7 @@ const Animation = ( {
 				<PanelRow className="lottie-segment">
 					<NumberInput
 						id="am-lottieplayer-segment-in"
-						title={ __(
-							'Choose where to start',
-							'am-lottieplayer'
-						) }
+						title={ __( 'First frame', 'am-lottieplayer' ) }
 						value={ segment?.[ 0 ] }
 						onChange={ ( val ) =>
 							setAttributes( {
@@ -119,11 +122,11 @@ const Animation = ( {
 										: undefined,
 							} )
 						}
-						placeholder={ __( 'First frame', 'am-lottieplayer' ) }
+						placeholder={ '1' }
 					/>
 					<NumberInput
 						id="am-lottieplayer-segment-out"
-						title={ __( 'And where to end', 'am-lottieplayer' ) }
+						title={ __( 'Last frame', 'am-lottieplayer' ) }
 						value={ segment?.[ 1 ] }
 						onChange={ ( val ) =>
 							setAttributes( {

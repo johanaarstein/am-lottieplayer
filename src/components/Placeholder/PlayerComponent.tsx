@@ -50,11 +50,11 @@ export default function PlayerComponent( {
 				renderer === 'svg' && canvas?.remove();
 			}, 100 );
 		}, [ renderer ] ),
-		parseSize = ( num?: number ): string | null => {
+		parseSize = ( num?: number | null ): string | null => {
 			if ( num && typeof num === 'number' ) return `${ num }px`;
 			return null;
 		},
-		parseWidth = ( num?: number ): string | null => {
+		parseWidth = ( num?: number | null ): string | null => {
 			if ( align === 'wide' || align === 'full' ) return '100%';
 			return parseSize( num );
 		};

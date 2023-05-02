@@ -17,13 +17,21 @@ export default function Placeholder( {
 		onUploadError = ( message: string ) => {
 			ErrorNotice( message );
 		},
-		onSelectMedia = ( { id, url, alt } ) => {
+		onSelectMedia = ( {
+			id,
+			url,
+			alt,
+		}: {
+			id?: string;
+			url?: string;
+			alt?: string;
+		} ) => {
 			if ( ! url ) {
 				return setAttributes( { src: undefined, id: undefined } );
 			}
 			setAttributes( {
 				src: url,
-				id,
+				id: id?.toString(),
 				alt,
 			} );
 		};
