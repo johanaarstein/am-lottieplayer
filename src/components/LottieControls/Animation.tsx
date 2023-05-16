@@ -1,4 +1,4 @@
-// import { useEffect, useRef } from '@wordpress/element';
+import { useCallback, useEffect, useRef } from '@wordpress/element';
 import {
 	BaseControl,
 	Panel,
@@ -14,9 +14,11 @@ import { NumberInput, SwitchLabel } from '@components/form';
 
 import type { BlockEditProps } from 'wordpress__blocks';
 import type { PlayerComponentProps } from '@types';
+import type { DotLottiePlayer } from '@johanaarstein/dotlottie-player';
 
 const Animation = ( {
 	attributes,
+	clientId,
 	setAttributes,
 }: BlockEditProps< PlayerComponentProps > ) => {
 	const {
@@ -29,11 +31,28 @@ const Animation = ( {
 		speed = 1,
 		subframe,
 	} = attributes;
-	// totalFrames = useRef(0);
+	const totalFrames = useRef< number >(),
+		updateFrames = useCallback( ( frames: unknown ) => {
+			if ( typeof frames === 'number' ) {
+				totalFrames.current = frames;
+			}
+		}, [] );
 
-	// useEffect(() => {
-
-	// }, [])
+	useEffect( () => {
+		const animationItem: HTMLElement | null =
+			document.getElementById( clientId );
+		if ( animationItem ) {
+			updateFrames(
+				( animationItem as DotLottiePlayer )?.getLottie()?.totalFrames
+			);
+			animationItem.addEventListener( 'ready', () => {
+				updateFrames(
+					( animationItem as DotLottiePlayer )?.getLottie()
+						?.totalFrames
+				);
+			} );
+		}
+	}, [ clientId, updateFrames ] );
 
 	return (
 		<Panel>
@@ -135,7 +154,7 @@ const Animation = ( {
 									: undefined,
 							} )
 						}
-						placeholder={ __( 'Last frame', 'am-lottieplayer' ) }
+						placeholder={ totalFrames.current?.toString() }
 					/>
 				</PanelRow>
 			</PanelBody>

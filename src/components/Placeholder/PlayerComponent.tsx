@@ -80,6 +80,7 @@ export default function PlayerComponent( {
 
 	return (
 		<dotlottie-player
+			id={ clientId }
 			class="lottie-element"
 			autoplay={ autoplay ? '' : null }
 			controls={ controls ? '' : null }

@@ -22,9 +22,9 @@ export default function Placeholder( {
 			url,
 			alt,
 		}: {
-			id?: string;
-			url?: string;
-			alt?: string;
+			id: number;
+			url: string;
+			alt: string;
 		} ) => {
 			if ( ! url ) {
 				return setAttributes( { src: undefined, id: undefined } );

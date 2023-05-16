@@ -85,8 +85,8 @@ export default function Edit( {
 		// },
 		hasInnerBlocks = useSelect(
 			( select ) =>
-				!! select( blockEditorStore ).getBlock( clientId ).innerBlocks
-					.length,
+				!! select( blockEditorStore )?.getBlock( clientId )?.innerBlocks
+					?.length,
 			[ clientId ]
 		),
 		hasFontSizes = !! useSetting( 'typography.fontSizes' )?.length,
