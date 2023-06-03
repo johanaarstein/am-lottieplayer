@@ -7,7 +7,7 @@
  * Description:       The most complete Lottie Player plugin yet! Accepts JSON and dotLottie, and has integrations for Gutenberg, Divi, Elementor Flatsome and WPBakery.
  * Requires at least: 5.9
  * Requires PHP:      7.0
- * Version:           2.5.1
+ * Version:           2.5.2
  * Author:            Aarstein Media
  * Author URI:        https://www.aarstein.media
  * License:           GPL-2.0-or-later
@@ -143,7 +143,11 @@ if (!function_exists('am_initialize_lottie_extension')) {
 add_action('elementor/widgets/register', 'am_register_lottie_widget');
 if (!function_exists('am_register_lottie_widget')) {
   function am_register_lottie_widget($widgets_manager) {
-    require_once AM_LOTTIEPLAYER_PATH . '/includes/widgets/elementor-am-lottieplayer.php';
+    wp_enqueue_style(
+      'elementor-backend-style',
+      AM_LOTTIEPLAYER_URL . 'styles/am-font.css'
+    );
+    require_once AM_LOTTIEPLAYER_PATH . 'includes/widgets/elementor-am-lottieplayer.php';
   }
 }
 
@@ -152,7 +156,7 @@ add_action('after_setup_theme', 'am_register_lottie_flatsome_shortcode');
 if (!function_exists('add_ux_builder_shortcode')) {
   function am_register_lottie_flatsome_shortcode() {
     if (!function_exists('add_ux_builder_shortcode')) return;
-    require_once AM_LOTTIEPLAYER_PATH . '/includes/flatsome/ux-am-lottieplayer.php';
+    require_once AM_LOTTIEPLAYER_PATH . 'includes/flatsome/ux-am-lottieplayer.php';
   }
 }
 
@@ -160,6 +164,6 @@ if (!function_exists('add_ux_builder_shortcode')) {
 add_action('vc_before_init','vc_am_lottieplayer'); 
 if (!function_exists('vc_am_lottieplayer')) {
   function vc_am_lottieplayer() {
-    require_once AM_LOTTIEPLAYER_PATH . '/includes/vc/vc-am-lottieplayer.php';
+    require_once AM_LOTTIEPLAYER_PATH . 'includes/vc/vc-am-lottieplayer.php';
   }
 }

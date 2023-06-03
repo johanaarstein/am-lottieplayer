@@ -17,7 +17,7 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 		}
 
 		public function get_icon() {
-			return 'eicon-lottie';
+			return 'eicon-am-lottie';
 		}
 
 		public function get_categories() {
