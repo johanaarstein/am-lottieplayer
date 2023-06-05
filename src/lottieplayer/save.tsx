@@ -3,7 +3,9 @@ import { useBlockProps } from '@wordpress/block-editor';
 import type { BlockSaveProps } from 'wordpress__blocks';
 import type { PlayerComponentProps } from '../types';
 
-export default function save( { attributes }: BlockSaveProps< object > ) {
+export default function save( {
+	attributes,
+}: BlockSaveProps< PlayerComponentProps > ) {
 	const {
 		align,
 		alt,
@@ -28,7 +30,7 @@ export default function save( { attributes }: BlockSaveProps< object > ) {
 		src,
 		subframe,
 		width,
-	}: PlayerComponentProps = attributes;
+	} = attributes;
 
 	const dataSelector = JSON.stringify( selector ),
 		playSegment =

@@ -41,10 +41,6 @@ const defaults = require('@wordpress/scripts/config/webpack.config'),
 
 module.exports = {
 	...defaults,
-
-	// module: {
-	// 	...defaults.module,
-	// },
 	plugins: [
 		...defaults.plugins,
 		{
