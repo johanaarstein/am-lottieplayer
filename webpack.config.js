@@ -53,10 +53,10 @@ module.exports = {
 		...defaults.resolve,
 		alias: {
 			...defaults.resolve.alias,
-			'@assets': resolve(__dirname, './src/assets'),
-			'@components': resolve(__dirname, './src/components'),
-			'@functions': resolve(__dirname, './src/functions'),
-			'@types': resolve(__dirname, './src/types')
+			'@assets': resolve(__dirname, '/src/assets'),
+			'@components': resolve(__dirname, '/src/components'),
+			'@functions': resolve(__dirname, '/src/functions'),
+			'@types': resolve(__dirname, '/src/types')
 		}
 	}
 }
