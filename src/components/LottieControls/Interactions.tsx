@@ -16,8 +16,15 @@ const Interactions = ( {
 	attributes,
 	setAttributes,
 }: BlockEditProps< PlayerComponentProps > ) => {
-	const { clickEvent, hover, mouseout, scrollEvent, scrollDelay, selector } =
-		attributes;
+	const {
+		clickEvent,
+		hover,
+		mouseout,
+		once,
+		scrollEvent,
+		scrollDelay,
+		selector,
+	} = attributes;
 
 	return (
 		<Panel>
@@ -110,19 +117,29 @@ const Interactions = ( {
 					}
 				/>
 				{ scrollEvent && (
-					<RangeControl
-						label={ __(
-							'Delay, in 10th of a second',
-							'am-lottieplayer'
-						) }
-						min={ 0 }
-						max={ 50 }
-						step={ 1 }
-						value={ scrollDelay ?? 1 }
-						onChange={ ( value ) =>
-							setAttributes( { scrollDelay: value } )
-						}
-					/>
+					<>
+						<SwitchLabel
+							id="am-lottieplayer-once-settings"
+							title={ __( 'Play only once', 'am-lottieplayer' ) }
+							value={ once }
+							onChange={ ( value ) =>
+								setAttributes( { once: value } )
+							}
+						></SwitchLabel>
+						<RangeControl
+							label={ __(
+								'Delay, in 10th of a second',
+								'am-lottieplayer'
+							) }
+							min={ 0 }
+							max={ 50 }
+							step={ 1 }
+							value={ scrollDelay ?? 1 }
+							onChange={ ( value ) =>
+								setAttributes( { scrollDelay: value } )
+							}
+						/>
+					</>
 				) }
 			</PanelBody>
 		</Panel>

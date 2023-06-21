@@ -148,7 +148,13 @@ add_ux_builder_shortcode('am-lottieplayer', [
           'min' => 0,
           'max' => 50,
           'step' => 1,
-        ]
+        ],
+
+        'once' => [
+          'type' => 'checkbox',
+          'heading' => __('Play only once', 'am-lottieplayer'),
+          'conditions' => 'scroll === "true"',
+        ],
       ],
     ],
 

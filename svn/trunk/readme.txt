@@ -114,6 +114,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 2.5.4 =
+* New Feature: Added option to play animation only once on scroll
+
 = 2.5.3 =
 * Bugfix: Play on scoll functionality wasn't working properly in certain browsers.
 

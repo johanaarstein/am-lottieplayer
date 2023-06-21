@@ -262,6 +262,19 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			);
 
 			$this -> add_control(
+				'once',
+				[
+					'label' => __('Play only once', 'am-lottieplayer'),
+					'type' => \Elementor\Controls_Manager::SWITCHER,
+					'label_on' => __('Yes', 'am-lottieplayer'),
+					'label_off' => __('No', 'am-lottieplayer'),
+					'condition' => [
+						'scroll' => 'yes',
+					],
+				]
+			);
+
+			$this -> add_control(
 				'separator_style_options',
 				[
 					'type'  => \Elementor\Controls_Manager::DIVIDER,
@@ -423,6 +436,7 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			$onClick = $this -> switcher_value($settings['onclick'], true, false);
 			$onMouseOver = $this -> switcher_value($settings['onmouseover'], true, false);
 			$scroll = $this -> switcher_value($settings['scroll'], true, false);
+			$once = $this -> switcher_value($settings['once'], true, false);
 
 			$onMouseOut = $settings['onmouseout'];
 			$objectFit = $settings['object_fit'];
@@ -468,6 +482,7 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 					data-selector="<?php echo esc_html($selector); ?>"
 					data-scroll="<?php echo esc_html($scroll); ?>"
 					data-delay="<?php echo esc_html($settings['delay']); ?>"
+					data-once="<?php echo esc_html($once); ?>"
 					objectfit="<?php echo esc_html($objectFit); ?>"
 					speed="<?php echo esc_html($speed); ?>"
 					src="<?php echo esc_url($src); ?>"

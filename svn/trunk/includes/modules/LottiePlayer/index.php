@@ -341,7 +341,8 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'on'  => et_builder_i18n('Yes'),
 					],
 					'affects' => [
-						'delay'
+						'delay',
+						'once'
 					],
 					'toggle_slug' => 'main_content',
 				],
@@ -358,6 +359,18 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					'condition' => [
 						'scroll' => 'on',
 					],
+				],
+				'once' => [
+					'label' => esc_html__('Play only once', 'am-lottieplayer'),
+					'type' => 'yes_no_button',
+					'options_category' => 'basic_option',
+					'options'  => [
+						'off' => et_builder_i18n('No'),
+						'on'  => et_builder_i18n('Yes'),
+					],
+					'condition' => [
+						'scroll' => 'on'
+					]
 				],
 				'object_fit' => [
 					'label' => esc_html__('Object Fit', 'am-lottieplayer'),
@@ -415,6 +428,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						segment="%18$s"
 						data-scroll="%19$s"
 						data-delay="%20$s"
+						data-once="%21$s"
 					>
 					</dotlottie-player>
 				</figure>',
@@ -450,6 +464,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 				
 				esc_html($this -> props['scroll'] !== 'on' ? 'false' : 'true'), #19
 				esc_html($this -> props['delay']), #20
+				esc_html($this -> props['once']), #21
 			);
 
 			return $output;

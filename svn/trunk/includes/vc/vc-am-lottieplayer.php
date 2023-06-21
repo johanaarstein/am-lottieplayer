@@ -129,6 +129,15 @@ vc_map(
         ]
       ],
       [
+        'type' => 'checkbox',
+        'heading' => __('Play only once', 'am-lottieplayer'),
+        'param_name' => 'once',
+        'dependency' => [
+          'element' => 'scroll',
+          'value' => 'true'
+        ]
+      ],
+      [
         'type' => 'textfield',
         'heading' => __('Width', 'am-lottieplayer'),
         'param_name' => 'width',

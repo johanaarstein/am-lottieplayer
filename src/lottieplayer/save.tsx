@@ -21,6 +21,7 @@ export default function save( {
 		mode,
 		mouseout,
 		objectFit,
+		once,
 		renderer,
 		scrollEvent,
 		scrollDelay,
@@ -66,6 +67,7 @@ export default function save( {
 				data-scroll={ scrollEvent }
 				data-delay={ scrollDelay }
 				data-selector={ dataSelector }
+				data-once={ once }
 				loop={ loop ? '' : null }
 				mode={ mode }
 				objectfit={ objectFit }

@@ -92,6 +92,10 @@
 			"type": "string",
 			"default": "contain"
 		},
+		"once": {
+			"type": "boolean",
+			"default": false
+		},
 		"renderer": {
 			"type": "string",
 			"default": "svg"

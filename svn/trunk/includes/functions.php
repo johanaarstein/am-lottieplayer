@@ -62,7 +62,8 @@ if (!function_exists('am_render_lottieplayer')) {
       data-click="<?php echo esc_html($atts['onclick']); ?>"
       data-selector="<?php echo esc_html(interactionSelector($atts['selector'], $atts['exclude'])); ?>"
       data-scroll="<?php echo esc_html($atts['scroll']); ?>"
-      data-delay="<?php echo esc_html($atts['delay']); ?>
+      data-delay="<?php echo esc_html($atts['delay']); ?>"
+      data-once="<?php echo esc_html($atts['once']); ?>"
     >
     </dotlottie-player>
     <?php
@@ -100,7 +101,8 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
       'width' => null,
       'onmouseover' => false,
       'onclick' => false,
-      'onmouseout' => 'void'
+      'onmouseout' => 'void',
+      'once' => false,
     ], $atts);
 
     ob_start(); ?>

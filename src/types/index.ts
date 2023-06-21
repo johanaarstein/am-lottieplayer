@@ -35,6 +35,7 @@ export interface PlayerComponentProps extends Partial< DotLottiePlayer > {
 	isDark?: boolean;
 	mouseout?: OnMouseOut;
 	objectFit?: DotLottiePlayer[ 'objectfit' ];
+	once?: boolean;
 	scrollEvent?: boolean;
 	scrollDelay?: number | null;
 	segment?: AnimationSegment;

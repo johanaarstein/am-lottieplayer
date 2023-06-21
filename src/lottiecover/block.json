@@ -116,6 +116,10 @@
 			"type": "string",
 			"default": "cover"
 		},
+		"once": {
+			"type": "boolean",
+			"default": false
+		},
 		"overlayColor": {
 			"type": "string",
 			"default": "transparent"
