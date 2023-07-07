@@ -101,7 +101,7 @@ if (!function_exists('media_sideload_lottie')) {
 if (!function_exists('am_lottie_asset')) {
   function am_lottie_asset($default = false) {
     $url = AM_LOTTIEPLAYER_URL . 'assets/am.lottie';
-    if ($default) {
+    if ($default && filter_var($url, FILTER_VALIDATE_URL)) {
       return $url;
     }
 
