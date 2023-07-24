@@ -114,6 +114,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 2.5.6 =
+* New Feature: Added support for Divi Theme Builder
+
 = 2.5.4 =
 * New Feature: Added option to play animation only once on scroll
 

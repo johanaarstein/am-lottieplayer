@@ -7,7 +7,7 @@
  * Description:       The most complete Lottie Player plugin yet! Accepts JSON and dotLottie, and has integrations for Gutenberg, Divi, Elementor Flatsome and WPBakery.
  * Requires at least: 5.9
  * Requires PHP:      7.0
- * Version:           2.5.5
+ * Version:           2.5.6
  * Author:            Aarstein Media
  * Author URI:        https://www.aarstein.media
  * License:           GPL-2.0-or-later
@@ -98,10 +98,40 @@ if (!function_exists('am_frontend_enqueue')) {
     global $post;
     $content = '';
 
+    $diviFlag = false;
+
+    //Check if any front-end builders are active
     $isDiviBuilder = isset($_GET['et_fb']) && !empty($_GET['et_fb']);
     $isVCBuilder = function_exists('vc_is_inline') && vc_is_inline();
     
-    if (is_a($post, 'WP_Post')) $content = $post -> post_content;
+    if (is_a($post, 'WP_Post')) {
+      $content = $post -> post_content;
+    }
+
+    // Check for Lottie in Divi Templates
+    if (function_exists('et_theme_builder_get_template_layouts')) {
+      $layouts = et_theme_builder_get_template_layouts();
+      if (!empty($layouts)) {
+        if ($layouts['et_header_layout']['override']) {
+          $header = get_post($layouts['et_header_layout']['id']) -> post_content;
+          if (has_shortcode($header, 'et_pb_lottieplayer')) {
+            $diviFlag = true;
+          }
+        }
+        if ($layouts['et_body_layout']['override']) {
+          $body = get_post($layouts['et_body_layout']['id']) -> post_content;
+          if (has_shortcode($body, 'et_pb_lottieplayer')) {
+            $diviFlag = true;
+          }
+        }
+        if ($layouts['et_footer_layout']['override']) {
+          $footer = get_post($layouts['et_footer_layout']['id']) -> post_content;
+          if (has_shortcode($footer, 'et_pb_lottieplayer')) {
+            $diviFlag = true;
+          }
+        }
+      }
+    }
     
     if (!is_admin()) {
       if (
@@ -116,7 +146,7 @@ if (!function_exists('am_frontend_enqueue')) {
           ) ||
           (
             //Check if post has Divi shortcode, and Divi Builder is not active
-            has_shortcode($content, 'et_pb_lottieplayer') &&
+            ($diviFlag || has_shortcode($content, 'et_pb_lottieplayer')) &&
             !$isDiviBuilder
           )
         )
