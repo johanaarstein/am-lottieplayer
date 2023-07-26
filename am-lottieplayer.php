@@ -118,13 +118,13 @@ if (!function_exists('am_frontend_enqueue')) {
             $diviFlag = true;
           }
         }
-        if ($layouts['et_body_layout']['override']) {
+        if (!$diviFlag && $layouts['et_body_layout']['override']) {
           $body = get_post($layouts['et_body_layout']['id']) -> post_content;
           if (has_shortcode($body, 'et_pb_lottieplayer')) {
             $diviFlag = true;
           }
         }
-        if ($layouts['et_footer_layout']['override']) {
+        if (!$diviFlag && $layouts['et_footer_layout']['override']) {
           $footer = get_post($layouts['et_footer_layout']['id']) -> post_content;
           if (has_shortcode($footer, 'et_pb_lottieplayer')) {
             $diviFlag = true;
