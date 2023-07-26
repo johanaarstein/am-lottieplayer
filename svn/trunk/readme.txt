@@ -11,7 +11,7 @@ Stable Tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The most complete Lottie Player yet. Lightweight, easy to use, accepts LottieJSON and dotLottie, and works with Gutenberg, Divi Builder, Elementor and Flatsome UX Builder.
+The most complete Lottie Player plugin! It is lightweight, versatile and easy to use, and it works with Gutenberg, Divi, Elementor, Flatsome and WPBakery.
 
 == Description ==
 
