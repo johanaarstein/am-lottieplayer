@@ -1,6 +1,6 @@
 {
 	"name": "am-lottieplayer",
-	"version": "2.5.6",
+	"version": "2.5.7",
 	"description": "The most complete Lottie Player plugin! It is lightweight, versatile and easy to use, and it has integrations for Gutenberg, Divi, Elementor, Flatsome and WPBakery.",
 	"author": {
 		"name": "Aarstein Media",
@@ -40,28 +40,29 @@
 	"main": "build/lottieplayer/index.js",
 	"devDependencies": {
 		"@johanaarstein/dotlottie-player": "^1.5.16",
-		"@types/node": "^18.17.1",
-		"@types/react": "^18.2.17",
+		"@types/node": "^20.4.9",
+		"@types/react": "^18.2.20",
 		"@types/wordpress__block-editor": "^11.5.1",
+		"@types/wordpress__blocks": "^12.5.0",
 		"@types/wordpress__components": "^23.0.1",
 		"@typescript-eslint/eslint-plugin": "^5.62.0",
 		"@typescript-eslint/parser": "^5.62.0",
-		"@wordpress/blob": "^3.38.0",
-		"@wordpress/compose": "^6.15.0",
-		"@wordpress/core-data": "^6.15.0",
-		"@wordpress/i18n": "^4.38.0",
-		"@wordpress/scripts": "^26.9.0",
+		"@wordpress/blob": "^3.39.0",
+		"@wordpress/compose": "^6.16.0",
+		"@wordpress/core-data": "^6.16.0",
+		"@wordpress/i18n": "^4.39.0",
+		"@wordpress/scripts": "^26.10.0",
 		"classnames": "^2.3.2",
-		"eslint-import-resolver-typescript": "^3.5.5",
-		"eslint-plugin-import": "^2.27.5",
-		"eslint-plugin-react": "^7.33.0",
+		"eslint-import-resolver-typescript": "^3.6.0",
+		"eslint-plugin-import": "^2.28.0",
+		"eslint-plugin-react": "^7.33.1",
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"react": "^18.2.0",
 		"ts-loader": "^9.4.4",
 		"typescript": "^4.9.5"
 	},
 	"scripts": {
-		"build": "wp-scripts build && pnpm run dep && pnpm run svn",
+		"build": "wp-scripts build && npm run dep && npm run svn",
 		"check-engines": "wp-scripts check-engines",
 		"check-licenses": "wp-scripts check-licenses",
 		"format": "wp-scripts format",
@@ -76,8 +77,7 @@
 		"test:unit": "wp-scripts test-unit-js",
 		"stash": "wp-scripts build && wp-scripts plugin-zip",
 		"dep": "cp ./node_modules/@johanaarstein/dotlottie-player/dist/index.js ./scripts/dotlottie-player.min.js",
-		"svn": "cp -R ./assets ./build ./includes ./scripts ./styles ./svn/trunk && cp ./am-lottieplayer.php ./LICENSE ./package.json ./readme.txt ./svn/trunk",
-		"preinstall": "npx only-allow pnpm"
+		"svn": "cp -R ./assets ./build ./includes ./scripts ./styles ./svn/trunk && cp ./am-lottieplayer.php ./LICENSE ./package.json ./readme.txt ./svn/trunk"
 	},
 	"cde": {
 		"gettext": "am-lottieplayer",
