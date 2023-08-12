@@ -99,7 +99,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					'choose_text' => esc_attr__('Choose a Lottie JSON or a dotLottie', 'am-lottieplayer'),
 					'update_text'  => esc_attr__('Set As Lottie', 'am-lottieplayer'),
 					'hide_metadata' => true,
-					'affects' => ['alt', 'title_text'],
+					'affects' => ['alt'],
 					'description' => esc_html__('Upload your desired animation in Lottie JSON format, dotLottie format, or type in the URL to the Lottie you would like to display', 'am-lottieplayer'),
 					'toggle_slug' => 'main_content',
 					'mobile_options' => true,
@@ -113,17 +113,6 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					'depends_show_if' => 'on',
 					'depends_on' => ['src'],
 					'description' => esc_html__('This defines the HTML ALT text. A short description of your animation can be placed here. Helpful for screen readers.', 'am-lottieplayer'),
-					'tab_slug' => 'custom_css',
-					'toggle_slug' => 'attributes',
-					'dynamic_content' => 'text',
-				],
-				'title_text' => [
-					'label' => esc_html__('Animation Title Text', 'am-lottieplayer'),
-					'type'  => 'text',
-					'option_category' => 'basic_option',
-					'depends_show_if' => 'on',
-					'depends_on' => ['src'],
-					'description' => esc_html__('This defines the HTML Title text.', 'et_builder'),
 					'tab_slug' => 'custom_css',
 					'toggle_slug' => 'attributes',
 					'dynamic_content' => 'text',
@@ -403,7 +392,29 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 			return $fields;
 		}
 
-		public function render($attrs = [], $content = null, $render_slug ) {
+		public function render($attrs = [], $content = null, $render_slug) {
+
+			$alt = $this -> props['alt'];
+			$onclick = $url !== '' &&
+				$this -> props['onclick'] !== 'on' ? 'false' : 'true';
+			$onmouseover = $this -> props['onmouseover'] !== 'on' ? 'false' : 'true';
+			$scroll = $this -> props['scroll'] !== 'on' ? 'false' : 'true';
+			$segment =
+				$this -> props['segment_out'] &&
+					$this -> props['segment_out'] !== '0' ?
+						'[' .
+							(intval($this -> props['segment_in']) ?? 0) . ',' .
+							intval($this -> props['segment_out'])
+						. ']' : '';
+			$selector =
+				json_encode([
+					"id" => $this -> props['selector'],
+					"exclude" => $this -> props['exclude'] === 'on',
+				]);
+			$src = $this -> props['src'];
+			$subframe = $this -> props['subframe'] !== 'off' ? 'subframe' : '';
+			$url = $this -> props['url'];
+			$url_new_window = $this -> props['url_new_window'];
 
 			$output = sprintf(
 				'<figure%1$s class="%2$s">
@@ -434,38 +445,35 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 				</figure>',
 				$this -> module_id(), #1
 				$this -> module_classname($render_slug), #2
-				esc_url($this -> props['src']), #3
-				($this -> props['autoplay'] !== 'off' ? 'autoplay' : ''), #4
-				($this -> props['loop'] !== 'off' ? 'loop' : ''), #5
-				($this -> props['controls'] !== 'off' ? 'controls' : ''), #6
-				esc_html($this -> props['alt']), #7
-				esc_html($this -> props['renderer']), #8
-				esc_html($this -> props['object_fit']), #9
-				$this -> props['reverse'] !== 'on' ? '1' : '-1', #10
-				$this -> props['onmouseover'] !== 'on' ? 'false' : 'true', #11
-				esc_html($this -> props['onmouseout']), #12
-				esc_html($this -> props['onclick'] !== 'on' ? 'false' : 'true'), #13
-				esc_html($this -> props['speed']), #14
-				esc_html(json_encode([
-					"id" => esc_html($this -> props['selector']),
-					"exclude" => esc_html($this -> props['exclude'] === 'on'),
-				])), #15
-				esc_html($this -> props['mode'] !== 'on' ? 'normal' : 'bounce'), #16
-				($this -> props['subframe'] !== 'off' ? 'subframe' : ''), #17,
-
-				($this -> props['segment_out'] &&
-					$this -> props['segment_out'] !== '0' ?
-						esc_html(
-							'[' .
-								(intval($this -> props['segment_in']) ?? 0) . ',' .
-								intval($this -> props['segment_out'])
-							. ']'
-						) : ''), #18
-				
-				esc_html($this -> props['scroll'] !== 'on' ? 'false' : 'true'), #19
-				esc_html($this -> props['delay']), #20
-				esc_html($this -> props['once']), #21
+				esc_url($src), #3
+				esc_attr($this -> props['autoplay'] !== 'off' ? 'autoplay' : ''), #4
+				esc_attr($this -> props['loop'] !== 'off' ? 'loop' : ''), #5
+				esc_attr($this -> props['controls'] !== 'off' ? 'controls' : ''), #6
+				esc_attr($alt), #7
+				esc_attr($this -> props['renderer']), #8
+				esc_attr($this -> props['object_fit']), #9
+				esc_attr($this -> props['reverse'] !== 'on' ? '1' : '-1'), #10
+				esc_attr($onmouseover), #11
+				esc_attr($this -> props['onmouseout']), #12
+				esc_attr($onclick), #13
+				esc_attr($this -> props['speed']), #14
+				esc_attr($selector), #15
+				esc_attr($this -> props['mode'] !== 'on' ? 'normal' : 'bounce'), #16
+				esc_attr($subframe), #17,
+				esc_attr($segment), #18
+				esc_attr($scroll), #19
+				esc_attr($this -> props['delay']), #20
+				esc_attr($this -> props['once']), #21
 			);
+
+			if ( '' !== $url ) {
+				$output = sprintf(
+					'<a href="%1$s"%3$s>%2$s</a>',
+					esc_url($url),
+					$output,
+					('on' === $url_new_window ? ' target="_blank"' : '')
+				);
+			}
 
 			return $output;
 		}

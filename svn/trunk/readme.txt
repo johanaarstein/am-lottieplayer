@@ -114,6 +114,10 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 2.5.8 =
+* New Feature: Better error handling
+* Bugfix: Fixed link for Divi builder
+
 = 2.5.7 =
 * Minor bugfixes
 
