@@ -4,6 +4,7 @@ import { __ } from '@wordpress/i18n';
 
 import type { BlockEditProps } from 'wordpress__blocks';
 import type { PlayerComponentProps } from '@types';
+import type { RendererType } from 'lottie-web';
 
 const Advanced = ( {
 	attributes,
@@ -16,7 +17,9 @@ const Advanced = ( {
 			<SelectControl
 				label={ __( 'Renderer' ) }
 				value={ renderer }
-				onChange={ ( val ) => setAttributes( { renderer: val } ) }
+				onChange={ ( val ) =>
+					setAttributes( { renderer: val as RendererType } )
+				}
 				options={ [
 					{ value: 'svg', label: 'SVG' },
 					{ value: 'canvas', label: 'Canvas' },

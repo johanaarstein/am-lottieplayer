@@ -20,6 +20,7 @@ export default function UploadComponent( {
 					'am-lottieplayer'
 				),
 			} }
+			onHTMLDrop={ onSelectMedia }
 			onSelect={ onSelectMedia }
 			accept={ '.lottie, .json' }
 			allowedTypes={ [ 'application/json', 'application/zip' ] }
