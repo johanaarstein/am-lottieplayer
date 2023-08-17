@@ -395,8 +395,6 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 		public function render($attrs = [], $content = null, $render_slug) {
 
 			$alt = $this -> props['alt'];
-			$onclick = $url !== '' &&
-				$this -> props['onclick'] !== 'on' ? 'false' : 'true';
 			$onmouseover = $this -> props['onmouseover'] !== 'on' ? 'false' : 'true';
 			$scroll = $this -> props['scroll'] !== 'on' ? 'false' : 'true';
 			$segment =
@@ -415,6 +413,9 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 			$subframe = $this -> props['subframe'] !== 'off' ? 'subframe' : '';
 			$url = $this -> props['url'];
 			$url_new_window = $this -> props['url_new_window'];
+
+			$onclick = $url !== '' &&
+				$this -> props['onclick'] !== 'on' ? 'false' : 'true';
 
 			$output = sprintf(
 				'<figure%1$s class="%2$s">

@@ -1,6 +1,6 @@
 {
 	"name": "am-lottieplayer",
-	"version": "2.5.9",
+	"version": "2.5.10",
 	"description": "The most complete Lottie Player plugin! It is lightweight, versatile and easy to use, and it has integrations for Gutenberg, Divi, Elementor, Flatsome and WPBakery.",
 	"author": {
 		"name": "Aarstein Media",
@@ -47,11 +47,11 @@
 		"@types/wordpress__components": "^23.0.1",
 		"@typescript-eslint/eslint-plugin": "^5.62.0",
 		"@typescript-eslint/parser": "^5.62.0",
-		"@wordpress/blob": "^3.39.0",
-		"@wordpress/compose": "^6.16.0",
-		"@wordpress/core-data": "^6.16.0",
-		"@wordpress/i18n": "^4.39.0",
-		"@wordpress/scripts": "^26.10.0",
+		"@wordpress/blob": "^3.40.0",
+		"@wordpress/compose": "^6.17.0",
+		"@wordpress/core-data": "^6.17.0",
+		"@wordpress/i18n": "^4.40.0",
+		"@wordpress/scripts": "^26.11.0",
 		"classnames": "^2.3.2",
 		"eslint-import-resolver-typescript": "^3.6.0",
 		"eslint-plugin-import": "^2.28.0",
@@ -59,7 +59,7 @@
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"react": "^18.2.0",
 		"ts-loader": "^9.4.4",
-		"typescript": "^4.9.5"
+		"typescript": "^5.0.0"
 	},
 	"scripts": {
 		"build": "wp-scripts build && npm run dep && npm run svn",
