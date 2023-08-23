@@ -10,6 +10,7 @@ import { __ } from '@wordpress/i18n';
 import { NumberInput, SwitchLabel } from '@components/form';
 
 import type { BlockEditProps } from 'wordpress__blocks';
+import type { DotLottiePlayer } from '@johanaarstein/dotlottie-player';
 import type { PlayerComponentProps } from '@types';
 
 const Dimensions = ( {
@@ -84,7 +85,9 @@ const Dimensions = ( {
 					label={ __( 'Object fit' ) }
 					value={ objectFit }
 					onChange={ ( val ) => {
-						setAttributes( { objectFit: val } );
+						setAttributes( {
+							objectFit: val as DotLottiePlayer[ 'objectfit' ],
+						} );
 					} }
 					options={ [
 						{

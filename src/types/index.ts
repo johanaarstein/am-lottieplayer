@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import type { EditorTemplateLock } from '@wordpress/block-editor';
 import type { BlockEditProps } from 'wordpress__blocks';
 import type { ResizeStartCallback } from 're-resizable';
@@ -64,6 +65,7 @@ export interface UploadProps {
 }
 
 export interface ResizableCoverProps {
+	children?: ReactNode;
 	className?: string;
 	fullscreen?: boolean;
 	onResizeStart: ResizeStartCallback;
