@@ -114,6 +114,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 2.5.11 =
+* Bugfix: Fixed seeker on player
+
 = 2.5.10 =
 * Bugfix: Fixed uninitialized PHP variable
 
