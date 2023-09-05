@@ -51,7 +51,7 @@ const Interactions = ( {
 						label={ __( 'On mouseout', 'am-lottieplayer' ) }
 						value={ mouseout }
 						onChange={ ( val ) =>
-							setAttributes( { mouseout: val } )
+							setAttributes( { mouseout: val as OnMouseOut } )
 						}
 						options={ [
 							{

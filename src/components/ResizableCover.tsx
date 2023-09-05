@@ -6,6 +6,7 @@ import { ResizableBox } from '@wordpress/components';
 import type { ResizableCoverProps } from '@types';
 
 export default function ResizableCover( {
+	children,
 	className,
 	fullscreen,
 	onResizeStart,
@@ -34,6 +35,8 @@ export default function ResizableCover( {
 			} }
 			showHandle={ showHandle }
 			{ ...rest }
-		/>
+		>
+			{ children }
+		</ResizableBox>
 	);
 }

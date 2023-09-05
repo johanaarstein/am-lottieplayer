@@ -1,7 +1,8 @@
 import { useBlockProps } from '@wordpress/block-editor';
 
 import type { BlockSaveProps } from 'wordpress__blocks';
-import type { PlayerComponentProps } from '../types';
+import type { AnimationSegment } from 'lottie-web';
+import type { PlayerComponentProps } from '@types';
 
 export default function save( {
 	attributes,
@@ -72,7 +73,7 @@ export default function save( {
 				mode={ mode }
 				objectfit={ objectFit }
 				renderer={ renderer }
-				segment={ playSegment }
+				segment={ playSegment as unknown as AnimationSegment }
 				src={ src as string }
 				speed={ speed }
 				subframe={ subframe ? '' : null }

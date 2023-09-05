@@ -11,15 +11,14 @@ import { Spinner } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
 
-import type { BlockCoverEditProps } from '@types';
-
 import LottieControls from '@components/LottieControls';
 import Placeholder from '@components/Placeholder';
 import ResizableCover from '@components/ResizableCover';
-
 import {
 	/*attributesFromMedia, mediaPosition,*/ isTemporaryMedia,
 } from '@functions';
+
+import type { BlockCoverEditProps } from '@types';
 
 import './editor.scss';
 
