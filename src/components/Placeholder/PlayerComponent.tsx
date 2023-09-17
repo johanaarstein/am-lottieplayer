@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 
 import type { AnimationSegment } from 'lottie-web';
-import type { DotLottiePlayer } from '@johanaarstein/dotlottie-player';
+import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player';
 import type { PlayerComponentProps } from '@types';
 
 export default function PlayerComponent( {

@@ -14,7 +14,7 @@ import { NumberInput, SwitchLabel } from '@components/form';
 
 import type { BlockEditProps } from 'wordpress__blocks';
 import type { PlayerComponentProps } from '@types';
-import type { DotLottiePlayer } from '@johanaarstein/dotlottie-player';
+import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player';
 
 const Animation = ( {
 	attributes,

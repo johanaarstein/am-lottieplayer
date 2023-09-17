@@ -1,6 +1,6 @@
 {
 	"name": "am-lottieplayer",
-	"version": "2.5.11",
+	"version": "2.5.12",
 	"description": "The most complete Lottie Player plugin! It is lightweight, versatile and easy to use, and it has integrations for Gutenberg, Divi, Elementor, Flatsome and WPBakery.",
 	"author": {
 		"name": "Aarstein Media",
@@ -39,7 +39,7 @@
 	],
 	"main": "build/lottieplayer/index.js",
 	"devDependencies": {
-		"@johanaarstein/dotlottie-player": "^1.5.22",
+		"@aarsteinmedia/dotlottie-player": "^2.0.4",
 		"@types/node": "^20.5.3",
 		"@types/react": "^18.2.21",
 		"@types/wordpress__block-editor": "^11.5.1",
@@ -76,7 +76,7 @@
 		"test:e2e": "wp-scripts test-e2e",
 		"test:unit": "wp-scripts test-unit-js",
 		"stash": "wp-scripts build && wp-scripts plugin-zip",
-		"dep": "cp ./node_modules/@johanaarstein/dotlottie-player/dist/index.js ./scripts/dotlottie-player.min.js",
+		"dep": "cp ./node_modules/@aarsteinmedia/dotlottie-player/dist/index.js ./scripts/dotlottie-player.min.js",
 		"svn": "cp -R ./assets ./build ./includes ./scripts ./styles ./svn/trunk && cp ./am-lottieplayer.php ./LICENSE ./package.json ./readme.txt ./svn/trunk"
 	},
 	"cde": {

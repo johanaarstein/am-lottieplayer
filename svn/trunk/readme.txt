@@ -114,6 +114,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 2.5.12 =
+* Optimization: Terser script, as well as new functionality available within JS.
+
 = 2.5.11 =
 * Bugfix: Fixed seeker on player
 

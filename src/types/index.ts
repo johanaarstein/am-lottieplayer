@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import type { EditorTemplateLock } from '@wordpress/block-editor';
 import type { BlockEditProps } from 'wordpress__blocks';
 import type { ResizeStartCallback } from 're-resizable';
-import type { DotLottiePlayer } from '@johanaarstein/dotlottie-player';
+import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player';
 import type { AnimationSegment } from 'lottie-web';
 
 export enum PlayMode {

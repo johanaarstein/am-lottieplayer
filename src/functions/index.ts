@@ -1,5 +1,5 @@
 import { isBlobURL } from '@wordpress/blob';
-import type { DotLottiePlayer } from '@johanaarstein/dotlottie-player';
+import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player';
 import type { AnimationDirection } from 'lottie-web';
 import type { KeyboardEvent } from 'react';
 
