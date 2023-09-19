@@ -114,6 +114,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 2.5.13 =
+* Bugfix: Fixed total frames display
+
 = 2.5.12 =
 * Optimization: Terser script, as well as new functionality available within JS.
 

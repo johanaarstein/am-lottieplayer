@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from '@wordpress/element';
+import { useEffect, useState } from '@wordpress/element';
 import {
 	BaseControl,
 	Panel,
@@ -31,28 +31,17 @@ const Animation = ( {
 		speed = 1,
 		subframe,
 	} = attributes;
-	const totalFrames = useRef< number >(),
-		updateFrames = useCallback( ( frames: unknown ) => {
-			if ( typeof frames === 'number' ) {
-				totalFrames.current = frames;
-			}
-		}, [] );
+	const [ totalFrames, setTotalFrames ] = useState< number | undefined >( 0 );
 
 	useEffect( () => {
 		const animationItem: HTMLElement | null =
 			document.getElementById( clientId );
 		if ( animationItem ) {
-			updateFrames(
+			setTotalFrames(
 				( animationItem as DotLottiePlayer )?.getLottie()?.totalFrames
 			);
-			animationItem.addEventListener( 'ready', () => {
-				updateFrames(
-					( animationItem as DotLottiePlayer )?.getLottie()
-						?.totalFrames
-				);
-			} );
 		}
-	}, [ clientId, updateFrames ] );
+	}, [ clientId ] );
 
 	return (
 		<Panel>
@@ -137,7 +126,7 @@ const Animation = ( {
 							setAttributes( {
 								segment:
 									val !== undefined
-										? [ val, segment?.[ 1 ] ?? 0 ]
+										? [ val, segment?.[ 1 ] ?? 1 ]
 										: undefined,
 							} )
 						}
@@ -150,11 +139,16 @@ const Animation = ( {
 						onChange={ ( val ) =>
 							setAttributes( {
 								segment: val
-									? [ segment?.[ 0 ] ?? 0, val ]
+									? [
+											segment?.[ 0 ] ?? 1,
+											val <= Number( totalFrames ) + 1
+												? val
+												: Number( totalFrames ) + 1,
+									  ]
 									: undefined,
 							} )
 						}
-						placeholder={ totalFrames.current?.toString() }
+						placeholder={ ( Number( totalFrames ) + 1 ).toString() }
 					/>
 				</PanelRow>
 			</PanelBody>

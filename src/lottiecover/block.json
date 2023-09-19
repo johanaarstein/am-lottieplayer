@@ -161,7 +161,7 @@
 		},
 		"subframe": {
 			"type": "boolean",
-			"default": false
+			"default": true
 		},
 		"templateLock": {
 			"type": [

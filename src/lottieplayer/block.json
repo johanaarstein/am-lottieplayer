@@ -133,7 +133,7 @@
 		},
 		"subframe": {
 			"type": "boolean",
-			"default": false
+			"default": true
 		},
 		"width": {
 			"type": "number",
