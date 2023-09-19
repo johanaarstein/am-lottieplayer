@@ -34,7 +34,7 @@ export default function PlayerComponent( {
 			( select ) => select( 'core/block-editor' ),
 			[]
 		),
-		blockIndex = getBlockIndex( clientId ),
+		blockIndex: number = getBlockIndex( clientId ),
 		player = useRef< DotLottiePlayer >( null ),
 		initialRender = useRef( true ),
 		playSegment =

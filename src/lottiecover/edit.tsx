@@ -18,6 +18,7 @@ import {
 	/*attributesFromMedia, mediaPosition,*/ isTemporaryMedia,
 } from '@functions';
 
+// import type { TemplateArray } from '@wordpress/blocks';
 import type { BlockCoverEditProps } from '@types';
 
 import './editor.scss';

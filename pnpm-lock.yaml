@@ -38,6 +38,12 @@ devDependencies:
   '@wordpress/core-data':
     specifier: ^6.18.0
     version: 6.18.0(@types/react@18.2.22)(react@18.2.0)
+  '@wordpress/data':
+    specifier: ^9.11.0
+    version: 9.11.0(react@18.2.0)
+  '@wordpress/element':
+    specifier: ^5.18.0
+    version: 5.18.0
   '@wordpress/i18n':
     specifier: ^4.41.0
     version: 4.41.0
@@ -59,6 +65,12 @@ devDependencies:
   eslint-plugin-react-hooks:
     specifier: ^4.6.0
     version: 4.6.0(eslint@8.49.0)
+  lottie-web:
+    specifier: ^5.12.2
+    version: 5.12.2
+  re-resizable:
+    specifier: ^6.9.11
+    version: 6.9.11(react@18.2.0)
   react:
     specifier: ^18.2.0
     version: 18.2.0
