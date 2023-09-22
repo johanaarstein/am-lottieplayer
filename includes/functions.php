@@ -35,10 +35,9 @@ if (!function_exists('animationMode')) {
 if (!function_exists('interactionSelector')) {
   function interactionSelector($input, $exclude = false)
   {
-    if (!$input || is_object(json_decode($input))) return $input;
     return json_encode([
-      "id" => $input,
-      "exclude" => amTruish($exclude),
+      'id' => $input ?? null,
+      'exclude' => amTruish($exclude),
     ]);
   }
 }

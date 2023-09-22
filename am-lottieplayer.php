@@ -84,7 +84,7 @@ if (!class_exists('AM_LottiePlayer')) {
         'dotlottie-player',
         AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player.min.js',
         null,
-        '1.4.32',
+        '2.0.3',
         true
       );
 
