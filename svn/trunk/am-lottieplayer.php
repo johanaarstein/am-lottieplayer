@@ -1,7 +1,7 @@
 <?php
 
 /**
- * AM LottiePlayer PRO
+ * AM LottiePlayer
  * 
  * @package AM LottiePlayer
  * @author Aarstein Media
