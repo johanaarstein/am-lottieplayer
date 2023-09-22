@@ -1,8 +1,9 @@
 <?php
-if (!defined('ABSPATH')) exit('New phone, who diz?');
+defined('ABSPATH') || exit;
 
 if (!function_exists('am_ux_get_template')) {
-  function am_ux_get_template() {
+  function am_ux_get_template()
+  {
     wp_enqueue_script('am-backend-ux');
     ob_start();
     include __DIR__ . '/ux-am-lottieplayer.html';
@@ -25,7 +26,7 @@ add_ux_builder_shortcode('am-lottieplayer', [
   'category' => __('Content'),
   'template' => am_ux_get_template(),
   'toolbar_thumbnail' => 'img',
-	'thumbnail' => AM_LOTTIEPLAYER_URL . 'assets/ux-icon.svg',
+  'thumbnail' => AM_LOTTIEPLAYER_URL . 'assets/ux-icon.svg',
   'allow_in' => ['text_box'],
   'wrap' => false,
   'options' => [
@@ -116,9 +117,9 @@ add_ux_builder_shortcode('am-lottieplayer', [
           'conditions' => 'onmouseover === "true"',
           'options' => [
             'void' => __('No event', 'am-lottieplayer'),
-						'stop' => __('Stop', 'am-lottieplayer'),
-						'pause' => __('Pause', 'am-lottieplayer'),
-						'reverse' => __('Reverse', 'am-lottieplayer')
+            'stop' => __('Stop', 'am-lottieplayer'),
+            'pause' => __('Pause', 'am-lottieplayer'),
+            'reverse' => __('Reverse', 'am-lottieplayer')
           ]
         ],
 
@@ -173,7 +174,7 @@ add_ux_builder_shortcode('am-lottieplayer', [
             'style' => 'width: {{ value }}px'
           ]
         ],
-        
+
         'height' => [
           'type' => 'scrubfield',
           'heading' => __('Height', 'am-lottieplayer'),
@@ -231,7 +232,7 @@ add_ux_builder_shortcode('am-lottieplayer', [
           'description' => __('Helpful for screen readers and search engines', 'am-lottieplayer'),
         ],
 
-        'visibility'  => require( __DIR__ . '/visibility.php' ),
+        'visibility'  => require(__DIR__ . '/visibility.php'),
       ],
     ],
   ]

@@ -1,5 +1,5 @@
 <?php
-if (!defined('ABSPATH')) exit('New phone, who diz?');
+defined('ABSPATH') || exit;
 
 if (!class_exists('ET_Builder_Element')) return;
 

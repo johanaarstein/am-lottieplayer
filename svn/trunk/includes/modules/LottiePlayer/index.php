@@ -1,17 +1,19 @@
 <?php
-if (!defined('ABSPATH')) exit('New phone, who diz?');
+defined('ABSPATH') || exit;
 
 if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_LottiePlayer')) {
-	class AM_ET_Builder_Module_LottiePlayer extends ET_Builder_Module {
+	class AM_ET_Builder_Module_LottiePlayer extends ET_Builder_Module
+	{
 
-		public function init() {
-			$this -> name = esc_html__('AM Lottie', 'am-lottieplayer');
-			$this -> plural = esc_html__('AM Lotties', 'am-lottieplayer');
-			$this -> slug = 'et_pb_lottieplayer';
-			$this -> vb_support = 'on';
-			$this -> icon_path = AM_LOTTIEPLAYER_PATH . 'assets/divi-icon.svg';
+		public function init()
+		{
+			$this->name = esc_html__('AM Lottie', 'am-lottieplayer');
+			$this->plural = esc_html__('AM Lotties', 'am-lottieplayer');
+			$this->slug = 'et_pb_lottieplayer';
+			$this->vb_support = 'on';
+			$this->icon_path = AM_LOTTIEPLAYER_PATH . 'assets/divi-icon.svg';
 
-			$this -> settings_modal_toggles = [
+			$this->settings_modal_toggles = [
 				'general' => [
 					'toggles' => [
 						'main_content' => esc_html__('Animation', 'et_builder'),
@@ -42,7 +44,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 				],
 			];
 
-			$this -> advanced_fields = [
+			$this->advanced_fields = [
 				'margin_padding' => [
 					'css' => [
 						'important' => ['custom_margin'],
@@ -88,7 +90,8 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 			];
 		}
 
-		function get_fields() {
+		function get_fields()
+		{
 			$fields = [
 				'src' => [
 					'label' => esc_html__('AM Lottie', 'am-lottieplayer'),
@@ -392,30 +395,31 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 			return $fields;
 		}
 
-		public function render($attrs = [], $content = null, $render_slug) {
+		public function render($attrs = [], $content = null, $render_slug)
+		{
 
-			$alt = $this -> props['alt'];
-			$onmouseover = $this -> props['onmouseover'] !== 'on' ? 'false' : 'true';
-			$scroll = $this -> props['scroll'] !== 'on' ? 'false' : 'true';
+			$alt = $this->props['alt'];
+			$onmouseover = $this->props['onmouseover'] !== 'on' ? 'false' : 'true';
+			$scroll = $this->props['scroll'] !== 'on' ? 'false' : 'true';
 			$segment =
-				$this -> props['segment_out'] &&
-					$this -> props['segment_out'] !== '0' ?
-						'[' .
-							(intval($this -> props['segment_in']) ?? 0) . ',' .
-							intval($this -> props['segment_out'])
-						. ']' : '';
+				$this->props['segment_out'] &&
+				$this->props['segment_out'] !== '0' ?
+				'[' .
+				(intval($this->props['segment_in']) ?? 0) . ',' .
+				intval($this->props['segment_out'])
+				. ']' : '';
 			$selector =
 				json_encode([
-					"id" => $this -> props['selector'],
-					"exclude" => $this -> props['exclude'] === 'on',
+					"id" => $this->props['selector'],
+					"exclude" => $this->props['exclude'] === 'on',
 				]);
-			$src = $this -> props['src'];
-			$subframe = $this -> props['subframe'] !== 'off' ? 'subframe' : '';
-			$url = $this -> props['url'];
-			$url_new_window = $this -> props['url_new_window'];
+			$src = $this->props['src'];
+			$subframe = $this->props['subframe'] !== 'off' ? 'subframe' : '';
+			$url = $this->props['url'];
+			$url_new_window = $this->props['url_new_window'];
 
 			$onclick = $url !== '' &&
-				$this -> props['onclick'] !== 'on' ? 'false' : 'true';
+				$this->props['onclick'] !== 'on' ? 'false' : 'true';
 
 			$output = sprintf(
 				'<figure%1$s class="%2$s">
@@ -444,30 +448,30 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					>
 					</dotlottie-player>
 				</figure>',
-				$this -> module_id(), #1
-				$this -> module_classname($render_slug), #2
+				$this->module_id(), #1
+				$this->module_classname($render_slug), #2
 				esc_url($src), #3
-				esc_attr($this -> props['autoplay'] !== 'off' ? 'autoplay' : ''), #4
-				esc_attr($this -> props['loop'] !== 'off' ? 'loop' : ''), #5
-				esc_attr($this -> props['controls'] !== 'off' ? 'controls' : ''), #6
+				esc_attr($this->props['autoplay'] !== 'off' ? 'autoplay' : ''), #4
+				esc_attr($this->props['loop'] !== 'off' ? 'loop' : ''), #5
+				esc_attr($this->props['controls'] !== 'off' ? 'controls' : ''), #6
 				esc_attr($alt), #7
-				esc_attr($this -> props['renderer']), #8
-				esc_attr($this -> props['object_fit']), #9
-				esc_attr($this -> props['reverse'] !== 'on' ? '1' : '-1'), #10
+				esc_attr($this->props['renderer']), #8
+				esc_attr($this->props['object_fit']), #9
+				esc_attr($this->props['reverse'] !== 'on' ? '1' : '-1'), #10
 				esc_attr($onmouseover), #11
-				esc_attr($this -> props['onmouseout']), #12
+				esc_attr($this->props['onmouseout']), #12
 				esc_attr($onclick), #13
-				esc_attr($this -> props['speed']), #14
+				esc_attr($this->props['speed']), #14
 				esc_attr($selector), #15
-				esc_attr($this -> props['mode'] !== 'on' ? 'normal' : 'bounce'), #16
+				esc_attr($this->props['mode'] !== 'on' ? 'normal' : 'bounce'), #16
 				esc_attr($subframe), #17,
 				esc_attr($segment), #18
 				esc_attr($scroll), #19
-				esc_attr($this -> props['delay']), #20
-				esc_attr($this -> props['once']), #21
+				esc_attr($this->props['delay']), #20
+				esc_attr($this->props['once']), #21
 			);
 
-			if ( '' !== $url ) {
+			if ('' !== $url) {
 				$output = sprintf(
 					'<a href="%1$s"%3$s>%2$s</a>',
 					esc_url($url),
@@ -480,5 +484,5 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 		}
 	}
 
-	new AM_ET_Builder_Module_LottiePlayer;	
+	new AM_ET_Builder_Module_LottiePlayer;
 }

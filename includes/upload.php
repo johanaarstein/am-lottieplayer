@@ -1,10 +1,11 @@
 <?php
-if (!defined('ABSPATH')) exit('New phone, who diz?');
+defined('ABSPATH') || exit;
 
 //Adding Lottie mime types to list over accepted uploads
 add_filter('upload_mimes', 'am_lottie_mimetypes');
 if (!function_exists('am_lottie_mimetypes')) {
-  function am_lottie_mimetypes($mimes) {
+  function am_lottie_mimetypes($mimes)
+  {
     $mimes['json'] = 'application/json';
     $mimes['lottie'] = 'application/zip';
     return $mimes;
@@ -13,7 +14,8 @@ if (!function_exists('am_lottie_mimetypes')) {
 
 add_filter('wp_check_filetype_and_ext', 'am_lottie_filetypes', 10, 5);
 if (!function_exists('am_lottie_filetypes')) {
-  function am_lottie_filetypes($data, $file, $filename, $mimes, $real_mime) {
+  function am_lottie_filetypes($data, $file, $filename, $mimes, $real_mime)
+  {
     if (!empty($data['ext']) && !empty($data['type'])) {
       return $data;
     }
@@ -35,18 +37,19 @@ if (!function_exists('am_lottie_filetypes')) {
 
 //Upload lottie-asset to Media Library
 if (!function_exists('media_sideload_lottie')) {
-  function media_sideload_lottie($file, $post_id = 0, $desc = 'AM Lottie Animation', $return_type = 'id') {
-    if (!empty($file) ) {
+  function media_sideload_lottie($file, $post_id = 0, $desc = 'AM Lottie Animation', $return_type = 'id')
+  {
+    if (!empty($file)) {
 
       $allowed_extensions = array('lottie', 'json');
 
-      $allowed_extensions = apply_filters('image_sideload_extensions', $allowed_extensions, $file );
+      $allowed_extensions = apply_filters('image_sideload_extensions', $allowed_extensions, $file);
       $allowed_extensions = array_map('preg_quote', $allowed_extensions);
 
       // Set variables for storage, fix file filename for query strings.
-      preg_match('/[^\?]+\.(' . implode( '|', $allowed_extensions ) . ')\b/i', $file, $matches);
+      preg_match('/[^\?]+\.(' . implode('|', $allowed_extensions) . ')\b/i', $file, $matches);
 
-      if (!$matches ) {
+      if (!$matches) {
         return new WP_Error('image_sideload_failed', __('Invalid Lottie URL.'));
       }
 
@@ -54,7 +57,7 @@ if (!function_exists('media_sideload_lottie')) {
       $file_array['name'] = wp_basename($matches[0]);
 
       // Download file to temp location.
-      $file_array['tmp_name'] = download_url( $file );
+      $file_array['tmp_name'] = download_url($file);
 
       // If error storing temporarily, return the error.
       if (is_wp_error($file_array['tmp_name'])) {
@@ -87,7 +90,7 @@ if (!function_exists('media_sideload_lottie')) {
         return $src;
       }
 
-      $alt  = isset( $desc ) ? esc_attr( $desc ) : '';
+      $alt  = isset($desc) ? esc_attr($desc) : '';
       $html = "<img src='$src' alt='$alt' />";
 
       return $html;
@@ -99,7 +102,8 @@ if (!function_exists('media_sideload_lottie')) {
 
 //Get default Lottie animation
 if (!function_exists('am_lottie_asset')) {
-  function am_lottie_asset($default = false) {
+  function am_lottie_asset($default = false)
+  {
     $url = AM_LOTTIEPLAYER_URL . 'assets/am.lottie';
     if ($default && filter_var($url, FILTER_VALIDATE_URL)) {
       return $url;
@@ -126,8 +130,11 @@ if (!function_exists('am_lottie_asset')) {
 //Adding icon to Lottie filetype
 add_filter('wp_mime_type_icon', 'am_icon_filter', 10, 3);
 if (!function_exists('am_icon_filter')) {
-  function am_icon_filter($icon, $mime) {
-    if ($mime === 'application/zip' || $mime === 'application/json' || $mime === 'text/plain') return AM_LOTTIEPLAYER_URL . 'assets/lottie-icon.svg';
+  function am_icon_filter($icon, $mime)
+  {
+    if ($mime === 'application/zip' || $mime === 'application/json' || $mime === 'text/plain') {
+      return AM_LOTTIEPLAYER_URL . 'assets/lottie-icon.svg';
+    }
     return $icon;
   }
 }
@@ -135,7 +142,8 @@ if (!function_exists('am_icon_filter')) {
 //Adding preview for Media Library
 add_action('wp_enqueue_media', 'am_override_media_templates');
 if (!function_exists('am_override_media_templates')) {
-  function am_override_media_templates() {
+  function am_override_media_templates()
+  {
     if (!remove_action('admin_footer', 'wp_print_media_templates')) {
       error_log('remove_action fail');
     }
@@ -144,7 +152,8 @@ if (!function_exists('am_override_media_templates')) {
 }
 
 if (!function_exists('am_wp_print_media_templates')) {
-  function am_wp_print_media_templates() {
+  function am_wp_print_media_templates()
+  {
     $replaces = [
       '/\<\# \} else if \( \'video\' === data.type \) \{/' =>
       '<# } else if ( \'application\' === data.type || \'text\' === data.type ) { #>

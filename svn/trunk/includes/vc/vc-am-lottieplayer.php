@@ -1,11 +1,12 @@
 <?php
-if (!defined('ABSPATH')) exit('New phone, who diz?');
+defined('ABSPATH') || exit;
 
 vc_add_shortcode_param('attach_lottie', 'am_vc_attach_field_settings');
 if (!function_exists('am_vc_attach_field_settings')) {
-  function am_vc_attach_field_settings($settings) {
+  function am_vc_attach_field_settings($settings)
+  {
     return
-    '<div class="am-upload">
+      '<div class="am-upload">
       <button
         id="' . esc_attr($settings['param_name']) . '-button"
         style="all:unset;cursor:pointer;background:#007cba;color:#fff;font-size:13px;padding:6px 12px;border-radius:2px;height:36px;align-items:center;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;appearance:none;"
@@ -142,14 +143,14 @@ vc_map(
         'heading' => __('Width', 'am-lottieplayer'),
         'param_name' => 'width',
         'value' => null,
-        'group' => __('Layout Options', 'am-lottieplayer' ),
+        'group' => __('Layout Options', 'am-lottieplayer'),
       ],
       [
         'type' => 'textfield',
         'heading' => __('Height', 'am-lottieplayer'),
         'param_name' => 'height',
         'value' => null,
-        'group' => __('Layout Options', 'am-lottieplayer' ),
+        'group' => __('Layout Options', 'am-lottieplayer'),
       ],
       [
         'type' => 'dropdown',
@@ -162,7 +163,7 @@ vc_map(
           __('None', 'am-lottieplayer') => 'none',
         ],
         'std' => 'contain',
-        'group' => __('Layout Options', 'am-lottieplayer' ),
+        'group' => __('Layout Options', 'am-lottieplayer'),
       ],
       [
         'type' => 'dropdown',
@@ -174,14 +175,14 @@ vc_map(
           __('HTML', 'am-lottieplayer') => 'html',
         ],
         'std' => 'svg',
-        'group' => __('Advanced Options', 'am-lottieplayer' ),
+        'group' => __('Advanced Options', 'am-lottieplayer'),
       ],
       [
         'type' => 'textfield',
         'heading' => __('Description', 'am-lottieplayer'),
         'param_name' => 'alt',
         'description' => __('Helpful for screen readers and search engines', 'am-lottieplayer'),
-        'group' => __('Advanced Options', 'am-lottieplayer' ),
+        'group' => __('Advanced Options', 'am-lottieplayer'),
       ],
     ]
   ]
