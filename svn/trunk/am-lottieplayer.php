@@ -26,15 +26,11 @@ if (!class_exists('AM_LottiePlayer')) {
   {
     public $slug;
     public $version;
-    public $cache_key;
-    public $cache_allowed;
 
     public function __construct()
     {
       $this->slug = plugin_basename(__DIR__);
-      $this->version = '1.0.0';
-      $this->cache_key = 'am_lottieplayer_upd';
-      $this->cache_allowed = false;
+      $this->version = '2.5.14';
     }
 
     /**
@@ -84,7 +80,7 @@ if (!class_exists('AM_LottiePlayer')) {
         'dotlottie-player',
         AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player.min.js',
         null,
-        '1.4.32',
+        '2.0.3',
         true
       );
 
@@ -216,7 +212,7 @@ if (!class_exists('AM_LottiePlayer')) {
         'elementor-backend-style',
         AM_LOTTIEPLAYER_URL . 'styles/am-font.css'
       );
-      am_include('includes/widgets/elementor-am-lottieplayer.php');
+      am_include('includes/widgets/elementor-am-lottieplayer.php', $widgets_manager);
     }
 
     /**
