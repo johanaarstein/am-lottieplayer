@@ -70,7 +70,7 @@ vc_map(
         'type' => 'checkbox',
         'heading' => __('Subframe', 'am-lottieplayer'),
         'param_name' => 'subframe',
-        'value' => 'true',
+        'checked' => 'true',
       ],
       [
         'type' => 'textfield',

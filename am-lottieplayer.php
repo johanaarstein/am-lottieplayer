@@ -26,15 +26,11 @@ if (!class_exists('AM_LottiePlayer')) {
   {
     public $slug;
     public $version;
-    public $cache_key;
-    public $cache_allowed;
 
     public function __construct()
     {
       $this->slug = plugin_basename(__DIR__);
-      $this->version = '1.0.0';
-      $this->cache_key = 'am_lottieplayer_upd';
-      $this->cache_allowed = false;
+      $this->version = '2.5.14';
     }
 
     /**
