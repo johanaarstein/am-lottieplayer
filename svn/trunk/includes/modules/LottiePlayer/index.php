@@ -194,7 +194,6 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'off' => et_builder_i18n('No'),
 						'on'  => et_builder_i18n('Yes'),
 					],
-					'default_on_front' => 'on',
 					'toggle_slug' => 'main_content',
 				],
 				'loop' => [
@@ -206,7 +205,6 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'off' => et_builder_i18n('No'),
 						'on'  => et_builder_i18n('Yes'),
 					],
-					'default_on_front' => 'on',
 					'toggle_slug' => 'main_content',
 				],
 				'mode' => [
@@ -239,6 +237,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'off' => et_builder_i18n('No'),
 						'on'  => et_builder_i18n('Yes'),
 					],
+					'default_on_front' => 'on',
 					'toggle_slug' => 'main_content',
 				],
 				'speed' => [

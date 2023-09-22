@@ -87,7 +87,6 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 					'type' => \Elementor\Controls_Manager::SWITCHER,
 					'label_on' => __('On', 'am-lottieplayer'),
 					'label_off' => __('Off', 'am-lottieplayer'),
-					'default' => 'yes',
 				]
 			);
 
@@ -127,7 +126,8 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 					'label' => __('Subframe', 'am-lottieplayer'),
 					'type' => \Elementor\Controls_Manager::SWITCHER,
 					'label_on' => __('Yes', 'am-lottieplayer'),
-					'label_off' => __('No', 'am-lottieplayer')
+					'label_off' => __('No', 'am-lottieplayer'),
+					'default' => 'yes',
 				]
 			);
 
