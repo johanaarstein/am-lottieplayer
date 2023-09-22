@@ -194,6 +194,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'off' => et_builder_i18n('No'),
 						'on'  => et_builder_i18n('Yes'),
 					],
+					'default_on_front' => 'off',
 					'toggle_slug' => 'main_content',
 				],
 				'loop' => [
@@ -205,6 +206,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'off' => et_builder_i18n('No'),
 						'on'  => et_builder_i18n('Yes'),
 					],
+					'default_on_front' => 'off',
 					'toggle_slug' => 'main_content',
 				],
 				'mode' => [
@@ -215,6 +217,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'off' => et_builder_i18n('No'),
 						'on'  => et_builder_i18n('Yes'),
 					],
+					'default_on_front' => 'off',
 					'toggle_slug' => 'main_content',
 				],
 				'reverse' => [
@@ -226,6 +229,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'off' => et_builder_i18n('No'),
 						'on'  => et_builder_i18n('Yes'),
 					],
+					'default_on_front' => 'off',
 					'toggle_slug' => 'main_content',
 				],
 				'subframe' => [
@@ -274,6 +278,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'selector',
 						'exclude'
 					],
+					'default_on_front' => 'off',
 					'toggle_slug' => 'main_content',
 				],
 				'onmouseover' => [
@@ -289,6 +294,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'selector',
 						'exclude'
 					],
+					'default_on_front' => 'off',
 					'toggle_slug' => 'main_content',
 				],
 				'onmouseout' => [
@@ -321,6 +327,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'off' => et_builder_i18n('No'),
 						'on'  => et_builder_i18n('Yes'),
 					],
+					'default_on_front' => 'off',
 					'toggle_slug' => 'main_content',
 				],
 				'scroll' => [
@@ -335,6 +342,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'delay',
 						'once'
 					],
+					'default_on_front' => 'off',
 					'toggle_slug' => 'main_content',
 				],
 				'delay' => [
@@ -361,7 +369,8 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					],
 					'condition' => [
 						'scroll' => 'on'
-					]
+					],
+					'default_on_front' => 'off',
 				],
 				'object_fit' => [
 					'label' => esc_html__('Object Fit', 'am-lottieplayer'),

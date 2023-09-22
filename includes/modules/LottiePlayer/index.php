@@ -194,6 +194,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'off' => et_builder_i18n('No'),
 						'on'  => et_builder_i18n('Yes'),
 					],
+					'default_on_front' => 'off',
 					'toggle_slug' => 'main_content',
 				],
 				'loop' => [
@@ -205,6 +206,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'off' => et_builder_i18n('No'),
 						'on'  => et_builder_i18n('Yes'),
 					],
+					'default_on_front' => 'off',
 					'toggle_slug' => 'main_content',
 				],
 				'mode' => [
@@ -215,6 +217,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'off' => et_builder_i18n('No'),
 						'on'  => et_builder_i18n('Yes'),
 					],
+					'default_on_front' => 'off',
 					'toggle_slug' => 'main_content',
 				],
 				'reverse' => [
@@ -226,6 +229,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'off' => et_builder_i18n('No'),
 						'on'  => et_builder_i18n('Yes'),
 					],
+					'default_on_front' => 'off',
 					'toggle_slug' => 'main_content',
 				],
 				'subframe' => [
@@ -253,13 +257,13 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 				'segment_in' => [
 					'label' => __('Choose where to start', 'am-lottieplayer'),
 					'type' => 'range',
-					'default' => '0',
+					'default' => '1',
 					'toggle_slug' => 'main_content',
 				],
 				'segment_out' => [
 					'label' => __('And where to end', 'am-lottieplayer'),
 					'type' => 'range',
-					'default' => '0',
+					'default' => '',
 					'toggle_slug' => 'main_content',
 				],
 				'onclick' => [
@@ -274,6 +278,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'selector',
 						'exclude'
 					],
+					'default_on_front' => 'off',
 					'toggle_slug' => 'main_content',
 				],
 				'onmouseover' => [
@@ -289,6 +294,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'selector',
 						'exclude'
 					],
+					'default_on_front' => 'off',
 					'toggle_slug' => 'main_content',
 				],
 				'onmouseout' => [
@@ -321,6 +327,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'off' => et_builder_i18n('No'),
 						'on'  => et_builder_i18n('Yes'),
 					],
+					'default_on_front' => 'off',
 					'toggle_slug' => 'main_content',
 				],
 				'scroll' => [
@@ -335,6 +342,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						'delay',
 						'once'
 					],
+					'default_on_front' => 'off',
 					'toggle_slug' => 'main_content',
 				],
 				'delay' => [
@@ -361,7 +369,8 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					],
 					'condition' => [
 						'scroll' => 'on'
-					]
+					],
+					'default_on_front' => 'off',
 				],
 				'object_fit' => [
 					'label' => esc_html__('Object Fit', 'am-lottieplayer'),
@@ -398,8 +407,8 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 		{
 
 			$alt = $this->props['alt'];
-			$onmouseover = $this->props['onmouseover'] !== 'on' ? 'false' : 'true';
-			$scroll = $this->props['scroll'] !== 'on' ? 'false' : 'true';
+			$onmouseover = $this->props['onmouseover'] !== 'off' ? 'true' : 'false';
+			$scroll = $this->props['scroll'] !== 'off' ? 'true' : 'false';
 			$segment =
 				$this->props['segment_out'] &&
 				$this->props['segment_out'] !== '0' ?
@@ -409,7 +418,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 				. ']' : '';
 			$selector =
 				json_encode([
-					"id" => $this->props['selector'],
+					"id" => empty($this->props['selector']) ? null : $this->props['selector'],
 					"exclude" => $this->props['exclude'] === 'on',
 				]);
 			$src = $this->props['src'];
@@ -418,7 +427,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 			$url_new_window = $this->props['url_new_window'];
 
 			$onclick = $url !== '' &&
-				$this->props['onclick'] !== 'on' ? 'false' : 'true';
+				$this->props['onclick'] !== 'off' ? 'true' : 'false';
 
 			$output = sprintf(
 				'<figure%1$s class="%2$s">
@@ -456,18 +465,18 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 				esc_attr($alt), #7
 				esc_attr($this->props['renderer']), #8
 				esc_attr($this->props['object_fit']), #9
-				esc_attr($this->props['reverse'] !== 'on' ? '1' : '-1'), #10
+				esc_attr($this->props['reverse'] !== 'off' ? '-1' : '1'), #10
 				esc_attr($onmouseover), #11
 				esc_attr($this->props['onmouseout']), #12
 				esc_attr($onclick), #13
 				esc_attr($this->props['speed']), #14
 				esc_attr($selector), #15
-				esc_attr($this->props['mode'] !== 'on' ? 'normal' : 'bounce'), #16
+				esc_attr($this->props['mode'] !== 'off' ? 'bounce' : 'normal'), #16
 				esc_attr($subframe), #17,
 				esc_attr($segment), #18
 				esc_attr($scroll), #19
 				esc_attr($this->props['delay']), #20
-				esc_attr($this->props['once']), #21
+				esc_attr($this->props['once'] !== 'off' ? 'true' : 'false'), #21
 			);
 
 			if ('' !== $url) {
