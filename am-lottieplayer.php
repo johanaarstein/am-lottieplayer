@@ -216,7 +216,7 @@ if (!class_exists('AM_LottiePlayer')) {
         'elementor-backend-style',
         AM_LOTTIEPLAYER_URL . 'styles/am-font.css'
       );
-      am_include('includes/widgets/elementor-am-lottieplayer.php');
+      am_include('includes/widgets/elementor-am-lottieplayer.php', $widgets_manager);
     }
 
     /**

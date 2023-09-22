@@ -144,12 +144,14 @@ function am_get_path($filename = '')
  * Includes a file within the plugin.
  *
  * @param string $filename The specified file.
+ * @param mixed $arg (optional)
  * @return void
  */
-function am_include($filename = '')
+function am_include($filename = '', $arg = null)
 {
   $file_path = am_get_path($filename);
   if (file_exists($file_path)) {
+    $arg;
     include_once $file_path;
   }
 }
