@@ -49,7 +49,7 @@ if (!class_exists('AM_LottiePlayer')) {
       include_once AM_LOTTIEPLAYER_PATH . 'includes/functions.php';
 
       am_include('upload.php');
-      am_include('builders/index.php');
+      am_include('builders/builders.php');
 
       add_action('admin_enqueue_scripts', [$this, 'backend_enqeue']);
 
