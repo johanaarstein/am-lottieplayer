@@ -32,7 +32,7 @@ vc_map(
       [
         'type' => 'textfield',
         'heading' => __('Lottie url', 'am-lottieplayer'),
-        'value' => esc_url(!is_wp_error(am_lottie_asset()) ? wp_get_attachment_url(am_lottie_asset()) : am_lottie_asset(true)),
+        'value' => esc_url(!is_wp_error(AM_LottiePlayer_Upload::lottie_asset()) ? wp_get_attachment_url(AM_LottiePlayer_Upload::lottie_asset()) : AM_LottiePlayer_Upload::lottie_asset(true)),
         'param_name' => 'src',
       ],
       [

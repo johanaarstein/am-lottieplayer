@@ -107,7 +107,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					'toggle_slug' => 'main_content',
 					'mobile_options' => true,
 					'hover' => 'tabs',
-					'default' => esc_url(!is_wp_error(am_lottie_asset()) ? wp_get_attachment_url(am_lottie_asset()) : am_lottie_asset(true)),
+					'default' => esc_url(!is_wp_error(AM_LottiePlayer_Upload::lottie_asset()) ? wp_get_attachment_url(AM_LottiePlayer_Upload::lottie_asset()) : AM_LottiePlayer_Upload::lottie_asset(true)),
 				],
 				'alt' => [
 					'label' => esc_html__('Animation Alternative Text', 'am-lottieplayer'),

@@ -2,14 +2,16 @@
 defined('ABSPATH') || exit;
 
 if (class_exists('DiviExtension') && !class_exists('AM_LottieDiviModules')) {
-  class AM_LottieDiviModules extends DiviExtension {
+  class AM_LottieDiviModules extends DiviExtension
+  {
     public $gettext_domain = 'am-lottieplayer';
     public $name = 'am-lottieplayer';
     public $version = AM_LOTTIEPLAYER_VERSION;
 
-    public function __construct($name = 'am-lottieplayer', $args = []) {
-      $this -> plugin_dir = plugin_dir_path(__FILE__);
-      $this -> plugin_dir_url = plugin_dir_url($this -> plugin_dir);
+    public function __construct($name = 'am-lottieplayer', $args = [])
+    {
+      $this->plugin_dir = plugin_dir_path(__FILE__);
+      $this->plugin_dir_url = AM_LOTTIEPLAYER_URL;
       parent::__construct($name, $args);
     }
   }
@@ -29,5 +31,4 @@ if (class_exists('DiviExtension') && !class_exists('AM_LottieDiviModules')) {
     }';
 
   wp_add_inline_style('am_lottie_et_styles', $customStyle);
-
 }

@@ -4,7 +4,13 @@ defined('ABSPATH') || exit;
 if (!function_exists('am_ux_get_template')) {
   function am_ux_get_template()
   {
-    wp_enqueue_script('am-backend-ux');
+    wp_enqueue_script(
+      'am-backend-ux',
+      AM_LOTTIEPLAYER_URL . 'scripts/am-backend-ux.min.js',
+      ['dotlottie-player'],
+      '1.0.0',
+      true
+    );
     ob_start();
     include __DIR__ . '/ux-am-lottieplayer.html';
     return ob_get_clean();
@@ -12,14 +18,14 @@ if (!function_exists('am_ux_get_template')) {
 }
 
 $position_options = require __DIR__ . '/position.php';
-$position_options['options']['position_x']['on_change'] = array(
+$position_options['options']['position_x']['on_change'] = [
   'recompile' => false,
   'class' => 'x{{ value }} md-x{{ value }} lg-x{{ value }}'
-);
-$position_options['options']['position_y']['on_change'] = array(
+];
+$position_options['options']['position_y']['on_change'] = [
   'recompile' => false,
   'class' => 'y{{ value }} md-y{{ value }} lg-y{{ value }}'
-);
+];
 
 add_ux_builder_shortcode('am-lottieplayer', [
   'name' => 'LottiePlayer',
@@ -34,7 +40,7 @@ add_ux_builder_shortcode('am-lottieplayer', [
     'src' => [
       'type' => 'textfield',
       'full_width' => true,
-      'default' => esc_url(!is_wp_error(am_lottie_asset()) ? wp_get_attachment_url(am_lottie_asset()) : am_lottie_asset(true)),
+      'default' => esc_url(!is_wp_error(AM_LottiePlayer_Upload::lottie_asset()) ? wp_get_attachment_url(AM_LottiePlayer_Upload::lottie_asset()) : AM_LottiePlayer_Upload::lottie_asset(true)),
       'heading' => __('Lottie url', 'am-lottieplayer'),
       'description' => __('Paste in url to Lottie, either from CDN or you local Media Library.', 'am-lottieplayer')
     ],

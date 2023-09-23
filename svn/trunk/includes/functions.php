@@ -103,7 +103,7 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
       'segment_out' => null,
       'speed' => 1,
       'selector' => null,
-      'src' => esc_url(!is_wp_error(am_lottie_asset()) ? wp_get_attachment_url(am_lottie_asset()) : am_lottie_asset(true)),
+      'src' => esc_url(!is_wp_error(AM_LottiePlayer_Upload::lottie_asset()) ? wp_get_attachment_url(AM_LottiePlayer_Upload::lottie_asset()) : AM_LottiePlayer_Upload::lottie_asset(true)),
       'subframe' => false,
       'width' => null,
       'onmouseover' => false,
@@ -114,7 +114,7 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
 
     ob_start(); ?>
     <figure class="am-lottieplayer align<?php echo esc_html($atts['align']) ?? 'none';
-                                        echo ' ' . esc_html($atts['class']); ?>" style="
+      echo ' ' . esc_html($atts['class']); ?>" style="
         background-color: <?php echo $atts['background']; ?>;
         height: <?php echo esc_html($atts['height']) ? esc_html($atts['height']) . 'px' : 'auto'; ?>;
         width: <?php echo esc_html($atts['width']) ? esc_html($atts['width']) . 'px' : 'auto'; ?>;
@@ -135,7 +135,7 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
  */
 function am_get_path($filename = '')
 {
-  return AM_LOTTIEPLAYER_PATH . ltrim($filename, '/');
+  return AM_LOTTIEPLAYER_PATH . 'includes/' . ltrim($filename, '/');
 }
 
 /**

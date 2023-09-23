@@ -1,5 +1,5 @@
 <?php
-if (!defined('ABSPATH')) exit('New phone, who diz?');
+defined( 'ABSPATH' ) || exit;
 
 return [
     'type' => 'select',
