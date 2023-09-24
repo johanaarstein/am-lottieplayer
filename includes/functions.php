@@ -130,27 +130,45 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
  * am_get_path
  * Returns the plugin path to a specified file.
  *
- * @param   string $filename The specified file.
- * @return  string
+ * @param string $filename The specified file.
+ * @return string
  */
-function am_get_path($filename = '')
+function am_get_path($path = '')
 {
-  return AM_LOTTIEPLAYER_PATH . 'includes/' . ltrim($filename, '/');
+  $path = preg_replace('/\.[^.]*$/', '', ltrim($path, '/')) . 'php';
+  return AM_LOTTIEPLAYER_PATH . $path;
 }
 
 /**
  * am_include
- * Includes a file within the plugin.
+ * Includes a file within the plugins includes folder
  *
  * @param string $filename The specified file.
  * @param mixed $arg (optional)
  * @return void
  */
-function am_include($filename = '', $arg = null)
+function am_include($path = '', $args = null)
 {
-  $file_path = am_get_path($filename);
-  if (file_exists($file_path)) {
-    $arg;
-    include_once $file_path;
+  $path = am_get_path('includes/' . ltrim($path, '/'));
+  if (file_exists($path)) {
+    $args;
+    include_once $path;
+  }
+}
+
+/**
+ * Load in a file from the 'admin/views' folder and allow variables to be passed through
+ *
+ * @param string $path
+ * @param array  $args
+ * @return void
+ */
+function am_get_view($path = '', $args = [])
+{
+  $path = am_get_path('includes/admin/views/' . ltrim($path, '/'));
+  if (file_exists($path)) {
+    // Use `EXTR_SKIP` here to prevent `$view_path` from being accidentally/maliciously overridden.
+    extract($args, EXTR_SKIP);
+    include $path;
   }
 }

@@ -5,6 +5,13 @@ if (!class_exists('AM_LottiePlayer_Upload')) {
 
   class AM_LottiePlayer_Upload
   {
+
+    /**
+     * Constructor
+     *
+     * @param   void
+     * @return  void
+     */
     public function __construct()
     {
       add_action('wp_enqueue_media', [$this, 'override_media_templates']);
