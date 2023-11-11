@@ -5,7 +5,7 @@ Author URI: https://www.aarstein.media
 Plugin URI: https://wordpress.org/plugins/am-lottieplayer/
 Tags: lottie, dotlottie, bodymovin, gutenberg, elementor, divi, flatsome, animation, vector, svg, gif
 Requires at least: 5.9
-Tested up to: 6.3
+Tested up to: 6.4
 Requires PHP: 7.0
 Stable Tag: 1.0.1
 License: GPLv2 or later

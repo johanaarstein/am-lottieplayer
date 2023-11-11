@@ -127,7 +127,6 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
 }
 
 /**
- * am_get_path
  * Returns the plugin path to a specified file.
  *
  * @param string $filename The specified file.
@@ -135,12 +134,11 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
  */
 function am_get_path($path = '')
 {
-  $path = preg_replace('/\.[^.]*$/', '', ltrim($path, '/')) . 'php';
+  $path = preg_replace('/\.[^.]*$/', '', ltrim($path, '/')) . '.php';
   return AM_LOTTIEPLAYER_PATH . $path;
 }
 
 /**
- * am_include
  * Includes a file within the plugins includes folder
  *
  * @param string $filename The specified file.
