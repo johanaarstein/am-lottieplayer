@@ -52,6 +52,7 @@ if (!class_exists('AM_LottiePlayer_Upload')) {
           <dotlottie-player
             class="details-image"
             controls
+            simple
             src="{{ data.url }}"
           >
           </dotlottie-player>

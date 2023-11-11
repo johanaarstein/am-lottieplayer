@@ -114,6 +114,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 2.5.15 - Nov 11 2023 =
+* Compability with WordPress 6.4
+
 = 2.5.14 - Sep 22 2023 =
 * Bugfix: Fixed playback error on Divi Shortcode
 
