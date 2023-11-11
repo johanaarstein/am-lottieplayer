@@ -80,7 +80,7 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
     public function init_flatsome()
     {
       if (!function_exists('add_ux_builder_shortcode'))
-      return;
+        return;
       am_include('flatsome/ux-am-lottieplayer.php');
     }
 
@@ -117,20 +117,20 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
         $layouts = et_theme_builder_get_template_layouts();
         if (!empty($layouts)) {
           if ($layouts['et_header_layout']['override']) {
-            $header = get_post($layouts['et_header_layout']['id'])->post_content;
-            if (has_shortcode($header, 'et_pb_lottieplayer')) {
+            $header = get_post($layouts['et_header_layout']['id'])?->post_content;
+            if ($header && has_shortcode($header, 'et_pb_lottieplayer')) {
               $diviFlag = true;
             }
           }
           if (!$diviFlag && $layouts['et_body_layout']['override']) {
-            $body = get_post($layouts['et_body_layout']['id'])->post_content;
-            if (has_shortcode($body, 'et_pb_lottieplayer')) {
+            $body = get_post($layouts['et_body_layout']['id'])?->post_content;
+            if ($body && has_shortcode($body, 'et_pb_lottieplayer')) {
               $diviFlag = true;
             }
           }
           if (!$diviFlag && $layouts['et_footer_layout']['override']) {
-            $footer = get_post($layouts['et_footer_layout']['id'])->post_content;
-            if (has_shortcode($footer, 'et_pb_lottieplayer')) {
+            $footer = get_post($layouts['et_footer_layout']['id'])?->post_content;
+            if ($footer && has_shortcode($footer, 'et_pb_lottieplayer')) {
               $diviFlag = true;
             }
           }
