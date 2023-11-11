@@ -43,13 +43,13 @@ if (!class_exists('AM_LottiePlayer')) {
       define('AM_LOTTIEPLAYER_BASENAME', plugin_basename(__FILE__));
       define('AM_LOTTIEPLAYER_VERSION', $this->version);
       define('AM_LOTTIEPLAYER_URL', plugin_dir_url(__FILE__));
-      // define('AM_LOTTIEPLAYER_FILE', plugin_dir_path(dirname(__FILE__, 1)) . AM_LOTTIEPLAYER_BASENAME);
+      // define('AM_LOTTIEPLAYER_FILE', __FILE__);
 
       // Include utility functions
       include_once AM_LOTTIEPLAYER_PATH . 'includes/functions.php';
 
       am_include('upload.php');
-      am_include('builders/index.php');
+      am_include('builders/builders.php');
 
       add_action('admin_enqueue_scripts', [$this, 'backend_enqeue']);
 
