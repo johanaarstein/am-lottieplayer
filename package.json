@@ -1,6 +1,6 @@
 {
 	"name": "am-lottieplayer",
-	"version": "2.5.14",
+	"version": "2.5.16",
 	"description": "The most complete Lottie Player plugin! It is lightweight, versatile and easy to use, and it has integrations for Gutenberg, Divi, Elementor, Flatsome and WPBakery.",
 	"author": {
 		"name": "Aarstein Media",
@@ -63,7 +63,7 @@
 		"lottie-web": "^5.12.2",
 		"re-resizable": "^6.9.11",
 		"react": "^18.2.0",
-		"ts-loader": "^9.5.0",
+		"ts-loader": "^9.5.1",
 		"typescript": "^5.2.2"
 	},
 	"scripts": {

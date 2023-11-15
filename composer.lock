@@ -1,0 +1,61 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "efd1fe9c97d94ca35beb2fe86e1f9afe",
+    "packages": [],
+    "packages-dev": [
+        {
+            "name": "arifpavel/elementor-stubs",
+            "version": "3.1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/arifpavel/elementor-stubs.git",
+                "reference": "69f022cc861e29003011fff99acbb2a79f06f0eb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/arifpavel/elementor-stubs/zipball/69f022cc861e29003011fff99acbb2a79f06f0eb",
+                "reference": "69f022cc861e29003011fff99acbb2a79f06f0eb",
+                "shasum": ""
+            },
+            "require-dev": {
+                "ext-gettext": "*",
+                "giacocorsiglia/stubs-generator": "^0.5.0",
+                "php": "^7.1"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Arif Pavel",
+                    "email": "pavelpatiya@gmail.com"
+                }
+            ],
+            "description": "Elementor function, class, and global variable declaration stubs for easier static analysis.",
+            "homepage": "https://github.com/arifpavel/elementor-stubs",
+            "keywords": [
+                "elementor",
+                "static analysis"
+            ],
+            "support": {
+                "issues": "https://github.com/arifpavel/elementor-stubs/issues",
+                "source": "https://github.com/arifpavel/elementor-stubs/tree/3.1.4.1"
+            },
+            "time": "2021-04-05T11:32:53+00:00"
+        }
+    ],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.6.0"
+}

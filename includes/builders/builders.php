@@ -57,7 +57,7 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
      */
     public function init_divi()
     {
-      am_include('builders/divi/LottieDiviModules.php');
+      am_include('builders/divi/LottieDiviModules');
     }
 
     /**
@@ -70,7 +70,7 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
         'elementor-backend-style',
         AM_LOTTIEPLAYER_URL . 'styles/am-font.css'
       );
-      am_include('elementor/widgets/elementor-am-lottieplayer.php', $widgets_manager);
+      am_include('builders/elementor/widgets/elementor-am-lottieplayer', $widgets_manager);
     }
 
     /**
@@ -81,7 +81,7 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
     {
       if (!function_exists('add_ux_builder_shortcode'))
       return;
-      am_include('flatsome/ux-am-lottieplayer.php');
+      am_include('builders/flatsome/ux-am-lottieplayer');
     }
 
     /**
@@ -90,7 +90,7 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
      */
     public function init_vc()
     {
-      am_include('vc/vc-am-lottieplayer.php');
+      am_include('builders/vc/vc-am-lottieplayer');
     }
 
     /**

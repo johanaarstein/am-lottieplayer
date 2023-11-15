@@ -114,6 +114,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 2.5.16 - Nov 15 2023 =
+* Bugfix: Fixed loading issue for third party builders
+
 = 2.5.15 - Nov 11 2023 =
 * Compability with WordPress 6.4
 

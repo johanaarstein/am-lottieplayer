@@ -494,5 +494,5 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 		}
 	}
 
-	$arg->register(new \Elementor_AM_LottiePlayer());
+	$args->register(new \Elementor_AM_LottiePlayer());
 }
