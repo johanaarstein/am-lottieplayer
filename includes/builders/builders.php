@@ -137,24 +137,17 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
         }
       }
 
+      //Check if post has Gutenberg blocks
+      $gutenberg = has_block('gb/lottieplayer') || has_block('gb/lottiecover');
+
+      //Check if post has general shortcode, and VC frontend builder is not active
+      $shortcode = has_shortcode($content, 'am-lottieplayer') && !$isVCBuilder;
+
+      //Check if post has Divi shortcode, and Divi Builder is not active
+      $divi = ($diviFlag || has_shortcode($content, 'et_pb_lottieplayer')) && !$isDiviBuilder;
+
       if (!is_admin()) {
-        if (
-          //Check if post has Gutenberg blocks
-          has_block('gb/lottieplayer') ||
-          has_block('gb/lottiecover') ||
-          (
-            (
-              //Check if post has general shortcode, and VC frontend builder is not active
-              has_shortcode($content, 'am-lottieplayer') &&
-              !$isVCBuilder
-            ) ||
-            (
-              //Check if post has Divi shortcode, and Divi Builder is not active
-              ($diviFlag || has_shortcode($content, 'et_pb_lottieplayer')) &&
-              !$isDiviBuilder
-            )
-          )
-        ) {
+        if ($gutenberg || $shortcode || $divi) {
           wp_enqueue_script('am-frontend');
         }
         //Add scripts for Divi/VC front-end builder, if either are installed and active
