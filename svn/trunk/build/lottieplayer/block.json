@@ -22,22 +22,20 @@
   "textdomain": "am-lottieplayer",
   "attributes": {
     "align": {
-      "type": "string",
+      "enum": [
+        "none",
+        "left",
+        "right",
+        "center"
+      ],
       "default": "none"
     },
     "alt": {
       "type": "string",
-      "source": "attribute",
-      "selector": "dotlottie-player",
-      "attribute": "description",
-      "default": "",
-      "__experimentalRole": "content"
+      "default": ""
     },
     "autoplay": {
-      "type": "boolean",
-      "source": "attribute",
-      "selector": "dotlottie-player",
-      "attribute": "autoplay"
+      "type": "boolean"
     },
     "background": {
       "type": "string",
@@ -45,10 +43,7 @@
     },
     "controls": {
       "type": "boolean",
-      "default": true,
-      "source": "attribute",
-      "selector": "dotlottie-player",
-      "attribute": "controls"
+      "default": true
     },
     "clickEvent": {
       "type": "boolean",
@@ -67,21 +62,16 @@
       "default": false
     },
     "id": {
-      "type": "string",
-      "default": null
-    },
-    "interactivityType": {
-      "type": "string",
-      "default": "none"
+      "type": "string"
     },
     "loop": {
-      "type": "boolean",
-      "source": "attribute",
-      "selector": "dotlottie-player",
-      "attribute": "loop"
+      "type": "boolean"
     },
     "mode": {
-      "type": "string",
+      "enum": [
+        "bounce",
+        "normal"
+      ],
       "default": "normal"
     },
     "mouseout": {
@@ -97,7 +87,11 @@
       "default": false
     },
     "renderer": {
-      "type": "string",
+      "enum": [
+        "svg",
+        "canvas",
+        "html"
+      ],
       "default": "svg"
     },
     "scrollEvent": {
@@ -125,11 +119,7 @@
     },
     "src": {
       "type": "string",
-      "default": "",
-      "source": "attribute",
-      "selector": "dotlottie-player",
-      "attribute": "src",
-      "__experimentalRole": "content"
+      "default": ""
     },
     "subframe": {
       "type": "boolean",

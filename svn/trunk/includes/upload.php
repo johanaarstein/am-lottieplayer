@@ -200,21 +200,18 @@ if (!class_exists('AM_LottiePlayer_Upload')) {
       return post_exists('AM Lottie Animation');
     }
   }
+}
 
-  /**
-   * Main function, to initialize class
-   * @return AM_LottiePlayer_Upload
-   */
-  function am_lottieplayer_upload()
-  {
-    global $am_lottieplayer_upload;
+/**
+ * Main function, to initialize class
+ * @return AM_LottiePlayer_Upload
+ */
+(function () {
+  global $am_lottieplayer_upload;
 
-    if (!isset($am_lottieplayer_upload)) {
-      $am_lottieplayer_upload = new AM_LottiePlayer_Upload();
-    }
-
-    return $am_lottieplayer_upload;
+  if (!isset($am_lottieplayer_upload)) {
+    $am_lottieplayer_upload = new AM_LottiePlayer_Upload();
   }
 
-  am_lottieplayer_upload();
-}
+  return $am_lottieplayer_upload;
+})();

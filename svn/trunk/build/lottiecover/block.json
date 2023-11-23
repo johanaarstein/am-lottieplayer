@@ -17,8 +17,13 @@
   "textdomain": "am-lottieplayer",
   "attributes": {
     "align": {
-      "type": "string",
-      "default": "full"
+      "enum": [
+        "none",
+        "left",
+        "right",
+        "center"
+      ],
+      "default": "none"
     },
     "allowedBlocks": {
       "type": "array",
@@ -30,24 +35,14 @@
     },
     "alt": {
       "type": "string",
-      "source": "attribute",
-      "selector": "dotlottie-player",
-      "attribute": "description",
-      "default": "",
-      "__experimentalRole": "content"
+      "default": ""
     },
     "autoplay": {
       "type": "boolean",
-      "source": "attribute",
-      "selector": "dotlottie-player",
-      "attribute": "autoplay",
       "default": true
     },
     "controls": {
-      "type": "boolean",
-      "source": "attribute",
-      "selector": "dotlottie-player",
-      "attribute": "controls"
+      "type": "boolean"
     },
     "content": {
       "type": "string",
@@ -103,13 +98,13 @@
     },
     "loop": {
       "type": "boolean",
-      "source": "attribute",
-      "selector": "dotlottie-player",
-      "attribute": "loop",
       "default": true
     },
     "mode": {
-      "type": "string",
+      "enum": [
+        "bounce",
+        "normal"
+      ],
       "default": "normal"
     },
     "objectFit": {
@@ -129,7 +124,11 @@
       "default": "stop"
     },
     "renderer": {
-      "type": "string",
+      "enum": [
+        "svg",
+        "canvas",
+        "html"
+      ],
       "default": "svg"
     },
     "scrollEvent": {

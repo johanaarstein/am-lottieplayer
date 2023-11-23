@@ -114,6 +114,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 2.5.17 - Nov 23 2023 =
+* Bugfix: Fixed compability issue with PHP 7.4
+
 = 2.5.16 - Nov 15 2023 =
 * Bugfix: Fixed loading issue for third party builders
 

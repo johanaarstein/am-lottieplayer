@@ -102,7 +102,7 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
       global $post;
       $content = '';
 
-      $diviFlag = false;
+      $has_divi = false;
 
       //Check if any front-end builders are active
       $isDiviBuilder = isset($_GET['et_fb']) && !empty($_GET['et_fb']);
@@ -117,44 +117,40 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
         $layouts = et_theme_builder_get_template_layouts();
         if (!empty($layouts)) {
           if ($layouts['et_header_layout']['override']) {
-            $header = get_post($layouts['et_header_layout']['id'])?->post_content;
+            $header = get_post($layouts['et_header_layout']['id']) ?
+              get_post($layouts['et_header_layout']['id'])->post_content : null;
             if ($header && has_shortcode($header, 'et_pb_lottieplayer')) {
-              $diviFlag = true;
+              $has_divi = true;
             }
           }
-          if (!$diviFlag && $layouts['et_body_layout']['override']) {
-            $body = get_post($layouts['et_body_layout']['id'])?->post_content;
+          if (!$has_divi && $layouts['et_body_layout']['override']) {
+            $body = get_post($layouts['et_body_layout']['id']) ?
+              get_post($layouts['et_body_layout']['id'])->post_content : null;
             if ($body && has_shortcode($body, 'et_pb_lottieplayer')) {
-              $diviFlag = true;
+              $has_divi = true;
             }
           }
-          if (!$diviFlag && $layouts['et_footer_layout']['override']) {
-            $footer = get_post($layouts['et_footer_layout']['id'])?->post_content;
+          if (!$has_divi && $layouts['et_footer_layout']['override']) {
+            $footer = get_post($layouts['et_footer_layout']['id']) ?
+              get_post($layouts['et_footer_layout']['id'])->post_content : null;
             if ($footer && has_shortcode($footer, 'et_pb_lottieplayer')) {
-              $diviFlag = true;
+              $has_divi = true;
             }
           }
         }
       }
 
+      //Check if post has Gutenberg blocks
+      $has_gutenberg = has_block('gb/lottieplayer') || has_block('gb/lottiecover');
+
+      //Check if post has general shortcode, and VC frontend builder is not active
+      $has_shortcode = has_shortcode($content, 'am-lottieplayer') && !$isVCBuilder;
+
+      //Check if post has Divi shortcode, and Divi Builder is not active
+      $has_divi = !$isDiviBuilder && ($has_divi || has_shortcode($content, 'et_pb_lottieplayer'));
+
       if (!is_admin()) {
-        if (
-          //Check if post has Gutenberg blocks
-          has_block('gb/lottieplayer') ||
-          has_block('gb/lottiecover') ||
-          (
-            (
-              //Check if post has general shortcode, and VC frontend builder is not active
-              has_shortcode($content, 'am-lottieplayer') &&
-              !$isVCBuilder
-            ) ||
-            (
-              //Check if post has Divi shortcode, and Divi Builder is not active
-              ($diviFlag || has_shortcode($content, 'et_pb_lottieplayer')) &&
-              !$isDiviBuilder
-            )
-          )
-        ) {
+        if ($has_gutenberg || $has_shortcode || $has_divi) {
           wp_enqueue_script('am-frontend');
         }
         //Add scripts for Divi/VC front-end builder, if either are installed and active
@@ -164,21 +160,16 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
       }
     }
   }
-
-  /**
-   * Main function, to initialize class
-   * @return AM_LottiePlayer_Builders
-   */
-  function am_lottieplayer_builders()
-  {
-    global $am_lottieplayer_builders;
-
-    if (!isset($am_lottieplayer_builders)) {
-      $am_lottieplayer_builders = new AM_LottiePlayer_Builders();
-    }
-
-    return $am_lottieplayer_builders;
-  }
-
-  am_lottieplayer_builders();
 }
+
+/**
+ * Main function, to initialize class
+ * @return AM_LottiePlayer_Builders
+ */
+(function () {
+  global $am_lottieplayer_builders;
+  if (!isset($am_lottieplayer_builders)) {
+    $am_lottieplayer_builders = new AM_LottiePlayer_Builders();
+  }
+  return $am_lottieplayer_builders;
+})();

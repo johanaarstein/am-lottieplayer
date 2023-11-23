@@ -10,7 +10,7 @@
  * Description:       The most complete Lottie Player plugin! It is lightweight, versatile and easy to use, and it has integrations for Gutenberg, Divi, Elementor, Flatsome and WPBakery.
  * Requires at least: 5.9
  * Requires PHP:      7.0
- * Version:           2.5.16
+ * Version:           2.5.17
  * Author:            Aarstein Media
  * Author URI:        https://www.aarstein.media
  * License:           GPL-2.0-or-later
@@ -28,7 +28,7 @@ if (!class_exists('AM_LottiePlayer')) {
 
     public function __construct()
     {
-      $this->version = '2.5.16';
+      $this->version = '2.5.17';
     }
 
     /**
@@ -151,22 +151,19 @@ if (!class_exists('AM_LottiePlayer')) {
       delete_transient('am_deactivated_notice_id');
     }
   }
+} // class_exists check end
 
-  /**
-   * Main function, to initialize plugin
-   * @return AM_LottiePlayer
-   */
-  function am_lottieplayer()
-  {
-    global $am_lottieplayer;
+/**
+ * Main function, to initialize plugin
+ * @return AM_LottiePlayer
+ */
+(function() {
+  global $am_lottieplayer;
 
-    if (!isset($am_lottieplayer)) {
-      $am_lottieplayer = new AM_LottiePlayer();
-      $am_lottieplayer->initialize();
-    }
-
-    return $am_lottieplayer;
+  if (!isset($am_lottieplayer)) {
+    $am_lottieplayer = new AM_LottiePlayer();
+    $am_lottieplayer->initialize();
   }
 
-  am_lottieplayer();
-} // class_exists check end
+  return $am_lottieplayer;
+})();

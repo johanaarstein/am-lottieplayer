@@ -132,10 +132,12 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
  * @param string $filename The specified file.
  * @return string
  */
-function am_get_path($path = '')
-{
-  $path = preg_replace('/\.[^.]*$/', '', ltrim($path, '/')) . '.php';
-  return AM_LOTTIEPLAYER_PATH . $path;
+if (!function_exists('am_get_path')) {
+  function am_get_path($path = '')
+  {
+    $path = preg_replace('/\.[^.]*$/', '', ltrim($path, '/')) . '.php';
+    return AM_LOTTIEPLAYER_PATH . $path;
+  }
 }
 
 /**
@@ -145,12 +147,14 @@ function am_get_path($path = '')
  * @param mixed $arg (optional)
  * @return void
  */
-function am_include($path = '', $args = null)
-{
-  $path = am_get_path('includes/' . ltrim($path, '/'));
-  if (file_exists($path)) {
-    $args;
-    include_once $path;
+if (!function_exists('am_include')) {
+  function am_include($path = '', $args = null)
+  {
+    $path = am_get_path('includes/' . ltrim($path, '/'));
+    if (file_exists($path)) {
+      $args;
+      include_once $path;
+    }
   }
 }
 
@@ -161,12 +165,14 @@ function am_include($path = '', $args = null)
  * @param array  $args
  * @return void
  */
-function am_get_view($path = '', $args = [])
-{
-  $path = am_get_path('includes/admin/views/' . ltrim($path, '/'));
-  if (file_exists($path)) {
-    // Use `EXTR_SKIP` here to prevent `$view_path` from being accidentally/maliciously overridden.
-    extract($args, EXTR_SKIP);
-    include $path;
+if (!function_exists('am_get_view')) {
+  function am_get_view($path = '', $args = [])
+  {
+    $path = am_get_path('includes/admin/views/' . ltrim($path, '/'));
+    if (file_exists($path)) {
+      // Use `EXTR_SKIP` here to prevent `$view_path` from being accidentally/maliciously overridden.
+      extract($args, EXTR_SKIP);
+      include $path;
+    }
   }
 }
