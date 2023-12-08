@@ -51,11 +51,10 @@ export default function PlayerComponent( {
 				renderer === 'svg' && canvas?.remove();
 			}, 100 );
 		}, [ renderer ] ),
-		parseSize = ( num?: number | null ): string | null => {
+		parseSize = ( num?: number | null ) => {
 			if ( num && typeof num === 'number' ) return `${ num }px`;
-			return null;
 		},
-		parseWidth = ( num?: number | null ): string | null => {
+		parseWidth = ( num?: number | null ) => {
 			if ( align === 'wide' || align === 'full' ) return '100%';
 			return parseSize( num );
 		};

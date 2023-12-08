@@ -47,7 +47,6 @@ export default function save( {
 		parseWidth = ( num: number ) => {
 			if ( align === 'wide' || align === 'full' ) return '100%';
 			if ( num && typeof num === 'number' ) return `${ num }px`;
-			return null;
 		};
 
 	return (
@@ -85,7 +84,7 @@ export default function save( {
 					height:
 						height && typeof height === 'number'
 							? `${ height }px`
-							: null,
+							: undefined,
 					backgroundColor: background,
 				} }
 				subframe={ subframe ? '' : null }

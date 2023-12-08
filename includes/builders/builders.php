@@ -35,17 +35,17 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
       register_block_type(AM_LOTTIEPLAYER_PATH . 'build/lottiecover');
 
       wp_register_script(
-        'dotlottie-player',
-        AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player.min.js',
+        'dotlottie-player-light',
+        AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player-light.min.js',
         null,
-        '1.4.32',
+        '2.1.7',
         true
       );
 
       wp_register_script(
         'am-frontend',
         AM_LOTTIEPLAYER_URL . 'scripts/am-frontend.min.js',
-        ['dotlottie-player'],
+        ['dotlottie-player-light'],
         '1.2.1',
         true
       );
@@ -155,7 +155,7 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
         }
         //Add scripts for Divi/VC front-end builder, if either are installed and active
         if ($isDiviBuilder || $isVCBuilder) {
-          wp_enqueue_script('dotlottie-player');
+          wp_enqueue_script('dotlottie-player-light');
         }
       }
     }
