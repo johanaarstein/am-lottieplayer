@@ -2,6 +2,9 @@ import { InspectorAdvancedControls } from '@wordpress/block-editor';
 import { SelectControl, TextareaControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
+import ProFeature from '@assets/ProFeature';
+import ProLink from '@components/ProLink';
+
 import type { BlockEditProps } from 'wordpress__blocks';
 import type { PlayerComponentProps } from '@types';
 import type { RendererType } from 'lottie-web';
@@ -17,45 +20,10 @@ const Advanced = ( {
 			<SelectControl
 				label={
 					<>
-						{ __( 'Renderer' ) }{ ' ' }
-						<span
-							style={ {
-								fontWeight: 'bold',
-								color: 'white',
-								backgroundColor: 'var(--wp-admin-theme-color)',
-								display: 'inline-block',
-								padding: '.5em 1em',
-								borderRadius: '1.5em',
-							} }
-						>
-							{ __( 'PRO feature', 'am-lottieplayer' ) }
-						</span>
+						{ __( 'Renderer' ) } <ProFeature />
 					</>
 				}
-				help={
-					<a
-						href="https://www.aarstein.media/en/am-lottieplayer/pro"
-						target="_blank"
-						rel="noreferrer"
-					>
-						{ __(
-							'Read more about additional features in AM LottiePlayer PRO',
-							'am-lottieplayer'
-						) }
-						<sup
-							style={ {
-								verticalAlign: 'super',
-							} }
-						>
-							<span
-								className="dashicons dashicons-external"
-								style={ {
-									fontSize: '1em',
-								} }
-							/>
-						</sup>
-					</a>
-				}
+				help={ <ProLink /> }
 				disabled
 				value={ renderer }
 				onChange={ ( val ) =>

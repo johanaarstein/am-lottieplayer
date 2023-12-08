@@ -1,16 +1,8 @@
 import { BaseControl, FormToggle, TextControl } from '@wordpress/components';
 
-import { isModifierKey, isNumericInput } from '@functions';
+import { isModifierKey, isNumericInput } from '@utils';
 
-import type { KeyboardEvent } from 'react';
-
-type SwitchLabelProps = {
-	id: string;
-	onChange: ( x: boolean ) => void;
-	subTitle?: string;
-	title?: string;
-	value?: boolean;
-};
+import type { KeyboardEvent, ReactNode } from 'react';
 
 const SwitchLabel = ( {
 	id = '',
@@ -18,7 +10,15 @@ const SwitchLabel = ( {
 	subTitle,
 	title,
 	value,
-}: SwitchLabelProps ) => {
+	disabled,
+}: {
+	id: string;
+	onChange: ( x: boolean ) => void;
+	subTitle?: ReactNode;
+	title?: ReactNode;
+	value?: boolean;
+	disabled?: boolean;
+} ) => {
 	return (
 		<BaseControl
 			id={ id }
@@ -29,6 +29,7 @@ const SwitchLabel = ( {
 			<FormToggle
 				checked={ value }
 				onChange={ () => onChange( ! value ) }
+				disabled={ disabled }
 			/>
 		</BaseControl>
 	);
@@ -79,15 +80,6 @@ const NumberInput = ( {
 	);
 };
 
-type TextInputProps = {
-	help?: string;
-	id?: string;
-	onChange: ( x: string ) => void;
-	title?: string;
-	value?: string;
-	placeholder?: string;
-};
-
 const TextInput = ( {
 	id = '',
 	onChange,
@@ -95,7 +87,16 @@ const TextInput = ( {
 	help,
 	value = '',
 	placeholder = '',
-}: TextInputProps ) => {
+	disabled,
+}: {
+	help?: string;
+	id?: string;
+	onChange: ( x: string ) => void;
+	title?: ReactNode;
+	value?: string;
+	placeholder?: string;
+	disabled?: boolean;
+} ) => {
 	return (
 		<BaseControl
 			id={ id }
@@ -105,6 +106,7 @@ const TextInput = ( {
 			<BaseControl.VisualLabel>{ title }</BaseControl.VisualLabel>
 			<TextControl
 				value={ value }
+				disabled={ disabled }
 				onChange={ ( n ) => onChange( n ) }
 				placeholder={ placeholder }
 			/>

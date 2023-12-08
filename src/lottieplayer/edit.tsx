@@ -5,7 +5,7 @@ import { Spinner } from '@wordpress/components';
 import LottieControls from '@components/LottieControls';
 import Placeholder from '@components/Placeholder';
 
-import { isTemporaryMedia } from '@functions';
+import { isTemporaryMedia } from '@utils';
 
 import type { BlockEditProps } from 'wordpress__blocks';
 import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player-light';

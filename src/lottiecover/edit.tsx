@@ -16,7 +16,7 @@ import Placeholder from '@components/Placeholder';
 import ResizableCover from '@components/ResizableCover';
 import {
 	/*attributesFromMedia, mediaPosition,*/ isTemporaryMedia,
-} from '@functions';
+} from '@utils';
 
 import type { TemplateArray } from '@wordpress/blocks';
 import type { BlockCoverEditProps } from '@types';

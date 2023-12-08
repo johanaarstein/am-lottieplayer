@@ -3,9 +3,19 @@ import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player-light';
 import type { AnimationDirection } from 'lottie-web';
 import type { KeyboardEvent } from 'react';
 
-import { OnMouseOut } from '@types';
+export enum PlayMode {
+	Bounce = 'bounce',
+	Normal = 'normal',
+}
 
-const attributesFromMedia = (
+export enum OnMouseOut {
+	Void = 'void',
+	Stop = 'stop',
+	Pause = 'pause',
+	Reverse = 'reverse',
+}
+
+export const attributesFromMedia = (
 		setAttributes: ( attrs: object ) => void,
 		dimRatio?: number
 	) => {
@@ -40,6 +50,16 @@ const attributesFromMedia = (
 		if ( ! width || ! height ) return null;
 		const divisor = gcd( width, height );
 		return `${ width / divisor } / ${ height / divisor }`;
+	},
+	injectStyle = ( style: string ) => {
+		const styleElement = document.createElement( 'style' );
+		let styleSheet: CSSStyleSheet | null = null;
+
+		document.head.appendChild( styleElement );
+
+		styleSheet = styleElement.sheet;
+
+		styleSheet?.insertRule( style, styleSheet.cssRules.length );
 	},
 	isModifierKey = ( { ctrlKey, key, metaKey, shiftKey }: KeyboardEvent ) => {
 		return !! (
@@ -99,16 +119,3 @@ const attributesFromMedia = (
 		player?.setDirection( direction );
 		player?.play();
 	};
-
-export {
-	attributesFromMedia,
-	debounce,
-	getAspectRatio,
-	isModifierKey,
-	isNumericInput,
-	isTemporaryMedia,
-	isTouch,
-	mediaPosition,
-	mouseOutHandler,
-	mouseOverHandler,
-};

@@ -6,8 +6,10 @@ import {
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
+import ProFeature from '@assets/ProFeature';
+import ProLink from '@components/ProLink';
 import { SwitchLabel, TextInput } from '@components/form';
-import { OnMouseOut } from '@types';
+import { OnMouseOut } from '@utils';
 
 import type { BlockEditProps } from 'wordpress__blocks';
 import type { PlayerComponentProps } from '@types';
@@ -77,13 +79,22 @@ const Interactions = ( {
 					<>
 						<TextInput
 							id="am-lottieplayer-settings"
-							title={ __( 'Trigger element', 'am-lottieplayer' ) }
+							title={
+								<>
+									{ __(
+										'Trigger element',
+										'am-lottieplayer'
+									) }{ ' ' }
+									<ProFeature />
+								</>
+							}
 							help={ __(
 								'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.',
 								'am-lottieplayer'
 							) }
 							placeholder={ '#' }
 							value={ selector?.id }
+							disabled
 							onChange={ ( val ) =>
 								setAttributes( {
 									selector: { ...selector, id: val },
@@ -92,11 +103,19 @@ const Interactions = ( {
 						/>
 						<SwitchLabel
 							id="am-lottieplayer-selector-settings"
-							title={ __(
-								'Apply interaction only to trigger element',
-								'am-lottieplayer'
-							) }
+							title={
+								<>
+									{ __(
+										'Apply interaction only to trigger element',
+										'am-lottieplayer'
+									) }
+									<br />
+									<br />
+									<ProFeature />
+								</>
+							}
 							value={ selector?.exclude }
+							disabled
 							onChange={ ( val ) =>
 								setAttributes( {
 									selector: { ...selector, exclude: val },
@@ -141,6 +160,7 @@ const Interactions = ( {
 						/>
 					</>
 				) }
+				<ProLink />
 			</PanelBody>
 		</Panel>
 	);

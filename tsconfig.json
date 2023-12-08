@@ -19,11 +19,11 @@
       "@components/*": [
         "./src/components/*"
       ],
-      "@functions": [
-        "./src/functions"
-      ],
       "@types": [
         "./src/types"
+      ],
+      "@utils": [
+        "./src/utils"
       ]
     }
   },

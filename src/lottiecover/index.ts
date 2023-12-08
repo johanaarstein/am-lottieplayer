@@ -5,7 +5,7 @@ import './style.scss';
 import Edit from './edit';
 import save from './save';
 import metadata from './block.json';
-import { Lottie as icon } from '@assets/icons';
+import { default as icon } from '@assets/Lottie';
 
 import type { PlayerComponentProps } from '@types';
 

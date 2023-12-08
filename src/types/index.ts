@@ -4,18 +4,7 @@ import type { BlockEditProps } from 'wordpress__blocks';
 import type { ResizeStartCallback } from 're-resizable';
 import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player-light';
 import type { AnimationSegment } from 'lottie-web';
-
-export enum PlayMode {
-	Bounce = 'bounce',
-	Normal = 'normal',
-}
-
-export enum OnMouseOut {
-	Void = 'void',
-	Stop = 'stop',
-	Pause = 'pause',
-	Reverse = 'reverse',
-}
+import type { OnMouseOut } from '@utils';
 
 export interface PlayerComponentProps extends Partial< DotLottiePlayer > {
 	align?: string;

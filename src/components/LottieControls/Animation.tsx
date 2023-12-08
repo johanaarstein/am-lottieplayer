@@ -8,9 +8,10 @@ import {
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import { PlayMode } from '@types';
-
+import ProFeature from '@assets/ProFeature';
+import ProLink from '@components/ProLink';
 import { NumberInput, SwitchLabel } from '@components/form';
+import { PlayMode } from '@utils';
 
 import type { BlockRefEditProps } from '@types';
 
@@ -40,7 +41,7 @@ const Animation = ( {
 			setState( {
 				totalFrames: Number( animation.getLottie()?.totalFrames ?? 0 ),
 				hasMultipleAnimations:
-					!! animation.getManifest().animations?.length,
+					animation.getManifest().animations?.length > 1,
 			} );
 		}
 	}, [ refObject ] );
@@ -53,11 +54,15 @@ const Animation = ( {
 			>
 				{ state.hasMultipleAnimations && (
 					<div style={ { marginBottom: '1em' } }>
-						<span className="dashicons dashicons-info-outline" />{ ' ' }
-						{ __(
-							'This file contains multiple animations.',
-							'am-lottieplayer'
-						) }
+						<p>
+							<ProFeature />
+						</p>
+						<p>
+							{ __(
+								'This file contains multiple animations. To control each of them individually you need to upgrade to AM LottiePlayer PRO.',
+								'am-lottieplayer'
+							) }
+						</p>
 					</div>
 				) }
 				<SwitchLabel
@@ -86,8 +91,14 @@ const Animation = ( {
 				/>
 				<SwitchLabel
 					id="am-lottieplayer-playmode-settings"
-					title={ __( 'Boomerang', 'am-lottieplayer' ) }
+					title={
+						<>
+							{ __( 'Boomerang', 'am-lottieplayer' ) }{ ' ' }
+							<ProFeature />
+						</>
+					}
 					value={ mode === PlayMode.Bounce }
+					disabled
 					onChange={ ( value ) => {
 						setAttributes( {
 							mode: value ? PlayMode.Bounce : PlayMode.Normal,
@@ -96,8 +107,14 @@ const Animation = ( {
 				/>
 				<SwitchLabel
 					id="am-lottieplayer-reverse-settings"
-					title={ __( 'Reverse', 'am-lottieplayer' ) }
+					title={
+						<>
+							{ __( 'Reverse', 'am-lottieplayer' ) }{ ' ' }
+							<ProFeature />
+						</>
+					}
 					value={ direction === -1 }
+					disabled
 					onChange={ ( value ) =>
 						setAttributes( { direction: ! value ? 1 : -1 } )
 					}
@@ -106,7 +123,7 @@ const Animation = ( {
 					id="am-lottieplayer-subframe-settings"
 					title={ __( 'Subframe', 'am-lottieplayer' ) }
 					subTitle={ __(
-						'Enabling this can sometimes reduce flicker',
+						'Makes the animation smoother, at the cost of RAM usage',
 						'am-lottieplayer'
 					) }
 					value={ !! subframe }
@@ -123,6 +140,9 @@ const Animation = ( {
 					onChange={ ( value ) => setAttributes( { speed: value } ) }
 				/>
 				<BaseControl.VisualLabel>
+					<p>
+						<ProFeature />
+					</p>
 					{ __(
 						'Play only part of the animation',
 						'am-lottieplayer'
@@ -133,6 +153,7 @@ const Animation = ( {
 						id="am-lottieplayer-segment-in"
 						title={ __( 'First frame', 'am-lottieplayer' ) }
 						value={ segment?.[ 0 ] }
+						disabled
 						onChange={ ( val ) =>
 							setAttributes( {
 								segment:
@@ -147,6 +168,7 @@ const Animation = ( {
 						id="am-lottieplayer-segment-out"
 						title={ __( 'Last frame', 'am-lottieplayer' ) }
 						value={ segment?.[ 1 ] }
+						disabled
 						onChange={ ( val ) =>
 							setAttributes( {
 								segment: val
@@ -162,6 +184,7 @@ const Animation = ( {
 						placeholder={ ( state.totalFrames + 1 ).toString() }
 					/>
 				</PanelRow>
+				<ProLink />
 			</PanelBody>
 		</Panel>
 	);
