@@ -12,15 +12,13 @@ import { PlayMode } from '@types';
 
 import { NumberInput, SwitchLabel } from '@components/form';
 
-import type { BlockEditProps } from 'wordpress__blocks';
-import type { PlayerComponentProps } from '@types';
-import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player';
+import type { BlockRefEditProps } from '@types';
 
 const Animation = ( {
 	attributes,
-	clientId,
 	setAttributes,
-}: BlockEditProps< PlayerComponentProps > ) => {
+	refObject,
+}: BlockRefEditProps ) => {
 	const {
 		autoplay,
 		controls,
@@ -31,17 +29,21 @@ const Animation = ( {
 		speed = 1,
 		subframe,
 	} = attributes;
-	const [ totalFrames, setTotalFrames ] = useState< number | undefined >( 0 );
+	const [ state, setState ] = useState( {
+		totalFrames: 0,
+		hasMultipleAnimations: false,
+	} );
 
 	useEffect( () => {
-		const animationItem: HTMLElement | null =
-			document.getElementById( clientId );
-		if ( animationItem ) {
-			setTotalFrames(
-				( animationItem as DotLottiePlayer )?.getLottie()?.totalFrames
-			);
+		const { current: animation } = refObject;
+		if ( animation ) {
+			setState( {
+				totalFrames: Number( animation.getLottie()?.totalFrames ?? 0 ),
+				hasMultipleAnimations:
+					!! animation.getManifest().animations?.length,
+			} );
 		}
-	}, [ clientId ] );
+	}, [ refObject ] );
 
 	return (
 		<Panel>
@@ -49,6 +51,15 @@ const Animation = ( {
 				title={ __( 'Animation Settings', 'am-lottieplayer' ) }
 				initialOpen={ true }
 			>
+				{ state.hasMultipleAnimations && (
+					<div style={ { marginBottom: '1em' } }>
+						<span className="dashicons dashicons-info-outline" />{ ' ' }
+						{ __(
+							'This file contains multiple animations.',
+							'am-lottieplayer'
+						) }
+					</div>
+				) }
 				<SwitchLabel
 					id="am-lottieplayer-controls-settings"
 					title={ __( 'Show controls', 'am-lottieplayer' ) }
@@ -141,14 +152,14 @@ const Animation = ( {
 								segment: val
 									? [
 											segment?.[ 0 ] ?? 1,
-											val <= Number( totalFrames ) + 1
+											val <= state.totalFrames + 1
 												? val
-												: Number( totalFrames ) + 1,
+												: state.totalFrames + 1,
 									  ]
 									: undefined,
 							} )
 						}
-						placeholder={ ( Number( totalFrames ) + 1 ).toString() }
+						placeholder={ ( state.totalFrames + 1 ).toString() }
 					/>
 				</PanelRow>
 			</PanelBody>

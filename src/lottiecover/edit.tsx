@@ -5,7 +5,7 @@ import {
 	useBlockProps,
 	useInnerBlocksProps,
 	store as blockEditorStore,
-	useSetting,
+	useSettings,
 } from '@wordpress/block-editor';
 import { Spinner } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -18,12 +18,12 @@ import {
 	/*attributesFromMedia, mediaPosition,*/ isTemporaryMedia,
 } from '@functions';
 
-// import type { TemplateArray } from '@wordpress/blocks';
+import type { TemplateArray } from '@wordpress/blocks';
 import type { BlockCoverEditProps } from '@types';
 
 import './editor.scss';
 
-const getInnerBlocksTemplate = ( attributes: object ) => [
+const getInnerBlocksTemplate = ( attributes: object ): TemplateArray => [
 	[
 		'core/paragraph',
 		{
@@ -89,7 +89,7 @@ export default function Edit( {
 					?.length,
 			[ clientId ]
 		),
-		hasFontSizes = !! useSetting( 'typography.fontSizes' )?.length,
+		hasFontSizes = !! useSettings( 'typography.fontSizes' )?.length,
 		innerBlocksTemplate = getInnerBlocksTemplate( {
 			fontSize: hasFontSizes ? 'large' : undefined,
 		} ),

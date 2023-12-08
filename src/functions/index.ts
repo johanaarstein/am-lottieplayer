@@ -1,5 +1,5 @@
 import { isBlobURL } from '@wordpress/blob';
-import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player';
+import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player-light';
 import type { AnimationDirection } from 'lottie-web';
 import type { KeyboardEvent } from 'react';
 
@@ -63,7 +63,8 @@ const attributesFromMedia = (
 	isNumericInput = ( { key }: KeyboardEvent< Element > ) => {
 		return Number( key ) >= 0 && Number( key ) <= 9;
 	},
-	isTemporaryMedia = ( id: string, url: string ) => ! id && isBlobURL( url ),
+	isTemporaryMedia = ( id?: string, url?: string ) =>
+		! id && isBlobURL( url ),
 	isTouch = () => {
 		return window && 'ontouchstart' in window;
 	},

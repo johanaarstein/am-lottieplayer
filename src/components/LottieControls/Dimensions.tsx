@@ -10,7 +10,7 @@ import { __ } from '@wordpress/i18n';
 import { NumberInput, SwitchLabel } from '@components/form';
 
 import type { BlockEditProps } from 'wordpress__blocks';
-import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player';
+import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player-light';
 import type { PlayerComponentProps } from '@types';
 
 const Dimensions = ( {

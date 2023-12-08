@@ -1,41 +1,24 @@
 import { useCallback, useEffect, useRef } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 
+import type { RefObject } from 'react';
 import type { AnimationSegment } from 'lottie-web';
-import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player';
+import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player-light';
 import type { PlayerComponentProps } from '@types';
 
 export default function PlayerComponent( {
 	attributes,
 	clientId,
+	refObject: player,
 }: {
 	attributes: PlayerComponentProps;
 	clientId: string;
+	refObject: RefObject< DotLottiePlayer >;
 } ) {
-	const {
-			align,
-			alt,
-			autoplay,
-			background,
-			controls,
-			direction,
-			height,
-			loop,
-			mode,
-			objectFit,
-			renderer,
-			segment,
-			speed,
-			src,
-			subframe,
-			width,
-		} = attributes,
-		{ getBlockIndex } = useSelect(
-			( select ) => select( 'core/block-editor' ),
-			[]
-		),
-		blockIndex: number = getBlockIndex( clientId ),
-		player = useRef< DotLottiePlayer >( null ),
+	const { segment } = attributes,
+		{ getBlockIndex }: { getBlockIndex: ( str: string ) => number } =
+			useSelect( ( select ) => select( 'core/block-editor' ), [] ),
+		blockIndex = getBlockIndex( clientId ),
 		initialRender = useRef( true ),
 		playSegment =
 			! segment || ! segment?.[ 1 ]
@@ -47,15 +30,17 @@ export default function PlayerComponent( {
 			setTimeout( () => {
 				const canvas =
 					player.current?.shadowRoot?.querySelector( 'canvas' );
-				// eslint-disable-next-line no-unused-expressions
-				renderer === 'svg' && canvas?.remove();
+				if ( attributes.renderer === 'svg' ) {
+					canvas?.remove();
+				}
 			}, 100 );
-		}, [ renderer ] ),
+		}, [ player, attributes.renderer ] ),
 		parseSize = ( num?: number | null ) => {
 			if ( num && typeof num === 'number' ) return `${ num }px`;
 		},
 		parseWidth = ( num?: number | null ) => {
-			if ( align === 'wide' || align === 'full' ) return '100%';
+			if ( attributes.align === 'wide' || attributes.align === 'full' )
+				return '100%';
 			return parseSize( num );
 		};
 
@@ -65,40 +50,40 @@ export default function PlayerComponent( {
 		}
 		initialRender.current = false;
 	}, [
-		autoplay,
+		attributes.autoplay,
 		blockIndex,
-		direction,
-		loop,
-		mode,
-		objectFit,
+		attributes.direction,
+		attributes.loop,
+		attributes.mode,
+		attributes.objectFit,
 		reloadPlayer,
-		renderer,
+		attributes.renderer,
 		segment,
-		speed,
-		subframe,
+		attributes.speed,
+		attributes.subframe,
 	] );
 
 	return (
 		<dotlottie-player
 			id={ clientId }
 			class="lottie-element"
-			autoplay={ autoplay ? '' : null }
-			controls={ controls ? '' : null }
-			description={ alt }
-			direction={ direction }
-			loop={ loop ? '' : null }
-			mode={ mode }
-			objectfit={ objectFit }
+			autoplay={ attributes.autoplay ? '' : null }
+			controls={ attributes.controls ? '' : null }
+			description={ attributes.alt }
+			direction={ attributes.direction }
+			loop={ attributes.loop ? '' : null }
+			mode={ attributes.mode }
+			objectfit={ attributes.objectFit }
 			ref={ player }
-			renderer={ renderer }
+			renderer={ attributes.renderer }
 			segment={ playSegment as unknown as AnimationSegment }
-			speed={ speed }
-			subframe={ subframe ? '' : null }
-			src={ src as string }
+			speed={ attributes.speed }
+			subframe={ attributes.subframe ? '' : null }
+			src={ attributes.src ?? '' }
 			style={ {
-				width: parseWidth( width ),
-				height: parseSize( height ),
-				backgroundColor: background,
+				width: parseWidth( attributes.width ),
+				height: parseSize( attributes.height ),
+				backgroundColor: attributes.background,
 				margin: '0 auto',
 			} }
 		/>

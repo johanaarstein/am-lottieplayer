@@ -10,6 +10,7 @@ export default function Placeholder( {
 	clientId,
 	isPlaceholder,
 	setAttributes,
+	refObject,
 }: PlaceholderProps ) {
 	const ErrorNotice = ( message: string ) => (
 			<Notice status="error">{ message }</Notice>
@@ -48,6 +49,7 @@ export default function Placeholder( {
 				<PlayerComponent
 					attributes={ attributes }
 					clientId={ clientId }
+					refObject={ refObject }
 				/>
 			) }
 		</>

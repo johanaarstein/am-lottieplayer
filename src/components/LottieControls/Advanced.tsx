@@ -15,7 +15,48 @@ const Advanced = ( {
 	return (
 		<InspectorAdvancedControls>
 			<SelectControl
-				label={ __( 'Renderer' ) }
+				label={
+					<>
+						{ __( 'Renderer' ) }{ ' ' }
+						<span
+							style={ {
+								fontWeight: 'bold',
+								color: 'white',
+								backgroundColor: 'var(--wp-admin-theme-color)',
+								display: 'inline-block',
+								padding: '.5em 1em',
+								borderRadius: '1.5em',
+							} }
+						>
+							{ __( 'PRO feature', 'am-lottieplayer' ) }
+						</span>
+					</>
+				}
+				help={
+					<a
+						href="https://www.aarstein.media/en/am-lottieplayer/pro"
+						target="_blank"
+						rel="noreferrer"
+					>
+						{ __(
+							'Read more about additional features in AM LottiePlayer PRO',
+							'am-lottieplayer'
+						) }
+						<sup
+							style={ {
+								verticalAlign: 'super',
+							} }
+						>
+							<span
+								className="dashicons dashicons-external"
+								style={ {
+									fontSize: '1em',
+								} }
+							/>
+						</sup>
+					</a>
+				}
+				disabled
 				value={ renderer }
 				onChange={ ( val ) =>
 					setAttributes( { renderer: val as RendererType } )

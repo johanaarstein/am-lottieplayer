@@ -6,8 +6,7 @@ import Background from './Background';
 import Interactions from './Interactions';
 import Dimensions from './Dimensions';
 
-import type { BlockEditProps } from 'wordpress__blocks';
-import type { PlayerComponentProps } from '@types';
+import type { BlockRefEditProps } from '@types';
 
 export default function LottieControls( {
 	attributes,
@@ -16,7 +15,8 @@ export default function LottieControls( {
 	context,
 	isSelected,
 	setAttributes,
-}: BlockEditProps< PlayerComponentProps > ) {
+	refObject,
+}: BlockRefEditProps ) {
 	return (
 		<InspectorControls>
 			<Animation
@@ -26,6 +26,7 @@ export default function LottieControls( {
 				isSelected={ isSelected }
 				context={ context }
 				className={ className }
+				refObject={ refObject }
 			/>
 			<Interactions
 				attributes={ attributes }

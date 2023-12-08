@@ -84,7 +84,7 @@ if (!class_exists('AM_LottiePlayer')) {
       .attachment-media-view.landscape dotlottie-player{position:absolute;height:calc(100% - 42px);width:calc(100% - 42px);}';
       wp_add_inline_style('am-backend-style', $style);
 
-      wp_enqueue_script('dotlottie-player');
+      wp_enqueue_script('dotlottie-player-light');
     }
 
     /**

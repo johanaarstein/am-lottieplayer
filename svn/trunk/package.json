@@ -39,7 +39,7 @@
 	],
 	"main": "build/lottieplayer/index.js",
 	"devDependencies": {
-		"@aarsteinmedia/dotlottie-player": "^2.2.7",
+		"@aarsteinmedia/dotlottie-player-light": "^2.2.0",
 		"@types/node": "^20.10.4",
 		"@types/react": "^18.2.42",
 		"@types/wordpress__block-editor": "^11.5.8",
@@ -82,7 +82,7 @@
 		"test:e2e": "wp-scripts test-e2e",
 		"test:unit": "wp-scripts test-unit-js",
 		"stash": "wp-scripts build && wp-scripts plugin-zip",
-		"dep": "cp ./node_modules/@aarsteinmedia/dotlottie-player/dist/index.js ./scripts/dotlottie-player.min.js",
+		"dep": "cp ./node_modules/@aarsteinmedia/dotlottie-player-light/dist/index.js ./scripts/dotlottie-player-light.min.js",
 		"svn": "cp -R ./assets ./build ./includes ./scripts ./styles ./svn/trunk && cp ./am-lottieplayer.php ./LICENSE ./package.json ./readme.txt ./svn/trunk"
 	},
 	"cde": {

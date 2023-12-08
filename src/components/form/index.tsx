@@ -53,8 +53,9 @@ const NumberInput = ( {
 }: NumberInputProps ) => {
 	const keydownHandler = ( e: KeyboardEvent< HTMLInputElement > ) => {
 		if ( isModifierKey( e ) ) return;
-		// eslint-disable-next-line no-unused-expressions
-		! isNumericInput( e ) && e.preventDefault();
+		if ( ! isNumericInput( e ) ) {
+			e.preventDefault();
+		}
 	};
 
 	return (
@@ -66,10 +67,9 @@ const NumberInput = ( {
 			<TextControl
 				value={ value }
 				onChange={ ( n ) => {
-					// eslint-disable-next-line no-unused-expressions
-					n === undefined || n === ''
-						? onChange( undefined )
-						: onChange( Number( n ) );
+					onChange(
+						n === undefined || n === '' ? undefined : Number( n )
+					);
 				} }
 				onKeyDown={ keydownHandler }
 				disabled={ disabled }

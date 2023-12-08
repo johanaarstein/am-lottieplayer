@@ -1,8 +1,8 @@
-import type { ReactNode } from 'react';
+import type { ReactNode, RefObject } from 'react';
 import type { EditorTemplateLock } from '@wordpress/block-editor';
 import type { BlockEditProps } from 'wordpress__blocks';
 import type { ResizeStartCallback } from 're-resizable';
-import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player';
+import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player-light';
 import type { AnimationSegment } from 'lottie-web';
 
 export enum PlayMode {
@@ -53,8 +53,12 @@ export interface BlockCoverEditProps
 	toggleSelection?: ( x: boolean ) => void;
 }
 
-export interface PlaceholderProps
+export interface BlockRefEditProps
 	extends BlockEditProps< PlayerComponentProps > {
+	refObject: RefObject< DotLottiePlayer >;
+}
+
+export interface PlaceholderProps extends BlockRefEditProps {
 	isPlaceholder?: boolean;
 }
 

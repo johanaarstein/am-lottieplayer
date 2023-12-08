@@ -1,4 +1,4 @@
-import { useEffect, useState } from '@wordpress/element';
+import { useEffect, useRef, useState } from '@wordpress/element';
 import { useBlockProps } from '@wordpress/block-editor';
 import { Spinner } from '@wordpress/components';
 
@@ -8,6 +8,7 @@ import Placeholder from '@components/Placeholder';
 import { isTemporaryMedia } from '@functions';
 
 import type { BlockEditProps } from 'wordpress__blocks';
+import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player-light';
 import type { PlayerComponentProps } from '@types';
 
 import './editor.scss';
@@ -20,13 +21,13 @@ export default function Edit( {
 	isSelected,
 	setAttributes,
 }: BlockEditProps< PlayerComponentProps > ) {
-	const { id, src } = attributes,
+	const animationItem = useRef< DotLottiePlayer >( null ),
 		[ isPlaceholder, setIsPlaceholder ] = useState( true ),
-		isUploadingMedia = isTemporaryMedia( id as string, src as string );
+		isUploadingMedia = isTemporaryMedia( attributes.id, attributes.src );
 
 	useEffect( () => {
-		setIsPlaceholder( ! src || src === '' );
-	}, [ src ] );
+		setIsPlaceholder( ! attributes.src || attributes.src === '' );
+	}, [ attributes.src ] );
 	return (
 		<>
 			<LottieControls
@@ -36,6 +37,7 @@ export default function Edit( {
 				isSelected={ isSelected }
 				context={ context }
 				className={ className }
+				refObject={ animationItem }
 			/>
 			{ isUploadingMedia && <Spinner /> }
 			<div { ...useBlockProps() }>
@@ -47,6 +49,7 @@ export default function Edit( {
 					isSelected={ isSelected }
 					context={ context }
 					className={ className }
+					refObject={ animationItem }
 				/>
 			</div>
 		</>
