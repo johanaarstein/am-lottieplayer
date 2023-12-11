@@ -5,6 +5,7 @@ import { isModifierKey, isNumericInput } from '@utils';
 import type { KeyboardEvent, ReactNode } from 'react';
 
 const SwitchLabel = ( {
+	className = '',
 	id = '',
 	onChange,
 	subTitle,
@@ -12,6 +13,7 @@ const SwitchLabel = ( {
 	value,
 	disabled,
 }: {
+	className?: string;
 	id: string;
 	onChange: ( x: boolean ) => void;
 	subTitle?: ReactNode;
@@ -23,7 +25,7 @@ const SwitchLabel = ( {
 		<BaseControl
 			id={ id }
 			help={ subTitle }
-			className={ 'lottie-switch-label' }
+			className={ `lottie-switch-label ${ className }` }
 		>
 			<BaseControl.VisualLabel>{ title }</BaseControl.VisualLabel>
 			<FormToggle

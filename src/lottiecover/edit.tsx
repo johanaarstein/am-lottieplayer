@@ -5,7 +5,7 @@ import {
 	useBlockProps,
 	useInnerBlocksProps,
 	store as blockEditorStore,
-	useSettings,
+	useSetting,
 } from '@wordpress/block-editor';
 import { Spinner } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -19,6 +19,7 @@ import {
 } from '@utils';
 
 import type { TemplateArray } from '@wordpress/blocks';
+import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player-light';
 import type { BlockCoverEditProps } from '@types';
 
 import './editor.scss';
@@ -67,6 +68,7 @@ export default function Edit( {
 		// onSelectMedia = attributesFromMedia( setAttributes, dimRatio ),
 		isUploadingMedia = isTemporaryMedia( id as string, src as string ),
 		ref = useRef(),
+		animationItem = useRef< DotLottiePlayer >( null ),
 		[ isPlaceholder, setIsPlaceholder ] = useState( true ),
 		blockProps = useBlockProps( { ref } ),
 		heightWithUnit =
@@ -89,9 +91,9 @@ export default function Edit( {
 					?.length,
 			[ clientId ]
 		),
-		hasFontSizes = !! useSettings( 'typography.fontSizes' )?.length,
+		fontSizes = useSetting( 'typography.fontSizes' ),
 		innerBlocksTemplate = getInnerBlocksTemplate( {
-			fontSize: hasFontSizes ? 'large' : undefined,
+			fontSize: fontSizes ? 'large' : undefined,
 		} ),
 		innerBlocksProps = useInnerBlocksProps(
 			{
@@ -107,7 +109,7 @@ export default function Edit( {
 
 	useEffect( () => {
 		setIsPlaceholder( ! src || src === '' );
-	}, [ src ] );
+	}, [ fontSizes, src ] );
 
 	return (
 		<>
@@ -118,6 +120,7 @@ export default function Edit( {
 				isSelected={ false }
 				context={ context }
 				className={ className }
+				refObject={ animationItem }
 			/>
 			<div
 				{ ...blockProps }
@@ -158,6 +161,7 @@ export default function Edit( {
 					isSelected={ false }
 					context={ context }
 					className={ className }
+					refObject={ animationItem }
 				/>
 				{ ! isPlaceholder && <div { ...innerBlocksProps } /> }
 			</div>

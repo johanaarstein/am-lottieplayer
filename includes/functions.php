@@ -52,14 +52,10 @@ if (!function_exists('am_render_lottieplayer')) {
       <?php echo esc_html($atts['controls']) && esc_html($atts['controls']) !== 'false'  ? 'controls' : ''; ?>
       description="<?php echo esc_html($atts['alt']); ?>"
       <?php echo esc_html($atts['loop']) && esc_html($atts['loop']) !== 'false' ? 'loop' : ''; ?>
-      mode="<?php echo animationMode(esc_html($atts['mode'])); ?>"
+
       objectfit="<?php echo esc_html($atts['objectfit']); ?>"
       src="<?php echo esc_url($atts['src']); ?>"
-      renderer="<?php echo esc_html($atts['renderer']); ?>"
-      segment="<?php echo esc_html($atts['segment'] ??
-        ($atts['segment_out'] &&
-          $atts['segment_out'] !== '0' ?
-          '[' . (intval($atts['segment_in']) ?? 0) . ',' . intval($atts['segment_out']) . ']' : '')); ?>"
+
       speed="<?php echo esc_html($atts['speed']); ?>"
       <?php echo esc_html($atts['subframe']) && esc_html($atts['subframe']) !== 'false' ? 'subframe' : ''; ?>
       direction="<?php echo animationDirection(esc_html($atts['direction'])); ?>"
@@ -67,7 +63,7 @@ if (!function_exists('am_render_lottieplayer')) {
       data-mouseover="<?php echo esc_html($atts['onmouseover']); ?>"
       data-mouseout="<?php echo esc_html($atts['onmouseout']); ?>"
       data-click="<?php echo esc_html($atts['onclick']); ?>"
-      data-selector="<?php echo esc_html(interactionSelector($atts['selector'], $atts['exclude'])); ?>"
+
       data-scroll="<?php echo esc_html($atts['scroll']); ?>"
       data-delay="<?php echo esc_html($atts['delay']); ?>"
       data-once="<?php echo esc_html($atts['once']); ?>">
@@ -174,5 +170,17 @@ if (!function_exists('am_get_view')) {
       extract($args, EXTR_SKIP);
       include $path;
     }
+  }
+}
+
+/**
+ * Get static asset
+ * @param string $filename Name of file
+ * @return string URL to asset
+ */
+if (!function_exists('am_get_asset')) {
+  function am_get_asset($filename = '')
+  {
+    return AM_LOTTIEPLAYER_URL . 'assets/' . ltrim($filename, '/');
   }
 }

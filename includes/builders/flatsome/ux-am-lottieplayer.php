@@ -7,7 +7,7 @@ if (!function_exists('am_ux_get_template')) {
     wp_enqueue_script(
       'am-backend-ux',
       AM_LOTTIEPLAYER_URL . 'scripts/am-backend-ux.min.js',
-      ['dotlottie-player'],
+      ['dotlottie-player-light'],
       '1.0.0',
       true
     );
@@ -27,12 +27,14 @@ $position_options['options']['position_y']['on_change'] = [
   'class' => 'y{{ value }} md-y{{ value }} lg-y{{ value }}'
 ];
 
+$proLink = esc_html__('This feature will only work in the premium version. Read about additional features in AM LottiePlayer PRO on www.aarstein.media/am-lottieplayer/pro', 'am-lottieplayer');
+
 add_ux_builder_shortcode('am-lottieplayer', [
-  'name' => 'LottiePlayer',
+  'name' => 'AM LottiePlayer',
   'category' => __('Content'),
   'template' => am_ux_get_template(),
   'toolbar_thumbnail' => 'img',
-  'thumbnail' => AM_LOTTIEPLAYER_URL . 'assets/ux-icon.svg',
+  'thumbnail' => am_get_asset('ux-icon.svg'),
   'allow_in' => ['text_box'],
   'wrap' => false,
   'options' => [
@@ -66,7 +68,8 @@ add_ux_builder_shortcode('am-lottieplayer', [
 
         'mode' => [
           'type' => 'checkbox',
-          'heading' => __('Boomerang', 'am-lottieplayer'),
+          'heading' => 'Pro Feature: ' . __('Boomerang', 'am-lottieplayer'),
+          'description' => $proLink,
         ],
 
         'direction' => [
@@ -91,7 +94,8 @@ add_ux_builder_shortcode('am-lottieplayer', [
 
         'segment_in' => [
           'type' => 'slider',
-          'heading' => __('Choose where to start', 'am-lottieplayer'),
+          'heading' => 'Pro Feature: ' . __('Choose where to start', 'am-lottieplayer'),
+          'description' => $proLink,
           'default' => null,
           'min' => 0,
           'step' => 1,
@@ -100,7 +104,8 @@ add_ux_builder_shortcode('am-lottieplayer', [
 
         'segment_out' => [
           'type' => 'slider',
-          'heading' => __('And where to end', 'am-lottieplayer'),
+          'heading' => 'Pro Feature: ' . __('And where to end', 'am-lottieplayer'),
+          'description' => $proLink,
           'default' => null,
           'min' => 0,
           'step' => 1,
@@ -131,14 +136,15 @@ add_ux_builder_shortcode('am-lottieplayer', [
 
         'selector' => [
           'type' => 'textfield',
-          'heading' => __('Trigger element', 'am-lottieplayer'),
-          'description' => __('Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer'),
+          'heading' => 'Pro Feature: ' . __('Trigger element', 'am-lottieplayer'),
+          'description' => __('Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer') . $proLink,
           'conditions' => 'onmouseover === "true" || onclick === "true"',
         ],
 
         'exclude' => [
           'type' => 'checkbox',
-          'heading' => __('Apply interaction only to trigger element', 'am-lottieplayer'),
+          'heading' => 'Pro Feature: ' . __('Apply interaction only to trigger element', 'am-lottieplayer'),
+          'description' => $proLink,
           'conditions' => 'onmouseover === "true" || onclick === "true"',
         ],
 
@@ -216,7 +222,8 @@ add_ux_builder_shortcode('am-lottieplayer', [
 
         'renderer' => [
           'type' => 'select',
-          'heading' => __('Renderer', 'am-lottieplayer'),
+          'heading' => 'Pro Feature: ' . __('Renderer', 'am-lottieplayer'),
+          'description' => $proLink,
           'default' => 'svg',
           'options' => [
             'svg' => 'SVG',

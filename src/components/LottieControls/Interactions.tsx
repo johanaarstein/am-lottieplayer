@@ -81,10 +81,16 @@ const Interactions = ( {
 							id="am-lottieplayer-settings"
 							title={
 								<>
-									{ __(
-										'Trigger element',
-										'am-lottieplayer'
-									) }{ ' ' }
+									<span
+										className="pro-feature"
+										style={ { marginRight: '1em' } }
+									>
+										{ __(
+											'Trigger element',
+											'am-lottieplayer'
+										) }
+									</span>
+
 									<ProFeature />
 								</>
 							}
@@ -105,12 +111,18 @@ const Interactions = ( {
 							id="am-lottieplayer-selector-settings"
 							title={
 								<>
-									{ __(
-										'Apply interaction only to trigger element',
-										'am-lottieplayer'
-									) }
-									<br />
-									<br />
+									<span
+										className="pro-feature"
+										style={ {
+											display: 'block',
+											marginBottom: '1em',
+										} }
+									>
+										{ __(
+											'Apply interaction only to trigger element',
+											'am-lottieplayer'
+										) }
+									</span>
 									<ProFeature />
 								</>
 							}

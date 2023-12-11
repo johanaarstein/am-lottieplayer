@@ -93,7 +93,12 @@ const Animation = ( {
 					id="am-lottieplayer-playmode-settings"
 					title={
 						<>
-							{ __( 'Boomerang', 'am-lottieplayer' ) }{ ' ' }
+							<span
+								className="pro-feature"
+								style={ { marginRight: '1em' } }
+							>
+								{ __( 'Boomerang', 'am-lottieplayer' ) }
+							</span>
 							<ProFeature />
 						</>
 					}
@@ -107,14 +112,8 @@ const Animation = ( {
 				/>
 				<SwitchLabel
 					id="am-lottieplayer-reverse-settings"
-					title={
-						<>
-							{ __( 'Reverse', 'am-lottieplayer' ) }{ ' ' }
-							<ProFeature />
-						</>
-					}
+					title={ __( 'Reverse', 'am-lottieplayer' ) }
 					value={ direction === -1 }
-					disabled
 					onChange={ ( value ) =>
 						setAttributes( { direction: ! value ? 1 : -1 } )
 					}
@@ -143,10 +142,12 @@ const Animation = ( {
 					<p>
 						<ProFeature />
 					</p>
-					{ __(
-						'Play only part of the animation',
-						'am-lottieplayer'
-					) }
+					<span className="pro-feature">
+						{ __(
+							'Play only part of the animation',
+							'am-lottieplayer'
+						) }
+					</span>
 				</BaseControl.VisualLabel>
 				<PanelRow className="lottie-segment">
 					<NumberInput

@@ -20,7 +20,13 @@ const Advanced = ( {
 			<SelectControl
 				label={
 					<>
-						{ __( 'Renderer' ) } <ProFeature />
+						<span
+							className="pro-feature"
+							style={ { marginRight: '1em' } }
+						>
+							{ __( 'Renderer' ) }
+						</span>
+						<ProFeature />
 					</>
 				}
 				help={ <ProLink /> }
