@@ -18,6 +18,8 @@ if (!function_exists('am_vc_attach_field_settings')) {
   }
 }
 
+$proLink = esc_html__('This feature will only work in the premium version.', 'am-lottieplayer') . ' <a href="' . esc_url('https://www.aarstein.media/en/am-lottieplayer/pro', 'am-lottieplayer') . '" target="_blank" rel="noreferrer">' . esc_html__('Read about additional features in AM LottiePlayer PRO', 'am-lottieplayer') . '<span class="dashicons dashicons-external" style="font-size: 1em;"></span></a>';
+
 vc_map(
   [
     'name' => __('AM LottiePlayer', 'am-lottieplayer'),
@@ -58,7 +60,8 @@ vc_map(
       ],
       [
         'type' => 'checkbox',
-        'heading' => __('Boomerang', 'am-lottieplayer'),
+        'description' => $proLink,
+        'heading' => 'Pro Feature: ' . __('Boomerang', 'am-lottieplayer'),
         'param_name' => 'mode',
       ],
       [
@@ -106,16 +109,16 @@ vc_map(
       ],
       [
         'type' => 'textfield',
-        'heading' => __('Trigger element', 'am-lottieplayer'),
-        'description' => __('Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer'),
+        'heading' => 'Pro Feature: ' . __('Trigger element', 'am-lottieplayer'),
+        'description' => __('Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer') . ' ' . $proLink,
         'param_name' => 'selector',
         'value' => '',
       ],
-      [
-        'type' => 'checkbox',
-        'heading' => __('Apply interaction only to trigger element', 'am-lottieplayer'),
-        'param_name' => 'exclude',
-      ],
+      // [
+      //   'type' => 'checkbox',
+      //   'heading' => __('Apply interaction only to trigger element', 'am-lottieplayer'),
+      //   'param_name' => 'exclude',
+      // ],
       [
         'type' => 'checkbox',
         'heading' => __('Play on scroll, when visible in viewport', 'am-lottieplayer'),
@@ -168,7 +171,8 @@ vc_map(
       ],
       [
         'type' => 'dropdown',
-        'heading' => __('Renderer', 'am-lottieplayer'),
+        'heading' => 'Pro Feature' . __('Renderer', 'am-lottieplayer'),
+        'description' => $proLink,
         'param_name' => 'renderer',
         'value' => [
           __('SVG', 'am-lottieplayer') => 'svg',

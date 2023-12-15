@@ -1,5 +1,3 @@
-import classnames from 'classnames';
-
 import { useEffect, useRef, useState } from '@wordpress/element';
 import {
 	useBlockProps,
@@ -10,13 +8,13 @@ import {
 import { Spinner } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
+import classnames from 'classnames';
 
+import PlayerWrapper from '@context/PlayerWrapper';
 import LottieControls from '@components/LottieControls';
 import Placeholder from '@components/Placeholder';
 import ResizableCover from '@components/ResizableCover';
-import {
-	/*attributesFromMedia, mediaPosition,*/ isTemporaryMedia,
-} from '@utils';
+import { isTemporaryMedia } from '@utils';
 
 import type { TemplateArray } from '@wordpress/blocks';
 import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player-light';
@@ -109,10 +107,10 @@ export default function Edit( {
 
 	useEffect( () => {
 		setIsPlaceholder( ! src || src === '' );
-	}, [ fontSizes, src ] );
+	}, [ src ] );
 
 	return (
-		<>
+		<PlayerWrapper>
 			<LottieControls
 				attributes={ attributes }
 				setAttributes={ setAttributes }
@@ -120,7 +118,6 @@ export default function Edit( {
 				isSelected={ false }
 				context={ context }
 				className={ className }
-				refObject={ animationItem }
 			/>
 			<div
 				{ ...blockProps }
@@ -156,15 +153,13 @@ export default function Edit( {
 				<Placeholder
 					attributes={ attributes }
 					setAttributes={ setAttributes }
-					isPlaceholder={ isPlaceholder }
 					clientId={ clientId }
-					isSelected={ false }
+					isSelected={ isSelected }
 					context={ context }
 					className={ className }
-					refObject={ animationItem }
 				/>
 				{ ! isPlaceholder && <div { ...innerBlocksProps } /> }
 			</div>
-		</>
+		</PlayerWrapper>
 	);
 }

@@ -40,6 +40,7 @@ if (!class_exists('AM_LottiePlayer')) {
 
       // Define constants
       define('AM_LOTTIEPLAYER_PATH', plugin_dir_path(__FILE__));
+      define('AM_LOTTIEPLAYER_SLUG', plugin_basename(__DIR__));
       define('AM_LOTTIEPLAYER_BASENAME', plugin_basename(__FILE__));
       define('AM_LOTTIEPLAYER_VERSION', $this->version);
       define('AM_LOTTIEPLAYER_URL', plugin_dir_url(__FILE__));
@@ -49,8 +50,9 @@ if (!class_exists('AM_LottiePlayer')) {
 
       am_include('upload');
       am_include('builders/builders');
-
-      add_action('admin_enqueue_scripts', [$this, 'backend_enqeue']);
+      if (is_admin()) {
+        am_include('admin');
+      }
 
       register_activation_hook(__FILE__, [$this, 'on_activation']);
 
@@ -69,22 +71,6 @@ if (!class_exists('AM_LottiePlayer')) {
         return;
 
       AM_LottiePlayer_Upload::lottie_asset();
-    }
-
-    /**
-     * Enqueue JavaScript and CSS for backend
-     * @return void
-     */
-    public function backend_enqeue()
-    {
-      wp_register_style('am-backend-style', null);
-      wp_enqueue_style('am-backend-style');
-      $style = '
-      .attachment-media-view.landscape .thumbnail-text,.attachment-media-view.landscape .thumbnail-application{position:relative;}
-      .attachment-media-view.landscape dotlottie-player{position:absolute;height:calc(100% - 42px);width:calc(100% - 42px);}';
-      wp_add_inline_style('am-backend-style', $style);
-
-      wp_enqueue_script('dotlottie-player-light');
     }
 
     /**

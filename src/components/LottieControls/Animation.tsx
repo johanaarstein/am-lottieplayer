@@ -8,43 +8,45 @@ import {
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
+import { usePlayerContext } from '@context/PlayerWrapper';
 import ProFeature from '@assets/ProFeature';
 import ProLink from '@components/ProLink';
 import { NumberInput, SwitchLabel } from '@components/form';
 import { PlayMode } from '@utils';
 
-import type { BlockRefEditProps } from '@types';
+import type { BlockEditProps } from 'wordpress__blocks';
+import type { PlayerComponentProps } from '@types';
 
 const Animation = ( {
 	attributes,
 	setAttributes,
-	refObject,
-}: BlockRefEditProps ) => {
+}: BlockEditProps< PlayerComponentProps > ) => {
 	const {
-		autoplay,
-		controls,
-		direction,
-		loop,
-		mode = PlayMode.Normal,
-		segment,
-		speed = 1,
-		subframe,
-	} = attributes;
-	const [ state, setState ] = useState( {
-		totalFrames: 0,
-		hasMultipleAnimations: false,
-	} );
+			autoplay,
+			controls,
+			direction,
+			loop,
+			mode = PlayMode.Normal,
+			segment,
+			speed = 1,
+			subframe,
+		} = attributes,
+		{
+			animationContext: { animations, player },
+		} = usePlayerContext(),
+		[ state, setState ] = useState( {
+			totalFrames: 0,
+			hasMultipleAnimations: false,
+		} );
 
 	useEffect( () => {
-		const { current: animation } = refObject;
-		if ( animation ) {
+		if ( player ) {
 			setState( {
-				totalFrames: Number( animation.getLottie()?.totalFrames ?? 0 ),
-				hasMultipleAnimations:
-					animation.getManifest().animations?.length > 1,
+				totalFrames: Number( player.getLottie()?.totalFrames ?? 0 ),
+				hasMultipleAnimations: animations?.length > 1,
 			} );
 		}
-	}, [ refObject ] );
+	}, [ animations?.length, player ] );
 
 	return (
 		<Panel>

@@ -1,7 +1,7 @@
 {
 	"name": "am-lottieplayer",
 	"version": "3.0.0",
-	"description": "The most complete Lottie Player plugin! It is lightweight, versatile and easy to use, and it has integrations for Gutenberg, Divi, Elementor, Flatsome and WPBakery.",
+	"description": "This is best free Lottie Player plugin. It is lightweight, versatile and easy to use, and it has integrations for Gutenberg, Divi, Elementor, Flatsome and WPBakery.",
 	"author": {
 		"name": "Aarstein Media",
 		"email": "johan@aarstein.media",
@@ -64,11 +64,13 @@
 		"re-resizable": "^6.9.11",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
+		"sass": "^1.69.5",
 		"ts-loader": "^9.5.1",
+		"ts-node": "^10.9.2",
 		"typescript": "^5.3.3"
 	},
 	"scripts": {
-		"build": "wp-scripts build && pnpm run dep && pnpm run svn",
+		"build": "wp-scripts build && pnpm run dep && pnpm scss && pnpm run svn",
 		"check-engines": "wp-scripts check-engines",
 		"check-licenses": "wp-scripts check-licenses",
 		"format": "wp-scripts format",
@@ -82,6 +84,7 @@
 		"test:e2e": "wp-scripts test-e2e",
 		"test:unit": "wp-scripts test-unit-js",
 		"stash": "wp-scripts build && wp-scripts plugin-zip",
+		"scss": "sass --no-source-map --style=compressed sass:styles",
 		"dep": "cp ./node_modules/@aarsteinmedia/dotlottie-player-light/dist/index.js ./scripts/dotlottie-player-light.min.js",
 		"svn": "cp -R ./assets ./build ./includes ./scripts ./styles ./svn/trunk && cp ./am-lottieplayer.php ./LICENSE ./package.json ./readme.txt ./svn/trunk"
 	},

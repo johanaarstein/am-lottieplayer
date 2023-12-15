@@ -6,6 +6,12 @@
     "target": "ES2015",
     "jsx": "react-jsx",
     "module": "ESNext",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES2015",
+      "ESNext"
+    ],
     "noImplicitAny": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
@@ -19,12 +25,15 @@
       "@components/*": [
         "./src/components/*"
       ],
+      "@context/*": [
+        "./src/context/*"
+      ],
       "@types": [
         "./src/types"
       ],
       "@utils": [
         "./src/utils"
-      ]
+      ],
     }
   },
   "ts-node": {

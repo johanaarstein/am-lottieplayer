@@ -1,46 +1,60 @@
-const defaults = require('@wordpress/scripts/config/webpack.config'),
-	{ join, resolve } = require('path'),
-	{ writeFile } = require('fs'),
-	{ sync } = require('glob'),
-
+const defaults = require("@wordpress/scripts/config/webpack.config"),
+	{ getWebpackEntryPoints } = require("@wordpress/scripts/utils/config"),
+	{ join, resolve } = require("path"),
+	{ writeFile } = require("fs"),
+	{ sync } = require("glob"),
 	rename = () => {
 		const blockJSONFiles = sync(
-				join(process.cwd(), 'build', '**', 'block.json')
-			)
+			join(process.cwd(), "build", "**", "block.json"),
+		);
 
 		if (blockJSONFiles) {
-			blockJSONFiles.forEach(filePath => {
-				const blockJSON = require(filePath)
+			for (const filePath of blockJSONFiles) {
+				const blockJSON = require(filePath);
 
 				if (blockJSON?.editorScript) {
-					blockJSON.editorScript = blockJSON.editorScript.replace('.tsx', '.js')
+					blockJSON.editorScript = blockJSON.editorScript.replace(
+						".tsx",
+						".js",
+					);
 				}
 
 				if (blockJSON?.script) {
-					blockJSON.script = blockJSON.script.replace('.tsx', '.js')
+					blockJSON.script = blockJSON.script.replace(".tsx", ".js");
 				}
 
 				if (blockJSON?.viewScript) {
-					blockJSON.viewScript = blockJSON.viewScript.replace('.tsx', '.js');
+					blockJSON.viewScript = blockJSON.viewScript.replace(".tsx", ".js");
 				}
 
 				if (blockJSON?.editorStyle) {
-					blockJSON.editorStyle = blockJSON.editorStyle.replace('.scss', '.css');
+					blockJSON.editorStyle = blockJSON.editorStyle.replace(
+						".scss",
+						".css",
+					);
 				}
 
 				if (blockJSON?.style) {
-					blockJSON.style = blockJSON.style.replace('.scss', '.css');
+					blockJSON.style = blockJSON.style.replace(".scss", ".css");
 				}
 
-				writeFile(filePath, JSON.stringify(blockJSON, null, 2), function writeJSON(error) {
-					if (error) return console.log(error)
-				})
-			})
+				writeFile(
+					filePath,
+					JSON.stringify(blockJSON, null, 2),
+					function writeJSON(error) {
+						if (error) return console.log(error);
+					},
+				);
+			};
 		}
-	}
+	};
 
 module.exports = {
 	...defaults,
+	entry: {
+		...getWebpackEntryPoints(),
+		settings: "./src/settings.tsx"
+	},
 	plugins: [
 		...defaults.plugins,
 		{
@@ -55,6 +69,7 @@ module.exports = {
 			...defaults.resolve.alias,
 			"@assets": resolve(__dirname, "/src/assets"),
 			"@components": resolve(__dirname, "/src/components"),
+			"@context": resolve(__dirname, "/src/context"),
 			"@types": resolve(__dirname, "/src/types"),
 			"@utils": resolve(__dirname, "/src/utils"),
 		},

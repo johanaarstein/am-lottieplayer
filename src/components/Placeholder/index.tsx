@@ -1,20 +1,21 @@
+import { useEffect, useState } from '@wordpress/element';
 import { Notice } from '@wordpress/components';
 
 import UploadComponent from './UploadComponent';
 import PlayerComponent from './PlayerComponent';
 
-import type { PlaceholderProps } from '@types';
+import type { BlockEditProps } from 'wordpress__blocks';
+import type { PlayerComponentProps } from '@types';
 
 export default function Placeholder( {
 	attributes,
 	clientId,
-	isPlaceholder,
 	setAttributes,
-	refObject,
-}: PlaceholderProps ) {
+}: BlockEditProps< PlayerComponentProps > ) {
 	const ErrorNotice = ( message: string ) => (
 			<Notice status="error">{ message }</Notice>
 		),
+		[ isPlaceholder, setIsPlaceholder ] = useState( true ),
 		onUploadError = ( message: string ) => {
 			ErrorNotice( message );
 		},
@@ -37,6 +38,10 @@ export default function Placeholder( {
 			} );
 		};
 
+	useEffect( () => {
+		setIsPlaceholder( ! attributes.src || attributes.src === '' );
+	}, [ attributes.src ] );
+
 	return (
 		<>
 			{ isPlaceholder ? (
@@ -49,7 +54,6 @@ export default function Placeholder( {
 				<PlayerComponent
 					attributes={ attributes }
 					clientId={ clientId }
-					refObject={ refObject }
 				/>
 			) }
 		</>

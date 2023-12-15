@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 
-import type { RefObject } from 'react';
+import { usePlayerContext } from '@context/PlayerWrapper';
+
 import type { AnimationSegment } from 'lottie-web';
 import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player-light';
 import type { PlayerComponentProps } from '@types';
@@ -9,27 +10,29 @@ import type { PlayerComponentProps } from '@types';
 export default function PlayerComponent( {
 	attributes,
 	clientId,
-	refObject: player,
 }: {
 	attributes: PlayerComponentProps;
 	clientId: string;
-	refObject: RefObject< DotLottiePlayer >;
 } ) {
-	const { segment } = attributes,
+	const {
+			animationContext: { player },
+			setAnimationContext,
+		} = usePlayerContext(),
+		{ segment } = attributes,
 		{ getBlockIndex }: { getBlockIndex: ( str: string ) => number } =
 			useSelect( ( select ) => select( 'core/block-editor' ), [] ),
 		blockIndex = getBlockIndex( clientId ),
 		initialRender = useRef( true ),
+		playerRef = useRef< DotLottiePlayer >( null ),
 		playSegment =
 			! segment || ! segment?.[ 1 ]
 				? undefined
 				: JSON.stringify( [ segment[ 0 ], segment[ 1 ] ] ),
 		reloadPlayer = useCallback( () => {
-			if ( ! player.current ) return;
-			if ( player.current.reload ) void player.current.reload();
+			if ( ! player ) return;
+			void player.reload();
 			setTimeout( () => {
-				const canvas =
-					player.current?.shadowRoot?.querySelector( 'canvas' );
+				const canvas = player?.shadowRoot?.querySelector( 'canvas' );
 				if ( attributes.renderer === 'svg' ) {
 					canvas?.remove();
 				}
@@ -43,6 +46,26 @@ export default function PlayerComponent( {
 				return '100%';
 			return parseSize( num );
 		};
+
+	useEffect( () => {
+		if ( playerRef.current ) {
+			setAnimationContext( ( prev ) => ( {
+				...prev,
+				player: playerRef.current,
+			} ) );
+		}
+	}, [ setAnimationContext ] );
+
+	useEffect( () => {
+		if ( player ) {
+			player.addEventListener( 'ready', () => {
+				setAnimationContext( ( prev ) => ( {
+					...prev,
+					animations: player.getManifest()?.animations ?? [],
+				} ) );
+			} );
+		}
+	}, [ player, setAnimationContext ] );
 
 	useEffect( () => {
 		if ( ! initialRender.current ) {
@@ -74,7 +97,7 @@ export default function PlayerComponent( {
 			loop={ attributes.loop ? '' : null }
 			mode={ attributes.mode }
 			objectfit={ attributes.objectFit }
-			ref={ player }
+			ref={ playerRef }
 			renderer={ attributes.renderer }
 			segment={ playSegment as unknown as AnimationSegment }
 			speed={ attributes.speed }
