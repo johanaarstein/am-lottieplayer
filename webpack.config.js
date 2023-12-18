@@ -53,7 +53,8 @@ module.exports = {
 	...defaults,
 	entry: {
 		...getWebpackEntryPoints(),
-		settings: "./src/settings.tsx"
+		// settings: "./src/settings.tsx"
+		widget: "./src/Widget.tsx"
 	},
 	plugins: [
 		...defaults.plugins,

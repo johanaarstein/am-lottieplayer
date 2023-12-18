@@ -17,7 +17,6 @@ import ResizableCover from '@components/ResizableCover';
 import { isTemporaryMedia } from '@utils';
 
 import type { TemplateArray } from '@wordpress/blocks';
-import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player-light';
 import type { BlockCoverEditProps } from '@types';
 
 import './editor.scss';
@@ -66,7 +65,6 @@ export default function Edit( {
 		// onSelectMedia = attributesFromMedia( setAttributes, dimRatio ),
 		isUploadingMedia = isTemporaryMedia( id as string, src as string ),
 		ref = useRef(),
-		animationItem = useRef< DotLottiePlayer >( null ),
 		[ isPlaceholder, setIsPlaceholder ] = useState( true ),
 		blockProps = useBlockProps( { ref } ),
 		heightWithUnit =
