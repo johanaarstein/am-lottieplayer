@@ -37,8 +37,8 @@ Upload Lottie animations to WordPress and add them to Gutenberg, Divi, Elementor
 
 = Links =
 
-* [Website](https://www.aarstein.media/am-lottieplayer)
-* [AM LottiePlayer PRO](https://www.aarstein.media/am-lottieplayer/en/pro)
+* [Website](https://www.aarstein.media/en/am-lottieplayer)
+* [AM LottiePlayer PRO](https://www.aarstein.media/en/am-lottieplayer/pro)
 
 = PRO =
 
@@ -50,7 +50,7 @@ AM LottiePlayer is also available in a professional version, which includes more
 * Choose renderer: SVG, Canvas or HTML
 * More of the functionality from animations made with After Effects
 
-[Upgrade to AM LottiePlayer PRO](https://www.aarstein.media/am-lottieplayer/en/pro)
+[Upgrade to AM LottiePlayer PRO](https://www.aarstein.media/en/am-lottieplayer/pro)
 
 == Installation ==
 
@@ -130,7 +130,7 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 == Changelog ==
 
 = 3.0.0 - Dec 8 2023 =
-* Because we've launched a [PRO version of this plugin](https://www.aarstein.media/am-lottieplayer/en/pro) some features, like boomerang, animation segments, external selector and the option to choose renderer has been removed from the free tier. Certain methods from animations made with After Effects (like loopOut) has also been omitted. The upside is that this plugin is now even more lightweight and less RAM intensive then it was. To anyone who still might experiences this as a downgrade: you're free to continue to use [any version of this plugin below 3.0.0](https://wordpress.org/plugins/am-lottieplayer/advanced/). However, if you'd like to support the development of this plugin, the premium version starts at $2.75 a month ($33 a year), and contains several requested features like the ability to combine and control multiple animations in a single file, or convert and optimize JSON to dotLottie. [Read more about AM LottiePlayer PRO here!](https://www.aarstein.media/am-lottieplayer/en/pro)
+* Because we've launched a [PRO version of this plugin](https://www.aarstein.media/en/am-lottieplayer/pro) some features, like boomerang, animation segments, external selector and the option to choose renderer has been removed from the free tier. Certain methods from animations made with After Effects (like loopOut) has also been omitted. The upside is that this plugin is now even more lightweight and less RAM intensive then it was. To anyone who still might experiences this as a downgrade: you're free to continue to use [any version of this plugin below 3.0.0](https://wordpress.org/plugins/am-lottieplayer/advanced/). However, if you'd like to support the development of this plugin, the premium version starts at $2.75 a month ($33 a year), and contains several requested features like the ability to combine and control multiple animations in a single file, or convert and optimize JSON to dotLottie. [Read more about AM LottiePlayer PRO here!](https://www.aarstein.media/en/am-lottieplayer/pro)
 
 = 2.5.17 - Nov 23 2023 =
 * Bugfix: Fixed compability issue with PHP 7.4
