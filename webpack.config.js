@@ -68,11 +68,11 @@ module.exports = {
 		...defaults.resolve,
 		alias: {
 			...defaults.resolve.alias,
-			"@assets": resolve(__dirname, "/src/assets"),
-			"@components": resolve(__dirname, "/src/components"),
-			"@context": resolve(__dirname, "/src/context"),
-			"@types": resolve(__dirname, "/src/types"),
-			"@utils": resolve(__dirname, "/src/utils"),
+			"@assets": resolve(__dirname, "src/assets"),
+			"@components": resolve(__dirname, "src/components"),
+			"@context": resolve(__dirname, "src/context"),
+			"@types": resolve(__dirname, "src/types"),
+			"@utils": resolve(__dirname, "src/utils"),
 		},
 	},
 };
