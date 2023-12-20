@@ -39,7 +39,10 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
         AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player-light.min.js',
         null,
         '2.1.7',
-        true
+        [
+          'strategy' => 'defer',
+          'in_footer' => true
+        ]
       );
 
       wp_register_script(
@@ -47,7 +50,10 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
         AM_LOTTIEPLAYER_URL . 'scripts/am-frontend.min.js',
         ['dotlottie-player-light'],
         '1.2.1',
-        true
+        [
+          'strategy' => 'defer',
+          'in_footer' => true
+        ]
       );
     }
 
