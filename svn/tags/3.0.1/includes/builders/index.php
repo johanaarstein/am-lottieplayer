@@ -35,25 +35,19 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
       register_block_type(AM_LOTTIEPLAYER_PATH . 'build/lottiecover');
 
       wp_register_script(
-        'dotlottie-player-light',
-        AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player-light.min.js',
+        'dotlottie-player',
+        AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player.min.js',
         null,
-        '2.1.7',
-        [
-          'strategy' => 'defer',
-          'in_footer' => true
-        ]
+        '1.4.32',
+        true
       );
 
       wp_register_script(
         'am-frontend',
         AM_LOTTIEPLAYER_URL . 'scripts/am-frontend.min.js',
-        ['dotlottie-player-light'],
+        ['dotlottie-player'],
         '1.2.1',
-        [
-          'strategy' => 'defer',
-          'in_footer' => true
-        ]
+        true
       );
     }
 
@@ -63,7 +57,7 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
      */
     public function init_divi()
     {
-      am_include('builders/divi/LottieDiviModules');
+      am_include('builders/divi/LottieDiviModules.php');
     }
 
     /**
@@ -76,7 +70,7 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
         'elementor-backend-style',
         AM_LOTTIEPLAYER_URL . 'styles/am-font.css'
       );
-      am_include('builders/elementor/widgets/elementor-am-lottieplayer', $widgets_manager);
+      am_include('elementor/widgets/elementor-am-lottieplayer.php', $widgets_manager);
     }
 
     /**
@@ -87,7 +81,7 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
     {
       if (!function_exists('add_ux_builder_shortcode'))
       return;
-      am_include('builders/flatsome/ux-am-lottieplayer');
+      am_include('flatsome/ux-am-lottieplayer.php');
     }
 
     /**
@@ -96,7 +90,7 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
      */
     public function init_vc()
     {
-      am_include('builders/vc/vc-am-lottieplayer');
+      am_include('vc/vc-am-lottieplayer.php');
     }
 
     /**
@@ -108,7 +102,7 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
       global $post;
       $content = '';
 
-      $has_divi = false;
+      $diviFlag = false;
 
       //Check if any front-end builders are active
       $isDiviBuilder = isset($_GET['et_fb']) && !empty($_GET['et_fb']);
@@ -123,59 +117,68 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
         $layouts = et_theme_builder_get_template_layouts();
         if (!empty($layouts)) {
           if ($layouts['et_header_layout']['override']) {
-            $header = get_post($layouts['et_header_layout']['id']) ?
-              get_post($layouts['et_header_layout']['id'])->post_content : null;
-            if ($header && has_shortcode($header, 'et_pb_lottieplayer')) {
-              $has_divi = true;
+            $header = get_post($layouts['et_header_layout']['id'])->post_content;
+            if (has_shortcode($header, 'et_pb_lottieplayer')) {
+              $diviFlag = true;
             }
           }
-          if (!$has_divi && $layouts['et_body_layout']['override']) {
-            $body = get_post($layouts['et_body_layout']['id']) ?
-              get_post($layouts['et_body_layout']['id'])->post_content : null;
-            if ($body && has_shortcode($body, 'et_pb_lottieplayer')) {
-              $has_divi = true;
+          if (!$diviFlag && $layouts['et_body_layout']['override']) {
+            $body = get_post($layouts['et_body_layout']['id'])->post_content;
+            if (has_shortcode($body, 'et_pb_lottieplayer')) {
+              $diviFlag = true;
             }
           }
-          if (!$has_divi && $layouts['et_footer_layout']['override']) {
-            $footer = get_post($layouts['et_footer_layout']['id']) ?
-              get_post($layouts['et_footer_layout']['id'])->post_content : null;
-            if ($footer && has_shortcode($footer, 'et_pb_lottieplayer')) {
-              $has_divi = true;
+          if (!$diviFlag && $layouts['et_footer_layout']['override']) {
+            $footer = get_post($layouts['et_footer_layout']['id'])->post_content;
+            if (has_shortcode($footer, 'et_pb_lottieplayer')) {
+              $diviFlag = true;
             }
           }
         }
       }
 
-      //Check if post has Gutenberg blocks
-      $has_gutenberg = has_block('gb/lottieplayer') || has_block('gb/lottiecover');
-
-      //Check if post has general shortcode, and VC frontend builder is not active
-      $has_shortcode = has_shortcode($content, 'am-lottieplayer') && !$isVCBuilder;
-
-      //Check if post has Divi shortcode, and Divi Builder is not active
-      $has_divi = !$isDiviBuilder && ($has_divi || has_shortcode($content, 'et_pb_lottieplayer'));
-
       if (!is_admin()) {
-        if ($has_gutenberg || $has_shortcode || $has_divi) {
+        if (
+          //Check if post has Gutenberg blocks
+          has_block('gb/lottieplayer') ||
+          has_block('gb/lottiecover') ||
+          (
+            (
+              //Check if post has general shortcode, and VC frontend builder is not active
+              has_shortcode($content, 'am-lottieplayer') &&
+              !$isVCBuilder
+            ) ||
+            (
+              //Check if post has Divi shortcode, and Divi Builder is not active
+              ($diviFlag || has_shortcode($content, 'et_pb_lottieplayer')) &&
+              !$isDiviBuilder
+            )
+          )
+        ) {
           wp_enqueue_script('am-frontend');
         }
         //Add scripts for Divi/VC front-end builder, if either are installed and active
         if ($isDiviBuilder || $isVCBuilder) {
-          wp_enqueue_script('dotlottie-player-light');
+          wp_enqueue_script('dotlottie-player');
         }
       }
     }
   }
-}
 
-/**
- * Main function, to initialize class
- * @return AM_LottiePlayer_Builders
- */
-(function () {
-  global $am_lottieplayer_builders;
-  if (!isset($am_lottieplayer_builders)) {
-    $am_lottieplayer_builders = new AM_LottiePlayer_Builders();
+  /**
+   * Main function, to initialize class
+   * @return AM_LottiePlayer_Builders
+   */
+  function am_lottieplayer_builders()
+  {
+    global $am_lottieplayer_builders;
+
+    if (!isset($am_lottieplayer_builders)) {
+      $am_lottieplayer_builders = new AM_LottiePlayer_Builders();
+    }
+
+    return $am_lottieplayer_builders;
   }
-  return $am_lottieplayer_builders;
-})();
+
+  am_lottieplayer_builders();
+}
