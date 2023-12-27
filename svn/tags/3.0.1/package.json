@@ -39,7 +39,7 @@
 	],
 	"main": "build/lottieplayer/index.js",
 	"devDependencies": {
-		"@aarsteinmedia/dotlottie-player-light": "^2.2.0",
+		"@aarsteinmedia/dotlottie-player-light": "^2.2.1",
 		"@types/node": "^20.10.5",
 		"@types/react": "^18.2.45",
 		"@types/wordpress__block-editor": "^11.5.8",
@@ -54,7 +54,7 @@
 		"@wordpress/element": "^5.25.0",
 		"@wordpress/i18n": "^4.48.0",
 		"@wordpress/scripts": "^26.19.0",
-		"classnames": "^2.3.2",
+		"classnames": "^2.4.0",
 		"eslint-import-resolver-typescript": "^3.6.1",
 		"eslint-plugin-import": "^2.29.1",
 		"eslint-plugin-react": "^7.33.2",
