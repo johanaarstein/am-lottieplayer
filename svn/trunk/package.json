@@ -1,6 +1,6 @@
 {
 	"name": "am-lottieplayer",
-	"version": "3.0.1",
+	"version": "3.0.2",
 	"description": "This is best free Lottie Player plugin. It is lightweight, versatile and easy to use, and it has integrations for Gutenberg, Divi, Elementor, Flatsome and WPBakery.",
 	"author": {
 		"name": "Aarstein Media",
@@ -39,12 +39,12 @@
 	],
 	"main": "build/lottieplayer/index.js",
 	"devDependencies": {
-		"@aarsteinmedia/dotlottie-player-light": "^2.2.1",
+		"@aarsteinmedia/dotlottie-player-light": "^2.2.2",
 		"@types/node": "^20.10.5",
-		"@types/react": "^18.2.45",
-		"@types/wordpress__block-editor": "^11.5.8",
+		"@types/react": "^18.2.46",
+		"@types/wordpress__block-editor": "^11.5.9",
 		"@types/wordpress__blocks": "^12.5.13",
-		"@types/wordpress__components": "^23.0.10",
+		"@types/wordpress__components": "^23.0.11",
 		"@typescript-eslint/eslint-plugin": "^5.62.0",
 		"@typescript-eslint/parser": "^5.62.0",
 		"@wordpress/blob": "^3.48.0",
@@ -54,7 +54,7 @@
 		"@wordpress/element": "^5.25.0",
 		"@wordpress/i18n": "^4.48.0",
 		"@wordpress/scripts": "^26.19.0",
-		"classnames": "^2.4.0",
+		"classnames": "^2.5.1",
 		"eslint-import-resolver-typescript": "^3.6.1",
 		"eslint-plugin-import": "^2.29.1",
 		"eslint-plugin-react": "^7.33.2",
@@ -64,7 +64,7 @@
 		"re-resizable": "^6.9.11",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
-		"sass": "^1.69.5",
+		"sass": "^1.69.6",
 		"ts-loader": "^9.5.1",
 		"ts-node": "^10.9.2",
 		"typescript": "^5.3.3"
