@@ -129,6 +129,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 3.0.3 - Dec 29 2023 =
+* Bugfix: Rollback of animation engine due to faulty script
+
 = 3.0.2 - Dec 29 2023 =
 * Bugfix: Fixed bug that caused animation lag in some browsers
 
