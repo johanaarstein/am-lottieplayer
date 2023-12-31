@@ -1,6 +1,6 @@
 {
 	"name": "am-lottieplayer",
-	"version": "3.0.3",
+	"version": "3.0.4",
 	"description": "This is best free Lottie Player plugin. It is lightweight, versatile and easy to use, and it has integrations for Gutenberg, Divi, Elementor, Flatsome and WPBakery.",
 	"author": {
 		"name": "Aarstein Media",
@@ -39,8 +39,8 @@
 	],
 	"main": "build/lottieplayer/index.js",
 	"devDependencies": {
-		"@aarsteinmedia/dotlottie-player-light": "^2.2.2",
-		"@types/node": "^20.10.5",
+		"@aarsteinmedia/dotlottie-player-light": "^2.2.3",
+		"@types/node": "^20.10.6",
 		"@types/react": "^18.2.46",
 		"@types/wordpress__block-editor": "^11.5.9",
 		"@types/wordpress__blocks": "^12.5.13",
