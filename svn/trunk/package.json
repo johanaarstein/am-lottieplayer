@@ -40,7 +40,7 @@
 	"main": "build/lottieplayer/index.js",
 	"devDependencies": {
 		"@aarsteinmedia/dotlottie-player-light": "^2.2.5",
-		"@types/node": "^20.10.7",
+		"@types/node": "^20.11.0",
 		"@types/react": "^18.2.47",
 		"@types/wordpress__block-editor": "^11.5.9",
 		"@types/wordpress__blocks": "^12.5.13",

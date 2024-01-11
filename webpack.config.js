@@ -12,36 +12,30 @@ const defaults = require("@wordpress/scripts/config/webpack.config"),
 			for (const filePath of blockJSONFiles) {
 				const blockJSON = require(filePath);
 
-				if (blockJSON?.editorScript) {
+				if (!blockJSON)
+					continue
+
+				if (blockJSON.editorScript)
 					blockJSON.editorScript = blockJSON.editorScript.replace(
 						".tsx",
 						".js",
 					);
-				}
-
-				if (blockJSON?.script) {
+				if (blockJSON.script)
 					blockJSON.script = blockJSON.script.replace(".tsx", ".js");
-				}
-
-				if (blockJSON?.viewScript) {
+				if (blockJSON.viewScript)
 					blockJSON.viewScript = blockJSON.viewScript.replace(".tsx", ".js");
-				}
-
-				if (blockJSON?.editorStyle) {
+				if (blockJSON.editorStyle)
 					blockJSON.editorStyle = blockJSON.editorStyle.replace(
 						".scss",
 						".css",
 					);
-				}
-
-				if (blockJSON?.style) {
+				if (blockJSON.style)
 					blockJSON.style = blockJSON.style.replace(".scss", ".css");
-				}
 
 				writeFile(
 					filePath,
 					JSON.stringify(blockJSON, null, 2),
-					function writeJSON(error) {
+					(error) => {
 						if (error) return console.log(error);
 					},
 				);
