@@ -6,14 +6,14 @@ settings:
 
 devDependencies:
   '@aarsteinmedia/dotlottie-player-light':
-    specifier: ^2.2.5
-    version: 2.2.5(@types/react@18.2.47)
+    specifier: ^2.2.7
+    version: 2.2.7(@types/react@18.2.48)
   '@types/node':
-    specifier: ^20.11.0
-    version: 20.11.0
+    specifier: ^20.11.1
+    version: 20.11.1
   '@types/react':
-    specifier: ^18.2.47
-    version: 18.2.47
+    specifier: ^18.2.48
+    version: 18.2.48
   '@types/wordpress__block-editor':
     specifier: ^11.5.9
     version: 11.5.9(react-dom@18.2.0)(react@18.2.0)
@@ -37,7 +37,7 @@ devDependencies:
     version: 6.25.0(react@18.2.0)
   '@wordpress/core-data':
     specifier: ^6.25.0
-    version: 6.25.0(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0)
+    version: 6.25.0(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
   '@wordpress/data':
     specifier: ^9.18.0
     version: 9.18.0(react@18.2.0)
@@ -49,7 +49,7 @@ devDependencies:
     version: 4.48.0
   '@wordpress/scripts':
     specifier: ^26.19.0
-    version: 26.19.0(@playwright/test@1.40.1)(@types/node@20.11.0)(eslint-import-resolver-typescript@3.6.1)(react-dom@18.2.0)(react@18.2.0)(ts-node@10.9.2)(typescript@5.3.3)
+    version: 26.19.0(@playwright/test@1.40.1)(@types/node@20.11.1)(eslint-import-resolver-typescript@3.6.1)(react-dom@18.2.0)(react@18.2.0)(ts-node@10.9.2)(typescript@5.3.3)
   classnames:
     specifier: ^2.5.1
     version: 2.5.1
@@ -88,20 +88,20 @@ devDependencies:
     version: 9.5.1(typescript@5.3.3)(webpack@5.89.0)
   ts-node:
     specifier: ^10.9.2
-    version: 10.9.2(@types/node@20.11.0)(typescript@5.3.3)
+    version: 10.9.2(@types/node@20.11.1)(typescript@5.3.3)
   typescript:
     specifier: ^5.3.3
     version: 5.3.3
 
 packages:
 
-  /@aarsteinmedia/dotlottie-player-light@2.2.5(@types/react@18.2.47):
-    resolution: {integrity: sha512-Mfo+owwV/xhDQoEVyWfLqsxvihbSOJAHJsIXO5V/79sHd1DCTqWzxorX+m9YO84Bvw5fP0HE+tnHl3+ENn48VA==}
+  /@aarsteinmedia/dotlottie-player-light@2.2.7(@types/react@18.2.48):
+    resolution: {integrity: sha512-2ZL0TioxVezdYKqcyWMsdWxEuHPF9AeoPFzxThX2rPsHnyQcUrkP/sBLsCHjpntOMLpqdB+BRCaWqbPWUh/GTg==}
     engines: {node: '>= 8.17.0'}
     peerDependencies:
       '@types/react': '>= 16.0.0'
     dependencies:
-      '@types/react': 18.2.47
+      '@types/react': 18.2.48
       fflate: 0.8.1
       lit: 3.1.1
       lottie-web: 5.12.2
@@ -117,15 +117,15 @@ packages:
     engines: {node: '>=6.0.0'}
     dependencies:
       '@jridgewell/gen-mapping': 0.3.3
-      '@jridgewell/trace-mapping': 0.3.20
+      '@jridgewell/trace-mapping': 0.3.21
     dev: true
 
   /@ariakit/core@0.3.11:
     resolution: {integrity: sha512-+MnOeqnA4FLI/7vqsZLbZQHHN4ofd9kvkNjz44fNi0gqmD+ZbMWiDkFAvZII75dYnxYw5ZPpWjA4waK22VBWig==}
     dev: true
 
-  /@ariakit/react-core@0.3.13(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-I/4h9FC4QsKfw6in3hwL96Mep48a55VnVlrmtLWavjxQ6t6AQrDk33NKwlO9Xw3prLneypi0I/4UozGavhcaCQ==}
+  /@ariakit/react-core@0.3.14(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-16Qj6kDPglpdWtU5roY9q+G66naOjauTY5HvUIaL2aLY0187ATaRrABIKoMMzTtJyhvsud4jFlzivz+/zCQ8yw==}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
       react-dom: ^17.0.0 || ^18.0.0
@@ -137,13 +137,13 @@ packages:
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: true
 
-  /@ariakit/react@0.3.13(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-J7ajCe62eeQVkQrnEQiUpRr21IHAM1iKjFtPd9YafhC/fjoKye3sxbVXHCn3mcHuMwADAiL8uTA+665Nw9V4nA==}
+  /@ariakit/react@0.3.14(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-h71BPMZ2eW+E2ESbdYxSAEMR1DozYzd5eHE5IOzGd9Egi5u7EZxqmuW4CXVXZ1Y6vbaDMV3SudgPh7iHS/ArFw==}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
       react-dom: ^17.0.0 || ^18.0.0
     dependencies:
-      '@ariakit/react-core': 0.3.13(react-dom@18.2.0)(react@18.2.0)
+      '@ariakit/react-core': 0.3.14(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: true
@@ -204,7 +204,7 @@ packages:
     dependencies:
       '@babel/types': 7.23.6
       '@jridgewell/gen-mapping': 0.3.3
-      '@jridgewell/trace-mapping': 0.3.20
+      '@jridgewell/trace-mapping': 0.3.21
       jsesc: 2.5.2
     dev: true
 
@@ -1559,7 +1559,7 @@ packages:
     resolution: {integrity: sha512-W2P2c/VRW1/1tLox0mVUalvnWXxavmv/Oum2aPsRcoDJuob75FC3Y8FbpfLwUegRcxINtGUMPq0tFCvYNTBXNA==}
     dev: true
 
-  /@emotion/react@11.11.3(@types/react@18.2.47)(react@18.2.0):
+  /@emotion/react@11.11.3(@types/react@18.2.48)(react@18.2.0):
     resolution: {integrity: sha512-Cnn0kuq4DoONOMcnoVsTOR8E+AdnKFf//6kUWc4LCdnxj31pZWn7rIULd6Y7/Js1PiPHzn7SKCM9vB/jBni8eA==}
     peerDependencies:
       '@types/react': '*'
@@ -1575,7 +1575,7 @@ packages:
       '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@18.2.0)
       '@emotion/utils': 1.2.1
       '@emotion/weak-memoize': 0.3.1
-      '@types/react': 18.2.47
+      '@types/react': 18.2.48
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
     dev: true
@@ -1594,7 +1594,7 @@ packages:
     resolution: {integrity: sha512-0QBtGvaqtWi+nx6doRwDdBIzhNdZrXUppvTM4dtZZWEGTXL/XE/yJxLMGlDT1Gt+UHH5IX1n+jkXyytE/av7OA==}
     dev: true
 
-  /@emotion/styled@11.11.0(@emotion/react@11.11.3)(@types/react@18.2.47)(react@18.2.0):
+  /@emotion/styled@11.11.0(@emotion/react@11.11.3)(@types/react@18.2.48)(react@18.2.0):
     resolution: {integrity: sha512-hM5Nnvu9P3midq5aaXj4I+lnSfNi7Pmd4EWk1fOZ3pxookaQTNew6bp4JaCBYM4HVFZF9g7UjJmsUmC2JlxOng==}
     peerDependencies:
       '@emotion/react': ^11.0.0-rc.0
@@ -1607,11 +1607,11 @@ packages:
       '@babel/runtime': 7.23.8
       '@emotion/babel-plugin': 11.11.0
       '@emotion/is-prop-valid': 1.2.1
-      '@emotion/react': 11.11.3(@types/react@18.2.47)(react@18.2.0)
+      '@emotion/react': 11.11.3(@types/react@18.2.48)(react@18.2.0)
       '@emotion/serialize': 1.1.3
       '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@18.2.0)
       '@emotion/utils': 1.2.1
-      '@types/react': 18.2.47
+      '@types/react': 18.2.48
       react: 18.2.0
     dev: true
 
@@ -1704,7 +1704,7 @@ packages:
       '@floating-ui/utils': 0.2.1
     dev: true
 
-  /@floating-ui/react-dom@0.7.2(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0):
+  /@floating-ui/react-dom@0.7.2(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-1T0sJcpHgX/u4I1OzIEhlcrvkUN8ln39nz7fMoE/2HDHrPiMFoOGR7++GYyfUmIQHkkrTinaeQsO3XWubjSvGg==}
     peerDependencies:
       react: '>=16.8.0'
@@ -1713,7 +1713,7 @@ packages:
       '@floating-ui/dom': 0.5.4
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      use-isomorphic-layout-effect: 1.1.2(@types/react@18.2.47)(react@18.2.0)
+      use-isomorphic-layout-effect: 1.1.2(@types/react@18.2.48)(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
     dev: true
@@ -1796,7 +1796,7 @@ packages:
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       chalk: 4.1.2
       jest-message-util: 29.7.0
       jest-util: 29.7.0
@@ -1817,14 +1817,14 @@ packages:
       '@jest/test-result': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       ci-info: 3.9.0
       exit: 0.1.2
       graceful-fs: 4.2.11
       jest-changed-files: 29.7.0
-      jest-config: 29.7.0(@types/node@20.11.0)(ts-node@10.9.2)
+      jest-config: 29.7.0(@types/node@20.11.1)(ts-node@10.9.2)
       jest-haste-map: 29.7.0
       jest-message-util: 29.7.0
       jest-regex-util: 29.6.3
@@ -1852,7 +1852,7 @@ packages:
     dependencies:
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       jest-mock: 29.7.0
     dev: true
 
@@ -1879,7 +1879,7 @@ packages:
     dependencies:
       '@jest/types': 29.6.3
       '@sinonjs/fake-timers': 10.3.0
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       jest-message-util: 29.7.0
       jest-mock: 29.7.0
       jest-util: 29.7.0
@@ -1911,8 +1911,8 @@ packages:
       '@jest/test-result': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      '@jridgewell/trace-mapping': 0.3.20
-      '@types/node': 20.11.0
+      '@jridgewell/trace-mapping': 0.3.21
+      '@types/node': 20.11.1
       chalk: 4.1.2
       collect-v8-coverage: 1.0.2
       exit: 0.1.2
@@ -1945,7 +1945,7 @@ packages:
     resolution: {integrity: sha512-MHjT95QuipcPrpLM+8JMSzFx6eHp5Bm+4XeFDJlwsvVBjmKNiIAvasGK2fxz2WbGRlnvqehFbh07MMa7n3YJnw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
-      '@jridgewell/trace-mapping': 0.3.20
+      '@jridgewell/trace-mapping': 0.3.21
       callsites: 3.1.0
       graceful-fs: 4.2.11
     dev: true
@@ -1976,7 +1976,7 @@ packages:
     dependencies:
       '@babel/core': 7.23.7
       '@jest/types': 29.6.3
-      '@jridgewell/trace-mapping': 0.3.20
+      '@jridgewell/trace-mapping': 0.3.21
       babel-plugin-istanbul: 6.1.1
       chalk: 4.1.2
       convert-source-map: 2.0.0
@@ -2000,7 +2000,7 @@ packages:
       '@jest/schemas': 29.6.3
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       '@types/yargs': 17.0.32
       chalk: 4.1.2
     dev: true
@@ -2011,7 +2011,7 @@ packages:
     dependencies:
       '@jridgewell/set-array': 1.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
-      '@jridgewell/trace-mapping': 0.3.20
+      '@jridgewell/trace-mapping': 0.3.21
     dev: true
 
   /@jridgewell/resolve-uri@3.1.1:
@@ -2028,15 +2028,15 @@ packages:
     resolution: {integrity: sha512-UTYAUj/wviwdsMfzoSJspJxbkH5o1snzwX0//0ENX1u/55kkZZkcTZP6u9bwKGkv+dkk9at4m1Cpt0uY80kcpQ==}
     dependencies:
       '@jridgewell/gen-mapping': 0.3.3
-      '@jridgewell/trace-mapping': 0.3.20
+      '@jridgewell/trace-mapping': 0.3.21
     dev: true
 
   /@jridgewell/sourcemap-codec@1.4.15:
     resolution: {integrity: sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==}
     dev: true
 
-  /@jridgewell/trace-mapping@0.3.20:
-    resolution: {integrity: sha512-R8LcPeWZol2zR8mmH3JeKQ6QRCFb7XgUhV9ZlGhHLGyg4wpPiPZNQOOWhFZhxKw8u//yTbNGI42Bx/3paXEQ+Q==}
+  /@jridgewell/trace-mapping@0.3.21:
+    resolution: {integrity: sha512-SRfKmRe1KvYnxjEMtxEr+J4HIeMX5YBg/qhRHpxEIGjhX1rshcHlnFUE9K0GazhVKWM7B+nARSkV8LuvJdJ5/g==}
     dependencies:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
@@ -2231,7 +2231,7 @@ packages:
       react: 18.2.0
     dev: true
 
-  /@radix-ui/react-dialog@1.0.0(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0):
+  /@radix-ui/react-dialog@1.0.0(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-Yn9YU+QlHYLWwV1XfKiqnGVpWYWk6MeBVM6x/bcoyPvxgjQGoeT35482viLPctTMWoMw0PoHgqfSox7Ig+957Q==}
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
@@ -2253,7 +2253,7 @@ packages:
       aria-hidden: 1.2.3
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      react-remove-scroll: 2.5.4(@types/react@18.2.47)(react@18.2.0)
+      react-remove-scroll: 2.5.4(@types/react@18.2.48)(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
     dev: true
@@ -2299,7 +2299,7 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: true
 
-  /@radix-ui/react-dropdown-menu@2.0.4(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0):
+  /@radix-ui/react-dropdown-menu@2.0.4(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-y6AT9+MydyXcByivdK1+QpjWoKaC7MLjkS/cH1Q3keEyMvDkiY85m8o2Bi6+Z1PPUlCsMULopxagQOSfN0wahg==}
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
@@ -2310,7 +2310,7 @@ packages:
       '@radix-ui/react-compose-refs': 1.0.0(react@18.2.0)
       '@radix-ui/react-context': 1.0.0(react@18.2.0)
       '@radix-ui/react-id': 1.0.0(react@18.2.0)
-      '@radix-ui/react-menu': 2.0.4(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-menu': 2.0.4(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-primitive': 1.0.2(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-use-controllable-state': 1.0.0(react@18.2.0)
       react: 18.2.0
@@ -2366,7 +2366,7 @@ packages:
       react: 18.2.0
     dev: true
 
-  /@radix-ui/react-menu@2.0.4(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0):
+  /@radix-ui/react-menu@2.0.4(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-mzKR47tZ1t193trEqlQoJvzY4u9vYfVH16ryBrVrCAGZzkgyWnMQYEZdUkM7y8ak9mrkKtJiqB47TlEnubeOFQ==}
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
@@ -2382,7 +2382,7 @@ packages:
       '@radix-ui/react-focus-guards': 1.0.0(react@18.2.0)
       '@radix-ui/react-focus-scope': 1.0.2(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-id': 1.0.0(react@18.2.0)
-      '@radix-ui/react-popper': 1.1.1(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-popper': 1.1.1(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-portal': 1.0.2(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-presence': 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-primitive': 1.0.2(react-dom@18.2.0)(react@18.2.0)
@@ -2392,19 +2392,19 @@ packages:
       aria-hidden: 1.2.3
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      react-remove-scroll: 2.5.5(@types/react@18.2.47)(react@18.2.0)
+      react-remove-scroll: 2.5.5(@types/react@18.2.48)(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
     dev: true
 
-  /@radix-ui/react-popper@1.1.1(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0):
+  /@radix-ui/react-popper@1.1.1(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-keYDcdMPNMjSC8zTsZ8wezUMiWM9Yj14wtF3s0PTIs9srnEPC9Kt2Gny1T3T81mmSeyDjZxsD9N5WCwNNb712w==}
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
     dependencies:
       '@babel/runtime': 7.23.8
-      '@floating-ui/react-dom': 0.7.2(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0)
+      '@floating-ui/react-dom': 0.7.2(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-arrow': 1.0.2(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-compose-refs': 1.0.0(react@18.2.0)
       '@radix-ui/react-context': 1.0.0(react@18.2.0)
@@ -2972,26 +2972,26 @@ packages:
     resolution: {integrity: sha512-fB3Zu92ucau0iQ0JMCFQE7b/dv8Ot07NI3KaZIkIUNXq82k4eBAqUaneXfleGY9JWskeS9y+u0nXMyspcuQrCg==}
     dependencies:
       '@types/connect': 3.4.38
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
     dev: true
 
   /@types/bonjour@3.5.13:
     resolution: {integrity: sha512-z9fJ5Im06zvUL548KvYNecEVlA7cVDkGUi6kZusb04mpyEFKCIZJvloCcmpmLaIahDpOQGHaHmG6imtPMmPXGQ==}
     dependencies:
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
     dev: true
 
   /@types/connect-history-api-fallback@1.5.4:
     resolution: {integrity: sha512-n6Cr2xS1h4uAulPRdlw6Jl6s1oG8KrVilPN2yUITEs+K48EzMJJ3W1xy8K5eWuFvjp3R74AOIGSmp2UfBJ8HFw==}
     dependencies:
       '@types/express-serve-static-core': 4.17.41
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
     dev: true
 
   /@types/connect@3.4.38:
     resolution: {integrity: sha512-K6uROf1LD88uDQqJCktA4yzL1YYAK6NgfsI0v/mTgyPKWsX1CnJ0XPSDhViejru1GcRkLWb8RlzFYJRqGUbaug==}
     dependencies:
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
     dev: true
 
   /@types/eslint-scope@3.7.7:
@@ -3015,7 +3015,7 @@ packages:
   /@types/express-serve-static-core@4.17.41:
     resolution: {integrity: sha512-OaJ7XLaelTgrvlZD8/aa0vvvxZdUmlCn6MtWeB7TkiKW70BQLc9XEPpDLPdbo52ZhXUCrznlWdCHWxJWtdyajA==}
     dependencies:
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       '@types/qs': 6.9.11
       '@types/range-parser': 1.2.7
       '@types/send': 0.17.4
@@ -3034,13 +3034,13 @@ packages:
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
     dev: true
 
   /@types/graceful-fs@4.1.9:
     resolution: {integrity: sha512-olP3sd1qOEe5dXTSaFvQG+02VdRXcdytWLAZsAq1PecU8uqQAhkrnbli7DagjtXKW/Bl7YJbUsa8MPcuc8LHEQ==}
     dependencies:
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
     dev: true
 
   /@types/gradient-parser@0.1.3:
@@ -3058,7 +3058,7 @@ packages:
   /@types/http-proxy@1.17.14:
     resolution: {integrity: sha512-SSrD0c1OQzlFX7pGu1eXxSEjemej64aaNPRhhVYUGqXh0BtldAAx37MG8btcumvpgKyZp1F5Gn3JkktdxiFv6w==}
     dependencies:
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
     dev: true
 
   /@types/istanbul-lib-coverage@2.0.6:
@@ -3080,7 +3080,7 @@ packages:
   /@types/jsdom@20.0.1:
     resolution: {integrity: sha512-d0r18sZPmMQr1eG35u12FZfhIXNrnsPU/g5wvRKCUf/tOGilKKwYMYGqh33BNR6ba+2gkHw1EUiHoN3mn7E5IQ==}
     dependencies:
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       '@types/tough-cookie': 4.0.5
       parse5: 7.1.2
     dev: true
@@ -3116,11 +3116,11 @@ packages:
   /@types/node-forge@1.3.11:
     resolution: {integrity: sha512-FQx220y22OKNTqaByeBGqHWYz4cl94tpcxeFdvBo3wjG6XPBuZ0BNgNZRV5J5TFmmcsJ4IzsLkmGRiQbnYsBEQ==}
     dependencies:
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
     dev: true
 
-  /@types/node@20.11.0:
-    resolution: {integrity: sha512-o9bjXmDNcF7GbM4CNQpmi+TutCgap/K3w1JyKgxAjqx41zp9qlIAVFi0IhCNsJcXolEqLWhbFbEeL0PvYm4pcQ==}
+  /@types/node@20.11.1:
+    resolution: {integrity: sha512-DsXojJUES2M+FE8CpptJTKpg+r54moV9ZEncPstni1WHFmTcCzeFLnMFfyhCVS8XNOy/OQG+8lVxRLRrVHmV5A==}
     dependencies:
       undici-types: 5.26.5
     dev: true
@@ -3148,11 +3148,11 @@ packages:
   /@types/react-dom@18.2.18:
     resolution: {integrity: sha512-TJxDm6OfAX2KJWJdMEVTwWke5Sc/E/RlnPGvGfS0W7+6ocy2xhDVQVh/KvC2Uf7kACs+gDytdusDSdWfWkaNzw==}
     dependencies:
-      '@types/react': 18.2.47
+      '@types/react': 18.2.48
     dev: true
 
-  /@types/react@18.2.47:
-    resolution: {integrity: sha512-xquNkkOirwyCgoClNk85BjP+aqnIS+ckAJ8i37gAbDs14jfW/J23f2GItAf33oiUPQnqNMALiFeoM9Y5mbjpVQ==}
+  /@types/react@18.2.48:
+    resolution: {integrity: sha512-qboRCl6Ie70DQQG9hhNREz81jqC1cs9EVNcjQ1AU+jH6NFfSAhVVbrrY/+nSF+Bsk4AOwm9Qa61InvMCyV+H3w==}
     dependencies:
       '@types/prop-types': 15.7.11
       '@types/scheduler': 0.16.8
@@ -3175,7 +3175,7 @@ packages:
     resolution: {integrity: sha512-x2EM6TJOybec7c52BX0ZspPodMsQUd5L6PRwOunVyVUhXiBSKf3AezDL8Dgvgt5o0UfKNfuA0eMLr2wLT4AiBA==}
     dependencies:
       '@types/mime': 1.3.5
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
     dev: true
 
   /@types/serve-index@1.9.4:
@@ -3189,19 +3189,19 @@ packages:
     dependencies:
       '@types/http-errors': 2.0.4
       '@types/mime': 3.0.4
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
     dev: true
 
   /@types/simple-peer@9.11.8:
     resolution: {integrity: sha512-rvqefdp2rvIA6wiomMgKWd2UZNPe6LM2EV5AuY3CPQJF+8TbdrL5TjYdMf0VAjGczzlkH4l1NjDkihwbj3Xodw==}
     dependencies:
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
     dev: true
 
   /@types/sockjs@0.3.36:
     resolution: {integrity: sha512-MK9V6NzAS1+Ud7JV9lJLFqW85VbC9dq3LmwZCuBe4wBDgKC0Kj/jd8Xl+nSviU+Qc3+m7umHHyHg//2KSa0a0Q==}
     dependencies:
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
     dev: true
 
   /@types/source-list-map@0.1.6:
@@ -3237,7 +3237,7 @@ packages:
   /@types/webpack-sources@3.2.3:
     resolution: {integrity: sha512-4nZOdMwSPHZ4pTEZzSp0AsTM4K7Qmu40UKW4tJDiOVs20UzYF9l+qUe4s0ftfN0pin06n+5cWWDJXH+sbhAiDw==}
     dependencies:
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       '@types/source-list-map': 0.1.6
       source-map: 0.7.4
     dev: true
@@ -3245,7 +3245,7 @@ packages:
   /@types/webpack@4.41.38:
     resolution: {integrity: sha512-oOW7E931XJU1mVfCnxCVgv8GLFL768pDO5u2Gzk82i8yTIgX6i7cntyZOkZYb/JtYM8252SN9bQp9tgkVDSsRw==}
     dependencies:
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       '@types/tapable': 1.0.12
       '@types/uglify-js': 3.17.4
       '@types/webpack-sources': 3.2.3
@@ -3256,7 +3256,7 @@ packages:
   /@types/wordpress__block-editor@11.5.9(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-yIFKaL40j/dDIDOH5hlvlTwwuTqb1SDgVYZQ8v498fAq+tYRQKZCJICpAunSmlMQpxHX1qs1+ZqmljyWvU1p4w==}
     dependencies:
-      '@types/react': 18.2.47
+      '@types/react': 18.2.48
       '@types/wordpress__blocks': 12.5.13(react-dom@18.2.0)(react@18.2.0)
       '@types/wordpress__components': 23.0.11(react-dom@18.2.0)(react@18.2.0)
       '@types/wordpress__keycodes': 2.3.3
@@ -3271,7 +3271,7 @@ packages:
   /@types/wordpress__blocks@12.5.13(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-k2nlqxdNyaL6Uf/+zWhXeJJMKaPpikh5GdunNhNtpI1nSHM18Y+86y3rzjt1n0WcUQc1XkosvhcAEiGNYIhL9g==}
     dependencies:
-      '@types/react': 18.2.47
+      '@types/react': 18.2.48
       '@types/wordpress__components': 23.0.11(react-dom@18.2.0)(react@18.2.0)
       '@types/wordpress__shortcode': 2.3.6
       '@wordpress/data': 9.18.0(react@18.2.0)
@@ -3284,7 +3284,7 @@ packages:
   /@types/wordpress__components@23.0.11(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-Y6m+HC3/1UeIQJYhKprEmHbo4bxhuvH60Oeb0VEnQ6AimdPWEYpDv9J9XTMJ5VqIJ0rrM8h0jfkmBOFRABNZgA==}
     dependencies:
-      '@types/react': 18.2.47
+      '@types/react': 18.2.48
       '@types/tinycolor2': 1.4.6
       '@types/wordpress__notices': 3.27.6(react@18.2.0)
       '@types/wordpress__rich-text': 6.4.5(react@18.2.0)
@@ -3303,7 +3303,7 @@ packages:
   /@types/wordpress__notices@3.27.6(react@18.2.0):
     resolution: {integrity: sha512-cKK9Cu/br81XqNwxUTRjwGZuLtf6Ug76O77Qc1YF4+RhY8pruxKcWa2+TYzojeh6/83HXw4JjXY7tiI/WD4uoA==}
     dependencies:
-      '@types/react': 18.2.47
+      '@types/react': 18.2.48
       '@wordpress/data': 9.18.0(react@18.2.0)
     transitivePeerDependencies:
       - react
@@ -3312,7 +3312,7 @@ packages:
   /@types/wordpress__rich-text@6.4.5(react@18.2.0):
     resolution: {integrity: sha512-t+3EvAxkByO6/naRM5FKr1s33d72L/qHLXXdmHiPm54xUxIW6azQFhUWfScRlCcFTlszdwgJyqpaw4HJQIiZ8g==}
     dependencies:
-      '@types/react': 18.2.47
+      '@types/react': 18.2.48
       '@wordpress/data': 9.18.0(react@18.2.0)
     transitivePeerDependencies:
       - react
@@ -3325,7 +3325,7 @@ packages:
   /@types/ws@8.5.10:
     resolution: {integrity: sha512-vmQSUcfalpIq0R9q7uTo2lXs6eGIpt9wtnLdMv9LVpIjCA/+ufZRozlVoVelIYixx1ugCBKDhn89vnsEGOCx9A==}
     dependencies:
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
     dev: true
 
   /@types/yargs-parser@21.0.3:
@@ -3342,7 +3342,7 @@ packages:
     resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
     requiresBuild: true
     dependencies:
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
     dev: true
     optional: true
 
@@ -3834,7 +3834,7 @@ packages:
       '@babel/runtime': 7.23.8
     dev: true
 
-  /@wordpress/block-editor@12.16.0(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0):
+  /@wordpress/block-editor@12.16.0(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-BfuRJbUCBFrOjGNMBgsz7pBxenu0Yr2aQQTtqR/++ezdyruXZneZTaxs7ZXaoQ5Jo5S/yHTrVP9UCDH0WW/Ycw==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -3842,15 +3842,15 @@ packages:
       react-dom: ^18.0.0
     dependencies:
       '@babel/runtime': 7.23.8
-      '@emotion/react': 11.11.3(@types/react@18.2.47)(react@18.2.0)
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.3)(@types/react@18.2.47)(react@18.2.0)
+      '@emotion/react': 11.11.3(@types/react@18.2.48)(react@18.2.0)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.3)(@types/react@18.2.48)(react@18.2.0)
       '@react-spring/web': 9.7.3(react-dom@18.2.0)(react@18.2.0)
       '@wordpress/a11y': 3.48.0
       '@wordpress/api-fetch': 6.45.0
       '@wordpress/blob': 3.48.0
       '@wordpress/blocks': 12.25.0(react@18.2.0)
-      '@wordpress/commands': 0.19.0(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0)
-      '@wordpress/components': 25.14.0(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0)
+      '@wordpress/commands': 0.19.0(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
+      '@wordpress/components': 25.14.0(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
       '@wordpress/compose': 6.25.0(react@18.2.0)
       '@wordpress/data': 9.18.0(react@18.2.0)
       '@wordpress/date': 4.48.0
@@ -3866,7 +3866,7 @@ packages:
       '@wordpress/keyboard-shortcuts': 4.25.0(react@18.2.0)
       '@wordpress/keycodes': 3.48.0
       '@wordpress/notices': 4.16.0(react@18.2.0)
-      '@wordpress/preferences': 3.25.0(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0)
+      '@wordpress/preferences': 3.25.0(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
       '@wordpress/private-apis': 0.30.0
       '@wordpress/rich-text': 6.25.0(react@18.2.0)
       '@wordpress/style-engine': 1.31.0
@@ -3948,7 +3948,7 @@ packages:
     engines: {node: '>=14'}
     dev: true
 
-  /@wordpress/commands@0.19.0(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0):
+  /@wordpress/commands@0.19.0(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-HGI59spV/efsbBaZ1/MkFFIjCSiQRd3u+oEAyRY8KWhxZBkEbJPnxBVb1I+LZ4GkhMNwRLAeo2VrI1HoYbs6eQ==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -3956,7 +3956,7 @@ packages:
       react-dom: ^18.0.0
     dependencies:
       '@babel/runtime': 7.23.8
-      '@wordpress/components': 25.14.0(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0)
+      '@wordpress/components': 25.14.0(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
       '@wordpress/data': 9.18.0(react@18.2.0)
       '@wordpress/element': 5.25.0
       '@wordpress/i18n': 4.48.0
@@ -3964,7 +3964,7 @@ packages:
       '@wordpress/keyboard-shortcuts': 4.25.0(react@18.2.0)
       '@wordpress/private-apis': 0.30.0
       classnames: 2.5.1
-      cmdk: 0.2.0(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0)
+      cmdk: 0.2.0(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       rememo: 4.0.2
@@ -3977,23 +3977,23 @@ packages:
       - vite
     dev: true
 
-  /@wordpress/components@25.14.0(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0):
+  /@wordpress/components@25.14.0(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-PwAhzLPIsNpO1Z/0hTO7hnC1gPQlhGkGey32kgcl0hnhgZqW/BsmWf+CdhlIY58fwrhv4vO3ixc6odEMIGlBaQ==}
     engines: {node: '>=12'}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
     dependencies:
-      '@ariakit/react': 0.3.13(react-dom@18.2.0)(react@18.2.0)
+      '@ariakit/react': 0.3.14(react-dom@18.2.0)(react@18.2.0)
       '@babel/runtime': 7.23.8
       '@emotion/cache': 11.11.0
       '@emotion/css': 11.11.2
-      '@emotion/react': 11.11.3(@types/react@18.2.47)(react@18.2.0)
+      '@emotion/react': 11.11.3(@types/react@18.2.48)(react@18.2.0)
       '@emotion/serialize': 1.1.3
-      '@emotion/styled': 11.11.0(@emotion/react@11.11.3)(@types/react@18.2.47)(react@18.2.0)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.3)(@types/react@18.2.48)(react@18.2.0)
       '@emotion/utils': 1.2.1
       '@floating-ui/react-dom': 2.0.5(react-dom@18.2.0)(react@18.2.0)
-      '@radix-ui/react-dropdown-menu': 2.0.4(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-dropdown-menu': 2.0.4(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
       '@types/gradient-parser': 0.1.3
       '@types/highlight-words-core': 1.2.1
       '@use-gesture/react': 10.3.0(react@18.2.0)
@@ -4068,7 +4068,7 @@ packages:
       use-memo-one: 1.1.3(react@18.2.0)
     dev: true
 
-  /@wordpress/core-data@6.25.0(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0):
+  /@wordpress/core-data@6.25.0(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-JoInOwM41Np1sWWk79Eua8LYa2NQ+asW+bQbgHwstGU1n6iIVzhmnx+O5leGh1AKmcnQKxDPNADyaIOfxk8xow==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -4077,7 +4077,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.8
       '@wordpress/api-fetch': 6.45.0
-      '@wordpress/block-editor': 12.16.0(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0)
+      '@wordpress/block-editor': 12.16.0(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
       '@wordpress/blocks': 12.25.0(react@18.2.0)
       '@wordpress/compose': 6.25.0(react@18.2.0)
       '@wordpress/data': 9.18.0(react@18.2.0)
@@ -4208,7 +4208,7 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       '@babel/runtime': 7.23.8
-      '@types/react': 18.2.47
+      '@types/react': 18.2.48
       '@types/react-dom': 18.2.18
       '@wordpress/escape-html': 2.48.0
       change-case: 4.1.2
@@ -4248,10 +4248,10 @@ packages:
       eslint: 8.56.0
       eslint-config-prettier: 8.10.0(eslint@8.56.0)
       eslint-plugin-import: 2.29.1(@typescript-eslint/parser@6.18.1)(eslint-import-resolver-typescript@3.6.1)(eslint@8.56.0)
-      eslint-plugin-jest: 27.6.2(@typescript-eslint/eslint-plugin@6.18.1)(eslint@8.56.0)(jest@29.7.0)(typescript@5.3.3)
+      eslint-plugin-jest: 27.6.3(@typescript-eslint/eslint-plugin@6.18.1)(eslint@8.56.0)(jest@29.7.0)(typescript@5.3.3)
       eslint-plugin-jsdoc: 46.10.1(eslint@8.56.0)
       eslint-plugin-jsx-a11y: 6.8.0(eslint@8.56.0)
-      eslint-plugin-playwright: 0.15.3(eslint-plugin-jest@27.6.2)(eslint@8.56.0)
+      eslint-plugin-playwright: 0.15.3(eslint-plugin-jest@27.6.3)(eslint@8.56.0)
       eslint-plugin-prettier: 5.1.3(eslint-config-prettier@8.10.0)(eslint@8.56.0)(wp-prettier@3.0.3)
       eslint-plugin-react: 7.33.2(eslint@8.56.0)
       eslint-plugin-react-hooks: 4.6.0(eslint@8.56.0)
@@ -4317,7 +4317,7 @@ packages:
       jest: '>=29'
     dependencies:
       '@babel/runtime': 7.23.8
-      jest: 29.7.0(@types/node@20.11.0)(ts-node@10.9.2)
+      jest: 29.7.0(@types/node@20.11.1)(ts-node@10.9.2)
       jest-matcher-utils: 29.7.0
     dev: true
 
@@ -4331,7 +4331,7 @@ packages:
       '@babel/core': 7.23.7
       '@wordpress/jest-console': 7.19.0(jest@29.7.0)
       babel-jest: 29.7.0(@babel/core@7.23.7)
-      jest: 29.7.0(@types/node@20.11.0)(ts-node@10.9.2)
+      jest: 29.7.0(@types/node@20.11.1)(ts-node@10.9.2)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -4390,7 +4390,7 @@ packages:
       postcss: 8.4.33
     dev: true
 
-  /@wordpress/preferences@3.25.0(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0):
+  /@wordpress/preferences@3.25.0(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-gw1anmJGMCt3CAnmHbjGD0TDR6HNx61103Ct9Lko7QOTRM3ZoQnGt0qY15phsEB4U27HTswtzczdA1mktDNVIQ==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -4399,7 +4399,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.8
       '@wordpress/a11y': 3.48.0
-      '@wordpress/components': 25.14.0(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0)
+      '@wordpress/components': 25.14.0(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
       '@wordpress/data': 9.18.0(react@18.2.0)
       '@wordpress/element': 5.25.0
       '@wordpress/i18n': 4.48.0
@@ -4482,7 +4482,7 @@ packages:
       rememo: 4.0.2
     dev: true
 
-  /@wordpress/scripts@26.19.0(@playwright/test@1.40.1)(@types/node@20.11.0)(eslint-import-resolver-typescript@3.6.1)(react-dom@18.2.0)(react@18.2.0)(ts-node@10.9.2)(typescript@5.3.3):
+  /@wordpress/scripts@26.19.0(@playwright/test@1.40.1)(@types/node@20.11.1)(eslint-import-resolver-typescript@3.6.1)(react-dom@18.2.0)(react@18.2.0)(ts-node@10.9.2)(typescript@5.3.3):
     resolution: {integrity: sha512-m3QYlgpWRfIqCfU4jWKwGeA12Qkt6d9CMewEIxIBGVlEGd/sL5rU1fM7LKNBEbSPQpaOTWJApNGWPcW75Fwp+w==}
     engines: {node: '>=14', npm: '>=6.14.4'}
     hasBin: true
@@ -4522,7 +4522,7 @@ packages:
       expect-puppeteer: 4.4.0
       fast-glob: 3.3.2
       filenamify: 4.3.0
-      jest: 29.7.0(@types/node@20.11.0)(ts-node@10.9.2)
+      jest: 29.7.0(@types/node@20.11.1)(ts-node@10.9.2)
       jest-dev-server: 9.0.2
       jest-environment-jsdom: 29.7.0
       jest-environment-node: 29.7.0
@@ -4691,7 +4691,7 @@ packages:
     resolution: {integrity: sha512-umOSDSDrfHbTNPuNpC2NSnnA3LUrqpevPb4T9jRx4MagXNS0rs+gwiTcAvqCRmsD6utzsrzNt+ebm00SNWiC3Q==}
     dependencies:
       acorn: 8.11.3
-      acorn-walk: 8.3.1
+      acorn-walk: 8.3.2
     dev: true
 
   /acorn-import-assertions@1.9.0(acorn@8.11.3):
@@ -4710,8 +4710,8 @@ packages:
       acorn: 8.11.3
     dev: true
 
-  /acorn-walk@8.3.1:
-    resolution: {integrity: sha512-TgUZgYvqZprrl7YldZNoa9OciCAyZR+Ejm9eXzKCmjsF5IKp/wgQ7Z/ZpjpGTIUPwrHQIcYeI8qDh4PsEwxMbw==}
+  /acorn-walk@8.3.2:
+    resolution: {integrity: sha512-cjkyv4OtNCIeqhHrfS81QWXoCBPExR/J62oyEqepVw8WaQeSqpW2uhuLPh1m9eWhDuOo/jUXVTlifvesOWp/4A==}
     engines: {node: '>=0.4.0'}
     dev: true
 
@@ -5067,7 +5067,7 @@ packages:
   /axios@1.6.5:
     resolution: {integrity: sha512-Ii012v05KEVuUoFWmMW/UQv9aRIc3ZwkWDcM+h5Il8izZCtRVpDUfwpoFf7eOtajT3QiGR4yDUx7lPqHJULgbg==}
     dependencies:
-      follow-redirects: 1.15.4
+      follow-redirects: 1.15.5
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -5315,7 +5315,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001576
-      electron-to-chromium: 1.4.628
+      electron-to-chromium: 1.4.630
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.22.2)
     dev: true
@@ -5374,7 +5374,7 @@ packages:
     dependencies:
       function-bind: 1.1.2
       get-intrinsic: 1.2.2
-      set-function-length: 1.1.1
+      set-function-length: 1.2.0
     dev: true
 
   /callsites@3.1.0:
@@ -5513,7 +5513,7 @@ packages:
     engines: {node: '>=12.13.0'}
     hasBin: true
     dependencies:
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       escape-string-regexp: 4.0.0
       is-wsl: 2.2.0
       lighthouse-logger: 1.4.2
@@ -5604,13 +5604,13 @@ packages:
       shallow-clone: 3.0.1
     dev: true
 
-  /cmdk@0.2.0(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0):
+  /cmdk@0.2.0(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-JQpKvEOb86SnvMZbYaFKYhvzFntWBeSZdyii0rZPhKJj9uwJBxu4DaVYDrRN7r3mPop56oPhRw+JYWTKs66TYw==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
     dependencies:
-      '@radix-ui/react-dialog': 1.0.0(@types/react@18.2.47)(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-dialog': 1.0.0(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
       command-score: 0.1.2
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -5859,7 +5859,7 @@ packages:
       typescript: 5.3.3
     dev: true
 
-  /create-jest@29.7.0(@types/node@20.11.0)(ts-node@10.9.2):
+  /create-jest@29.7.0(@types/node@20.11.1)(ts-node@10.9.2):
     resolution: {integrity: sha512-Adz2bdH0Vq3F53KEMJOoftQFutWCukm6J24wbPWRO4k1kMY7gS7ds/uoJkNuV8wDCtWWnuwGcJwpWcih+zEW1Q==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     hasBin: true
@@ -5868,7 +5868,7 @@ packages:
       chalk: 4.1.2
       exit: 0.1.2
       graceful-fs: 4.2.11
-      jest-config: 29.7.0(@types/node@20.11.0)(ts-node@10.9.2)
+      jest-config: 29.7.0(@types/node@20.11.1)(ts-node@10.9.2)
       jest-util: 29.7.0
       prompts: 2.4.2
     transitivePeerDependencies:
@@ -6413,8 +6413,8 @@ packages:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
     dev: true
 
-  /electron-to-chromium@1.4.628:
-    resolution: {integrity: sha512-2k7t5PHvLsufpP6Zwk0nof62yLOsCf032wZx7/q0mv8gwlXjhcxI3lz6f0jBr0GrnWKcm3burXzI3t5IrcdUxw==}
+  /electron-to-chromium@1.4.630:
+    resolution: {integrity: sha512-osHqhtjojpCsACVnuD11xO5g9xaCyw7Qqn/C2KParkMv42i8jrJJgx3g7mkHfpxwhy9MnOJr8+pKOdZ7qzgizg==}
     dev: true
 
   /emittery@0.13.1:
@@ -6540,7 +6540,7 @@ packages:
       object.assign: 4.1.5
       regexp.prototype.flags: 1.5.1
       safe-array-concat: 1.0.1
-      safe-regex-test: 1.0.1
+      safe-regex-test: 1.0.2
       string.prototype.trim: 1.2.8
       string.prototype.trimend: 1.0.7
       string.prototype.trimstart: 1.0.7
@@ -6807,8 +6807,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-jest@27.6.2(@typescript-eslint/eslint-plugin@6.18.1)(eslint@8.56.0)(jest@29.7.0)(typescript@5.3.3):
-    resolution: {integrity: sha512-CI1AlKrsNhYFoP48VU8BVWOi7+qHTq4bRxyUlGjeU8SfFt8abjXhjOuDzUoMp68DoXIx17KpNpIkMrl4s4ZW0g==}
+  /eslint-plugin-jest@27.6.3(@typescript-eslint/eslint-plugin@6.18.1)(eslint@8.56.0)(jest@29.7.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-+YsJFVH6R+tOiO3gCJon5oqn4KWc+mDq2leudk8mrp8RFubLOo9CVyi3cib4L7XMpxExmkmBZQTPDYVBzgpgOA==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': ^5.0.0 || ^6.0.0
@@ -6823,7 +6823,7 @@ packages:
       '@typescript-eslint/eslint-plugin': 6.18.1(@typescript-eslint/parser@6.18.1)(eslint@8.56.0)(typescript@5.3.3)
       '@typescript-eslint/utils': 5.62.0(eslint@8.56.0)(typescript@5.3.3)
       eslint: 8.56.0
-      jest: 29.7.0(@types/node@20.11.0)(ts-node@10.9.2)
+      jest: 29.7.0(@types/node@20.11.1)(ts-node@10.9.2)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -6874,7 +6874,7 @@ packages:
       object.fromentries: 2.0.7
     dev: true
 
-  /eslint-plugin-playwright@0.15.3(eslint-plugin-jest@27.6.2)(eslint@8.56.0):
+  /eslint-plugin-playwright@0.15.3(eslint-plugin-jest@27.6.3)(eslint@8.56.0):
     resolution: {integrity: sha512-LQMW5y0DLK5Fnpya7JR1oAYL2/7Y9wDiYw6VZqlKqcRGSgjbVKNqxraphk7ra1U3Bb5EK444xMgUlQPbMg2M1g==}
     peerDependencies:
       eslint: '>=7'
@@ -6884,7 +6884,7 @@ packages:
         optional: true
     dependencies:
       eslint: 8.56.0
-      eslint-plugin-jest: 27.6.2(@typescript-eslint/eslint-plugin@6.18.1)(eslint@8.56.0)(jest@29.7.0)(typescript@5.3.3)
+      eslint-plugin-jest: 27.6.3(@typescript-eslint/eslint-plugin@6.18.1)(eslint@8.56.0)(jest@29.7.0)(typescript@5.3.3)
     dev: true
 
   /eslint-plugin-prettier@5.1.3(eslint-config-prettier@8.10.0)(eslint@8.56.0)(wp-prettier@3.0.3):
@@ -7360,8 +7360,8 @@ packages:
     resolution: {integrity: sha512-36yxDn5H7OFZQla0/jFJmbIKTdZAQHngCedGxiMmpNfEZM0sdEeT+WczLQrjK6D7o2aiyLYDnkw0R3JK0Qv1RQ==}
     dev: true
 
-  /follow-redirects@1.15.4:
-    resolution: {integrity: sha512-Cr4D/5wlrb0z9dgERpUL3LrmPKVDsETIJhaCMeDfuFYcqa5bldGV6wBsAN6X/vxlXQtFBMrXdXxdL8CbDTGniw==}
+  /follow-redirects@1.15.5:
+    resolution: {integrity: sha512-vSFWUON1B+yAw1VN4xMfxgn5fTUiaOzAJCKBwIIgT/+7CuGy9+r+5gITvP62j3RmaD5Ph65UaERdOSRGUzZtgw==}
     engines: {node: '>=4.0'}
     peerDependencies:
       debug: '*'
@@ -7955,7 +7955,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.4
+      follow-redirects: 1.15.5
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -8550,7 +8550,7 @@ packages:
       '@jest/expect': 29.7.0
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       chalk: 4.1.2
       co: 4.6.0
       dedent: 1.5.1
@@ -8571,7 +8571,7 @@ packages:
       - supports-color
     dev: true
 
-  /jest-cli@29.7.0(@types/node@20.11.0)(ts-node@10.9.2):
+  /jest-cli@29.7.0(@types/node@20.11.1)(ts-node@10.9.2):
     resolution: {integrity: sha512-OVVobw2IubN/GSYsxETi+gOe7Ka59EFMR/twOU3Jb2GnKKeMGJB5SGUUrEz3SFVmJASUdZUzy83sLNNQ2gZslg==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     hasBin: true
@@ -8585,10 +8585,10 @@ packages:
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
       chalk: 4.1.2
-      create-jest: 29.7.0(@types/node@20.11.0)(ts-node@10.9.2)
+      create-jest: 29.7.0(@types/node@20.11.1)(ts-node@10.9.2)
       exit: 0.1.2
       import-local: 3.1.0
-      jest-config: 29.7.0(@types/node@20.11.0)(ts-node@10.9.2)
+      jest-config: 29.7.0(@types/node@20.11.1)(ts-node@10.9.2)
       jest-util: 29.7.0
       jest-validate: 29.7.0
       yargs: 17.7.2
@@ -8599,7 +8599,7 @@ packages:
       - ts-node
     dev: true
 
-  /jest-config@29.7.0(@types/node@20.11.0)(ts-node@10.9.2):
+  /jest-config@29.7.0(@types/node@20.11.1)(ts-node@10.9.2):
     resolution: {integrity: sha512-uXbpfeQ7R6TZBqI3/TxCU4q4ttk3u0PJeC+E0zbfSoSjq6bJ7buBPxzQPL0ifrkY4DNu4JUdk0ImlBUYi840eQ==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     peerDependencies:
@@ -8614,7 +8614,7 @@ packages:
       '@babel/core': 7.23.7
       '@jest/test-sequencer': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       babel-jest: 29.7.0(@babel/core@7.23.7)
       chalk: 4.1.2
       ci-info: 3.9.0
@@ -8634,7 +8634,7 @@ packages:
       pretty-format: 29.7.0
       slash: 3.0.0
       strip-json-comments: 3.1.1
-      ts-node: 10.9.2(@types/node@20.11.0)(typescript@5.3.3)
+      ts-node: 10.9.2(@types/node@20.11.1)(typescript@5.3.3)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -8697,7 +8697,7 @@ packages:
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
       '@types/jsdom': 20.0.1
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       jest-mock: 29.7.0
       jest-util: 29.7.0
       jsdom: 20.0.3
@@ -8714,7 +8714,7 @@ packages:
       '@jest/environment': 29.7.0
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       jest-mock: 29.7.0
       jest-util: 29.7.0
     dev: true
@@ -8730,7 +8730,7 @@ packages:
     dependencies:
       '@jest/types': 29.6.3
       '@types/graceful-fs': 4.1.9
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       graceful-fs: 4.2.11
@@ -8781,7 +8781,7 @@ packages:
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       jest-util: 29.7.0
     dev: true
 
@@ -8836,7 +8836,7 @@ packages:
       '@jest/test-result': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       chalk: 4.1.2
       emittery: 0.13.1
       graceful-fs: 4.2.11
@@ -8867,7 +8867,7 @@ packages:
       '@jest/test-result': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       chalk: 4.1.2
       cjs-module-lexer: 1.2.3
       collect-v8-coverage: 1.0.2
@@ -8919,7 +8919,7 @@ packages:
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       chalk: 4.1.2
       ci-info: 3.9.0
       graceful-fs: 4.2.11
@@ -8944,7 +8944,7 @@ packages:
     dependencies:
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       emittery: 0.13.1
@@ -8956,7 +8956,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: true
@@ -8965,13 +8965,13 @@ packages:
     resolution: {integrity: sha512-eIz2msL/EzL9UFTFFx7jBTkeZfku0yUAyZZZmJ93H2TYEiroIx2PQjEXcwYtYl8zXCxb+PAmA2hLIt/6ZEkPHw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       jest-util: 29.7.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: true
 
-  /jest@29.7.0(@types/node@20.11.0)(ts-node@10.9.2):
+  /jest@29.7.0(@types/node@20.11.1)(ts-node@10.9.2):
     resolution: {integrity: sha512-NIy3oAFp9shda19hy4HK0HRTWKtPJmGdnvywu01nOqNC2vZg+Z+fvJDxpMQA88eb2I9EcafcdjYgsDthnYTvGw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     hasBin: true
@@ -8984,7 +8984,7 @@ packages:
       '@jest/core': 29.7.0(ts-node@10.9.2)
       '@jest/types': 29.6.3
       import-local: 3.1.0
-      jest-cli: 29.7.0(@types/node@20.11.0)(ts-node@10.9.2)
+      jest-cli: 29.7.0(@types/node@20.11.1)(ts-node@10.9.2)
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -10999,7 +10999,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /react-remove-scroll-bar@2.3.4(@types/react@18.2.47)(react@18.2.0):
+  /react-remove-scroll-bar@2.3.4(@types/react@18.2.48)(react@18.2.0):
     resolution: {integrity: sha512-63C4YQBUt0m6ALadE9XV56hV8BgJWDmmTPY758iIJjfQKt2nYwoUrPk0LXRXcB/yIj82T1/Ixfdpdk68LwIB0A==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -11009,13 +11009,13 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 18.2.47
+      '@types/react': 18.2.48
       react: 18.2.0
-      react-style-singleton: 2.2.1(@types/react@18.2.47)(react@18.2.0)
+      react-style-singleton: 2.2.1(@types/react@18.2.48)(react@18.2.0)
       tslib: 2.6.2
     dev: true
 
-  /react-remove-scroll@2.5.4(@types/react@18.2.47)(react@18.2.0):
+  /react-remove-scroll@2.5.4(@types/react@18.2.48)(react@18.2.0):
     resolution: {integrity: sha512-xGVKJJr0SJGQVirVFAUZ2k1QLyO6m+2fy0l8Qawbp5Jgrv3DeLalrfMNBFSlmz5kriGGzsVBtGVnf4pTKIhhWA==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -11025,16 +11025,16 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 18.2.47
+      '@types/react': 18.2.48
       react: 18.2.0
-      react-remove-scroll-bar: 2.3.4(@types/react@18.2.47)(react@18.2.0)
-      react-style-singleton: 2.2.1(@types/react@18.2.47)(react@18.2.0)
+      react-remove-scroll-bar: 2.3.4(@types/react@18.2.48)(react@18.2.0)
+      react-style-singleton: 2.2.1(@types/react@18.2.48)(react@18.2.0)
       tslib: 2.6.2
-      use-callback-ref: 1.3.1(@types/react@18.2.47)(react@18.2.0)
-      use-sidecar: 1.1.2(@types/react@18.2.47)(react@18.2.0)
+      use-callback-ref: 1.3.1(@types/react@18.2.48)(react@18.2.0)
+      use-sidecar: 1.1.2(@types/react@18.2.48)(react@18.2.0)
     dev: true
 
-  /react-remove-scroll@2.5.5(@types/react@18.2.47)(react@18.2.0):
+  /react-remove-scroll@2.5.5(@types/react@18.2.48)(react@18.2.0):
     resolution: {integrity: sha512-ImKhrzJJsyXJfBZ4bzu8Bwpka14c/fQt0k+cyFp/PBhTfyDnU5hjOtM4AG/0AMyy8oKzOTR0lDgJIM7pYXI0kw==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -11044,16 +11044,16 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 18.2.47
+      '@types/react': 18.2.48
       react: 18.2.0
-      react-remove-scroll-bar: 2.3.4(@types/react@18.2.47)(react@18.2.0)
-      react-style-singleton: 2.2.1(@types/react@18.2.47)(react@18.2.0)
+      react-remove-scroll-bar: 2.3.4(@types/react@18.2.48)(react@18.2.0)
+      react-style-singleton: 2.2.1(@types/react@18.2.48)(react@18.2.0)
       tslib: 2.6.2
-      use-callback-ref: 1.3.1(@types/react@18.2.47)(react@18.2.0)
-      use-sidecar: 1.1.2(@types/react@18.2.47)(react@18.2.0)
+      use-callback-ref: 1.3.1(@types/react@18.2.48)(react@18.2.0)
+      use-sidecar: 1.1.2(@types/react@18.2.48)(react@18.2.0)
     dev: true
 
-  /react-style-singleton@2.2.1(@types/react@18.2.47)(react@18.2.0):
+  /react-style-singleton@2.2.1(@types/react@18.2.48)(react@18.2.0):
     resolution: {integrity: sha512-ZWj0fHEMyWkHzKYUr2Bs/4zU6XLmq9HsgBURm7g5pAVfyn49DgUiNgY2d4lXRlYSiCif9YBGpQleewkcqddc7g==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -11063,7 +11063,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 18.2.47
+      '@types/react': 18.2.48
       get-nonce: 1.0.1
       invariant: 2.2.4
       react: 18.2.0
@@ -11419,8 +11419,8 @@ packages:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
     dev: true
 
-  /safe-regex-test@1.0.1:
-    resolution: {integrity: sha512-Y5NejJTTliTyY4H7sipGqY+RX5P87i3F7c4Rcepy72nq+mNLhIsD0W4c7kEmduMDQCSqtPsXPlSTsFhh2LQv+g==}
+  /safe-regex-test@1.0.2:
+    resolution: {integrity: sha512-83S9w6eFq12BBIJYvjMux6/dkirb8+4zJRA9cxNBVb7Wq5fJBW+Xze48WqR8pxua7bDuAaaAxtVVd4Idjp1dBQ==}
     engines: {node: '>= 0.4'}
     dependencies:
       call-bind: 1.0.5
@@ -11608,11 +11608,12 @@ packages:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
     dev: true
 
-  /set-function-length@1.1.1:
-    resolution: {integrity: sha512-VoaqjbBJKiWtg4yRcKBQ7g7wnGnLV3M8oLvVWwOk2PdYY6PEFegR1vezXR0tw6fZGF9csVakIRjrJiy2veSBFQ==}
+  /set-function-length@1.2.0:
+    resolution: {integrity: sha512-4DBHDoyHlM1IRPGYcoxexgh67y4ueR53FKV1yyxwFMY7aCqcN/38M1+SwZ/qJQ8iLv7+ck385ot4CcisOAPT9w==}
     engines: {node: '>= 0.4'}
     dependencies:
       define-data-property: 1.1.1
+      function-bind: 1.1.2
       get-intrinsic: 1.2.2
       gopd: 1.0.1
       has-property-descriptors: 1.0.1
@@ -11906,7 +11907,7 @@ packages:
     resolution: {integrity: sha512-DI7/OuAUD+GMpR6dmu8lliO2Wg5zfeh+/xsdyJZCzd8o5JgFUjCeLsBDuZjIQJdwXS3J0L/uZYrELKYqx+PXog==}
     engines: {node: '>=8.0'}
     dependencies:
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       image-ssim: 0.2.0
       jpeg-js: 0.4.4
     dev: true
@@ -12329,7 +12330,7 @@ packages:
       uglify-js:
         optional: true
     dependencies:
-      '@jridgewell/trace-mapping': 0.3.20
+      '@jridgewell/trace-mapping': 0.3.21
       jest-worker: 27.5.1
       schema-utils: 3.3.0
       serialize-javascript: 6.0.2
@@ -12466,7 +12467,7 @@ packages:
       webpack: 5.89.0(webpack-cli@5.1.4)
     dev: true
 
-  /ts-node@10.9.2(@types/node@20.11.0)(typescript@5.3.3):
+  /ts-node@10.9.2(@types/node@20.11.1)(typescript@5.3.3):
     resolution: {integrity: sha512-f0FFpIdcHgn8zcPSbf1dRevwt047YMnaiJM3u2w2RewrB+fob/zePZcrOyQoLMMO7aBIddLcQIEK5dYjkLnGrQ==}
     hasBin: true
     peerDependencies:
@@ -12485,9 +12486,9 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 20.11.0
+      '@types/node': 20.11.1
       acorn: 8.11.3
-      acorn-walk: 8.3.1
+      acorn-walk: 8.3.2
       arg: 4.1.3
       create-require: 1.1.1
       diff: 4.0.2
@@ -12749,7 +12750,7 @@ packages:
       requires-port: 1.0.0
     dev: true
 
-  /use-callback-ref@1.3.1(@types/react@18.2.47)(react@18.2.0):
+  /use-callback-ref@1.3.1(@types/react@18.2.48)(react@18.2.0):
     resolution: {integrity: sha512-Lg4Vx1XZQauB42Hw3kK7JM6yjVjgFmFC5/Ab797s79aARomD2nEErc4mCgM8EZrARLmmbWpi5DGCadmK50DcAQ==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -12759,12 +12760,12 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 18.2.47
+      '@types/react': 18.2.48
       react: 18.2.0
       tslib: 2.6.2
     dev: true
 
-  /use-isomorphic-layout-effect@1.1.2(@types/react@18.2.47)(react@18.2.0):
+  /use-isomorphic-layout-effect@1.1.2(@types/react@18.2.48)(react@18.2.0):
     resolution: {integrity: sha512-49L8yCO3iGT/ZF9QttjwLF/ZD9Iwto5LnH5LmEdk/6cFmXddqi2ulF0edxTwjj+7mqvpVVGQWvbXZdn32wRSHA==}
     peerDependencies:
       '@types/react': '*'
@@ -12773,7 +12774,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 18.2.47
+      '@types/react': 18.2.48
       react: 18.2.0
     dev: true
 
@@ -12796,7 +12797,7 @@ packages:
       react: 18.2.0
     dev: true
 
-  /use-sidecar@1.1.2(@types/react@18.2.47)(react@18.2.0):
+  /use-sidecar@1.1.2(@types/react@18.2.48)(react@18.2.0):
     resolution: {integrity: sha512-epTbsLuzZ7lPClpz2TyryBfztm7m+28DlEv2ZCQ3MDr5ssiwyOwGH/e5F9CkfWjJ1t4clvI58yF822/GUkjjhw==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -12806,7 +12807,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 18.2.47
+      '@types/react': 18.2.48
       detect-node-es: 1.1.0
       react: 18.2.0
       tslib: 2.6.2
@@ -12851,7 +12852,7 @@ packages:
     resolution: {integrity: sha512-/EH/sDgxU2eGxajKdwLCDmQ4FWq+kpi3uCmBGpw1xJtnAxEjlD8j8PEiGWpCIMIs3ciNAgH0d3TTJiUkYzyZjA==}
     engines: {node: '>=10.12.0'}
     dependencies:
-      '@jridgewell/trace-mapping': 0.3.20
+      '@jridgewell/trace-mapping': 0.3.21
       '@types/istanbul-lib-coverage': 2.0.6
       convert-source-map: 2.0.0
     dev: true
@@ -12965,7 +12966,7 @@ packages:
     dependencies:
       '@discoveryjs/json-ext': 0.5.7
       acorn: 8.11.3
-      acorn-walk: 8.3.1
+      acorn-walk: 8.3.2
       commander: 7.2.0
       debounce: 1.2.1
       escape-string-regexp: 4.0.0
