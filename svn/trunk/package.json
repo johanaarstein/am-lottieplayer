@@ -40,7 +40,7 @@
 	"main": "build/lottieplayer/index.js",
 	"devDependencies": {
 		"@aarsteinmedia/dotlottie-player-light": "^2.3.2",
-		"@types/node": "^20.11.11",
+		"@types/node": "^20.11.14",
 		"@types/react": "^18.2.48",
 		"@types/wordpress__block-editor": "^11.5.10",
 		"@types/wordpress__blocks": "^12.5.13",
@@ -49,7 +49,7 @@
 		"@typescript-eslint/parser": "^5.62.0",
 		"@wordpress/blob": "^3.50.0",
 		"@wordpress/compose": "^6.27.0",
-		"@wordpress/core-data": "^6.27.1",
+		"@wordpress/core-data": "^6.27.2",
 		"@wordpress/data": "^9.20.0",
 		"@wordpress/element": "^5.27.0",
 		"@wordpress/i18n": "^4.50.0",
