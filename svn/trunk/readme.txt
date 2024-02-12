@@ -129,6 +129,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 3.0.6 - Feb 12 2024 =
+* Minor updates to animation engine
+
 = 3.0.5 - Jan 15 2024 =
 * Performance: More accurate use of Intersection Observer, to freeze/pause all animations out of view
 
