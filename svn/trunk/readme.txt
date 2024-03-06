@@ -129,6 +129,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 3.0.7 - March 6 2024 =
+* Minor updates to animation engine
+
 = 3.0.6 - Feb 12 2024 =
 * Minor updates to animation engine
 
