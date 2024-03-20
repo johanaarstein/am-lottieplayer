@@ -83,6 +83,12 @@ vc_map(
       ],
       [
         'type' => 'checkbox',
+        'description' => $proLink,
+        'heading' => 'Pro Feature: ' . __('Animate on scroll', 'am-lottieplayer'),
+        'param_name' => 'none',
+      ],
+      [
+        'type' => 'checkbox',
         'heading' => __('Play on click', 'am-lottieplayer'),
         'param_name' => 'onclick',
       ],

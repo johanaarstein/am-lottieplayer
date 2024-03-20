@@ -7,7 +7,7 @@ import ProLink from '@components/ProLink';
 
 import type { BlockEditProps } from 'wordpress__blocks';
 import type { PlayerComponentProps } from '@types';
-import type { RendererType } from 'lottie-web';
+// import type { RendererType } from 'lottie-web';
 
 const Advanced = ( {
 	attributes,
@@ -32,8 +32,10 @@ const Advanced = ( {
 				help={ <ProLink /> }
 				disabled
 				value={ renderer }
-				onChange={ ( val ) =>
-					setAttributes( { renderer: val as RendererType } )
+				onChange={ () =>
+					console.warn(
+						'This feature is only available in the premium version'
+					)
 				}
 				options={ [
 					{ value: 'svg', label: 'SVG' },

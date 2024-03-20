@@ -35,6 +35,27 @@ const Interactions = ( {
 				initialOpen={ true }
 			>
 				<SwitchLabel
+					id={ 'am-lottieplayer-animateOnScroll-settings' }
+					title={
+						<>
+							<span
+								className="pro-feature"
+								style={ { marginRight: '1em' } }
+							>
+								{ __( 'Animate on scroll', 'am-lottieplayer' ) }
+							</span>
+							<ProFeature />
+						</>
+					}
+					value={ false }
+					disabled
+					onChange={ () =>
+						console.warn(
+							'This feature is only available in the premium version'
+						)
+					}
+				/>
+				<SwitchLabel
 					id="am-lottieplayer-click-settings"
 					title={ __( 'Play on click', 'am-lottieplayer' ) }
 					value={ clickEvent }

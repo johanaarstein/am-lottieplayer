@@ -12,7 +12,7 @@ import { usePlayerContext } from '@context/PlayerWrapper';
 import ProFeature from '@assets/ProFeature';
 import ProLink from '@components/ProLink';
 import { NumberInput, SwitchLabel } from '@components/form';
-import { PlayMode } from '@utils';
+// import { PlayMode } from '@utils';
 
 import type { BlockEditProps } from 'wordpress__blocks';
 import type { PlayerComponentProps } from '@types';
@@ -26,7 +26,7 @@ const Animation = ( {
 			controls,
 			direction,
 			loop,
-			mode = PlayMode.Normal,
+			// mode = PlayMode.Normal,
 			segment,
 			speed = 1,
 			subframe,
@@ -104,13 +104,13 @@ const Animation = ( {
 							<ProFeature />
 						</>
 					}
-					value={ mode === PlayMode.Bounce }
+					value={ false }
 					disabled
-					onChange={ ( value ) => {
-						setAttributes( {
-							mode: value ? PlayMode.Bounce : PlayMode.Normal,
-						} );
-					} }
+					onChange={ () =>
+						console.warn(
+							'This feature is only available in the premium version'
+						)
+					}
 				/>
 				<SwitchLabel
 					id="am-lottieplayer-reverse-settings"
@@ -157,13 +157,10 @@ const Animation = ( {
 						title={ __( 'First frame', 'am-lottieplayer' ) }
 						value={ segment?.[ 0 ] }
 						disabled
-						onChange={ ( val ) =>
-							setAttributes( {
-								segment:
-									val !== undefined
-										? [ val, segment?.[ 1 ] ?? 1 ]
-										: undefined,
-							} )
+						onChange={ () =>
+							console.warn(
+								'This feature is only available in the premium version'
+							)
 						}
 						placeholder={ '1' }
 					/>
@@ -172,17 +169,10 @@ const Animation = ( {
 						title={ __( 'Last frame', 'am-lottieplayer' ) }
 						value={ segment?.[ 1 ] }
 						disabled
-						onChange={ ( val ) =>
-							setAttributes( {
-								segment: val
-									? [
-											segment?.[ 0 ] ?? 1,
-											val <= state.totalFrames + 1
-												? val
-												: state.totalFrames + 1,
-									  ]
-									: undefined,
-							} )
+						onChange={ () =>
+							console.warn(
+								'This feature is only available in the premium version'
+							)
 						}
 						placeholder={ ( state.totalFrames + 1 ).toString() }
 					/>

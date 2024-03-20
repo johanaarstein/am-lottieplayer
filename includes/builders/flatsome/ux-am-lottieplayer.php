@@ -112,6 +112,12 @@ add_ux_builder_shortcode('am-lottieplayer', [
           'unit' => '',
         ],
 
+        'none' => [
+          'type' => 'checkbox',
+          'description' => $proLink,
+          'heading' => __('Animate on scroll', 'am-lottieplayer'),
+        ],
+
         'onclick' => [
           'type' => 'checkbox',
           'heading' => __('Play on click', 'am-lottieplayer'),

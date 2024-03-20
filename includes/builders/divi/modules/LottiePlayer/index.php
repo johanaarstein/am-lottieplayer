@@ -272,6 +272,18 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					'default' => '',
 					'toggle_slug' => 'main_content',
 				],
+				'animate_on_scroll' => [
+					'label' => 'Pro Feature: ' . esc_html__('Animate on scroll', 'am-lottieplayer'),
+					'description' => $proLink,
+					'type' => 'yes_no_button',
+					'option_category' => 'basic_option',
+					'options'  => [
+						'off' => et_builder_i18n('No'),
+						'on'  => et_builder_i18n('Yes'),
+					],
+					'default_on_front' => 'off',
+					'toggle_slug' => 'main_content',
+				],
 				'onclick' => [
 					'label' => __('Play on click', 'am-lottieplayer'),
 					'type' => 'yes_no_button',

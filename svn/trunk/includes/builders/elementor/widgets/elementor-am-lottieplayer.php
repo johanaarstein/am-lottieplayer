@@ -178,6 +178,17 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			);
 
 			$this->add_control(
+				'animate_on_scroll',
+				[
+					'label' => 'Pro Feature: ' . __('Animate on scroll', 'am-lottieplayer'),
+					'description' => $proLink,
+					'type' => \Elementor\Controls_Manager::SWITCHER,
+					'label_on' => __('Yes', 'am-lottieplayer'),
+					'label_off' => __('No', 'am-lottieplayer')
+				]
+			);
+
+			$this->add_control(
 				'onclick',
 				[
 					'label' => __('Play on click', 'am-lottieplayer'),
