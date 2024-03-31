@@ -21,7 +21,9 @@
         "none",
         "left",
         "right",
-        "center"
+        "center",
+        "wide",
+        "full"
       ],
       "default": "none"
     },

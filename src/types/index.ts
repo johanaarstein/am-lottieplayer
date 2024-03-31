@@ -4,10 +4,10 @@ import type { BlockEditProps } from 'wordpress__blocks';
 import type { ResizeStartCallback } from 're-resizable';
 import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player-light';
 import type { AnimationSegment } from 'lottie-web';
-import type { OnMouseOut } from '@utils';
+import type { Align, OnMouseOut } from '@utils';
 
 export interface PlayerComponentProps extends Partial< DotLottiePlayer > {
-	align?: string;
+	align?: Align;
 	allowedBlocks?: string[];
 	alt?: string;
 	clickEvent?: boolean;

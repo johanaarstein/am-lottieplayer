@@ -25,11 +25,11 @@ export default function ResizableCover( {
 			} }
 			minHeight={ 10 }
 			onResizeStart={ onResizeStart }
-			onResize={ ( e, dir, el ) => {
+			onResize={ ( _e, _dir, el ) => {
 				onResize( el.clientHeight );
 				if ( ! isResizing ) setIsResizing( true );
 			} }
-			onResizeStop={ ( e, dir, el ) => {
+			onResizeStop={ ( _e, _dir, el ) => {
 				onResizeStop( el.clientHeight );
 				setIsResizing( false );
 			} }

@@ -1,4 +1,5 @@
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
+import { Align } from '@utils';
 
 import type { BlockSaveProps } from 'wordpress__blocks';
 import type { AnimationSegment } from 'lottie-web';
@@ -45,7 +46,7 @@ export default function save( {
 				? undefined
 				: JSON.stringify( [ segment[ 0 ], segment[ 1 ] ] ),
 		parseWidth = ( num: number ) => {
-			if ( align === 'wide' || align === 'full' ) return '100%';
+			if ( align === Align.Wide || align === Align.Full ) return '100%';
 			if ( num && typeof num === 'number' ) return `${ num }px`;
 		};
 

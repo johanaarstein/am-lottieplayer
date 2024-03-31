@@ -4,6 +4,15 @@ import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player-light';
 import type { AnimationDirection } from 'lottie-web';
 import type { KeyboardEvent } from 'react';
 
+export enum Align {
+	Center = 'center',
+	Full = 'full',
+	Left = 'left',
+	None = 'none',
+	Right = 'right',
+	Wide = 'wide',
+}
+
 export enum PlayMode {
 	Bounce = 'bounce',
 	Normal = 'normal',
