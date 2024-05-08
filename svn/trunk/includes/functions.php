@@ -47,7 +47,7 @@ if (!function_exists('am_render_lottieplayer')) {
   {
     ob_start(); ?>
     <dotlottie-player
-      <?php echo esc_html($atts['autoplay']) && esc_html($atts['autoplay']) !== 'false' ? 'autoplay' : ''; ?>
+      <?php echo esc_html($atts['autoplay']) && esc_html($atts['autoplay']) !== 'false' && (!esc_html($atts['scroll']) || esc_html($atts['scroll']) !== 'true') ? 'autoplay' : ''; ?>
       background="<?php echo esc_html($atts['background']) ?? 'transparent'; ?>"
       <?php echo esc_html($atts['controls']) && esc_html($atts['controls']) !== 'false'  ? 'controls' : ''; ?>
       description="<?php echo esc_html($atts['alt']); ?>"

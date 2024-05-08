@@ -454,7 +454,7 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 				return;
 			}
 
-			$autoplay = $this->switcher_value($settings['autoplay'], 'autoplay', '');
+			$autoplay = $this->switcher_value($settings['scroll'], true, false) ? false : $this->switcher_value($settings['autoplay'], 'autoplay', '');
 			$controls = $this->switcher_value($settings['controls'], 'controls', '');
 			$direction = $this->switcher_value($settings['reverse'], '-1', '1');
 			$subframe = $this->switcher_value($settings['subframe'], 'subframe', '');

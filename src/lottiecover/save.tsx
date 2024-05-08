@@ -61,7 +61,7 @@ export default function save( {
 				class={ `lottie-element${
 					selector?.id ? ' has-selector' : ''
 				}` }
-				autoplay={ autoplay ? '' : null }
+				autoplay={ autoplay && ! scrollEvent ? '' : null }
 				controls={ controls ? '' : null }
 				description={ alt }
 				direction={ direction }

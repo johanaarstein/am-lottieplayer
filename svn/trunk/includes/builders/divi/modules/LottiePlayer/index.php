@@ -478,7 +478,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 				$this->module_id(), #1
 				$this->module_classname($render_slug), #2
 				esc_url($src), #3
-				esc_attr($this->props['autoplay'] !== 'off' ? 'autoplay' : ''), #4
+				esc_attr(!$scroll && $this->props['autoplay'] !== 'off' ? 'autoplay' : ''), #4
 				esc_attr($this->props['loop'] !== 'off' ? 'loop' : ''), #5
 				esc_attr($this->props['controls'] !== 'off' ? 'controls' : ''), #6
 				esc_attr($alt), #7
