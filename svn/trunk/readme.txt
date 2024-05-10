@@ -129,6 +129,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 3.1.3 - May 8 2024 =
+* Minor bugfixes
+
 = 3.1.2 - May 8 2024 =
 * Minor bugfixes
 

@@ -92,9 +92,6 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 
 		function get_fields()
 		{
-
-			$proLink = esc_html__('This feature will only work in the premium version.', 'am-lottieplayer') . ' <a href="' . esc_url('https://www.aarstein.media/en/am-lottieplayer/pro', 'am-lottieplayer') . '" target="_blank" rel="noreferrer">' . esc_html__('Read about additional features in AM LottiePlayer PRO', 'am-lottieplayer') . '<span class="dashicons dashicons-external" style="font-size: 1em;"></span></a>';
-
 			$fields = [
 				'src' => [
 					'label' => esc_html__('AM Lottie', 'am-lottieplayer'),
@@ -110,7 +107,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					'toggle_slug' => 'main_content',
 					'mobile_options' => true,
 					'hover' => 'tabs',
-					'default' => esc_url(!is_wp_error(AM_LottiePlayer_Upload::lottie_asset()) ? wp_get_attachment_url(AM_LottiePlayer_Upload::lottie_asset()) : AM_LottiePlayer_Upload::lottie_asset(true)),
+					'default' => esc_url(!is_wp_error(am_lottie_asset()) ? wp_get_attachment_url(am_lottie_asset()) : am_lottie_asset(true)),
 				],
 				'alt' => [
 					'label' => esc_html__('Animation Alternative Text', 'am-lottieplayer'),
@@ -213,9 +210,8 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					'toggle_slug' => 'main_content',
 				],
 				'mode' => [
-					'label' => 'Pro Feature: ' . esc_html__('Boomerang', 'am-lottieplayer'),
+					'label' => esc_html__('Boomerang', 'am-lottieplayer'),
 					'type' => 'yes_no_button',
-					'description' => $proLink,
 					'option_category' => 'basic_option',
 					'options'  => [
 						'off' => et_builder_i18n('No'),
@@ -259,29 +255,15 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					'toggle_slug' => 'main_content',
 				],
 				'segment_in' => [
-					'label' => 'Pro Feature: ' . __('Choose where to start', 'am-lottieplayer'),
-					'description' => $proLink,
+					'label' => __('Choose where to start', 'am-lottieplayer'),
 					'type' => 'range',
 					'default' => '1',
 					'toggle_slug' => 'main_content',
 				],
 				'segment_out' => [
-					'label' => 'Pro Feature: ' . __('And where to end', 'am-lottieplayer'),
-					'description' => $proLink,
+					'label' => __('And where to end', 'am-lottieplayer'),
 					'type' => 'range',
 					'default' => '',
-					'toggle_slug' => 'main_content',
-				],
-				'animate_on_scroll' => [
-					'label' => 'Pro Feature: ' . esc_html__('Animate on scroll', 'am-lottieplayer'),
-					'description' => $proLink,
-					'type' => 'yes_no_button',
-					'option_category' => 'basic_option',
-					'options'  => [
-						'off' => et_builder_i18n('No'),
-						'on'  => et_builder_i18n('Yes'),
-					],
-					'default_on_front' => 'off',
 					'toggle_slug' => 'main_content',
 				],
 				'onclick' => [
@@ -331,16 +313,15 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					'toggle_slug' => 'main_content',
 				],
 				'selector' => [
-					'label' => 'Pro Feature: ' . esc_html__('Trigger element', 'am-lottieplayer'),
+					'label' => esc_html__('Trigger element', 'am-lottieplayer'),
 					'type' => 'text',
 					'option_category' => 'basic_option',
-					'description' => $proLink,
+					'description' => esc_html__('Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer'),
 					'toggle_slug' => 'main_content',
 				],
 				'exclude' => [
-					'label' => 'Pro Feature: ' . esc_html__('Apply interaction only to trigger element', 'am-lottieplayer'),
+					'label' => esc_html__('Apply interaction only to trigger element', 'am-lottieplayer'),
 					'type' => 'yes_no_button',
-					'description' => $proLink,
 					'option_category' => 'basic_option',
 					'options'  => [
 						'off' => et_builder_i18n('No'),
@@ -406,8 +387,8 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					'toggle_slug' => 'main_content',
 				],
 				'renderer' => [
-					'label' => 'Pro Feature: ' . esc_html__('Renderer', 'am-lottieplayer'),
-					'description' => $proLink,
+					'label' => esc_html__('Renderer', 'am-lottieplayer'),
+					'description' => esc_html__('Choose renderer', 'am-lottieplayer'),
 					'type' => 'select',
 					'option_category' => 'configuration',
 					'options'  => [
@@ -428,18 +409,18 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 			$alt = $this->props['alt'];
 			$onmouseover = $this->props['onmouseover'] !== 'off' ? 'true' : 'false';
 			$scroll = $this->props['scroll'] !== 'off' ? 'true' : 'false';
-			// $segment =
-			// 	$this->props['segment_out'] &&
-			// 	$this->props['segment_out'] !== '0' ?
-			// 	'[' .
-			// 	(intval($this->props['segment_in']) ?? 0) . ',' .
-			// 	intval($this->props['segment_out'])
-			// 	. ']' : '';
-			// $selector =
-			// 	json_encode([
-			// 		"id" => empty($this->props['selector']) ? null : $this->props['selector'],
-			// 		"exclude" => $this->props['exclude'] === 'on',
-			// 	]);
+			$segment =
+				$this->props['segment_out'] &&
+				$this->props['segment_out'] !== '0' ?
+				'[' .
+				(intval($this->props['segment_in']) ?? 0) . ',' .
+				intval($this->props['segment_out'])
+				. ']' : '';
+			$selector =
+				json_encode([
+					"id" => empty($this->props['selector']) ? null : $this->props['selector'],
+					"exclude" => $this->props['exclude'] === 'on',
+				]);
 			$src = $this->props['src'];
 			$subframe = $this->props['subframe'] !== 'off' ? 'subframe' : '';
 			$url = $this->props['url'];
@@ -478,21 +459,21 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 				$this->module_id(), #1
 				$this->module_classname($render_slug), #2
 				esc_url($src), #3
-				esc_attr($scroll !== 'true' && $this->props['autoplay'] !== 'off' ? 'autoplay' : ''), #4
+				esc_attr($this->props['autoplay'] !== 'off' ? 'autoplay' : ''), #4
 				esc_attr($this->props['loop'] !== 'off' ? 'loop' : ''), #5
 				esc_attr($this->props['controls'] !== 'off' ? 'controls' : ''), #6
 				esc_attr($alt), #7
-				'svg', // esc_attr($this->props['renderer']), #8
+				esc_attr($this->props['renderer']), #8
 				esc_attr($this->props['object_fit']), #9
 				esc_attr($this->props['reverse'] !== 'off' ? '-1' : '1'), #10
 				esc_attr($onmouseover), #11
 				esc_attr($this->props['onmouseout']), #12
 				esc_attr($onclick), #13
 				esc_attr($this->props['speed']), #14
-				null, // esc_attr($selector), #15
-				'normal', // esc_attr($this->props['mode'] !== 'off' ? 'bounce' : 'normal'), #16
+				esc_attr($selector), #15
+				esc_attr($this->props['mode'] !== 'off' ? 'bounce' : 'normal'), #16
 				esc_attr($subframe), #17,
-				null, // esc_attr($segment), #18
+				esc_attr($segment), #18
 				esc_attr($scroll), #19
 				esc_attr($this->props['delay']), #20
 				esc_attr($this->props['once'] !== 'off' ? 'true' : 'false'), #21
