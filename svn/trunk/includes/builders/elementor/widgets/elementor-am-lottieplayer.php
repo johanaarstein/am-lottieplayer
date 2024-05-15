@@ -170,7 +170,7 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			);
 
 			$this->add_control(
-				'separator_animation_options',
+				'separator_interaction_options',
 				[
 					'type' => \Elementor\Controls_Manager::DIVIDER,
 					'style' => 'thin',

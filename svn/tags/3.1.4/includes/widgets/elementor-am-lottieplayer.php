@@ -38,8 +38,6 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 		protected function register_controls()
 		{
 
-			$proLink = esc_html__('This feature will only work in the premium version.', 'am-lottieplayer') . ' <a href="' . esc_url('https://www.aarstein.media/en/am-lottieplayer/pro', 'am-lottieplayer') . '" target="_blank" rel="noreferrer">' . esc_html__('Read about additional features in AM LottiePlayer PRO', 'am-lottieplayer') . '<span class="dashicons dashicons-external" style="font-size: 1em;"></span></a>';
-
 			$this->start_controls_section(
 				'animation_section',
 				[
@@ -58,7 +56,7 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 						'application/zip',
 					],
 					'default' => [
-						'url' => esc_url(!is_wp_error(AM_LottiePlayer_Upload::lottie_asset()) ? wp_get_attachment_url(AM_LottiePlayer_Upload::lottie_asset()) : AM_LottiePlayer_Upload::lottie_asset(true)),
+						'url' => esc_url(!is_wp_error(am_lottie_asset()) ? wp_get_attachment_url(am_lottie_asset()) : am_lottie_asset(true)),
 					],
 				]
 			);
@@ -105,8 +103,7 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			$this->add_control(
 				'mode',
 				[
-					'label' => 'Pro Feature: ' . __('Boomerang', 'am-lottieplayer'),
-					'description' => $proLink,
+					'label' => __('Boomerang', 'am-lottieplayer'),
 					'type' => \Elementor\Controls_Manager::SWITCHER,
 					'label_on' => __('On', 'am-lottieplayer'),
 					'label_off' => __('Off', 'am-lottieplayer'),
@@ -148,8 +145,7 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			$this->add_control(
 				'segment_in',
 				[
-					'label' => 'Pro Feature: ' . __('Choose where to start', 'am-lottieplayer'),
-					'description' => $proLink,
+					'label' => __('Choose where to start', 'am-lottieplayer'),
 					'type' => \Elementor\Controls_Manager::NUMBER,
 					'step' => '1',
 					'min' => '0',
@@ -160,8 +156,7 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			$this->add_control(
 				'segment_out',
 				[
-					'label' => 'Pro Feature: ' . __('And where to end', 'am-lottieplayer'),
-					'description' => $proLink,
+					'label' => __('And where to end', 'am-lottieplayer'),
 					'type' => \Elementor\Controls_Manager::NUMBER,
 					'step' => '1',
 					'min' => '0',
@@ -170,21 +165,10 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			);
 
 			$this->add_control(
-				'separator_interaction_options',
+				'separator_animation_options',
 				[
 					'type' => \Elementor\Controls_Manager::DIVIDER,
 					'style' => 'thin',
-				]
-			);
-
-			$this->add_control(
-				'animate_on_scroll',
-				[
-					'label' => 'Pro Feature: ' . __('Animate on scroll', 'am-lottieplayer'),
-					'description' => $proLink,
-					'type' => \Elementor\Controls_Manager::SWITCHER,
-					'label_on' => __('Yes', 'am-lottieplayer'),
-					'label_off' => __('No', 'am-lottieplayer')
 				]
 			);
 
@@ -229,8 +213,8 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			$this->add_control(
 				'selector',
 				[
-					'label' => 'Pro Feature: ' . __('Trigger element', 'am-lottieplayer'),
-					'description' => __('Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer') . $proLink,
+					'label' => __('Trigger element', 'am-lottieplayer'),
+					'description' => __('Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer'),
 					'type' => \Elementor\Controls_Manager::TEXT,
 					'placeholder' => '#',
 					'conditions' => [
@@ -246,8 +230,7 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			$this->add_control(
 				'exclude',
 				[
-					'label' => 'Pro Feature: ' . __('Apply interaction only to trigger element', 'am-lottieplayer'),
-					'description' => $proLink,
+					'label' => __('Apply interaction only to trigger element', 'am-lottieplayer'),
 					'type' => \Elementor\Controls_Manager::SWITCHER,
 					'label_on' => __('Yes', 'am-lottieplayer'),
 					'label_off' => __('No', 'am-lottieplayer'),
@@ -410,8 +393,7 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			$this->add_control(
 				'renderer',
 				[
-					'label' => 'Pro Feature: ' . __('Renderer', 'am-lottieplayer'),
-					'description' => $proLink,
+					'label' => __('Renderer', 'am-lottieplayer'),
 					'type' => \Elementor\Controls_Manager::SELECT,
 					'options' => [
 						'svg' => __('SVG', 'am-lottieplayer'),
@@ -454,12 +436,12 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 				return;
 			}
 
-			$autoplay = $this->switcher_value($settings['scroll'], true, false) ? false : $this->switcher_value($settings['autoplay'], 'autoplay', '');
+			$autoplay = $this->switcher_value($settings['autoplay'], 'autoplay', '');
 			$controls = $this->switcher_value($settings['controls'], 'controls', '');
 			$direction = $this->switcher_value($settings['reverse'], '-1', '1');
 			$subframe = $this->switcher_value($settings['subframe'], 'subframe', '');
 			$loop = $this->switcher_value($settings['loop'], 'loop', '');
-			// $mode = $this->switcher_value($settings['mode'], 'bounce', 'normal');
+			$mode = $this->switcher_value($settings['mode'], 'bounce', 'normal');
 			$onClick = $this->switcher_value($settings['onclick'], true, false);
 			$onMouseOver = $this->switcher_value($settings['onmouseover'], true, false);
 			$scroll = $this->switcher_value($settings['scroll'], true, false);
@@ -467,10 +449,10 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 
 			$onMouseOut = $settings['onmouseout'];
 			$objectFit = $settings['object_fit'];
-			// $selector = json_encode([
-			// 	"id" => $settings['selector'],
-			// 	"exclude" => $this->switcher_value($settings['exclude'], true, false),
-			// ]);
+			$selector = json_encode([
+				"id" => $settings['selector'],
+				"exclude" => $this->switcher_value($settings['exclude'], true, false),
+			]);
 			$speed = !$settings['speed'] || empty($settings['speed']) ? '1' : $settings['speed'];
 			$heightSize = $settings['height_fixed'] ? $settings['height_fixed']['size'] : 'auto';
 			$heightUnit = $settings['height_fixed'] ? $settings['height_fixed']['unit'] : '';
@@ -482,40 +464,19 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			$widthSize = $settings['width']['size'];
 			$widthUnit = $settings['width']['unit'];
 			$width = $widthSize . $widthUnit;
-			// $renderer = $settings['renderer'];
+			$renderer = $settings['renderer'];
 
 			$description = $settings['description'];
 
-			// $segment = $settings['segment_out'] &&
-			// 	$settings['segment_out'] !== '0' ?
-			// 	esc_html('[' .
-			// 		(intval($settings['segment_in']) ?? 0) . ',' .
-			// 		intval($settings['segment_out'])
-			// 		. ']') : '';
-					?>
+			$segment = $settings['segment_out'] &&
+				$settings['segment_out'] !== '0' ?
+				esc_html('[' .
+					(intval($settings['segment_in']) ?? 0) . ',' .
+					intval($settings['segment_out'])
+					. ']') : ''; ?>
 
 			<figure style="width:<?php echo esc_html($width); ?>;height:<?php echo esc_html($height); ?>;margin:0 auto;">
-				<dotlottie-player
-					<?php echo esc_html($autoplay); ?>
-					<?php echo esc_html($controls); ?>
-					<?php echo esc_html($loop); ?>
-					<?php echo esc_html($subframe); ?>
-
-					direction="<?php echo esc_html($direction); ?>"
-					data-direction="<?php echo esc_html($direction); ?>"
-					data-mouseover="<?php echo esc_html($onMouseOver); ?>"
-					data-mouseout="<?php echo esc_html($onMouseOut); ?>"
-					data-click="<?php echo esc_html($onClick); ?>"
-
-					data-scroll="<?php echo esc_html($scroll); ?>"
-					data-delay="<?php echo esc_html($settings['delay']); ?>"
-					data-once="<?php echo esc_html($once); ?>"
-					objectfit="<?php echo esc_html($objectFit); ?>"
-					speed="<?php echo esc_html($speed); ?>"
-					src="<?php echo esc_url($src); ?>"
-					description="<?php echo esc_html($description); ?>"
-
-					>
+				<dotlottie-player <?php echo esc_html($autoplay); ?> <?php echo esc_html($controls); ?> <?php echo esc_html($loop); ?> <?php echo esc_html($subframe); ?> mode="<?php echo esc_html($mode); ?>" renderer="<?php echo esc_html($renderer); ?>" direction="<?php echo esc_html($direction); ?>" data-direction="<?php echo esc_html($direction); ?>" data-mouseover="<?php echo esc_html($onMouseOver); ?>" data-mouseout="<?php echo esc_html($onMouseOut); ?>" data-click="<?php echo esc_html($onClick); ?>" data-selector="<?php echo esc_html($selector); ?>" data-scroll="<?php echo esc_html($scroll); ?>" data-delay="<?php echo esc_html($settings['delay']); ?>" data-once="<?php echo esc_html($once); ?>" objectfit="<?php echo esc_html($objectFit); ?>" speed="<?php echo esc_html($speed); ?>" src="<?php echo esc_url($src); ?>" description="<?php echo esc_html($description); ?>" segment="<?php echo esc_html($segment); ?>">
 				</dotlottie-player>
 			</figure>
 		<?php
@@ -533,5 +494,5 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 		}
 	}
 
-	$args->register(new \Elementor_AM_LottiePlayer());
+	$arg->register(new \Elementor_AM_LottiePlayer());
 }
