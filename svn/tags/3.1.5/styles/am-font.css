@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'am-lottieplayer';
+  src:
+    url('../assets/am-lottieplayer.woff2?wmhn8e') format('woff2'),
+    url('../assets/am-lottieplayer.woff?wmhn8e') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.eicon-am-lottie {
+  font-family: 'am-lottieplayer' !important;
+}
+
+.eicon-am-lottie:before {
+  content: "\e945";
+}
