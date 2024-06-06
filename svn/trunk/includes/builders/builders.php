@@ -49,7 +49,7 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
         'am-frontend',
         AM_LOTTIEPLAYER_URL . 'scripts/am-frontend.min.js',
         ['dotlottie-player-light'],
-        '1.2.1',
+        '1.2.2',
         [
           'strategy' => 'defer',
           'in_footer' => true
