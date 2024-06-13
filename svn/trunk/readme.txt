@@ -129,6 +129,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 3.1.7 - June 13 2024 =
+* Bugfix to backend script, fixing unwanted behaviour on blur event
+
 = 3.1.6 - June 6 2024 =
 * Bugfix to frontend script
 
