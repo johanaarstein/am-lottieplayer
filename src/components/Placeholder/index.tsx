@@ -13,7 +13,9 @@ export default function Placeholder( {
 	setAttributes,
 }: BlockEditProps< PlayerComponentProps > ) {
 	const ErrorNotice = ( message: string ) => (
-			<Notice status="error">{ message }</Notice>
+			<Notice className="am-lottieplayer-notice" status="error">
+				{ message }
+			</Notice>
 		),
 		[ isPlaceholder, setIsPlaceholder ] = useState( true ),
 		onUploadError = ( message: string ) => {

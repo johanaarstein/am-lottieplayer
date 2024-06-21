@@ -52,6 +52,7 @@ const Animation = ( {
 		<Panel>
 			<PanelBody
 				title={ __( 'Animation Settings', 'am-lottieplayer' ) }
+				className="am-lottieplayer-settings"
 				initialOpen={ true }
 			>
 				{ state.hasMultipleAnimations && (

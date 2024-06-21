@@ -31,6 +31,7 @@ const Interactions = ( {
 	return (
 		<Panel>
 			<PanelBody
+				className="am-lottieplayer-settings"
 				title={ __( 'Interactions', 'am-lottieplayer' ) }
 				initialOpen={ true }
 			>

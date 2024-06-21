@@ -37,6 +37,7 @@ const Dimensions = ( {
 		<Panel>
 			<PanelBody
 				title={ __( 'Dimensions', 'am-lottieplayer' ) }
+				className="am-lottieplayer-settings"
 				initialOpen={ true }
 			>
 				{ ( ! fullscreen || align !== 'full' ) && (
