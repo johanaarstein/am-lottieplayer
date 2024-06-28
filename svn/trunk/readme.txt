@@ -129,7 +129,7 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
-= 3.1.8 - June 13 2024 =
+= 3.1.8 - June 21 2024 =
 * Bugfix to admin.css, where broad selectors created unwanted behavior
 
 = 3.1.7 - June 13 2024 =

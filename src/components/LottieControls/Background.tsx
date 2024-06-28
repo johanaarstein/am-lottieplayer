@@ -19,9 +19,9 @@ const Background = ( {
 			>
 				<ColorPicker
 					color={ background }
-					onChangeComplete={ ( color ) => {
-						return setAttributes( { background: color.hex } );
-					} }
+					onChange={ ( color ) =>
+						setAttributes( { background: color } )
+					}
 				/>
 			</PanelBody>
 		</Panel>
