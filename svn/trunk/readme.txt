@@ -5,9 +5,9 @@ Author URI: https://www.aarstein.media
 Plugin URI: https://wordpress.org/plugins/am-lottieplayer/
 Tags: lottie, bodymovin, gutenberg, svg, gif
 Requires at least: 5.9
-Tested up to: 6.5
+Tested up to: 6.6
 Requires PHP: 7.0
-Stable Tag: 3.1.8
+Stable Tag: 3.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -128,6 +128,10 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 4. …and even Flatsome!
 
 == Changelog ==
+
+= 3.2.0 - August 6 2024 =
+* Updated and lighter animation engine
+* Tested with WordPress 6.6
 
 = 3.1.8 - June 21 2024 =
 * Bugfix to admin.css, where broad selectors created unwanted behavior
