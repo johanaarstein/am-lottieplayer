@@ -23,7 +23,6 @@ export default function save( {
 		mouseout,
 		objectFit,
 		once,
-		renderer,
 		scrollEvent,
 		scrollDelay,
 		segment,
@@ -72,7 +71,6 @@ export default function save( {
 				loop={ loop ? '' : null }
 				mode={ mode }
 				objectfit={ objectFit }
-				renderer={ renderer }
 				segment={ playSegment as unknown as AnimationSegment }
 				src={ src as string }
 				speed={ speed }

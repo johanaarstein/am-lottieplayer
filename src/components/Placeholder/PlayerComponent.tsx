@@ -31,13 +31,7 @@ export default function PlayerComponent( {
 		reloadPlayer = useCallback( () => {
 			if ( ! player ) return;
 			void player.reload();
-			setTimeout( () => {
-				const canvas = player?.shadowRoot?.querySelector( 'canvas' );
-				if ( attributes.renderer === 'svg' ) {
-					canvas?.remove();
-				}
-			}, 100 );
-		}, [ player, attributes.renderer ] ),
+		}, [ player ] ),
 		parseSize = ( num?: number | null ) => {
 			if ( num && typeof num === 'number' ) return `${ num }px`;
 		},
@@ -72,19 +66,7 @@ export default function PlayerComponent( {
 			reloadPlayer();
 		}
 		initialRender.current = false;
-	}, [
-		// attributes.autoplay,
-		blockIndex,
-		// attributes.direction,
-		// attributes.loop,
-		attributes.mode,
-		attributes.objectFit,
-		reloadPlayer,
-		attributes.renderer,
-		segment,
-		// attributes.speed,
-		// attributes.subframe,
-	] );
+	}, [ blockIndex, attributes.objectFit, reloadPlayer, segment ] );
 
 	return (
 		<dotlottie-player
@@ -98,7 +80,6 @@ export default function PlayerComponent( {
 			mode={ attributes.mode }
 			objectfit={ attributes.objectFit }
 			ref={ playerRef }
-			renderer={ attributes.renderer }
 			segment={ playSegment as unknown as AnimationSegment }
 			speed={ attributes.speed }
 			subframe={ attributes.subframe ? '' : null }

@@ -7,13 +7,12 @@ import ProLink from '@components/ProLink';
 
 import type { BlockEditProps } from 'wordpress__blocks';
 import type { PlayerComponentProps } from '@types';
-// import type { RendererType } from 'lottie-web';
 
 const Advanced = ( {
 	attributes,
 	setAttributes,
 }: BlockEditProps< PlayerComponentProps > ) => {
-	const { alt, renderer = 'svg' } = attributes;
+	const { alt } = attributes;
 
 	return (
 		<InspectorAdvancedControls>
@@ -31,7 +30,7 @@ const Advanced = ( {
 				}
 				help={ <ProLink /> }
 				disabled
-				value={ renderer }
+				value="svg"
 				onChange={ () =>
 					console.warn(
 						'This feature is only available in the premium version'

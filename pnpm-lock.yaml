@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@aarsteinmedia/dotlottie-player-light':
-        specifier: ^3.0.4
-        version: 3.0.4(@types/react@18.3.3)
+        specifier: ^3.0.5
+        version: 3.0.5(@types/react@18.3.3)
       '@types/node':
         specifier: ^22.1.0
         version: 22.1.0
@@ -52,7 +52,7 @@ importers:
         version: 5.4.0
       '@wordpress/scripts':
         specifier: ^26.19.0
-        version: 26.19.0(@playwright/test@1.42.1)(@types/eslint@9.6.0)(@types/node@22.1.0)(@types/webpack@4.41.38)(babel-plugin-macros@3.1.0)(encoding@0.1.13)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@5.62.0(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-import@2.29.1)(eslint@8.57.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.5.4))(type-fest@3.13.1)(typescript@5.5.4)
+        version: 26.19.0(@playwright/test@1.42.1)(@types/eslint@9.6.0)(@types/node@22.1.0)(@types/webpack@4.41.39)(babel-plugin-macros@3.1.0)(encoding@0.1.13)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@5.62.0(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-import@2.29.1)(eslint@8.57.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.5.4))(type-fest@3.13.1)(typescript@5.5.4)
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
@@ -98,8 +98,8 @@ importers:
 
 packages:
 
-  '@aarsteinmedia/dotlottie-player-light@3.0.4':
-    resolution: {integrity: sha512-BqTo9OlaBg+MRyd254dL73cRWjXlG1Ir2p8sCOhzFqkqsjdLqRVm1/aEQWqIJkqX0VMcFM+55jTVIoaJ7un5Bg==}
+  '@aarsteinmedia/dotlottie-player-light@3.0.5':
+    resolution: {integrity: sha512-ZRBnFHo0RWwRTWUoQ0eeHFhqGy4M84tb/hhJk4dOf75vn+2MAohAx4xYpyXQUyZg+uvZnnKd4lP2lQs/A20YFg==}
     engines: {node: '>= 8.17.0'}
     peerDependencies:
       '@types/react': '>= 16.0.0'
@@ -1473,8 +1473,8 @@ packages:
   '@types/http-errors@2.0.4':
     resolution: {integrity: sha512-D0CFMMtydbJAegzOyHjtiKPLlvnm3iTZyZRSZoLq2mRhDdmLfIWOCYPfQJ4cu2erKghU++QvjcUjp/5h7hESpA==}
 
-  '@types/http-proxy@1.17.14':
-    resolution: {integrity: sha512-SSrD0c1OQzlFX7pGu1eXxSEjemej64aaNPRhhVYUGqXh0BtldAAx37MG8btcumvpgKyZp1F5Gn3JkktdxiFv6w==}
+  '@types/http-proxy@1.17.15':
+    resolution: {integrity: sha512-25g5atgiVNTIv0LBDTg1H74Hvayx0ajtJPLLcYE3whFv75J0pWNtOBzaXJQgDTmrX1bx5U9YC2w/n65BN1HwRQ==}
 
   '@types/istanbul-lib-coverage@2.0.6':
     resolution: {integrity: sha512-2QF/t/auWm0lsy8XtKVPG19v3sSOQlJe/YHZgfjb/KBBHOGSV+J2q/S671rcq9uTBrLAXmZpqJiaQbMT+zNU1w==}
@@ -1572,8 +1572,8 @@ packages:
   '@types/webpack-sources@3.2.3':
     resolution: {integrity: sha512-4nZOdMwSPHZ4pTEZzSp0AsTM4K7Qmu40UKW4tJDiOVs20UzYF9l+qUe4s0ftfN0pin06n+5cWWDJXH+sbhAiDw==}
 
-  '@types/webpack@4.41.38':
-    resolution: {integrity: sha512-oOW7E931XJU1mVfCnxCVgv8GLFL768pDO5u2Gzk82i8yTIgX6i7cntyZOkZYb/JtYM8252SN9bQp9tgkVDSsRw==}
+  '@types/webpack@4.41.39':
+    resolution: {integrity: sha512-otxUJvoi6FbBq/64gGH34eblpKLgdi+gf08GaAh8Bx6So0ZZic028Ev/SUxD22gbthMKCkeeiXEat1kHLDJfYg==}
 
   '@types/wordpress__block-editor@11.5.15':
     resolution: {integrity: sha512-RaVPHOaSq9jsrdOkbtsx3Ly/IivD1CgKrshnNvlYtLZfXHe5H1g9Nw3UQtI0S4AW1XQCiCu67i4qgq4FfdR1kg==}
@@ -1590,8 +1590,8 @@ packages:
   '@types/yargs-parser@21.0.3':
     resolution: {integrity: sha512-I4q9QU9MQv4oEOz4tAHJtNz1cwuLxn2F3xcc2iV5WdqLPpUnj30aUuxt1mAxYTG+oe8CZMV/+6rU4S4gRDzqtQ==}
 
-  '@types/yargs@17.0.32':
-    resolution: {integrity: sha512-xQ67Yc/laOG5uMfX/093MRlGGCIBzZMarVa+gfNKJxWAIgykYpVGkBdbqEzGDDfCrVUj6Hiff4mTZ5BA6TmAog==}
+  '@types/yargs@17.0.33':
+    resolution: {integrity: sha512-WpxBCKWPLr4xSsHgz511rFJAM+wS28w2zEO1QDNY5zM/S8ok70NNfztH0xwhqKyaK0OHCbN98LDAZuy1ctxDkA==}
 
   '@types/yauzl@2.10.3':
     resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
@@ -6883,7 +6883,7 @@ packages:
 
 snapshots:
 
-  '@aarsteinmedia/dotlottie-player-light@3.0.4(@types/react@18.3.3)':
+  '@aarsteinmedia/dotlottie-player-light@3.0.5(@types/react@18.3.3)':
     dependencies:
       '@types/react': 18.3.3
       fflate: 0.8.2
@@ -8121,7 +8121,7 @@ snapshots:
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
       '@types/node': 22.1.0
-      '@types/yargs': 17.0.32
+      '@types/yargs': 17.0.33
       chalk: 4.1.2
 
   '@jridgewell/gen-mapping@0.3.5':
@@ -8178,7 +8178,7 @@ snapshots:
     dependencies:
       playwright: 1.42.1
 
-  '@pmmmwh/react-refresh-webpack-plugin@0.5.15(@types/webpack@4.41.38)(react-refresh@0.14.2)(type-fest@3.13.1)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.93.0))(webpack@5.93.0(webpack-cli@5.1.4))':
+  '@pmmmwh/react-refresh-webpack-plugin@0.5.15(@types/webpack@4.41.39)(react-refresh@0.14.2)(type-fest@3.13.1)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.93.0))(webpack@5.93.0(webpack-cli@5.1.4))':
     dependencies:
       ansi-html: 0.0.9
       core-js-pure: 3.38.0
@@ -8190,7 +8190,7 @@ snapshots:
       source-map: 0.7.4
       webpack: 5.93.0(webpack-cli@5.1.4)
     optionalDependencies:
-      '@types/webpack': 4.41.38
+      '@types/webpack': 4.41.39
       type-fest: 3.13.1
       webpack-dev-server: 4.15.2(webpack-cli@5.1.4)(webpack@5.93.0)
 
@@ -8651,7 +8651,7 @@ snapshots:
 
   '@types/http-errors@2.0.4': {}
 
-  '@types/http-proxy@1.17.14':
+  '@types/http-proxy@1.17.15':
     dependencies:
       '@types/node': 22.1.0
 
@@ -8755,7 +8755,7 @@ snapshots:
       '@types/source-list-map': 0.1.6
       source-map: 0.7.4
 
-  '@types/webpack@4.41.38':
+  '@types/webpack@4.41.39':
     dependencies:
       '@types/node': 22.1.0
       '@types/tapable': 1.0.12
@@ -8800,7 +8800,7 @@ snapshots:
 
   '@types/yargs-parser@21.0.3': {}
 
-  '@types/yargs@17.0.32':
+  '@types/yargs@17.0.33':
     dependencies:
       '@types/yargs-parser': 21.0.3
 
@@ -9796,11 +9796,11 @@ snapshots:
       memize: 2.1.0
       react: 18.3.1
 
-  '@wordpress/scripts@26.19.0(@playwright/test@1.42.1)(@types/eslint@9.6.0)(@types/node@22.1.0)(@types/webpack@4.41.38)(babel-plugin-macros@3.1.0)(encoding@0.1.13)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@5.62.0(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-import@2.29.1)(eslint@8.57.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.5.4))(type-fest@3.13.1)(typescript@5.5.4)':
+  '@wordpress/scripts@26.19.0(@playwright/test@1.42.1)(@types/eslint@9.6.0)(@types/node@22.1.0)(@types/webpack@4.41.39)(babel-plugin-macros@3.1.0)(encoding@0.1.13)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@5.62.0(eslint@8.57.0)(typescript@5.5.4))(eslint-plugin-import@2.29.1)(eslint@8.57.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(ts-node@10.9.2(@types/node@22.1.0)(typescript@5.5.4))(type-fest@3.13.1)(typescript@5.5.4)':
     dependencies:
       '@babel/core': 7.25.2
       '@playwright/test': 1.42.1
-      '@pmmmwh/react-refresh-webpack-plugin': 0.5.15(@types/webpack@4.41.38)(react-refresh@0.14.2)(type-fest@3.13.1)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.93.0))(webpack@5.93.0(webpack-cli@5.1.4))
+      '@pmmmwh/react-refresh-webpack-plugin': 0.5.15(@types/webpack@4.41.39)(react-refresh@0.14.2)(type-fest@3.13.1)(webpack-dev-server@4.15.2(webpack-cli@5.1.4)(webpack@5.93.0))(webpack@5.93.0(webpack-cli@5.1.4))
       '@svgr/webpack': 8.1.0(typescript@5.5.4)
       '@wordpress/babel-preset-default': 7.42.0
       '@wordpress/browserslist-config': 5.41.0
@@ -10509,7 +10509,7 @@ snapshots:
 
   clean-webpack-plugin@3.0.0(webpack@5.93.0(webpack-cli@5.1.4)):
     dependencies:
-      '@types/webpack': 4.41.38
+      '@types/webpack': 4.41.39
       del: 4.1.1
       webpack: 5.93.0(webpack-cli@5.1.4)
 
@@ -12024,7 +12024,7 @@ snapshots:
 
   http-proxy-middleware@2.0.6(@types/express@4.17.21):
     dependencies:
-      '@types/http-proxy': 1.17.14
+      '@types/http-proxy': 1.17.15
       http-proxy: 1.18.1
       is-glob: 4.0.3
       is-plain-obj: 3.0.0
