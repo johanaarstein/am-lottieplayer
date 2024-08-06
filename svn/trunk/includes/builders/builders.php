@@ -38,7 +38,7 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
         'dotlottie-player-light',
         AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player-light.min.js',
         null,
-        '3.0.1',
+        '3.0.4',
         [
           'strategy' => 'defer',
           'in_footer' => true

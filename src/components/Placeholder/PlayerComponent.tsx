@@ -73,17 +73,17 @@ export default function PlayerComponent( {
 		}
 		initialRender.current = false;
 	}, [
-		attributes.autoplay,
+		// attributes.autoplay,
 		blockIndex,
-		attributes.direction,
-		attributes.loop,
+		// attributes.direction,
+		// attributes.loop,
 		attributes.mode,
 		attributes.objectFit,
 		reloadPlayer,
 		attributes.renderer,
 		segment,
-		attributes.speed,
-		attributes.subframe,
+		// attributes.speed,
+		// attributes.subframe,
 	] );
 
 	return (
