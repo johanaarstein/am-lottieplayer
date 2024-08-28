@@ -1,8 +1,10 @@
 import { useEffect, useState } from '@wordpress/element';
 import { Notice } from '@wordpress/components';
+import { URLInput } from '@wordpress/block-editor';
 
 import UploadComponent from './UploadComponent';
 import PlayerComponent from './PlayerComponent';
+import { isValidUrl } from '@utils';
 
 import type { BlockEditProps } from 'wordpress__blocks';
 import type { PlayerComponentProps } from '@types';
@@ -12,12 +14,13 @@ export default function Placeholder( {
 	clientId,
 	setAttributes,
 }: BlockEditProps< PlayerComponentProps > ) {
-	const ErrorNotice = ( message: string ) => (
+	const [ isPlaceholder, setIsPlaceholder ] = useState( true ),
+		[ externalURL, setExternalURL ] = useState( '' ),
+		ErrorNotice = ( message: string ) => (
 			<Notice className="am-lottieplayer-notice" status="error">
 				{ message }
 			</Notice>
 		),
-		[ isPlaceholder, setIsPlaceholder ] = useState( true ),
 		onUploadError = ( message: string ) => {
 			ErrorNotice( message );
 		},
@@ -43,6 +46,17 @@ export default function Placeholder( {
 	useEffect( () => {
 		setIsPlaceholder( ! attributes.src || attributes.src === '' );
 	}, [ attributes.src ] );
+	useEffect( () => {
+		if (
+			isValidUrl( externalURL ) &&
+			( externalURL.endsWith( '.lottie' ) ||
+				externalURL.endsWith( '.json' ) )
+		) {
+			setAttributes( {
+				src: externalURL,
+			} );
+		}
+	}, [ externalURL, setAttributes ] );
 
 	return (
 		<>
@@ -50,8 +64,12 @@ export default function Placeholder( {
 				<UploadComponent
 					onSelectMedia={ onSelectMedia }
 					onError={ onUploadError }
-					children={ undefined }
-				/>
+				>
+					<URLInput
+						value={ externalURL }
+						onChange={ ( url ) => setExternalURL( url ) }
+					/>
+				</UploadComponent>
 			) : (
 				<PlayerComponent
 					attributes={ attributes }

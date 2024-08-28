@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 
 import { usePlayerContext } from '@context/PlayerWrapper';
+import { Align } from '@utils';
 
 import type { AnimationSegment } from 'lottie-web';
 import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player-light';
@@ -29,15 +30,23 @@ export default function PlayerComponent( {
 				? undefined
 				: JSON.stringify( [ segment[ 0 ], segment[ 1 ] ] ),
 		reloadPlayer = useCallback( () => {
-			if ( ! player ) return;
+			if ( ! player ) {
+				return;
+			}
 			void player.reload();
 		}, [ player ] ),
 		parseSize = ( num?: number | null ) => {
-			if ( num && typeof num === 'number' ) return `${ num }px`;
+			if ( num && typeof num === 'number' ) {
+				return `${ num }px`;
+			}
 		},
 		parseWidth = ( num?: number | null ) => {
-			if ( attributes.align === 'wide' || attributes.align === 'full' )
+			if (
+				attributes.align === Align.Wide ||
+				attributes.align === Align.Full
+			) {
 				return '100%';
+			}
 			return parseSize( num );
 		};
 

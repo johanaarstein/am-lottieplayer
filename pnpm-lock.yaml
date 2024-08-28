@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@aarsteinmedia/dotlottie-player-light':
-        specifier: ^3.0.5
-        version: 3.0.5(@types/react@18.3.4)
+        specifier: ^3.0.6
+        version: 3.0.6(@types/react@18.3.4)
       '@types/node':
         specifier: ^22.5.1
         version: 22.5.1
@@ -24,10 +24,10 @@ importers:
         specifier: ^12.5.14
         version: 12.5.14(@emotion/is-prop-valid@1.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@typescript-eslint/eslint-plugin':
-        specifier: ^7.0.0
+        specifier: ^7.18.0
         version: 7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)
       '@typescript-eslint/parser':
-        specifier: ^7.0.0
+        specifier: ^7.18.0
         version: 7.18.0(eslint@8.57.0)(typescript@5.5.4)
       '@wordpress/blob':
         specifier: ^4.6.0
@@ -98,8 +98,8 @@ importers:
 
 packages:
 
-  '@aarsteinmedia/dotlottie-player-light@3.0.5':
-    resolution: {integrity: sha512-ZRBnFHo0RWwRTWUoQ0eeHFhqGy4M84tb/hhJk4dOf75vn+2MAohAx4xYpyXQUyZg+uvZnnKd4lP2lQs/A20YFg==}
+  '@aarsteinmedia/dotlottie-player-light@3.0.6':
+    resolution: {integrity: sha512-MaSlizw47O/wyZYWG4tQWSxRXKhtqY855g5BkRVVza/5dHvlHcANkcLSrrKBFewqQHaTtW4vzOvvx45vnl6Isg==}
     engines: {node: '>= 8.17.0'}
     peerDependencies:
       '@types/react': '>= 16.0.0'
@@ -6937,7 +6937,7 @@ packages:
 
 snapshots:
 
-  '@aarsteinmedia/dotlottie-player-light@3.0.5(@types/react@18.3.4)':
+  '@aarsteinmedia/dotlottie-player-light@3.0.6(@types/react@18.3.4)':
     dependencies:
       '@types/react': 18.3.4
       fflate: 0.8.2
@@ -10080,13 +10080,13 @@ snapshots:
 
   agent-base@6.0.2:
     dependencies:
-      debug: 4.3.6
+      debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
 
   agent-base@7.1.1:
     dependencies:
-      debug: 4.3.6
+      debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
 
@@ -11666,7 +11666,7 @@ snapshots:
 
   extract-zip@2.0.1:
     dependencies:
-      debug: 4.3.6
+      debug: 4.3.4
       get-stream: 5.2.0
       yauzl: 2.10.0
     optionalDependencies:
@@ -11905,7 +11905,7 @@ snapshots:
     dependencies:
       basic-ftp: 5.0.5
       data-uri-to-buffer: 6.0.2
-      debug: 4.3.6
+      debug: 4.3.4
       fs-extra: 11.2.0
     transitivePeerDependencies:
       - supports-color
@@ -12120,7 +12120,7 @@ snapshots:
   http-proxy-agent@7.0.2:
     dependencies:
       agent-base: 7.1.1
-      debug: 4.3.6
+      debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
 
@@ -12147,14 +12147,14 @@ snapshots:
   https-proxy-agent@5.0.1:
     dependencies:
       agent-base: 6.0.2
-      debug: 4.3.6
+      debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
 
   https-proxy-agent@7.0.5:
     dependencies:
       agent-base: 7.1.1
-      debug: 4.3.6
+      debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
 
@@ -13483,7 +13483,7 @@ snapshots:
     dependencies:
       '@tootallnate/quickjs-emscripten': 0.23.0
       agent-base: 7.1.1
-      debug: 4.3.6
+      debug: 4.3.4
       get-uri: 6.0.3
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.5
@@ -13839,7 +13839,7 @@ snapshots:
   proxy-agent@6.3.0:
     dependencies:
       agent-base: 7.1.1
-      debug: 4.3.6
+      debug: 4.3.4
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.5
       lru-cache: 7.18.3
@@ -14414,7 +14414,7 @@ snapshots:
   socks-proxy-agent@8.0.4:
     dependencies:
       agent-base: 7.1.1
-      debug: 4.3.6
+      debug: 4.3.4
       socks: 2.8.3
     transitivePeerDependencies:
       - supports-color

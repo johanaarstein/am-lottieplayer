@@ -43,7 +43,8 @@ export interface BlockCoverEditProps
 }
 
 export interface UploadProps {
-	children?: never;
+	children?: ReactNode;
+	instructions?: string;
 	onSelectMedia: ( value: { id: number; url: string; alt: string } ) => void;
 	onError: ( message: string ) => void;
 }

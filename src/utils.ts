@@ -65,7 +65,9 @@ export const arrayMove = < T >(
 		};
 	},
 	formatBytes = ( bytes: number, decimals = 2 ) => {
-		if ( ! +bytes ) return '0 Bytes';
+		if ( ! +bytes ) {
+			return '0 Bytes';
+		}
 
 		const k = 1024,
 			dm = decimals < 0 ? 0 : decimals,
@@ -78,7 +80,9 @@ export const arrayMove = < T >(
 	},
 	gcd = ( a: number, b: number ): number => ( b ? gcd( b, a % b ) : a ),
 	getAspectRatio = ( width?: number, height?: number ): string | null => {
-		if ( ! width || ! height ) return null;
+		if ( ! width || ! height ) {
+			return null;
+		}
 		const divisor = gcd( width, height );
 		return `${ width / divisor } / ${ height / divisor }`;
 	},
@@ -87,7 +91,9 @@ export const arrayMove = < T >(
 	 * @param { string } str Filename, URL or path
 	 */
 	getExt = ( str: string ) => {
-		if ( ! hasExt( str ) ) return;
+		if ( ! hasExt( str ) ) {
+			return;
+		}
 		return str.split( '.' ).pop()?.toLowerCase();
 	},
 	/**
@@ -136,6 +142,18 @@ export const arrayMove = < T >(
 	isTemporaryMedia = ( id?: string, url?: string ) =>
 		! id && isBlobURL( url ),
 	isTouch = () => window && 'ontouchstart' in window,
+	isValidUrl = ( url: string ) => {
+		const urlPattern = new RegExp(
+			'^(https?:\\/\\/)?' + // validate protocol
+				'((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // validate domain name
+				'((\\d{1,3}\\.){3}\\d{1,3}))' + // validate OR ip (v4) address
+				'(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // validate port and path
+				'(\\?[;&a-z\\d%_.~+=-]*)?' + // validate query string
+				'(\\#[-a-z\\d_]*)?$', // validate fragment locator
+			'i'
+		);
+		return !! urlPattern.test( url );
+	},
 	mediaPosition = ( { x = 0.5, y = 0.5 } ) =>
 		`${ Math.round( x * 100 ) }% ${ Math.round( y * 100 ) }%`,
 	mouseOutHandler = (
@@ -170,9 +188,10 @@ export const arrayMove = < T >(
 		new Promise( ( resolve, reject ) => {
 			const fileReader = new FileReader();
 			fileReader.onload = ( { target } ) => {
-				if ( target && typeof target.result === 'string' )
+				if ( target && typeof target.result === 'string' ) {
 					// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 					resolve( JSON.parse( target.result ) );
+				}
 			};
 			fileReader.onerror = ( error ) => reject( error );
 			fileReader.readAsText( file );

@@ -8,6 +8,7 @@ import {
 import { __ } from '@wordpress/i18n';
 
 import { NumberInput, SwitchLabel } from '@components/form';
+import { Align } from '@utils';
 
 import type { BlockEditProps } from 'wordpress__blocks';
 import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player-light';
@@ -27,7 +28,9 @@ const Dimensions = ( {
 
 	const parseWidth = useCallback(
 		( num: number | string ) => {
-			if ( align === 'full' || align === 'wide' ) return '100%';
+			if ( align === Align.Full || align === Align.Wide ) {
+				return '100%';
+			}
 			return ! num || num === '0' ? undefined : num;
 		},
 		[ align ]
@@ -40,7 +43,7 @@ const Dimensions = ( {
 				className="am-lottieplayer-settings"
 				initialOpen={ true }
 			>
-				{ ( ! fullscreen || align !== 'full' ) && (
+				{ ( ! fullscreen || align !== Align.Full ) && (
 					<PanelRow className="lottie-dimensions">
 						<NumberInput
 							id="am-lottieplayer-width-settings"
@@ -49,9 +52,11 @@ const Dimensions = ( {
 							onChange={ ( val ) =>
 								setAttributes( { width: val ?? null } )
 							}
-							disabled={ align === 'full' || align === 'wide' }
+							disabled={
+								align === Align.Full || align === Align.Wide
+							}
 							placeholder={
-								align === 'full' || align === 'wide'
+								align === Align.Full || align === Align.Wide
 									? '100%'
 									: 'auto'
 							}
@@ -72,7 +77,7 @@ const Dimensions = ( {
 						/>
 					</PanelRow>
 				) }
-				{ ( align === 'full' || align === 'wide' ) && (
+				{ ( align === Align.Full || align === Align.Wide ) && (
 					<SwitchLabel
 						id="am-lottieplayer-fullscreen-settings"
 						title={ __( 'Fill screen', 'am-lottieplayer' ) }

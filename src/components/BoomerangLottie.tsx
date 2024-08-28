@@ -13,17 +13,23 @@ export default function BoomerangLottie( {
 }: Partial< DotLottiePlayer > ) {
 	const boomerang = useRef< DotLottiePlayer >( null ),
 		mouseOut = () => {
-			if ( isTouch() ) return;
+			if ( isTouch() ) {
+				return;
+			}
 			boomerang.current?.setDirection( -1 );
 			void boomerang.current?.play();
 		},
 		mouseOver = () => {
-			if ( isTouch() ) return;
+			if ( isTouch() ) {
+				return;
+			}
 			boomerang.current?.setDirection( 1 );
 			void boomerang.current?.play();
 		},
 		touchScroll = useCallback( () => {
-			if ( ! isTouch() || ! boomerang.current ) return;
+			if ( ! isTouch() || ! boomerang.current ) {
+				return;
+			}
 			if ( boomerang.current.getBoundingClientRect().top < 150 ) {
 				boomerang.current.setDirection( 1 );
 				void boomerang.current.play();

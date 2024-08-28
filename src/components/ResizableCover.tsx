@@ -27,7 +27,9 @@ export default function ResizableCover( {
 			onResizeStart={ onResizeStart }
 			onResize={ ( _e, _dir, el ) => {
 				onResize( el.clientHeight );
-				if ( ! isResizing ) setIsResizing( true );
+				if ( ! isResizing ) {
+					setIsResizing( true );
+				}
 			} }
 			onResizeStop={ ( _e, _dir, el ) => {
 				onResizeStop( el.clientHeight );
