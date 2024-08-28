@@ -20,7 +20,10 @@ export default function Edit( {
 	isSelected,
 	setAttributes,
 }: BlockEditProps< PlayerComponentProps > ) {
-	const isUploadingMedia = isTemporaryMedia( attributes.id, attributes.src );
+	const isUploadingMedia = isTemporaryMedia(
+		attributes.id,
+		attributes.src || undefined
+	);
 
 	return (
 		<PlayerWrapper>

@@ -156,7 +156,7 @@ export const arrayMove = < T >(
 				player?.setDirection(
 					( direction * -1 ) as AnimationDirection
 				);
-				player?.play();
+				void player?.play();
 				break;
 			default:
 				player?.stop();
@@ -164,7 +164,7 @@ export const arrayMove = < T >(
 	},
 	mouseOverHandler = ( player: DotLottiePlayer, direction: 1 | -1 ): void => {
 		player?.setDirection( direction );
-		player?.play();
+		void player?.play();
 	},
 	parseJsonFile = async < T >( file: File ): Promise< T > =>
 		new Promise( ( resolve, reject ) => {

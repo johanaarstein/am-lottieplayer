@@ -15,21 +15,21 @@ export default function BoomerangLottie( {
 		mouseOut = () => {
 			if ( isTouch() ) return;
 			boomerang.current?.setDirection( -1 );
-			boomerang.current?.play();
+			void boomerang.current?.play();
 		},
 		mouseOver = () => {
 			if ( isTouch() ) return;
 			boomerang.current?.setDirection( 1 );
-			boomerang.current?.play();
+			void boomerang.current?.play();
 		},
 		touchScroll = useCallback( () => {
 			if ( ! isTouch() || ! boomerang.current ) return;
 			if ( boomerang.current.getBoundingClientRect().top < 150 ) {
 				boomerang.current.setDirection( 1 );
-				boomerang.current.play();
+				void boomerang.current.play();
 			} else {
 				boomerang.current.setDirection( -1 );
-				boomerang.current.play();
+				void boomerang.current.play();
 			}
 		}, [] );
 
