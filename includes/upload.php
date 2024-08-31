@@ -64,11 +64,11 @@ if (!class_exists('AM_LottiePlayer_Upload')) {
 
       ob_start();
       wp_print_media_templates();
-      echo preg_replace(
+      echo esc_html(preg_replace(
         array_keys($replaces),
         array_values($replaces),
         ob_get_clean()
-      );
+      ));
     }
 
     public function lottie_filetypes($data, $file, $filename, $mimes, $real_mime)
@@ -133,7 +133,7 @@ if (!class_exists('AM_LottiePlayer_Upload')) {
 
         // If error storing permanently, unlink.
         if (is_wp_error($id)) {
-          @unlink($file_array['tmp_name']);
+          wp_delete_file($file_array['tmp_name']);
           return $id;
         }
 

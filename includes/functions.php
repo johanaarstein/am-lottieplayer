@@ -35,7 +35,7 @@ if (!function_exists('animationMode')) {
 if (!function_exists('interactionSelector')) {
   function interactionSelector($input, $exclude = false)
   {
-    return json_encode([
+    return wp_json_encode([
       'id' => $input ?? null,
       'exclude' => amTruish($exclude),
     ]);
@@ -58,8 +58,8 @@ if (!function_exists('am_render_lottieplayer')) {
 
       speed="<?php echo esc_html($atts['speed']); ?>"
       <?php echo esc_html($atts['subframe']) && esc_html($atts['subframe']) !== 'false' ? 'subframe' : ''; ?>
-      direction="<?php echo animationDirection(esc_html($atts['direction'])); ?>"
-      data-direction="<?php echo animationDirection(esc_html($atts['direction'])); ?>"
+      direction="<?php echo esc_html(animationDirection($atts['direction'])); ?>"
+      data-direction="<?php echo esc_html(animationDirection($atts['direction'])); ?>"
       data-mouseover="<?php echo esc_html($atts['onmouseover']); ?>"
       data-mouseout="<?php echo esc_html($atts['onmouseout']); ?>"
       data-click="<?php echo esc_html($atts['onclick']); ?>"
@@ -111,11 +111,11 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
     ob_start(); ?>
     <figure class="am-lottieplayer align<?php echo esc_html($atts['align']) ?? 'none';
       echo ' ' . esc_html($atts['class']); ?>" style="
-        background-color: <?php echo $atts['background']; ?>;
+        background-color: <?php echo esc_html($atts['background']); ?>;
         height: <?php echo esc_html($atts['height']) ? esc_html($atts['height']) . 'px' : 'auto'; ?>;
         width: <?php echo esc_html($atts['width']) ? esc_html($atts['width']) . 'px' : 'auto'; ?>;
       ">
-      <?php echo am_render_lottieplayer($atts); ?>
+      <?php echo esc_html(am_render_lottieplayer($atts)); ?>
     </figure>
 <?php
     return ob_get_clean();

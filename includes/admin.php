@@ -68,7 +68,7 @@ if (!class_exists('AM_LottiePlayer_Admin')) {
     }
 
     public function render_am_lottieplayer_dashboard_widget() {
-      echo '<div id="am-lottieplayer-widget"></div>';
+      echo esc_html('<div id="am-lottieplayer-widget"></div>');
     }
 
   }

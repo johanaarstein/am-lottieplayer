@@ -467,7 +467,7 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 
 			$onMouseOut = $settings['onmouseout'];
 			$objectFit = $settings['object_fit'];
-			// $selector = json_encode([
+			// $selector = wp_json_encode([
 			// 	"id" => $settings['selector'],
 			// 	"exclude" => $this->switcher_value($settings['exclude'], true, false),
 			// ]);

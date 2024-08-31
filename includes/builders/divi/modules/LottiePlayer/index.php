@@ -436,7 +436,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 			// 	intval($this->props['segment_out'])
 			// 	. ']' : '';
 			// $selector =
-			// 	json_encode([
+			// 	wp_json_encode([
 			// 		"id" => empty($this->props['selector']) ? null : $this->props['selector'],
 			// 		"exclude" => $this->props['exclude'] === 'on',
 			// 	]);
