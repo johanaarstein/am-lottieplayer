@@ -25,7 +25,12 @@ if (!class_exists('AM_LottiePlayer_Admin')) {
      */
     public function admin_enqueue_scripts($page)
     {
-      wp_enqueue_style('am-backend-style', AM_LOTTIEPLAYER_URL . 'styles/admin.css');
+      wp_enqueue_style(
+        'am-backend-style',
+        AM_LOTTIEPLAYER_URL . 'styles/admin.css',
+        [],
+        '1.0.0'
+      );
       wp_enqueue_script('dotlottie-player-light');
 
       $widgetAssets = require AM_LOTTIEPLAYER_PATH . 'build/widget.asset.php';

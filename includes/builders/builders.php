@@ -74,7 +74,9 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
     {
       wp_enqueue_style(
         'elementor-backend-style',
-        AM_LOTTIEPLAYER_URL . 'styles/am-font.css'
+        AM_LOTTIEPLAYER_URL . 'styles/am-font.css',
+        [],
+        '1.0.0'
       );
       am_include('builders/elementor/widgets/elementor-am-lottieplayer', $widgets_manager);
     }
