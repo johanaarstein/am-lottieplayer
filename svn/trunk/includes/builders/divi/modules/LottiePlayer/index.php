@@ -2,6 +2,9 @@
 defined('ABSPATH') || exit;
 
 if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_LottiePlayer')) {
+	/**
+	 * @disregard P1010 Undefined type
+	 */
 	class AM_ET_Builder_Module_LottiePlayer extends ET_Builder_Module
 	{
 
@@ -294,7 +297,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					],
 					'affects' => [
 						'selector',
-						'exclude'
+						'exclude_selector'
 					],
 					'default_on_front' => 'off',
 					'toggle_slug' => 'main_content',
@@ -310,7 +313,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					'affects' => [
 						'onmouseout',
 						'selector',
-						'exclude'
+						'exclude_selector'
 					],
 					'default_on_front' => 'off',
 					'toggle_slug' => 'main_content',
@@ -337,7 +340,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					'description' => $proLink,
 					'toggle_slug' => 'main_content',
 				],
-				'exclude' => [
+				'exclude_selector' => [
 					'label' => 'Pro Feature: ' . esc_html__('Apply interaction only to trigger element', 'am-lottieplayer'),
 					'type' => 'yes_no_button',
 					'description' => $proLink,
@@ -438,7 +441,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 			// $selector =
 			// 	wp_json_encode([
 			// 		"id" => empty($this->props['selector']) ? null : $this->props['selector'],
-			// 		"exclude" => $this->props['exclude'] === 'on',
+			// 		"exclude_selector" => $this->props['exclude_selector'] === 'on',
 			// 	]);
 			$src = $this->props['src'];
 			$subframe = $this->props['subframe'] !== 'off' ? 'subframe' : '';

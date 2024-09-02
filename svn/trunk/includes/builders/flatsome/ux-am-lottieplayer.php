@@ -29,6 +29,9 @@ $position_options['options']['position_y']['on_change'] = [
 
 $proLink = esc_html__('This feature will only work in the premium version. Read about additional features in AM LottiePlayer PRO on www.aarstein.media/am-lottieplayer/pro', 'am-lottieplayer');
 
+/**
+ * @disregard P1010 Undefined type
+ */
 add_ux_builder_shortcode('am-lottieplayer', [
   'name' => 'AM LottiePlayer',
   'category' => __('Content'),
@@ -147,7 +150,7 @@ add_ux_builder_shortcode('am-lottieplayer', [
           'conditions' => 'onmouseover === "true" || onclick === "true"',
         ],
 
-        'exclude' => [
+        'exclude_selector' => [
           'type' => 'checkbox',
           'heading' => 'Pro Feature: ' . __('Apply interaction only to trigger element', 'am-lottieplayer'),
           'description' => $proLink,

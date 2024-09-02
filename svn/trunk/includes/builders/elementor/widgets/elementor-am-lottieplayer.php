@@ -244,7 +244,7 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			);
 
 			$this->add_control(
-				'exclude',
+				'exclude_selector',
 				[
 					'label' => 'Pro Feature: ' . __('Apply interaction only to trigger element', 'am-lottieplayer'),
 					'description' => $proLink,
@@ -469,7 +469,7 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			$objectFit = $settings['object_fit'];
 			// $selector = wp_json_encode([
 			// 	"id" => $settings['selector'],
-			// 	"exclude" => $this->switcher_value($settings['exclude'], true, false),
+			// 	"exclude_selector" => $this->switcher_value($settings['exclude_selector'], true, false),
 			// ]);
 			$speed = !$settings['speed'] || empty($settings['speed']) ? '1' : $settings['speed'];
 			$heightSize = $settings['height_fixed'] ? $settings['height_fixed']['size'] : 'auto';

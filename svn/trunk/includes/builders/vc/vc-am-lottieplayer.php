@@ -1,6 +1,9 @@
 <?php
 defined('ABSPATH') || exit;
 
+/**
+ * @disregard P1010 Undefined type
+ */
 vc_add_shortcode_param('attach_lottie', 'am_vc_attach_field_settings');
 if (!function_exists('am_vc_attach_field_settings')) {
   function am_vc_attach_field_settings($settings)
@@ -20,6 +23,9 @@ if (!function_exists('am_vc_attach_field_settings')) {
 
 $proLink = esc_html__('This feature will only work in the premium version.', 'am-lottieplayer') . ' <a href="' . esc_url('https://www.aarstein.media/en/am-lottieplayer/pro', 'am-lottieplayer') . '" target="_blank" rel="noreferrer">' . esc_html__('Read about additional features in AM LottiePlayer PRO', 'am-lottieplayer') . '<span class="dashicons dashicons-external" style="font-size: 1em;"></span></a>';
 
+/**
+ * @disregard P1010 Undefined type
+ */
 vc_map(
   [
     'name' => __('AM LottiePlayer', 'am-lottieplayer'),
@@ -123,7 +129,7 @@ vc_map(
       // [
       //   'type' => 'checkbox',
       //   'heading' => __('Apply interaction only to trigger element', 'am-lottieplayer'),
-      //   'param_name' => 'exclude',
+      //   'param_name' => 'exclude_selector',
       // ],
       [
         'type' => 'checkbox',

@@ -114,6 +114,9 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
 
       //Check if any front-end builders are active
       $isDiviBuilder = isset($_GET['et_fb']) && !empty($_GET['et_fb']);
+      /**
+       * @disregard P1010 Undefined type
+       */
       $isVCBuilder = function_exists('vc_is_inline') && vc_is_inline();
 
       if (is_a($post, 'WP_Post')) {
@@ -122,6 +125,9 @@ if (!class_exists('AM_LottiePlayer_Builders')) {
 
       // Check for Lottie in Divi Templates
       if (function_exists('et_theme_builder_get_template_layouts')) {
+        /**
+         * @disregard P1010 Undefined type
+         */
         $layouts = et_theme_builder_get_template_layouts();
         if (!empty($layouts)) {
           if ($layouts['et_header_layout']['override']) {

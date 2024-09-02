@@ -2,6 +2,9 @@
 defined('ABSPATH') || exit;
 
 if (class_exists('DiviExtension') && !class_exists('AM_LottieDiviModules')) {
+  /**
+   * @disregard P1009 Undefined type
+   */
   class AM_LottieDiviModules extends DiviExtension
   {
     public $gettext_domain = 'am-lottieplayer';
@@ -10,7 +13,13 @@ if (class_exists('DiviExtension') && !class_exists('AM_LottieDiviModules')) {
 
     public function __construct($name = 'am-lottieplayer', $args = [])
     {
+      /**
+       * @disregard P1014 Undefined type
+       */
       $this->plugin_dir = plugin_dir_path(__FILE__);
+      /**
+       * @disregard P1014 Undefined type
+       */
       $this->plugin_dir_url = AM_LOTTIEPLAYER_URL;
       parent::__construct($name, $args);
     }
