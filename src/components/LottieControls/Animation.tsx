@@ -14,7 +14,7 @@ import ProLink from '@components/ProLink';
 import { NumberInput, SwitchLabel } from '@components/form';
 // import { PlayMode } from '@utils';
 
-import type { BlockEditProps } from 'wordpress__blocks';
+import type { BlockEditProps } from '@wordpress/blocks';
 import type { PlayerComponentProps } from '@types';
 
 const Animation = ( {

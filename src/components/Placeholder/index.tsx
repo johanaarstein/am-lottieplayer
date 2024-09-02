@@ -6,7 +6,7 @@ import UploadComponent from './UploadComponent';
 import PlayerComponent from './PlayerComponent';
 import { isValidUrl } from '@utils';
 
-import type { BlockEditProps } from 'wordpress__blocks';
+import type { BlockEditProps } from '@wordpress/blocks';
 import type { PlayerComponentProps } from '@types';
 
 export default function Placeholder( {

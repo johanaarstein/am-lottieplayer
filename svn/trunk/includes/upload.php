@@ -133,7 +133,7 @@ if (!class_exists('AM_LottiePlayer_Upload')) {
 
         // If error storing permanently, unlink.
         if (is_wp_error($id)) {
-          @unlink($file_array['tmp_name']);
+          wp_delete_file($file_array['tmp_name']);
           return $id;
         }
 
@@ -154,8 +154,8 @@ if (!class_exists('AM_LottiePlayer_Upload')) {
           return $src;
         }
 
-        $alt  = isset($desc) ? esc_attr($desc) : '';
-        $html = "<img src='$src' alt='$alt' />";
+        $alt  = isset($desc) ? $desc : '';
+        $html = '<img src="' . esc_url($src) . '" alt="' . esc_attr($alt) . '" />';
 
         return $html;
       } else {

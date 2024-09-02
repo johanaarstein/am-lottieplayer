@@ -23,12 +23,12 @@
   "attributes": {
     "align": {
       "enum": [
+        "center",
+        "full",
         "none",
         "left",
         "right",
-        "center",
-        "wide",
-        "full"
+        "wide"
       ],
       "default": "none"
     },
@@ -80,6 +80,12 @@
       "type": "string",
       "default": "stop"
     },
+    "multiAnimationInteractions": {
+      "type": "array"
+    },
+    "multiAnimationSettings": {
+      "type": "array"
+    },
     "objectFit": {
       "type": "string",
       "default": "contain"
@@ -90,9 +96,7 @@
     },
     "renderer": {
       "enum": [
-        "svg",
-        "canvas",
-        "html"
+        "svg"
       ],
       "default": "svg"
     },

@@ -64,11 +64,11 @@ if (!class_exists('AM_LottiePlayer_Upload')) {
 
       ob_start();
       wp_print_media_templates();
-      echo esc_html(preg_replace(
+      echo preg_replace(
         array_keys($replaces),
         array_values($replaces),
         ob_get_clean()
-      ));
+      );
     }
 
     public function lottie_filetypes($data, $file, $filename, $mimes, $real_mime)
@@ -154,8 +154,8 @@ if (!class_exists('AM_LottiePlayer_Upload')) {
           return $src;
         }
 
-        $alt  = isset($desc) ? esc_attr($desc) : '';
-        $html = "<img src='$src' alt='$alt' />";
+        $alt  = isset($desc) ? $desc : '';
+        $html = '<img src="' . esc_url($src) . '" alt="' . esc_attr($alt) . '" />';
 
         return $html;
       } else {

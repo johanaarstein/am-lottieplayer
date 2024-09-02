@@ -46,30 +46,13 @@ if (!function_exists('am_render_lottieplayer')) {
   function am_render_lottieplayer($atts)
   {
     ob_start(); ?>
-    <dotlottie-player
-      <?php echo esc_html($atts['autoplay']) && esc_html($atts['autoplay']) !== 'false' && (!esc_html($atts['scroll']) || esc_html($atts['scroll']) !== 'true') ? 'autoplay' : ''; ?>
-      background="<?php echo esc_html($atts['background']) ?? 'transparent'; ?>"
-      <?php echo esc_html($atts['controls']) && esc_html($atts['controls']) !== 'false'  ? 'controls' : ''; ?>
-      description="<?php echo esc_html($atts['alt']); ?>"
-      <?php echo esc_html($atts['loop']) && esc_html($atts['loop']) !== 'false' ? 'loop' : ''; ?>
-
-      objectfit="<?php echo esc_html($atts['objectfit']); ?>"
-      src="<?php echo esc_url($atts['src']); ?>"
-
-      speed="<?php echo esc_html($atts['speed']); ?>"
-      <?php echo esc_html($atts['subframe']) && esc_html($atts['subframe']) !== 'false' ? 'subframe' : ''; ?>
-      direction="<?php echo esc_html(animationDirection($atts['direction'])); ?>"
-      data-direction="<?php echo esc_html(animationDirection($atts['direction'])); ?>"
-      data-mouseover="<?php echo esc_html($atts['onmouseover']); ?>"
-      data-mouseout="<?php echo esc_html($atts['onmouseout']); ?>"
-      data-click="<?php echo esc_html($atts['onclick']); ?>"
-
-      data-scroll="<?php echo esc_html($atts['scroll']); ?>"
-      data-delay="<?php echo esc_html($atts['delay']); ?>"
-      data-once="<?php echo esc_html($atts['once']); ?>">
+    <dotlottie-player <?php echo esc_attr($atts['animate_on_scroll']) && esc_attr($atts['animate_on_scroll']) !== 'false' ? 'animateonscroll' : ''; ?> <?php echo esc_attr($atts['autoplay']) && esc_attr($atts['autoplay']) !== 'false' && (!esc_attr($atts['scroll']) || esc_attr($atts['scroll']) !== 'true') ? 'autoplay' : ''; ?> background="<?php echo esc_attr($atts['background']) ?? 'transparent'; ?>" <?php echo esc_attr($atts['controls']) && esc_attr($atts['controls']) !== 'false'  ? 'controls' : ''; ?> simple description="<?php echo esc_attr($atts['alt']); ?>" <?php echo esc_attr($atts['loop']) && esc_attr($atts['loop']) !== 'false' ? 'loop' : ''; ?> mode="<?php echo esc_attr(animationMode($atts['mode'])); ?>" objectfit="<?php echo esc_attr($atts['objectfit']); ?>" src="<?php echo esc_url($atts['src']); ?>" renderer="<?php echo esc_attr($atts['renderer']); ?>" segment="<?php echo esc_attr($atts['segment'] ??
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ($atts['segment_out'] &&
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      $atts['segment_out'] !== '0' ?
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      '[' . (intval($atts['segment_in']) ?? 0) . ',' . intval($atts['segment_out']) . ']' : '')); ?>" speed="<?php echo esc_attr($atts['speed']); ?>" <?php echo esc_attr($atts['subframe']) && esc_attr($atts['subframe']) !== 'false' ? 'subframe' : ''; ?> direction="<?php echo esc_attr(animationDirection($atts['direction'])); ?>" data-direction="<?php echo esc_attr(animationDirection($atts['direction'])); ?>" data-mouseover="<?php echo esc_attr($atts['onmouseover']); ?>" data-mouseout="<?php echo esc_attr($atts['onmouseout']); ?>" data-click="<?php echo esc_attr($atts['onclick']); ?>" data-selector="<?php echo esc_attr(interactionSelector($atts['selector'], $atts['exclude'])); ?>" data-scroll="<?php echo esc_attr($atts['scroll']); ?>" data-delay="<?php echo esc_attr($atts['delay']); ?>" data-once="<?php echo esc_attr($atts['once']); ?>">
     </dotlottie-player>
   <?php
-    return ob_get_clean();
+    echo ob_get_clean();
   }
 }
 
@@ -77,6 +60,7 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
   function am_render_lottieplayer_shortcode($atts)
   {
     $atts = shortcode_atts([
+      'animate_on_scroll' => false,
       'align' => 'none',
       'alt' => __('AM LottiePlayer animation', 'am-lottieplayer'),
       'autoplay' => false,
@@ -88,7 +72,6 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
       'exclude' => false,
       'height' => null,
       'id' => null,
-      'interactivityType' => 'none',
       'loop' => false,
       'mode' => 'normal',
       'objectfit' => 'contain',
@@ -100,7 +83,7 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
       'speed' => 1,
       'selector' => null,
       'src' => esc_url(!is_wp_error(AM_LottiePlayer_Upload::lottie_asset()) ? wp_get_attachment_url(AM_LottiePlayer_Upload::lottie_asset()) : AM_LottiePlayer_Upload::lottie_asset(true)),
-      'subframe' => false,
+      'subframe' => true,
       'width' => null,
       'onmouseover' => false,
       'onclick' => false,
@@ -109,13 +92,13 @@ if (!function_exists('am_render_lottieplayer_shortcode')) {
     ], $atts);
 
     ob_start(); ?>
-    <figure class="am-lottieplayer align<?php echo esc_html($atts['align']) ?? 'none';
-      echo ' ' . esc_html($atts['class']); ?>" style="
-        background-color: <?php echo esc_html($atts['background']); ?>;
-        height: <?php echo esc_html($atts['height']) ? esc_html($atts['height']) . 'px' : 'auto'; ?>;
-        width: <?php echo esc_html($atts['width']) ? esc_html($atts['width']) . 'px' : 'auto'; ?>;
+    <figure class="am-lottieplayer align<?php echo esc_attr($atts['align']) ?? 'none';
+                                        echo ' ' . esc_attr($atts['class']); ?>" style="
+        background-color: <?php echo esc_attr($atts['background']); ?>;
+        height: <?php echo esc_attr($atts['height']) ? esc_attr($atts['height']) . 'px' : 'auto'; ?>;
+        width: <?php echo esc_attr($atts['width']) ? esc_attr($atts['width']) . 'px' : 'auto'; ?>;
       ">
-      <?php echo esc_html(am_render_lottieplayer($atts)); ?>
+      <?php am_render_lottieplayer($atts); ?>
     </figure>
 <?php
     return ob_get_clean();
@@ -136,14 +119,28 @@ if (!function_exists('am_get_path')) {
   }
 }
 
-/**
- * Includes a file within the plugins includes folder
- *
- * @param string $filename The specified file.
- * @param mixed $arg (optional)
- * @return void
- */
+if (!function_exists('am_get_path')) {
+  /**
+   * Returns the plugin path to a specified file.
+   *
+   * @param string $filename The specified file.
+   * @return string
+   */
+  function am_get_path($path = '')
+  {
+    $path = preg_replace('/\.[^.]*$/', '', ltrim($path, '/')) . '.php';
+    return AM_LOTTIEPLAYER_PATH . $path;
+  }
+}
+
 if (!function_exists('am_include')) {
+  /**
+   * Includes a file within the plugins includes folder
+   *
+   * @param string $filename The specified file.
+   * @param mixed $arg (optional)
+   * @return void
+   */
   function am_include($path = '', $args = null)
   {
     $path = am_get_path('includes/' . ltrim($path, '/'));
@@ -154,31 +151,12 @@ if (!function_exists('am_include')) {
   }
 }
 
-/**
- * Load in a file from the 'admin/views' folder and allow variables to be passed through
- *
- * @param string $path
- * @param array  $args
- * @return void
- */
-if (!function_exists('am_get_view')) {
-  function am_get_view($path = '', $args = [])
-  {
-    $path = am_get_path('includes/admin/views/' . ltrim($path, '/'));
-    if (file_exists($path)) {
-      // Use `EXTR_SKIP` here to prevent `$view_path` from being accidentally/maliciously overridden.
-      extract($args, EXTR_SKIP);
-      include $path;
-    }
-  }
-}
-
-/**
- * Get static asset
- * @param string $filename Name of file
- * @return string URL to asset
- */
 if (!function_exists('am_get_asset')) {
+  /**
+   * Get static asset
+   * @param string $filename Name of file
+   * @return string URL to asset
+   */
   function am_get_asset($filename = '')
   {
     return AM_LOTTIEPLAYER_URL . 'assets/' . ltrim($filename, '/');

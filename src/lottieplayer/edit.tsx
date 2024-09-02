@@ -7,7 +7,7 @@ import Placeholder from '@components/Placeholder';
 
 import { isTemporaryMedia } from '@utils';
 
-import type { BlockEditProps } from 'wordpress__blocks';
+import type { BlockEditProps } from '@wordpress/blocks';
 import type { PlayerComponentProps } from '@types';
 
 import './editor.scss';

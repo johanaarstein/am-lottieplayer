@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "baseUrl": "./",
-    "rootDir": "./src",
-    "outDir": "./build/",
+    "rootDir": "./",
+    "outDir": "./build",
     "target": "ES2021",
     "jsx": "react-jsx",
     "module": "ESNext",
@@ -45,10 +45,10 @@
     "./src/**/*"
   ],
   "exclude": [
-    "./svn",
-    "./build",
+    "**/svn",
+    "**/build",
     "**/node_modules",
-    "./assets",
-    "./scripts"
+    "**/assets",
+    "**/scripts"
   ]
 }

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { EditorTemplateLock } from '@wordpress/block-editor';
-import type { BlockEditProps } from 'wordpress__blocks';
+import type { BlockEditProps } from '@wordpress/blocks';
 import type { ResizeStartCallback } from 're-resizable';
 import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player-light';
 import type { AnimationSegment } from 'lottie-web';

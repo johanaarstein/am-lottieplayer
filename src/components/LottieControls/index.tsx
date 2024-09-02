@@ -8,7 +8,7 @@ import Background from './Background';
 import Interactions from './Interactions';
 import Dimensions from './Dimensions';
 
-import type { BlockEditProps } from 'wordpress__blocks';
+import type { BlockEditProps } from '@wordpress/blocks';
 import type { PlayerComponentProps } from '@types';
 
 export default function LottieControls( {

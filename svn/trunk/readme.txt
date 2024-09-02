@@ -1,4 +1,4 @@
-=== AM LottiePlayer – Vector animations for WordPress ===
+=== AM LottiePlayer ===
 Contributors: johanaarstein
 Donate link: https://www.paypal.com/donate/?hosted_button_id=E7C7DMN8KSQ6A
 Author URI: https://www.aarstein.media

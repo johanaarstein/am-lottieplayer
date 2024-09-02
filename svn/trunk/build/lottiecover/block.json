@@ -109,6 +109,12 @@
       ],
       "default": "normal"
     },
+    "multiAnimationInteractions": {
+      "type": "array"
+    },
+    "multiAnimationSettings": {
+      "type": "array"
+    },
     "objectFit": {
       "type": "string",
       "default": "cover"

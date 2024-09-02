@@ -33,12 +33,12 @@ if (!class_exists('AM_LottiePlayer_Admin')) {
       );
       wp_enqueue_script('dotlottie-player-light');
 
-      $widgetAssets = require AM_LOTTIEPLAYER_PATH . 'build/widget.asset.php';
+      $widgetAssets = require AM_LOTTIEPLAYER_PATH . 'build/admin.asset.php';
 
       if ($page === 'index.php') {
         wp_enqueue_script(
           'am-lottieplayer-widget',
-          AM_LOTTIEPLAYER_URL . 'build/widget.js',
+          AM_LOTTIEPLAYER_URL . 'build/admin.js',
           $widgetAssets['dependencies'],
           '0.1.0',
           true
@@ -68,7 +68,7 @@ if (!class_exists('AM_LottiePlayer_Admin')) {
     }
 
     public function render_am_lottieplayer_dashboard_widget() {
-      echo esc_html('<div id="am-lottieplayer-widget"></div>');
+      echo '<div id="am-lottieplayer-widget"></div>';
     }
 
   }

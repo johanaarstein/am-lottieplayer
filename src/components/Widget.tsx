@@ -1,9 +1,8 @@
-import { createRoot } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 import BoomerangLottie from '@components/BoomerangLottie';
 
-function Widget() {
+export default function Widget() {
 	const { pluginUrl } = amPhpVars;
 	return (
 		<div
@@ -53,13 +52,3 @@ function Widget() {
 		</div>
 	);
 }
-
-const App = () => <Widget />,
-	htmlElement = document.getElementById( 'am-lottieplayer-widget' );
-if ( ! htmlElement ) {
-	throw new Error( 'Missing root element' );
-}
-
-const root = createRoot( htmlElement );
-
-root.render( <App /> );
