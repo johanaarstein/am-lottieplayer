@@ -4,7 +4,12 @@ defined('ABSPATH') || exit;
 /**
  * @disregard P1010 Undefined type
  */
-vc_add_shortcode_param('attach_lottie', 'am_vc_attach_field_settings');
+vc_add_shortcode_param(
+  'attach_lottie',
+  'am_vc_attach_field_settings',
+  AM_LOTTIEPLAYER_URL . 'scripts/am-backend-vc-options.min.js?ver=1.0.0'
+);
+
 if (!function_exists('am_vc_attach_field_settings')) {
   function am_vc_attach_field_settings($settings)
   {
@@ -16,8 +21,7 @@ if (!function_exists('am_vc_attach_field_settings')) {
         class="' . esc_attr($settings['param_name']) . ' ' . esc_attr($settings['type']) . '_field"
       >' . __('Media Library', 'am-lottieplayer') . '
       </button>
-    </div>
-    <script src="' . AM_LOTTIEPLAYER_URL . 'scripts/am-backend-vc-options.min.js" defer></script>';
+    </div>';
   }
 }
 
