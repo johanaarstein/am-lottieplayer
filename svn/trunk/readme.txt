@@ -129,6 +129,12 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 3.2.3 - September 11 2024 =
+* Updated frontend script
+
+= 3.2.2 - September 2 2024 =
+* Minor bugfixes
+
 = 3.2.1 - August 28 2024 =
 * New feature: Added option to use external urls with Gutenberg
 
