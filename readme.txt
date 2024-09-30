@@ -113,12 +113,13 @@ The shortcode `[am-lottieplayer]` has the following parameters:
 - loop: `true` | `false`, default: `false`
 - objectfit: `cover` | `contain` | `none`, default: `contain`
 - speed: `number` (1 – 5), default: `1`
+- intermission: `number` in miliseconds
 - direction: `1` | `-1`, default: `1`
 - onclick: `true` | `false`, default: `false`
 - onmouseover: `true` | `false`, default: `false`
 - onmouseout: `void` | `stop` | `pause` | `reverse`, default: `void`
 
-Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarsteinmedia/am.lottie" controls="true" ]`
+Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarsteinmedia/am.lottie" controls="true"]`
 
 == Screenshots ==
 
