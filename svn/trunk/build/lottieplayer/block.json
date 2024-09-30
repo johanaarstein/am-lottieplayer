@@ -125,7 +125,11 @@
     },
     "src": {
       "type": "string",
-      "default": ""
+      "source": "attribute",
+      "selector": "dotlottie-player",
+      "attribute": "src",
+      "default": "",
+      "__experimentalRole": "content"
     },
     "subframe": {
       "type": "boolean",

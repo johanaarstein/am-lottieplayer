@@ -17,6 +17,8 @@ const Advanced = ( {
 	return (
 		<InspectorAdvancedControls>
 			<SelectControl
+				disabled
+				help={ <ProLink /> }
 				label={
 					<>
 						<span
@@ -28,27 +30,25 @@ const Advanced = ( {
 						<ProFeature />
 					</>
 				}
-				help={ <ProLink /> }
-				disabled
-				value="svg"
 				onChange={ () =>
 					console.warn(
 						'This feature is only available in the premium version'
 					)
 				}
 				options={ [
-					{ value: 'svg', label: 'SVG' },
-					{ value: 'canvas', label: 'Canvas' },
+					{ label: 'SVG', value: 'svg' },
+					{ label: 'Canvas', value: 'canvas' },
 				] }
+				value="svg"
 			/>
 			<TextareaControl
-				label={ __( 'Description', 'am-lottieplayer' ) }
 				help={ __(
 					'Describe the animation. This is helpful for screen readers and search engines.',
 					'am-lottieplayer'
 				) }
-				value={ alt as string }
+				label={ __( 'Description', 'am-lottieplayer' ) }
 				onChange={ ( value ) => setAttributes( { alt: value } ) }
+				value={ alt as string }
 			/>
 		</InspectorAdvancedControls>
 	);

@@ -6,12 +6,12 @@ import type { KeyboardEvent, ReactNode } from 'react';
 
 const SwitchLabel = ( {
 	className = '',
+	disabled,
 	id = '',
 	onChange,
 	subTitle,
 	title,
 	value,
-	disabled,
 }: {
 	className?: string;
 	id: string;
@@ -23,15 +23,15 @@ const SwitchLabel = ( {
 } ) => {
 	return (
 		<BaseControl
-			id={ id }
-			help={ subTitle }
 			className={ `lottie-switch-label ${ className }` }
+			help={ subTitle }
+			id={ id }
 		>
 			<BaseControl.VisualLabel>{ title }</BaseControl.VisualLabel>
 			<FormToggle
 				checked={ value }
-				onChange={ () => onChange( ! value ) }
 				disabled={ disabled }
+				onChange={ () => onChange( ! value ) }
 			/>
 		</BaseControl>
 	);
@@ -47,15 +47,17 @@ type NumberInputProps = {
 };
 
 const NumberInput = ( {
+	disabled,
 	id = '',
 	onChange,
+	placeholder = '',
 	title,
 	value = '',
-	disabled,
-	placeholder = '',
 }: NumberInputProps ) => {
 	const keydownHandler = ( e: KeyboardEvent< HTMLInputElement > ) => {
-		if ( isModifierKey( e ) ) return;
+		if ( isModifierKey( e ) ) {
+			return;
+		}
 		if ( ! isNumericInput( e ) ) {
 			e.preventDefault();
 		}
@@ -63,33 +65,33 @@ const NumberInput = ( {
 
 	return (
 		<BaseControl
-			id={ id }
-			help={ title }
 			className={ 'lottie-number-wrapper' }
+			help={ title }
+			id={ id }
 		>
 			<TextControl
-				value={ value }
+				disabled={ disabled }
 				onChange={ ( n ) => {
 					onChange(
 						n === undefined || n === '' ? undefined : Number( n )
 					);
 				} }
 				onKeyDown={ keydownHandler }
-				disabled={ disabled }
 				placeholder={ placeholder }
+				value={ value }
 			/>
 		</BaseControl>
 	);
 };
 
 const TextInput = ( {
+	disabled,
+	help,
 	id = '',
 	onChange,
-	title,
-	help,
-	value = '',
 	placeholder = '',
-	disabled,
+	title,
+	value = '',
 }: {
 	help?: string;
 	id?: string;
@@ -101,16 +103,16 @@ const TextInput = ( {
 } ) => {
 	return (
 		<BaseControl
-			id={ id }
-			help={ help }
 			className={ 'lottie-number-wrapper' }
+			help={ help }
+			id={ id }
 		>
 			<BaseControl.VisualLabel>{ title }</BaseControl.VisualLabel>
 			<TextControl
-				value={ value }
 				disabled={ disabled }
 				onChange={ ( n ) => onChange( n ) }
 				placeholder={ placeholder }
+				value={ value }
 			/>
 		</BaseControl>
 	);

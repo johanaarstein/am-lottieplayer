@@ -1,6 +1,6 @@
 import { isBlobURL } from '@wordpress/blob';
 
-import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player-light';
+import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light';
 import type { AnimationDirection } from 'lottie-web';
 import type { KeyboardEvent } from 'react';
 
@@ -43,15 +43,15 @@ export const arrayMove = < T >(
 		( setAttributes: ( attrs: object ) => void, dimRatio?: number ) =>
 		( media: { url: string; id?: string; alt?: string } ) => {
 			if ( ! media || ! media.url ) {
-				setAttributes( { src: undefined, id: undefined } );
+				setAttributes( { id: undefined, src: undefined } );
 				return;
 			}
 
 			setAttributes( {
-				dimRatio: dimRatio === 100 ? 50 : dimRatio,
-				src: media.url,
-				id: media.id,
 				alt: media?.alt,
+				dimRatio: dimRatio === 100 ? 50 : dimRatio,
+				id: media.id,
+				src: media.url,
 			} );
 		},
 	debounce = ( callBack: ( x: unknown ) => unknown, timeout = 100 ) => {

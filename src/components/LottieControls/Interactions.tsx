@@ -23,8 +23,8 @@ const Interactions = ( {
 		hover,
 		mouseout,
 		once,
-		scrollEvent,
 		scrollDelay,
+		scrollEvent,
 		selector,
 	} = attributes;
 
@@ -32,11 +32,17 @@ const Interactions = ( {
 		<Panel>
 			<PanelBody
 				className="am-lottieplayer-settings"
-				title={ __( 'Interactions', 'am-lottieplayer' ) }
 				initialOpen={ true }
+				title={ __( 'Interactions', 'am-lottieplayer' ) }
 			>
 				<SwitchLabel
+					disabled
 					id={ 'am-lottieplayer-animateOnScroll-settings' }
+					onChange={ () =>
+						console.warn(
+							'This feature is only available in the premium version'
+						)
+					}
 					title={
 						<>
 							<span
@@ -49,58 +55,63 @@ const Interactions = ( {
 						</>
 					}
 					value={ false }
-					disabled
-					onChange={ () =>
-						console.warn(
-							'This feature is only available in the premium version'
-						)
-					}
 				/>
 				<SwitchLabel
 					id="am-lottieplayer-click-settings"
-					title={ __( 'Play on click', 'am-lottieplayer' ) }
-					value={ clickEvent }
 					onChange={ ( value ) =>
 						setAttributes( { clickEvent: value } )
 					}
+					title={ __( 'Play on click', 'am-lottieplayer' ) }
+					value={ clickEvent }
 				/>
 				<SwitchLabel
 					id="am-lottieplayer-hover-settings"
+					onChange={ ( value ) => setAttributes( { hover: value } ) }
 					title={ __( 'Play on mouseover', 'am-lottieplayer' ) }
 					value={ hover }
-					onChange={ ( value ) => setAttributes( { hover: value } ) }
 				/>
 				{ hover && (
 					<SelectControl
 						label={ __( 'On mouseout', 'am-lottieplayer' ) }
-						value={ mouseout }
 						onChange={ ( val ) =>
 							setAttributes( { mouseout: val as OnMouseOut } )
 						}
 						options={ [
 							{
-								value: OnMouseOut.Void,
 								label: __( 'No event', 'am-lottieplayer' ),
+								value: OnMouseOut.Void,
 							},
 							{
-								value: OnMouseOut.Stop,
 								label: __( 'Stop', 'am-lottieplayer' ),
+								value: OnMouseOut.Stop,
 							},
 							{
-								value: OnMouseOut.Pause,
 								label: __( 'Pause', 'am-lottieplayer' ),
+								value: OnMouseOut.Pause,
 							},
 							{
-								value: OnMouseOut.Reverse,
 								label: __( 'Reverse', 'am-lottieplayer' ),
+								value: OnMouseOut.Reverse,
 							},
 						] }
+						value={ mouseout }
 					/>
 				) }
 				{ ( hover || clickEvent ) && (
 					<>
 						<TextInput
+							disabled
+							help={ __(
+								'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.',
+								'am-lottieplayer'
+							) }
 							id="am-lottieplayer-settings"
+							onChange={ ( val ) =>
+								setAttributes( {
+									selector: { ...selector, id: val },
+								} )
+							}
+							placeholder={ '#' }
 							title={
 								<>
 									<span
@@ -116,21 +127,16 @@ const Interactions = ( {
 									<ProFeature />
 								</>
 							}
-							help={ __(
-								'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.',
-								'am-lottieplayer'
-							) }
-							placeholder={ '#' }
 							value={ selector?.id }
-							disabled
-							onChange={ ( val ) =>
-								setAttributes( {
-									selector: { ...selector, id: val },
-								} )
-							}
 						/>
 						<SwitchLabel
+							disabled
 							id="am-lottieplayer-selector-settings"
+							onChange={ ( val ) =>
+								setAttributes( {
+									selector: { ...selector, exclude: val },
+								} )
+							}
 							title={
 								<>
 									<span
@@ -149,48 +155,42 @@ const Interactions = ( {
 								</>
 							}
 							value={ selector?.exclude }
-							disabled
-							onChange={ ( val ) =>
-								setAttributes( {
-									selector: { ...selector, exclude: val },
-								} )
-							}
 						/>
 					</>
 				) }
 				<SwitchLabel
 					id="am-lottieplayer-scroll-settings"
+					onChange={ ( value ) =>
+						setAttributes( { scrollEvent: value } )
+					}
 					title={ __(
 						'Play on scroll, when visible in viewport',
 						'am-lottieplayer'
 					) }
 					value={ scrollEvent }
-					onChange={ ( value ) =>
-						setAttributes( { scrollEvent: value } )
-					}
 				/>
 				{ scrollEvent && (
 					<>
 						<SwitchLabel
 							id="am-lottieplayer-once-settings"
-							title={ __( 'Play only once', 'am-lottieplayer' ) }
-							value={ once }
 							onChange={ ( value ) =>
 								setAttributes( { once: value } )
 							}
+							title={ __( 'Play only once', 'am-lottieplayer' ) }
+							value={ once }
 						></SwitchLabel>
 						<RangeControl
 							label={ __(
 								'Delay, in 10th of a second',
 								'am-lottieplayer'
 							) }
-							min={ 0 }
 							max={ 50 }
-							step={ 1 }
-							value={ scrollDelay ?? 1 }
+							min={ 0 }
 							onChange={ ( value ) =>
 								setAttributes( { scrollDelay: value } )
 							}
+							step={ 1 }
+							value={ scrollDelay ?? 1 }
 						/>
 					</>
 				) }

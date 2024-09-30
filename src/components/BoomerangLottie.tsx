@@ -2,14 +2,14 @@ import { useCallback, useEffect, useRef } from '@wordpress/element';
 
 import { isTouch } from '@utils';
 
-import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player-light';
+import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light';
 
 export default function BoomerangLottie( {
 	autoplay,
-	src,
-	speed = 1,
-	subframe,
 	className = '',
+	speed = 1,
+	src,
+	subframe,
 }: Partial< DotLottiePlayer > ) {
 	const boomerang = useRef< DotLottiePlayer >( null ),
 		mouseOut = () => {
@@ -41,8 +41,8 @@ export default function BoomerangLottie( {
 
 	useEffect( () => {
 		addEventListener( 'scroll', touchScroll, {
-			passive: true,
 			capture: true,
+			passive: true,
 		} );
 
 		if ( boomerang.current ) {
@@ -59,10 +59,10 @@ export default function BoomerangLottie( {
 		<dotlottie-player
 			autoplay={ autoplay }
 			class={ className }
-			src={ src ?? '' }
-			speed={ speed }
-			subframe={ subframe }
 			ref={ boomerang }
+			speed={ speed }
+			src={ src ?? '' }
+			subframe={ subframe }
 		/>
 	);
 }

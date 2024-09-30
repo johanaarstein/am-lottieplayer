@@ -7,8 +7,8 @@ export default function ProLink() {
 				'https://www.aarstein.media/en/am-lottieplayer/pro',
 				'am-lottieplayer'
 			) }
-			target="_blank"
 			rel="noreferrer"
+			target="_blank"
 		>
 			{ __(
 				'Read about additional features in AM LottiePlayer PRO',

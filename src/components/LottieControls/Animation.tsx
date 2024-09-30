@@ -35,15 +35,15 @@ const Animation = ( {
 			animationContext: { animations, player },
 		} = usePlayerContext(),
 		[ state, setState ] = useState( {
-			totalFrames: 0,
 			hasMultipleAnimations: false,
+			totalFrames: 0,
 		} );
 
 	useEffect( () => {
 		if ( player ) {
 			setState( {
-				totalFrames: Number( player.getLottie()?.totalFrames ?? 0 ),
 				hasMultipleAnimations: animations?.length > 1,
+				totalFrames: Number( player.getLottie()?.totalFrames ?? 0 ),
 			} );
 		}
 	}, [ animations?.length, player ] );
@@ -51,9 +51,9 @@ const Animation = ( {
 	return (
 		<Panel>
 			<PanelBody
-				title={ __( 'Animation Settings', 'am-lottieplayer' ) }
 				className="am-lottieplayer-settings"
 				initialOpen={ true }
+				title={ __( 'Animation Settings', 'am-lottieplayer' ) }
 			>
 				{ state.hasMultipleAnimations && (
 					<div style={ { marginBottom: '1em' } }>
@@ -70,30 +70,36 @@ const Animation = ( {
 				) }
 				<SwitchLabel
 					id="am-lottieplayer-controls-settings"
-					title={ __( 'Show controls', 'am-lottieplayer' ) }
-					value={ !! controls }
 					onChange={ ( value ) =>
 						setAttributes( { controls: value } )
 					}
+					title={ __( 'Show controls', 'am-lottieplayer' ) }
+					value={ !! controls }
 				/>
 				<SwitchLabel
 					id="am-lottieplayer-autoplay-settings"
-					title={ __( 'Autoplay', 'am-lottieplayer' ) }
-					value={ !! autoplay }
 					onChange={ ( value ) => {
 						setAttributes( { autoplay: value } );
 					} }
+					title={ __( 'Autoplay', 'am-lottieplayer' ) }
+					value={ !! autoplay }
 				/>
 				<SwitchLabel
 					id="am-lottieplayer-loop-settings"
-					title={ __( 'Loop', 'am-lottieplayer' ) }
-					value={ !! loop }
 					onChange={ ( value ) => {
 						setAttributes( { loop: value } );
 					} }
+					title={ __( 'Loop', 'am-lottieplayer' ) }
+					value={ !! loop }
 				/>
 				<SwitchLabel
+					disabled
 					id="am-lottieplayer-playmode-settings"
+					onChange={ () =>
+						console.warn(
+							'This feature is only available in the premium version'
+						)
+					}
 					title={
 						<>
 							<span
@@ -106,40 +112,34 @@ const Animation = ( {
 						</>
 					}
 					value={ false }
-					disabled
-					onChange={ () =>
-						console.warn(
-							'This feature is only available in the premium version'
-						)
-					}
 				/>
 				<SwitchLabel
 					id="am-lottieplayer-reverse-settings"
-					title={ __( 'Reverse', 'am-lottieplayer' ) }
-					value={ direction === -1 }
 					onChange={ ( value ) =>
 						setAttributes( { direction: ! value ? 1 : -1 } )
 					}
+					title={ __( 'Reverse', 'am-lottieplayer' ) }
+					value={ direction === -1 }
 				/>
 				<SwitchLabel
 					id="am-lottieplayer-subframe-settings"
-					title={ __( 'Subframe', 'am-lottieplayer' ) }
+					onChange={ ( value ) =>
+						setAttributes( { subframe: value } )
+					}
 					subTitle={ __(
 						'Makes the animation smoother, at the cost of RAM usage',
 						'am-lottieplayer'
 					) }
+					title={ __( 'Subframe', 'am-lottieplayer' ) }
 					value={ !! subframe }
-					onChange={ ( value ) =>
-						setAttributes( { subframe: value } )
-					}
 				/>
 				<RangeControl
 					label={ __( 'Speed', 'am-lottieplayer' ) }
-					min={ 0.5 }
 					max={ 5 }
+					min={ 0.5 }
+					onChange={ ( value ) => setAttributes( { speed: value } ) }
 					step={ 0.5 }
 					value={ speed }
-					onChange={ ( value ) => setAttributes( { speed: value } ) }
 				/>
 				<BaseControl.VisualLabel>
 					<p>
@@ -154,28 +154,28 @@ const Animation = ( {
 				</BaseControl.VisualLabel>
 				<PanelRow className="lottie-segment">
 					<NumberInput
-						id="am-lottieplayer-segment-in"
-						title={ __( 'First frame', 'am-lottieplayer' ) }
-						value={ segment?.[ 0 ] }
 						disabled
+						id="am-lottieplayer-segment-in"
 						onChange={ () =>
 							console.warn(
 								'This feature is only available in the premium version'
 							)
 						}
 						placeholder={ '1' }
+						title={ __( 'First frame', 'am-lottieplayer' ) }
+						value={ segment?.[ 0 ] }
 					/>
 					<NumberInput
-						id="am-lottieplayer-segment-out"
-						title={ __( 'Last frame', 'am-lottieplayer' ) }
-						value={ segment?.[ 1 ] }
 						disabled
+						id="am-lottieplayer-segment-out"
 						onChange={ () =>
 							console.warn(
 								'This feature is only available in the premium version'
 							)
 						}
 						placeholder={ ( state.totalFrames + 1 ).toString() }
+						title={ __( 'Last frame', 'am-lottieplayer' ) }
+						value={ segment?.[ 1 ] }
 					/>
 				</PanelRow>
 				<ProLink />

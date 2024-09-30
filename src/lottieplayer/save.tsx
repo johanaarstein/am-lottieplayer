@@ -28,38 +28,38 @@ export default function save( {
 					! attributes.height || attributes.height === 0
 						? 'auto'
 						: attributes.height,
+				margin: '0 auto',
 				width:
 					! attributes.width || attributes.width === 0
 						? 'auto'
 						: attributes.width,
-				margin: '0 auto',
 			} }
 		>
 			<dotlottie-player
-				class={ `lottie-element${
-					attributes.selector?.id ? ' has-selector' : ''
-				}` }
 				autoplay={
 					attributes.autoplay && ! attributes.scrollEvent ? '' : null
 				}
+				class={ `lottie-element${
+					attributes.selector?.id ? ' has-selector' : ''
+				}` }
 				controls={ attributes.controls ? '' : null }
+				data-click={ attributes.clickEvent }
+				data-delay={ attributes.scrollDelay }
+				data-direction={ attributes.direction }
+				data-mouseout={ attributes.mouseout }
+				data-mouseover={ attributes.hover }
+				data-once={ attributes.once }
+				data-scroll={ attributes.scrollEvent }
+				data-selector={ dataSelector }
 				description={ attributes.alt }
 				direction={ attributes.direction }
-				data-direction={ attributes.direction }
-				data-mouseover={ attributes.hover }
-				data-mouseout={ attributes.mouseout }
-				data-click={ attributes.clickEvent }
-				data-scroll={ attributes.scrollEvent }
-				data-delay={ attributes.scrollDelay }
-				data-selector={ dataSelector }
-				data-once={ attributes.once }
 				loop={ attributes.loop ? '' : null }
 				mode={ attributes.mode }
 				multiAnimationSettings={ [] }
 				objectfit={ attributes.objectFit }
 				segment={ playSegment as unknown as AnimationSegment }
-				src={ attributes.src as string }
 				speed={ attributes.speed }
+				src={ attributes.src as string }
 				subframe={ attributes.subframe ? '' : null }
 			/>
 		</figure>

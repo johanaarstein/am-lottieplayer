@@ -18,22 +18,22 @@ export default function ProFeature() {
 					'https://www.aarstein.media/en/am-lottieplayer/pro',
 					'am-lottieplayer'
 				) }
-				target="_blank"
 				rel="noreferrer"
 				style={ {
+					backgroundColor: 'var(--wp-admin-theme-color)',
+					borderRadius: '1.5em',
 					color: 'white',
+					display: 'inline-block',
 					fontSize: '.75rem',
+					padding: '.5em 1em',
 					// backgroundImage:
 					// 	'linear-gradient(300deg, #24708f, #e18d4c, #85c6e0)',
 					// backgroundSize: '300% 300%',
 					// animation: 'amPulse 30s linear infinite',
 					textDecoration: 'none',
 					textTransform: 'none',
-					backgroundColor: 'var(--wp-admin-theme-color)',
-					display: 'inline-block',
-					padding: '.5em 1em',
-					borderRadius: '1.5em',
 				} }
+				target="_blank"
 			>
 				<strong>PRO</strong> { __( 'feature', 'am-lottieplayer' ) }
 			</a>

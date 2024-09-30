@@ -33,15 +33,15 @@ export default function Widget() {
 					) }
 				</p>
 				<a
-					style={ {
-						color: '#d98f56',
-					} }
 					href={ __(
 						'https://www.aarstein.media/en/am-lottieplayer/pro',
 						'am-lottieplayer'
 					) }
-					target="_blank"
 					rel="noreferrer"
+					style={ {
+						color: '#d98f56',
+					} }
+					target="_blank"
 				>
 					{ __(
 						'Read more about AM LottiePlayer PRO here!',

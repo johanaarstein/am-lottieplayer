@@ -4,9 +4,9 @@ export default function Lottie() {
 	return (
 		<SVG
 			role="img"
+			viewBox="0 0 80 80"
 			xmlns="http://www.w3.org/2000/svg"
 			xmlSpace="preserve"
-			viewBox="0 0 80 80"
 		>
 			<style>
 				{ `
@@ -19,21 +19,21 @@ export default function Lottie() {
 				}` }
 			</style>
 			<defs>
-				<radialGradient id="a" cx=".2" cy="1.07" r="1.2">
+				<radialGradient cx=".2" cy="1.07" id="a" r="1.2">
 					<stop offset="10%">
 						<animate
 							attributeName="stop-color"
-							values="#24708f;#e18d4c;#1f374c;#85c6e0;#24708f;"
 							dur="12s"
 							repeatCount="indefinite"
+							values="#24708f;#e18d4c;#1f374c;#85c6e0;#24708f;"
 						/>
 					</stop>
 					<stop offset="90%">
 						<animate
 							attributeName="stop-color"
-							values="#85c6e0;#24708f;#e18d4c;#1f374c;#85c6e0;"
 							dur="24s"
 							repeatCount="indefinite"
+							values="#85c6e0;#24708f;#e18d4c;#1f374c;#85c6e0;"
 						/>
 					</stop>
 				</radialGradient>

@@ -8,8 +8,9 @@ import {
 import { Spinner } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
-import classnames from 'classnames';
+import classNames from 'classnames';
 
+import ContextMenu from '@components/ContextMenu';
 import PlayerWrapper from '@context/PlayerWrapper';
 import LottieControls from '@components/LottieControls';
 import Placeholder from '@components/Placeholder';
@@ -96,9 +97,9 @@ export default function Edit( {
 				className: 'wp-block-gb-lottiecover__inner-container',
 			},
 			{
+				allowedBlocks,
 				template: ! hasInnerBlocks ? innerBlocksTemplate : undefined,
 				templateInsertUpdatesSelection: true,
-				allowedBlocks,
 				templateLock,
 			}
 		);
@@ -111,15 +112,15 @@ export default function Edit( {
 		<PlayerWrapper>
 			<LottieControls
 				attributes={ attributes }
-				setAttributes={ setAttributes }
-				clientId={ clientId }
-				isSelected={ false }
-				context={ context }
 				className={ className }
+				clientId={ clientId }
+				context={ context }
+				isSelected={ false }
+				setAttributes={ setAttributes }
 			/>
 			<div
 				{ ...blockProps }
-				className={ classnames(
+				className={ classNames(
 					{ 'is-placeholder': isPlaceholder },
 					blockProps.className
 				) }
@@ -128,33 +129,41 @@ export default function Edit( {
 				<ResizableCover
 					className={ 'block-library-lottiecover__resize-container' }
 					fullscreen={ fullscreen }
-					onResizeStart={ () => {
-						setAttributes( { heightUnit: 'px' } );
-						if ( toggleSelection ) toggleSelection( false );
-					} }
 					onResize={ ( value: number ) => {
 						setAttributes( { height: value } );
 					} }
+					onResizeStart={ () => {
+						setAttributes( { heightUnit: 'px' } );
+						if ( toggleSelection ) {
+							toggleSelection( false );
+						}
+					} }
 					onResizeStop={ ( value: number ) => {
 						setAttributes( { height: value } );
-						if ( toggleSelection ) toggleSelection( true );
+						if ( toggleSelection ) {
+							toggleSelection( true );
+						}
 					} }
 					showHandle={ isSelected }
 				/>
 				<span
 					aria-hidden="true"
 					className={ `wp-block-gb-lottiecover__background` }
-					style={ { backgroundColor: background } }
 					hidden={ isPlaceholder }
+					style={ { backgroundColor: background } }
 				/>
 				{ isUploadingMedia && <Spinner /> }
 				<Placeholder
 					attributes={ attributes }
-					setAttributes={ setAttributes }
-					clientId={ clientId }
-					isSelected={ isSelected }
-					context={ context }
 					className={ className }
+					clientId={ clientId }
+					context={ context }
+					isSelected={ isSelected }
+					setAttributes={ setAttributes }
+				/>
+				<ContextMenu
+					attributes={ attributes }
+					setAttributes={ setAttributes }
 				/>
 				{ ! isPlaceholder && <div { ...innerBlocksProps } /> }
 			</div>

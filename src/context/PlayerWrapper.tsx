@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from '@wordpress/element';
 
 import type { Dispatch, SetStateAction } from 'react';
-import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player-light';
+import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light';
 
 type Animations = ReturnType<
 	DotLottiePlayer[ 'getManifest' ]
@@ -16,20 +16,20 @@ export const PlayerContext = createContext< {
 		setAnimationContext: Dispatch< SetStateAction< AnimationContext > >;
 		animationContext: AnimationContext;
 	} >( {
+		animationContext: {
+			animations: [],
+			player: null,
+		},
 		setAnimationContext: ( value: SetStateAction< AnimationContext > ) =>
 			value,
-		animationContext: {
-			player: null,
-			animations: [],
-		},
 	} ),
 	usePlayerContext = () => useContext( PlayerContext );
 
 export default function PlayerWrapper( { children } ) {
 	const [ animationContext, setAnimationContext ] =
 		useState< AnimationContext >( {
-			player: null,
 			animations: [],
+			player: null,
 		} );
 	return (
 		<PlayerContext.Provider

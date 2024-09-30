@@ -12,6 +12,7 @@
 		"tsconfigRootDir": "./"
 	},
 	"plugins": [
+		"perfectionist",
 		"react",
 		"react-hooks",
 		"@typescript-eslint",
@@ -51,7 +52,9 @@
 					"info"
 				]
 			}
-		]
+		],
+		"perfectionist/sort-jsx-props": "warn",
+		"perfectionist/sort-objects": "warn"
 	},
 	"globals": {
 		"JSX": true,

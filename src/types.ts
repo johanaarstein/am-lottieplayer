@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import type { EditorTemplateLock } from '@wordpress/block-editor';
 import type { BlockEditProps } from '@wordpress/blocks';
 import type { ResizeStartCallback } from 're-resizable';
-import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player-light';
+import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light';
 import type { AnimationSegment } from 'lottie-web';
 import type { Align, OnMouseOut } from '@utils';
 
@@ -47,6 +47,7 @@ export interface UploadProps {
 	instructions?: string;
 	onSelectMedia: ( value: { id: number; url: string; alt: string } ) => void;
 	onError: ( message: string ) => void;
+	mediaId?: number;
 }
 
 export interface ResizableCoverProps {

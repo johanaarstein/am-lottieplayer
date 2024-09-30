@@ -45,23 +45,23 @@ export default function save( {
 				style={ { backgroundColor: attributes.background } }
 			/>
 			<dotlottie-player
-				class={ `lottie-element${
-					attributes.selector?.id ? ' has-selector' : ''
-				}` }
 				autoplay={
 					attributes.autoplay && ! attributes.scrollEvent ? '' : null
 				}
+				class={ `lottie-element${
+					attributes.selector?.id ? ' has-selector' : ''
+				}` }
 				controls={ attributes.controls ? '' : null }
-				description={ attributes.alt }
-				direction={ attributes.direction }
-				data-direction={ attributes.direction }
-				data-mouseover={ attributes.hover }
-				data-mouseout={ attributes.mouseout }
 				data-click={ attributes.clickEvent }
 				data-delay={ attributes.scrollDelay }
+				data-direction={ attributes.direction }
+				data-mouseout={ attributes.mouseout }
+				data-mouseover={ attributes.hover }
+				data-once={ attributes.once }
 				data-scroll={ attributes.scrollEvent }
 				data-selector={ dataSelector }
-				data-once={ attributes.once }
+				description={ attributes.alt }
+				direction={ attributes.direction }
 				loop={ attributes.loop ? '' : null }
 				mode={ attributes.mode }
 				multiAnimationSettings={ [] }
@@ -70,13 +70,13 @@ export default function save( {
 				speed={ attributes.speed }
 				src={ attributes.src as string }
 				style={ {
-					width: parseWidth( attributes.width as number ),
+					backgroundColor: attributes.background,
 					height:
 						attributes.height &&
 						typeof attributes.height === 'number'
 							? `${ attributes.height }px`
 							: undefined,
-					backgroundColor: attributes.background,
+					width: parseWidth( attributes.width as number ),
 				} }
 				subframe={ attributes.subframe ? '' : null }
 			/>

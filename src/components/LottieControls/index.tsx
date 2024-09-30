@@ -30,10 +30,10 @@ export default function LottieControls( {
 			...prev,
 			animations: [
 				{
-					id: attributes.id ?? generatedId,
 					autoplay: attributes.autoplay,
-					loop: attributes.loop,
 					direction: attributes.direction,
+					id: attributes.id ?? generatedId,
+					loop: attributes.loop,
 					mode: attributes.mode,
 					speed: attributes.speed,
 				},
@@ -44,43 +44,43 @@ export default function LottieControls( {
 		<InspectorControls>
 			<Animation
 				attributes={ attributes }
-				setAttributes={ setAttributes }
-				clientId={ clientId }
-				isSelected={ isSelected }
-				context={ context }
 				className={ className }
+				clientId={ clientId }
+				context={ context }
+				isSelected={ isSelected }
+				setAttributes={ setAttributes }
 			/>
 			<Interactions
 				attributes={ attributes }
-				setAttributes={ setAttributes }
-				clientId={ clientId }
-				isSelected={ isSelected }
-				context={ context }
 				className={ className }
+				clientId={ clientId }
+				context={ context }
+				isSelected={ isSelected }
+				setAttributes={ setAttributes }
 			/>
 			<Dimensions
 				attributes={ attributes }
-				setAttributes={ setAttributes }
-				clientId={ clientId }
-				isSelected={ isSelected }
-				context={ context }
 				className={ className }
+				clientId={ clientId }
+				context={ context }
+				isSelected={ isSelected }
+				setAttributes={ setAttributes }
 			/>
 			<Background
 				attributes={ attributes }
-				setAttributes={ setAttributes }
-				clientId={ clientId }
-				isSelected={ isSelected }
-				context={ context }
 				className={ className }
+				clientId={ clientId }
+				context={ context }
+				isSelected={ isSelected }
+				setAttributes={ setAttributes }
 			/>
 			<Advanced
 				attributes={ attributes }
-				setAttributes={ setAttributes }
-				clientId={ clientId }
-				isSelected={ isSelected }
-				context={ context }
 				className={ className }
+				clientId={ clientId }
+				context={ context }
+				isSelected={ isSelected }
+				setAttributes={ setAttributes }
 			/>
 		</InspectorControls>
 	);

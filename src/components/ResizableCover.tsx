@@ -9,8 +9,8 @@ export default function ResizableCover( {
 	children,
 	className,
 	fullscreen,
-	onResizeStart,
 	onResize,
+	onResizeStart,
 	onResizeStop,
 	showHandle,
 	...rest
@@ -24,13 +24,13 @@ export default function ResizableCover( {
 				bottom: ! fullscreen,
 			} }
 			minHeight={ 10 }
-			onResizeStart={ onResizeStart }
 			onResize={ ( _e, _dir, el ) => {
 				onResize( el.clientHeight );
 				if ( ! isResizing ) {
 					setIsResizing( true );
 				}
 			} }
+			onResizeStart={ onResizeStart }
 			onResizeStop={ ( _e, _dir, el ) => {
 				onResizeStop( el.clientHeight );
 				setIsResizing( false );

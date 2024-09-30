@@ -5,7 +5,7 @@ import { usePlayerContext } from '@context/PlayerWrapper';
 import { Align } from '@utils';
 
 import type { AnimationSegment } from 'lottie-web';
-import type { DotLottiePlayer } from '@aarsteinmedia/dotlottie-player-light';
+import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light';
 import type { PlayerComponentProps } from '@types';
 
 export default function PlayerComponent( {
@@ -75,30 +75,36 @@ export default function PlayerComponent( {
 			reloadPlayer();
 		}
 		initialRender.current = false;
-	}, [ blockIndex, attributes.objectFit, reloadPlayer, segment ] );
+	}, [
+		blockIndex,
+		attributes.src,
+		attributes.objectFit,
+		reloadPlayer,
+		segment,
+	] );
 
 	return (
 		<dotlottie-player
-			id={ clientId }
-			class="lottie-element"
 			autoplay={ attributes.autoplay ? '' : null }
+			class="lottie-element"
 			controls={ attributes.controls ? '' : null }
 			description={ attributes.alt }
 			direction={ attributes.direction }
+			id={ attributes.id }
 			loop={ attributes.loop ? '' : null }
 			mode={ attributes.mode }
 			objectfit={ attributes.objectFit }
 			ref={ playerRef }
 			segment={ playSegment as unknown as AnimationSegment }
 			speed={ attributes.speed }
-			subframe={ attributes.subframe ? '' : null }
 			src={ attributes.src ?? '' }
 			style={ {
-				width: parseWidth( attributes.width ),
-				height: parseSize( attributes.height ),
 				backgroundColor: attributes.background,
+				height: parseSize( attributes.height ),
 				margin: '0 auto',
+				width: parseWidth( attributes.width ),
 			} }
+			subframe={ attributes.subframe ? '' : null }
 		/>
 	);
 }
