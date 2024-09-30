@@ -37,9 +37,6 @@ vc_map(
     'controls' => 'full',
     'icon' => AM_LOTTIEPLAYER_URL . 'assets/vc-icon.svg',
     'category' => __('Animation', 'am-lottieplayer'),
-    // 'admin_enqueue_js' => AM_LOTTIEPLAYER_URL . 'scripts/am-backend-vc-editor.min.js',
-    // 'front_enqueue_js' => AM_LOTTIEPLAYER_URL . 'scripts/am-frontend-vc-editor.min.js',
-    // 'js_view' => 'AMLottiePlayerView',
     'params' => [
       [
         'type' => 'textfield',
@@ -90,6 +87,13 @@ vc_map(
         'heading' => __('Speed', 'am-lottieplayer'),
         'param_name' => 'speed',
         'value' => '1',
+      ],
+      [
+        'type' => 'textfield',
+        'heading' => __('Intermission', 'am-lottieplayer'),
+        'description' => __('Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer'),
+        'param_name' => 'speed',
+        'value' => '0',
       ],
       [
         'type' => 'checkbox',

@@ -146,6 +146,18 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			);
 
 			$this->add_control(
+				'intermission',
+				[
+					'label' => __('Intermission', 'am-lottieplayer'),
+					'description' => esc_html__('Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer'),
+					'type' => \Elementor\Controls_Manager::NUMBER,
+					'step' => '100',
+					'min' => '0',
+					'default' => null
+				],
+			);
+
+			$this->add_control(
 				'segment_in',
 				[
 					'label' => 'Pro Feature: ' . __('Choose where to start', 'am-lottieplayer'),
@@ -479,6 +491,7 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 				$heightSize . $heightUnit,
 				'auto'
 			);
+			$intermission = $settings['intermission'];
 			$widthSize = $settings['width']['size'];
 			$widthUnit = $settings['width']['unit'];
 			$width = $widthSize . $widthUnit;
@@ -492,30 +505,28 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 			// 		(intval($settings['segment_in']) ?? 0) . ',' .
 			// 		intval($settings['segment_out'])
 			// 		. ']') : '';
-					?>
+?>
 
 			<figure style="width:<?php echo esc_html($width); ?>;height:<?php echo esc_html($height); ?>;margin:0 auto;">
 				<dotlottie-player
-					<?php echo esc_html($autoplay); ?>
-					<?php echo esc_html($controls); ?>
-					<?php echo esc_html($loop); ?>
-					<?php echo esc_html($subframe); ?>
+					<?php echo esc_attr($autoplay); ?>
+					<?php echo esc_attr($controls); ?>
+					<?php echo esc_attr($loop); ?>
+					<?php echo esc_attr($subframe); ?>
 
-					direction="<?php echo esc_html($direction); ?>"
-					data-direction="<?php echo esc_html($direction); ?>"
-					data-mouseover="<?php echo esc_html($onMouseOver); ?>"
-					data-mouseout="<?php echo esc_html($onMouseOut); ?>"
-					data-click="<?php echo esc_html($onClick); ?>"
-
-					data-scroll="<?php echo esc_html($scroll); ?>"
-					data-delay="<?php echo esc_html($settings['delay']); ?>"
-					data-once="<?php echo esc_html($once); ?>"
-					objectfit="<?php echo esc_html($objectFit); ?>"
-					speed="<?php echo esc_html($speed); ?>"
+					direction="<?php echo esc_attr($direction); ?>"
+					data-direction="<?php echo esc_attr($direction); ?>"
+					data-mouseover="<?php echo esc_attr($onMouseOver); ?>"
+					data-mouseout="<?php echo esc_attr($onMouseOut); ?>"
+					data-click="<?php echo esc_attr($onClick); ?>"
+					intermission="<?php echo esc_attr($intermission); ?>"
+					data-scroll="<?php echo esc_attr($scroll); ?>"
+					data-delay="<?php echo esc_attr($settings['delay']); ?>"
+					data-once="<?php echo esc_attr($once); ?>"
+					objectfit="<?php echo esc_attr($objectFit); ?>"
+					speed="<?php echo esc_attr($speed); ?>"
 					src="<?php echo esc_url($src); ?>"
-					description="<?php echo esc_html($description); ?>"
-
-					>
+					description="<?php echo esc_attr($description); ?>">
 				</dotlottie-player>
 			</figure>
 		<?php
@@ -525,8 +536,8 @@ if (class_exists('\Elementor\Widget_Base') && !class_exists('Elementor_AM_Lottie
 		{
 		?>
 			<# const autoplay=settings.autoplay==='yes' ? 'autoplay' : '' , controls=settings.controls==='yes' ? 'controls' : '' , loop=settings.loop==='yes' ? 'loop' : '' , subframe=settings.subframe==='yes' ? 'subframe' : '' , mode=settings.mode==='yes' ? 'bounce' : 'normal' , { height_auto, height_fixed, lottie, object_fit, reverse, segment_in, segment_out, speed, width }=settings, direction=reverse==='yes' ? '-1' : '1' , height=height_auto !=='yes' || !height_fixed.size ? 'auto' : height_fixed.size + height_fixed.unit, playbackSpeed=!speed || speed==='' ? '1' : speed, segment=segment_in && segment_out && segment_out !=='0' ? JSON.stringify([segment_in, segment_out]) : undefined #>
-			<figure style="width:{{{ width.size }}}{{{ width.unit }}};height:{{{ height }}};margin:auto;">
-					<dotlottie-player {{{ autoplay }}} {{{ controls }}} {{{ loop }}} {{{ subframe }}} direction="{{{ direction }}}" mode="{{{ mode }}}" objectfit="{{{ object_fit }}}" speed="{{{ playbackSpeed }}}" src="{{{ lottie.url }}}" segment="{{{ segment }}}">
+				<figure style="width:{{{ width.size }}}{{{ width.unit }}};height:{{{ height }}};margin:auto;">
+					<dotlottie-player {{{ autoplay }}} {{{ controls }}} {{{ loop }}} {{{ subframe }}} direction="{{{ direction }}}" mode="{{{ mode }}}" objectfit="{{{ object_fit }}}" speed="{{{ playbackSpeed }}}" src="{{{ lottie.url }}}" segment="{{{ segment }}}" intermission="{{{ settings.intermission }}}">
 					</dotlottie-player>
 				</figure>
 	<?php

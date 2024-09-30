@@ -95,6 +95,18 @@ add_ux_builder_shortcode('am-lottieplayer', [
           'unit' => '',
         ],
 
+        'intermission' => [
+          'type' => 'slider',
+          'heading' => __('Intermission', 'am-lottieplayer'),
+          'description' => esc_html__('Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer'),
+          'default' => 0,
+          'min' => 0,
+          'max' => 5000,
+          'step' => 100,
+          'unit' => '',
+          'conditions' => 'loop === "true"',
+        ],
+
         'segment_in' => [
           'type' => 'slider',
           'heading' => 'Pro Feature: ' . __('Choose where to start', 'am-lottieplayer'),

@@ -261,6 +261,19 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 					],
 					'toggle_slug' => 'main_content',
 				],
+				'intermission' => [
+					'label' => __('Intermission', 'am-lottieplayer'),
+					'description' => esc_html__('Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer'),
+					'type' => 'range',
+					'range_settings' => [
+						'max' => '5000',
+						'step' => '100',
+					],
+					'toggle_slug' => 'main_content',
+					'condition' => [
+						'loop' => 'on',
+					],
+				],
 				'segment_in' => [
 					'label' => 'Pro Feature: ' . __('Choose where to start', 'am-lottieplayer'),
 					'description' => $proLink,
@@ -475,6 +488,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 						data-scroll="%19$s"
 						data-delay="%20$s"
 						data-once="%21$s"
+						intermission="%22$s"
 					>
 					</dotlottie-player>
 				</figure>',
@@ -499,6 +513,7 @@ if (class_exists('ET_Builder_Module') && !class_exists('AM_ET_Builder_Module_Lot
 				esc_attr($scroll), #19
 				esc_attr($this->props['delay']), #20
 				esc_attr($this->props['once'] !== 'off' ? 'true' : 'false'), #21
+				esc_attr($this->props['intermission']), #22
 			);
 
 			if ('' !== $url) {

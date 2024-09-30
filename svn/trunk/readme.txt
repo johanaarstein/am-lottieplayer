@@ -7,7 +7,7 @@ Tags: lottie, bodymovin, gutenberg, svg, gif
 Requires at least: 5.9
 Tested up to: 6.6
 Requires PHP: 7.0
-Stable Tag: 3.2.3
+Stable Tag: 3.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -128,6 +128,10 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 4. …and even Flatsome!
 
 == Changelog ==
+
+= 3.2.4 - September 30 2024 =
+* Added intermission controls
+* Added "Replace"-functionality to Gutenberg editor
 
 = 3.2.3 - September 11 2024 =
 * Updated frontend script
