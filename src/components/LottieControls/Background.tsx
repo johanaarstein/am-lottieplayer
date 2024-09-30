@@ -14,7 +14,7 @@ const Background = ( {
 		<Panel>
 			<PanelBody
 				className="am-lottieplayer-settings"
-				initialOpen={ false }
+				initialOpen={ true }
 				title={ __( 'Background Color', 'am-lottieplayer' ) }
 			>
 				<ColorPicker

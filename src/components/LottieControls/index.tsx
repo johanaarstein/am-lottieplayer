@@ -41,47 +41,51 @@ export default function LottieControls( {
 		} ) );
 	}
 	return (
-		<InspectorControls>
-			<Animation
-				attributes={ attributes }
-				className={ className }
-				clientId={ clientId }
-				context={ context }
-				isSelected={ isSelected }
-				setAttributes={ setAttributes }
-			/>
-			<Interactions
-				attributes={ attributes }
-				className={ className }
-				clientId={ clientId }
-				context={ context }
-				isSelected={ isSelected }
-				setAttributes={ setAttributes }
-			/>
-			<Dimensions
-				attributes={ attributes }
-				className={ className }
-				clientId={ clientId }
-				context={ context }
-				isSelected={ isSelected }
-				setAttributes={ setAttributes }
-			/>
-			<Background
-				attributes={ attributes }
-				className={ className }
-				clientId={ clientId }
-				context={ context }
-				isSelected={ isSelected }
-				setAttributes={ setAttributes }
-			/>
-			<Advanced
-				attributes={ attributes }
-				className={ className }
-				clientId={ clientId }
-				context={ context }
-				isSelected={ isSelected }
-				setAttributes={ setAttributes }
-			/>
-		</InspectorControls>
+		<>
+			<InspectorControls>
+				<Animation
+					attributes={ attributes }
+					className={ className }
+					clientId={ clientId }
+					context={ context }
+					isSelected={ isSelected }
+					setAttributes={ setAttributes }
+				/>
+				<Interactions
+					attributes={ attributes }
+					className={ className }
+					clientId={ clientId }
+					context={ context }
+					isSelected={ isSelected }
+					setAttributes={ setAttributes }
+				/>
+				<Advanced
+					attributes={ attributes }
+					className={ className }
+					clientId={ clientId }
+					context={ context }
+					isSelected={ isSelected }
+					setAttributes={ setAttributes }
+				/>
+			</InspectorControls>
+			<InspectorControls group="styles">
+				<Dimensions
+					attributes={ attributes }
+					className={ className }
+					clientId={ clientId }
+					context={ context }
+					isSelected={ isSelected }
+					setAttributes={ setAttributes }
+				/>
+				<Background
+					attributes={ attributes }
+					className={ className }
+					clientId={ clientId }
+					context={ context }
+					isSelected={ isSelected }
+					setAttributes={ setAttributes }
+				/>
+			</InspectorControls>
+		</>
 	);
 }

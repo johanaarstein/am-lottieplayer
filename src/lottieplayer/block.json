@@ -66,6 +66,9 @@
 		"id": {
 			"type": "string"
 		},
+		"intermission": {
+			"type": "number"
+		},
 		"loop": {
 			"type": "boolean"
 		},

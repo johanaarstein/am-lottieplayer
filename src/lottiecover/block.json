@@ -94,6 +94,9 @@
 			"type": "string",
 			"default": null
 		},
+		"intermission": {
+			"type": "number"
+		},
 		"isDark": {
 			"type": "boolean",
 			"default": true

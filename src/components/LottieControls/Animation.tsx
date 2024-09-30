@@ -21,16 +21,7 @@ const Animation = ( {
 	attributes,
 	setAttributes,
 }: BlockEditProps< PlayerComponentProps > ) => {
-	const {
-			autoplay,
-			controls,
-			direction,
-			loop,
-			// mode = PlayMode.Normal,
-			segment,
-			speed = 1,
-			subframe,
-		} = attributes,
+	const { segment } = attributes,
 		{
 			animationContext: { animations, player },
 		} = usePlayerContext(),
@@ -74,7 +65,7 @@ const Animation = ( {
 						setAttributes( { controls: value } )
 					}
 					title={ __( 'Show controls', 'am-lottieplayer' ) }
-					value={ !! controls }
+					value={ !! attributes.controls }
 				/>
 				<SwitchLabel
 					id="am-lottieplayer-autoplay-settings"
@@ -82,7 +73,7 @@ const Animation = ( {
 						setAttributes( { autoplay: value } );
 					} }
 					title={ __( 'Autoplay', 'am-lottieplayer' ) }
-					value={ !! autoplay }
+					value={ !! attributes.autoplay }
 				/>
 				<SwitchLabel
 					id="am-lottieplayer-loop-settings"
@@ -90,7 +81,7 @@ const Animation = ( {
 						setAttributes( { loop: value } );
 					} }
 					title={ __( 'Loop', 'am-lottieplayer' ) }
-					value={ !! loop }
+					value={ !! attributes.loop }
 				/>
 				<SwitchLabel
 					disabled
@@ -119,7 +110,7 @@ const Animation = ( {
 						setAttributes( { direction: ! value ? 1 : -1 } )
 					}
 					title={ __( 'Reverse', 'am-lottieplayer' ) }
-					value={ direction === -1 }
+					value={ attributes.direction === -1 }
 				/>
 				<SwitchLabel
 					id="am-lottieplayer-subframe-settings"
@@ -131,7 +122,7 @@ const Animation = ( {
 						'am-lottieplayer'
 					) }
 					title={ __( 'Subframe', 'am-lottieplayer' ) }
-					value={ !! subframe }
+					value={ !! attributes.subframe }
 				/>
 				<RangeControl
 					label={ __( 'Speed', 'am-lottieplayer' ) }
@@ -139,7 +130,7 @@ const Animation = ( {
 					min={ 0.5 }
 					onChange={ ( value ) => setAttributes( { speed: value } ) }
 					step={ 0.5 }
-					value={ speed }
+					value={ attributes.speed }
 				/>
 				<BaseControl.VisualLabel>
 					<p>
@@ -178,6 +169,29 @@ const Animation = ( {
 						value={ segment?.[ 1 ] }
 					/>
 				</PanelRow>
+				{ attributes.loop && (
+					<>
+						<BaseControl.VisualLabel>
+							{ __( 'Intermission', 'am-lottieplayer' ) }
+						</BaseControl.VisualLabel>
+						<PanelRow className="lottie-intermission">
+							<NumberInput
+								id={ 'am-lottieplayer-intermission' }
+								onChange={ ( val ) =>
+									setAttributes( {
+										intermission: val,
+									} )
+								}
+								placeholder={ '0' }
+								title={ __(
+									'Pause between loops, in miliseconds. 1s = 1000',
+									'am-lottieplayer'
+								) }
+								value={ attributes.intermission }
+							/>
+						</PanelRow>
+					</>
+				) }
 				<ProLink />
 			</PanelBody>
 		</Panel>

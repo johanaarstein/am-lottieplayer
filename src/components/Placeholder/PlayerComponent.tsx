@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 
 import { usePlayerContext } from '@context/PlayerWrapper';
-import { Align } from '@utils';
+import { Align, debounce } from '@utils';
 
 import type { AnimationSegment } from 'lottie-web';
 import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light';
@@ -72,11 +72,12 @@ export default function PlayerComponent( {
 
 	useEffect( () => {
 		if ( ! initialRender.current ) {
-			reloadPlayer();
+			debounce( reloadPlayer, 300 );
 		}
 		initialRender.current = false;
 	}, [
 		blockIndex,
+		attributes.intermission,
 		attributes.src,
 		attributes.objectFit,
 		reloadPlayer,
@@ -91,6 +92,7 @@ export default function PlayerComponent( {
 			description={ attributes.alt }
 			direction={ attributes.direction }
 			id={ attributes.id }
+			intermission={ attributes.intermission }
 			loop={ attributes.loop ? '' : null }
 			mode={ attributes.mode }
 			objectfit={ attributes.objectFit }

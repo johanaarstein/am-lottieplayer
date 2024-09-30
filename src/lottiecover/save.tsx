@@ -62,13 +62,14 @@ export default function save( {
 				data-selector={ dataSelector }
 				description={ attributes.alt }
 				direction={ attributes.direction }
+				intermission={ attributes.intermission }
 				loop={ attributes.loop ? '' : null }
 				mode={ attributes.mode }
 				multiAnimationSettings={ [] }
 				objectfit={ attributes.objectFit }
 				segment={ playSegment as unknown as AnimationSegment }
 				speed={ attributes.speed }
-				src={ attributes.src as string }
+				src={ attributes.src || '' }
 				style={ {
 					backgroundColor: attributes.background,
 					height:
