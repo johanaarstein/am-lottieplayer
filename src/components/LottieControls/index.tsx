@@ -1,15 +1,15 @@
-import { useId } from '@wordpress/element';
-import { InspectorControls } from '@wordpress/block-editor';
+import type { PlayerComponentProps } from '@types';
+import type { BlockEditProps } from '@wordpress/blocks';
 
 import { usePlayerContext } from '@context/PlayerWrapper';
+import { InspectorControls } from '@wordpress/block-editor';
+import { useId } from '@wordpress/element';
+
 import Advanced from './Advanced';
 import Animation from './Animation';
 import Background from './Background';
-import Interactions from './Interactions';
 import Dimensions from './Dimensions';
-
-import type { BlockEditProps } from '@wordpress/blocks';
-import type { PlayerComponentProps } from '@types';
+import Interactions from './Interactions';
 
 export default function LottieControls( {
 	attributes,

@@ -1,18 +1,17 @@
-import { useCallback } from '@wordpress/element';
+import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light';
+import type { PlayerComponentProps } from '@types';
+import type { BlockEditProps } from '@wordpress/blocks';
+
+import { NumberInput, SwitchLabel } from '@components/form';
+import { Align } from '@utils';
 import {
 	Panel,
 	PanelBody,
 	PanelRow,
 	SelectControl,
 } from '@wordpress/components';
+import { useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-
-import { NumberInput, SwitchLabel } from '@components/form';
-import { Align } from '@utils';
-
-import type { BlockEditProps } from '@wordpress/blocks';
-import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light';
-import type { PlayerComponentProps } from '@types';
 
 const Dimensions = ( {
 	attributes,

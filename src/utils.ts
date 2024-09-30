@@ -1,8 +1,8 @@
-import { isBlobURL } from '@wordpress/blob';
-
 import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light';
 import type { AnimationDirection } from 'lottie-web';
 import type { KeyboardEvent } from 'react';
+
+import { isBlobURL } from '@wordpress/blob';
 
 export enum Align {
 	Center = 'center',

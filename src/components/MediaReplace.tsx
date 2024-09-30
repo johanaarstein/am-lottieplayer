@@ -1,18 +1,8 @@
-import { useSelect } from '@wordpress/data';
-import { useEffect, useRef, useState } from '@wordpress/element';
-// eslint-disable-next-line @wordpress/no-unsafe-wp-apis
-import { __unstableStripHTML as stripHTML } from '@wordpress/dom';
+import type { PlayerComponentProps } from '@types';
+
+import Lottie from '@assets/Lottie';
+import { isValidUrl } from '@utils';
 import { speak } from '@wordpress/a11y';
-import { __ } from '@wordpress/i18n';
-import { upload } from '@wordpress/icons';
-import {
-	Dropdown,
-	FormFileUpload,
-	MenuItem,
-	NavigableMenu,
-	Notice,
-	ToolbarButton,
-} from '@wordpress/components';
 import {
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	// @ts-expect-error
@@ -22,12 +12,21 @@ import {
 	MediaUpload as MediaUploadComponent,
 	MediaUploadCheck,
 } from '@wordpress/block-editor';
+import {
+	Dropdown,
+	FormFileUpload,
+	MenuItem,
+	NavigableMenu,
+	Notice,
+	ToolbarButton,
+} from '@wordpress/components';
+import { useSelect } from '@wordpress/data';
+import { useEffect, useRef, useState } from '@wordpress/element';
+// eslint-disable-next-line @wordpress/no-unsafe-wp-apis
+import { __unstableStripHTML as stripHTML } from '@wordpress/dom';
+import { __ } from '@wordpress/i18n';
+import { upload } from '@wordpress/icons';
 import classNames from 'classnames';
-
-import { isValidUrl } from '@utils';
-import Lottie from '@assets/Lottie';
-
-import type { PlayerComponentProps } from '@types';
 
 type MediaUpload = ( options: {
 	allowedTypes: string[];

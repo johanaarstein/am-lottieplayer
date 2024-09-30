@@ -1,9 +1,8 @@
-import classnames from 'classnames';
-
-import { useState } from '@wordpress/element';
-import { ResizableBox } from '@wordpress/components';
-
 import type { ResizableCoverProps } from '@types';
+
+import { ResizableBox } from '@wordpress/components';
+import { useState } from '@wordpress/element';
+import classnames from 'classnames';
 
 export default function ResizableCover( {
 	children,

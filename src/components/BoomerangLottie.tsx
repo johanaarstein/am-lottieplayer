@@ -1,8 +1,7 @@
-import { useCallback, useEffect, useRef } from '@wordpress/element';
+import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light';
 
 import { isTouch } from '@utils';
-
-import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light';
+import { useCallback, useEffect, useRef } from '@wordpress/element';
 
 export default function BoomerangLottie( {
 	autoplay,

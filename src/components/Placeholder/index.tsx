@@ -1,10 +1,10 @@
+import type { PlayerComponentProps } from '@types';
+import type { BlockEditProps } from '@wordpress/blocks';
+
 import { useEffect, useState } from '@wordpress/element';
 
-import UploadComponent from './UploadComponent';
 import PlayerComponent from './PlayerComponent';
-
-import type { BlockEditProps } from '@wordpress/blocks';
-import type { PlayerComponentProps } from '@types';
+import UploadComponent from './UploadComponent';
 
 export default function Placeholder( {
 	attributes,

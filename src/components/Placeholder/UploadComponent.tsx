@@ -1,17 +1,16 @@
-import { useEffect, useState } from '@wordpress/element';
+import type { PlayerComponentProps } from '@types';
+
+import Lottie from '@assets/Lottie';
+import { isValidUrl } from '@utils';
 import {
 	BlockIcon,
 	MediaPlaceholder,
 	MediaUploadCheck,
 	URLInput,
 } from '@wordpress/block-editor';
-import { __ } from '@wordpress/i18n';
 import { Notice } from '@wordpress/components';
-
-import Lottie from '@assets/Lottie';
-import { isValidUrl } from '@utils';
-
-import type { PlayerComponentProps } from '@types';
+import { useEffect, useState } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
 
 export default function UploadComponent( {
 	attributes,

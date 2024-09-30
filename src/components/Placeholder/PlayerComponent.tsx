@@ -1,12 +1,11 @@
-import { useCallback, useEffect, useRef } from '@wordpress/element';
-import { useSelect } from '@wordpress/data';
+import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light';
+import type { PlayerComponentProps } from '@types';
+import type { AnimationSegment } from 'lottie-web';
 
 import { usePlayerContext } from '@context/PlayerWrapper';
 import { Align, debounce } from '@utils';
-
-import type { AnimationSegment } from 'lottie-web';
-import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light';
-import type { PlayerComponentProps } from '@types';
+import { useSelect } from '@wordpress/data';
+import { useCallback, useEffect, useRef } from '@wordpress/element';
 
 export default function PlayerComponent( {
 	attributes,

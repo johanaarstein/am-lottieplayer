@@ -8,7 +8,7 @@ if (!function_exists('am_ux_get_template')) {
       'am-backend-ux',
       AM_LOTTIEPLAYER_URL . 'scripts/am-backend-ux.min.js',
       ['dotlottie-player-light'],
-      '1.0.0',
+      '1.0.1',
       true
     );
     ob_start();

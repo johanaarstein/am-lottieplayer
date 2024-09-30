@@ -1,15 +1,15 @@
-import { createContext, useContext, useState } from '@wordpress/element';
-
-import type { Dispatch, SetStateAction } from 'react';
 import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light';
+import type { Dispatch, SetStateAction } from 'react';
+
+import { createContext, useContext, useState } from '@wordpress/element';
 
 type Animations = ReturnType<
 	DotLottiePlayer[ 'getManifest' ]
 >[ 'animations' ];
 
 interface AnimationContext {
-	player: null | DotLottiePlayer;
 	animations: Animations;
+	player: null | DotLottiePlayer;
 }
 
 export const PlayerContext = createContext< {

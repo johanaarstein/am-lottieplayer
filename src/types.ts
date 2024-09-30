@@ -1,10 +1,10 @@
-import type { ReactNode } from 'react';
+import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light';
+import type { Align, OnMouseOut } from '@utils';
 import type { EditorTemplateLock } from '@wordpress/block-editor';
 import type { BlockEditProps } from '@wordpress/blocks';
-import type { ResizeStartCallback } from 're-resizable';
-import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light';
 import type { AnimationSegment } from 'lottie-web';
-import type { Align, OnMouseOut } from '@utils';
+import type { ResizeStartCallback } from 're-resizable';
+import type { ReactNode } from 'react';
 
 export interface PlayerComponentProps extends Partial< DotLottiePlayer > {
 	align?: Align;
@@ -26,8 +26,8 @@ export interface PlayerComponentProps extends Partial< DotLottiePlayer > {
 	mouseout?: OnMouseOut;
 	objectFit?: DotLottiePlayer[ 'objectfit' ];
 	once?: boolean;
-	scrollEvent?: boolean;
 	scrollDelay?: number | null;
+	scrollEvent?: boolean;
 	segment?: AnimationSegment;
 	selector?: {
 		id?: string;
@@ -45,20 +45,20 @@ export interface BlockCoverEditProps
 export interface UploadProps {
 	children?: ReactNode;
 	instructions?: string;
-	onSelectMedia: ( value: { id: number; url: string; alt: string } ) => void;
-	onError: ( message: string ) => void;
 	mediaId?: number;
+	onError: ( message: string ) => void;
+	onSelectMedia: ( value: { id: number; url: string; alt: string } ) => void;
 }
 
 export interface ResizableCoverProps {
+	[ x: string ]: unknown;
 	children?: ReactNode;
 	className?: string;
 	fullscreen?: boolean;
-	onResizeStart: ResizeStartCallback;
 	onResize: ( n: number ) => void;
+	onResizeStart: ResizeStartCallback;
 	onResizeStop: ( n: number ) => void;
 	showHandle?: boolean;
-	[ x: string ]: unknown;
 }
 
 interface LottieAsset {
@@ -139,20 +139,20 @@ export interface Media {
 }
 
 interface MediaOptions {
-	title: string;
 	button: {
 		text: string;
 	};
-	multiple: boolean;
 	library: {
 		type?: string[];
 	};
+	multiple: boolean;
+	title: string;
 }
 
 export interface NoticeProps {
+	message?: string;
 	show: boolean;
 	status: 'success' | 'error' | 'info';
-	message?: string;
 }
 
 declare global {

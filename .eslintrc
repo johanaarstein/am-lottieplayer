@@ -53,6 +53,8 @@
 				]
 			}
 		],
+		"perfectionist/sort-imports": "warn",
+		"perfectionist/sort-interfaces": "warn",
 		"perfectionist/sort-jsx-props": "warn",
 		"perfectionist/sort-objects": "warn"
 	},

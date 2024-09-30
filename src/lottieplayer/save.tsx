@@ -1,8 +1,8 @@
-import { useBlockProps } from '@wordpress/block-editor';
-
+import type { PlayerComponentProps } from '@types';
 import type { BlockSaveProps } from '@wordpress/blocks';
 import type { AnimationSegment } from 'lottie-web';
-import type { PlayerComponentProps } from '@types';
+
+import { useBlockProps } from '@wordpress/block-editor';
 
 export default function save( {
 	attributes,

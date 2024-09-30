@@ -1,4 +1,12 @@
-import { useEffect, useRef, useState } from '@wordpress/element';
+import type { BlockCoverEditProps } from '@types';
+import type { TemplateArray } from '@wordpress/blocks';
+
+import ContextMenu from '@components/ContextMenu';
+import LottieControls from '@components/LottieControls';
+import Placeholder from '@components/Placeholder';
+import ResizableCover from '@components/ResizableCover';
+import PlayerWrapper from '@context/PlayerWrapper';
+import { isTemporaryMedia } from '@utils';
 import {
 	useBlockProps,
 	useInnerBlocksProps,
@@ -6,19 +14,10 @@ import {
 	useSetting,
 } from '@wordpress/block-editor';
 import { Spinner } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
+import { useEffect, useRef, useState } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
-
-import ContextMenu from '@components/ContextMenu';
-import PlayerWrapper from '@context/PlayerWrapper';
-import LottieControls from '@components/LottieControls';
-import Placeholder from '@components/Placeholder';
-import ResizableCover from '@components/ResizableCover';
-import { isTemporaryMedia } from '@utils';
-
-import type { TemplateArray } from '@wordpress/blocks';
-import type { BlockCoverEditProps } from '@types';
 
 import './editor.scss';
 
