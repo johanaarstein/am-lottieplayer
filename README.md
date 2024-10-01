@@ -57,6 +57,7 @@ If you want to use the shortcode `[am-lottieplayer]`, it has the following param
 - controls: `true` | `false`, default: `false`
 - loop: `true` | `false`, default: `false`
 - objectfit: `cover` | `contain` | `none`, default: `contain`
+- intermission: `number`
 - speed: `number` (1 – 5), default: `1`
 - direction: `1` | `-1`, default: `1`
 - onclick: `true` | `false`, default: `false`
