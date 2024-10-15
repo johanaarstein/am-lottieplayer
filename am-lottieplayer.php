@@ -142,7 +142,7 @@ if (!class_exists('AM_LottiePlayer')) {
  * Main function, to initialize plugin
  * @return AM_LottiePlayer
  */
-(function() {
+(function () {
   global $am_lottieplayer;
 
   if (!isset($am_lottieplayer)) {
