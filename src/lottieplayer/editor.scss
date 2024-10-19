@@ -8,25 +8,31 @@
 
 .flex {
 	display: flex;
+
 	&.space-around {
 		justify-content: space-around;
 	}
+
 	&.space-between {
 		justify-content: space-between;
 	}
 }
 
-.alignleft, .alignright {
+.alignleft,
+.alignright {
 	max-width: 600px;
 }
 
-.lottie-dimensions, .lottie-segment {
+.lottie-dimensions,
+.lottie-segment {
 	gap: 1em;
 	margin-bottom: 1em;
 	align-items: flex-start;
+
 	.lottie-number-wrapper {
 		flex: 1;
-		margin-bottom: 0!important;
+		margin-bottom: 0 !important;
+
 		input {
 			width: 100%;
 		}
@@ -34,5 +40,5 @@
 }
 
 .pro-feature {
-	opacity: .5;
+	opacity: 0.5;
 }
