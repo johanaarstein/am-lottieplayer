@@ -130,6 +130,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 3.2.5 - October 20 2024 =
+* Extended browser support
+
 = 3.2.4 - September 30 2024 =
 * Added intermission controls
 * Added "Replace"-functionality to Gutenberg editor
