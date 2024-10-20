@@ -19,21 +19,9 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "paths": {
-      "@assets/*": [
-        "./src/assets/*"
-      ],
-      "@components/*": [
-        "./src/components/*"
-      ],
-      "@context/*": [
-        "./src/context/*"
-      ],
-      "@types": [
-        "./src/types"
-      ],
-      "@utils": [
-        "./src/utils"
-      ],
+      "@/*": [
+        "./src/*"
+      ]
     }
   },
   "ts-node": {
@@ -42,7 +30,8 @@
     }
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*",
+    ".eslintrc.js"
   ],
   "exclude": [
     "**/svn",

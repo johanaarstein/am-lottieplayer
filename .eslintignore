@@ -1,5 +1,6 @@
 # Third party
 **/node_modules
+**/vendor
 
 # Build products
 ./build/**/*

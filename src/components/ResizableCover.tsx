@@ -1,4 +1,4 @@
-import type { ResizableCoverProps } from '@types';
+import type { ResizableCoverProps } from '@/types';
 
 import { ResizableBox } from '@wordpress/components';
 import { useState } from '@wordpress/element';

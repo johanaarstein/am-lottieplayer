@@ -1,11 +1,11 @@
-import type { PlayerComponentProps } from '@types';
+import type { PlayerComponentProps } from '@/types';
 import type { BlockEditProps } from '@wordpress/blocks';
 
-import ContextMenu from '@components/ContextMenu';
-import LottieControls from '@components/LottieControls';
-import Placeholder from '@components/Placeholder';
-import PlayerWrapper from '@context/PlayerWrapper';
-import { isTemporaryMedia } from '@utils';
+import ContextMenu from '@/components/ContextMenu';
+import LottieControls from '@/components/LottieControls';
+import Placeholder from '@/components/Placeholder';
+import PlayerWrapper from '@/context/PlayerWrapper';
+import { isTemporaryMedia } from '@/utils';
 import { useBlockProps } from '@wordpress/block-editor';
 import { Spinner } from '@wordpress/components';
 

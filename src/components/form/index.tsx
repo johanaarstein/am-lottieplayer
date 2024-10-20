@@ -1,6 +1,6 @@
 import type { KeyboardEvent, ReactNode } from 'react';
 
-import { isModifierKey, isNumericInput } from '@utils';
+import { isModifierKey, isNumericInput } from '@/utils';
 import { BaseControl, FormToggle, TextControl } from '@wordpress/components';
 
 const SwitchLabel = ( {

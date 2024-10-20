@@ -1,9 +1,9 @@
+import type { PlayerComponentProps } from '@/types';
 import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light';
-import type { PlayerComponentProps } from '@types';
 import type { BlockEditProps } from '@wordpress/blocks';
 
-import { NumberInput, SwitchLabel } from '@components/form';
-import { Align } from '@utils';
+import { NumberInput, SwitchLabel } from '@/components/form';
+import { Align } from '@/enums';
 import {
 	Panel,
 	PanelBody,

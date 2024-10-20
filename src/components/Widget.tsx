@@ -1,4 +1,4 @@
-import BoomerangLottie from '@components/BoomerangLottie';
+import BoomerangLottie from '@/components/BoomerangLottie';
 import { __ } from '@wordpress/i18n';
 
 export default function Widget() {

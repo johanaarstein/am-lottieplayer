@@ -1,6 +1,6 @@
-import type { PlayerComponentProps } from '@types';
+import type { PlayerComponentProps } from '@/types';
 
-import icon from '@assets/Lottie';
+import icon from '@/assets/Lottie';
 import { registerBlockType } from '@wordpress/blocks';
 
 import metadata from './block.json';

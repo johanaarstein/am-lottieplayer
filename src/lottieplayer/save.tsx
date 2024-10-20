@@ -1,4 +1,4 @@
-import type { PlayerComponentProps } from '@types';
+import type { PlayerComponentProps } from '@/types';
 import type { BlockSaveProps } from '@wordpress/blocks';
 import type { AnimationSegment } from 'lottie-web';
 

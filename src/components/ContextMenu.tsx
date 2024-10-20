@@ -1,4 +1,4 @@
-import type { PlayerComponentProps } from '@types';
+import type { PlayerComponentProps } from '@/types';
 
 import { BlockControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';

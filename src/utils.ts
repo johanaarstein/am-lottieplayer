@@ -2,28 +2,8 @@ import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light';
 import type { AnimationDirection } from 'lottie-web';
 import type { KeyboardEvent } from 'react';
 
+import { OnMouseOut } from '@/enums';
 import { isBlobURL } from '@wordpress/blob';
-
-export enum Align {
-	Center = 'center',
-	Full = 'full',
-	Left = 'left',
-	None = 'none',
-	Right = 'right',
-	Wide = 'wide',
-}
-
-export enum PlayMode {
-	Bounce = 'bounce',
-	Normal = 'normal',
-}
-
-export enum OnMouseOut {
-	Void = 'void',
-	Stop = 'stop',
-	Pause = 'pause',
-	Reverse = 'reverse',
-}
 
 export const arrayMove = < T >(
 		arr: T[],
@@ -193,7 +173,7 @@ export const arrayMove = < T >(
 					resolve( JSON.parse( target.result ) );
 				}
 			};
-			fileReader.onerror = ( error ) => reject( error );
+			fileReader.onerror = reject;
 			fileReader.readAsText( file );
 		} ),
 	truncate = ( input: string, limit = 12 ) =>

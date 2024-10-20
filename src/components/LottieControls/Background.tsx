@@ -1,4 +1,4 @@
-import type { PlayerComponentProps } from '@types';
+import type { PlayerComponentProps } from '@/types';
 import type { BlockEditProps } from '@wordpress/blocks';
 
 import { ColorPicker, Panel, PanelBody } from '@wordpress/components';

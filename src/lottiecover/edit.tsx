@@ -1,12 +1,12 @@
-import type { BlockCoverEditProps } from '@types';
+import type { BlockCoverEditProps } from '@/types';
 import type { TemplateArray } from '@wordpress/blocks';
 
-import ContextMenu from '@components/ContextMenu';
-import LottieControls from '@components/LottieControls';
-import Placeholder from '@components/Placeholder';
-import ResizableCover from '@components/ResizableCover';
-import PlayerWrapper from '@context/PlayerWrapper';
-import { isTemporaryMedia } from '@utils';
+import ContextMenu from '@/components/ContextMenu';
+import LottieControls from '@/components/LottieControls';
+import Placeholder from '@/components/Placeholder';
+import ResizableCover from '@/components/ResizableCover';
+import PlayerWrapper from '@/context/PlayerWrapper';
+import { isTemporaryMedia } from '@/utils';
 import {
 	useBlockProps,
 	useInnerBlocksProps,

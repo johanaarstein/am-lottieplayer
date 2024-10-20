@@ -1,7 +1,7 @@
-import ProFeature from '@assets/ProFeature';
-import { NumberInput, SwitchLabel } from '@components/form';
-import ProLink from '@components/ProLink';
-import { usePlayerContext } from '@context/PlayerWrapper';
+import ProFeature from '@/assets/ProFeature';
+import { NumberInput, SwitchLabel } from '@/components/form';
+import ProLink from '@/components/ProLink';
+import { usePlayerContext } from '@/context/PlayerWrapper';
 import {
 	BaseControl,
 	Panel,
@@ -13,7 +13,7 @@ import { useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 // import { PlayMode } from '@utils';
 
-import type { PlayerComponentProps } from '@types';
+import type { PlayerComponentProps } from '@/types';
 import type { BlockEditProps } from '@wordpress/blocks';
 
 const Animation = ( {

@@ -1,7 +1,7 @@
-import type { PlayerComponentProps } from '@types';
+import type { PlayerComponentProps } from '@/types';
 import type { BlockEditProps } from '@wordpress/blocks';
 
-import { usePlayerContext } from '@context/PlayerWrapper';
+import { usePlayerContext } from '@/context/PlayerWrapper';
 import { InspectorControls } from '@wordpress/block-editor';
 import { useId } from '@wordpress/element';
 

@@ -1,10 +1,10 @@
-import type { PlayerComponentProps } from '@types';
+import type { PlayerComponentProps } from '@/types';
 import type { BlockEditProps } from '@wordpress/blocks';
 
-import ProFeature from '@assets/ProFeature';
-import { SwitchLabel, TextInput } from '@components/form';
-import ProLink from '@components/ProLink';
-import { OnMouseOut } from '@utils';
+import ProFeature from '@/assets/ProFeature';
+import { SwitchLabel, TextInput } from '@/components/form';
+import ProLink from '@/components/ProLink';
+import { OnMouseOut } from '@/enums';
 import {
 	Panel,
 	PanelBody,

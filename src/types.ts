@@ -1,5 +1,5 @@
+import type { Align, OnMouseOut } from '@/enums';
 import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light';
-import type { Align, OnMouseOut } from '@utils';
 import type { EditorTemplateLock } from '@wordpress/block-editor';
 import type { BlockEditProps } from '@wordpress/blocks';
 import type { AnimationSegment } from 'lottie-web';
@@ -7,6 +7,7 @@ import type { ResizeStartCallback } from 're-resizable';
 import type { ReactNode } from 'react';
 
 export interface PlayerComponentProps extends Partial< DotLottiePlayer > {
+	$schema?: string;
 	align?: Align;
 	allowedBlocks?: string[];
 	alt?: string;

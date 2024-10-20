@@ -1,8 +1,8 @@
-import type { PlayerComponentProps } from '@types';
+import type { PlayerComponentProps } from '@/types';
 import type { BlockSaveProps } from '@wordpress/blocks';
 import type { AnimationSegment } from 'lottie-web';
 
-import { Align } from '@utils';
+import { Align } from '@/enums';
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 
 export default function save( {

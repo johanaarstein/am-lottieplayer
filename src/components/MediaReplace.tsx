@@ -1,7 +1,7 @@
-import type { PlayerComponentProps } from '@types';
+import type { PlayerComponentProps } from '@/types';
 
-import Lottie from '@assets/Lottie';
-import { isValidUrl } from '@utils';
+import Lottie from '@/assets/Lottie';
+import { isValidUrl } from '@/utils';
 import { speak } from '@wordpress/a11y';
 import {
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
