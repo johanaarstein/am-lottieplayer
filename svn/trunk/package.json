@@ -80,7 +80,7 @@
 		"typescript": "^5.6.3"
 	},
 	"scripts": {
-		"build": "wp-scripts build && pnpm run dep && pnpm scss && pnpm run svn",
+		"build": "wp-scripts build && pnpm dep && pnpm scss && pnpm svn",
 		"check-engines": "wp-scripts check-engines",
 		"check-licenses": "wp-scripts check-licenses",
 		"format": "wp-scripts format",
