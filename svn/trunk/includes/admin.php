@@ -16,6 +16,9 @@ if ( ! class_exists( 'AM_LottiePlayer_Admin' ) ) {
 		public function __construct() {
 			add_action( 'wp_dashboard_setup', array( $this, 'register_am_lottieplayer_dashboard_widget' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
+
+			add_filter( 'plugin_action_links_' . AM_LOTTIEPLAYER_BASENAME, array( $this, 'add_action_link' ), 10, 2 );
+			add_filter( 'network_admin_plugin_action_links_' . AM_LOTTIEPLAYER_BASENAME, array( $this, 'add_action_link' ), 10, 2 );
 		}
 
 		/**
@@ -67,6 +70,26 @@ if ( ! class_exists( 'AM_LottiePlayer_Admin' ) ) {
 
 		public function render_am_lottieplayer_dashboard_widget() {
 			echo '<div id="am-lottieplayer-widget"></div>';
+		}
+
+
+		/**
+		 * Adds links to Premium Support and FAQ under the plugin in the plugin overview page.
+		 *
+		 * @param array $links Array of links for the plugins, adapted when the current plugin is found.
+		 *
+		 * @return array
+		 */
+		public function add_action_link( $links ) {
+			// Add link to docs.
+			$support_link = '<a href="' . esc_url( 'https://www.aarstein.media/en/account#support' ) . '" target="_blank">' . __( 'Support', 'am-lottieplayer' ) . '</a>';
+			array_unshift( $links, $support_link );
+
+			// Add link to premium landing page.
+			$premium_link = '<a style="font-weight: bold;" href="' . esc_url( 'https://www.aarstein.media/en/am-lottieplayer/pro' ) . '" target="_blank">' . __( 'Get Premium', 'am-lottieplayer' ) . '</a>';
+			array_unshift( $links, $premium_link );
+
+			return $links;
 		}
 	}
 
