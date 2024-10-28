@@ -1,6 +1,5 @@
 import type { PlayerComponentProps } from '@/types';
 import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light';
-import type { AnimationSegment } from 'lottie-web';
 
 import { usePlayerContext } from '@/context/PlayerWrapper';
 import { Align } from '@/enums';
@@ -19,16 +18,11 @@ export default function PlayerComponent( {
 			animationContext: { player },
 			setAnimationContext,
 		} = usePlayerContext(),
-		{ segment } = attributes,
 		{ getBlockIndex }: { getBlockIndex: ( str: string ) => number } =
 			useSelect( ( select ) => select( 'core/block-editor' ), [] ),
 		blockIndex = getBlockIndex( clientId ),
 		initialRender = useRef( true ),
 		playerRef = useRef< DotLottiePlayer >( null ),
-		playSegment =
-			! segment || ! segment?.[ 1 ]
-				? undefined
-				: JSON.stringify( [ segment[ 0 ], segment[ 1 ] ] ),
 		reloadPlayer = useCallback( () => {
 			if ( ! player ) {
 				return;
@@ -81,8 +75,14 @@ export default function PlayerComponent( {
 		attributes.src,
 		attributes.objectFit,
 		reloadPlayer,
-		segment,
+		// segment,
 	] );
+
+	// useEffect( () => {
+	// 	if ( attributes.segment ) {
+	// 		playerRef.current?.setSegment( attributes.segment );
+	// 	}
+	// }, [ attributes.segment ] );
 
 	return (
 		<dotlottie-player
@@ -97,7 +97,7 @@ export default function PlayerComponent( {
 			mode={ attributes.mode }
 			objectfit={ attributes.objectFit }
 			ref={ playerRef }
-			segment={ playSegment as unknown as AnimationSegment }
+			simple
 			speed={ attributes.speed }
 			src={ attributes.src ?? '' }
 			style={ {

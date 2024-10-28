@@ -83,12 +83,6 @@
       "type": "string",
       "default": "stop"
     },
-    "multiAnimationInteractions": {
-      "type": "array"
-    },
-    "multiAnimationSettings": {
-      "type": "array"
-    },
     "objectFit": {
       "type": "string",
       "default": "contain"
@@ -111,16 +105,9 @@
       "type": "number",
       "default": null
     },
-    "segment": {
-      "type": "array",
-      "default": null
-    },
-    "selector": {
-      "type": "object",
-      "default": {
-        "id": null,
-        "exclude": false
-      }
+    "simple": {
+      "type": "boolean",
+      "default": true
     },
     "speed": {
       "type": "number",
@@ -144,5 +131,6 @@
     }
   },
   "editorScript": "file:./index.js",
-  "editorStyle": "file:./index.css"
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
 }

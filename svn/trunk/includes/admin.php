@@ -2,9 +2,9 @@
 
 defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( 'AM_LottiePlayer_Admin' ) ) {
+if ( ! class_exists( 'AAMD_Lottie_Admin' ) ) {
 
-	class AM_LottiePlayer_Admin {
+	class AAMD_Lottie_Admin {
 
 
 		/**
@@ -17,8 +17,8 @@ if ( ! class_exists( 'AM_LottiePlayer_Admin' ) ) {
 			add_action( 'wp_dashboard_setup', array( $this, 'register_am_lottieplayer_dashboard_widget' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 
-			add_filter( 'plugin_action_links_' . AM_LOTTIEPLAYER_BASENAME, array( $this, 'add_action_link' ), 10, 2 );
-			add_filter( 'network_admin_plugin_action_links_' . AM_LOTTIEPLAYER_BASENAME, array( $this, 'add_action_link' ), 10, 2 );
+			add_filter( 'plugin_action_links_' . AAMD_LOTTIE_BASENAME, array( $this, 'add_action_link' ), 10, 2 );
+			add_filter( 'network_admin_plugin_action_links_' . AAMD_LOTTIE_BASENAME, array( $this, 'add_action_link' ), 10, 2 );
 		}
 
 		/**
@@ -29,18 +29,18 @@ if ( ! class_exists( 'AM_LottiePlayer_Admin' ) ) {
 		public function admin_enqueue_scripts( $page ) {
 			wp_enqueue_style(
 				'am-backend-style',
-				AM_LOTTIEPLAYER_URL . 'styles/admin.css',
+				AAMD_LOTTIE_URL . 'styles/admin.css',
 				array(),
 				'1.0.0'
 			);
 			wp_enqueue_script( 'dotlottie-player-light' );
 
-			$widgetAssets = require AM_LOTTIEPLAYER_PATH . 'build/admin.asset.php';
+			$widgetAssets = require AAMD_LOTTIE_PATH . 'build/admin.asset.php';
 
 			if ( $page === 'index.php' ) {
 				wp_enqueue_script(
 					'am-lottieplayer-widget',
-					AM_LOTTIEPLAYER_URL . 'build/admin.js',
+					AAMD_LOTTIE_URL . 'build/admin.js',
 					$widgetAssets['dependencies'],
 					'0.1.0',
 					true
@@ -51,7 +51,7 @@ if ( ! class_exists( 'AM_LottiePlayer_Admin' ) ) {
 					'am-lottieplayer-widget',
 					'amPhpVars',
 					array(
-						'pluginUrl' => AM_LOTTIEPLAYER_URL,
+						'pluginUrl' => AAMD_LOTTIE_URL,
 					)
 				);
 			}
@@ -98,14 +98,14 @@ if ( ! class_exists( 'AM_LottiePlayer_Admin' ) ) {
 /**
  * Main function, to initialize class
  *
- * @return AM_LottiePlayer_Admin
+ * @return AAMD_Lottie_Admin
  */
 ( function () {
-	global $am_lottieplayer_admin;
+	global $aamd_lottie_admin;
 
-	if ( ! isset( $am_lottieplayer_admin ) ) {
-		$am_lottieplayer_admin = new AM_LottiePlayer_Admin();
+	if ( ! isset( $aamd_lottie_admin ) ) {
+		$aamd_lottie_admin = new AAMD_Lottie_Admin();
 	}
 
-	return $am_lottieplayer_admin;
+	return $aamd_lottie_admin;
 } )();

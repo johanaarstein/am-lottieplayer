@@ -1,18 +1,23 @@
 <?php
-defined( 'ABSPATH' ) || exit;
+\defined( 'ABSPATH' ) || exit;
 
-if ( ! function_exists( 'am_ux_get_template' ) ) {
-	function am_ux_get_template() {
+use function AAMD_Lottie\Utility\include_file;
+use function AAMD_Lottie\Utility\get_asset;
+
+global $aamd_lottie_media;
+
+if ( ! function_exists( 'aamd_lottie_get_ux_template' ) ) {
+	function aamd_lottie_get_ux_template() {
 		wp_enqueue_script(
 			'am-backend-ux',
-			AM_LOTTIEPLAYER_URL . 'scripts/am-backend-ux.min.js',
+			AAMD_LOTTIE_URL . 'scripts/am-backend-ux.min.js',
 			array( 'dotlottie-player-light' ),
 			'1.0.1',
 			true
 		);
-		ob_start();
-		include __DIR__ . '/ux-am-lottieplayer.html';
-		return ob_get_clean();
+		\ob_start();
+		include_file( 'builders/vc/vc-am-lottieplayer-template' );
+		return \ob_get_clean();
 	}
 }
 
@@ -28,17 +33,14 @@ $position_options['options']['position_y']['on_change'] = array(
 
 $proLink = esc_html__( 'This feature will only work in the premium version. Read about additional features in AM LottiePlayer PRO on www.aarstein.media/am-lottieplayer/pro', 'am-lottieplayer' );
 
-/**
- * @disregard P1010 Undefined type
- */
 add_ux_builder_shortcode(
 	'am-lottieplayer',
 	array(
 		'name'              => 'AM LottiePlayer',
 		'category'          => __( 'Content' ),
-		'template'          => am_ux_get_template(),
+		'template'          => aamd_lottie_get_ux_template(),
 		'toolbar_thumbnail' => 'img',
-		'thumbnail'         => am_get_asset( 'ux-icon.svg' ),
+		'thumbnail'         => get_asset( 'ux-icon.svg' ),
 		'allow_in'          => array( 'text_box' ),
 		'wrap'              => false,
 		'options'           => array(
@@ -46,7 +48,7 @@ add_ux_builder_shortcode(
 			'src'               => array(
 				'type'        => 'textfield',
 				'full_width'  => true,
-				'default'     => esc_url( ! is_wp_error( AM_LottiePlayer_Upload::lottie_asset() ) ? wp_get_attachment_url( AM_LottiePlayer_Upload::lottie_asset() ) : AM_LottiePlayer_Upload::lottie_asset( true ) ),
+				'default'     => esc_url( $aamd_lottie_media->get_default_file() ),
 				'heading'     => __( 'Lottie url', 'am-lottieplayer' ),
 				'description' => __( 'Paste in url to Lottie, either from CDN or you local Media Library.', 'am-lottieplayer' ),
 			),

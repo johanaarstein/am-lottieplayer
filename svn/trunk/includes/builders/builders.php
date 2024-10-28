@@ -2,18 +2,18 @@
 
 defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( 'AM_LottiePlayer_Builders' ) ) {
+if ( ! class_exists( 'AAMD_Lottie_Builders' ) ) {
 
 	/**
 	 * Check for active builders, and initialize extensions
 	 *
 	 * Supported builders: Gutenberg, Divi, Elementor, WPBakery, Flatsome
 	 */
-	class AM_LottiePlayer_Builders {
+	class AAMD_Lottie_Builders {
 
 		public function __construct() {
 			// Builder initializations
-			add_action( 'init', array( $this, 'init_gutenberg' ) );
+			add_action( 'init', array( $this, 'init_plugin' ) );
 			add_action( 'divi_extensions_init', array( $this, 'init_divi' ) );
 			add_action( 'elementor/widgets/register', array( $this, 'init_elementor' ) );
 			add_action( 'after_setup_theme', array( $this, 'init_flatsome' ) );
@@ -23,19 +23,19 @@ if ( ! class_exists( 'AM_LottiePlayer_Builders' ) ) {
 		}
 
 		/**
-		 * Initialize Gutenberg Blocks and register JavaScript
+		 * Initialize Gutenberg Blocks, global shortcode and register JavaScript
 		 *
 		 * @return void
 		 */
-		public function init_gutenberg() {
-			add_shortcode( 'am-lottieplayer', 'am_render_lottieplayer_shortcode' );
+		public function init_plugin() {
+			add_shortcode( 'am-lottieplayer', 'aamd_lottie_render_shortcode' );
 
-			register_block_type( AM_LOTTIEPLAYER_PATH . 'build/lottieplayer' );
-			register_block_type( AM_LOTTIEPLAYER_PATH . 'build/lottiecover' );
+			register_block_type( AAMD_LOTTIE_PATH . 'build/lottieplayer' );
+			register_block_type( AAMD_LOTTIE_PATH . 'build/lottiecover' );
 
 			wp_register_script(
 				'dotlottie-player-light',
-				AM_LOTTIEPLAYER_URL . 'scripts/dotlottie-player-light.min.js',
+				AAMD_LOTTIE_URL . 'scripts/dotlottie-player-light.min.js',
 				array(),
 				'3.1.4',
 				array(
@@ -46,7 +46,7 @@ if ( ! class_exists( 'AM_LottiePlayer_Builders' ) ) {
 
 			wp_register_script(
 				'am-frontend',
-				AM_LOTTIEPLAYER_URL . 'scripts/am-frontend.min.js',
+				AAMD_LOTTIE_URL . 'scripts/am-frontend.min.js',
 				array( 'dotlottie-player-light' ),
 				'1.2.3',
 				array(
@@ -62,7 +62,7 @@ if ( ! class_exists( 'AM_LottiePlayer_Builders' ) ) {
 		 * @return void
 		 */
 		public function init_divi() {
-			am_include( 'builders/divi/LottieDiviModules' );
+			aamd_lottie_include( 'builders/divi/LottieDiviModules' );
 		}
 
 		/**
@@ -73,11 +73,11 @@ if ( ! class_exists( 'AM_LottiePlayer_Builders' ) ) {
 		public function init_elementor( $widgets_manager ) {
 			wp_enqueue_style(
 				'elementor-backend-style',
-				AM_LOTTIEPLAYER_URL . 'styles/am-font.css',
+				AAMD_LOTTIE_URL . 'styles/am-font.css',
 				array(),
 				'1.0.0'
 			);
-			am_include( 'builders/elementor/widgets/elementor-am-lottieplayer', $widgets_manager );
+			aamd_lottie_include( 'builders/elementor/widgets/elementor-am-lottieplayer', $widgets_manager );
 		}
 
 		/**
@@ -89,7 +89,7 @@ if ( ! class_exists( 'AM_LottiePlayer_Builders' ) ) {
 			if ( ! function_exists( 'add_ux_builder_shortcode' ) ) {
 				return;
 			}
-			am_include( 'builders/flatsome/ux-am-lottieplayer' );
+			aamd_lottie_include( 'builders/flatsome/ux-am-lottieplayer' );
 		}
 
 		/**
@@ -98,7 +98,7 @@ if ( ! class_exists( 'AM_LottiePlayer_Builders' ) ) {
 		 * @return void
 		 */
 		public function init_vc() {
-			am_include( 'builders/vc/vc-am-lottieplayer' );
+			aamd_lottie_include( 'builders/vc/vc-am-lottieplayer' );
 		}
 
 		/**
@@ -114,9 +114,7 @@ if ( ! class_exists( 'AM_LottiePlayer_Builders' ) ) {
 
 			// Check if any front-end builders are active
 			$isDiviBuilder = isset( $_GET['et_fb'] ) && ! empty( $_GET['et_fb'] );
-			/**
-			 * @disregard P1010 Undefined type
-			 */
+
 			$isVCBuilder = function_exists( 'vc_is_inline' ) && vc_is_inline();
 
 			if ( is_a( $post, 'WP_Post' ) ) {
@@ -125,9 +123,6 @@ if ( ! class_exists( 'AM_LottiePlayer_Builders' ) ) {
 
 			// Check for Lottie in Divi Templates
 			if ( function_exists( 'et_theme_builder_get_template_layouts' ) ) {
-				/**
-				 * @disregard P1010 Undefined type
-				 */
 				$layouts = et_theme_builder_get_template_layouts();
 				if ( ! empty( $layouts ) ) {
 					if ( $layouts['et_header_layout']['override'] ) {
@@ -179,12 +174,12 @@ if ( ! class_exists( 'AM_LottiePlayer_Builders' ) ) {
 /**
  * Main function, to initialize class
  *
- * @return AM_LottiePlayer_Builders
+ * @return AAMD_Lottie_Builders
  */
 ( function () {
-	global $am_lottieplayer_builders;
-	if ( ! isset( $am_lottieplayer_builders ) ) {
-		$am_lottieplayer_builders = new AM_LottiePlayer_Builders();
+	global $aamd_lottie_builders;
+	if ( ! isset( $aamd_lottie_builders ) ) {
+		$aamd_lottie_builders = new AAMD_Lottie_Builders();
 	}
-	return $am_lottieplayer_builders;
+	return $aamd_lottie_builders;
 } )();

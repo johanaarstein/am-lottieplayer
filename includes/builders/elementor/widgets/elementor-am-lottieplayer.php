@@ -1,8 +1,12 @@
 <?php
-defined( 'ABSPATH' ) || exit;
+namespace AAMD_Lottie;
 
-if ( class_exists( '\Elementor\Widget_Base' ) && ! class_exists( 'Elementor_AM_LottiePlayer' ) ) {
-	class Elementor_AM_LottiePlayer extends \Elementor\Widget_Base {
+\defined( 'ABSPATH' ) || exit;
+
+use function AAMD_Lottie\Utility\render_lottieplayer;
+
+if ( \class_exists( '\Elementor\Widget_Base' ) ) {
+	class Elementor extends \Elementor\Widget_Base {
 
 
 		public function get_script_depends() {
@@ -30,7 +34,7 @@ if ( class_exists( '\Elementor\Widget_Base' ) && ! class_exists( 'Elementor_AM_L
 		}
 
 		protected function register_controls() {
-
+			global $aamd_lottie_media;
 			$proLink = esc_html__( 'This feature will only work in the premium version.', 'am-lottieplayer' ) . ' <a href="' . esc_url( 'https://www.aarstein.media/en/am-lottieplayer/pro', 'am-lottieplayer' ) . '" target="_blank" rel="noreferrer">' . esc_html__( 'Read about additional features in AM LottiePlayer PRO', 'am-lottieplayer' ) . '<span class="dashicons dashicons-external" style="font-size: 1em;"></span></a>';
 
 			$this->start_controls_section(
@@ -51,7 +55,7 @@ if ( class_exists( '\Elementor\Widget_Base' ) && ! class_exists( 'Elementor_AM_L
 						'application/zip',
 					),
 					'default'    => array(
-						'url' => esc_url( ! is_wp_error( AM_LottiePlayer_Upload::lottie_asset() ) ? wp_get_attachment_url( AM_LottiePlayer_Upload::lottie_asset() ) : AM_LottiePlayer_Upload::lottie_asset( true ) ),
+						'url' => esc_url( $aamd_lottie_media->get_default_file() ),
 					),
 				)
 			);
@@ -454,101 +458,65 @@ if ( class_exists( '\Elementor\Widget_Base' ) && ! class_exists( 'Elementor_AM_L
 			$this->end_controls_section();
 		}
 
-		private function switcher_value( $setting, $on_val, $off_val ) {
-			return $setting === 'yes' ? $on_val : $off_val;
+		private function _switcher_value( $setting ): bool {
+			return $setting === 'yes';
 		}
 
 		protected function render() {
-			$widget_id = $this->get_id();
-			$settings  = $this->get_settings_for_display();
+			$settings = $this->get_settings_for_display();
 
 			if ( ! isset( $settings['lottie']['url'] ) || empty( $settings['lottie']['url'] ) ) {
 				return;
 			}
 
 			$src = $settings['lottie']['url'];
-			$ext = pathinfo( $src, PATHINFO_EXTENSION );
+			$ext = \pathinfo( $src, PATHINFO_EXTENSION );
 
 			if ( $ext !== 'json' && $ext !== 'lottie' ) {
 				return;
 			}
 
-			$autoplay  = $this->switcher_value( $settings['scroll'], true, false ) ? false : $this->switcher_value( $settings['autoplay'], 'autoplay', '' );
-			$controls  = $this->switcher_value( $settings['controls'], 'controls', '' );
-			$direction = $this->switcher_value( $settings['reverse'], '-1', '1' );
-			$subframe  = $this->switcher_value( $settings['subframe'], 'subframe', '' );
-			$loop      = $this->switcher_value( $settings['loop'], 'loop', '' );
-			// $mode = $this->switcher_value($settings['mode'], 'bounce', 'normal');
-			$onClick     = $this->switcher_value( $settings['onclick'], true, false );
-			$onMouseOver = $this->switcher_value( $settings['onmouseover'], true, false );
-			$scroll      = $this->switcher_value( $settings['scroll'], true, false );
-			$once        = $this->switcher_value( $settings['once'], true, false );
-
-			$onMouseOut = $settings['onmouseout'];
-			$objectFit  = $settings['object_fit'];
-			// $selector = wp_json_encode([
-			// "id" => $settings['selector'],
-			// "exclude_selector" => $this->switcher_value($settings['exclude_selector'], true, false),
-			// ]);
-			$speed        = ! $settings['speed'] || empty( $settings['speed'] ) ? '1' : $settings['speed'];
-			$heightSize   = $settings['height_fixed'] ? $settings['height_fixed']['size'] : 'auto';
-			$heightUnit   = $settings['height_fixed'] ? $settings['height_fixed']['unit'] : '';
-			$height       = $this->switcher_value(
-				$settings['height_auto'],
-				$heightSize . $heightUnit,
-				'auto'
+			$attrs = \array_merge(
+				$settings,
+				array(
+					'autoplay'    => $this->_switcher_value( $settings['scroll'] ) ? false : $this->_switcher_value( $settings['autoplay'] ),
+					'align'       => 'none',
+					'background'  => 'transparent',
+					'class'       => '',
+					'controls'    => $this->_switcher_value( $settings['controls'] ),
+					'direction'   => $this->_switcher_value( $settings['reverse'] ),
+					'id'          => $this->get_id(),
+					'subframe'    => $this->_switcher_value( $settings['subframe'] ),
+					'loop'        => $this->_switcher_value( $settings['loop'] ),
+					'objectfit'   => $settings['object_fit'],
+					'onClick'     => $this->_switcher_value( $settings['onclick'] ),
+					'onMouseOver' => $this->_switcher_value( $settings['onmouseover'] ),
+					'scroll'      => $this->_switcher_value( $settings['scroll'] ),
+					'once'        => $this->_switcher_value( $settings['once'] ),
+					'height'      => $settings['height_fixed'] ? $settings['height_fixed']['size'] : null,
+					'height_unit' => $settings['height_fixed'] ? $settings['height_fixed']['unit'] : null,
+					'width'       => $settings['width']['size'],
+					'width_unit'  => $settings['width']['unit'],
+					'alt'         => $settings['description'],
+					'src'         => $src,
+					'url'         => null,
+					'target'      => '_blank',
+				),
 			);
-			$intermission = $settings['intermission'];
-			$widthSize    = $settings['width']['size'];
-			$widthUnit    = $settings['width']['unit'];
-			$width        = $widthSize . $widthUnit;
-			// $renderer = $settings['renderer'];
 
-			$description = $settings['description'];
-
-			// $segment = $settings['segment_out'] &&
-			// $settings['segment_out'] !== '0' ?
-			// esc_html('[' .
-			// (intval($settings['segment_in']) ?? 0) . ',' .
-			// intval($settings['segment_out'])
-			// . ']') : '';
-			?>
-
-			<figure style="width:<?php echo esc_html( $width ); ?>;height:<?php echo esc_html( $height ); ?>;margin:0 auto;">
-				<dotlottie-player
-					<?php echo esc_attr( $autoplay ); ?>
-					<?php echo esc_attr( $controls ); ?>
-					<?php echo esc_attr( $loop ); ?>
-					<?php echo esc_attr( $subframe ); ?>
-
-					direction="<?php echo esc_attr( $direction ); ?>"
-					data-direction="<?php echo esc_attr( $direction ); ?>"
-					data-mouseover="<?php echo esc_attr( $onMouseOver ); ?>"
-					data-mouseout="<?php echo esc_attr( $onMouseOut ); ?>"
-					data-click="<?php echo esc_attr( $onClick ); ?>"
-					intermission="<?php echo esc_attr( $intermission ); ?>"
-					data-scroll="<?php echo esc_attr( $scroll ); ?>"
-					data-delay="<?php echo esc_attr( $settings['delay'] ); ?>"
-					data-once="<?php echo esc_attr( $once ); ?>"
-					objectfit="<?php echo esc_attr( $objectFit ); ?>"
-					speed="<?php echo esc_attr( $speed ); ?>"
-					src="<?php echo esc_url( $src ); ?>"
-					description="<?php echo esc_attr( $description ); ?>">
-				</dotlottie-player>
-			</figure>
-			<?php
+			echo render_lottieplayer( $attrs );
 		}
 
 		protected function content_template() {
 			?>
 			<# const autoplay=settings.autoplay==='yes' ? 'autoplay' : '' , controls=settings.controls==='yes' ? 'controls' : '' , loop=settings.loop==='yes' ? 'loop' : '' , subframe=settings.subframe==='yes' ? 'subframe' : '' , mode=settings.mode==='yes' ? 'bounce' : 'normal' , { height_auto, height_fixed, lottie, object_fit, reverse, segment_in, segment_out, speed, width }=settings, direction=reverse==='yes' ? '-1' : '1' , height=height_auto !=='yes' || !height_fixed.size ? 'auto' : height_fixed.size + height_fixed.unit, playbackSpeed=!speed || speed==='' ? '1' : speed, segment=segment_in && segment_out && segment_out !=='0' ? JSON.stringify([segment_in, segment_out]) : undefined #>
 				<figure style="width:{{{ width.size }}}{{{ width.unit }}};height:{{{ height }}};margin:auto;">
-					<dotlottie-player {{{ autoplay }}} {{{ controls }}} {{{ loop }}} {{{ subframe }}} direction="{{{ direction }}}" mode="{{{ mode }}}" objectfit="{{{ object_fit }}}" speed="{{{ playbackSpeed }}}" src="{{{ lottie.url }}}" segment="{{{ segment }}}" intermission="{{{ settings.intermission }}}">
+					<dotlottie-player {{{ autoplay }}} {{{ controls }}} {{{ loop }}} {{{ subframe }}} direction="{{{ direction }}}" mode="{{{ mode }}}" objectfit="{{{ object_fit }}}" simple speed="{{{ playbackSpeed }}}" src="{{{ lottie.url }}}" intermission="{{{ settings.intermission }}}">
 					</dotlottie-player>
 				</figure>
 			<?php
 		}
 	}
 
-	$args->register( new \Elementor_AM_LottiePlayer() );
+	$args->register( new Elementor() );
 }

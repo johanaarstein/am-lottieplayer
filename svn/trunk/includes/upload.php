@@ -1,9 +1,9 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( 'AM_LottiePlayer_Upload' ) ) {
+if ( ! class_exists( 'AAMD_Lottie_Upload' ) ) {
 
-	class AM_LottiePlayer_Upload {
+	class AAMD_Lottie_Upload {
 
 
 		/**
@@ -13,11 +13,13 @@ if ( ! class_exists( 'AM_LottiePlayer_Upload' ) ) {
 		 * @return  void
 		 */
 		public function __construct() {
-			add_action( 'wp_enqueue_media', array( $this, 'override_media_templates' ) );
+			if ( is_admin() ) {
+				add_action( 'wp_enqueue_media', array( $this, 'override_media_templates' ) );
 
-			add_filter( 'upload_mimes', array( $this, 'lottie_mimetypes' ) );
-			add_filter( 'wp_check_filetype_and_ext', array( $this, 'lottie_filetypes' ), 10, 5 );
-			add_filter( 'wp_mime_type_icon', array( $this, 'icon_filter' ), 10, 3 );
+				add_filter( 'upload_mimes', array( $this, 'lottie_mimetypes' ) );
+				add_filter( 'wp_check_filetype_and_ext', array( $this, 'lottie_filetypes' ), 10, 5 );
+				add_filter( 'wp_mime_type_icon', array( $this, 'icon_filter' ), 10, 3 );
+			}
 
 			// Disable SSL Check on dev
 			if ( getenv( 'SERVER_CONTEXT' ) === 'dev' ) {
@@ -160,7 +162,7 @@ if ( ! class_exists( 'AM_LottiePlayer_Upload' ) ) {
 		// Adding icon to Lottie filetype
 		public function icon_filter( $icon, $mime ) {
 			if ( $mime === 'application/zip' || $mime === 'application/json' || $mime === 'text/plain' ) {
-				return AM_LOTTIEPLAYER_URL . 'assets/lottie-icon.svg';
+				return AAMD_LOTTIE_URL . 'assets/lottie-icon.svg';
 			}
 			return $icon;
 		}
@@ -170,8 +172,8 @@ if ( ! class_exists( 'AM_LottiePlayer_Upload' ) ) {
 		 *
 		 * @param boolean $default
 		 */
-		public static function lottie_asset( $default = false ) {
-			$url = AM_LOTTIEPLAYER_URL . 'assets/am.lottie';
+		private static function _lottie_asset( $default = false ) {
+			$url = AAMD_LOTTIE_URL . 'assets/am.lottie';
 			if ( $default && filter_var( $url, FILTER_VALIDATE_URL ) ) {
 				return $url;
 			}
@@ -180,7 +182,9 @@ if ( ! class_exists( 'AM_LottiePlayer_Upload' ) ) {
 				require_once ABSPATH . 'wp-admin/includes/post.php';
 			}
 
-			if ( ! post_exists( 'AM Lottie Animation' ) ) {
+			$post_id = post_exists( 'AM Lottie Animation' );
+
+			if ( ! $post_id ) {
 				if ( ! function_exists( 'media_sideload_image' ) ) {
 					require_once ABSPATH . 'wp-admin/includes/media.php';
 					require_once ABSPATH . 'wp-admin/includes/file.php';
@@ -190,22 +194,53 @@ if ( ! class_exists( 'AM_LottiePlayer_Upload' ) ) {
 				return self::_media_sideload_lottie( $url );
 			}
 
-			return post_exists( 'AM Lottie Animation' );
+			return get_permalink( $post_id );
+		}
+
+		/**
+		 * URL for placeholder animation
+		 *
+		 * @var string|false|int|\WP_Error
+		 */
+		private $_defaultFile = false;
+
+		/**
+		 * Set placeholder animation.
+		 * This function will download and save file to
+		 * Media Library if it doesn't exist.
+		 */
+		public function set_default_file() {
+			if ( $this->_defaultFile && ! is_wp_error( $this->_defaultFile ) ) {
+				return;
+			}
+			if ( is_wp_error( $this->_lottie_asset() ) ) {
+				$this->_defaultFile = $this->_lottie_asset( true );
+				return;
+			}
+			$this->_defaultFile = wp_get_attachment_url( $this->_lottie_asset() );
+		}
+
+		/**
+		 * Get placeholder animation.
+		 */
+		public function get_default_file() {
+			if ( $this->_defaultFile ) {
+				return $this->_defaultFile;
+			}
+
+			$this->set_default_file();
+
+			return $this->_defaultFile;
 		}
 	}
-}
+}(
+	function () {
+		global $aamd_lottie_upload;
 
-/**
- * Main function, to initialize class
- *
- * @return AM_LottiePlayer_Upload
- */
-( function () {
-	global $am_lottieplayer_upload;
+		if ( ! isset( $aamd_lottie_upload ) ) {
+				$aamd_lottie_upload = new AAMD_Lottie_Upload();
+		}
 
-	if ( ! isset( $am_lottieplayer_upload ) ) {
-		$am_lottieplayer_upload = new AM_LottiePlayer_Upload();
+		return $aamd_lottie_upload;
 	}
-
-	return $am_lottieplayer_upload;
-} )();
+)();

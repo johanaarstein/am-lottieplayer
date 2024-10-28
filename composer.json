@@ -3,7 +3,10 @@
         "arifpavel/elementor-stubs": "3.1.4.1",
         "squizlabs/php_codesniffer": "^3.10",
         "wp-coding-standards/wpcs": "^3.1",
-        "dealerdirect/phpcodesniffer-composer-installer": "^1.0"
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+        "aarsteinmedia/divi-stubs": "^4.27",
+        "aarsteinmedia/js_composer-stubs": "^6.10",
+        "aarsteinmedia/flatsome-stubs": "^3.19"
     },
     "config": {
         "allow-plugins": {

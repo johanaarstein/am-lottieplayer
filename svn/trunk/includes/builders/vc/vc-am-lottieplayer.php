@@ -1,45 +1,41 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-/**
- * @disregard P1010 Undefined type
- */
 vc_add_shortcode_param(
 	'attach_lottie',
 	'am_vc_attach_field_settings',
-	AM_LOTTIEPLAYER_URL . 'scripts/am-backend-vc-options.min.js?ver=1.0.0'
+	AAMD_LOTTIE_URL . 'scripts/am-backend-vc-options.min.js?ver=1.0.0'
 );
 
 if ( ! function_exists( 'am_vc_attach_field_settings' ) ) {
 	function am_vc_attach_field_settings( $settings ) {
-		return '<div class="am-upload">
-      <button
-        id="' . esc_attr( $settings['param_name'] ) . '-button"
-        style="all:unset;cursor:pointer;background:#007cba;color:#fff;font-size:13px;padding:6px 12px;border-radius:2px;height:36px;align-items:center;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;appearance:none;"
-        class="' . esc_attr( $settings['param_name'] ) . ' ' . esc_attr( $settings['type'] ) . '_field"
-      >' . __( 'Media Library', 'am-lottieplayer' ) . '
-      </button>
-    </div>';
+		ob_start(); ?>
+		<div class="am-upload">
+		<button
+		id="<?php echo esc_attr( $settings['param_name'] ); ?>-button"
+		style="all:unset;cursor:pointer;background:#007cba;color:#fff;font-size:13px;padding:6px 12px;border-radius:2px;height:36px;align-items:center;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;appearance:none;"
+		class="<?php echo esc_attr( $settings['param_name'] ) . ' ' . esc_attr( $settings['type'] ); ?>_field"
+		><?php echo __( 'Media Library', 'am-lottieplayer' ); ?></button>
+	</div>
+		<?php
+		return ob_get_clean();
 	}
 }
 
 $proLink = esc_html__( 'This feature will only work in the premium version.', 'am-lottieplayer' ) . ' <a href="' . esc_url( 'https://www.aarstein.media/en/am-lottieplayer/pro', 'am-lottieplayer' ) . '" target="_blank" rel="noreferrer">' . esc_html__( 'Read about additional features in AM LottiePlayer PRO', 'am-lottieplayer' ) . '<span class="dashicons dashicons-external" style="font-size: 1em;"></span></a>';
 
-/**
- * @disregard P1010 Undefined type
- */
 vc_map(
 	array(
 		'name'     => __( 'AM LottiePlayer', 'am-lottieplayer' ),
 		'base'     => 'am-lottieplayer',
 		'controls' => 'full',
-		'icon'     => AM_LOTTIEPLAYER_URL . 'assets/vc-icon.svg',
+		'icon'     => AAMD_LOTTIE_URL . 'assets/vc-icon.svg',
 		'category' => __( 'Animation', 'am-lottieplayer' ),
 		'params'   => array(
 			array(
 				'type'       => 'textfield',
 				'heading'    => __( 'Lottie url', 'am-lottieplayer' ),
-				'value'      => esc_url( ! is_wp_error( AM_LottiePlayer_Upload::lottie_asset() ) ? wp_get_attachment_url( AM_LottiePlayer_Upload::lottie_asset() ) : AM_LottiePlayer_Upload::lottie_asset( true ) ),
+				'value'      => esc_url( $aamd_lottie_upload->get_default_file() ),
 				'param_name' => 'src',
 			),
 			array(

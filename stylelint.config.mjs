@@ -1,5 +1,8 @@
 import standard from 'stylelint-config-standard-scss'
 
+/**
+ * @type {import('stylelint').Config}
+ * */
 const config = {
 	...standard,
 	rules: {

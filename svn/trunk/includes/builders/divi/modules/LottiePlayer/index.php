@@ -2,9 +2,7 @@
 defined( 'ABSPATH' ) || exit;
 
 if ( class_exists( 'ET_Builder_Module' ) && ! class_exists( 'AM_ET_Builder_Module_LottiePlayer' ) ) {
-	/**
-	 * @disregard P1010 Undefined type
-	 */
+
 	class AM_ET_Builder_Module_LottiePlayer extends ET_Builder_Module {
 
 
@@ -13,7 +11,7 @@ if ( class_exists( 'ET_Builder_Module' ) && ! class_exists( 'AM_ET_Builder_Modul
 			$this->plural     = esc_html__( 'AM Lotties', 'am-lottieplayer' );
 			$this->slug       = 'et_pb_lottieplayer';
 			$this->vb_support = 'on';
-			$this->icon_path  = AM_LOTTIEPLAYER_PATH . 'assets/divi-icon.svg';
+			$this->icon_path  = AAMD_LOTTIE_PATH . 'assets/divi-icon.svg';
 
 			$this->settings_modal_toggles = array(
 				'general'    => array(
@@ -93,7 +91,7 @@ if ( class_exists( 'ET_Builder_Module' ) && ! class_exists( 'AM_ET_Builder_Modul
 		}
 
 		function get_fields() {
-
+			global $aamd_lottie_upload;
 			$proLink = esc_html__( 'This feature will only work in the premium version.', 'am-lottieplayer' ) . ' <a href="' . esc_url( 'https://www.aarstein.media/en/am-lottieplayer/pro', 'am-lottieplayer' ) . '" target="_blank" rel="noreferrer">' . esc_html__( 'Read about additional features in AM LottiePlayer PRO', 'am-lottieplayer' ) . '<span class="dashicons dashicons-external" style="font-size: 1em;"></span></a>';
 
 			$fields = array(
@@ -111,7 +109,7 @@ if ( class_exists( 'ET_Builder_Module' ) && ! class_exists( 'AM_ET_Builder_Modul
 					'toggle_slug'        => 'main_content',
 					'mobile_options'     => true,
 					'hover'              => 'tabs',
-					'default'            => esc_url( ! is_wp_error( AM_LottiePlayer_Upload::lottie_asset() ) ? wp_get_attachment_url( AM_LottiePlayer_Upload::lottie_asset() ) : AM_LottiePlayer_Upload::lottie_asset( true ) ),
+					'default'            => esc_url( $aamd_lottie_upload->get_default_file() ),
 				),
 				'alt'               => array(
 					'label'           => esc_html__( 'Animation Alternative Text', 'am-lottieplayer' ),
@@ -438,91 +436,30 @@ if ( class_exists( 'ET_Builder_Module' ) && ! class_exists( 'AM_ET_Builder_Modul
 
 		public function render( $attrs = array(), $content = null, $render_slug ) {
 
-			$alt         = $this->props['alt'];
-			$onmouseover = $this->props['onmouseover'] !== 'off' ? 'true' : 'false';
-			$scroll      = $this->props['scroll'] !== 'off' ? 'true' : 'false';
-			// $segment =
-			// $this->props['segment_out'] &&
-			// $this->props['segment_out'] !== '0' ?
-			// '[' .
-			// (intval($this->props['segment_in']) ?? 0) . ',' .
-			// intval($this->props['segment_out'])
-			// . ']' : '';
-			// $selector =
-			// wp_json_encode([
-			// "id" => empty($this->props['selector']) ? null : $this->props['selector'],
-			// "exclude_selector" => $this->props['exclude_selector'] === 'on',
-			// ]);
-			$src            = $this->props['src'];
-			$subframe       = $this->props['subframe'] !== 'off' ? 'subframe' : '';
-			$url            = $this->props['url'];
-			$url_new_window = $this->props['url_new_window'];
-
-			$onclick = $url !== '' &&
-				$this->props['onclick'] !== 'off' ? 'true' : 'false';
-
-			$output = sprintf(
-				'<figure%1$s class="%2$s">
-					<dotlottie-player
-						class="lottie-element"
-						src="%3$s"
-						%4$s
-						%5$s
-						%6$s
-						description="%7$s"
-						renderer="%8$s"
-						objectfit="%9$s"
-						direction="%10$s"
-						data-direction="%10$s"
-						data-mouseover="%11$s"
-						data-mouseout="%12$s"
-						data-click="%13$s"
-						speed="%14$s"
-						data-selector="%15$s"
-						mode="%16$s"
-						%17$s
-						segment="%18$s"
-						data-scroll="%19$s"
-						data-delay="%20$s"
-						data-once="%21$s"
-						intermission="%22$s"
-					>
-					</dotlottie-player>
-				</figure>',
-				$this->module_id(), // 1
-				$this->module_classname( $render_slug ), // 2
-				esc_url( $src ), // 3
-				esc_attr( $scroll !== 'true' && $this->props['autoplay'] !== 'off' ? 'autoplay' : '' ), // 4
-				esc_attr( $this->props['loop'] !== 'off' ? 'loop' : '' ), // 5
-				esc_attr( $this->props['controls'] !== 'off' ? 'controls' : '' ), // 6
-				esc_attr( $alt ), // 7
-				'svg', // esc_attr($this->props['renderer']), #8
-				esc_attr( $this->props['object_fit'] ), // 9
-				esc_attr( $this->props['reverse'] !== 'off' ? '-1' : '1' ), // 10
-				esc_attr( $onmouseover ), // 11
-				esc_attr( $this->props['onmouseout'] ), // 12
-				esc_attr( $onclick ), // 13
-				esc_attr( $this->props['speed'] ), // 14
-				null, // esc_attr($selector), #15
-				'normal', // esc_attr($this->props['mode'] !== 'off' ? 'bounce' : 'normal'), #16
-				esc_attr( $subframe ), // 17,
-				null, // esc_attr($segment), #18
-				esc_attr( $scroll ), // 19
-				esc_attr( $this->props['delay'] ), // 20
-				esc_attr( $this->props['once'] !== 'off' ? 'true' : 'false' ), // 21
-				esc_attr( $this->props['intermission'] ), // 22
+			$mergedAttrs = array_merge(
+				$attrs,
+				$this->props,
+				array(
+					'animate_on_scroll' => false, // Pro feature
+					'align'             => 'none', // TODO:
+					'autoplay'          => $this->props['autoplay'] !== 'off',
+					'background'        => 'transparent', // TODO:
+					'class'             => $this->module_classname( $render_slug ),
+					'controls'          => $this->props['controls'] !== 'off',
+					'direction'         => $this->props['reverse'] !== 'off' ? '-1' : '1',
+					'id'                => $this->module_id(),
+					'loop'              => $this->props['loop'] !== 'off',
+					'mode'              => $this->props['mode'] !== 'off' ? 'bounce' : 'normal',
+					'scroll'            => $this->props['scroll'] !== 'off',
+					'subframe'          => $this->props['subframe'] !== 'off',
+					'target'            => $this->props['url_new_window'] !== 'off' ? '_blank' : '_self',
+					'onmouseover'       => $this->props['onmouseover'] !== 'off',
+					'onclick'           => $this->props['onclick'] !== 'off' && ! filter_var( $this->props['url'], FILTER_VALIDATE_URL ),
+					'once'              => $this->props['once'] !== 'off',
+				),
 			);
 
-			if ( '' !== $url ) {
-				$output = sprintf(
-					'<a href="%1$s"%3$s>%2$s</a>',
-					esc_url( $url ),
-					$output,
-					( 'on' === $url_new_window ? ' target="_blank"' : '' )
-				);
-			}
-
-			return $output;
+			return aamd_lottie_render_lottieplayer( $mergedAttrs );
 		}
 	}
 

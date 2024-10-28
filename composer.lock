@@ -4,9 +4,144 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "89716842734f0129388ed1faacdf6923",
+    "content-hash": "1c19460e0fdf7347d10a84782f0a27ea",
     "packages": [],
     "packages-dev": [
+        {
+            "name": "aarsteinmedia/divi-stubs",
+            "version": "4.27.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aarsteinmedia/divi-stubs.git",
+                "reference": "f84b729c206f81c4d71c3d0078c9ff30582e4d9b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aarsteinmedia/divi-stubs/zipball/f84b729c206f81c4d71c3d0078c9ff30582e4d9b",
+                "reference": "f84b729c206f81c4d71c3d0078c9ff30582e4d9b",
+                "shasum": ""
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "*",
+                "ext-gettext": "*",
+                "giacocorsiglia/stubs-generator": "^0.5.0",
+                "php": ">=7.1",
+                "squizlabs/php_codesniffer": "*",
+                "wp-coding-standards/wpcs": "*"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Johan Martin Aarstein",
+                    "email": "johan@aarstein.media"
+                }
+            ],
+            "description": "DIVI function, class, and global variable declaration stubs for easier static analysis.",
+            "homepage": "https://github.com/aarsteinmedia/divi-stubs",
+            "keywords": [
+                "divi",
+                "static analysis"
+            ],
+            "support": {
+                "issues": "https://github.com/aarsteinmedia/divi-stubs/issues",
+                "source": "https://github.com/aarsteinmedia/divi-stubs/tree/4.27.7"
+            },
+            "time": "2024-10-26T15:37:32+00:00"
+        },
+        {
+            "name": "aarsteinmedia/flatsome-stubs",
+            "version": "3.19.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aarsteinmedia/flatsome-stubs.git",
+                "reference": "087ec45e86e0483dafc331dd7f81e3c000fee512"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aarsteinmedia/flatsome-stubs/zipball/087ec45e86e0483dafc331dd7f81e3c000fee512",
+                "reference": "087ec45e86e0483dafc331dd7f81e3c000fee512",
+                "shasum": ""
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "*",
+                "ext-gettext": "*",
+                "php": ">=7.1",
+                "php-stubs/generator": "^0.5.0",
+                "squizlabs/php_codesniffer": "*",
+                "wp-coding-standards/wpcs": "*"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Johan Martin Aarstein",
+                    "email": "johan@aarstein.media"
+                }
+            ],
+            "description": "Flatsome function, class, and global variable declaration stubs for easier static analysis.",
+            "homepage": "https://github.com/aarsteinmedia/flatsome-stubs",
+            "keywords": [
+                "flatsome",
+                "static analysis"
+            ],
+            "support": {
+                "issues": "https://github.com/aarsteinmedia/flatsome-stubs/issues",
+                "source": "https://github.com/aarsteinmedia/flatsome-stubs/tree/3.19.3"
+            },
+            "time": "2024-10-26T19:44:31+00:00"
+        },
+        {
+            "name": "aarsteinmedia/js_composer-stubs",
+            "version": "6.10.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aarsteinmedia/js_composer-stubs.git",
+                "reference": "21ea992d686f9a1ed0c7163825f984b1162d30f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aarsteinmedia/js_composer-stubs/zipball/21ea992d686f9a1ed0c7163825f984b1162d30f5",
+                "reference": "21ea992d686f9a1ed0c7163825f984b1162d30f5",
+                "shasum": ""
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "*",
+                "ext-gettext": "*",
+                "php": ">=7.1",
+                "php-stubs/generator": "^0.5.0",
+                "squizlabs/php_codesniffer": "*",
+                "wp-coding-standards/wpcs": "*"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Johan Martin Aarstein",
+                    "email": "johan@aarstein.media"
+                }
+            ],
+            "description": "WPBakery Page Builder function, class, and global variable declaration stubs for easier static analysis.",
+            "homepage": "https://github.com/aarsteinmedia/js_composer-stubs",
+            "keywords": [
+                "js_composer",
+                "static analysis"
+            ],
+            "support": {
+                "issues": "https://github.com/aarsteinmedia/js_composer-stubs/issues",
+                "source": "https://github.com/aarsteinmedia/js_composer-stubs/tree/6.10.1"
+            },
+            "time": "2024-10-26T19:08:58+00:00"
+        },
         {
             "name": "arifpavel/elementor-stubs",
             "version": "3.1.4.1",
@@ -442,10 +577,10 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": {},
-    "platform-dev": {},
+    "platform": [],
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }

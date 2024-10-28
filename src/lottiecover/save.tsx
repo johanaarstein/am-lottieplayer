@@ -1,6 +1,5 @@
 import type { PlayerComponentProps } from '@/types';
 import type { BlockSaveProps } from '@wordpress/blocks';
-import type { AnimationSegment } from 'lottie-web';
 
 import { Align } from '@/enums';
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
@@ -17,14 +16,6 @@ export default function save( {
 				? '100vh'
 				: heightWithUnit || undefined,
 		},
-		dataSelector = JSON.stringify( attributes.selector ),
-		playSegment =
-			! attributes.segment || ! attributes.segment?.[ 1 ]
-				? undefined
-				: JSON.stringify( [
-						attributes.segment[ 0 ],
-						attributes.segment[ 1 ],
-				  ] ),
 		parseWidth = ( num: number ) => {
 			if (
 				attributes.align === Align.Wide ||
@@ -59,15 +50,13 @@ export default function save( {
 				data-mouseover={ attributes.hover }
 				data-once={ attributes.once }
 				data-scroll={ attributes.scrollEvent }
-				data-selector={ dataSelector }
 				description={ attributes.alt }
 				direction={ attributes.direction }
 				intermission={ attributes.intermission }
 				loop={ attributes.loop ? '' : null }
 				mode={ attributes.mode }
-				multiAnimationSettings={ [] }
 				objectfit={ attributes.objectFit }
-				segment={ playSegment as unknown as AnimationSegment }
+				simple
 				speed={ attributes.speed }
 				src={ attributes.src || '' }
 				style={ {

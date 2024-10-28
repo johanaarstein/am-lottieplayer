@@ -112,12 +112,6 @@
       ],
       "default": "normal"
     },
-    "multiAnimationInteractions": {
-      "type": "array"
-    },
-    "multiAnimationSettings": {
-      "type": "array"
-    },
     "objectFit": {
       "type": "string",
       "default": "cover"
@@ -150,16 +144,9 @@
       "type": "number",
       "default": null
     },
-    "segment": {
-      "type": "array",
-      "default": null
-    },
-    "selector": {
-      "type": "object",
-      "default": {
-        "id": null,
-        "exclude": false
-      }
+    "simple": {
+      "type": "boolean",
+      "default": true
     },
     "speed": {
       "type": "number",

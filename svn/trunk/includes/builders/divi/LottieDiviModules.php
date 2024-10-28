@@ -2,24 +2,17 @@
 defined( 'ABSPATH' ) || exit;
 
 if ( class_exists( 'DiviExtension' ) && ! class_exists( 'AM_LottieDiviModules' ) ) {
-	/**
-	 * @disregard P1009 Undefined type
-	 */
+
 	class AM_LottieDiviModules extends DiviExtension {
 
 		public $gettext_domain = 'am-lottieplayer';
 		public $name           = 'am-lottieplayer';
-		public $version        = AM_LOTTIEPLAYER_VERSION;
+		public $version        = AAMD_LOTTIE_VERSION;
 
 		public function __construct( $name = 'am-lottieplayer', $args = array() ) {
-			/**
-			 * @disregard P1014 Undefined type
-			 */
+
 			$this->plugin_dir = plugin_dir_path( __FILE__ );
-			/**
-			 * @disregard P1014 Undefined type
-			 */
-			$this->plugin_dir_url = AM_LOTTIEPLAYER_URL;
+			$this->plugin_dir_url = AAMD_LOTTIE_URL;
 			parent::__construct( $name, $args );
 		}
 	}

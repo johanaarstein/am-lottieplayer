@@ -13,7 +13,7 @@
  * Description:       The most complete, free Lottie Player plugin! It´s lightweight, versatile and easy to use – and has integrations for Gutenberg, Divi, Elementor, Flatsome and WPBakery.
  * Requires at least: 5.9
  * Requires PHP:      7.0
- * Version:           3.2.5
+ * Version:           3.3.0
  * Plugin URI:        https://www.aarstein.media/en/am-lottieplayer
  * Author:            Aarstein Media
  * Author URI:        https://www.aarstein.media/en
@@ -37,37 +37,31 @@
 
 defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( 'AM_LottiePlayer' ) ) {
+if ( ! class_exists( 'AAMD_Lottie' ) ) {
 
-	class AM_LottiePlayer {
+	class AAMD_Lottie {
 
-		public $version;
-
-		public function __construct() {
-			$this->version = '3.2.5';
-		}
+		private const _version = '3.3.0';
 
 		/**
 		 * Sets up Am LottiePlayer plugin
-		 *
-		 * @return void
 		 */
-		public function initialize() {
+		public function __construct() {
 
 			// Define constants
-			define( 'AM_LOTTIEPLAYER_PATH', plugin_dir_path( __FILE__ ) );
-			define( 'AM_LOTTIEPLAYER_SLUG', plugin_basename( __DIR__ ) );
-			define( 'AM_LOTTIEPLAYER_BASENAME', plugin_basename( __FILE__ ) );
-			define( 'AM_LOTTIEPLAYER_VERSION', $this->version );
-			define( 'AM_LOTTIEPLAYER_URL', plugin_dir_url( __FILE__ ) );
+			define( 'AAMD_LOTTIE_PATH', plugin_dir_path( __FILE__ ) );
+			define( 'AAMD_LOTTIE_SLUG', plugin_basename( __DIR__ ) );
+			define( 'AAMD_LOTTIE_BASENAME', plugin_basename( __FILE__ ) );
+			define( 'AAMD_LOTTIE_VERSION', self::_version );
+			define( 'AAMD_LOTTIE_URL', plugin_dir_url( __FILE__ ) );
 
 			// Include utility functions
-			include_once AM_LOTTIEPLAYER_PATH . 'includes/functions.php';
+			include_once AAMD_LOTTIE_PATH . 'includes/utils.php';
 
-			am_include( 'upload' );
-			am_include( 'builders/builders' );
+			aamd_lottie_include( 'upload' );
+			aamd_lottie_include( 'builders/builders' );
 			if ( is_admin() ) {
-				am_include( 'admin' );
+				aamd_lottie_include( 'admin' );
 			}
 
 			register_activation_hook( __FILE__, array( $this, 'on_activation' ) );
@@ -87,7 +81,9 @@ if ( ! class_exists( 'AM_LottiePlayer' ) ) {
 				return;
 			}
 
-			AM_LottiePlayer_Upload::lottie_asset();
+			global $aamd_lottie_upload;
+
+			$aamd_lottie_upload->set_default_file();
 		}
 
 		/**
@@ -138,7 +134,7 @@ if ( ! class_exists( 'AM_LottiePlayer' ) ) {
 				return;
 			}
 
-			$message = __( 'AM LottiePlayer and AM LottiePlayer  PRO should not be active at the same time. We\'ve automatically deactivated AM LottiePlayer.', 'am-lottieplayer' );
+			$message = __( 'AM LottiePlayer and AM LottiePlayer PRO should not be active at the same time. We\'ve automatically deactivated AM LottiePlayer.', 'am-lottieplayer' );
 			if ( 2 === $deactivated_notice_id ) {
 				$message = __( 'AM LottiePlayer and AM LottiePlayer PRO should not be active at the same time. We\'ve automatically deactivated AM LottiePlayer PRO.', 'am-lottieplayer' );
 			}
@@ -157,15 +153,14 @@ if ( ! class_exists( 'AM_LottiePlayer' ) ) {
 /**
  * Main function, to initialize plugin
  *
- * @return AM_LottiePlayer
+ * @return AAMD_Lottie
  */
 ( function () {
-	global $am_lottieplayer;
+	global $aamd_lottie;
 
-	if ( ! isset( $am_lottieplayer ) ) {
-		$am_lottieplayer = new AM_LottiePlayer();
-		$am_lottieplayer->initialize();
+	if ( ! isset( $aamd_lottie ) ) {
+		$aamd_lottie = new AAMD_Lottie();
 	}
 
-	return $am_lottieplayer;
+	return $aamd_lottie;
 } )();
