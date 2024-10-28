@@ -7,7 +7,6 @@ use function AAMD_Lottie\Utility\include_file;
 
 /**
  * Check for active builders, and initialize extensions
- *
  * Supported builders: Gutenberg, Divi, Elementor, WPBakery, Flatsome
  */
 class Builder {
