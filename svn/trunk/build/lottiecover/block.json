@@ -144,10 +144,6 @@
       "type": "number",
       "default": null
     },
-    "simple": {
-      "type": "boolean",
-      "default": true
-    },
     "speed": {
       "type": "number",
       "default": 1
