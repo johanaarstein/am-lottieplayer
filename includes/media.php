@@ -1,9 +1,6 @@
 <?php
 namespace AAMD_Lottie;
 
-// use function WP_User\wp__print_media_templates;
-use function WP\User\wp__print_media_templates;
-
 \defined( 'ABSPATH' ) || exit;
 
 class Media {
@@ -19,7 +16,7 @@ class Media {
 			add_action( 'wp_enqueue_media', array( $this, 'override_media_templates' ) );
 
 			add_filter( 'upload_mimes', array( $this, 'mimetypes' ) );
-			add_filter( 'wp_check_filetype_and_ext', array( $this, 'lottie_filetypes' ), 10, 5 );
+			add_filter( 'wp_check_filetype_and_ext', array( $this, '_lottie_filetypes' ), 10, 5 );
 			add_filter( 'wp_mime_type_icon', array( $this, 'icon_filter' ), 10, 3 );
 		}
 
@@ -38,7 +35,7 @@ class Media {
 
 	// Adding preview for Media Library
 	public function override_media_templates() {
-		if ( ! remove_action( 'admin_footer', 'wp__print_media_templates' ) ) {
+		if ( ! remove_action( 'admin_footer', 'wp_print_media_templates' ) ) {
 			\error_log( 'remove_action fail' );
 		}
 		add_action( 'admin_footer', array( $this, 'print_media_templates' ) );
@@ -63,7 +60,7 @@ class Media {
 		);
 
 		\ob_start();
-		wp__print_media_templates();
+		wp_print_media_templates();
 		echo \preg_replace(
 			\array_keys( $replaces ),
 			\array_values( $replaces ),
@@ -71,7 +68,7 @@ class Media {
 		);
 	}
 
-	public function lottie_filetypes( $data, $file, $filename, $mimes, $real_mime ) {
+	private function _lottie_filetypes( $data, $file, $filename, $mimes, $real_mime ) {
 		if ( ! empty( $data['ext'] ) && ! empty( $data['type'] ) ) {
 			return $data;
 		}
