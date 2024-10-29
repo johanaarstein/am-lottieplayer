@@ -1,8 +1,9 @@
 <?php
 \defined( 'ABSPATH' ) || exit;
 
-use function AAMD_Lottie\Utility\include_file;
+// use function AAMD_Lottie\Utility\include_file;
 use function AAMD_Lottie\Utility\get_asset;
+use function AAMD_Lottie\Utility\get_script;
 
 global $aamd_lottie_media;
 
@@ -10,14 +11,18 @@ if ( ! function_exists( 'aamd_lottie_get_ux_template' ) ) {
 	function aamd_lottie_get_ux_template() {
 		wp_enqueue_script(
 			'am-backend-ux',
-			AAMD_LOTTIE_URL . 'scripts/am-backend-ux.min.js',
+			get_script( 'am-backend-ux.min.js' ),
 			array( 'dotlottie-player-light' ),
 			'1.0.1',
 			true
 		);
-		\ob_start();
-		include_file( 'builders/vc/vc-am-lottieplayer-template' );
-		return \ob_get_clean();
+		// \ob_start();
+		// include_file(
+		// 	'builders/flatsome/ux-am-lottieplayer-template',
+		// 	null,
+		// 	'html'
+		// );
+		// return \ob_get_clean();
 	}
 }
 

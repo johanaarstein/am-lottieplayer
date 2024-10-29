@@ -1,13 +1,12 @@
 <?php
 namespace AAMD_Lottie;
 
-\defined( 'ABSPATH' ) || exit;
-
 use function AAMD_Lottie\Utility\render_lottieplayer;
+
+\defined( 'ABSPATH' ) || exit;
 
 if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 	class Elementor extends \Elementor\Widget_Base {
-
 
 		public function get_script_depends() {
 			return array( 'am-frontend' );

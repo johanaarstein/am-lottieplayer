@@ -1,10 +1,6 @@
 <?php
 namespace AAMD_Lottie\Utility;
 
-// function is_truish( $input ) {
-// 	return $input === 'true' || $input === true || $input === 1 || $input === '1';
-// }
-
 function check_boolean_att( bool|string|null $var ) {
 	return ( $var && $var !== 'false' );
 }
@@ -156,8 +152,8 @@ function render_shortcode( $atts ) {
  * @param string $filename The specified file.
  * @return string
  */
-function get_path( $path = '' ) {
-	$path = \preg_replace( '/\.[^.]*$/', '', \ltrim( $path, '/' ) ) . '.php';
+function get_path( string $path = '', string $ext = 'php' ) {
+	$path = \preg_replace( '/\.[^.]*$/', '', \ltrim( $path, '/' ) ) . ".{$ext}";
 	return AAMD_LOTTIE_PATH . $path;
 }
 /**
@@ -167,8 +163,8 @@ function get_path( $path = '' ) {
  * @param mixed  $arg (optional)
  * @return void
  */
-function include_file( $path = '', $args = null ) {
-	$path = get_path( 'includes/' . \ltrim( $path, '/' ) );
+function include_file( string $path = '', array $args = null, string $ext = 'php' ) {
+	$path = get_path( 'includes/' . \ltrim( $path, '/' ), $ext );
 	if ( \file_exists( $path ) ) {
 		$args;
 		include_once $path;
@@ -183,4 +179,15 @@ function include_file( $path = '', $args = null ) {
  */
 function get_asset( $filename = '' ) {
 	return AAMD_LOTTIE_URL . 'assets/' . \ltrim( $filename, '/' );
+}
+
+/**
+ * Get script
+ *
+ * @param string      $filename Name of file
+ * @param string|null $version Version of script
+ * @return string URL to script
+ */
+function get_script( $filename = '', string|null $version = null ) {
+	return AAMD_LOTTIE_URL . 'scripts/' . \ltrim( $filename, '/' ) . $version ? '?ver=' . $version : '';
 }

@@ -24,6 +24,7 @@ class Builder {
 
 	/**
 	 * Initialize Gutenberg Blocks, global shortcode and register JavaScript
+	 *
 	 * @return void
 	 */
 	public function init_plugin() {
@@ -36,7 +37,7 @@ class Builder {
 			'dotlottie-player-light',
 			AAMD_LOTTIE_URL . 'scripts/dotlottie-player-light.min.js',
 			array(),
-			'3.1.4',
+			'4.0.1',
 			array(
 				'strategy'  => 'defer',
 				'in_footer' => true,
@@ -57,6 +58,7 @@ class Builder {
 
 	/**
 	 * Initialize DIVI Extension
+	 *
 	 * @return void
 	 */
 	public function init_divi() {
@@ -65,6 +67,7 @@ class Builder {
 
 	/**
 	 * Initialize Elementor Widget
+	 *
 	 * @return void
 	 */
 	public function init_elementor( $widgets_manager ) {
@@ -79,6 +82,7 @@ class Builder {
 
 	/**
 	 * Initialize Flatsome Shortcode
+	 *
 	 * @return void
 	 */
 	public function init_flatsome() {
@@ -90,6 +94,7 @@ class Builder {
 
 	/**
 	 * Initialize Visual Composer
+	 *
 	 * @return void
 	 */
 	public function init_vc() {
@@ -97,7 +102,32 @@ class Builder {
 	}
 
 	/**
+	 * Check if Divi shortcode is present in content
+	 */
+	private function _check_if_divi_shortcode_is_present(
+		array $layouts,
+		bool $has_divi,
+		string $part
+	) {
+		if ( $has_divi ) {
+			return true;
+		}
+		if ( $layouts[ "et_{$part}_layout" ]['override'] ) {
+			$content = null;
+			if ( get_post( $layouts[ "et_{$part}_layout" ]['id'] ) ) {
+				$content = get_post( $layouts[ "et_{$part}_layout" ]['id'] )->post_content;
+			}
+			if ( $content && has_shortcode( $content, 'et_pb_lottieplayer' ) ) {
+				$has_divi = true;
+			}
+		}
+
+		return $has_divi;
+	}
+
+	/**
 	 * Enqueue JavaScript for frontend
+	 *
 	 * @return void
 	 */
 	public function frontend_enqueue() {
@@ -119,26 +149,12 @@ class Builder {
 		if ( function_exists( 'et_theme_builder_get_template_layouts' ) ) {
 			$layouts = et_theme_builder_get_template_layouts();
 			if ( ! empty( $layouts ) ) {
-				if ( $layouts['et_header_layout']['override'] ) {
-					$header = get_post( $layouts['et_header_layout']['id'] ) ?
-						get_post( $layouts['et_header_layout']['id'] )->post_content : null;
-					if ( $header && has_shortcode( $header, 'et_pb_lottieplayer' ) ) {
-						$has_divi = true;
-					}
-				}
-				if ( ! $has_divi && $layouts['et_body_layout']['override'] ) {
-					$body = get_post( $layouts['et_body_layout']['id'] ) ?
-					get_post( $layouts['et_body_layout']['id'] )->post_content : null;
-					if ( $body && has_shortcode( $body, 'et_pb_lottieplayer' ) ) {
-						$has_divi = true;
-					}
-				}
-				if ( ! $has_divi && $layouts['et_footer_layout']['override'] ) {
-					$footer = get_post( $layouts['et_footer_layout']['id'] ) ?
-					get_post( $layouts['et_footer_layout']['id'] )->post_content : null;
-					if ( $footer && has_shortcode( $footer, 'et_pb_lottieplayer' ) ) {
-						$has_divi = true;
-					}
+				foreach ( array( 'header', 'body', 'footer' ) as $part ) {
+					$has_divi = $this->_check_if_divi_shortcode_is_present(
+						$layouts,
+						$has_divi,
+						$part
+					);
 				}
 			}
 		}
@@ -166,6 +182,7 @@ class Builder {
 
 /**
  * Main function, to initialize class
+ *
  * @return Builder
  */
 ( function () {
