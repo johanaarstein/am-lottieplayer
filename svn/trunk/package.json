@@ -68,6 +68,7 @@
 		"re-resizable": "^6.10.0",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
+		"rimraf": "^6.0.1",
 		"sass": "^1.80.5",
 		"stylelint": "^16.10.0",
 		"stylelint-config-standard-scss": "^13.1.0",
@@ -94,7 +95,7 @@
 		"stash": "wp-scripts build && wp-scripts plugin-zip",
 		"scss": "sass --no-source-map --style=compressed sass:styles",
 		"dep": "cp ./node_modules/@aarsteinmedia/dotlottie-player-light/dist/index.js ./scripts/dotlottie-player-light.min.js",
-		"svn": "cp -R ./assets ./build ./includes ./scripts ./styles ./svn/trunk && cp ./am-lottieplayer.php ./LICENSE ./package.json ./readme.txt ./svn/trunk"
+		"svn": "rimraf ./svn/trunk/* && cp -R ./assets ./build ./includes ./scripts ./styles ./svn/trunk && cp ./am-lottieplayer.php ./LICENSE ./package.json ./readme.txt ./svn/trunk"
 	},
 	"cde": {
 		"gettext": "am-lottieplayer",
