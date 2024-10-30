@@ -1,6 +1,9 @@
 <?php
 namespace AAMD_Lottie;
 
+use function AAMD_Lottie\Utility\get_build;
+use function AAMD_Lottie\Utility\get_style;
+
 \defined( 'ABSPATH' ) || exit;
 
 class Admin {
@@ -27,7 +30,7 @@ class Admin {
 	public function admin_enqueue_scripts( $page ) {
 		wp_enqueue_style(
 			'am-backend-style',
-			AAMD_LOTTIE_URL . 'styles/admin.css',
+			get_style( 'admin.css' ),
 			array(),
 			'1.0.0'
 		);
@@ -38,7 +41,7 @@ class Admin {
 		if ( $page === 'index.php' ) {
 			wp_enqueue_script(
 				'am-lottieplayer-widget',
-				AAMD_LOTTIE_URL . 'build/admin.js',
+				get_build( 'admin.js' ),
 				$widgetAssets['dependencies'],
 				'0.1.0',
 				true

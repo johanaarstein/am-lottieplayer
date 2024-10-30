@@ -2,6 +2,8 @@
 namespace AAMD_Lottie;
 
 use function AAMD_Lottie\Utility\include_file;
+use function AAMD_Lottie\Utility\get_script;
+use function AAMD_Lottie\Utility\get_style;
 
 \defined( 'ABSPATH' ) || exit;
 
@@ -35,9 +37,9 @@ class Builder {
 
 		wp_register_script(
 			'dotlottie-player-light',
-			AAMD_LOTTIE_URL . 'scripts/dotlottie-player-light.min.js',
+			get_script( 'dotlottie-player-light.min.js' ),
 			array(),
-			'4.0.1',
+			'4.0.2',
 			array(
 				'strategy'  => 'defer',
 				'in_footer' => true,
@@ -46,7 +48,7 @@ class Builder {
 
 		wp_register_script(
 			'am-frontend',
-			AAMD_LOTTIE_URL . 'scripts/am-frontend.min.js',
+			get_script( 'am-frontend.min.js' ),
 			array( 'dotlottie-player-light' ),
 			'1.2.3',
 			array(
@@ -73,7 +75,7 @@ class Builder {
 	public function init_elementor( $widgets_manager ) {
 		wp_enqueue_style(
 			'elementor-backend-style',
-			AAMD_LOTTIE_URL . 'styles/am-font.css',
+			get_style( 'am-font.css' ),
 			array(),
 			'1.0.0'
 		);

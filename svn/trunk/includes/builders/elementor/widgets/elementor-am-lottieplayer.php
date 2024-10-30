@@ -2,6 +2,7 @@
 namespace AAMD_Lottie;
 
 use function AAMD_Lottie\Utility\render_lottieplayer;
+use function AAMD_Lottie\Utility\get_allowed_html;
 
 \defined( 'ABSPATH' ) || exit;
 
@@ -503,15 +504,47 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 				),
 			);
 
-			echo render_lottieplayer( $attrs );
+			echo wp_kses(
+				render_lottieplayer( $attrs ),
+				get_allowed_html()
+			);
 		}
 
 		protected function content_template() {
 			?>
-			<# const autoplay=settings.autoplay==='yes' ? 'autoplay' : '' , controls=settings.controls==='yes' ? 'controls' : '' , loop=settings.loop==='yes' ? 'loop' : '' , subframe=settings.subframe==='yes' ? 'subframe' : '' , mode=settings.mode==='yes' ? 'bounce' : 'normal' , { height_auto, height_fixed, lottie, object_fit, reverse, segment_in, segment_out, speed, width }=settings, direction=reverse==='yes' ? '-1' : '1' , height=height_auto !=='yes' || !height_fixed.size ? 'auto' : height_fixed.size + height_fixed.unit, playbackSpeed=!speed || speed==='' ? '1' : speed, segment=segment_in && segment_out && segment_out !=='0' ? JSON.stringify([segment_in, segment_out]) : undefined #>
+			<#
+				const autoplay = settings.autoplay === 'yes' ? 'autoplay' : '',
+					controls = settings.controls === 'yes' ? 'controls' : '',
+					loop = settings.loop === 'yes' ? 'loop' : '',
+					subframe = settings.subframe === 'yes' ? 'subframe' : '',
+					mode = settings.mode === 'yes' ? 'bounce' : 'normal',
+					{
+						height_auto,
+						height_fixed,
+						lottie,
+						object_fit,
+						reverse,
+						segment_in,
+						segment_out,
+						speed,
+						width
+					} = settings,
+					direction = reverse === 'yes' ? '-1' : '1',
+					height=height_auto !== 'yes' || !height_fixed.size ? 'auto' : height_fixed.size + height_fixed.unit,
+					playbackSpeed = !speed || speed === '' ? '1' : speed
+			#>
 				<figure style="width:{{{ width.size }}}{{{ width.unit }}};height:{{{ height }}};margin:auto;">
-					<dotlottie-player {{{ autoplay }}} {{{ controls }}} {{{ loop }}} {{{ subframe }}} direction="{{{ direction }}}" mode="{{{ mode }}}" objectfit="{{{ object_fit }}}" simple speed="{{{ playbackSpeed }}}" src="{{{ lottie.url }}}" intermission="{{{ settings.intermission }}}">
-					</dotlottie-player>
+					<dotlottie-player
+						simple
+						{{{ autoplay }}}
+						{{{ controls }}}
+						{{{ loop }}}
+						{{{ subframe }}}
+						direction="{{{ direction }}}"
+						objectfit="{{{ object_fit }}}"
+						speed="{{{ playbackSpeed }}}"
+						src="{{{ lottie.url }}}"
+						intermission="{{{ settings.intermission }}}"></dotlottie-player>
 				</figure>
 			<?php
 		}

@@ -1,7 +1,10 @@
 <?php
 namespace AAMD_Lottie\Utility;
 
-function check_boolean_att( bool|string|null $var ) {
+/**
+ * @param bool|string|null
+ */
+function check_boolean_att( $var ) {
 	return ( $var && $var !== 'false' );
 }
 
@@ -32,24 +35,27 @@ function render_lottieplayer( array $atts ) {
 
 	$animateOnScroll = '';
 	if ( check_boolean_att( $atts['animate_on_scroll'] ) ) {
-		$animateOnScroll = 'animateonscroll';
+		$animateOnScroll = "animateonscroll\n";
 	}
 	$autoplay = '';
 	if ( check_boolean_att( $atts['autoplay'] ) && ! check_boolean_att( $atts['scroll'] ) ) {
-		$autoplay = 'autoplay';
+		$autoplay = "autoplay\n";
 	}
-	$background = $atts['background'] || 'transparent';
-	$controls   = '';
+	$background = 'transparent';
+	if ( $atts['background'] && $atts['background'] !== $background ) {
+		$background = sanitize_hex_color( $atts['background'] );
+	}
+	$controls = '';
 	if ( check_boolean_att( $atts['controls'] ) ) {
-		$controls = 'controls';
+		$controls = "controls\n";
 	}
 	$loop = '';
 	if ( check_boolean_att( $atts['loop'] ) ) {
-		$loop = 'loop';
+		$loop = "loop\n";
 	}
 	$subframe = '';
 	if ( check_boolean_att( $atts['subframe'] ) ) {
-		$subframe = 'subframe';
+		$subframe = "subframe\n";
 	}
 	$height = 'auto';
 	if ( check_boolean_att( $atts['height'] ) ) {
@@ -61,23 +67,21 @@ function render_lottieplayer( array $atts ) {
 	}
 
 	\ob_start(); ?>
-
 	<figure
 		class="am-lottieplayer align <?php echo esc_attr( $atts['align'] . ' ' . $atts['class'] ); ?>"
-		style="background-color: <?php echo esc_attr( $atts['background'] ); ?>;height: <?php echo esc_attr( $height ); ?>;width: <?php echo esc_attr( $width ); ?>;">
+		style="background-color:<?php echo esc_attr( $background ); ?>;height:<?php echo esc_attr( $height ); ?>;width:<?php echo esc_attr( $width ); ?>;">
 		<dotlottie-player
-			<?php echo esc_attr( $animateOnScroll ); ?>
-			<?php echo esc_attr( $autoplay ); ?>
-			background="<?php echo esc_attr( $background ); ?>"
-			<?php echo esc_attr( $controls ); ?>
 			simple
-			description="<?php echo esc_attr( $atts['alt'] ); ?>"
+			<?php echo esc_attr( $autoplay ); ?>
+			<?php echo esc_attr( $controls ); ?>
 			<?php echo esc_attr( $loop ); ?>
+			<?php echo esc_attr( $subframe ); ?>
+			<?php echo esc_attr( $animateOnScroll ); ?>
+			description="<?php echo esc_attr( $atts['alt'] ); ?>"
 			objectfit="<?php echo esc_attr( $atts['objectfit'] ); ?>"
 			src="<?php echo esc_url( $atts['src'] ); ?>"
 			intermission="<?php echo esc_attr( $atts['intermission'] ); ?>"
 			speed="<?php echo esc_attr( $atts['speed'] ); ?>"
-			<?php echo esc_attr( $subframe ); ?>
 			direction="<?php echo esc_attr( get_animation_direction( $atts['direction'] ) ); ?>"
 			data-direction="<?php echo esc_attr( get_animation_direction( $atts['direction'] ) ); ?>"
 			data-mouseover="<?php echo esc_attr( $atts['onmouseover'] ); ?>"
@@ -87,7 +91,6 @@ function render_lottieplayer( array $atts ) {
 			data-delay="<?php echo esc_attr( $atts['delay'] ); ?>"
 			data-once="<?php echo esc_attr( $atts['once'] ); ?>"></dotlottie-player>
 	</figure>
-
 	<?php
 
 	$output = '';
@@ -163,7 +166,7 @@ function get_path( string $path = '', string $ext = 'php' ) {
  * @param mixed  $arg (optional)
  * @return void
  */
-function include_file( string $path = '', array $args = null, string $ext = 'php' ) {
+function include_file( string $path = '', object $args = null, string $ext = 'php' ) {
 	$path = get_path( 'includes/' . \ltrim( $path, '/' ), $ext );
 	if ( \file_exists( $path ) ) {
 		$args;
@@ -178,7 +181,7 @@ function include_file( string $path = '', array $args = null, string $ext = 'php
  * @return string URL to asset
  */
 function get_asset( $filename = '' ) {
-	return AAMD_LOTTIE_URL . 'assets/' . \ltrim( $filename, '/' );
+	return get_static_url( 'assets', $filename );
 }
 
 /**
@@ -188,6 +191,81 @@ function get_asset( $filename = '' ) {
  * @param string|null $version Version of script
  * @return string URL to script
  */
-function get_script( $filename = '', string|null $version = null ) {
-	return AAMD_LOTTIE_URL . 'scripts/' . \ltrim( $filename, '/' ) . $version ? '?ver=' . $version : '';
+function get_script( $filename = '', $version = null ) {
+	return get_static_url( 'scripts', $filename, $version );
+}
+
+/**
+ * Get style
+ *
+ * @param string      $filename Name of file
+ * @param string|null $version Version of stylesheet
+ * @return string URL to script
+ */
+function get_style( $filename = '', $version = null ) {
+	return get_static_url( 'styles', $filename, $version );
+}
+
+/**
+ * Get build script
+ *
+ * @param string      $filename Name of file
+ * @param string|null $version Version of stylesheet
+ * @return string URL to script
+ */
+function get_build( $filename = '', $version = null ) {
+	return get_static_url( 'build', $filename, $version );
+}
+
+/**
+ * Get url of static file
+ *
+ * @param string      $type `'assets'|'build'|'scripts'|'styles'`
+ * @param string      $filename Name of file
+ * @param string|null $version Version of stylesheet
+ * @return string URL to script
+ */
+function get_static_url( $type, $filename = '', $version = null ) {
+	return AAMD_LOTTIE_URL . "{$type}/" . \ltrim( $filename, '/' ) . ( $version ? '?ver=' . $version : '' );
+}
+
+/**
+ * Get allowed attributes for shortcode
+ */
+function get_allowed_html() {
+	return array(
+		'a'                => array(
+			'href'   => array(),
+			'target' => array(),
+			'rel'    => array(),
+		),
+		'figure'           => array(
+			'class' => array(),
+			'style' => array(),
+		),
+		'dotlottie-player' => array(
+			'animateonscroll' => array(),
+			'autoplay'        => array(),
+			'background'      => array(),
+			'class'           => array(),
+			'controls'        => array(),
+			'count'           => array(),
+			'data-*'          => array(),
+			'description'     => array(),
+			'direction'       => array(),
+			'hover'           => array(),
+			'id'              => array(),
+			'intermission'    => array(),
+			'loop'            => array(),
+			'mode'            => array(),
+			'objectfit'       => array(),
+			'onclick'         => array(),
+			'onmouseover'     => array(),
+			'renderer'        => array(),
+			'simple'          => array(),
+			'speed'           => array(),
+			'src'             => array(),
+			'subframe'        => array(),
+		),
+	);
 }

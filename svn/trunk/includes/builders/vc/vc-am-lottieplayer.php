@@ -9,7 +9,7 @@ global $aamd_lottie_media;
 vc_add_shortcode_param(
 	'attach_lottie',
 	'am_vc_attach_field_settings',
-	get_script('am-backend-vc-options.min.js', '1.0.1'),
+	get_script( 'am-backend-vc-options.min.js', '1.0.1' ),
 );
 
 if ( ! function_exists( 'am_vc_attach_field_settings' ) ) {
@@ -20,7 +20,7 @@ if ( ! function_exists( 'am_vc_attach_field_settings' ) ) {
 				id="<?php echo esc_attr( $settings['param_name'] ); ?>-button"
 				style="all:unset;cursor:pointer;background:#007cba;color:#fff;font-size:13px;padding:6px 12px;border-radius:2px;height:36px;align-items:center;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;appearance:none;"
 				class="<?php echo esc_attr( $settings['param_name'] ) . ' ' . esc_attr( $settings['type'] ); ?>_field"
-				><?php echo __( 'Media Library', 'am-lottieplayer' ); ?></button>
+				><?php echo esc_html__( 'Media Library', 'am-lottieplayer' ); ?></button>
 		</div>
 		<?php
 		return \ob_get_clean();

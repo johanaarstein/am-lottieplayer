@@ -3,6 +3,7 @@ namespace AAMD_Lottie;
 
 \defined( 'ABSPATH' ) || exit;
 
+use function AAMD_Lottie\Utility\get_asset;
 use function AAMD_Lottie\Utility\render_lottieplayer;
 
 if ( \class_exists( '\ET_Builder_Module' ) ) {
@@ -14,19 +15,19 @@ if ( \class_exists( '\ET_Builder_Module' ) ) {
 			$this->plural     = esc_html__( 'AM Lotties', 'am-lottieplayer' );
 			$this->slug       = 'et_pb_lottieplayer';
 			$this->vb_support = 'on';
-			$this->icon_path  = AAMD_LOTTIE_PATH . 'assets/divi-icon.svg';
+			$this->icon_path  = get_asset( 'divi-icon.svg' );
 
 			$this->settings_modal_toggles = array(
 				'general'    => array(
 					'toggles' => array(
-						'main_content' => esc_html__( 'Animation', 'et_builder' ),
+						'main_content' => esc_html__( 'Animation', 'am-lottieplayer' ),
 						'link'         => et_builder_i18n( 'Link' ),
 					),
 				),
 				'advanced'   => array(
 					'toggles' => array(
 						'overlay'   => et_builder_i18n( 'Overlay' ),
-						'alignment' => esc_html__( 'Alignment', 'et_builder' ),
+						'alignment' => esc_html__( 'Alignment', 'am-lottieplayer' ),
 						'width'     => array(
 							'title'    => et_builder_i18n( 'Sizing' ),
 							'priority' => 65,
@@ -36,11 +37,11 @@ if ( \class_exists( '\ET_Builder_Module' ) ) {
 				'custom_css' => array(
 					'toggles' => array(
 						'animation'  => array(
-							'title'    => esc_html__( 'Animation', 'et_builder' ),
+							'title'    => esc_html__( 'Animation', 'am-lottieplayer' ),
 							'priority' => 90,
 						),
 						'attributes' => array(
-							'title'    => esc_html__( 'Attributes', 'et_builder' ),
+							'title'    => esc_html__( 'Attributes', 'am-lottieplayer' ),
 							'priority' => 95,
 						),
 					),
@@ -139,13 +140,13 @@ if ( \class_exists( '\ET_Builder_Module' ) ) {
 					'type'             => 'select',
 					'option_category'  => 'configuration',
 					'options'          => array(
-						'off' => esc_html__( 'In The Same Window', 'et_builder' ),
-						'on'  => esc_html__( 'In The New Tab', 'et_builder' ),
+						'off' => esc_html__( 'In The Same Window', 'am-lottieplayer' ),
+						'on'  => esc_html__( 'In The New Tab', 'am-lottieplayer' ),
 					),
 					'default_on_front' => 'off',
 					'depends_show_if'  => 'off',
 					'toggle_slug'      => 'link',
-					'description'      => esc_html__( 'Here you can choose whether or not your link opens in a new window', 'et_builder' ),
+					'description'      => esc_html__( 'Here you can choose whether or not your link opens in a new window', 'am-lottieplayer' ),
 				),
 				'show_bottom_space' => array(
 					'label'            => esc_html__( 'Show Space Below The Animation', 'am-lottieplayer' ),
@@ -162,7 +163,7 @@ if ( \class_exists( '\ET_Builder_Module' ) ) {
 					'mobile_options'   => true,
 				),
 				'force_fullwidth'   => array(
-					'label'            => esc_html__( 'Force Fullwidth', 'et_builder' ),
+					'label'            => esc_html__( 'Force Fullwidth', 'am-lottieplayer' ),
 					'description'      => esc_html__( "When enabled, this will force your animation to extend 100% of the width of the column it's in.", 'am-lottieplayer' ),
 					'type'             => 'yes_no_button',
 					'option_category'  => 'layout',

@@ -23,7 +23,7 @@ if ( \class_exists( '\DiviExtension' ) ) {
 
 	wp_register_style(
 		'am_lottie_et_styles',
-		null,
+		false,
 		array(),
 		'1.0.0'
 	);

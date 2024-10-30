@@ -3,12 +3,12 @@
 
 return array(
 	'type'    => 'group',
-	'heading' => __( 'Position' ),
+	'heading' => __( 'Position', 'am-lottieplayer' ),
 	'require' => array( 'ux_banner' ),
 	'options' => array(
 		'position_x' => array(
 			'type'              => 'slider',
-			'heading'           => __( 'Horizontal' ),
+			'heading'           => __( 'Horizontal', 'am-lottieplayer' ),
 			'save_when_default' => true,
 			'responsive'        => true,
 			'default'           => 50,
@@ -18,7 +18,7 @@ return array(
 		),
 		'position_y' => array(
 			'type'              => 'slider',
-			'heading'           => __( 'Vertical' ),
+			'heading'           => __( 'Vertical', 'am-lottieplayer' ),
 			'save_when_default' => true,
 			'responsive'        => true,
 			'default'           => 50,

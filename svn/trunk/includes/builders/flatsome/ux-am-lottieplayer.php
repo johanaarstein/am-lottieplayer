@@ -1,7 +1,7 @@
 <?php
 \defined( 'ABSPATH' ) || exit;
 
-// use function AAMD_Lottie\Utility\include_file;
+use function AAMD_Lottie\Utility\include_file;
 use function AAMD_Lottie\Utility\get_asset;
 use function AAMD_Lottie\Utility\get_script;
 
@@ -18,9 +18,9 @@ if ( ! function_exists( 'aamd_lottie_get_ux_template' ) ) {
 		);
 		// \ob_start();
 		// include_file(
-		// 	'builders/flatsome/ux-am-lottieplayer-template',
-		// 	null,
-		// 	'html'
+		// 'builders/flatsome/ux-am-lottieplayer-template',
+		// null,
+		// 'html'
 		// );
 		// return \ob_get_clean();
 	}
@@ -42,7 +42,7 @@ add_ux_builder_shortcode(
 	'am-lottieplayer',
 	array(
 		'name'              => 'AM LottiePlayer',
-		'category'          => __( 'Content' ),
+		'category'          => __( 'Content', 'am-lottieplayer' ),
 		'template'          => aamd_lottie_get_ux_template(),
 		'toolbar_thumbnail' => 'img',
 		'thumbnail'         => get_asset( 'ux-icon.svg' ),
@@ -53,7 +53,7 @@ add_ux_builder_shortcode(
 			'src'               => array(
 				'type'        => 'textfield',
 				'full_width'  => true,
-				'default'     => esc_url( $aamd_lottie_media->get_default_file() ),
+				'default'     => $aamd_lottie_media->get_default_file(),
 				'heading'     => __( 'Lottie url', 'am-lottieplayer' ),
 				'description' => __( 'Paste in url to Lottie, either from CDN or you local Media Library.', 'am-lottieplayer' ),
 			),
@@ -274,7 +274,20 @@ add_ux_builder_shortcode(
 						'description' => __( 'Helpful for screen readers and search engines', 'am-lottieplayer' ),
 					),
 
-					'visibility' => require __DIR__ . '/visibility.php',
+					'visibility' => array(
+						'type'    => 'select',
+						'heading' => 'Visibility',
+						'default' => '',
+						'options' => array(
+							''                => 'Visible',
+							'hidden'          => 'Hidden',
+							'hide-for-medium' => 'Only for Desktop',
+							'show-for-small'  => 'Only for Mobile',
+							'show-for-medium hide-for-small' => 'Only for Tablet',
+							'show-for-medium' => 'Hide for Desktop',
+							'hide-for-small'  => 'Hide for Mobile',
+						),
+					),
 				),
 			),
 		),
