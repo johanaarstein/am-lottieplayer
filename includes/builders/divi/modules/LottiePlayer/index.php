@@ -444,7 +444,6 @@ if ( \class_exists( '\ET_Builder_Module' ) ) {
 				$attrs,
 				$this->props,
 				array(
-					'animate_on_scroll' => false, // Pro feature
 					'align'             => 'none', // TODO:
 					'autoplay'          => $this->props['autoplay'] !== 'off',
 					'background'        => 'transparent', // TODO:
@@ -453,7 +452,6 @@ if ( \class_exists( '\ET_Builder_Module' ) ) {
 					'direction'         => $this->props['reverse'] !== 'off' ? '-1' : '1',
 					'id'                => $this->module_id(),
 					'loop'              => $this->props['loop'] !== 'off',
-					'mode'              => $this->props['mode'] !== 'off' ? 'bounce' : 'normal',
 					'scroll'            => $this->props['scroll'] !== 'off',
 					'subframe'          => $this->props['subframe'] !== 'off',
 					'target'            => $this->props['url_new_window'] !== 'off' ? '_blank' : '_self',
