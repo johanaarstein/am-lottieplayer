@@ -2,10 +2,12 @@
 namespace AAMD_Lottie\Utility;
 
 /**
+ * Covert string booleans to booleans
+ *
  * @param bool|string|null
  */
-function check_boolean_att( $var ) {
-	return ( $var && $var !== 'false' );
+function is_true( $var ) {
+	return ( $var && $var !== 'false' && $var !== '0' );
 }
 
 function get_animation_mode( $input ) {
@@ -34,11 +36,11 @@ function get_animation_direction( $input ) {
 function render_lottieplayer( array $atts ) {
 
 	$animateOnScroll = '';
-	if ( check_boolean_att( $atts['animate_on_scroll'] ) ) {
+	if ( is_true( $atts['animate_on_scroll'] ) ) {
 		$animateOnScroll = "animateonscroll\n";
 	}
 	$autoplay = '';
-	if ( check_boolean_att( $atts['autoplay'] ) && ! check_boolean_att( $atts['scroll'] ) ) {
+	if ( is_true( $atts['autoplay'] ) && ! is_true( $atts['scroll'] ) ) {
 		$autoplay = "autoplay\n";
 	}
 	$background = 'transparent';
@@ -46,23 +48,23 @@ function render_lottieplayer( array $atts ) {
 		$background = sanitize_hex_color( $atts['background'] );
 	}
 	$controls = '';
-	if ( check_boolean_att( $atts['controls'] ) ) {
+	if ( is_true( $atts['controls'] ) ) {
 		$controls = "controls\n";
 	}
 	$loop = '';
-	if ( check_boolean_att( $atts['loop'] ) ) {
+	if ( is_true( $atts['loop'] ) ) {
 		$loop = "loop\n";
 	}
 	$subframe = '';
-	if ( check_boolean_att( $atts['subframe'] ) ) {
+	if ( is_true( $atts['subframe'] ) ) {
 		$subframe = "subframe\n";
 	}
 	$height = 'auto';
-	if ( check_boolean_att( $atts['height'] ) ) {
+	if ( is_true( $atts['height'] ) ) {
 		$height = $atts['height'] . $atts['height_unit'];
 	}
 	$width = 'auto';
-	if ( check_boolean_att( $atts['width'] ) ) {
+	if ( is_true( $atts['width'] ) ) {
 		$width = $atts['width'] . $atts['width_unit'];
 	}
 
@@ -93,6 +95,8 @@ function render_lottieplayer( array $atts ) {
 	</figure>
 	<?php
 
+	$player = \ob_get_clean();
+
 	$output = '';
 	$hasUrl = filter_var( $atts['url'], FILTER_VALIDATE_URL );
 
@@ -100,7 +104,7 @@ function render_lottieplayer( array $atts ) {
 		$output .= '<a href="' . esc_url( $atts['url'] ) . '" target="' . esc_attr( $atts['target'] ) . '" rel="noreferrer">';
 	}
 
-	$output .= \ob_get_clean();
+	$output .= $player;
 
 	if ( $hasUrl ) {
 		$output .= '</a>';
@@ -244,7 +248,7 @@ function get_allowed_html() {
 			'style' => array(),
 		),
 		'dotlottie-player' => array(
-			'animateonscroll' => array(),
+			// 'animateonscroll' => array(),
 			'autoplay'        => array(),
 			'background'      => array(),
 			'class'           => array(),
@@ -257,11 +261,11 @@ function get_allowed_html() {
 			'id'              => array(),
 			'intermission'    => array(),
 			'loop'            => array(),
-			'mode'            => array(),
+			// 'mode'            => array(),
 			'objectfit'       => array(),
 			'onclick'         => array(),
 			'onmouseover'     => array(),
-			'renderer'        => array(),
+			// 'renderer'        => array(),
 			'simple'          => array(),
 			'speed'           => array(),
 			'src'             => array(),
