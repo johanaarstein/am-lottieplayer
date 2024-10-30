@@ -97,6 +97,10 @@
       ],
       "default": "svg"
     },
+    "simple": {
+      "type": "boolean",
+      "default": false
+    },
     "scrollEvent": {
       "type": "boolean",
       "default": false

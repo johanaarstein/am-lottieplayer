@@ -56,7 +56,7 @@ export default function save( {
 				loop={ attributes.loop ? '' : null }
 				mode={ attributes.mode }
 				objectfit={ attributes.objectFit }
-				simple
+				simple={ attributes.simple }
 				speed={ attributes.speed }
 				src={ attributes.src || '' }
 				style={ {
