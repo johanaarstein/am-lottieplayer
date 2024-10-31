@@ -1,6 +1,8 @@
 <?php
 namespace AAMD_Lottie;
 
+use function AAMD_Lottie\Utility\get_asset;
+
 \defined( 'ABSPATH' ) || exit;
 
 class Media {
@@ -177,7 +179,7 @@ class Media {
 	// Adding icon to Lottie filetype
 	public function icon_filter( $icon, $mime ) {
 		if ( $mime === 'application/zip' || $mime === 'application/json' || $mime === 'text/plain' ) {
-			return AAMD_LOTTIE_URL . 'assets/lottie-icon.svg';
+			return get_asset( 'lottie-icon.svg' );
 		}
 		return $icon;
 	}
@@ -188,7 +190,7 @@ class Media {
 	 * @param boolean $default
 	 */
 	private static function _lottie_asset( $default = false ) {
-		$url = AAMD_LOTTIE_URL . 'assets/am.lottie';
+		$url = get_asset( 'am.lottie' );
 		if ( $default && filter_var( $url, FILTER_VALIDATE_URL ) ) {
 			return $url;
 		}

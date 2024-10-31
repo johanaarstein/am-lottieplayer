@@ -2,12 +2,51 @@
 namespace AAMD_Lottie\Utility;
 
 /**
- * Covert string booleans to booleans
- *
- * @param bool|string|null
+ * Get allowed attributes for shortcode
  */
-function is_true( $var ) {
-	return ( $var && $var !== 'false' && $var !== '0' );
+function get_allowed_html() {
+	return array(
+		'a'                => array(
+			'href'   => array(),
+			'target' => array(),
+			'rel'    => array(),
+		),
+		'figure'           => array(
+			'class' => array(),
+			'style' => array(),
+		),
+		'dotlottie-player' => array(
+			// 'animateonscroll' => array(),
+			'autoplay'     => array(),
+			'background'   => array(),
+			'class'        => array(),
+			'controls'     => array(),
+			'count'        => array(),
+			'data-*'       => array(),
+			'description'  => array(),
+			'direction'    => array(),
+			'hover'        => array(),
+			'id'           => array(),
+			'intermission' => array(),
+			'loop'         => array(),
+			// 'mode'            => array(),
+			'objectfit'    => array(),
+			'onclick'      => array(),
+			'onmouseover'  => array(),
+			// 'renderer'        => array(),
+			'simple'       => array(),
+			'speed'        => array(),
+			'src'          => array(),
+			'subframe'     => array(),
+		),
+	);
+}
+
+function get_animation_direction( $input ) {
+	if ( $input === 1 || $input === '1' || $input === '0' ) {
+		return 1;
+	}
+	return -1;
 }
 
 function get_animation_mode( $input ) {
@@ -23,11 +62,94 @@ function get_animation_mode( $input ) {
 	return 'normal';
 }
 
-function get_animation_direction( $input ) {
-	if ( $input === 1 || $input === '1' || $input === '0' ) {
-		return 1;
+/**
+ * Get static asset
+ *
+ * @param string $filename Name of file
+ * @return string URL to asset
+ */
+function get_asset( $filename = '' ) {
+	return get_static_url( 'assets', $filename );
+}
+
+/**
+ * Get build script
+ *
+ * @param string      $filename Name of file
+ * @param string|null $version Version of stylesheet
+ * @return string URL to script
+ */
+function get_build( $filename = '', $version = null ) {
+	return get_static_url( 'build', $filename, $version );
+}
+
+/**
+ * Returns the plugin path to a specified file.
+ *
+ * @param string $filename The specified file.
+ * @return string
+ */
+function get_path( string $path = '', string $ext = 'php' ) {
+	$path = \preg_replace( '/\.[^.]*$/', '', \ltrim( $path, '/' ) ) . ".{$ext}";
+	return AAMD_LOTTIE_PATH . $path;
+}
+
+/**
+ * Get script
+ *
+ * @param string      $filename Name of file
+ * @param string|null $version Version of script
+ * @return string URL to script
+ */
+function get_script( $filename = '', $version = null ) {
+	return get_static_url( 'scripts', $filename, $version );
+}
+
+/**
+ * Get url of static file
+ *
+ * @param string      $type `'assets'|'build'|'scripts'|'styles'`
+ * @param string      $filename Name of file
+ * @param string|null $version Version of stylesheet
+ * @return string URL to script
+ */
+function get_static_url( $type, $filename = '', $version = null ) {
+	return AAMD_LOTTIE_URL . "{$type}/" . \ltrim( $filename, '/' ) . ( $version ? '?ver=' . $version : '' );
+}
+
+/**
+ * Get style
+ *
+ * @param string      $filename Name of file
+ * @param string|null $version Version of stylesheet
+ * @return string URL to script
+ */
+function get_style( $filename = '', $version = null ) {
+	return get_static_url( 'styles', $filename, $version );
+}
+
+/**
+ * Includes a file within the plugins includes folder
+ *
+ * @param string $filename The specified file.
+ * @param mixed  $arg (optional)
+ * @return void
+ */
+function include_file( string $path = '', object $args = null, string $ext = 'php' ) {
+	$path = get_path( 'includes/' . \ltrim( $path, '/' ), $ext );
+	if ( \file_exists( $path ) ) {
+		$args;
+		include_once $path;
 	}
-	return -1;
+}
+
+/**
+ * Covert string booleans to booleans
+ *
+ * @param bool|string|null
+ */
+function is_true( $var ) {
+	return ( $var && $var !== 'false' && $var !== '0' );
 }
 
 /**
@@ -151,125 +273,4 @@ function render_shortcode( $atts ) {
 	);
 
 	return render_lottieplayer( $atts );
-}
-
-/**
- * Returns the plugin path to a specified file.
- *
- * @param string $filename The specified file.
- * @return string
- */
-function get_path( string $path = '', string $ext = 'php' ) {
-	$path = \preg_replace( '/\.[^.]*$/', '', \ltrim( $path, '/' ) ) . ".{$ext}";
-	return AAMD_LOTTIE_PATH . $path;
-}
-/**
- * Includes a file within the plugins includes folder
- *
- * @param string $filename The specified file.
- * @param mixed  $arg (optional)
- * @return void
- */
-function include_file( string $path = '', object $args = null, string $ext = 'php' ) {
-	$path = get_path( 'includes/' . \ltrim( $path, '/' ), $ext );
-	if ( \file_exists( $path ) ) {
-		$args;
-		include_once $path;
-	}
-}
-
-/**
- * Get static asset
- *
- * @param string $filename Name of file
- * @return string URL to asset
- */
-function get_asset( $filename = '' ) {
-	return get_static_url( 'assets', $filename );
-}
-
-/**
- * Get script
- *
- * @param string      $filename Name of file
- * @param string|null $version Version of script
- * @return string URL to script
- */
-function get_script( $filename = '', $version = null ) {
-	return get_static_url( 'scripts', $filename, $version );
-}
-
-/**
- * Get style
- *
- * @param string      $filename Name of file
- * @param string|null $version Version of stylesheet
- * @return string URL to script
- */
-function get_style( $filename = '', $version = null ) {
-	return get_static_url( 'styles', $filename, $version );
-}
-
-/**
- * Get build script
- *
- * @param string      $filename Name of file
- * @param string|null $version Version of stylesheet
- * @return string URL to script
- */
-function get_build( $filename = '', $version = null ) {
-	return get_static_url( 'build', $filename, $version );
-}
-
-/**
- * Get url of static file
- *
- * @param string      $type `'assets'|'build'|'scripts'|'styles'`
- * @param string      $filename Name of file
- * @param string|null $version Version of stylesheet
- * @return string URL to script
- */
-function get_static_url( $type, $filename = '', $version = null ) {
-	return AAMD_LOTTIE_URL . "{$type}/" . \ltrim( $filename, '/' ) . ( $version ? '?ver=' . $version : '' );
-}
-
-/**
- * Get allowed attributes for shortcode
- */
-function get_allowed_html() {
-	return array(
-		'a'                => array(
-			'href'   => array(),
-			'target' => array(),
-			'rel'    => array(),
-		),
-		'figure'           => array(
-			'class' => array(),
-			'style' => array(),
-		),
-		'dotlottie-player' => array(
-			// 'animateonscroll' => array(),
-			'autoplay'        => array(),
-			'background'      => array(),
-			'class'           => array(),
-			'controls'        => array(),
-			'count'           => array(),
-			'data-*'          => array(),
-			'description'     => array(),
-			'direction'       => array(),
-			'hover'           => array(),
-			'id'              => array(),
-			'intermission'    => array(),
-			'loop'            => array(),
-			// 'mode'            => array(),
-			'objectfit'       => array(),
-			'onclick'         => array(),
-			'onmouseover'     => array(),
-			// 'renderer'        => array(),
-			'simple'          => array(),
-			'speed'           => array(),
-			'src'             => array(),
-			'subframe'        => array(),
-		),
-	);
 }
