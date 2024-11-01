@@ -77,7 +77,9 @@
 		"typescript": "^5.6.3"
 	},
 	"scripts": {
-		"build": "wp-scripts build && pnpm dep && pnpm scss && pnpm svn",
+		"prebuild": "pnpm dep && pnpm scss",
+		"build": "wp-scripts build",
+		"postbuild": "pnpm svn",
 		"check-engines": "wp-scripts check-engines",
 		"check-licenses": "wp-scripts check-licenses",
 		"format": "wp-scripts format",
@@ -95,7 +97,11 @@
 		"stash": "wp-scripts build && wp-scripts plugin-zip",
 		"scss": "sass --no-source-map --style=compressed sass:styles",
 		"dep": "cp ./node_modules/@aarsteinmedia/dotlottie-player-light/dist/index.js ./scripts/dotlottie-player-light.min.js",
-		"svn": "rimraf ./svn/trunk/* && cp -R ./assets ./build ./includes ./scripts ./styles ./svn/trunk && cp ./am-lottieplayer.php ./LICENSE ./package.json ./readme.txt ./svn/trunk"
+		"svn:copy-folders": "cp -R ./assets ./build ./includes ./scripts ./styles ./svn/trunk",
+		"svn:copy-files": "cp ./am-lottieplayer.php ./LICENSE ./package.json ./readme.txt ./svn/trunk",
+		"svn:new-version-folder": "rimraf ./svn/tags/${npm_package_version} && mkdir -p ./svn/tags/${npm_package_version}",
+		"svn:new-version-files": "cp -R ./svn/trunk/* ./svn/tags/${npm_package_version}",
+		"svn": "rimraf ./svn/trunk/* && pnpm svn:copy-folders && pnpm svn:copy-files && pnpm svn:new-version-folder && pnpm svn:new-version-files"
 	},
 	"cde": {
 		"gettext": "am-lottieplayer",
