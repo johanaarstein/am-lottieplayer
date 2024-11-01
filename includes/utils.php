@@ -1,6 +1,8 @@
 <?php
 namespace AAMD_Lottie\Utility;
 
+\defined( 'ABSPATH' ) || exit;
+
 /**
  * Get allowed attributes for shortcode
  */
