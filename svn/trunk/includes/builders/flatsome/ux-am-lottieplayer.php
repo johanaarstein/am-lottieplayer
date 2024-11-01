@@ -1,18 +1,20 @@
 <?php
-\defined( 'ABSPATH' ) || exit;
+namespace AAMD_Lottie;
 
-use function AAMD_Lottie\Utility\include_file;
 use function AAMD_Lottie\Utility\get_asset;
 use function AAMD_Lottie\Utility\get_script;
 
+\defined( 'ABSPATH' ) || exit;
+
 global $aamd_lottie_media;
 
-if ( ! function_exists( 'aamd_lottie_get_ux_template' ) ) {
-	function aamd_lottie_get_ux_template() {
+// This check prevent the function from being loaded more than once
+if ( ! function_exists( 'get_ux_template' ) ) {
+	function get_ux_template() {
 		wp_enqueue_script(
 			'am-backend-ux',
 			get_script( 'am-backend-ux.min.js' ),
-			array( 'dotlottie-player-light' ),
+			array( AAMD_LOTTIE_IS_PRO ? 'dotlottie-player' : 'dotlottie-player-light' ),
 			'1.0.1',
 			true
 		);
@@ -26,7 +28,34 @@ if ( ! function_exists( 'aamd_lottie_get_ux_template' ) ) {
 	}
 }
 
-$position_options                                       = require __DIR__ . '/position.php';
+$position_options = array(
+	'type'    => 'group',
+	'heading' => __( 'Position', 'am-lottieplayer' ),
+	'require' => array( 'ux_banner' ),
+	'options' => array(
+		'position_x' => array(
+			'type'              => 'slider',
+			'heading'           => __( 'Horizontal', 'am-lottieplayer' ),
+			'save_when_default' => true,
+			'responsive'        => true,
+			'default'           => 50,
+			'min'               => 0,
+			'max'               => 100,
+			'step'              => 5,
+		),
+		'position_y' => array(
+			'type'              => 'slider',
+			'heading'           => __( 'Vertical', 'am-lottieplayer' ),
+			'save_when_default' => true,
+			'responsive'        => true,
+			'default'           => 50,
+			'min'               => 0,
+			'max'               => 100,
+			'step'              => 5,
+		),
+	),
+);
+
 $position_options['options']['position_x']['on_change'] = array(
 	'recompile' => false,
 	'class'     => 'x{{ value }} md-x{{ value }} lg-x{{ value }}',
@@ -36,76 +65,85 @@ $position_options['options']['position_y']['on_change'] = array(
 	'class'     => 'y{{ value }} md-y{{ value }} lg-y{{ value }}',
 );
 
-$proLink = esc_html__( 'This feature will only work in the premium version. Read about additional features in AM LottiePlayer PRO on www.aarstein.media/am-lottieplayer/pro', 'am-lottieplayer' );
+global $pro_feature;
+global $pro_link;
 
 add_ux_builder_shortcode(
 	'am-lottieplayer',
 	array(
 		'name'              => 'AM LottiePlayer',
-		'category'          => __( 'Content', 'am-lottieplayer' ),
-		'template'          => aamd_lottie_get_ux_template(),
+		'category'          => esc_html__( 'Content', 'am-lottieplayer' ),
+		'template'          => get_ux_template(),
 		'toolbar_thumbnail' => 'img',
 		'thumbnail'         => get_asset( 'ux-icon.svg' ),
 		'allow_in'          => array( 'text_box' ),
+		'inline'            => true,
 		'wrap'              => false,
+		'priority'          => 1,
+
 		'options'           => array(
 
 			'src'               => array(
 				'type'        => 'textfield',
 				'full_width'  => true,
 				'default'     => $aamd_lottie_media->get_default_file(),
-				'heading'     => __( 'Lottie url', 'am-lottieplayer' ),
-				'description' => __( 'Paste in url to Lottie, either from CDN or you local Media Library.', 'am-lottieplayer' ),
+				'heading'     => esc_html__( 'Lottie url', 'am-lottieplayer' ),
+				'description' => esc_html__( 'Paste in url to Lottie, either from CDN or you local Media Library.', 'am-lottieplayer' ),
 			),
 
 			'animation_options' => array(
 				'type'    => 'group',
-				'heading' => __( 'Animation Options', 'am-lottieplayer' ),
+				'heading' => esc_html__( 'Animation Options', 'am-lottieplayer' ),
 				'options' => array(
-					'controls'         => array(
+					'controls'          => array(
 						'type'    => 'checkbox',
-						'heading' => __( 'Controls', 'am-lottieplayer' ),
+						'heading' => esc_html__( 'Controls', 'am-lottieplayer' ),
 					),
 
-					'autoplay'         => array(
-						'type'    => 'checkbox',
-						'heading' => __( 'Autoplay', 'am-lottieplayer' ),
+					'autoplay'          => array(
+						'type'       => 'checkbox',
+						'heading'    => esc_html__( 'Autoplay', 'am-lottieplayer' ),
+						'conditions' => 'animate_on_scroll !== "true"',
 					),
 
-					'loop'             => array(
-						'type'    => 'checkbox',
-						'heading' => __( 'Loop', 'am-lottieplayer' ),
+					'loop'              => array(
+						'type'       => 'checkbox',
+						'heading'    => esc_html__( 'Loop', 'am-lottieplayer' ),
+						'conditions' => 'animate_on_scroll !== "true"',
 					),
 
-					'mode'             => array(
+					'mode'              => array(
 						'type'        => 'checkbox',
-						'heading'     => 'Pro Feature: ' . __( 'Boomerang', 'am-lottieplayer' ),
-						'description' => $proLink,
+						'heading'     => $pro_feature . esc_html__( 'Boomerang', 'am-lottieplayer' ),
+						'description' => $pro_link,
+						'conditions'  => 'animate_on_scroll !== "true"',
 					),
 
-					'direction'        => array(
+					'direction'         => array(
+						'type'       => 'checkbox',
+						'heading'    => esc_html__( 'Reverse', 'am-lottieplayer' ),
+						'conditions' => 'animate_on_scroll !== "true"',
+					),
+
+					'subframe'          => array(
 						'type'    => 'checkbox',
-						'heading' => __( 'Reverse', 'am-lottieplayer' ),
+						'heading' => esc_html__( 'Subframe', 'am-lottieplayer' ),
 					),
 
-					'subframe'         => array(
-						'type'    => 'checkbox',
-						'heading' => __( 'Subframe', 'am-lottieplayer' ),
+					'speed'             => array(
+						'type'       => 'slider',
+						'heading'    => esc_html__( 'Speed', 'am-lottieplayer' ),
+						'default'    => 1,
+						'min'        => 1,
+						'max'        => 5,
+						'step'       => 1,
+						'unit'       => '',
+						'conditions' => 'animate_on_scroll !== "true"',
 					),
 
-					'speed'            => array(
-						'type'    => 'slider',
-						'heading' => __( 'Speed', 'am-lottieplayer' ),
-						'default' => 1,
-						'min'     => 1,
-						'max'     => 5,
-						'step'    => 1,
-						'unit'    => '',
-					),
-
-					'intermission'     => array(
+					'intermission'      => array(
 						'type'        => 'slider',
-						'heading'     => __( 'Intermission', 'am-lottieplayer' ),
+						'heading'     => esc_html__( 'Intermission', 'am-lottieplayer' ),
 						'description' => esc_html__( 'Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer' ),
 						'default'     => 0,
 						'min'         => 0,
@@ -115,76 +153,79 @@ add_ux_builder_shortcode(
 						'conditions'  => 'loop === "true"',
 					),
 
-					'segment_in'       => array(
+					'segment_in'        => array(
 						'type'        => 'slider',
-						'heading'     => 'Pro Feature: ' . __( 'Choose where to start', 'am-lottieplayer' ),
-						'description' => $proLink,
+						'heading'     => $pro_feature . esc_html__( 'Choose where to start', 'am-lottieplayer' ),
+						'description' => $pro_link,
 						'default'     => null,
 						'min'         => 0,
 						'step'        => 1,
 						'unit'        => '',
 					),
 
-					'segment_out'      => array(
+					'segment_out'       => array(
 						'type'        => 'slider',
-						'heading'     => 'Pro Feature: ' . __( 'And where to end', 'am-lottieplayer' ),
-						'description' => $proLink,
+						'heading'     => $pro_feature . esc_html__( 'And where to end', 'am-lottieplayer' ),
+						'description' => $pro_link,
 						'default'     => null,
 						'min'         => 0,
 						'step'        => 1,
 						'unit'        => '',
 					),
 
-					'none'             => array(
+					'animate_on_scroll' => array(
 						'type'        => 'checkbox',
-						'description' => $proLink,
-						'heading'     => __( 'Animate on scroll', 'am-lottieplayer' ),
+						'heading'     => $pro_feature . esc_html__( 'Animate on scroll', 'am-lottieplayer' ),
+						'description' => esc_html__( 'Make the animation play only when scrolling, relative to the speed and direction of the scroll', 'am-lottieplayer' ) . $pro_link,
 					),
 
-					'onclick'          => array(
-						'type'    => 'checkbox',
-						'heading' => __( 'Play on click', 'am-lottieplayer' ),
+					'onclick'           => array(
+						'type'       => 'checkbox',
+						'heading'    => esc_html__( 'Play on click', 'am-lottieplayer' ),
+						'conditions' => 'animate_on_scroll !== "true"',
 					),
 
-					'onmouseover'      => array(
-						'type'    => 'checkbox',
-						'heading' => __( 'Play on mouseover', 'am-lottieplayer' ),
+					'onmouseover'       => array(
+						'type'       => 'checkbox',
+						'heading'    => esc_html__( 'Play on mouseover', 'am-lottieplayer' ),
+						'conditions' => 'animate_on_scroll !== "true"',
 					),
 
-					'onmouseout'       => array(
+					'onmouseout'        => array(
 						'type'       => 'select',
-						'heading'    => __( 'On mouseout', 'am-lottieplayer' ),
+						'heading'    => esc_html__( 'On mouseout', 'am-lottieplayer' ),
 						'conditions' => 'onmouseover === "true"',
 						'options'    => array(
-							'void'    => __( 'No event', 'am-lottieplayer' ),
-							'stop'    => __( 'Stop', 'am-lottieplayer' ),
-							'pause'   => __( 'Pause', 'am-lottieplayer' ),
-							'reverse' => __( 'Reverse', 'am-lottieplayer' ),
+							'void'    => esc_html__( 'No event', 'am-lottieplayer' ),
+							'stop'    => esc_html__( 'Stop', 'am-lottieplayer' ),
+							'pause'   => esc_html__( 'Pause', 'am-lottieplayer' ),
+							'reverse' => esc_html__( 'Reverse', 'am-lottieplayer' ),
 						),
 					),
 
-					'selector'         => array(
+					'selector'          => array(
 						'type'        => 'textfield',
-						'heading'     => 'Pro Feature: ' . __( 'Trigger element', 'am-lottieplayer' ),
-						'description' => __( 'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer' ) . $proLink,
+						'heading'     => $pro_feature . esc_html__( 'Trigger element', 'am-lottieplayer' ),
+						'description' => esc_html__( 'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer' ) . $pro_link,
 						'conditions'  => 'onmouseover === "true" || onclick === "true"',
 					),
 
-					'exclude_selector' => array(
+					'exclude_selector'  => array(
 						'type'        => 'checkbox',
-						'heading'     => 'Pro Feature: ' . __( 'Apply interaction only to trigger element', 'am-lottieplayer' ),
-						'description' => $proLink,
+						'heading'     => $pro_feature . esc_html__( 'Apply interaction only to trigger element', 'am-lottieplayer' ),
+						'description' => $pro_link,
 						'conditions'  => 'onmouseover === "true" || onclick === "true"',
 					),
 
-					'scroll'           => array(
-						'type'    => 'checkbox',
-						'heading' => __( 'Play on scroll, when visible in viewport', 'am-lottieplayer' ),
+					'scroll'            => array(
+						'type'       => 'checkbox',
+						'heading'    => esc_html__( 'Play on scroll, when visible in viewport', 'am-lottieplayer' ),
+						'conditions' => 'animate_on_scroll !== "true"',
 					),
 
-					'delay'            => array(
+					'delay'             => array(
 						'type'       => 'slider',
-						'heading'    => __( 'Delay, in 10th of a second', 'am-lottieplayer' ),
+						'heading'    => esc_html__( 'Delay, in 10th of a second', 'am-lottieplayer' ),
 						'conditions' => 'scroll === "true"',
 						'default'    => 1,
 						'min'        => 0,
@@ -192,9 +233,9 @@ add_ux_builder_shortcode(
 						'step'       => 1,
 					),
 
-					'once'             => array(
+					'once'              => array(
 						'type'       => 'checkbox',
-						'heading'    => __( 'Play only once', 'am-lottieplayer' ),
+						'heading'    => esc_html__( 'Play only once', 'am-lottieplayer' ),
 						'conditions' => 'scroll === "true"',
 					),
 				),
@@ -202,11 +243,11 @@ add_ux_builder_shortcode(
 
 			'layout_options'    => array(
 				'type'    => 'group',
-				'heading' => __( 'Layout Options', 'am-lottieplayer' ),
+				'heading' => esc_html__( 'Layout Options', 'am-lottieplayer' ),
 				'options' => array(
 					'width'     => array(
 						'type'       => 'scrubfield',
-						'heading'    => __( 'Width', 'am-lottieplayer' ),
+						'heading'    => esc_html__( 'Width', 'am-lottieplayer' ),
 						'responsive' => true,
 						'default'    => null,
 						'min'        => 10,
@@ -218,7 +259,7 @@ add_ux_builder_shortcode(
 
 					'height'    => array(
 						'type'        => 'scrubfield',
-						'heading'     => __( 'Height', 'am-lottieplayer' ),
+						'heading'     => esc_html__( 'Height', 'am-lottieplayer' ),
 						'placeholder' => 'auto',
 						'default'     => null,
 						'min'         => 10,
@@ -230,13 +271,13 @@ add_ux_builder_shortcode(
 
 					'objectfit' => array(
 						'type'    => 'select',
-						'heading' => __( 'Object fit', 'am-lottieplayer' ),
+						'heading' => esc_html__( 'Object fit', 'am-lottieplayer' ),
 						'default' => 'contain',
 						'options' => array(
-							'contain' => __( 'Contain', 'am-lottieplayer' ),
-							'cover'   => __( 'Cover', 'am-lottieplayer' ),
-							'fill'    => __( 'Fill', 'am-lottieplayer' ),
-							'none'    => __( 'None', 'am-lottieplayer' ),
+							'contain' => esc_html__( 'Contain', 'am-lottieplayer' ),
+							'cover'   => esc_html__( 'Cover', 'am-lottieplayer' ),
+							'fill'    => esc_html__( 'Fill', 'am-lottieplayer' ),
+							'none'    => esc_html__( 'None', 'am-lottieplayer' ),
 						),
 					),
 				),
@@ -246,13 +287,13 @@ add_ux_builder_shortcode(
 
 			'advanced_options'  => array(
 				'type'    => 'group',
-				'heading' => __( 'Advanced Options', 'am-lottieplayer' ),
+				'heading' => esc_html__( 'Advanced Options', 'am-lottieplayer' ),
 				'options' => array(
 
 					'renderer'   => array(
 						'type'        => 'select',
-						'heading'     => 'Pro Feature: ' . __( 'Renderer', 'am-lottieplayer' ),
-						'description' => $proLink,
+						'heading'     => $pro_feature . esc_html__( 'Renderer', 'am-lottieplayer' ),
+						'description' => $pro_link,
 						'default'     => 'svg',
 						'options'     => array(
 							'svg'    => 'SVG',
@@ -263,29 +304,29 @@ add_ux_builder_shortcode(
 
 					'class'      => array(
 						'type'       => 'textfield',
-						'heading'    => __( 'CSS-class', 'am-lottieplayer' ),
+						'heading'    => esc_html__( 'CSS-class', 'am-lottieplayer' ),
 						'param_name' => 'class',
 						'default'    => '',
 					),
 
 					'alt'        => array(
 						'type'        => 'textfield',
-						'heading'     => __( 'Description', 'am-lottieplayer' ),
-						'description' => __( 'Helpful for screen readers and search engines', 'am-lottieplayer' ),
+						'heading'     => esc_html__( 'Description', 'am-lottieplayer' ),
+						'description' => esc_html__( 'Helpful for screen readers and search engines', 'am-lottieplayer' ),
 					),
 
 					'visibility' => array(
 						'type'    => 'select',
-						'heading' => 'Visibility',
+						'heading' => esc_html__( 'Visibility', 'am-lottieplayer' ),
 						'default' => '',
 						'options' => array(
-							''                => 'Visible',
-							'hidden'          => 'Hidden',
-							'hide-for-medium' => 'Only for Desktop',
-							'show-for-small'  => 'Only for Mobile',
-							'show-for-medium hide-for-small' => 'Only for Tablet',
-							'show-for-medium' => 'Hide for Desktop',
-							'hide-for-small'  => 'Hide for Mobile',
+							''                => esc_html__( 'Visible', 'am-lottieplayer' ),
+							'hidden'          => esc_html__( 'Hidden', 'am-lottieplayer' ),
+							'hide-for-medium' => esc_html__( 'Only for Desktiop', 'am-lottieplayer' ),
+							'show-for-small'  => esc_html__( 'Only for Mobile', 'am-lottieplayer' ),
+							'show-for-medium hide-for-small' => esc_html__( 'Only for Tablet', 'am-lottieplayer' ),
+							'show-for-medium' => esc_html__( 'Hide for Desktop', 'am-lottieplayer' ),
+							'hide-for-small'  => esc_html__( 'Hide for Mobile', 'am-lottieplayer' ),
 						),
 					),
 				),

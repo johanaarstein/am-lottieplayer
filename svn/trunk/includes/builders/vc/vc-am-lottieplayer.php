@@ -27,7 +27,8 @@ if ( ! function_exists( 'am_vc_attach_field_settings' ) ) {
 	}
 }
 
-$proLink = esc_html__( 'This feature will only work in the premium version.', 'am-lottieplayer' ) . ' <a href="' . esc_url( 'https://www.aarstein.media/en/am-lottieplayer/pro', 'am-lottieplayer' ) . '" target="_blank" rel="noreferrer">' . esc_html__( 'Read about additional features in AM LottiePlayer PRO', 'am-lottieplayer' ) . '<span class="dashicons dashicons-external" style="font-size: 1em;"></span></a>';
+global $pro_feature;
+global $pro_link;
 
 vc_map(
 	array(
@@ -66,8 +67,8 @@ vc_map(
 			),
 			array(
 				'type'        => 'checkbox',
-				'description' => $proLink,
-				'heading'     => 'Pro Feature: ' . __( 'Boomerang', 'am-lottieplayer' ),
+				'description' => $pro_link,
+				'heading'     => $pro_feature . __( 'Boomerang', 'am-lottieplayer' ),
 				'param_name'  => 'mode',
 			),
 			array(
@@ -96,9 +97,9 @@ vc_map(
 			),
 			array(
 				'type'        => 'checkbox',
-				'description' => $proLink,
-				'heading'     => 'Pro Feature: ' . __( 'Animate on scroll', 'am-lottieplayer' ),
-				'param_name'  => 'none',
+				'heading'     => $pro_feature . __( 'Animate on scroll', 'am-lottieplayer' ),
+				'description' => AAMD_LOTTIE_IS_PRO ? __( 'Make the animation play only when scrolling, relative to the speed and direction of the scroll', 'am-lottieplayer' ) : $pro_link,
+				'param_name'  => AAMD_LOTTIE_IS_PRO ? 'animate_on_scroll' : 'none',
 			),
 			array(
 				'type'       => 'checkbox',
@@ -128,16 +129,17 @@ vc_map(
 			),
 			array(
 				'type'        => 'textfield',
-				'heading'     => 'Pro Feature: ' . __( 'Trigger element', 'am-lottieplayer' ),
-				'description' => __( 'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer' ) . ' ' . $proLink,
+				'heading'     => $pro_feature . __( 'Trigger element', 'am-lottieplayer' ),
+				'description' => AAMD_LOTTIE_IS_PRO ? __( 'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer' ) : $pro_link,
 				'param_name'  => 'selector',
 				'value'       => '',
 			),
-			// [
-			// 'type' => 'checkbox',
-			// 'heading' => __('Apply interaction only to trigger element', 'am-lottieplayer'),
-			// 'param_name' => 'exclude_selector',
-			// ],
+			array(
+				'type'        => 'checkbox',
+				'heading'     => $pro_feature . __( 'Apply interaction only to trigger element', 'am-lottieplayer' ),
+				'description' => $pro_link,
+				'param_name'  => 'exclude_selector',
+			),
 			array(
 				'type'       => 'checkbox',
 				'heading'    => __( 'Play on scroll, when visible in viewport', 'am-lottieplayer' ),
@@ -190,8 +192,8 @@ vc_map(
 			),
 			array(
 				'type'        => 'dropdown',
-				'heading'     => 'Pro Feature' . __( 'Renderer', 'am-lottieplayer' ),
-				'description' => $proLink,
+				'heading'     => $pro_feature . __( 'Renderer', 'am-lottieplayer' ),
+				'description' => $pro_link,
 				'param_name'  => 'renderer',
 				'value'       => array(
 					__( 'SVG', 'am-lottieplayer' )    => 'svg',

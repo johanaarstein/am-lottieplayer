@@ -11,7 +11,6 @@ class Media {
 	 * Constructor
 	 *
 	 * @param   void
-	 * @return  void
 	 */
 	public function __construct() {
 		if ( is_admin() ) {

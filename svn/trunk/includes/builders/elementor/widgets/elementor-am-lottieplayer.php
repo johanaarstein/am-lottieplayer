@@ -35,7 +35,7 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 
 		protected function register_controls() {
 			global $aamd_lottie_media;
-			$proLink = esc_html__( 'This feature will only work in the premium version.', 'am-lottieplayer' ) . ' <a href="' . esc_url( 'https://www.aarstein.media/en/am-lottieplayer/pro', 'am-lottieplayer' ) . '" target="_blank" rel="noreferrer">' . esc_html__( 'Read about additional features in AM LottiePlayer PRO', 'am-lottieplayer' ) . '<span class="dashicons dashicons-external" style="font-size: 1em;"></span></a>';
+			$pro_link = esc_html__( 'This feature will only work in the premium version.', 'am-lottieplayer' ) . ' <a href="' . esc_url( 'https://www.aarstein.media/en/am-lottieplayer/pro', 'am-lottieplayer' ) . '" target="_blank" rel="noreferrer">' . esc_html__( 'Read about additional features in AM LottiePlayer PRO', 'am-lottieplayer' ) . '<span class="dashicons dashicons-external" style="font-size: 1em;"></span></a>';
 
 			$this->start_controls_section(
 				'animation_section',
@@ -103,7 +103,7 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 				'mode',
 				array(
 					'label'       => 'Pro Feature: ' . __( 'Boomerang', 'am-lottieplayer' ),
-					'description' => $proLink,
+					'description' => $pro_link,
 					'type'        => \Elementor\Controls_Manager::SWITCHER,
 					'label_on'    => __( 'On', 'am-lottieplayer' ),
 					'label_off'   => __( 'Off', 'am-lottieplayer' ),
@@ -158,7 +158,7 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 				'segment_in',
 				array(
 					'label'       => 'Pro Feature: ' . __( 'Choose where to start', 'am-lottieplayer' ),
-					'description' => $proLink,
+					'description' => $pro_link,
 					'type'        => \Elementor\Controls_Manager::NUMBER,
 					'step'        => '1',
 					'min'         => '0',
@@ -170,7 +170,7 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 				'segment_out',
 				array(
 					'label'       => 'Pro Feature: ' . __( 'And where to end', 'am-lottieplayer' ),
-					'description' => $proLink,
+					'description' => $pro_link,
 					'type'        => \Elementor\Controls_Manager::NUMBER,
 					'step'        => '1',
 					'min'         => '0',
@@ -190,7 +190,7 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 				'animate_on_scroll',
 				array(
 					'label'       => 'Pro Feature: ' . __( 'Animate on scroll', 'am-lottieplayer' ),
-					'description' => $proLink,
+					'description' => $pro_link,
 					'type'        => \Elementor\Controls_Manager::SWITCHER,
 					'label_on'    => __( 'Yes', 'am-lottieplayer' ),
 					'label_off'   => __( 'No', 'am-lottieplayer' ),
@@ -239,7 +239,7 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 				'selector',
 				array(
 					'label'       => 'Pro Feature: ' . __( 'Trigger element', 'am-lottieplayer' ),
-					'description' => __( 'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer' ) . $proLink,
+					'description' => __( 'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer' ) . $pro_link,
 					'type'        => \Elementor\Controls_Manager::TEXT,
 					'placeholder' => '#',
 					'conditions'  => array(
@@ -264,7 +264,7 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 				'exclude_selector',
 				array(
 					'label'       => 'Pro Feature: ' . __( 'Apply interaction only to trigger element', 'am-lottieplayer' ),
-					'description' => $proLink,
+					'description' => $pro_link,
 					'type'        => \Elementor\Controls_Manager::SWITCHER,
 					'label_on'    => __( 'Yes', 'am-lottieplayer' ),
 					'label_off'   => __( 'No', 'am-lottieplayer' ),
@@ -436,7 +436,7 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 				'renderer',
 				array(
 					'label'       => 'Pro Feature: ' . __( 'Renderer', 'am-lottieplayer' ),
-					'description' => $proLink,
+					'description' => $pro_link,
 					'type'        => \Elementor\Controls_Manager::SELECT,
 					'options'     => array(
 						'svg'    => __( 'SVG', 'am-lottieplayer' ),

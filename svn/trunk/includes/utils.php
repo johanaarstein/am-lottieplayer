@@ -1,6 +1,8 @@
 <?php
 namespace AAMD_Lottie\Utility;
 
+\defined( 'ABSPATH' ) || exit;
+
 /**
  * Get allowed attributes for shortcode
  */
@@ -16,7 +18,6 @@ function get_allowed_html() {
 			'style' => array(),
 		),
 		'dotlottie-player' => array(
-			// 'animateonscroll' => array(),
 			'autoplay'     => array(),
 			'background'   => array(),
 			'class'        => array(),
@@ -29,11 +30,9 @@ function get_allowed_html() {
 			'id'           => array(),
 			'intermission' => array(),
 			'loop'         => array(),
-			// 'mode'            => array(),
 			'objectfit'    => array(),
 			'onclick'      => array(),
 			'onmouseover'  => array(),
-			// 'renderer'        => array(),
 			'simple'       => array(),
 			'speed'        => array(),
 			'src'          => array(),
@@ -73,7 +72,7 @@ function get_asset( $filename = '' ) {
 }
 
 /**
- * Get build script
+ * Get URL of build script
  *
  * @param string      $filename Name of file
  * @param string|null $version Version of stylesheet
@@ -81,6 +80,17 @@ function get_asset( $filename = '' ) {
  */
 function get_build( $filename = '', $version = null ) {
 	return get_static_url( 'build', $filename, $version );
+}
+
+/**
+ * Get path of build script
+ *
+ * @param string      $filename Name of file
+ * @param string|null $version Version of stylesheet
+ * @return string URL to script
+ */
+function get_build_path( $filename = '' ) {
+	return AAMD_LOTTIE_PATH . "build/{$filename}";
 }
 
 /**
@@ -157,9 +167,9 @@ function is_true( $var ) {
  */
 function render_lottieplayer( array $atts ) {
 
-	$animateOnScroll = '';
+	$animate_on_scroll = '';
 	if ( is_true( $atts['animate_on_scroll'] ) ) {
-		$animateOnScroll = "animateonscroll\n";
+		$animate_on_scroll = "animateonscroll\n";
 	}
 	$autoplay = '';
 	if ( is_true( $atts['autoplay'] ) && ! is_true( $atts['scroll'] ) ) {
@@ -190,7 +200,8 @@ function render_lottieplayer( array $atts ) {
 		$width = $atts['width'] . $atts['width_unit'];
 	}
 
-	\ob_start(); ?>
+	\ob_start();
+	?>
 	<figure
 		class="am-lottieplayer align <?php echo esc_attr( $atts['align'] . ' ' . $atts['class'] ); ?>"
 		style="background-color:<?php echo esc_attr( $background ); ?>;height:<?php echo esc_attr( $height ); ?>;width:<?php echo esc_attr( $width ); ?>;">
@@ -200,7 +211,7 @@ function render_lottieplayer( array $atts ) {
 			<?php echo esc_attr( $controls ); ?>
 			<?php echo esc_attr( $loop ); ?>
 			<?php echo esc_attr( $subframe ); ?>
-			<?php echo esc_attr( $animateOnScroll ); ?>
+			<?php echo esc_attr( $animate_on_scroll ); ?>
 			description="<?php echo esc_attr( $atts['alt'] ); ?>"
 			objectfit="<?php echo esc_attr( $atts['objectfit'] ); ?>"
 			src="<?php echo esc_url( $atts['src'] ); ?>"

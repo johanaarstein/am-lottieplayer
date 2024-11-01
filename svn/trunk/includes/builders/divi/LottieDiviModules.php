@@ -4,7 +4,6 @@ namespace AAMD_Lottie;
 \defined( 'ABSPATH' ) || exit;
 
 if ( \class_exists( '\DiviExtension' ) ) {
-
 	class DiviModules extends \DiviExtension {
 
 		public $gettext_domain = 'am-lottieplayer';
@@ -12,7 +11,6 @@ if ( \class_exists( '\DiviExtension' ) ) {
 		public $version        = AAMD_LOTTIE_VERSION;
 
 		public function __construct( $name = 'am-lottieplayer', $args = array() ) {
-
 			$this->plugin_dir     = plugin_dir_path( __FILE__ );
 			$this->plugin_dir_url = AAMD_LOTTIE_URL;
 			parent::__construct( $name, $args );
@@ -29,7 +27,7 @@ if ( \class_exists( '\DiviExtension' ) ) {
 	);
 	wp_enqueue_style( 'am_lottie_et_styles' );
 
-	$customStyle = '
+	$custom_style = '
     .et-fb-modules-list ul > li.et-fb-has-svg-icon .et-fb-icon {
       fill: #2b87da !important;
       width: 16px !important;
@@ -38,5 +36,5 @@ if ( \class_exists( '\DiviExtension' ) ) {
       margin: 0 auto 5px !important;
     }';
 
-	wp_add_inline_style( 'am_lottie_et_styles', $customStyle );
+	wp_add_inline_style( 'am_lottie_et_styles', $custom_style );
 }

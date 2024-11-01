@@ -1,9 +1,10 @@
 <?php
 namespace AAMD_Lottie;
 
-use function AAMD_Lottie\Utility\include_file;
+use function AAMD_Lottie\Utility\get_build_path;
 use function AAMD_Lottie\Utility\get_script;
 use function AAMD_Lottie\Utility\get_style;
+use function AAMD_Lottie\Utility\include_file;
 
 \defined( 'ABSPATH' ) || exit;
 
@@ -13,6 +14,9 @@ use function AAMD_Lottie\Utility\get_style;
  */
 class Builder {
 
+	/**
+	 * Constructor.
+	 */
 	public function __construct() {
 		// Builder initializations
 		add_action( 'init', array( $this, 'init_plugin' ) );
@@ -26,14 +30,12 @@ class Builder {
 
 	/**
 	 * Initialize Gutenberg Blocks, global shortcode and register JavaScript
-	 *
-	 * @return void
 	 */
 	public function init_plugin() {
 		add_shortcode( 'am-lottieplayer', 'AAMD_Lottie\Utility\render_shortcode' );
 
-		register_block_type( AAMD_LOTTIE_PATH . 'build/lottieplayer' );
-		register_block_type( AAMD_LOTTIE_PATH . 'build/lottiecover' );
+		register_block_type( get_build_path( 'lottieplayer' ) );
+		register_block_type( get_build_path( 'lottiecover' ) );
 
 		wp_register_script(
 			'dotlottie-player-light',
@@ -50,7 +52,7 @@ class Builder {
 			'am-frontend',
 			get_script( 'am-frontend.min.js' ),
 			array( 'dotlottie-player-light' ),
-			'1.2.3',
+			'1.2.4',
 			array(
 				'strategy'  => 'defer',
 				'in_footer' => true,
@@ -60,8 +62,6 @@ class Builder {
 
 	/**
 	 * Initialize DIVI Extension
-	 *
-	 * @return void
 	 */
 	public function init_divi() {
 		include_file( 'builders/divi/LottieDiviModules' );
@@ -69,8 +69,6 @@ class Builder {
 
 	/**
 	 * Initialize Elementor Widget
-	 *
-	 * @return void
 	 */
 	public function init_elementor( $widgets_manager ) {
 		wp_enqueue_style(
@@ -84,8 +82,6 @@ class Builder {
 
 	/**
 	 * Initialize Flatsome Shortcode
-	 *
-	 * @return void
 	 */
 	public function init_flatsome() {
 		if ( ! function_exists( 'add_ux_builder_shortcode' ) ) {
@@ -96,41 +92,13 @@ class Builder {
 
 	/**
 	 * Initialize Visual Composer
-	 *
-	 * @return void
 	 */
 	public function init_vc() {
 		include_file( 'builders/vc/vc-am-lottieplayer' );
 	}
 
 	/**
-	 * Check if Divi shortcode is present in content
-	 */
-	private function _check_if_divi_shortcode_is_present(
-		array $layouts,
-		bool $has_divi,
-		string $part
-	) {
-		if ( $has_divi ) {
-			return true;
-		}
-		if ( $layouts[ "et_{$part}_layout" ]['override'] ) {
-			$content = null;
-			if ( get_post( $layouts[ "et_{$part}_layout" ]['id'] ) ) {
-				$content = get_post( $layouts[ "et_{$part}_layout" ]['id'] )->post_content;
-			}
-			if ( $content && has_shortcode( $content, 'et_pb_lottieplayer' ) ) {
-				$has_divi = true;
-			}
-		}
-
-		return $has_divi;
-	}
-
-	/**
 	 * Enqueue JavaScript for frontend
-	 *
-	 * @return void
 	 */
 	public function frontend_enqueue() {
 		global $post;
@@ -143,7 +111,7 @@ class Builder {
 
 		$isVCBuilder = function_exists( 'vc_is_inline' ) && vc_is_inline();
 
-		if ( is_a( $post, 'WP_Post' ) ) {
+		if ( is_a( $post, '\WP_Post' ) ) {
 			$content = $post->post_content;
 		}
 
@@ -180,6 +148,30 @@ class Builder {
 			}
 		}
 	}
+
+	/**
+	 * Check if Divi shortcode is present in content
+	 */
+	private function _check_if_divi_shortcode_is_present(
+		array $layouts,
+		bool $has_divi,
+		string $part
+	) {
+		if ( $has_divi ) {
+			return true;
+		}
+		if ( $layouts[ "et_{$part}_layout" ]['override'] ) {
+			$content = null;
+			if ( get_post( $layouts[ "et_{$part}_layout" ]['id'] ) ) {
+				$content = get_post( $layouts[ "et_{$part}_layout" ]['id'] )->post_content;
+			}
+			if ( $content && has_shortcode( $content, 'et_pb_lottieplayer' ) ) {
+				$has_divi = true;
+			}
+		}
+
+		return $has_divi;
+	}
 }
 
 /**
@@ -192,5 +184,16 @@ class Builder {
 	if ( ! isset( $aamd_lottie_builder ) ) {
 		$aamd_lottie_builder = new Builder();
 	}
+
+	global $pro_feature;
+	if ( ! isset( $pro_feature ) ) {
+		$pro_feature = AAMD_LOTTIE_IS_PRO ? '' : esc_html__( 'Pro Feature: ', 'am-lottieplayer' );
+	}
+
+	global $pro_link;
+	if ( ! isset( $pro_link ) ) {
+		$pro_link = AAMD_LOTTIE_IS_PRO ? '' : esc_html__( 'This feature will only work in the premium version.', 'am-lottieplayer' ) . ' <a href="' . esc_url( 'https://www.aarstein.media/en/am-lottieplayer/pro', 'am-lottieplayer' ) . '" target="_blank" rel="noreferrer">' . esc_html__( 'Read about additional features in AM LottiePlayer PRO', 'am-lottieplayer' ) . '<span class="dashicons dashicons-external" style="font-size: 1em;"></span></a>';
+	}
+
 	return $aamd_lottie_builder;
 } )();
