@@ -159,9 +159,9 @@ function is_true( $var ) {
  */
 function render_lottieplayer( array $atts ) {
 
-	$animateOnScroll = '';
+	$animate_on_scroll = '';
 	if ( is_true( $atts['animate_on_scroll'] ) ) {
-		$animateOnScroll = "animateonscroll\n";
+		$animate_on_scroll = "animateonscroll\n";
 	}
 	$autoplay = '';
 	if ( is_true( $atts['autoplay'] ) && ! is_true( $atts['scroll'] ) ) {
@@ -202,7 +202,7 @@ function render_lottieplayer( array $atts ) {
 			<?php echo esc_attr( $controls ); ?>
 			<?php echo esc_attr( $loop ); ?>
 			<?php echo esc_attr( $subframe ); ?>
-			<?php echo esc_attr( $animateOnScroll ); ?>
+			<?php echo esc_attr( $animate_on_scroll ); ?>
 			description="<?php echo esc_attr( $atts['alt'] ); ?>"
 			objectfit="<?php echo esc_attr( $atts['objectfit'] ); ?>"
 			src="<?php echo esc_url( $atts['src'] ); ?>"
