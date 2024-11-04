@@ -157,7 +157,7 @@ export interface NoticeProps {
 }
 
 declare global {
-	const amPhpVars: PHPVars;
+	const aamdPHPVariables: PHPVars;
 	function dotLottiePlayer(): DotLottiePlayer;
 	const wp: {
 		[ x: string ]: unknown;

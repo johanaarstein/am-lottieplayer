@@ -7,6 +7,7 @@ module.exports = {
 		"lottiecover/index": "/src/lottiecover/index.ts",
 		"lottieplayer/index": "/src/lottieplayer/index.ts",
 		admin: "./src/admin.tsx",
+		media: "./src/media.ts",
 	},
 	resolve: {
 		...defaults.resolve,

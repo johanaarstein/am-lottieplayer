@@ -1,6 +1,8 @@
 <?php
 namespace AAMD_Lottie;
 
+require AAMD_LOTTIE_PATH . 'vendor/autoload.php';
+
 use function AAMD_Lottie\Utility\get_asset;
 
 \defined( 'ABSPATH' ) || exit;
@@ -9,17 +11,24 @@ class Media {
 
 	/**
 	 * Constructor
-	 *
-	 * @param   void
 	 */
 	public function __construct() {
 		if ( is_admin() ) {
+
 			add_action( 'wp_enqueue_media', array( $this, 'override_media_templates' ) );
 
 			add_filter( 'upload_mimes', array( $this, 'mimetypes' ) );
-			add_filter( 'wp_check_filetype_and_ext', array( $this, 'lottie_filetypes' ), 10, 5 );
-			add_filter( 'wp_mime_type_icon', array( $this, 'icon_filter' ), 10, 3 );
+			add_filter( 'wp_check_filetype_and_ext', array( $this, 'lottie_filetypes' ), 10, 4 );
+			add_filter( 'wp_mime_type_icon', array( $this, 'icon_filter' ), 10, 2 );
+			add_filter( 'wp_generate_attachment_metadata', array( $this, 'generate_lottie_metadata' ), 10, 2 );
+			add_filter( 'wp_get_attachment_metadata', array( $this, 'metadata_error_fix' ), 10, 2 );
 		}
+
+		// $thumbnails_dir = wp_upload_dir()['basedir'] . '/lottie-thumbnails';
+
+		// if ( ! \file_exists( $thumbnails_dir ) ) {
+		// wp_mkdir_p( $thumbnails_dir );
+		// }
 
 		// Disable SSL Check on dev
 		if ( \getenv( 'SERVER_CONTEXT' ) === 'dev' ) {
@@ -73,7 +82,7 @@ class Media {
 		);
 	}
 
-	public function lottie_filetypes( $data, $file, $filename, $mimes, $real_mime ) {
+	public function lottie_filetypes( $data, $file, $filename, $mimes ) {
 		if ( ! empty( $data['ext'] ) && ! empty( $data['type'] ) ) {
 			return $data;
 		}
@@ -90,6 +99,136 @@ class Media {
 		}
 
 		return $data;
+	}
+
+	/**
+	 * Filters the attachment meta data.
+	 */
+	public function metadata_error_fix( $data, $post_id ) {
+
+		// If it's a WP_Error regenerate metadata and save it
+		if ( is_wp_error( $data ) ) {
+			$data = wp_generate_attachment_metadata( $post_id, get_attached_file( $post_id ) );
+			wp_update_attachment_metadata( $post_id, $data );
+		}
+
+		return $data;
+	}
+
+	/**
+	 * Skip regenerating SVGs
+	 */
+	public function generate_lottie_metadata( $metadata, $attachment_id ) {
+		$mime = get_post_mime_type( $attachment_id );
+		if ( $mime !== 'application/zip' ) {
+			return $metadata;
+		}
+
+		$lottie_path         = get_attached_file( $attachment_id );
+		$upload_dir          = wp_upload_dir();
+		$relative_path       = \str_replace( trailingslashit( $upload_dir['basedir'] ), '', $lottie_path );
+		$filename            = \basename( $lottie_path );
+		$thumbnail_file_name = \str_ireplace( '.lottie', '.svg', $filename );
+		$thumbnail_file      = trailingslashit( $upload_dir['path'] ) . $thumbnail_file_name;
+		$thumbnail_file_size = round( $metadata['filesize'] / 60 );
+
+		if ( file_exists( $thumbnail_file ) ) {
+			$thumbnail_file_size = filesize( $thumbnail_file );
+		}
+
+		$dimensions = $this->_svg_dimensions( $thumbnail_file );
+
+		if ( ! $dimensions ) {
+			return $metadata;
+		}
+
+		$srcset = array(
+			'file'      => $thumbnail_file_name,
+			'width'     => $dimensions['width'],
+			'height'    => $dimensions['height'],
+			'mime-type' => 'image/svg+xml',
+			'filesize'  => $thumbnail_file_size,
+		);
+
+		$metadata = array(
+			...$metadata,
+			'width'  => $dimensions['width'],
+			'height' => $dimensions['height'],
+			'file'   => $relative_path,
+			'sizes'  => array(
+				'medium'       => $srcset,
+				'thumbnail'    => $srcset,
+				'medium_large' => $srcset,
+				'full'         => $srcset,
+			),
+		);
+
+		return $metadata;
+	}
+
+	/**
+	 * Get SVG size from the width/height or viewport.
+	 *
+	 * @param string path to svg
+	 *
+	 * @return array|bool
+	 */
+	private function _svg_dimensions( string $path ) {
+
+		if ( ! function_exists( 'simplexml_load_file' ) ) {
+			return false;
+		}
+
+		$width  = 0;
+		$height = 0;
+
+		$svg = @simplexml_load_file( $path );
+
+		// Ensure the svg could be loaded.
+		if ( ! $svg ) {
+			return false;
+		}
+
+		$attributes = $svg->attributes();
+
+		if ( isset( $attributes->viewBox ) ) {
+			$sizes = explode( ' ', $attributes->viewBox );
+			if ( isset( $sizes[2], $sizes[3] ) ) {
+				$viewbox_width  = floatval( $sizes[2] );
+				$viewbox_height = floatval( $sizes[3] );
+			}
+		}
+
+		if (
+			isset( $attributes->width, $attributes->height ) &&
+			is_numeric( (float) $attributes->width ) &&
+			is_numeric( (float) $attributes->height ) &&
+			! str_ends_with( (string) $attributes->width, '%' ) &&
+			! str_ends_with( (string) $attributes->height, '%' )
+		) {
+			$attr_width  = floatval( $attributes->width );
+			$attr_height = floatval( $attributes->height );
+		}
+
+		if ( isset( $viewbox_width, $viewbox_height ) ) {
+			$width  = $viewbox_width;
+			$height = $viewbox_height;
+		} elseif ( isset( $attr_width, $attr_height ) ) {
+			$width  = $attr_width;
+			$height = $attr_height;
+		}
+
+		if ( ! $width && ! $height ) {
+			return false;
+		}
+
+		$dimensions = array(
+			'width'       => $width,
+			'height'      => $height,
+			'orientation' => ( $width > $height ) ? 'landscape' : 'portrait',
+		);
+
+		return $dimensions;
 	}
 
 	/**
@@ -253,7 +392,7 @@ class Media {
 /**
  * Main function, to initialize class
  *
- * @return AAMD_Lottie\Media
+ * @return Media
  */
 ( function () {
 	global $aamd_lottie_media;

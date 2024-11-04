@@ -2,7 +2,7 @@ import BoomerangLottie from '@/components/BoomerangLottie';
 import { __ } from '@wordpress/i18n';
 
 export default function Widget() {
-	const { pluginUrl } = amPhpVars;
+	const { pluginUrl } = aamdPHPVariables;
 	return (
 		<div
 			style={ {

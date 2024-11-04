@@ -9,8 +9,6 @@ class Media {
 
 	/**
 	 * Constructor
-	 *
-	 * @param   void
 	 */
 	public function __construct() {
 		if ( is_admin() ) {
@@ -19,6 +17,7 @@ class Media {
 			add_filter( 'upload_mimes', array( $this, 'mimetypes' ) );
 			add_filter( 'wp_check_filetype_and_ext', array( $this, 'lottie_filetypes' ), 10, 5 );
 			add_filter( 'wp_mime_type_icon', array( $this, 'icon_filter' ), 10, 3 );
+			// add_filter( 'wp_handle_upload_prefilter', array( $this, 'create_thumbnail' ) );
 		}
 
 		// Disable SSL Check on dev
@@ -91,6 +90,21 @@ class Media {
 
 		return $data;
 	}
+
+	// public function create_thumbnail( $file ) {
+	// 	if ( ! \str_ends_with( \strtolower( $file['name'] ), '.lottie' ) ) {
+	// 		return;
+	// 	}
+
+	// 	// $tmp_name = $file['tmp_name'];
+
+	// 	wp_add_inline_script(
+	// 		'am-lottieplayer-media',
+	// 		'dispatchEvent(aamdLottieUploadEvent);'
+	// 	);
+
+	// 	return $file;
+	// }
 
 	/**
 	 * Upload Lottie-asset to Media Library
@@ -253,7 +267,7 @@ class Media {
 /**
  * Main function, to initialize class
  *
- * @return AAMD_Lottie\Media
+ * @return Media
  */
 ( function () {
 	global $aamd_lottie_media;

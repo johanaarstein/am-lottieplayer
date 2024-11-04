@@ -1,0 +1,1 @@
+(()=>{"use strict";const o=window.wp.hooks;console.log("foo"),(0,o.addFilter)("wp_mime_type_icon","am-lottieplayer",(o=>console.log("bar",o)))})();

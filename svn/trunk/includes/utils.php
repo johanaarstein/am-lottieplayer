@@ -94,6 +94,18 @@ function get_build_path( $filename = '' ) {
 }
 
 /**
+ * Array with all options, with default value
+ * and accociated methods for sanitizing
+ */
+function get_options() {
+	return array(
+		'am_lottieplayer_pro_load_light'        => array( null, 'rest_sanitize_boolean' ),
+		'am_lottieplayer_pro_license'           => array( false, 'sanitize_text_field' ),
+		'am_lottieplayer_pro_license_activated' => array( true, 'rest_sanitize_boolean' ),
+	);
+}
+
+/**
  * Returns the plugin path to a specified file.
  *
  * @param string $filename The specified file.
@@ -284,4 +296,27 @@ function render_shortcode( $atts ) {
 	);
 
 	return render_lottieplayer( $atts );
+}
+
+/**
+ * Polyfill for `str_ends_with()` function added in PHP 8.0.
+ *
+ * Performs a case-sensitive check indicating if
+ * the haystack ends with needle.
+ *
+ * @param string $haystack The string to search in.
+ * @param string $needle   The substring to search for in the `$haystack`.
+ * @return bool True if `$haystack` ends with `$needle`, otherwise false.
+ */
+function str_ends_with( $haystack, $needle ) {
+	if ( function_exists( 'str_ends_with' ) ) {
+		return str_ends_with( $haystack, $needle );
+	}
+
+	if ( '' === $haystack && '' !== $needle ) {
+		return false;
+	}
+
+	$len = strlen( $needle );
+	return 0 === substr_compare( $haystack, $needle, -$len, $len );
 }
