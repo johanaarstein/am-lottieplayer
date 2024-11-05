@@ -2,6 +2,7 @@
   "env": {
     "tests": {
       "core": null,
+      "phpVersion": "7.4",
       "config": {
         "WP_DEBUG_DISPLAY": false,
         "WP_DEBUG": true,

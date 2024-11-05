@@ -3,6 +3,7 @@ namespace AAMD_Lottie;
 
 use function AAMD_Lottie\Utility\get_asset;
 use function AAMD_Lottie\Utility\get_script;
+use function AAMD_Lottie\Utility\include_file;
 
 \defined( 'ABSPATH' ) || exit;
 
@@ -20,13 +21,28 @@ if ( ! function_exists( 'get_ux_template' ) ) {
 		);
 		// \ob_start();
 		// include_file(
-		// 'builders/flatsome/ux-am-lottieplayer-template',
-		// null,
-		// 'html'
+		// 	'builders/flatsome/ux-am-lottieplayer-template',
+		// 	null,
+		// 	'html'
 		// );
 		// return \ob_get_clean();
 	}
 }
+
+// function enqueue_backend_ux_script() {
+// wp_enqueue_script(
+// 'am-backend-ux',
+// get_script( 'am-backend-ux.min.js' ),
+// array( AAMD_LOTTIE_IS_PRO ? 'dotlottie-player' : 'dotlottie-player-light' ),
+// '1.0.1',
+// true
+// );
+// }
+
+// add_action(
+// 'admin_enqueue_scripts',
+// 'AAMD_Lottie\enqueue_backend_ux_script',
+// );
 
 $position_options = array(
 	'type'    => 'group',

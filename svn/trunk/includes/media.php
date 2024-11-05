@@ -1,8 +1,6 @@
 <?php
 namespace AAMD_Lottie;
 
-require AAMD_LOTTIE_PATH . 'vendor/autoload.php';
-
 use function AAMD_Lottie\Utility\get_asset;
 
 \defined( 'ABSPATH' ) || exit;
@@ -23,12 +21,6 @@ class Media {
 			add_filter( 'wp_generate_attachment_metadata', array( $this, 'generate_lottie_metadata' ), 10, 2 );
 			add_filter( 'wp_get_attachment_metadata', array( $this, 'metadata_error_fix' ), 10, 2 );
 		}
-
-		// $thumbnails_dir = wp_upload_dir()['basedir'] . '/lottie-thumbnails';
-
-		// if ( ! \file_exists( $thumbnails_dir ) ) {
-		// wp_mkdir_p( $thumbnails_dir );
-		// }
 
 		// Disable SSL Check on dev
 		if ( \getenv( 'SERVER_CONTEXT' ) === 'dev' ) {
@@ -152,14 +144,28 @@ class Media {
 
 		$metadata = array(
 			...$metadata,
-			'width'  => $dimensions['width'],
-			'height' => $dimensions['height'],
-			'file'   => $relative_path,
-			'sizes'  => array(
+			'width'      => $dimensions['width'],
+			'height'     => $dimensions['height'],
+			'file'       => $relative_path,
+			'sizes'      => array(
 				'medium'       => $srcset,
 				'thumbnail'    => $srcset,
 				'medium_large' => $srcset,
 				'full'         => $srcset,
+			),
+			'image_meta' => array(
+				'aperture'          => 0,
+				'credit'            => '',
+				'camera'            => '',
+				'caption'           => '',
+				'created_timestamp' => 0,
+				'copyright'         => '',
+				'focal_length'      => 0,
+				'iso'               => 0,
+				'shutter_speed'     => 0,
+				'title'             => '',
+				'orientation'       => $dimensions['orientation'],
+				'keywords'          => array(),
 			),
 		);
 

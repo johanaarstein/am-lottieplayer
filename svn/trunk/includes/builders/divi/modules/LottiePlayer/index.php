@@ -10,12 +10,16 @@ if ( \class_exists( '\ET_Builder_Module' ) ) {
 
 	class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 
+		/** Load customized svg icon and use it on builder as module icon. */
+		public $icon_path;
+
 		public function init() {
+
 			$this->name       = esc_html__( 'AM Lottie', 'am-lottieplayer' );
 			$this->plural     = esc_html__( 'AM Lotties', 'am-lottieplayer' );
 			$this->slug       = 'et_pb_lottieplayer';
 			$this->vb_support = 'on';
-			$this->icon_path  = get_asset( 'divi-icon.svg' );
+			$this->icon_path = get_asset( 'divi-icon.svg' );
 
 			$this->settings_modal_toggles = array(
 				'general'    => array(
@@ -454,7 +458,7 @@ if ( \class_exists( '\ET_Builder_Module' ) ) {
 			return $fields;
 		}
 
-		public function render( $attrs = array(), $content = null, $render_slug ) {
+		public function render( $attrs = array(), $content = null, $render_slug = '' ) {
 
 			$mergedAttrs = \array_merge(
 				$attrs,
