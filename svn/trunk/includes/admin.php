@@ -142,7 +142,7 @@ class Admin {
 			'am-backend-style',
 			get_style( 'admin.css' ),
 			array(),
-			'1.0.0'
+			'1.0.1'
 		);
 
 		wp_enqueue_script( AAMD_LOTTIE_IS_PRO ? 'dotlottie-player' : 'dotlottie-player-light' );
