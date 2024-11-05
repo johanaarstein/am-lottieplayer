@@ -37,7 +37,7 @@
 	"devDependencies": {
 		"@aarsteinmedia/dotlottie-player-light": "^4.0.6",
 		"@playwright/test": "^1.48.2",
-		"@types/node": "^22.8.7",
+		"@types/node": "^22.9.0",
 		"@types/react": "^18.3.12",
 		"@types/webpack": "^5.28.5",
 		"@types/wordpress__block-editor": "^11.5.15",
