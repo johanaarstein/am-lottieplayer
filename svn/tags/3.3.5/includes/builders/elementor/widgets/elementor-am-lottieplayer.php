@@ -17,7 +17,9 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 		}
 
 		private $_preview_id;
-		private $_num_of_animaitons = 1;
+
+		/** This is the limit of how many animations in one file you can control */
+		private $_num_of_animaitons = 6;
 
 		private function _set_preview_id() {
 			$this->_preview_id = use_id();
@@ -90,6 +92,7 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 					'description' => $pro_link,
 					'type'        => \Elementor\Controls_Manager::NUMBER,
 					'default'     => 1,
+					'max'         => $this->_num_of_animaitons,
 					'classes'     => AAMD_LOTTIE_IS_PRO ? '' : 'disable',
 				)
 			);
@@ -129,14 +132,36 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 				)
 			);
 
-			for ( $i = 0; $i < $this->_num_of_animaitons; $i++ ) {
-				if ( $i === 0 ) {
-					continue;
-				}
+			// TODO: Make this more elegant
+			$this->add_control(
+				'autoplay_1',
+				array(
+					'label'      => esc_html__( 'Autoplay 1', 'am-lottieplayer' ),
+					'type'       => \Elementor\Controls_Manager::SWITCHER,
+					'label_on'   => esc_html__( 'On', 'am-lottieplayer' ),
+					'label_off'  => esc_html__( 'Off', 'am-lottieplayer' ),
+					'conditions' => array(
+						'terms' => array(
+							array(
+								'name'     => 'animate_on_scroll',
+								'operator' => '!==',
+								'value'    => 'yes',
+							),
+							array(
+								'name'     => 'num_of_animations',
+								'operator' => '>',
+								'value'    => 1,
+							),
+						),
+					),
+				)
+			);
+
+			for ( $i = 2; $i <= $this->_num_of_animaitons; $i++ ) {
 				$this->add_control(
 					"autoplay_{$i}",
 					array(
-						'label'      => printf( esc_html__( 'Autoplay animation %d', 'am-lottieplayer' ), $i ),
+						'label'      => \sprintf( esc_html__( 'Autoplay %d', 'am-lottieplayer' ), $i ),
 						'type'       => \Elementor\Controls_Manager::SWITCHER,
 						'label_on'   => esc_html__( 'On', 'am-lottieplayer' ),
 						'label_off'  => esc_html__( 'Off', 'am-lottieplayer' ),
@@ -149,8 +174,8 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 								),
 								array(
 									'name'     => 'num_of_animations',
-									'operator' => '>',
-									'value'    => 1,
+									'operator' => '>=',
+									'value'    => $i,
 								),
 							),
 						),
@@ -172,19 +197,46 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 								'operator' => '!==',
 								'value'    => 'yes',
 							),
+							array(
+								'name'     => 'num_of_animations',
+								'operator' => '===',
+								'value'    => 1,
+							),
 						),
 					),
 				)
 			);
 
-			for ( $i = 0; $i < $this->_num_of_animaitons; $i++ ) {
-				if ( $i === 0 ) {
-					continue;
-				}
+			// TODO:
+			$this->add_control(
+				'loop_1',
+				array(
+					'label'      => esc_html__( 'Loop 1', 'am-lottieplayer' ),
+					'type'       => \Elementor\Controls_Manager::SWITCHER,
+					'label_on'   => esc_html__( 'On', 'am-lottieplayer' ),
+					'label_off'  => esc_html__( 'Off', 'am-lottieplayer' ),
+					'conditions' => array(
+						'terms' => array(
+							array(
+								'name'     => 'animate_on_scroll',
+								'operator' => '!==',
+								'value'    => 'yes',
+							),
+							array(
+								'name'     => 'num_of_animations',
+								'operator' => '>',
+								'value'    => 1,
+							),
+						),
+					),
+				)
+			);
+
+			for ( $i = 2; $i < $this->_num_of_animaitons; $i++ ) {
 				$this->add_control(
 					"loop_{$i}",
 					array(
-						'label'      => printf( esc_html__( 'Loop animation %d', 'am-lottieplayer' ), $i ),
+						'label'      => \sprintf( esc_html__( 'Loop %d', 'am-lottieplayer' ), $i ),
 						'type'       => \Elementor\Controls_Manager::SWITCHER,
 						'label_on'   => esc_html__( 'On', 'am-lottieplayer' ),
 						'label_off'  => esc_html__( 'Off', 'am-lottieplayer' ),
@@ -195,6 +247,11 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 									'operator' => '!==',
 									'value'    => 'yes',
 								),
+								array(
+									'name'     => 'num_of_animations',
+									'operator' => '>=',
+									'value'    => $i,
+								),
 							),
 						),
 					)
@@ -204,11 +261,12 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 			$this->add_control(
 				'mode',
 				array(
-					'label'      => esc_html__( 'Boomerang', 'am-lottieplayer' ),
-					'type'       => \Elementor\Controls_Manager::SWITCHER,
-					'label_on'   => esc_html__( 'On', 'am-lottieplayer' ),
-					'label_off'  => esc_html__( 'Off', 'am-lottieplayer' ),
-					'conditions' => array(
+					'label'       => $pro_feature . esc_html__( 'Boomerang', 'am-lottieplayer' ),
+					'description' => $pro_link,
+					'type'        => \Elementor\Controls_Manager::SWITCHER,
+					'label_on'    => esc_html__( 'On', 'am-lottieplayer' ),
+					'label_off'   => esc_html__( 'Off', 'am-lottieplayer' ),
+					'conditions'  => array(
 						'terms' => array(
 							array(
 								'name'     => 'animate_on_scroll',
@@ -222,17 +280,40 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 							),
 						),
 					),
+					'classes'     => AAMD_LOTTIE_IS_PRO ? '' : 'disable',
 				)
 			);
 
-			for ( $i = 0; $i < $this->_num_of_animaitons; $i++ ) {
-				if ( $i === 0 ) {
-					continue;
-				}
+			// TODO:
+			$this->add_control(
+				'mode_1',
+				array(
+					'label'      => esc_html__( 'Boomerang 1', 'am-lottieplayer' ),
+					'type'       => \Elementor\Controls_Manager::SWITCHER,
+					'label_on'   => esc_html__( 'On', 'am-lottieplayer' ),
+					'label_off'  => esc_html__( 'Off', 'am-lottieplayer' ),
+					'conditions' => array(
+						'terms' => array(
+							array(
+								'name'     => 'animate_on_scroll',
+								'operator' => '!==',
+								'value'    => 'yes',
+							),
+							array(
+								'name'     => 'num_of_animations',
+								'operator' => '>',
+								'value'    => 1,
+							),
+						),
+					),
+				)
+			);
+
+			for ( $i = 2; $i < $this->_num_of_animaitons; $i++ ) {
 				$this->add_control(
 					"mode_{$i}",
 					array(
-						'label'      => printf( esc_html__( 'Boomerang animation %d', 'am-lottieplayer' ), $i ),
+						'label'      => \sprintf( esc_html__( 'Boomerang %d', 'am-lottieplayer' ), $i ),
 						'type'       => \Elementor\Controls_Manager::SWITCHER,
 						'label_on'   => esc_html__( 'On', 'am-lottieplayer' ),
 						'label_off'  => esc_html__( 'Off', 'am-lottieplayer' ),
@@ -245,8 +326,8 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 								),
 								array(
 									'name'     => 'num_of_animations',
-									'operator' => '>',
-									'value'    => 1,
+									'operator' => '>=',
+									'value'    => $i,
 								),
 							),
 						),
@@ -278,14 +359,36 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 				)
 			);
 
-			for ( $i = 0; $i < $this->_num_of_animaitons; $i++ ) {
-				if ( $i === 0 ) {
-					continue;
-				}
+			// TODO:
+			$this->add_control(
+				'reverse_1',
+				array(
+					'label'      => esc_html__( 'Reverse 1', 'am-lottieplayer' ),
+					'type'       => \Elementor\Controls_Manager::SWITCHER,
+					'label_on'   => esc_html__( 'Yes', 'am-lottieplayer' ),
+					'label_off'  => esc_html__( 'No', 'am-lottieplayer' ),
+					'conditions' => array(
+						'terms' => array(
+							array(
+								'name'     => 'animate_on_scroll',
+								'operator' => '!==',
+								'value'    => 'yes',
+							),
+							array(
+								'name'     => 'num_of_animations',
+								'operator' => '>',
+								'value'    => 1,
+							),
+						),
+					),
+				)
+			);
+
+			for ( $i = 2; $i < $this->_num_of_animaitons; $i++ ) {
 				$this->add_control(
 					"reverse_{$i}",
 					array(
-						'label'      => printf( esc_html__( 'Reverse animation %d', 'am-lottieplayer' ), $i ),
+						'label'      => \sprintf( esc_html__( 'Reverse %d', 'am-lottieplayer' ), $i ),
 						'type'       => \Elementor\Controls_Manager::SWITCHER,
 						'label_on'   => esc_html__( 'Yes', 'am-lottieplayer' ),
 						'label_off'  => esc_html__( 'No', 'am-lottieplayer' ),
@@ -298,8 +401,8 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 								),
 								array(
 									'name'     => 'num_of_animations',
-									'operator' => '>',
-									'value'    => 1,
+									'operator' => '>=',
+									'value'    => $i,
 								),
 							),
 						),
@@ -323,9 +426,9 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 				array(
 					'label'       => esc_html__( 'Playback speed', 'am-lottieplayer' ),
 					'type'        => \Elementor\Controls_Manager::NUMBER,
-					'step'        => '0.1',
-					'placeholder' => '1',
-					'default'     => '1',
+					'step'        => 0.1,
+					'placeholder' => 1,
+					'default'     => 1,
 					'conditions'  => array(
 						'terms' => array(
 							array(
@@ -343,18 +446,41 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 				)
 			);
 
-			for ( $i = 0; $i < $this->_num_of_animaitons; $i++ ) {
-				if ( $i === 0 ) {
-					continue;
-				}
+			// TODO:
+			$this->add_control(
+				'speed_1',
+				array(
+					'label'       => esc_html__( 'Playback speed 1', 'am-lottieplayer' ),
+					'type'        => \Elementor\Controls_Manager::NUMBER,
+					'step'        => 0.1,
+					'placeholder' => 1,
+					'default'     => 1,
+					'conditions'  => array(
+						'terms' => array(
+							array(
+								'name'     => 'animate_on_scroll',
+								'operator' => '!==',
+								'value'    => 'yes',
+							),
+							array(
+								'name'     => 'num_of_animations',
+								'operator' => '>',
+								'value'    => 1,
+							),
+						),
+					),
+				)
+			);
+
+			for ( $i = 2; $i < $this->_num_of_animaitons; $i++ ) {
 				$this->add_control(
 					"speed_{$i}",
 					array(
-						'label'       => printf( esc_html__( 'Playback speed animation %d', 'am-lottieplayer' ), $i ),
+						'label'       => \sprintf( esc_html__( 'Playback speed %d', 'am-lottieplayer' ), $i ),
 						'type'        => \Elementor\Controls_Manager::NUMBER,
-						'step'        => '0.1',
-						'placeholder' => '1',
-						'default'     => '1',
+						'step'        => 0.1,
+						'placeholder' => 1,
+						'default'     => 1,
 						'conditions'  => array(
 							'terms' => array(
 								array(
@@ -364,8 +490,8 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 								),
 								array(
 									'name'     => 'num_of_animations',
-									'operator' => '>',
-									'value'    => 1,
+									'operator' => '>=',
+									'value'    => $i,
 								),
 							),
 						),
@@ -379,8 +505,8 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 					'label'       => esc_html__( 'Intermission', 'am-lottieplayer' ),
 					'description' => esc_html__( 'Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer' ),
 					'type'        => \Elementor\Controls_Manager::NUMBER,
-					'step'        => '100',
-					'min'         => '0',
+					'step'        => 100,
+					'min'         => 0,
 					'default'     => null,
 					'conditions'  => array(
 						'terms' => array(
@@ -389,23 +515,51 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 								'operator' => '===',
 								'value'    => 'yes',
 							),
+							array(
+								'name'     => 'num_of_animations',
+								'operator' => '===',
+								'value'    => 1,
+							),
 						),
 					),
 				),
 			);
 
-			for ( $i = 0; $i < $this->_num_of_animaitons; $i++ ) {
-				if ( $i === 0 ) {
-					continue;
-				}
+			$this->add_control(
+				'intermission_1',
+				array(
+					'label'       => esc_html__( 'Intermission 1', 'am-lottieplayer' ),
+					'description' => esc_html__( 'Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer' ),
+					'type'        => \Elementor\Controls_Manager::NUMBER,
+					'step'        => 100,
+					'min'         => 0,
+					'default'     => null,
+					'conditions'  => array(
+						'terms' => array(
+							array(
+								'name'     => 'loop',
+								'operator' => '===',
+								'value'    => 'yes',
+							),
+							array(
+								'name'     => 'num_of_animations',
+								'operator' => '>',
+								'value'    => 1,
+							),
+						),
+					),
+				),
+			);
+
+			for ( $i = 2; $i < $this->_num_of_animaitons; $i++ ) {
 				$this->add_control(
 					"intermisson_{$i}",
 					array(
-						'label'       => printf( esc_html__( 'Intermission animation %d', 'am-lottieplayer' ), $i ),
+						'label'       => \sprintf( esc_html__( 'Intermission %d', 'am-lottieplayer' ), $i ),
 						'description' => esc_html__( 'Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer' ),
 						'type'        => \Elementor\Controls_Manager::NUMBER,
-						'step'        => '100',
-						'min'         => '0',
+						'step'        => 100,
+						'min'         => 0,
 						'default'     => null,
 						'conditions'  => array(
 							'terms' => array(
@@ -416,8 +570,8 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 								),
 								array(
 									'name'     => 'num_of_animations',
-									'operator' => '>',
-									'value'    => 1,
+									'operator' => '>=',
+									'value'    => $i,
 								),
 							),
 						),
@@ -431,8 +585,8 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 					'label'       => $pro_feature . __( 'Choose where to start', 'am-lottieplayer' ),
 					'description' => $pro_link,
 					'type'        => \Elementor\Controls_Manager::NUMBER,
-					'step'        => '1',
-					'min'         => '0',
+					'step'        => 1,
+					'min'         => 0,
 					'default'     => null,
 					'classes'     => AAMD_LOTTIE_IS_PRO ? '' : 'disable',
 				),
@@ -444,8 +598,8 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 					'label'       => $pro_feature . __( 'And where to end', 'am-lottieplayer' ),
 					'description' => $pro_link,
 					'type'        => \Elementor\Controls_Manager::NUMBER,
-					'step'        => '1',
-					'min'         => '0',
+					'step'        => 1,
+					'min'         => 0,
 					'default'     => null,
 					'classes'     => AAMD_LOTTIE_IS_PRO ? '' : 'disable',
 				),
@@ -588,10 +742,10 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 				array(
 					'label'     => esc_html__( 'Delay, in 10th of a second', 'am-lottieplayer' ),
 					'type'      => \Elementor\Controls_Manager::NUMBER,
-					'step'      => '1',
-					'min'       => '0',
-					'max'       => '50',
-					'default'   => '1',
+					'step'      => 1,
+					'min'       => 0,
+					'max'       => 50,
+					'default'   => 1,
 					'condition' => array(
 						'scroll' => 'yes',
 					),
@@ -814,28 +968,29 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 			$attrs = \array_merge(
 				$settings,
 				array(
-					'autoplay'    => $this->_switcher_value( $settings['scroll'] ) ? false : $this->_switcher_value( $settings['autoplay'] ),
-					'align'       => 'none',
-					'background'  => 'transparent',
-					'class'       => '',
-					'controls'    => $this->_switcher_value( $settings['controls'] ),
-					'direction'   => $this->_switcher_value( $settings['reverse'] ),
-					'id'          => $id,
-					'subframe'    => $this->_switcher_value( $settings['subframe'] ),
-					'loop'        => $this->_switcher_value( $settings['loop'] ),
-					'objectfit'   => $settings['object_fit'],
-					'onClick'     => $this->_switcher_value( $settings['onclick'] ),
-					'onMouseOver' => $this->_switcher_value( $settings['onmouseover'] ),
-					'scroll'      => $this->_switcher_value( $settings['scroll'] ),
-					'once'        => $this->_switcher_value( $settings['once'] ),
-					'height'      => $settings['height_fixed'] ? $settings['height_fixed']['size'] : null,
-					'height_unit' => $settings['height_fixed'] ? $settings['height_fixed']['unit'] : null,
-					'width'       => $settings['width']['size'],
-					'width_unit'  => $settings['width']['unit'],
-					'alt'         => $settings['description'],
-					'src'         => $src,
-					'url'         => null,
-					'target'      => '_blank',
+					'autoplay'                 => $this->_switcher_value( $settings['scroll'] ) ? false : $this->_switcher_value( $settings['autoplay'] ),
+					'align'                    => 'none',
+					'background'               => 'transparent',
+					'class'                    => '',
+					'controls'                 => $this->_switcher_value( $settings['controls'] ),
+					'direction'                => $this->_switcher_value( $settings['reverse'] ),
+					'id'                       => $id,
+					'subframe'                 => $this->_switcher_value( $settings['subframe'] ),
+					'loop'                     => $this->_switcher_value( $settings['loop'] ),
+					'multi_animation_settings' => $multiAnimationSettings,
+					'objectfit'                => $settings['object_fit'],
+					'onClick'                  => $this->_switcher_value( $settings['onclick'] ),
+					'onMouseOver'              => $this->_switcher_value( $settings['onmouseover'] ),
+					'scroll'                   => $this->_switcher_value( $settings['scroll'] ),
+					'once'                     => $this->_switcher_value( $settings['once'] ),
+					'height'                   => $settings['height_fixed'] ? $settings['height_fixed']['size'] : null,
+					'height_unit'              => $settings['height_fixed'] ? $settings['height_fixed']['unit'] : null,
+					'width'                    => $settings['width']['size'],
+					'width_unit'               => $settings['width']['unit'],
+					'alt'                      => $settings['description'],
+					'src'                      => $src,
+					'url'                      => null,
+					'target'                   => '_blank',
 				),
 			);
 

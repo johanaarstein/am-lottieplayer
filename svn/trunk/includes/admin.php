@@ -76,7 +76,16 @@ class Admin {
 	 * @param string $plugin The plugin being activated.
 	 */
 	public function deactivate_other_instances( $plugin ) {
-		if ( ! \in_array( $plugin, array( 'am-lottieplayer/am-lottieplayer.php', 'am-lottieplayer-pro/am-lottieplayer-pro.php' ), true ) ) {
+		if (
+			! \in_array(
+				$plugin,
+				array(
+					'am-lottieplayer/am-lottieplayer.php',
+					'am-lottieplayer-pro/am-lottieplayer-pro.php',
+				),
+				true
+			)
+		) {
 			return;
 		}
 
@@ -169,8 +178,13 @@ class Admin {
 				"var aamdPHPVariables={pluginUrl:'{$pluginUrl}'};",
 				'before',
 			);
+		}
+
+		if ( $page !== 'toplevel_page_am-lottieplayer-pro' ) {
 			return;
 		}
+
+		wp_enqueue_media();
 
 		$admin_assets = require get_build_path( 'admin.asset.php' );
 		wp_enqueue_script(
@@ -189,10 +203,6 @@ class Admin {
 			"var aamdPHPVariables={pluginUrl:'{$pluginUrl}',endpoint:'{$endpoint}',nonce:'{$nonce}',};",
 			'before'
 		);
-
-		if ( $page === 'toplevel_page_am-lottieplayer-pro' ) {
-			wp_enqueue_media();
-		}
 	}
 
 	/**

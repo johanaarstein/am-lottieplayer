@@ -29,7 +29,7 @@ class UploadThumbnail {
 	private function _upload_file() {
 		try {
 
-			$file_name = \basename( $_FILES['thumbnail']['name'] );
+			$file_name = 'lottie-thumbnail-' . \basename( $_FILES['thumbnail']['name'] );
 			$file_type = \pathinfo( $file_name, PATHINFO_EXTENSION );
 
 			if ( $file_type !== 'svg' ) {
@@ -37,7 +37,9 @@ class UploadThumbnail {
 			}
 
 			add_filter( 'upload_mimes', array( $this, 'allow_svg' ) );
-			wp_upload_bits( $file_name, null, \file_get_contents( $_FILES['thumbnail']['tmp_name'] ) );
+			if ( ! \file_exists( trailingslashit( wp_get_upload_dir()['path'] ) . $file_name ) ) {
+				wp_upload_bits( $file_name, null, \file_get_contents( $_FILES['thumbnail']['tmp_name'] ) );
+			}
 
 			echo wp_json_encode(
 				array(

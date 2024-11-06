@@ -130,6 +130,10 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 3.3.6 - October 7 2024 =
+* Added blueprint.JSON
+* Minor changes
+
 = 3.3.5 - October 4 2024 =
 * Fixed critical bug
 
