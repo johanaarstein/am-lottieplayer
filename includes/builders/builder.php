@@ -53,7 +53,7 @@ class Builder {
 			'am-frontend-light',
 			get_script( 'am-frontend.min.js' ),
 			array( 'dotlottie-player-light' ),
-			'1.2.4',
+			'1.2.5',
 			array(
 				'strategy'  => 'defer',
 				'in_footer' => true,
