@@ -244,7 +244,7 @@ function render_lottieplayer( array $atts ) {
 	\ob_start();
 	?>
 	<figure
-		class="am-lottieplayer align <?php echo esc_attr( $atts['align'] . ' ' . $atts['class'] ); ?>"
+		class="am-lottieplayer align-<?php echo esc_attr( $atts['align'] . ' ' . $atts['class'] ); ?>"
 		style="background-color:<?php echo esc_attr( $background ); ?>;height:<?php echo esc_attr( $height ); ?>;width:<?php echo esc_attr( $width ); ?>;">
 		<dotlottie-player
 			simple

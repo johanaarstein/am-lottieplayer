@@ -3,7 +3,6 @@ namespace AAMD_Lottie;
 
 use function AAMD_Lottie\Utility\get_asset;
 use function AAMD_Lottie\Utility\get_script;
-use function AAMD_Lottie\Utility\include_file;
 
 \defined( 'ABSPATH' ) || exit;
 
@@ -46,12 +45,12 @@ if ( ! function_exists( 'get_ux_template' ) ) {
 
 $position_options = array(
 	'type'    => 'group',
-	'heading' => __( 'Position', 'am-lottieplayer' ),
+	'heading' => esc_html__( 'Position', 'am-lottieplayer' ),
 	'require' => array( 'ux_banner' ),
 	'options' => array(
 		'position_x' => array(
 			'type'              => 'slider',
-			'heading'           => __( 'Horizontal', 'am-lottieplayer' ),
+			'heading'           => esc_html__( 'Horizontal', 'am-lottieplayer' ),
 			'save_when_default' => true,
 			'responsive'        => true,
 			'default'           => 50,
@@ -61,7 +60,7 @@ $position_options = array(
 		),
 		'position_y' => array(
 			'type'              => 'slider',
-			'heading'           => __( 'Vertical', 'am-lottieplayer' ),
+			'heading'           => esc_html__( 'Vertical', 'am-lottieplayer' ),
 			'save_when_default' => true,
 			'responsive'        => true,
 			'default'           => 50,

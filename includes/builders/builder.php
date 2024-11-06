@@ -5,6 +5,7 @@ use function AAMD_Lottie\Utility\get_build_path;
 use function AAMD_Lottie\Utility\get_script;
 use function AAMD_Lottie\Utility\get_style;
 use function AAMD_Lottie\Utility\include_file;
+use function AAMD_Lottie\Utility\get_shortcode_instances;
 
 \defined( 'ABSPATH' ) || exit;
 
@@ -49,7 +50,7 @@ class Builder {
 		);
 
 		wp_register_script(
-			'am-frontend',
+			'am-frontend-light',
 			get_script( 'am-frontend.min.js' ),
 			array( 'dotlottie-player-light' ),
 			'1.2.4',
@@ -75,7 +76,7 @@ class Builder {
 			'elementor-backend-style',
 			get_style( 'am-font.css' ),
 			array(),
-			'1.0.0'
+			'1.0.1'
 		);
 		include_file( 'builders/elementor/widgets/elementor-am-lottieplayer', $widgets_manager );
 	}
@@ -104,12 +105,12 @@ class Builder {
 		global $post;
 		$content = '';
 
-		$has_divi = false;
+		$has_divi        = false;
+		$divi_shortcodes = array();
 
 		// Check if any front-end builders are active
 		$isDiviBuilder = isset( $_GET['et_fb'] ) && ! empty( $_GET['et_fb'] );
-
-		$isVCBuilder = function_exists( 'vc_is_inline' ) && vc_is_inline();
+		$isVCBuilder   = function_exists( 'vc_is_inline' ) && vc_is_inline();
 
 		if ( is_a( $post, '\WP_Post' ) ) {
 			$content = $post->post_content;
@@ -120,57 +121,97 @@ class Builder {
 			$layouts = et_theme_builder_get_template_layouts();
 			if ( ! empty( $layouts ) ) {
 				foreach ( array( 'header', 'body', 'footer' ) as $part ) {
-					$has_divi = $this->_check_if_divi_shortcode_is_present(
+					$divi_shortcodes = $this->_get_divi_shortcodes_from_layouts(
 						$layouts,
-						$has_divi,
+						$divi_shortcodes,
 						$part
 					);
 				}
 			}
+
+			$has_divi = count( $divi_shortcodes ) > 0;
 		}
 
 		// Check if post has Gutenberg blocks
 		$has_gutenberg = has_block( 'gb/lottieplayer' ) || has_block( 'gb/lottiecover' );
 
+		// Check if full version is needed on the front-end
+		$is_light = ! AAMD_LOTTIE_IS_PRO || (bool) get_option( 'am_lottieplayer_pro_load_light' );
+
+		if ( AAMD_LOTTIE_IS_PRO && $is_light && $has_gutenberg ) {
+			$blocks = parse_blocks( $content );
+			foreach ( $blocks as $block ) {
+				if ( $block['blockName'] === 'gb/lottieplayer' || $block['blockName'] === 'gb/lottiecover' ) {
+					if ( isset( $block['attrs']['renderer'] ) && $block['attrs']['renderer'] !== 'svg' ) {
+						$is_light = false;
+					}
+				}
+			}
+		}
+
 		// Check if post has general shortcode, and VC frontend builder is not active
 		$has_shortcode = has_shortcode( $content, 'am-lottieplayer' ) && ! $isVCBuilder;
+
+		if ( AAMD_LOTTIE_IS_PRO && $is_light ) {
+			$shortcodes = array_merge(
+				get_shortcode_instances( $content, 'am-lottieplayer' ),
+				get_shortcode_instances( $content, 'et_pb_lottieplayer' ),
+			);
+
+			foreach ( $shortcodes as $shortcode ) {
+				$atts = shortcode_parse_atts( $shortcode );
+
+				$renderer = $atts['renderer'];
+
+				if ( isset( $renderer ) && $renderer !== 'svg' ) {
+					$is_light = false;
+				}
+			}
+		}
 
 		// Check if post has Divi shortcode, and Divi Builder is not active
 		$has_divi = ! $isDiviBuilder && ( $has_divi || has_shortcode( $content, 'et_pb_lottieplayer' ) );
 
 		if ( ! is_admin() ) {
 			if ( $has_gutenberg || $has_shortcode || $has_divi ) {
-				wp_enqueue_script( 'am-frontend' );
-			}
-			// Add scripts for Divi/VC front-end builder, if either are installed and active
-			if ( $isDiviBuilder || $isVCBuilder ) {
-				wp_enqueue_script( 'dotlottie-player-light' );
+				wp_enqueue_script(
+					$is_light && ! AAMD_LOTTIE_IS_PRO ?
+						'am-frontend-light' : 'am-frontend'
+				);
+				// Add scripts for Divi/VC front-end builder, if either are installed and active
+			} elseif ( $isDiviBuilder || $isVCBuilder ) {
+				wp_enqueue_script(
+					AAMD_LOTTIE_IS_PRO ?
+						'dotlottie-player' : 'dotlottie-player-light'
+				);
 			}
 		}
 	}
 
 	/**
 	 * Check if Divi shortcode is present in content
+	 * and return them if they are
 	 */
-	private function _check_if_divi_shortcode_is_present(
+	private function _get_divi_shortcodes_from_layouts(
 		array $layouts,
-		bool $has_divi,
+		array $divi_shortcodes,
 		string $part
 	) {
-		if ( $has_divi ) {
-			return true;
-		}
 		if ( $layouts[ "et_{$part}_layout" ]['override'] ) {
 			$content = null;
 			if ( get_post( $layouts[ "et_{$part}_layout" ]['id'] ) ) {
 				$content = get_post( $layouts[ "et_{$part}_layout" ]['id'] )->post_content;
 			}
 			if ( $content && has_shortcode( $content, 'et_pb_lottieplayer' ) ) {
-				$has_divi = true;
+				// This is used to determine whether to load full or light version
+				$divi_shortcodes = array_merge(
+					get_shortcode_instances( $content, 'et_pb_lottieplayer' ),
+					$divi_shortcodes
+				);
 			}
 		}
 
-		return $has_divi;
+		return $divi_shortcodes;
 	}
 }
 
@@ -181,18 +222,20 @@ class Builder {
  */
 ( function () {
 	global $aamd_lottie_builder;
-	if ( ! isset( $aamd_lottie_builder ) ) {
+	if ( ! AAMD_LOTTIE_IS_PRO && ! isset( $aamd_lottie_builder ) ) {
 		$aamd_lottie_builder = new Builder();
 	}
 
 	global $pro_feature;
 	if ( ! isset( $pro_feature ) ) {
-		$pro_feature = AAMD_LOTTIE_IS_PRO ? '' : esc_html__( 'Pro Feature: ', 'am-lottieplayer' );
+		$pro_feature = AAMD_LOTTIE_IS_PRO ?
+			'' : esc_html__( 'Pro Feature: ', 'am-lottieplayer' );
 	}
 
 	global $pro_link;
 	if ( ! isset( $pro_link ) ) {
-		$pro_link = AAMD_LOTTIE_IS_PRO ? '' : esc_html__( 'This feature will only work in the premium version.', 'am-lottieplayer' ) . ' <a href="' . esc_url( 'https://www.aarstein.media/en/am-lottieplayer/pro', 'am-lottieplayer' ) . '" target="_blank" rel="noreferrer">' . esc_html__( 'Read about additional features in AM LottiePlayer PRO', 'am-lottieplayer' ) . '<span class="dashicons dashicons-external" style="font-size: 1em;"></span></a>';
+		$pro_link = AAMD_LOTTIE_IS_PRO ?
+			'' : esc_html__( 'This feature will only work in the premium version.', 'am-lottieplayer' ) . ' <a href="' . esc_url( 'https://www.aarstein.media/en/am-lottieplayer/pro', 'am-lottieplayer' ) . '" target="_blank" rel="noreferrer">' . esc_html__( 'Read about additional features in AM LottiePlayer PRO', 'am-lottieplayer' ) . '<span class="dashicons dashicons-external" style="font-size: 1em;"></span></a>';
 	}
 
 	return $aamd_lottie_builder;

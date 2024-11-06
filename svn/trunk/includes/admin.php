@@ -3,7 +3,6 @@ namespace AAMD_Lottie;
 
 use function AAMD_Lottie\Utility\get_build;
 use function AAMD_Lottie\Utility\get_build_path;
-use function AAMD_Lottie\Utility\get_options;
 use function AAMD_Lottie\Utility\get_style;
 
 \defined( 'ABSPATH' ) || exit;
@@ -31,35 +30,30 @@ class Admin {
 			array( $this, 'plugin_deactivated_notice' )
 		);
 
-		if ( ! AAMD_LOTTIE_IS_PRO ) {
-			add_action(
-				'wp_dashboard_setup',
-				array( $this, 'register_am_lottieplayer_dashboard_widget' )
-			);
-		}
-
 		add_action(
 			'admin_enqueue_scripts',
 			array( $this, 'enqueue_backend_scripts' )
 		);
 
-		add_filter(
-			'plugin_action_links_' . AAMD_LOTTIE_BASENAME,
-			array( $this, 'add_action_link' ),
-			10,
-			2
-		);
-		add_filter(
-			'network_admin_plugin_action_links_' . AAMD_LOTTIE_BASENAME,
-			array( $this, 'add_action_link' ),
-			10,
-			2
-		);
+		if ( ! AAMD_LOTTIE_IS_PRO ) {
+			add_action(
+				'wp_dashboard_setup',
+				array( $this, 'register_am_lottieplayer_dashboard_widget' )
+			);
 
-		register_uninstall_hook(
-			AAMD_LOTTIE_FILE,
-			'AAMD_Lottie\Admin\uninstall_hook',
-		);
+			add_filter(
+				'plugin_action_links_' . AAMD_LOTTIE_BASENAME,
+				array( $this, 'add_action_link' ),
+				10,
+				2
+			);
+			add_filter(
+				'network_admin_plugin_action_links_' . AAMD_LOTTIE_BASENAME,
+				array( $this, 'add_action_link' ),
+				10,
+				2
+			);
+		}
 	}
 
 	/**
@@ -241,37 +235,6 @@ class Admin {
 
 		return $links;
 	}
-
-	public static function uninstall_hook() {
-		if ( ! current_user_can( 'activate_plugins' ) ) {
-			return;
-		}
-
-		// $thumbnails_dir = wp_upload_dir()['basedir'] . '/lottie-thumbnails';
-		// if ( \file_exists( $thumbnails_dir ) ) {
-		// $wp_filesystem = new \WP_Filesystem_Direct(array());
-		// $wp_filesystem->rmdir( $thumbnails_dir );
-		// }
-
-		if ( ! is_multisite() ) {
-			foreach ( \array_keys( get_options() ) as $option ) {
-				delete_option( $option );
-			}
-			return;
-		}
-		foreach ( \array_keys( get_options() ) as $option ) {
-				delete_site_option( $option );
-		}
-		$sites = get_sites();
-		if ( ! is_array( $sites ) ) {
-			return;
-		}
-		foreach ( $sites as $site ) {
-			foreach ( \array_keys( get_options() ) as $option ) {
-				delete_blog_option( $site->blog_id, $option );
-			}
-		}
-	}
 }
 
 /**
@@ -282,7 +245,7 @@ class Admin {
 ( function () {
 	global $aamd_lottie_admin;
 
-	if ( ! isset( $aamd_lottie_admin ) ) {
+	if ( ! AAMD_LOTTIE_IS_PRO && ! isset( $aamd_lottie_admin ) ) {
 		$aamd_lottie_admin = new Admin();
 	}
 
