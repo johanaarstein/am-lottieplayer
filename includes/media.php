@@ -122,7 +122,7 @@ class Media {
 		$upload_dir          = wp_upload_dir();
 		$relative_path       = \str_replace( trailingslashit( $upload_dir['basedir'] ), '', $lottie_path );
 		$filename            = \basename( $lottie_path );
-		$thumbnail_file_name = \str_ireplace( '.lottie', '.svg', $filename );
+		$thumbnail_file_name = 'lottie-thumbnail-' . \str_ireplace( '.lottie', '.svg', $filename );
 		$thumbnail_file      = trailingslashit( $upload_dir['path'] ) . $thumbnail_file_name;
 		$thumbnail_file_size = round( $metadata['filesize'] / 60 );
 
