@@ -58,7 +58,7 @@ class Admin {
 
 		register_uninstall_hook(
 			AAMD_LOTTIE_FILE,
-			'uninstall_hook',
+			'AAMD_Lottie\Admin\uninstall_hook',
 		);
 	}
 
@@ -249,8 +249,8 @@ class Admin {
 
 		// $thumbnails_dir = wp_upload_dir()['basedir'] . '/lottie-thumbnails';
 		// if ( \file_exists( $thumbnails_dir ) ) {
-		// 	$wp_filesystem = new \WP_Filesystem_Direct(array());
-		// 	$wp_filesystem->rmdir( $thumbnails_dir );
+		// $wp_filesystem = new \WP_Filesystem_Direct(array());
+		// $wp_filesystem->rmdir( $thumbnails_dir );
 		// }
 
 		if ( ! is_multisite() ) {

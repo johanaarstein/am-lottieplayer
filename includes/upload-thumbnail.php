@@ -8,39 +8,54 @@ if ( ! isset( $_POST['aamd_thumnail_submit'] ) ) {
 	exit;
 }
 
-try {
-
-	if ( ! \defined( 'ABSPATH' ) ) {
-		require_once __DIR__ . '/../../../../wp-load.php';
-	}
-
-	\header( 'Content-type: application/json' );
-
-	// $target_dir  = trailingslashit( wp_upload_dir()['basedir'] ) . 'lottie-thumbnails';
-	$target_dir  = wp_upload_dir()['path'];
-	$target_file = trailingslashit( $target_dir ) . \basename( $_FILES['thumbnail']['name'] );
-
-	$file_type = \pathinfo( $target_file, PATHINFO_EXTENSION );
-
-	if ( $file_type !== 'svg' ) {
-		throw new Error( 'Ivalid file type' );
-	}
-
-	\move_uploaded_file( $_FILES['thumbnail']['tmp_name'], $target_file );
-
-	echo \json_encode(
-		array(
-			'status'  => http_response_code(),
-			'message' => 'Thumbnail upload was successfull',
-		)
-	);
-} catch ( Exception $e ) {
-	echo \json_encode(
-		array(
-			'status'  => http_response_code( 400 ),
-			'message' => $e,
-		)
-	);
-} finally {
-	exit;
+if ( ! \defined( 'ABSPATH' ) ) {
+	require_once __DIR__ . '/../../../../wp-load.php';
 }
+
+class UploadThumbnail {
+
+	/**
+	 * Constructor
+	 */
+	public function __construct() {
+		$this->_upload_file();
+	}
+
+	public function allow_svg( $mimes ) {
+		$mimes['svg'] = 'image/svg+xml';
+		return $mimes;
+	}
+
+	private function _upload_file() {
+		try {
+
+			$file_name = \basename( $_FILES['thumbnail']['name'] );
+			$file_type = \pathinfo( $file_name, PATHINFO_EXTENSION );
+
+			if ( $file_type !== 'svg' ) {
+				throw new Error( 'Ivalid file type' );
+			}
+
+			add_filter( 'upload_mimes', array( $this, 'allow_svg' ) );
+			wp_upload_bits( $file_name, null, \file_get_contents( $_FILES['thumbnail']['tmp_name'] ) );
+
+			echo wp_json_encode(
+				array(
+					'status'  => http_response_code(),
+					'message' => 'Thumbnail upload was successfull',
+				)
+			);
+		} catch ( Exception $e ) {
+			echo wp_json_encode(
+				array(
+					'status'  => http_response_code( 400 ),
+					'message' => $e,
+				)
+			);
+		} finally {
+			exit;
+		}
+	}
+}
+
+new UploadThumbnail();

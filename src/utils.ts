@@ -176,5 +176,14 @@ export const arrayMove = < T >(
 			fileReader.onerror = reject;
 			fileReader.readAsText( file );
 		} ),
+	trailingslashit = ( str: string ) => {
+		return `${ untrailingslashit( str ) }/`;
+	},
 	truncate = ( input: string, limit = 12 ) =>
-		input.length > 12 ? `${ input.substring( 0, limit ) }… ` : input;
+		input.length > 12 ? `${ input.substring( 0, limit ) }… ` : input,
+	untrailingslashit = ( str: string ): string => {
+		if ( str.endsWith( '/' ) ) {
+			return untrailingslashit( str.substring( 0, str.length - 1 ) );
+		}
+		return str;
+	};

@@ -2,12 +2,25 @@
 namespace AAMD_Lottie;
 
 use function AAMD_Lottie\Utility\render_lottieplayer;
+use function AAMD_Lottie\Utility\use_id;
 use function AAMD_Lottie\Utility\get_allowed_html;
 
 \defined( 'ABSPATH' ) || exit;
 
 if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 	class Elementor extends \Elementor\Widget_Base {
+
+		public function __construct( $data = array(), $args = null ) {
+			parent::__construct( $data, $args );
+
+			$this->_set_preview_id( 'preview-id' );
+		}
+
+		private $_preview_id;
+
+		private function _set_preview_id() {
+			$this->_preview_id = use_id();
+		}
 
 		public function get_script_depends() {
 			return array( 'am-frontend' );

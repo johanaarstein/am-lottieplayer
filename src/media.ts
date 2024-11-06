@@ -2,6 +2,8 @@
 /* eslint-disable prefer-spread */
 /* eslint-disable @typescript-eslint/unbound-method */
 
+import { trailingslashit } from './utils';
+
 function overrideXHR() {
 	const open = XMLHttpRequest.prototype.open,
 		send = XMLHttpRequest.prototype.send;
@@ -103,7 +105,9 @@ function overrideXHR() {
 				formData.append( 'aamd_thumnail_submit', '' );
 				formData.append( 'thumbnail', svgFile );
 				const response = await fetch(
-					`${ aamdPHPVariables.pluginUrl }includes/upload-thumbnail.php`,
+					`${ trailingslashit(
+						aamdPHPVariables.pluginUrl
+					) }includes/upload-thumbnail.php`,
 					{ body: formData, method: 'POST' }
 				);
 

@@ -116,6 +116,8 @@ class Media {
 			return $metadata;
 		}
 
+		\usleep( 20000 );
+
 		$lottie_path         = get_attached_file( $attachment_id );
 		$upload_dir          = wp_upload_dir();
 		$relative_path       = \str_replace( trailingslashit( $upload_dir['basedir'] ), '', $lottie_path );
@@ -124,7 +126,7 @@ class Media {
 		$thumbnail_file      = trailingslashit( $upload_dir['path'] ) . $thumbnail_file_name;
 		$thumbnail_file_size = round( $metadata['filesize'] / 60 );
 
-		if ( file_exists( $thumbnail_file ) ) {
+		if ( \file_exists( $thumbnail_file ) ) {
 			$thumbnail_file_size = filesize( $thumbnail_file );
 		}
 
@@ -142,31 +144,33 @@ class Media {
 			'filesize'  => $thumbnail_file_size,
 		);
 
-		$metadata = array(
-			...$metadata,
-			'width'      => $dimensions['width'],
-			'height'     => $dimensions['height'],
-			'file'       => $relative_path,
-			'sizes'      => array(
-				'medium'       => $srcset,
-				'thumbnail'    => $srcset,
-				'medium_large' => $srcset,
-				'full'         => $srcset,
-			),
-			'image_meta' => array(
-				'aperture'          => 0,
-				'credit'            => '',
-				'camera'            => '',
-				'caption'           => '',
-				'created_timestamp' => 0,
-				'copyright'         => '',
-				'focal_length'      => 0,
-				'iso'               => 0,
-				'shutter_speed'     => 0,
-				'title'             => '',
-				'orientation'       => $dimensions['orientation'],
-				'keywords'          => array(),
-			),
+		$metadata = array_merge(
+			array(
+				$metadata,
+				'width'      => $dimensions['width'],
+				'height'     => $dimensions['height'],
+				'file'       => $relative_path,
+				'sizes'      => array(
+					'medium'       => $srcset,
+					'thumbnail'    => $srcset,
+					'medium_large' => $srcset,
+					'full'         => $srcset,
+				),
+				'image_meta' => array(
+					'aperture'          => 0,
+					'credit'            => '',
+					'camera'            => '',
+					'caption'           => '',
+					'created_timestamp' => 0,
+					'copyright'         => '',
+					'focal_length'      => 0,
+					'iso'               => 0,
+					'shutter_speed'     => 0,
+					'title'             => '',
+					'orientation'       => $dimensions['orientation'],
+					'keywords'          => array(),
+				),
+			)
 		);
 
 		return $metadata;
@@ -181,14 +185,14 @@ class Media {
 	 */
 	private function _svg_dimensions( string $path ) {
 
-		if ( ! function_exists( 'simplexml_load_file' ) ) {
+		if ( ! \file_exists( $path ) ) {
 			return false;
 		}
 
 		$width  = 0;
 		$height = 0;
 
-		$svg = @simplexml_load_file( $path );
+		$svg = \simplexml_load_string( \file_get_contents( $path ) );
 
 		// Ensure the svg could be loaded.
 		if ( ! $svg ) {
@@ -200,15 +204,15 @@ class Media {
 		if ( isset( $attributes->viewBox ) ) {
 			$sizes = explode( ' ', $attributes->viewBox );
 			if ( isset( $sizes[2], $sizes[3] ) ) {
-				$viewbox_width  = floatval( $sizes[2] );
-				$viewbox_height = floatval( $sizes[3] );
+				$viewbox_width  = \floatval( $sizes[2] );
+				$viewbox_height = \floatval( $sizes[3] );
 			}
 		}
 
 		if (
 			isset( $attributes->width, $attributes->height ) &&
-			is_numeric( (float) $attributes->width ) &&
-			is_numeric( (float) $attributes->height ) &&
+			\is_numeric( (float) $attributes->width ) &&
+			\is_numeric( (float) $attributes->height ) &&
 			! str_ends_with( (string) $attributes->width, '%' ) &&
 			! str_ends_with( (string) $attributes->height, '%' )
 		) {

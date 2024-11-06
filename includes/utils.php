@@ -94,18 +94,6 @@ function get_build_path( $filename = '' ) {
 }
 
 /**
- * Array with all options, with default value
- * and accociated methods for sanitizing
- */
-function get_options() {
-	return array(
-		'am_lottieplayer_pro_load_light'        => array( null, 'rest_sanitize_boolean' ),
-		'am_lottieplayer_pro_license'           => array( false, 'sanitize_text_field' ),
-		'am_lottieplayer_pro_license_activated' => array( true, 'rest_sanitize_boolean' ),
-	);
-}
-
-/**
  * Returns the plugin path to a specified file.
  *
  * @param string $filename The specified file.
@@ -125,6 +113,37 @@ function get_path( string $path = '', string $ext = 'php' ) {
  */
 function get_script( $filename = '', $version = null ) {
 	return get_static_url( 'scripts', $filename, $version );
+}
+
+/**
+ * Get all instances of shortcode in text
+ *
+ * @param string $content
+ * @param string $tag
+ * @return string[] | null
+ */
+function get_shortcode_instances( $content, $tag ) {
+	if ( ! \str_contains( $content, '[' ) || ! shortcode_exists( $tag ) ) {
+		return null;
+	}
+
+	\preg_match_all( '/\[' . $tag . '[^\]]*\]/', $content, $matches, PREG_SET_ORDER );
+
+	if ( empty( $matches ) ) {
+		return null;
+	}
+
+	$shortcodes = array();
+
+	foreach ( $matches as $match ) {
+		\array_push( $shortcodes, $match[0] );
+	}
+
+	if ( empty( $shortcodes ) ) {
+		return null;
+	}
+
+	return $shortcodes;
 }
 
 /**
@@ -148,6 +167,16 @@ function get_static_url( $type, $filename = '', $version = null ) {
  */
 function get_style( $filename = '', $version = null ) {
 	return get_static_url( 'styles', $filename, $version );
+}
+
+/**
+ * Returns an id attribute friendly string
+ *
+ * @param   string $str The string to convert.
+ * @return  string
+ */
+function idify( $str = '' ) {
+	return \str_replace( array( '][', '[', ']' ), array( '-', '-', '' ), strtolower( $str ) );
 }
 
 /**
@@ -319,4 +348,12 @@ function str_ends_with( $haystack, $needle ) {
 
 	$len = strlen( $needle );
 	return 0 === substr_compare( $haystack, $needle, -$len, $len );
+}
+
+/**
+ * Get unique id
+ */
+function use_id() {
+	$str = wp_rand();
+	return idify( \md5( $str ) );
 }
