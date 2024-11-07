@@ -33,6 +33,7 @@ function get_allowed_html() {
 			'objectfit'    => array(),
 			'onclick'      => array(),
 			'onmouseover'  => array(),
+			'renderer'     => array(),
 			'simple'       => array(),
 			'speed'        => array(),
 			'src'          => array(),
@@ -278,6 +279,13 @@ function render_lottieplayer( array $atts ) {
 			src="<?php echo esc_url( $atts['src'] ); ?>"
 			intermission="<?php echo esc_attr( $atts['intermission'] ); ?>"
 			speed="<?php echo esc_attr( $atts['speed'] ); ?>"
+			<?php
+			if ( AAMD_LOTTIE_IS_PRO ) {
+				?>
+			renderer="<?php echo esc_attr( $atts['renderer'] ); ?>"
+				<?php
+			}
+			?>
 			direction="<?php echo esc_attr( get_animation_direction( $atts['direction'] ) ); ?>"
 			data-direction="<?php echo esc_attr( get_animation_direction( $atts['direction'] ) ); ?>"
 			data-mouseover="<?php echo esc_attr( $atts['onmouseover'] ); ?>"

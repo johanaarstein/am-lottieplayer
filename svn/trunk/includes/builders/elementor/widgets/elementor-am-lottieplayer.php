@@ -928,7 +928,7 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 		}
 
 		protected function render() {
-			$settings = $this->get_settings_for_display();
+			$settings = $this->get_settings_for_display() || array();
 
 			$this->_num_of_animaitons = $settings['num_of_animations'];
 
