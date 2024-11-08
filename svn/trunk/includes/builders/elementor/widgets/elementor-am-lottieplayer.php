@@ -745,7 +745,7 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 					'step'      => 1,
 					'min'       => 0,
 					'max'       => 50,
-					'default'   => 1,
+					'default'   => 0,
 					'condition' => array(
 						'scroll' => 'yes',
 					),
@@ -1034,14 +1034,21 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 						{{{ autoplay }}}
 						{{{ controls }}}
 						{{{ loop }}}
-						{{{ animateOnScroll }}}
 						{{{ subframe }}}
+						{{{ animateOnScroll }}}
+						description="{{{ settings.description }}}"
 						direction="{{{ direction }}}"
 						mode="{{{ mode }}}"
 						objectfit="{{{ object_fit }}}"
 						speed="{{{ playbackSpeed }}}"
 						src="{{{ lottie.url }}}"
-						intermission="{{{ settings.intermission }}}"></dotlottie-player>
+						intermission="{{{ settings.intermission }}}"
+						data-mouseover="{{{ settings.onmouseover }}}"
+						date-mouseout="{{{ settings.onmouseout }}}"
+						data-click="{{{ settings.click }}}"
+						data-scroll="{{{ settings.scroll }}}"
+						data-delay="{{{ settings.delay }}}"
+						data-once="{{{ settings.once }}}"></dotlottie-player>
 				</figure>
 			<?php
 		}

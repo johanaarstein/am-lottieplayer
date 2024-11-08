@@ -4,6 +4,16 @@ namespace AAMD_Lottie\Utility;
 \defined( 'ABSPATH' ) || exit;
 
 /**
+ * Normalize boolean input for string attributes
+ */
+function boolean_to_string( $input ) {
+	if ( $input !== 1 && $input !== '1' && $input !== true && $input !== 'true' ) {
+		return 'false';
+	}
+	return 'true';
+}
+
+/**
  * Get allowed attributes for shortcode
  */
 function get_allowed_html() {
@@ -18,26 +28,31 @@ function get_allowed_html() {
 			'style' => array(),
 		),
 		'dotlottie-player' => array(
-			'autoplay'     => array(),
-			'background'   => array(),
-			'class'        => array(),
-			'controls'     => array(),
-			'count'        => array(),
-			'data-*'       => array(),
-			'description'  => array(),
-			'direction'    => array(),
-			'hover'        => array(),
-			'id'           => array(),
-			'intermission' => array(),
-			'loop'         => array(),
-			'objectfit'    => array(),
-			'onclick'      => array(),
-			'onmouseover'  => array(),
-			'renderer'     => array(),
-			'simple'       => array(),
-			'speed'        => array(),
-			'src'          => array(),
-			'subframe'     => array(),
+			'autoplay'       => array(),
+			'background'     => array(),
+			'class'          => array(),
+			'controls'       => array(),
+			'count'          => array(),
+			'data-mouseover' => array(),
+			'date-mouseout'  => array(),
+			'data-click'     => array(),
+			'data-scroll'    => array(),
+			'data-delay'     => array(),
+			'data-once'      => array(),
+			'description'    => array(),
+			'direction'      => array(),
+			'hover'          => array(),
+			'id'             => array(),
+			'intermission'   => array(),
+			'loop'           => array(),
+			'objectfit'      => array(),
+			'onclick'        => array(),
+			'onmouseover'    => array(),
+			'renderer'       => array(),
+			'simple'         => array(),
+			'speed'          => array(),
+			'src'            => array(),
+			'subframe'       => array(),
 		),
 		'script'           => array(
 			'type' => array(),
@@ -290,10 +305,10 @@ function render_lottieplayer( array $atts ) {
 			data-direction="<?php echo esc_attr( get_animation_direction( $atts['direction'] ) ); ?>"
 			data-mouseover="<?php echo esc_attr( $atts['onmouseover'] ); ?>"
 			data-mouseout="<?php echo esc_attr( $atts['onmouseout'] ); ?>"
-			data-click="<?php echo esc_attr( $atts['onclick'] ); ?>"
-			data-scroll="<?php echo esc_attr( $atts['scroll'] ); ?>"
+			data-click="<?php echo esc_attr( boolean_to_string( $atts['onclick'] ) ); ?>"
+			data-scroll="<?php echo esc_attr( boolean_to_string( $atts['scroll'] ) ); ?>"
 			data-delay="<?php echo esc_attr( $atts['delay'] ); ?>"
-			data-once="<?php echo esc_attr( $atts['once'] ); ?>"></dotlottie-player>
+			data-once="<?php echo esc_attr( boolean_to_string( $atts['once'] ) ); ?>"></dotlottie-player>
 			<script type="application/ld+json">
 				{
 					"multiAnimationInteractions": <?php echo json_encode( $multi_animation_interactions ); ?>,

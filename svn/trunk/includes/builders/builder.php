@@ -21,6 +21,7 @@ class Builder {
 	public function __construct() {
 		// Builder initializations
 		add_action( 'init', array( $this, 'init_plugin' ) );
+		// add_action( 'init', array( $this, 'init_bricks' ) );
 		add_action( 'divi_extensions_init', array( $this, 'init_divi' ) );
 		add_action( 'elementor/widgets/register', array( $this, 'init_elementor' ) );
 		add_action( 'after_setup_theme', array( $this, 'init_flatsome' ) );
@@ -53,12 +54,19 @@ class Builder {
 			'am-frontend-light',
 			get_script( 'am-frontend.min.js' ),
 			array( 'dotlottie-player-light' ),
-			'1.2.4',
+			'1.2.5',
 			array(
 				'strategy'  => 'defer',
 				'in_footer' => true,
 			)
 		);
+	}
+
+	/**
+	 * Initialize Bricks builder
+	 */
+	public function init_bricks() {
+		include_file( 'builders/bricks/element' );
 	}
 
 	/**
@@ -154,8 +162,8 @@ class Builder {
 
 		if ( AAMD_LOTTIE_IS_PRO && $is_light ) {
 			$shortcodes = array_merge(
-				get_shortcode_instances( $content, 'am-lottieplayer' ) || array(),
-				get_shortcode_instances( $content, 'et_pb_lottieplayer' ) || array(),
+				get_shortcode_instances( $content, 'am-lottieplayer' ) ?: array(),
+				get_shortcode_instances( $content, 'et_pb_lottieplayer' ) ?: array(),
 			);
 
 			foreach ( $shortcodes as $shortcode ) {
