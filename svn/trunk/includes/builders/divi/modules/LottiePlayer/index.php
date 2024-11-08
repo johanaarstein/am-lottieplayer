@@ -19,7 +19,7 @@ if ( \class_exists( '\ET_Builder_Module' ) ) {
 			$this->plural     = esc_html__( 'AM Lotties', 'am-lottieplayer' );
 			$this->slug       = 'et_pb_lottieplayer';
 			$this->vb_support = 'on';
-			$this->icon_path = get_asset( 'divi-icon.svg' );
+			$this->icon_path  = get_asset( 'divi-icon.svg' );
 
 			$this->settings_modal_toggles = array(
 				'general'    => array(
@@ -240,6 +240,7 @@ if ( \class_exists( '\ET_Builder_Module' ) ) {
 					'condition'        => array(
 						'animate_on_scroll' => 'off',
 					),
+					'readonly'         => ! AAMD_LOTTIE_IS_PRO,
 				),
 				'reverse'           => array(
 					'label'            => esc_html__( 'Reverse', 'am-lottieplayer' ),
@@ -300,6 +301,7 @@ if ( \class_exists( '\ET_Builder_Module' ) ) {
 					'type'        => 'range',
 					'default'     => '1',
 					'toggle_slug' => 'main_content',
+					'readonly'    => ! AAMD_LOTTIE_IS_PRO,
 				),
 				'segment_out'       => array(
 					'label'       => $pro_feature . esc_html__( 'And where to end', 'am-lottieplayer' ),
@@ -307,6 +309,7 @@ if ( \class_exists( '\ET_Builder_Module' ) ) {
 					'type'        => 'range',
 					'default'     => '',
 					'toggle_slug' => 'main_content',
+					'readonly'    => ! AAMD_LOTTIE_IS_PRO,
 				),
 				'animate_on_scroll' => array(
 					'label'            => $pro_feature . esc_html__( 'Animate on scroll', 'am-lottieplayer' ),
@@ -319,6 +322,7 @@ if ( \class_exists( '\ET_Builder_Module' ) ) {
 					),
 					'default_on_front' => 'off',
 					'toggle_slug'      => 'main_content',
+					'readonly'         => ! AAMD_LOTTIE_IS_PRO,
 				),
 				'onclick'           => array(
 					'label'            => esc_html__( 'Play on click', 'am-lottieplayer' ),
@@ -372,6 +376,7 @@ if ( \class_exists( '\ET_Builder_Module' ) ) {
 					'option_category' => 'basic_option',
 					'description'     => esc_html__( 'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer' ) . $pro_link,
 					'toggle_slug'     => 'main_content',
+					'readonly'        => ! AAMD_LOTTIE_IS_PRO,
 				),
 				'exclude_selector'  => array(
 					'label'            => $pro_feature . esc_html__( 'Apply interaction only to trigger element', 'am-lottieplayer' ),
@@ -384,6 +389,7 @@ if ( \class_exists( '\ET_Builder_Module' ) ) {
 					),
 					'default_on_front' => 'off',
 					'toggle_slug'      => 'main_content',
+					'readonly'         => ! AAMD_LOTTIE_IS_PRO,
 				),
 				'scroll'            => array(
 					'label'            => esc_html__( 'Play on scroll, when visible in viewport', 'am-lottieplayer' ),
@@ -452,6 +458,7 @@ if ( \class_exists( '\ET_Builder_Module' ) ) {
 					),
 					'default'         => 'svg',
 					'toggle_slug'     => 'main_content',
+					'readonly'        => ! AAMD_LOTTIE_IS_PRO,
 				),
 			);
 

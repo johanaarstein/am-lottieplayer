@@ -407,7 +407,7 @@ class Media {
 ( function () {
 	global $aamd_lottie_media;
 
-	if ( ! isset( $aamd_lottie_media ) ) {
+	if ( ! AAMD_LOTTIE_IS_PRO && ! isset( $aamd_lottie_media ) ) {
 		$aamd_lottie_media = new Media();
 	}
 

@@ -7,7 +7,7 @@ Tags: lottie, bodymovin, gutenberg, svg, gif
 Requires at least: 5.9
 Tested up to: 6.6
 Requires PHP: 7.0
-Stable Tag: 3.3.7
+Stable Tag: 3.3.8
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -130,7 +130,10 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
-= 3.3.6 - October 7 2024 =
+= 3.3.8 - October 8 2024 =
+* Fixed bug in Divi visual builder causing autoplay not to work
+
+= 3.3.7 - October 7 2024 =
 * Minor bugfix
 
 = 3.3.6 - October 7 2024 =
