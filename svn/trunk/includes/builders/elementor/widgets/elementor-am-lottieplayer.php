@@ -928,13 +928,17 @@ if ( \class_exists( '\Elementor\Widget_Base' ) ) {
 		}
 
 		protected function render() {
-			$settings = $this->get_settings_for_display() || array();
+			$settings = $this->get_settings_for_display();
 
-			$this->_num_of_animaitons = $settings['num_of_animations'];
-
-			if ( ! isset( $settings['lottie']['url'] ) || empty( $settings['lottie']['url'] ) ) {
+			if (
+				! $settings ||
+				! isset( $settings['lottie']['url'] ) ||
+				empty( $settings['lottie']['url'] )
+			) {
 				return;
 			}
+
+			$this->_num_of_animaitons = $settings['num_of_animations'];
 
 			$src = $settings['lottie']['url'];
 			$ext = \pathinfo( $src, PATHINFO_EXTENSION );
