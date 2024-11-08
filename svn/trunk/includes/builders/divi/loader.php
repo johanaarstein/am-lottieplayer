@@ -1,9 +1,5 @@
 <?php
-\defined( 'ABSPATH' ) || exit;
-
-if ( ! \class_exists( 'ET_Builder_Element' ) ) {
-	return;
-}
+( \defined( 'ABSPATH' ) && \class_exists( 'ET_Builder_Element' ) ) || exit;
 
 $module_files = \glob( __DIR__ . '/modules/**/*.php' );
 
