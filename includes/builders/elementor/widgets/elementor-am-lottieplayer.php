@@ -1,16 +1,24 @@
 <?php
 namespace AAMD_Lottie;
 
+use function AAMD_Lottie\Utility\get_allowed_html;
+use function AAMD_Lottie\Utility\get_style;
 use function AAMD_Lottie\Utility\render_lottieplayer;
 use function AAMD_Lottie\Utility\use_id;
-use function AAMD_Lottie\Utility\get_allowed_html;
 
-( \defined( 'ABSPATH' ) && \class_exists( '\Elementor\Widget_Base' ) ) || exit;
+\defined( 'ABSPATH' ) || exit;
 
 class Elementor extends \Elementor\Widget_Base {
 
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
+
+		wp_enqueue_style(
+			'elementor-backend-style',
+			get_style( 'am-font.css' ),
+			array(),
+			'1.0.1'
+		);
 
 		$this->_set_preview_id( 'preview-id' );
 	}
@@ -87,7 +95,7 @@ class Elementor extends \Elementor\Widget_Base {
 		$this->add_control(
 			'num_of_animations',
 			array(
-				'label'       => $pro_feature . __( 'Number of animations', 'am-lottieplayer' ),
+				'label'       => $pro_feature . esc_html__( 'Number of animations', 'am-lottieplayer' ),
 				'description' => $pro_link,
 				'type'        => \Elementor\Controls_Manager::NUMBER,
 				'default'     => 1,
@@ -581,7 +589,7 @@ class Elementor extends \Elementor\Widget_Base {
 		$this->add_control(
 			'segment_in',
 			array(
-				'label'       => $pro_feature . __( 'Choose where to start', 'am-lottieplayer' ),
+				'label'       => $pro_feature . esc_html__( 'Choose where to start', 'am-lottieplayer' ),
 				'description' => $pro_link,
 				'type'        => \Elementor\Controls_Manager::NUMBER,
 				'step'        => 1,
@@ -594,7 +602,7 @@ class Elementor extends \Elementor\Widget_Base {
 		$this->add_control(
 			'segment_out',
 			array(
-				'label'       => $pro_feature . __( 'And where to end', 'am-lottieplayer' ),
+				'label'       => $pro_feature . esc_html__( 'And where to end', 'am-lottieplayer' ),
 				'description' => $pro_link,
 				'type'        => \Elementor\Controls_Manager::NUMBER,
 				'step'        => 1,
@@ -615,7 +623,7 @@ class Elementor extends \Elementor\Widget_Base {
 		$this->add_control(
 			'animate_on_scroll',
 			array(
-				'label'       => $pro_feature . __( 'Animate on scroll', 'am-lottieplayer' ),
+				'label'       => $pro_feature . esc_html__( 'Animate on scroll', 'am-lottieplayer' ),
 				'description' => esc_html__( 'Make the animation play only when scrolling, relative to the speed and direction of the scroll', 'am-lottieplayer' ) . $pro_link,
 				'type'        => \Elementor\Controls_Manager::SWITCHER,
 				'label_on'    => esc_html__( 'Yes', 'am-lottieplayer' ),
@@ -672,7 +680,7 @@ class Elementor extends \Elementor\Widget_Base {
 		$this->add_control(
 			'selector',
 			array(
-				'label'       => $pro_feature . __( 'Trigger element', 'am-lottieplayer' ),
+				'label'       => $pro_feature . esc_html__( 'Trigger element', 'am-lottieplayer' ),
 				'description' => esc_html__( 'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer' ) . $pro_link,
 				'type'        => \Elementor\Controls_Manager::TEXT,
 				'placeholder' => '#',
@@ -698,7 +706,7 @@ class Elementor extends \Elementor\Widget_Base {
 		$this->add_control(
 			'exclude_selector',
 			array(
-				'label'       => $pro_feature . __( 'Apply interaction only to trigger element', 'am-lottieplayer' ),
+				'label'       => $pro_feature . esc_html__( 'Apply interaction only to trigger element', 'am-lottieplayer' ),
 				'description' => $pro_link,
 				'type'        => \Elementor\Controls_Manager::SWITCHER,
 				'label_on'    => esc_html__( 'Yes', 'am-lottieplayer' ),
@@ -898,7 +906,7 @@ class Elementor extends \Elementor\Widget_Base {
 		$this->add_control(
 			'renderer',
 			array(
-				'label'       => $pro_feature . __( 'Renderer', 'am-lottieplayer' ),
+				'label'       => $pro_feature . esc_html__( 'Renderer', 'am-lottieplayer' ),
 				'description' => $pro_link,
 				'type'        => \Elementor\Controls_Manager::SELECT,
 				'options'     => array(

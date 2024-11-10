@@ -1,7 +1,7 @@
 <?php
 namespace AAMD_Lottie;
 
-( \defined( 'ABSPATH' ) && \class_exists( '\ET_Builder_Module' ) ) || exit;
+\defined( 'ABSPATH' ) || exit;
 
 use function AAMD_Lottie\Utility\get_asset;
 use function AAMD_Lottie\Utility\render_lottieplayer;

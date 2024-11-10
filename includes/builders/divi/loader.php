@@ -1,10 +1,15 @@
 <?php
-( \defined( 'ABSPATH' ) && \class_exists( 'ET_Builder_Element' ) ) || exit;
+\defined( 'ABSPATH' ) || exit;
 
-$module_files = \glob( __DIR__ . '/modules/**/*.php' );
+$module_files = \glob( __DIR__ . '/modules/*.php' );
+
+if ( ! $module_files ) {
+	return;
+}
 
 foreach ( (array) $module_files as $module_file ) {
-	if ( $module_file ) {
-		require_once $module_file;
+	if ( ! $module_file ) {
+		continue;
 	}
+	require_once $module_file;
 }
