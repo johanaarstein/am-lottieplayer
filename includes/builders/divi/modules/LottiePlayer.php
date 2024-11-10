@@ -463,7 +463,14 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 		return $fields;
 	}
 
-	public function render( $attrs = array(), $content = null, $render_slug = '' ) {
+	/**
+	 * @param array  $attrs       List of unprocessed attributes.
+	 * @param string $content     Content being processed.
+	 * @param string $render_slug Slug of module that is used for rendering output.
+	 *
+	 * @return string The module's HTML output.
+	 */
+	public function render( $attrs = array(), $content = '', $render_slug = '' ) {
 
 		$mergedAttrs = \array_merge(
 			$attrs,

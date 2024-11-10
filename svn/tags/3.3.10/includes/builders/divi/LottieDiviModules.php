@@ -1,7 +1,7 @@
 <?php
 namespace AAMD_Lottie;
 
-( \defined( 'ABSPATH' ) && \class_exists( '\DiviExtension' ) ) || exit;
+\defined( 'ABSPATH' ) || exit;
 
 class DiviModules extends \DiviExtension {
 

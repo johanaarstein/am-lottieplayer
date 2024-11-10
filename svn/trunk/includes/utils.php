@@ -219,7 +219,7 @@ function include_file( string $path = '', object $args = null, string $ext = 'ph
  * @param bool|string|null
  */
 function is_true( $var ) {
-	return ( $var && $var !== 'false' && $var !== '0' );
+	return ( isset( $var ) && ! empty( $var ) && $var !== 'false' && $var !== '0' );
 }
 
 /**
@@ -251,13 +251,25 @@ function render_lottieplayer( array $atts ) {
 	if ( is_true( $atts['subframe'] ) ) {
 		$subframe = "subframe\n";
 	}
+
+	$unit_regex = '/\s*(\d+\s?)(px|em|rem|%)/';
+
 	$height = 'auto';
 	if ( is_true( $atts['height'] ) ) {
-		$height = $atts['height'] . $atts['height_unit'];
+		// Check if units are already specified
+		if ( preg_match( $unit_regex, $atts['height'] ) ) {
+			$height = $atts['height'];
+		} else {
+			$height = $atts['height'] . $atts['height_unit'];
+		}
 	}
 	$width = 'auto';
 	if ( is_true( $atts['width'] ) ) {
-		$width = $atts['width'] . $atts['width_unit'];
+		if ( preg_match( $unit_regex, $atts['width'] ) ) {
+			$height = $atts['width'];
+		} else {
+			$width = $atts['width'] . $atts['width_unit'];
+		}
 	}
 
 	$multi_animation_interactions = null;

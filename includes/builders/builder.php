@@ -65,16 +65,16 @@ class Builder {
 	 * Initialize Bricks builder
 	 */
 	// public function init_bricks() {
-	// 	$element_files = array(
-	// 		trailingslashit( AAMD_LOTTIE_PATH ) . 'includes/builders/bricks/element.php',
-	// 	);
+	// $element_files = array(
+	// trailingslashit( AAMD_LOTTIE_PATH ) . 'includes/builders/bricks/element.php',
+	// );
 
-	// 	foreach ( $element_files as $file ) {
-	// 		if ( ! class_exists( '\Bricks\Elements' ) ) {
-	// 			continue;
-	// 		}
-	// 		\Bricks\Elements::register_element( $file );
-	// 	}
+	// foreach ( $element_files as $file ) {
+	// if ( ! class_exists( '\Bricks\Elements' ) ) {
+	// continue;
+	// }
+	// \Bricks\Elements::register_element( $file );
+	// }
 	// }
 
 	/**
@@ -222,11 +222,11 @@ class Builder {
 		string $part
 	) {
 		if ( $layouts[ "et_{$part}_layout" ]['override'] ) {
-			$content = null;
+			$content = '';
 			if ( get_post( $layouts[ "et_{$part}_layout" ]['id'] ) ) {
 				$content = get_post( $layouts[ "et_{$part}_layout" ]['id'] )->post_content;
 			}
-			if ( $content && has_shortcode( $content, 'et_pb_lottieplayer' ) ) {
+			if ( ! empty( $content ) && has_shortcode( $content, 'et_pb_lottieplayer' ) ) {
 				// This is used to determine whether to load full or light version
 				$divi_shortcodes = array_merge(
 					get_shortcode_instances( $content, 'et_pb_lottieplayer' ) ?: array(),

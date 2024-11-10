@@ -81,7 +81,7 @@
 	},
 	"scripts": {
 		"predev": "wp-env start --update",
-		"dev": "wp-scripts start",
+		"dev": "wp-scripts start --hot",
 		"prebuild": "pnpm dep && pnpm scss",
 		"build": "wp-scripts build",
 		"postbuild": "pnpm svn",

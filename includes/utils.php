@@ -219,7 +219,7 @@ function include_file( string $path = '', object $args = null, string $ext = 'ph
  * @param bool|string|null
  */
 function is_true( $var ) {
-	return ( isset( $var ) && $var !== 'false' && $var !== '0' );
+	return ( isset( $var ) && ! empty( $var ) && $var !== 'false' && $var !== '0' );
 }
 
 /**
