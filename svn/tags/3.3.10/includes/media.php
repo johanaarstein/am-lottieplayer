@@ -386,7 +386,7 @@ class Media {
 	}
 
 	/**
-	 * Get placeholder animation.
+	 * Get URL to placeholder animation.
 	 */
 	public function get_default_file() {
 		if ( $this->_defaultFile ) {

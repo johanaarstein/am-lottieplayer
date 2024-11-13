@@ -4,7 +4,7 @@ namespace AAMD_Lottie;
 \defined( 'ABSPATH' ) || exit;
 
 use function AAMD_Lottie\Utility\get_asset;
-use function AAMD_Lottie\Utility\render_lottieplayer;
+use function AAMD_Lottie\Utility\render_shortcode;
 
 class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 
@@ -463,14 +463,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 		return $fields;
 	}
 
-	/**
-	 * @param array  $attrs       List of unprocessed attributes.
-	 * @param string $content     Content being processed.
-	 * @param string $render_slug Slug of module that is used for rendering output.
-	 *
-	 * @return string The module's HTML output.
-	 */
-	public function render( $attrs = array(), $content = '', $render_slug = '' ) {
+	public function render( $attrs = array(), $content = null, $render_slug = '' ) {
 
 		$mergedAttrs = \array_merge(
 			$attrs,
@@ -498,7 +491,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 			),
 		);
 
-		return render_lottieplayer( $mergedAttrs );
+		return render_shortcode( $mergedAttrs );
 	}
 }
 

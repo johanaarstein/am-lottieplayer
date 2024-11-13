@@ -4,6 +4,7 @@ namespace AAMD_Lottie;
 use function AAMD_Lottie\Utility\get_allowed_html;
 use function AAMD_Lottie\Utility\get_style;
 use function AAMD_Lottie\Utility\render_lottieplayer;
+use function AAMD_Lottie\Utility\render_shortcode;
 use function AAMD_Lottie\Utility\use_id;
 
 \defined( 'ABSPATH' ) || exit;
@@ -13,11 +14,18 @@ class Elementor extends \Elementor\Widget_Base {
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
 
-		wp_enqueue_style(
+		wp_register_style(
 			'elementor-backend-style',
-			get_style( 'am-font.css' ),
+			get_style( 'elementor.css' ),
 			array(),
 			'1.0.1'
+		);
+
+		wp_enqueue_style(
+			'am-icon-font',
+			get_style( 'am-font.css' ),
+			array( 'elementor-backend-style' ),
+			'1.0.0'
 		);
 
 		$this->_set_preview_id( 'preview-id' );
@@ -1006,7 +1014,7 @@ class Elementor extends \Elementor\Widget_Base {
 		);
 
 		echo wp_kses(
-			render_lottieplayer( $attrs ),
+			render_shortcode( $attrs ),
 			get_allowed_html()
 		);
 	}

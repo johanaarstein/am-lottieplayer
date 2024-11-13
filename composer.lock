@@ -4,9 +4,54 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4e4b6d7e63cd4fbc79f567e8668d85a7",
+    "content-hash": "7b4f051d46546a2f0149e5b05e0fde4d",
     "packages": [],
     "packages-dev": [
+        {
+            "name": "aarsteinmedia/bricks-stubs",
+            "version": "1.10.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aarsteinmedia/bricks-stubs.git",
+                "reference": "eb514a1b07a4f865b649be194a5de85abb887e37"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aarsteinmedia/bricks-stubs/zipball/eb514a1b07a4f865b649be194a5de85abb887e37",
+                "reference": "eb514a1b07a4f865b649be194a5de85abb887e37",
+                "shasum": ""
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "*",
+                "ext-gettext": "*",
+                "php": ">=7.1",
+                "php-stubs/generator": "^0.5.0",
+                "squizlabs/php_codesniffer": "*",
+                "wp-coding-standards/wpcs": "*"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Johan Martin Aarstein",
+                    "email": "johan@aarstein.media"
+                }
+            ],
+            "description": "Bricks function, class, and global variable declaration stubs for easier static analysis.",
+            "homepage": "https://github.com/aarsteinmedia/bricks-stubs",
+            "keywords": [
+                "bricks",
+                "static analysis"
+            ],
+            "support": {
+                "issues": "https://github.com/aarsteinmedia/bricks-stubs/issues",
+                "source": "https://github.com/aarsteinmedia/bricks-stubs/tree/1.10.7"
+            },
+            "time": "2024-11-12T23:14:18+00:00"
+        },
         {
             "name": "aarsteinmedia/divi-stubs",
             "version": "4.27.7",
@@ -430,16 +475,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.10.3",
+            "version": "3.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
-                "reference": "62d32998e820bddc40f99f8251958aed187a5c9c"
+                "reference": "70c08f8d20c0eb4fe56f26644dd94dae76a7f450"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/62d32998e820bddc40f99f8251958aed187a5c9c",
-                "reference": "62d32998e820bddc40f99f8251958aed187a5c9c",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/70c08f8d20c0eb4fe56f26644dd94dae76a7f450",
+                "reference": "70c08f8d20c0eb4fe56f26644dd94dae76a7f450",
                 "shasum": ""
             },
             "require": {
@@ -506,7 +551,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2024-09-18T10:38:58+00:00"
+            "time": "2024-11-12T09:53:29+00:00"
         },
         {
             "name": "wp-coding-standards/wpcs",

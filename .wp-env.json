@@ -19,7 +19,8 @@
       ],
       "themes": [
         "../premium-themes/flatsome",
-        "../premium-themes/Divi"
+        "../premium-themes/Divi",
+        "../premium-themes/bricks"
       ]
     }
   }

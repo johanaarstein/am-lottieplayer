@@ -20,7 +20,7 @@ class Builder {
 	public function __construct() {
 		// Builder initializations
 		add_action( 'init', array( $this, 'init_plugin' ) );
-		// add_action( 'init', array( $this, 'init_bricks' ), 11 );
+		add_action( 'init', array( $this, 'init_bricks' ), 11 );
 		add_action( 'divi_extensions_init', array( $this, 'init_divi' ) );
 		add_action( 'elementor/widgets/register', array( $this, 'init_elementor' ) );
 		add_action( 'after_setup_theme', array( $this, 'init_flatsome' ) );
@@ -64,18 +64,18 @@ class Builder {
 	/**
 	 * Initialize Bricks builder
 	 */
-	// public function init_bricks() {
-	// $element_files = array(
-	// trailingslashit( AAMD_LOTTIE_PATH ) . 'includes/builders/bricks/element.php',
-	// );
+	public function init_bricks() {
+		$element_files = array(
+			trailingslashit( AAMD_LOTTIE_PATH ) . 'includes/builders/bricks/element.php',
+		);
 
-	// foreach ( $element_files as $file ) {
-	// if ( ! class_exists( '\Bricks\Elements' ) ) {
-	// continue;
-	// }
-	// \Bricks\Elements::register_element( $file );
-	// }
-	// }
+		foreach ( $element_files as $file ) {
+			if ( ! class_exists( '\Bricks\Elements' ) ) {
+				continue;
+			}
+			\Bricks\Elements::register_element( $file );
+		}
+	}
 
 	/**
 	 * Initialize DIVI Extension
@@ -222,11 +222,11 @@ class Builder {
 		string $part
 	) {
 		if ( $layouts[ "et_{$part}_layout" ]['override'] ) {
-			$content = '';
+			$content = null;
 			if ( get_post( $layouts[ "et_{$part}_layout" ]['id'] ) ) {
 				$content = get_post( $layouts[ "et_{$part}_layout" ]['id'] )->post_content;
 			}
-			if ( ! empty( $content ) && has_shortcode( $content, 'et_pb_lottieplayer' ) ) {
+			if ( $content && has_shortcode( $content, 'et_pb_lottieplayer' ) ) {
 				// This is used to determine whether to load full or light version
 				$divi_shortcodes = array_merge(
 					get_shortcode_instances( $content, 'et_pb_lottieplayer' ) ?: array(),

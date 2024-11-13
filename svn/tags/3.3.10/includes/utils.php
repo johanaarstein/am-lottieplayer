@@ -33,18 +33,19 @@ function get_allowed_html() {
 			'class'          => array(),
 			'controls'       => array(),
 			'count'          => array(),
+			'data-click'     => array(),
+			'data-delay'     => array(),
 			'data-mouseover' => array(),
 			'date-mouseout'  => array(),
-			'data-click'     => array(),
-			'data-scroll'    => array(),
-			'data-delay'     => array(),
 			'data-once'      => array(),
+			'data-scroll'    => array(),
 			'description'    => array(),
 			'direction'      => array(),
 			'hover'          => array(),
 			'id'             => array(),
 			'intermission'   => array(),
 			'loop'           => array(),
+			'mode'           => array(),
 			'objectfit'      => array(),
 			'onclick'        => array(),
 			'onmouseover'    => array(),
@@ -219,7 +220,7 @@ function include_file( string $path = '', object $args = null, string $ext = 'ph
  * @param bool|string|null
  */
 function is_true( $var ) {
-	return ( isset( $var ) && ! empty( $var ) && $var !== 'false' && $var !== '0' );
+	return ( isset( $var ) && $var && $var !== 'false' && $var !== '0' );
 }
 
 /**
@@ -288,6 +289,15 @@ function render_lottieplayer( array $atts ) {
 	if ( isset( $atts['selector'] ) ) {
 		$selector = $atts['selector'];
 	}
+	$src = '';
+	if ( isset( $atts['src'] ) ) {
+		if ( is_string( $atts['src'] ) ) {
+			$src = $atts['src'];
+		}
+		if ( isset( $atts['src']['url'] ) ) {
+			$src = $atts['src']['url'];
+		}
+	}
 
 	\ob_start();
 	?>
@@ -303,13 +313,14 @@ function render_lottieplayer( array $atts ) {
 			<?php echo esc_attr( $animate_on_scroll ); ?>
 			description="<?php echo esc_attr( $atts['alt'] ); ?>"
 			objectfit="<?php echo esc_attr( $atts['objectfit'] ); ?>"
-			src="<?php echo esc_url( $atts['src'] ); ?>"
+			src="<?php echo esc_url( $src ); ?>"
 			intermission="<?php echo esc_attr( $atts['intermission'] ); ?>"
 			speed="<?php echo esc_attr( $atts['speed'] ); ?>"
 			<?php
 			if ( AAMD_LOTTIE_IS_PRO ) {
 				?>
 			renderer="<?php echo esc_attr( $atts['renderer'] ); ?>"
+			mode="<?php echo esc_attr( $atts['mode'] ); ?>"
 				<?php
 			}
 			?>

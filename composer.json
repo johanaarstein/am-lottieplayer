@@ -9,7 +9,8 @@
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
         "aarsteinmedia/divi-stubs": "^4.27",
         "aarsteinmedia/js_composer-stubs": "^6.10",
-        "aarsteinmedia/flatsome-stubs": "^3.19"
+        "aarsteinmedia/flatsome-stubs": "^3.19",
+        "aarsteinmedia/bricks-stubs": "^1.10"
     },
     "config": {
         "allow-plugins": {
