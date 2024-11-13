@@ -50,7 +50,11 @@ function overrideXHR() {
 
 		const name = data.get( 'name' );
 
-		if ( typeof name !== 'string' || ! name.endsWith( '.lottie' ) ) {
+		if (
+			typeof name !== 'string' ||
+			( ! name.toLowerCase().endsWith( '.lottie' ) &&
+				! name.toLowerCase().endsWith( '.json' ) )
+		) {
 			return send.apply(
 				this,
 				arguments as unknown as [
@@ -102,7 +106,10 @@ function overrideXHR() {
 					),
 					formData = new FormData();
 
-				formData.append( 'aamd_thumnail_submit', '' );
+				formData.append(
+					'aamd_thumnail_submit',
+					aamdPHPVariables.nonce
+				);
 				formData.append( 'thumbnail', svgFile );
 				const response = await fetch(
 					`${ trailingslashit(
@@ -114,8 +121,10 @@ function overrideXHR() {
 				if ( ! response.ok ) {
 					throw new Error( response.statusText );
 				}
+
+				// const responseData: unknown = await response.json();
 			} catch ( err ) {
-				console.error( 'foobar', err );
+				console.error( err );
 			}
 		};
 

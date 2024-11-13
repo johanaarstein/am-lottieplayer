@@ -112,7 +112,7 @@ class Media {
 	 */
 	public function generate_lottie_metadata( $metadata, $attachment_id ) {
 		$mime = get_post_mime_type( $attachment_id );
-		if ( $mime !== 'application/zip' ) {
+		if ( $mime !== 'application/zip' && $mime !== 'application/json' ) {
 			return $metadata;
 		}
 
@@ -122,15 +122,16 @@ class Media {
 		$upload_dir          = wp_upload_dir();
 		$relative_path       = \str_replace( trailingslashit( $upload_dir['basedir'] ), '', $lottie_path );
 		$filename            = \basename( $lottie_path );
-		$thumbnail_file_name = 'lottie-thumbnail-' . \str_ireplace( '.lottie', '.svg', $filename );
-		$thumbnail_file      = trailingslashit( $upload_dir['path'] ) . $thumbnail_file_name;
+		$thumbnail_file_name = 'lottie-thumbnail-' . \preg_replace( '/.(lottie|json)/i', '.svg', $filename );
+		$thumbnail_file_path = trailingslashit( $upload_dir['path'] ) . $thumbnail_file_name;
+		// $thumbnail_file_url  = trailingslashit( $upload_dir['url'] ) . $thumbnail_file_name;
 		$thumbnail_file_size = round( $metadata['filesize'] / 60 );
 
-		if ( \file_exists( $thumbnail_file ) ) {
-			$thumbnail_file_size = filesize( $thumbnail_file );
+		if ( \file_exists( $thumbnail_file_path ) ) {
+			$thumbnail_file_size = filesize( $thumbnail_file_path );
 		}
 
-		$dimensions = $this->_svg_dimensions( $thumbnail_file );
+		$dimensions = $this->_svg_dimensions( $thumbnail_file_path );
 
 		if ( ! $dimensions ) {
 			return $metadata;
@@ -192,7 +193,12 @@ class Media {
 		$width  = 0;
 		$height = 0;
 
-		$svg = \simplexml_load_string( \file_get_contents( $path ) );
+		$raw_svg = \file_get_contents( $path );
+		if ( ! $raw_svg ) {
+			return false;
+		}
+
+		$svg = \simplexml_load_string( $raw_svg );
 
 		// Ensure the svg could be loaded.
 		if ( ! $svg ) {

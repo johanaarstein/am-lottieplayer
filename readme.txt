@@ -5,9 +5,9 @@ Author URI: https://www.aarstein.media
 Plugin URI: https://wordpress.org/plugins/am-lottieplayer/
 Tags: lottie, bodymovin, gutenberg, svg, gif
 Requires at least: 5.9
-Tested up to: 6.6
+Tested up to: 6.7
 Requires PHP: 7.0
-Stable Tag: 3.3.10
+Stable Tag: 3.4.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -130,6 +130,11 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 3.4.0 - October 13 2024 =
+* Added support for Bricks Builder
+* Tested with WordPress 6.7
+* Added nonce to thumbnail uploader
+
 = 3.3.10 - October 8 2024 =
 * Fixed font-end script not parsing interactions correctly
 
@@ -150,7 +155,7 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 * Fixed critical bug
 
 = 3.3.4 - October 4 2024 =
-* Added thumnail previews for Meda Library
+* Added thumbnail previews for Meda Library
 
 = 3.3.1 - October 2 2024 =
 * Fixed bug with Flatsome template

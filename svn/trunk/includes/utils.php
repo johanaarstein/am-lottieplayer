@@ -334,10 +334,10 @@ function render_lottieplayer( array $atts ) {
 			data-once="<?php echo esc_attr( boolean_to_string( $atts['once'] ) ); ?>"></dotlottie-player>
 			<script type="application/ld+json">
 				{
-					"multiAnimationInteractions": <?php echo json_encode( $multi_animation_interactions ); ?>,
-					"multiAnimationSettings": <?php echo json_encode( $multi_animation_settings ); ?>,
-					"selector": <?php echo json_encode( $selector ); ?>,
-					"segment": <?php echo json_encode( $segment ); ?>
+					"multiAnimationInteractions": <?php echo wp_json_encode( $multi_animation_interactions ); ?>,
+					"multiAnimationSettings": <?php echo wp_json_encode( $multi_animation_settings ); ?>,
+					"selector": <?php echo wp_json_encode( $selector ); ?>,
+					"segment": <?php echo wp_json_encode( $segment ); ?>
 				}
 			</script>
 	</figure>

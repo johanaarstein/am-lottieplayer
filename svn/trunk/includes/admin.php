@@ -159,6 +159,7 @@ class Admin {
 		}
 
 		$pluginUrl = AAMD_LOTTIE_URL;
+		$nonce     = wp_create_nonce( 'am-upload' );
 
 		if ( $page === 'upload.php' || $page === 'toplevel_page_am-lottieplayer-pro' ) {
 			$media_assets = require get_build_path( 'media.asset.php' );
@@ -175,7 +176,7 @@ class Admin {
 
 			wp_add_inline_script(
 				'am-lottieplayer-media',
-				"var aamdPHPVariables={pluginUrl:'{$pluginUrl}'};",
+				"var aamdPHPVariables={pluginUrl:'{$pluginUrl}',nonce:'{$nonce}'};",
 				'before',
 			);
 		}

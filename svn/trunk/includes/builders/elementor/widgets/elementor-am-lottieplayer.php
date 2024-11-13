@@ -176,6 +176,7 @@ class Elementor extends \Elementor\Widget_Base {
 			$this->add_control(
 				"autoplay_{$i}",
 				array(
+					/* translators: %d: animation interation */
 					'label'      => \sprintf( esc_html__( 'Autoplay %d', 'am-lottieplayer' ), $i ),
 					'type'       => \Elementor\Controls_Manager::SWITCHER,
 					'label_on'   => esc_html__( 'On', 'am-lottieplayer' ),
@@ -251,6 +252,7 @@ class Elementor extends \Elementor\Widget_Base {
 			$this->add_control(
 				"loop_{$i}",
 				array(
+					/* translators: %d: animation interation */
 					'label'      => \sprintf( esc_html__( 'Loop %d', 'am-lottieplayer' ), $i ),
 					'type'       => \Elementor\Controls_Manager::SWITCHER,
 					'label_on'   => esc_html__( 'On', 'am-lottieplayer' ),
@@ -328,6 +330,7 @@ class Elementor extends \Elementor\Widget_Base {
 			$this->add_control(
 				"mode_{$i}",
 				array(
+					/* translators: %d: animation interation */
 					'label'      => \sprintf( esc_html__( 'Boomerang %d', 'am-lottieplayer' ), $i ),
 					'type'       => \Elementor\Controls_Manager::SWITCHER,
 					'label_on'   => esc_html__( 'On', 'am-lottieplayer' ),
@@ -403,6 +406,7 @@ class Elementor extends \Elementor\Widget_Base {
 			$this->add_control(
 				"reverse_{$i}",
 				array(
+					/* translators: %d: animation interation */
 					'label'      => \sprintf( esc_html__( 'Reverse %d', 'am-lottieplayer' ), $i ),
 					'type'       => \Elementor\Controls_Manager::SWITCHER,
 					'label_on'   => esc_html__( 'Yes', 'am-lottieplayer' ),
@@ -491,6 +495,7 @@ class Elementor extends \Elementor\Widget_Base {
 			$this->add_control(
 				"speed_{$i}",
 				array(
+					/* translators: %d: animation interation */
 					'label'       => \sprintf( esc_html__( 'Playback speed %d', 'am-lottieplayer' ), $i ),
 					'type'        => \Elementor\Controls_Manager::NUMBER,
 					'step'        => 0.1,
@@ -570,6 +575,7 @@ class Elementor extends \Elementor\Widget_Base {
 			$this->add_control(
 				"intermisson_{$i}",
 				array(
+					/* translators: %d: animation interation */
 					'label'       => \sprintf( esc_html__( 'Intermission %d', 'am-lottieplayer' ), $i ),
 					'description' => esc_html__( 'Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer' ),
 					'type'        => \Elementor\Controls_Manager::NUMBER,
@@ -799,11 +805,11 @@ class Elementor extends \Elementor\Widget_Base {
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'textdomain' ),
+						'title' => esc_html__( 'Center', 'am-lottieplayer' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
-						'title' => esc_html__( 'Right', 'textdomain' ),
+						'title' => esc_html__( 'Right', 'am-lottieplayer' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
