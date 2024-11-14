@@ -107,7 +107,7 @@ function overrideXHR() {
 					formData = new FormData();
 
 				formData.append(
-					'aamd_thumnail_submit',
+					'aamd_thumbnail_submit',
 					aamdPHPVariables.nonce
 				);
 				formData.append( 'thumbnail', svgFile );

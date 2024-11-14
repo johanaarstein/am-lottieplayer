@@ -4,7 +4,7 @@ namespace AAMD_Lottie;
 use Error;
 use Exception;
 
-if ( ! isset( $_POST['aamd_thumnail_submit'] ) ) {
+if ( ! isset( $_POST['aamd_thumbnail_submit'] ) ) {
 	exit;
 }
 
@@ -26,11 +26,14 @@ class UploadThumbnail {
 		return $mimes;
 	}
 
+	/**
+	 * Main function
+	 */
 	private function _upload_file() {
 		try {
 
-			if ( ! wp_verify_nonce( $_POST['aamd_thumnail_submit'], 'am-upload' ) ) {
-				throw new Error( 'Ivalid nonce' );
+			if ( ! wp_verify_nonce( $_POST['aamd_thumbnail_submit'], 'am-upload' ) ) {
+				throw new Error( 'Invalid nonce' );
 			}
 
 			$raw_name = isset( $_FILES['thumbnail']['name'] ) ? $_FILES['thumbnail']['name'] : false;
@@ -43,7 +46,7 @@ class UploadThumbnail {
 			$file_type = \pathinfo( $file_name, PATHINFO_EXTENSION );
 
 			if ( $file_type !== 'svg' ) {
-				throw new Error( 'Ivalid file type' );
+				throw new Error( 'Invalid file type' );
 			}
 
 			$file_url = trailingslashit( wp_get_upload_dir()['url'] ) . $file_name;

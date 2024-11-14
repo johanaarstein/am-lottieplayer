@@ -10,13 +10,14 @@ The most complete Lottie Player yet. Lightweight, easy to use, accepts LottieJSO
 
 AM LottiePlayer is easy to use, lightweight, and gives you total control over how to implement crisp, vectorized animations to your website. Easily set up user interactions, choose between JSON or the optimized dotLottie format, choose whether to serve the files from a CDN or your own *Media Library*, choose how to scale the animation, add a nice description for screen readers and search eninge crawlers, and you're off to the races!
 
-Upload Lottie animations to WordPress and add them to Gutenberg, Divi, Elementor, Flatsome UX Builder, or via the shortcode `[am-lottieplayer]`. This plugin also offer partial support for WPBakery (formerly Visual Studio).
+Upload Lottie animations to WordPress and add them to Gutenberg, Divi, Elementor, Bricks, Flatsome UX Builder, or via the shortcode `[am-lottieplayer]`. This plugin also offer partial support for WPBakery (formerly Visual Studio).
 
 ### Features
 
 - Contains two Gutenberg blocks: a player and a cover block with text overlay – great for headers.
 - Contains a Divi Builder Module
 - Contains an Elementor Widget
+- Contains a Bricks Element
 - Contains the shortcode `[am-lottieplayer]`
 - Has intergration for Flatsome UX Builder
 - Has partial support for WPBakery (formerly Visual Studio)

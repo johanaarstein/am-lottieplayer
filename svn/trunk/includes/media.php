@@ -128,10 +128,10 @@ class Media {
 		$thumbnail_file_size = round( $metadata['filesize'] / 60 );
 
 		if ( \file_exists( $thumbnail_file_path ) ) {
-			$thumbnail_file_size = filesize( $thumbnail_file_path );
+			$thumbnail_file_size = \filesize( $thumbnail_file_path );
 		}
 
-		$dimensions = $this->_svg_dimensions( $thumbnail_file_path );
+		$dimensions = $this->svg_dimensions( $thumbnail_file_path );
 
 		if ( ! $dimensions ) {
 			return $metadata;
@@ -146,8 +146,8 @@ class Media {
 		);
 
 		$metadata = array_merge(
+			$metadata,
 			array(
-				$metadata,
 				'width'      => $dimensions['width'],
 				'height'     => $dimensions['height'],
 				'file'       => $relative_path,
@@ -184,7 +184,7 @@ class Media {
 	 *
 	 * @return array|bool
 	 */
-	private function _svg_dimensions( string $path ) {
+	public function svg_dimensions( string $path ) {
 
 		if ( ! \file_exists( $path ) ) {
 			return false;
@@ -413,7 +413,7 @@ class Media {
 ( function () {
 	global $aamd_lottie_media;
 
-	if ( ! AAMD_LOTTIE_IS_PRO && ! isset( $aamd_lottie_media ) ) {
+	if ( ! isset( $aamd_lottie_media ) ) {
 		$aamd_lottie_media = new Media();
 	}
 

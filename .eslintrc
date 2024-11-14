@@ -48,6 +48,7 @@
 			}
 		],
 		"@wordpress/no-unsafe-wp-apis": "warn",
+		"camelcase": "off",
 		"max-depth": [
 			"error",
 			4
