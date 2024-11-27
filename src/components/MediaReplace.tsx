@@ -21,9 +21,9 @@ import {
 	ToolbarButton,
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
-import { useEffect, useRef, useState } from '@wordpress/element';
 // eslint-disable-next-line @wordpress/no-unsafe-wp-apis
 import { __unstableStripHTML as stripHTML } from '@wordpress/dom';
+import { useEffect, useRef, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { upload } from '@wordpress/icons';
 import classNames from 'classnames';

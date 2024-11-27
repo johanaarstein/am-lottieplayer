@@ -7,7 +7,7 @@ Tags: lottie, bodymovin, gutenberg, svg, gif
 Requires at least: 5.9
 Tested up to: 6.7
 Requires PHP: 7.0
-Stable Tag: 3.4.0
+Stable Tag: 3.4.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -131,6 +131,10 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 5. …and Bricks!
 
 == Changelog ==
+
+= 3.4.1 - October 13 2024 =
+* Fixed bug with Elementor playback direction
+* Fixed bug with front end script in Gutenberg
 
 = 3.4.0 - October 13 2024 =
 * Added support for Bricks Builder
