@@ -998,7 +998,7 @@ class Elementor extends \Elementor\Widget_Base {
 				'background'               => 'transparent',
 				'class'                    => '',
 				'controls'                 => $this->_switcher_value( $settings['controls'] ),
-				'direction'                => !$this->_switcher_value( $settings['reverse'] ),
+				'direction'                => $this->_switcher_value( $settings['reverse'] ) ? -1 : 1,
 				'id'                       => $id,
 				'subframe'                 => $this->_switcher_value( $settings['subframe'] ),
 				'loop'                     => $this->_switcher_value( $settings['loop'] ),
