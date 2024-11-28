@@ -1,1 +1,43 @@
-.lottie-switch-label>div{align-items:baseline;display:flex;justify-content:space-between}.flex{display:flex}.flex.space-around{justify-content:space-around}.flex.space-between{justify-content:space-between}.alignleft,.alignright{max-width:600px}.lottie-dimensions,.lottie-segment{align-items:flex-start;gap:1em;margin-bottom:1em}.lottie-dimensions .lottie-number-wrapper,.lottie-segment .lottie-number-wrapper{flex:1;margin-bottom:0!important}.lottie-dimensions .lottie-number-wrapper input,.lottie-segment .lottie-number-wrapper input{width:100%}.pro-feature{opacity:.5}
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/css-loader@6.11.0_webpack@5.96.1/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/.pnpm/postcss-loader@6.2.1_postcss@8.4.49_webpack@5.96.1/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/.pnpm/sass-loader@12.6.0_sass@1.81.0_webpack@5.96.1/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/lottieplayer/editor.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.lottie-switch-label > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.flex {
+  display: flex;
+}
+.flex.space-around {
+  justify-content: space-around;
+}
+.flex.space-between {
+  justify-content: space-between;
+}
+
+.alignleft,
+.alignright {
+  max-width: 600px;
+}
+
+.lottie-dimensions,
+.lottie-segment {
+  gap: 1em;
+  margin-bottom: 1em;
+  align-items: flex-start;
+}
+.lottie-dimensions .lottie-number-wrapper,
+.lottie-segment .lottie-number-wrapper {
+  flex: 1;
+  margin-bottom: 0 !important;
+}
+.lottie-dimensions .lottie-number-wrapper input,
+.lottie-segment .lottie-number-wrapper input {
+  width: 100%;
+}
+
+.pro-feature {
+  opacity: 0.5;
+}
