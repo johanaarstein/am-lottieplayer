@@ -73,14 +73,14 @@
 		"react-dom": "^18.3.1",
 		"rimraf": "^6.0.1",
 		"sass": "^1.81.0",
-		"stylelint": "^16.10.0",
+		"stylelint": "^16.11.0",
 		"stylelint-config-standard-scss": "^13.1.0",
 		"ts-loader": "^9.5.1",
 		"ts-node": "^10.9.2",
 		"typescript": "^5.7.2"
 	},
 	"scripts": {
-		"predev": "wp-env start --update",
+		"predev": "wp-env start -- --update",
 		"dev": "wp-scripts start --hot",
 		"prebuild": "pnpm dep && pnpm scss",
 		"build": "wp-scripts build",

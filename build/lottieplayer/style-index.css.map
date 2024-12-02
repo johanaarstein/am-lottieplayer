@@ -1,1 +1,0 @@
-{"version":3,"file":"lottieplayer/style-index.css","mappings":";;;AACE;EACE;AAAJ;AAGI;EACE;AADN,C","sources":["webpack://am-lottieplayer/./src/lottieplayer/style.scss"],"sourcesContent":[".wp-block-gb-lottieplayer {\n  &:focus {\n    outline: 0;\n  }\n  .lottie-element {\n    &:focus {\n      outline: 0;\n    }\n  }\n}\n"],"names":[],"sourceRoot":""}
