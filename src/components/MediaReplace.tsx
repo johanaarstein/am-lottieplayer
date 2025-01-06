@@ -4,9 +4,6 @@ import Lottie from '@/assets/Lottie';
 import { isValidUrl } from '@/utils';
 import { speak } from '@wordpress/a11y';
 import {
-	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-	// @ts-expect-error
-	// eslint-disable-next-line @wordpress/no-unsafe-wp-apis
 	__experimentalLinkControl as LinkControl,
 	BlockIcon,
 	MediaUpload as MediaUploadComponent,
@@ -21,7 +18,6 @@ import {
 	ToolbarButton,
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
-// eslint-disable-next-line @wordpress/no-unsafe-wp-apis
 import { __unstableStripHTML as stripHTML } from '@wordpress/dom';
 import { useEffect, useRef, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
