@@ -3,7 +3,7 @@ import type { BlockEditProps } from '@wordpress/blocks';
 
 import { usePlayerContext } from '@/context/PlayerWrapper';
 import { InspectorControls } from '@wordpress/block-editor';
-import { useId } from '@wordpress/element';
+import { useEffect, useId } from '@wordpress/element';
 
 import Advanced from './Advanced';
 import Animation from './Animation';
@@ -20,26 +20,38 @@ export default function LottieControls( {
 	setAttributes,
 }: BlockEditProps< PlayerComponentProps > ) {
 	const generatedId = useId(),
-		{
-			animationContext: { animations },
-			setAnimationContext,
-		} = usePlayerContext();
+		{ setAnimationContext } = usePlayerContext();
 
-	if ( ! animations.length ) {
-		setAnimationContext( ( prev ) => ( {
-			...prev,
-			animations: [
-				{
-					autoplay: attributes.autoplay,
-					direction: attributes.direction,
-					id: attributes.id ?? generatedId,
-					loop: attributes.loop,
-					mode: attributes.mode,
-					speed: attributes.speed,
-				},
-			],
-		} ) );
-	}
+	useEffect( () => {
+		setAnimationContext( ( prev ) => {
+			if ( prev.animations.length ) {
+				return prev;
+			}
+			return {
+				...prev,
+				animations: [
+					{
+						autoplay: attributes.autoplay,
+						direction: attributes.direction,
+						id: attributes.id ?? generatedId,
+						loop: attributes.loop,
+						mode: attributes.mode,
+						speed: attributes.speed,
+					},
+				],
+			};
+		} );
+	}, [
+		attributes.autoplay,
+		attributes.direction,
+		attributes.id,
+		attributes.loop,
+		attributes.mode,
+		attributes.speed,
+		generatedId,
+		setAnimationContext,
+	] );
+
 	return (
 		<>
 			<InspectorControls>

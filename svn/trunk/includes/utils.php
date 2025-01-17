@@ -286,7 +286,7 @@ function render_lottieplayer( array $atts ) {
 		$segment = $atts['segment'];
 	}
 	$selector = null;
-	if ( isset( $atts['selector'] ) ) {
+	if ( isset( $atts['selector'] ) && ! empty( $atts['selector'] ) ) {
 		$selector = $atts['selector'];
 	}
 	$src = '';
