@@ -7,6 +7,4 @@ if ( ! htmlElement ) {
 	throw new Error( 'Missing root element' );
 }
 
-const root = createRoot( htmlElement );
-
-root.render( <App /> );
+createRoot( htmlElement ).render(<App />);

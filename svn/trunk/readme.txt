@@ -7,7 +7,7 @@ Tags: lottie, bodymovin, gutenberg, svg, gif
 Requires at least: 5.9
 Tested up to: 6.7
 Requires PHP: 7.0
-Stable Tag: 3.4.3
+Stable Tag: 3.4.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -132,7 +132,10 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
-= 3.4.3 - January 17 2024 =
+= 3.4.4 - February 5 2025 =
+* ES2021 -> ES2022
+
+= 3.4.3 - January 17 2025 =
 * Fixed bug preventing playback on hover in some builders
 
 = 3.4.2 - October 28 2024 =

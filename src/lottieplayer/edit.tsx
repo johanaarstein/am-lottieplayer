@@ -9,7 +9,7 @@ import { isTemporaryMedia } from '@/utils';
 import { useBlockProps } from '@wordpress/block-editor';
 import { Spinner } from '@wordpress/components';
 
-import './editor.scss';
+import './editor.css';
 
 export default function Edit( {
 	attributes,

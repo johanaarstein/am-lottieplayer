@@ -1,12 +1,12 @@
-import standard from 'stylelint-config-standard-scss'
+import recommended from 'stylelint-config-recommended'
 
 /**
  * @type {import('stylelint').Config}
  * */
 const config = {
-	...standard,
+	...recommended,
 	rules: {
-		...standard.rules,
+		...recommended.rules,
 		"no-descending-specificity": [
 			true,
 			{

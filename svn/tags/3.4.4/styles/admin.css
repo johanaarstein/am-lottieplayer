@@ -1,4 +1,4 @@
-// Widget
+/* Widget */
 #am-lottieplayer-widget {
   margin: -12px;
   margin-top: -11px;
@@ -13,26 +13,26 @@
   margin-left: -20px;
   display: flex;
 
-  dotlottie-player {
+  & dotlottie-player {
     height: 100%;
     width: auto;
     margin-left: 10px;
   }
 }
 
-// Media Library
+/* Media Library */
 .attachment-media-view {
   &.landscape {
     .thumbnail-text,
     .thumbnail-application {
       position: relative;
 
-      img {
+      & img {
         display: none;
       }
     }
 
-    dotlottie-player {
+    & dotlottie-player {
       position: absolute;
       height: calc(100% - 42px);
       width: calc(100% - 42px);
@@ -73,7 +73,7 @@
 }
 
 .am-settings {
-  main {
+  & main {
     position: relative;
     width: calc(100% - 20px);
   }
@@ -83,7 +83,7 @@
     margin: 0 auto 2em;
     margin-left: 0;
 
-    h2 {
+    & h2 {
       margin: 2em 0 0;
     }
   }
@@ -216,11 +216,11 @@
         height: 20px;
       }
 
-      img {
+      & img {
         aspect-ratio: 1.41/1;
       }
 
-      p {
+      & p {
         margin: 0;
         font-size: .9em;
       }
@@ -253,8 +253,8 @@
   position: relative;
   max-width: 600px;
 
-  input,
-  textarea {
+  & input,
+  & textarea {
     display: block;
 
     &:not(.am-btn) {
@@ -262,7 +262,7 @@
     }
   }
 
-  fieldset {
+  & fieldset {
     display: block;
     margin-bottom: .7em;
     position: relative;
@@ -329,9 +329,9 @@
     pointer-events: none;
   }
 
-  button,
-  label,
-  a {
+  & button,
+  & label,
+  & a {
     pointer-events: all;
   }
 
@@ -355,7 +355,7 @@
   &[data-hasDragOver="true"] {
     button,
     label,
-    a {
+    & a {
       pointer-events: none;
     }
 
@@ -861,7 +861,7 @@
       background: var(--wp-components-color-foreground, #1e1e1e);
     }
 
-    svg {
+    & svg {
       fill: currentcolor;
       outline: none;
     }
@@ -896,7 +896,7 @@
     }
   }
 
-  // Toggle
+  /* Toggle */
   .components-form-toggle {
     position: relative;
     display: inline-block;
@@ -966,13 +966,13 @@
     }
   }
 
-  p+.components-button.is-tertiary {
+  & p+.components-button.is-tertiary {
     margin-left: -6px;
   }
 }
 
 
-// Toggle button
+/* Toggle button */
 .lottie-switch-label {
   .components-base-control__field {
     display: flex;
@@ -1035,7 +1035,7 @@
         height: auto;
         text-align: left;
 
-        img {
+        & img {
           margin-left: 10px;
         }
 

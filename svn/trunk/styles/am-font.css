@@ -9,6 +9,7 @@
 }
 
 .eicon-am-lottie {
+  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
   font-family: 'am-lottieplayer' !important;
   font-style: normal;
   font-stretch: normal;

@@ -1,5 +1,4 @@
-**/*.css
-vendor/**/*.scss
-node_modules/**/*.scss
-svn/**/*.scss
-build/**/*.scss
+vendor/**/*.css
+node_modules/**/*.css
+svn/**/*.css
+build/**/*.css

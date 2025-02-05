@@ -16,12 +16,14 @@
 	},
 	"ignorePatterns": [
 		"**/build",
-		"*.config.*",
-		"*.min.*"
+		"*.min.*",
+		"**/node_modules",
+		"**/vendor",
+		"./scripts/*"
 	],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
-		"ecmaVersion": 2021,
+		"ecmaVersion": 2022,
 		"parser": "@typescript-eslint/parser",
 		"project": [
 			"./tsconfig.json"
@@ -33,6 +35,7 @@
 		"perfectionist",
 		"react",
 		"react-hooks",
+		"react-refresh",
 		"@typescript-eslint",
 		"import"
 	],

@@ -6,7 +6,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import metadata from './block.json';
 import Edit from './edit';
 import save from './save';
-import './style.scss';
+import './style.css';
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
 registerBlockType< PlayerComponentProps >( metadata as any, {

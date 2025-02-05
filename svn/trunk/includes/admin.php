@@ -143,7 +143,7 @@ class Admin {
 	public function enqueue_backend_scripts( $page ) {
 		wp_enqueue_style(
 			'am-backend-style',
-			get_style( 'admin.css' ),
+			get_style( 'admin.min.css' ),
 			array(),
 			'1.0.1'
 		);
@@ -179,6 +179,27 @@ class Admin {
 				"var aamdPHPVariables={pluginUrl:'{$pluginUrl}',nonce:'{$upload_nonce}'};",
 				'before',
 			);
+		}
+
+		if ( ! AAMD_LOTTIE_IS_PRO && $page === 'index.php' ) {
+			$admin_assets = require get_build_path( 'admin.asset.php' );
+			wp_enqueue_script(
+				'am-lottieplayer-widget',
+				get_build( 'admin.js' ),
+				$admin_assets['dependencies'],
+				'0.1.0',
+				true
+			);
+
+			$endpoint       = esc_url_raw( rest_url( '/wp/v2/media/' ) );
+			$rest_api_nonce = wp_create_nonce( 'wp_rest' );
+			
+			wp_add_inline_script(
+				'am-lottieplayer-widget',
+				"var aamdPHPVariables={pluginUrl:'{$pluginUrl}',endpoint:'{$endpoint}',nonce:'{$rest_api_nonce}',};",
+				'before'
+			);
+			return;
 		}
 
 		if ( $page !== 'toplevel_page_am-lottieplayer-pro' ) {

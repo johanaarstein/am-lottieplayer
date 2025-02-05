@@ -19,7 +19,7 @@ import { useEffect, useRef, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import classNames from 'classnames';
 
-import './editor.scss';
+import './editor.css';
 
 const getInnerBlocksTemplate = ( attributes: object ): TemplateArray => [
 	[
