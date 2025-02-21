@@ -16,6 +16,7 @@
 	},
 	"ignorePatterns": [
 		"**/build",
+		"*.config.*",
 		"*.min.*",
 		"**/node_modules",
 		"**/vendor",
