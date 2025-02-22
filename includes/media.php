@@ -55,7 +55,8 @@ class Media {
 				case 'application/zip':
 				case 'application/octet-stream': {
 					$zip = new \ZipArchive();
-					if ( ! $zip->open( $file['tmp_name'] ) ) {
+					$res = $zip->open( $file['tmp_name'] );
+					if ( $res !== true ) {
 						break;
 					}
 
