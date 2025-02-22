@@ -2,6 +2,8 @@
 namespace AAMD_Lottie;
 
 use function AAMD_Lottie\Utility\get_asset;
+use function AAMD_Lottie\Utility\is_lottie_valid;
+use function AAMD_Lottie\Utility\tempdir;
 
 \defined( 'ABSPATH' ) || exit;
 
@@ -15,6 +17,7 @@ class Media {
 
 			add_action( 'wp_enqueue_media', array( $this, 'override_media_templates' ) );
 
+			add_filter( 'wp_handle_upload_prefilter', array( $this, 'validate_upload' ) );
 			add_filter( 'upload_mimes', array( $this, 'mimetypes' ) );
 			add_filter( 'wp_check_filetype_and_ext', array( $this, 'lottie_filetypes' ), 10, 4 );
 			add_filter( 'wp_mime_type_icon', array( $this, 'icon_filter' ), 10, 2 );
@@ -25,6 +28,77 @@ class Media {
 		// Disable SSL Check on dev
 		if ( \getenv( 'SERVER_CONTEXT' ) === 'dev' ) {
 			add_filter( 'https_ssl_verify', '__return_false' );
+		}
+	}
+
+	// Validate before upload
+	public function validate_upload( array $file ) {
+		try {
+			if (
+			$file['type'] !== 'application/json' &&
+			$file['type'] !== 'application/zip' &&
+			$file['type'] !== 'application/octet-stream' &&
+			wp_check_filetype( $file['name'] ) !== 'lottie'
+			) {
+				return $file;
+			}
+
+			$is_valid = false;
+
+			switch ( $file['type'] ) {
+				case 'application/json':
+					$lottie = wp_json_file_decode( $file['tmp_name'], array( 'associative' => true ) );
+					if ( (bool) is_lottie_valid( $lottie ) ) {
+						$is_valid = true;
+					}
+					break;
+				case 'application/zip':
+				case 'application/octet-stream': {
+					$zip = new \ZipArchive();
+					if ( ! $zip->open( $file['tmp_name'] ) ) {
+						break;
+					}
+
+					$tempdir = tempdir();
+					$zip->extractTo( $tempdir );
+					$zip->close();
+
+					$manifest = wp_json_file_decode( "$tempdir/manifest.json" );
+					if ( ! $manifest ) {
+						break;
+					}
+
+					$animations = scandir( "$tempdir/animations" );
+
+					/**
+					 * Set this to true only if animations array has length,
+					 * so that we can iterate and catch any corrupted animaiton,
+					 * while still avoiding false positive for empty arrays.
+					 */
+					$is_valid = count( $animations ) > 0;
+
+					foreach ( $animations as $animation ) {
+						if ( $animation === '.' || $animation === '..' ) {
+							continue;
+						}
+						$lottie = wp_json_file_decode( "$tempdir/animations/$animation", array( 'associative' => true ) );
+						if ( ! is_lottie_valid( $lottie ) ) {
+							$is_valid = false;
+						}
+					}
+				}
+			}
+
+			if ( ! $is_valid ) {
+				$file['error'] = __( 'Invalid Lottie file.', 'am-lottieplayer' );
+			}
+
+			return $file;
+		} catch ( \Exception $e ) {
+			return new \WP_Error(
+				$e->getCode(),
+				$e->getMessage(),
+			);
 		}
 	}
 
@@ -78,7 +152,12 @@ class Media {
 		if ( ! empty( $data['ext'] ) && ! empty( $data['type'] ) ) {
 			return $data;
 		}
+
 		$wp_file_type = wp_check_filetype( $filename, $mimes );
+
+		if ( $wp_file_type['ext'] !== 'json' && $wp_file_type['ext'] !== 'lottie' ) {
+			return $data;
+		}
 
 		switch ( $wp_file_type['ext'] ) {
 			case 'json':
@@ -216,11 +295,11 @@ class Media {
 		}
 
 		if (
-			isset( $attributes->width, $attributes->height ) &&
-			\is_numeric( (float) $attributes->width ) &&
-			\is_numeric( (float) $attributes->height ) &&
-			! str_ends_with( (string) $attributes->width, '%' ) &&
-			! str_ends_with( (string) $attributes->height, '%' )
+		isset( $attributes->width, $attributes->height ) &&
+		\is_numeric( (float) $attributes->width ) &&
+		\is_numeric( (float) $attributes->height ) &&
+		! str_ends_with( (string) $attributes->width, '%' ) &&
+		! str_ends_with( (string) $attributes->height, '%' )
 		) {
 			$attr_width  = floatval( $attributes->width );
 			$attr_height = floatval( $attributes->height );
@@ -405,10 +484,11 @@ class Media {
 	}
 }
 
+
 /**
  * Main function, to initialize class
  *
- * @return Media
+ * @return AAMD_Lottie\Media
  */
 ( function () {
 	global $aamd_lottie_media;
