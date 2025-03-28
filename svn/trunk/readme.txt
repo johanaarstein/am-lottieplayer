@@ -7,7 +7,7 @@ Tags: lottie, bodymovin, gutenberg, svg, gif
 Requires at least: 5.9
 Tested up to: 6.7
 Requires PHP: 7.0
-Stable Tag: 3.5.0
+Stable Tag: 3.5.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -131,6 +131,10 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 5. …and Bricks!
 
 == Changelog ==
+
+= 3.5.1 - March 28 2025 =
+* Enhancing of sanitation method
+* Changed behavior of mouseover interaction, so that animation resets on new mouseover when animation is complete.
 
 = 3.5.0 - February 22 2025 =
 * Added sanitation to upload. Credit to Avraham Shemesh for exposing a security hole.

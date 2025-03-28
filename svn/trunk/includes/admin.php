@@ -193,7 +193,7 @@ class Admin {
 
 			$endpoint       = esc_url_raw( rest_url( '/wp/v2/media/' ) );
 			$rest_api_nonce = wp_create_nonce( 'wp_rest' );
-			
+
 			wp_add_inline_script(
 				'am-lottieplayer-widget',
 				"var aamdPHPVariables={pluginUrl:'{$pluginUrl}',endpoint:'{$endpoint}',nonce:'{$rest_api_nonce}',};",

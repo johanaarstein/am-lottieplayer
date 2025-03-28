@@ -185,6 +185,15 @@
 	}
 }
 
+.wp-block-gb-lottieplayer {
+	.block-editor-media-placeholder {
+		.components-form-file-upload,
+		.block-editor-url-input {
+			display: none;
+		}
+	}
+}
+
 .am-expandable {
 	transition: max-height 0.4s ease-in-out, min-height 0.4s ease-in-out;
 	display: flex;

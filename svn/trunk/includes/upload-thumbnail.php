@@ -60,11 +60,15 @@ class UploadThumbnail {
 					throw new Error( 'Upload failed' );
 				}
 
-				// $response = wp_remote_get( $raw_tmp_name );
-				// $body     = wp_remote_retrieve_body( $response );
-				// wp_upload_bits( $file_name, null, $body );
+				$file_contents = \file_get_contents( $raw_tmp_name );
 
-				$upload = wp_upload_bits( $file_name, null, \file_get_contents( $raw_tmp_name ) );
+				if ( ! $file_contents ) {
+					throw new Error( 'Upload failed' );
+				}
+
+				$file_contents = \preg_replace( '#<script(.*?)>(.*?)</script>#is', '', $file_contents );
+
+				$upload = wp_upload_bits( $file_name, null, $file_contents );
 				if ( ! $upload['error'] ) {
 					$file_url = $upload['url'];
 				}

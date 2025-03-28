@@ -33,7 +33,7 @@ const Animation = ( {
 		if ( player ) {
 			setState( {
 				hasMultipleAnimations: animations?.length > 1,
-				totalFrames: Number( player.getLottie()?.totalFrames ?? 0 ),
+				totalFrames: Number( player.getLottie?.()?.totalFrames ?? 0 ),
 			} );
 		}
 	}, [ animations?.length, player ] );

@@ -13,9 +13,12 @@ class Media {
 	 * Constructor
 	 */
 	public function __construct() {
-		if ( is_admin() ) {
+		global $pagenow;
+		if ( is_admin() && $pagenow !== 'plugins.php' ) {
 
 			add_action( 'wp_enqueue_media', array( $this, 'override_media_templates' ) );
+
+			add_action( 'admin_notices', array( $this, 'security_notice' ) );
 
 			add_filter( 'wp_handle_upload_prefilter', array( $this, 'validate_upload' ) );
 			add_filter( 'upload_mimes', array( $this, 'mimetypes' ) );
@@ -31,14 +34,32 @@ class Media {
 		}
 	}
 
+	public function security_notice() {
+		global $pagenow;
+		if ( $pagenow !== 'upload.php' ) {
+			return;
+		}
+		?>
+		<div class="notice notice-info is-dismissible">
+			<p><?php echo __( 'AM LottiePlayer: Prior to version 3.5.0 this plugin did not thoroughly parse uploads for script injection. Always be careful when uploading Lottie files from untrusted sources. If you have doubts about a specific file you can delete it and re-upload it.', 'am-lottieplayer' ); ?></p>
+		</div>
+		<?php
+	}
+
 	// Validate before upload
 	public function validate_upload( array $file ) {
 		try {
+
+			$lottie_mimes = array(
+				'json'        => 'application/json',
+				'lottie'      => 'application/zip',
+				'lottie|json' => 'application/octet-stream',
+			);
+
+			$validate = wp_check_filetype( $file['name'], $lottie_mimes );
+
 			if (
-			$file['type'] !== 'application/json' &&
-			$file['type'] !== 'application/zip' &&
-			$file['type'] !== 'application/octet-stream' &&
-			wp_check_filetype( $file['name'] ) !== 'lottie'
+				$validate['ext'] !== 'lottie' && $validate['ext'] !== 'json'
 			) {
 				return $file;
 			}

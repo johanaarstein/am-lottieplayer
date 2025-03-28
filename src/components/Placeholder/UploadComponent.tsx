@@ -71,7 +71,7 @@ export default function UploadComponent( {
 				labels={ {
 					instructions: ! state.hasDropped
 						? __(
-								'Upload Lottie animations to WordPress and add them in Gutenberg.',
+								'Add Lottie animations from your Media Library to your WordPress post.',
 								'am-lottieplayer'
 						  )
 						: __( 'Dropped!', 'am-lottieplayer' ),
