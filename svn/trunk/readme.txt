@@ -7,7 +7,7 @@ Tags: lottie, bodymovin, gutenberg, svg, gif
 Requires at least: 5.9
 Tested up to: 6.7
 Requires PHP: 7.2
-Stable Tag: 3.5.1
+Stable Tag: 3.5.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -131,6 +131,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 5. …and Bricks!
 
 == Changelog ==
+
+= 3.5.2 - April 3 2025 =
+* Fixed compability issues with older versions of PHP, causing sanitation not to work properly.
 
 = 3.5.1 - March 28 2025 =
 * Enhancing of sanitation method
