@@ -178,8 +178,8 @@ class Builder {
 
 		if ( AAMD_LOTTIE_IS_PRO && $is_light ) {
 			$shortcodes = array_merge(
-				get_shortcode_instances( $content, 'am-lottieplayer' ) ?: array(),
-				get_shortcode_instances( $content, 'et_pb_lottieplayer' ) ?: array(),
+				get_shortcode_instances( $content, 'am-lottieplayer' ) ?? array(),
+				get_shortcode_instances( $content, 'et_pb_lottieplayer' ) ?? array()
 			);
 
 			foreach ( $shortcodes as $shortcode ) {
@@ -229,7 +229,7 @@ class Builder {
 			if ( $content && has_shortcode( $content, 'et_pb_lottieplayer' ) ) {
 				// This is used to determine whether to load full or light version
 				$divi_shortcodes = array_merge(
-					get_shortcode_instances( $content, 'et_pb_lottieplayer' ) ?: array(),
+					get_shortcode_instances( $content, 'et_pb_lottieplayer' ) ?? array(),
 					$divi_shortcodes
 				);
 			}

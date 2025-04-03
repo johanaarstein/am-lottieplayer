@@ -49,7 +49,7 @@ class Media {
 	// Validate before upload
 	public function validate_upload( array $file ) {
 		try {
-
+			$error        = new \WP_Error();
 			$lottie_mimes = array(
 				'json'        => 'application/json',
 				'lottie'      => 'application/zip',
@@ -117,10 +117,9 @@ class Media {
 
 			return $file;
 		} catch ( \Exception $e ) {
-			return new \WP_Error(
-				$e->getCode(),
-				$e->getMessage(),
-			);
+			$error->add( $e->getCode(), $e->getMessage() );
+
+			return $error;
 		}
 	}
 
@@ -134,11 +133,10 @@ class Media {
 	// Adding preview for Media Library
 	public function override_media_templates() {
 		if ( ! remove_action( 'admin_footer', 'wp_print_media_templates' ) ) {
-			throw new \WP_Error(
-				'remove_action_failed',
-				esc_html__( 'Could not remove admin footer.', 'am-lottieplayer' ),
-				array( 'status' => 400 ),
-			);
+			$error = new \WP_Error();
+			$error->add( 'remove_action_failed', esc_html__( 'Could not remove admin footer.', 'am-lottieplayer' ), array( 'status' => 400 ) );
+
+			throw $error;
 		}
 		add_action( 'admin_footer', array( $this, 'print_media_templates' ) );
 	}
@@ -360,12 +358,14 @@ class Media {
 	 */
 	private static function _media_sideload_lottie( $file, $post_id = 0, $desc = 'AM Lottie Animation', $return_type = 'id' ) {
 		try {
+			$error = new \WP_Error();
 			if ( empty( $file ) ) {
-				throw new \WP_Error(
+				$error->add(
 					'image_sideload_failed',
 					__( 'Invalid Lottie URL.', 'am-lottieplayer' ),
-					array( 'status' => 400 ),
+					array( 'status' => 400 )
 				);
+				throw $error;
 			}
 
 			$allowed_extensions = array( 'lottie', 'json' );
@@ -377,11 +377,13 @@ class Media {
 			\preg_match( '/[^\?]+\.(' . \implode( '|', $allowed_extensions ) . ')\b/i', $file, $matches );
 
 			if ( ! $matches ) {
-				throw new \WP_Error(
+				$error->add(
 					'image_sideload_failed',
 					__( 'Invalid Lottie URL.', 'am-lottieplayer' ),
-					array( 'status' => 400 ),
+					array( 'status' => 400 )
 				);
+
+				throw $error;
 			}
 
 			$file_array         = array();
@@ -416,7 +418,12 @@ class Media {
 
 			// Finally, check to make sure the file has been saved, then return the HTML.
 			if ( empty( $src ) ) {
-				throw new \WP_Error( 'image_sideload_failed' );
+				$error->add(
+					'image_sideload_failed',
+					__( 'Invalid Lottie URL.', 'am-lottieplayer' ),
+					array( 'status' => 400 )
+				);
+				throw $error;
 			}
 			if ( 'src' === $return_type ) {
 				return $src;

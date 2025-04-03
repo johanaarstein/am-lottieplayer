@@ -166,9 +166,9 @@ class Admin {
 			wp_enqueue_script(
 				'am-lottieplayer-media',
 				get_build( 'media.js' ),
-				array(
-					...$media_assets['dependencies'],
-					AAMD_LOTTIE_IS_PRO ? 'dotlottie-player' : 'dotlottie-player-light',
+				array_merge(
+					(array) $media_assets['dependencies'],
+					array( AAMD_LOTTIE_IS_PRO ? 'dotlottie-player' : 'dotlottie-player-light' )
 				),
 				'0.1.0',
 				true
@@ -177,7 +177,7 @@ class Admin {
 			wp_add_inline_script(
 				'am-lottieplayer-media',
 				"var aamdPHPVariables={pluginUrl:'{$pluginUrl}',nonce:'{$upload_nonce}'};",
-				'before',
+				'before'
 			);
 		}
 
@@ -245,7 +245,7 @@ class Admin {
 				'div' => array(
 					'id' => array(),
 				),
-			),
+			)
 		);
 	}
 

@@ -9,7 +9,7 @@ global $aamd_lottie_media;
 vc_add_shortcode_param(
 	'attach_lottie',
 	'am_vc_attach_field_settings',
-	get_script( 'am-backend-vc-options.min.js', '1.0.1' ),
+	get_script( 'am-backend-vc-options.min.js', '1.0.1' )
 );
 
 if ( ! function_exists( 'am_vc_attach_field_settings' ) ) {
