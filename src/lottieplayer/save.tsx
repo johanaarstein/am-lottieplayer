@@ -6,19 +6,20 @@ import { useBlockProps } from '@wordpress/block-editor';
 export default function save( {
 	attributes,
 }: BlockSaveProps< PlayerComponentProps > ) {
+	const blockProps = useBlockProps.save({
+		className: `align${attributes.align ?? 'none'}`,
+	})
 	return (
 		<figure
 			id={ attributes.id }
-			{ ...useBlockProps.save( {
-				className: `align${ attributes.align ?? 'none' }`,
-			} ) }
+			{...blockProps}
 			style={ {
+				...(blockProps.style as Record<string, string>),
 				backgroundColor: attributes.background,
 				height:
 					! attributes.height || attributes.height === 0
 						? 'auto'
 						: attributes.height,
-				margin: '0 auto',
 				width:
 					! attributes.width || attributes.width === 0
 						? 'auto'

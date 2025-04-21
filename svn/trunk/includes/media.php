@@ -35,29 +35,40 @@ class Media {
 		}
 	}
 
-	public function am_check_filetype_and_ext( $data, $file, $filename, $mimes, $real_mime ) {
-		if ( ! empty( $data['ext'] ) && ! empty( $data['type'] ) ) {
+	public function am_check_filetype_and_ext( $data, $filepath, $filename, $mimes, $real_mime ) {
+		try {
+			if ( ! empty( $data['ext'] ) && ! empty( $data['type'] ) ) {
+				return $data;
+			}
+
+			$filetype = wp_check_filetype( $filename, $mimes );
+			$ext      = $filetype['ext'];
+
+			if ( 'lottie' !== $ext && 'json' !== $ext ) {
+				return $data;
+			}
+
+			if ( $real_mime !== 'application/json' &&
+				$real_mime !== 'application/zip' &&
+				$real_mime !== 'application/octet-stream'
+			) {
+				return $data;
+			}
+
+			switch ( $ext ) {
+				case 'json':
+					$data['ext']  = 'json';
+					$data['type'] = 'application/json';
+					break;
+				case 'lottie':
+					$data['ext']  = 'lottie';
+					$data['type'] = 'application/zip';
+			}
+
 			return $data;
+		} catch ( \Exception $e ) {
+			return $e;
 		}
-
-		$filetype = wp_check_filetype( $filename, $mimes );
-		$ext      = $filetype['ext'];
-
-		if ( 'lottie' !== $ext && 'json' !== $ext ) {
-			return $data;
-		}
-
-		switch ( $ext ) {
-			case 'json':
-				$data['ext']  = 'json';
-				$data['type'] = 'application/json';
-				break;
-			case 'lottie':
-				$data['ext']  = 'lottie';
-				$data['type'] = 'application/zip';
-		}
-
-		return $data;
 	}
 
 	// Adding Lottie mime types to list over accepted uploads
@@ -154,17 +165,17 @@ class Media {
 	// Validate before upload
 	public function am_handle_upload_prefilter( array $file ) {
 		try {
-			$error        = new \WP_Error();
 			$lottie_mimes = array(
 				'json'        => 'application/json',
 				'lottie'      => 'application/zip',
 				'lottie|json' => 'application/octet-stream',
 			);
 
-			$validate = wp_check_filetype( $file['name'], $lottie_mimes );
+			$validate = wp_check_filetype_and_ext( $file['tmp_name'], $file['name'], $lottie_mimes );
+			$ext      = $validate['ext'];
 
 			if (
-				$validate['ext'] !== 'lottie' && $validate['ext'] !== 'json'
+			$ext !== 'lottie' && $ext !== 'json'
 			) {
 				return $file;
 			}
@@ -222,6 +233,7 @@ class Media {
 
 			return $file;
 		} catch ( \Exception $e ) {
+			$error = new \WP_Error();
 			$error->add( $e->getCode(), $e->getMessage() );
 
 			return $error;
@@ -513,20 +525,14 @@ class Media {
 	 * @var string|false|int|\WP_Error
 	 */
 	private $_defaultFile = false;
-}
+}(
+	function () {
+		global $aamd_lottie_media;
 
+		if ( ! isset( $aamd_lottie_media ) ) {
+				$aamd_lottie_media = new Media();
+		}
 
-/**
- * Main function, to initialize class
- *
- * @return AAMD_Lottie\Media
- */
-( function () {
-	global $aamd_lottie_media;
-
-	if ( ! isset( $aamd_lottie_media ) ) {
-		$aamd_lottie_media = new Media();
+		return $aamd_lottie_media;
 	}
-
-	return $aamd_lottie_media;
-} )();
+)();

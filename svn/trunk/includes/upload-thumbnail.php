@@ -2,7 +2,6 @@
 namespace AAMD_Lottie;
 
 use Error;
-use Exception;
 
 if ( ! isset( $_POST['aamd_thumbnail_submit'] ) ) {
 	exit;
@@ -32,8 +31,10 @@ class UploadThumbnail {
 	private function _upload_file() {
 		try {
 
-			if ( ! wp_verify_nonce( $_POST['aamd_thumbnail_submit'], 'am-upload' ) ) {
-				throw new Error( 'Invalid nonce' );
+			if ( ! current_user_can( 'upload_files' ) ||
+				! wp_verify_nonce( $_POST['aamd_thumbnail_submit'], 'am-upload' )
+			) {
+				throw new Error( 'Unauthorized' );
 			}
 
 			$raw_name = isset( $_FILES['thumbnail']['name'] ) ? $_FILES['thumbnail']['name'] : false;
@@ -85,7 +86,7 @@ class UploadThumbnail {
 					'url'    => $file_url,
 				)
 			);
-		} catch ( Exception $e ) {
+		} catch ( \Exception $e ) {
 			header( 'Content-Type: application/json' );
 			echo wp_json_encode(
 				array(
