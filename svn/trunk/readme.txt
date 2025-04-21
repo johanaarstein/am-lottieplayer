@@ -5,9 +5,9 @@ Author URI: https://www.aarstein.media
 Plugin URI: https://wordpress.org/plugins/am-lottieplayer/
 Tags: lottie, bodymovin, gutenberg, svg, gif
 Requires at least: 5.9
-Tested up to: 6.7
+Tested up to: 6.8
 Requires PHP: 7.2
-Stable Tag: 3.5.2
+Stable Tag: 3.5.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -131,6 +131,12 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 5. …and Bricks!
 
 == Changelog ==
+
+= 3.5.3 - April 21 2025 =
+* Fixed issue with sanitation that prevented some valid lottie files from uploading.
+* Fixed issue that prevented Lotties from being uploaded via REST API.
+* Fixed too early invoking of textdomain.
+* Enhanced sanitation of SVG thumbnails.
 
 = 3.5.2 - April 3 2025 =
 * Fixed compability issues with older versions of PHP, causing sanitation not to work properly.

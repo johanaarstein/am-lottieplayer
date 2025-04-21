@@ -39,7 +39,7 @@ class UploadThumbnail {
 			$raw_name = isset( $_FILES['thumbnail']['name'] ) ? $_FILES['thumbnail']['name'] : false;
 
 			if ( ! $raw_name ) {
-				throw new Error( 'Ivalid file upload' );
+				throw new Error( 'Invalid file upload' );
 			}
 
 			$file_name = 'lottie-thumbnail-' . \basename( $raw_name );
@@ -66,7 +66,11 @@ class UploadThumbnail {
 					throw new Error( 'Upload failed' );
 				}
 
+				// Remove inline scripts
 				$file_contents = \preg_replace( '#<script(.*?)>(.*?)</script>#is', '', $file_contents );
+
+				// Remove event attributes
+				$file_contents = \preg_replace( '/\son\w+\s*=\s*(".*?"|\'.*?\'|[^\s>]+)/i', '', $file_contents );
 
 				$upload = wp_upload_bits( $file_name, null, $file_contents );
 				if ( ! $upload['error'] ) {

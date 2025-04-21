@@ -23,22 +23,18 @@ export default function UploadComponent( {
 			externalURL: attributes.src || '',
 			hasDropped: false,
 		} ),
-		onSelectMedia = ( {
-			alt,
-			id,
-			url,
-		}: {
+		onSelectMedia = (props: {
 			id: number;
 			url: string;
-			alt: string;
+			alt?: string;
 		} ) => {
-			if ( ! url ) {
+			if ( ! props?.url ) {
 				return setAttributes( { id: undefined, src: undefined } );
 			}
 			setAttributes( {
-				alt,
-				id: id?.toString(),
-				src: url,
+				alt: props.alt,
+				id: props.id?.toString(),
+				src: props.url,
 			} );
 		},
 		ErrorNotice = ( message: string ) => (

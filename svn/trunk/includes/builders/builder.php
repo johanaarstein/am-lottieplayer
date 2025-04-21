@@ -20,10 +20,8 @@ class Builder {
 	public function __construct() {
 		// Builder initializations
 		add_action( 'init', array( $this, 'init_plugin' ) );
-		add_action( 'init', array( $this, 'init_bricks' ), 11 );
 		add_action( 'divi_extensions_init', array( $this, 'init_divi' ) );
 		add_action( 'elementor/widgets/register', array( $this, 'init_elementor' ) );
-		add_action( 'after_setup_theme', array( $this, 'init_flatsome' ) );
 		add_action( 'vc_before_init', array( $this, 'init_vc' ) );
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_enqueue' ) );
@@ -59,20 +57,38 @@ class Builder {
 				'in_footer' => true,
 			)
 		);
+
+		global $pro_feature;
+		if ( ! isset( $pro_feature ) ) {
+			$pro_feature = AAMD_LOTTIE_IS_PRO ?
+			'' : esc_html__( 'Pro Feature: ', 'am-lottieplayer' );
+		}
+
+		global $pro_link;
+		if ( ! isset( $pro_link ) ) {
+			$pro_link = AAMD_LOTTIE_IS_PRO ?
+			'' : esc_html__( 'This feature will only work in the premium version.', 'am-lottieplayer' ) . ' <a href="' . esc_url( 'https://www.aarstein.media/en/am-lottieplayer/pro', 'am-lottieplayer' ) . '" target="_blank" rel="noreferrer">' . esc_html__( 'Read about additional features in AM LottiePlayer PRO', 'am-lottieplayer' ) . '<span class="dashicons dashicons-external" style="font-size: 1em;"></span></a>';
+		}
+
+		// INIT BRICKS
+		$this->init_bricks();
+
+		// INIT FLATSOME
+		$this->init_flatsome();
 	}
 
 	/**
 	 * Initialize Bricks builder
 	 */
 	public function init_bricks() {
+		if ( ! class_exists( '\Bricks\Elements' ) ) {
+			return;
+		}
 		$element_files = array(
 			trailingslashit( AAMD_LOTTIE_PATH ) . 'includes/builders/bricks/element.php',
 		);
 
 		foreach ( $element_files as $file ) {
-			if ( ! class_exists( '\Bricks\Elements' ) ) {
-				continue;
-			}
 			\Bricks\Elements::register_element( $file );
 		}
 	}
@@ -248,18 +264,6 @@ class Builder {
 	global $aamd_lottie_builder;
 	if ( ! AAMD_LOTTIE_IS_PRO && ! isset( $aamd_lottie_builder ) ) {
 		$aamd_lottie_builder = new Builder();
-	}
-
-	global $pro_feature;
-	if ( ! isset( $pro_feature ) ) {
-		$pro_feature = AAMD_LOTTIE_IS_PRO ?
-			'' : esc_html__( 'Pro Feature: ', 'am-lottieplayer' );
-	}
-
-	global $pro_link;
-	if ( ! isset( $pro_link ) ) {
-		$pro_link = AAMD_LOTTIE_IS_PRO ?
-			'' : esc_html__( 'This feature will only work in the premium version.', 'am-lottieplayer' ) . ' <a href="' . esc_url( 'https://www.aarstein.media/en/am-lottieplayer/pro', 'am-lottieplayer' ) . '" target="_blank" rel="noreferrer">' . esc_html__( 'Read about additional features in AM LottiePlayer PRO', 'am-lottieplayer' ) . '<span class="dashicons dashicons-external" style="font-size: 1em;"></span></a>';
 	}
 
 	return $aamd_lottie_builder;

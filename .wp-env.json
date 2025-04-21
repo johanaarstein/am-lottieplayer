@@ -8,7 +8,8 @@
         "WP_DEBUG_DISPLAY": false,
         "WP_DEBUG": true,
         "WP_DEBUG_LOG": true,
-        "SCRIPT_DEBUG": true
+        "SCRIPT_DEBUG": true,
+        "WP_ENV": "development"
       },
       "mappings": {
         "wp-content/debug.log": "./debug.log"
