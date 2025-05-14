@@ -132,6 +132,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 3.5.6 - May 14 2025 =
+* New animation engine
+
 = 3.5.5 - May 9 2025 =
 * Rolled back animation engine due to bugs
 
