@@ -206,7 +206,7 @@ function idify( $str = '' ) {
  * @param mixed  $arg (optional)
  * @return void
  */
-function include_file( string $path = '', object $args = null, string $ext = 'php' ) {
+function include_file( string $path = '', ?object $args = null, string $ext = 'php' ) {
 	$path = get_path( 'includes/' . \ltrim( $path, '/' ), $ext );
 	if ( \file_exists( $path ) ) {
 		$args;
@@ -226,8 +226,7 @@ function is_lottie_valid( $lottie ) {
 		! array_key_exists( 'ip', $lottie ) ||
 		! array_key_exists( 'op', $lottie ) ||
 		! array_key_exists( 'w', $lottie ) ||
-		! array_key_exists( 'h', $lottie ) ||
-		! array_key_exists( 'nm', $lottie )
+		! array_key_exists( 'h', $lottie )
 	) ) {
 		return false;
 	}

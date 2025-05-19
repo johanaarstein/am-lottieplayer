@@ -7,11 +7,6 @@ export enum Align {
 	Wide = 'wide',
 }
 
-export enum PlayMode {
-	Bounce = 'bounce',
-	Normal = 'normal',
-}
-
 export enum OnMouseOut {
 	Void = 'void',
 	Stop = 'stop',
