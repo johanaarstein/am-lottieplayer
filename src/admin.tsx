@@ -1,10 +1,11 @@
-import Widget from '@/components/Widget';
-import { createRoot } from '@wordpress/element';
+import { createRoot } from '@wordpress/element'
 
-const App = () => <Widget />,
-	htmlElement = document.getElementById( 'am-lottieplayer-widget' );
+import Widget from '@/components/Widget'
+
+const htmlElement = document.getElementById( 'am-lottieplayer-widget' )
+
 if ( ! htmlElement ) {
-	throw new Error( 'Missing root element' );
+  throw new Error( 'Missing root element' )
 }
 
-createRoot( htmlElement ).render( <App /> );
+createRoot(htmlElement).render(<Widget /> )

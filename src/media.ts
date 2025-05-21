@@ -1,145 +1,136 @@
+/* eslint-disable func-style */
 /* eslint-disable prefer-rest-params */
-/* eslint-disable prefer-spread */
-/* eslint-disable @typescript-eslint/unbound-method */
 
-import { trailingslashit } from './utils';
+
+import { trailingslashit } from './utils'
 
 function overrideXHR() {
-	const open = XMLHttpRequest.prototype.open,
-		send = XMLHttpRequest.prototype.send;
+  const { open } = XMLHttpRequest.prototype,
+    { send } = XMLHttpRequest.prototype
 
-	function openReplacement(
-		this: XMLHttpRequest,
-		method: string,
-		url: string | URL,
-		async?: boolean,
-		_user?: string,
-		_password?: string
-	) {
-		const syncMode = async !== false ? 'async' : 'sync';
-		console.info(
-			`Preparing ${ syncMode } HTTP request : ${ method } ${ url }`
-		);
-		return open.apply(
-			this,
-			arguments as unknown as [
+  function openReplacement(
+    this: XMLHttpRequest,
+    method: string,
+    url: string | URL,
+    async?: boolean,
+    _user?: string,
+    _password?: string
+  ) {
+    const syncMode = async === false ? 'sync' : 'async'
+
+    console.info(`Preparing ${ syncMode } HTTP request : ${ method } ${ url }`)
+
+    open.apply(this,
+      arguments as unknown as [
 				method: string,
 				url: string | URL,
 				async: boolean,
-			]
-		);
-	}
+      ])
+  }
 
-	function sendReplacement(
-		this: XMLHttpRequest & {
-			_onreadystatechange?: (
-				this: XMLHttpRequest,
-				ev: Event
-			) => unknown;
-		},
-		data?: Document | XMLHttpRequestBodyInit | null
-	) {
-		if ( ! ( data instanceof FormData ) || ! aamdPHPVariables ) {
-			return send.apply(
-				this,
-				arguments as unknown as [
+  function sendReplacement(this: XMLHttpRequest & {
+    _onreadystatechange?: (
+      this: XMLHttpRequest,
+      ev: Event
+    ) => unknown;
+  },
+  data?: Document | XMLHttpRequestBodyInit | null) {
+    if ( ! ( data instanceof FormData ) || ! aamdPHPVariables ) {
+      send.apply(this,
+        arguments as unknown as [
 					body?: Document | XMLHttpRequestBodyInit | null | undefined,
-				]
-			);
-		}
+        ])
 
-		const name = data.get( 'name' );
+      return
+    }
 
-		if (
-			typeof name !== 'string' ||
-			( ! name.toLowerCase().endsWith( '.lottie' ) &&
-				! name.toLowerCase().endsWith( '.json' ) )
-		) {
-			return send.apply(
-				this,
-				arguments as unknown as [
+    const name = data.get( 'name' )
+
+    if (
+      typeof name !== 'string' ||
+      ! name.toLowerCase().endsWith( '.lottie' ) &&
+      ! name.toLowerCase().endsWith( '.json' )
+    ) {
+      send.apply(this,
+        arguments as unknown as [
 					body?: Document | XMLHttpRequestBodyInit | null | undefined,
-				]
-			);
-		}
+        ])
 
-		const file = data.get( 'async-upload' );
+      return
+    }
 
-		if ( ! ( file instanceof File ) ) {
-			return send.apply(
-				this,
-				arguments as unknown as [
+    const file = data.get( 'async-upload' )
+
+    if ( ! ( file instanceof File ) ) {
+      send.apply(this,
+        arguments as unknown as [
 					body?: Document | XMLHttpRequestBodyInit | null | undefined,
-				]
-			);
-		}
+        ])
 
-		const fileReader = new FileReader();
+      return
+    }
 
-		fileReader.onloadend = async ( { target } ) => {
-			try {
-				if ( ! ( target?.result instanceof ArrayBuffer ) ) {
-					return;
-				}
-				const lottieBlob = new Blob( [ target.result ] ),
-					objectURL = URL.createObjectURL( lottieBlob );
+    const fileReader = new FileReader()
 
-				const dlp = dotLottiePlayer();
-				dlp.hidden = true;
+    fileReader.onloadend = async ( { target } ) => {
+      try {
+        if ( ! ( target?.result instanceof ArrayBuffer ) ) {
+          return
+        }
+        const lottieBlob = new Blob( [ target.result ] ),
+          objectURL = URL.createObjectURL( lottieBlob )
 
-				document.body.appendChild( dlp );
+        const dlp = dotLottiePlayer()
 
-				await dlp.load( objectURL );
-				const svg = dlp.snapshot( false );
-				URL.revokeObjectURL( objectURL );
+        dlp.hidden = true
 
-				if ( ! svg ) {
-					throw new Error( 'Failed to create thumbnail' );
-				}
+        document.body.appendChild( dlp )
 
-				const svgFile = new File(
-						[ svg ],
-						name.replace( /\.[^/.]+$/, '.svg' ),
-						{
-							type: 'image/svg+xml',
-						}
-					),
-					formData = new FormData();
+        await dlp.load( objectURL )
+        const svg = dlp.snapshot( false )
 
-				formData.append(
-					'aamd_thumbnail_submit',
-					aamdPHPVariables.nonce
-				);
-				formData.append( 'thumbnail', svgFile );
-				const response = await fetch(
-					`${ trailingslashit(
-						aamdPHPVariables.pluginUrl
-					) }includes/upload-thumbnail.php`,
-					{ body: formData, method: 'POST' }
-				);
+        URL.revokeObjectURL( objectURL )
 
-				if ( ! response.ok ) {
-					throw new Error( response.statusText );
-				}
+        if ( ! svg ) {
+          throw new Error( 'Failed to create thumbnail' )
+        }
 
-				// const responseData: unknown = await response.json();
-			} catch ( err ) {
-				console.error( err );
-			}
-		};
+        const svgFile = new File(
+            [ svg ],
+            name.replace( /\.[^/.]+$/, '.svg' ),
+            { type: 'image/svg+xml' }
+          ),
+          formData = new FormData()
 
-		fileReader.readAsArrayBuffer( file );
+        formData.append('aamd_thumbnail_submit',
+          aamdPHPVariables.nonce)
+        formData.append( 'thumbnail', svgFile )
+        const response = await fetch(`${ trailingslashit(aamdPHPVariables.pluginUrl) }includes/upload-thumbnail.php`,
+          {
+            body: formData,
+            method: 'POST'
+          })
 
-		return send.apply(
-			this,
-			arguments as unknown as [
+        if ( ! response.ok ) {
+          throw new Error( response.statusText )
+        }
+
+        // const responseData: unknown = await response.json();
+      } catch ( error ) {
+        console.error( error )
+      }
+    }
+
+    fileReader.readAsArrayBuffer( file )
+
+    send.apply(this,
+      arguments as unknown as [
 				body?: Document | XMLHttpRequestBodyInit | null | undefined,
-			]
-		);
-	}
+      ])
+  }
 
-	XMLHttpRequest.prototype.open = openReplacement;
-	XMLHttpRequest.prototype.send = sendReplacement;
+  XMLHttpRequest.prototype.open = openReplacement
+  XMLHttpRequest.prototype.send = sendReplacement
 }
 
-overrideXHR();
+overrideXHR()

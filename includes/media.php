@@ -30,7 +30,7 @@ class Media {
 
 			if ( is_admin() ) {
 				add_action( 'wp_enqueue_media', array( $this, 'override_media_templates' ) );
-				add_action( 'admin_notices', array( $this, 'security_notice' ) );
+				// add_action( 'admin_notices', array( $this, 'security_notice' ) );
 			}
 		}
 	}
@@ -50,7 +50,8 @@ class Media {
 
 			if ( $real_mime !== 'application/json' &&
 				$real_mime !== 'application/zip' &&
-				$real_mime !== 'application/octet-stream'
+				$real_mime !== 'application/octet-stream' &&
+				$real_mime !== 'text/plain'
 			) {
 				return $data;
 			}
@@ -73,8 +74,9 @@ class Media {
 
 	// Adding Lottie mime types to list over accepted uploads
 	public function am_upload_mimes( $mimes ) {
-		$mimes['json']   = 'application/json';
-		$mimes['lottie'] = 'application/zip';
+		$mimes['json']        = 'application/json';
+		$mimes['lottie']      = 'application/zip';
+		$mimes['json|lottie'] = 'application/octet-stream';
 		return $mimes;
 	}
 
@@ -165,13 +167,7 @@ class Media {
 	// Validate before upload
 	public function am_handle_upload_prefilter( array $file ) {
 		try {
-			$lottie_mimes = array(
-				'json'        => 'application/json',
-				'lottie'      => 'application/zip',
-				'lottie|json' => 'application/octet-stream',
-			);
-
-			$validate = wp_check_filetype_and_ext( $file['tmp_name'], $file['name'], $lottie_mimes );
+			$validate = wp_check_filetype_and_ext( $file['tmp_name'], $file['name'] );
 			$ext      = $validate['ext'];
 
 			if (
@@ -334,7 +330,7 @@ class Media {
 	 *
 	 * @return array|bool
 	 */
-	private function svg_dimensions( string $path ) {
+	public function svg_dimensions( string $path ) {
 
 		if ( ! \file_exists( $path ) ) {
 			return false;

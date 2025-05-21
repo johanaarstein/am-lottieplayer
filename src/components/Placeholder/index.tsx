@@ -1,40 +1,39 @@
-import type { PlayerComponentProps } from '@/types';
-import type { BlockEditProps } from '@wordpress/blocks';
+import type { BlockEditProps } from '@wordpress/blocks'
 
-import { useEffect, useState } from '@wordpress/element';
+import { useEffect, useState } from '@wordpress/element'
 
-import PlayerComponent from './PlayerComponent';
-import UploadComponent from './UploadComponent';
+import type { PlayerComponentProps } from '@/types'
+
+import PlayerComponent from '@/components/Placeholder/PlayerComponent'
+import UploadComponent from '@/components/Placeholder/UploadComponent'
 
 export default function Placeholder( {
-	attributes,
-	clientId,
-	setAttributes,
+  attributes,
+  clientId,
+  setAttributes,
 }: BlockEditProps< PlayerComponentProps > ) {
-	const [ state, setState ] = useState( {
-		isPlaceholder: true,
-	} );
+  const [ state, setState ] = useState( { isPlaceholder: true } )
 
-	useEffect( () => {
-		setState( ( prev ) => ( {
-			...prev,
-			isPlaceholder: ! attributes.src || attributes.src === '',
-		} ) );
-	}, [ attributes.src ] );
+  useEffect( () => {
+    setState( ( prev ) => ( {
+      ...prev,
+      isPlaceholder: ! attributes.src || attributes.src === '',
+    } ) )
+  }, [ attributes.src ] )
 
-	return (
-		<>
-			{ state.isPlaceholder ? (
-				<UploadComponent
-					attributes={ attributes }
-					setAttributes={ setAttributes }
-				/>
-			) : (
-				<PlayerComponent
-					attributes={ attributes }
-					clientId={ clientId }
-				/>
-			) }
-		</>
-	);
+  return (
+    <>
+      { state.isPlaceholder ?
+        <UploadComponent
+          attributes={ attributes }
+          setAttributes={ setAttributes }
+        />
+        :
+        <PlayerComponent
+          attributes={ attributes }
+          clientId={ clientId }
+        />
+      }
+    </>
+  )
 }

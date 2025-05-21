@@ -158,8 +158,17 @@ class Admin {
 			return;
 		}
 
-		$pluginUrl    = AAMD_LOTTIE_URL;
-		$upload_nonce = wp_create_nonce( 'am-upload' );
+		$pluginUrl      = AAMD_LOTTIE_URL;
+		$endpoint       = esc_url_raw( rest_url( '/wp/v2/media/' ) );
+		$rest_api_nonce = wp_create_nonce( 'wp_rest' );
+
+		wp_register_development_scripts(
+			'am-lottieplayer-runtime',
+			get_build( 'runtime.js' ),
+			array(),
+			'0.1.0',
+			true
+		);
 
 		if ( $page === 'upload.php' || $page === 'toplevel_page_am-lottieplayer-pro' ) {
 			$media_assets = require get_build_path( 'media.asset.php' );
@@ -176,7 +185,7 @@ class Admin {
 
 			wp_add_inline_script(
 				'am-lottieplayer-media',
-				"var aamdPHPVariables={pluginUrl:'{$pluginUrl}',nonce:'{$upload_nonce}'};",
+				"const aamdPHPVariables={pluginUrl:'{$pluginUrl}',nonce:'{$rest_api_nonce}'};",
 				'before'
 			);
 		}
@@ -191,12 +200,9 @@ class Admin {
 				true
 			);
 
-			$endpoint       = esc_url_raw( rest_url( '/wp/v2/media/' ) );
-			$rest_api_nonce = wp_create_nonce( 'wp_rest' );
-
 			wp_add_inline_script(
 				'am-lottieplayer-widget',
-				"var aamdPHPVariables={pluginUrl:'{$pluginUrl}',endpoint:'{$endpoint}',nonce:'{$rest_api_nonce}',};",
+				"const aamdPHPVariables={pluginUrl:'{$pluginUrl}',endpoint:'{$endpoint}',nonce:'{$rest_api_nonce}',};",
 				'before'
 			);
 			return;
@@ -209,21 +215,13 @@ class Admin {
 		wp_enqueue_media();
 
 		$admin_assets = require get_build_path( 'admin.asset.php' );
+
 		wp_enqueue_script(
 			'am-lottieplayer-options',
 			get_build( 'admin.js' ),
 			$admin_assets['dependencies'],
 			'0.1.0',
 			true
-		);
-
-		$endpoint       = esc_url_raw( rest_url( '/wp/v2/media/' ) );
-		$rest_api_nonce = wp_create_nonce( 'wp_rest' );
-
-		wp_add_inline_script(
-			'am-lottieplayer-options',
-			"var aamdPHPVariables={pluginUrl:'{$pluginUrl}',endpoint:'{$endpoint}',nonce:'{$rest_api_nonce}',};",
-			'before'
 		);
 	}
 

@@ -33,14 +33,18 @@ class Builder {
 	public function init_plugin() {
 		add_shortcode( 'am-lottieplayer', 'AAMD_Lottie\Utility\render_shortcode' );
 
-		register_block_type( get_build_path( 'lottieplayer' ) );
-		register_block_type( get_build_path( 'lottiecover' ) );
+		register_block_type(
+			get_build_path( 'lottieplayer' )
+		);
+		register_block_type(
+			get_build_path( 'lottiecover' )
+		);
 
 		wp_register_script(
 			'dotlottie-player-light',
 			get_script( 'dotlottie-player-light.min.js' ),
 			array(),
-			'5.2.10',
+			'5.2.12',
 			array(
 				'strategy'  => 'defer',
 				'in_footer' => true,

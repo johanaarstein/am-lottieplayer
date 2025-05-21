@@ -15,9 +15,11 @@
     "noImplicitAny": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
     "paths": {
       "@/*": [
         "./src/*"
@@ -31,7 +33,7 @@
   },
   "include": [
     "./src/**/*",
-    ".eslintrc.js"
+    "eslint.config.ts"
   ],
   "exclude": [
     "**/svn",

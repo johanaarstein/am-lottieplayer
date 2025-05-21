@@ -32,7 +32,7 @@ class UploadThumbnail {
 		try {
 
 			if ( ! current_user_can( 'upload_files' ) ||
-				! wp_verify_nonce( $_POST['aamd_thumbnail_submit'], 'am-upload' )
+				! wp_verify_nonce( $_POST['aamd_thumbnail_submit'], 'wp_rest' )
 			) {
 				throw new Error( 'Unauthorized' );
 			}

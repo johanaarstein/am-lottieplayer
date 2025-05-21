@@ -1,41 +1,47 @@
-import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light';
-import type { Dispatch, SetStateAction } from 'react';
+import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light'
+import type { Dispatch, SetStateAction } from 'react'
 
-import { createContext, useContext, useState } from '@wordpress/element';
+import {
+  createContext, useContext, useState
+} from '@wordpress/element'
 
 type Animations = ReturnType<
-	DotLottiePlayer[ 'getManifest' ]
->[ 'animations' ];
+  DotLottiePlayer[ 'getManifest' ]
+>[ 'animations' ]
 
 interface AnimationContext {
-	animations: Animations;
-	player: null | DotLottiePlayer;
+  animations: Animations;
+  player: null | DotLottiePlayer;
 }
 
 export const PlayerContext = createContext< {
-		setAnimationContext: Dispatch< SetStateAction< AnimationContext > >;
-		animationContext: AnimationContext;
-	} >( {
-		animationContext: {
-			animations: [],
-			player: null,
-		},
-		setAnimationContext: ( value: SetStateAction< AnimationContext > ) =>
-			value,
-	} ),
-	usePlayerContext = () => useContext( PlayerContext );
+    setAnimationContext: Dispatch< SetStateAction< AnimationContext > >;
+    animationContext: AnimationContext;
+  } >( {
+    animationContext: {
+      animations: [],
+      player: null,
+    },
+    setAnimationContext: ( value: SetStateAction< AnimationContext > ) =>
+      value,
+  } ),
+  usePlayerContext = () => useContext( PlayerContext )
 
 export default function PlayerWrapper( { children } ) {
-	const [ animationContext, setAnimationContext ] =
+  const [ animationContext, setAnimationContext ] =
 		useState< AnimationContext >( {
-			animations: [],
-			player: null,
-		} );
-	return (
-		<PlayerContext.Provider
-			value={ { animationContext, setAnimationContext } }
-		>
-			{ children }
-		</PlayerContext.Provider>
-	);
+		  animations: [],
+		  player: null,
+		} )
+
+  return (
+    <PlayerContext.Provider
+      value={ {
+        animationContext,
+        setAnimationContext
+      } }
+    >
+      { children }
+    </PlayerContext.Provider>
+  )
 }

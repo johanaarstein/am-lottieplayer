@@ -1,16 +1,16 @@
-import type { PlayerComponentProps } from '@/types';
+import { registerBlockType } from '@wordpress/blocks'
 
-import icon from '@/assets/Lottie';
-import { registerBlockType } from '@wordpress/blocks';
+import type { PlayerComponentProps } from '@/types'
 
-import metadata from './block.json';
-import Edit from './edit';
-import save from './save';
-import './style.css';
+import icon from '@/assets/Lottie'
+import metadata from '@/lottiecover/block.json'
+import Edit from '@/lottiecover/edit'
+import save from '@/lottiecover/save'
+import '@/lottiecover/style.css'
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
 registerBlockType< PlayerComponentProps >( metadata as any, {
-	edit: Edit,
-	icon,
-	save,
-} );
+  edit: Edit,
+  icon,
+  save,
+} )
