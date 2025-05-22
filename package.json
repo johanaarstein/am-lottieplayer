@@ -35,7 +35,8 @@
 	],
 	"main": "build/admin.js",
 	"devDependencies": {
-		"@aarsteinmedia/dotlottie-player-light": "^5.2.12",
+		"@aarsteinmedia/dotlottie-player-light": "^5.2.13",
+		"@aarsteinmedia/lottie-web": "^0.2.21",
 		"@playwright/test": "^1.52.0",
 		"@types/node": "^22.15.21",
 		"@types/react": "^18.3.22",
@@ -68,7 +69,6 @@
 		"eslint-plugin-perfectionist": "^4.13.0",
 		"jiti": "^2.4.2",
 		"lodash-es": "^4.17.21",
-		"lottie-web": "^5.12.2",
 		"re-resizable": "^6.11.2",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
@@ -80,7 +80,7 @@
 		"typescript": "^5.8.3"
 	},
 	"scripts": {
-		"predev": "wp-env start -- --update",
+		"predev": "wp-env start -- --update && pnpm dep",
 		"dev": "wp-scripts start --hot",
 		"css-minify": "css-minify -f styles/admin.css -o styles",
 		"prebuild": "pnpm dep && pnpm css-minify",

@@ -1,7 +1,7 @@
 import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light'
+import type { AnimationSegment } from '@aarsteinmedia/lottie-web'
 import type { EditorTemplateLock } from '@wordpress/block-editor'
 import type { BlockEditProps } from '@wordpress/blocks'
-import type { AnimationSegment } from 'lottie-web'
 import type { ResizeStartCallback } from 're-resizable'
 import type { ReactNode } from 'react'
 

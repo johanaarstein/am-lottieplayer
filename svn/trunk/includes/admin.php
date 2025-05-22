@@ -162,13 +162,13 @@ class Admin {
 		$endpoint       = esc_url_raw( rest_url( '/wp/v2/media/' ) );
 		$rest_api_nonce = wp_create_nonce( 'wp_rest' );
 
-		wp_register_development_scripts(
-			'am-lottieplayer-runtime',
-			get_build( 'runtime.js' ),
-			array(),
-			'0.1.0',
-			true
-		);
+		// wp_register_development_scripts(
+		// 'am-lottieplayer-runtime',
+		// get_build( 'runtime.js' ),
+		// array(),
+		// '0.1.0',
+		// true
+		// );
 
 		if ( $page === 'upload.php' || $page === 'toplevel_page_am-lottieplayer-pro' ) {
 			$media_assets = require get_build_path( 'media.asset.php' );

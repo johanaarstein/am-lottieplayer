@@ -3,7 +3,7 @@ namespace AAMD_Lottie;
 
 use function AAMD_Lottie\Utility\get_allowed_html;
 use function AAMD_Lottie\Utility\get_style;
-use function AAMD_Lottie\Utility\render_lottieplayer;
+// use function AAMD_Lottie\Utility\render_lottieplayer;
 use function AAMD_Lottie\Utility\render_shortcode;
 use function AAMD_Lottie\Utility\use_id;
 
@@ -995,6 +995,7 @@ class Elementor extends \Elementor\Widget_Base {
 			array(
 				'autoplay'                 => $this->_switcher_value( $settings['scroll'] ) ? false : $this->_switcher_value( $settings['autoplay'] ),
 				'align'                    => 'none',
+				'animate_on_scroll'        => $this->_switcher_value( $settings['animate_on_scroll'] ),
 				'background'               => 'transparent',
 				'class'                    => '',
 				'controls'                 => $this->_switcher_value( $settings['controls'] ),
