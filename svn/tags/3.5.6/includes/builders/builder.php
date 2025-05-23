@@ -19,6 +19,7 @@ class Builder {
 	 */
 	public function __construct() {
 		// Builder initializations
+		// add_action( 'setup_theme', array( $this, 'override_divi_functions' ) );
 		add_action( 'init', array( $this, 'init_plugin' ) );
 		add_action( 'divi_extensions_init', array( $this, 'init_divi' ) );
 		add_action( 'elementor/widgets/register', array( $this, 'init_elementor' ) );
@@ -26,6 +27,13 @@ class Builder {
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_enqueue' ) );
 	}
+
+	/**
+	 * TODO: Find a better hook, so this doesn't fire all the time.
+	 */
+	// public function override_divi_functions() {
+	// include_file( 'builders/divi/functions' );
+	// }
 
 	/**
 	 * Initialize Gutenberg Blocks, global shortcode and register JavaScript

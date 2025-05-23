@@ -202,22 +202,31 @@ class Media {
 						break;
 					}
 
-					$animations = scandir( "$tempdir/animations" );
+					$animationsDir = "$tempdir/animations";
+					if ( ! is_dir( $animationsDir ) ) {
+						$animationsDir = "$tempdir/a";
+					}
 
-					/**
-					 * Set this to true only if animations array has length,
-					 * so that we can iterate and catch any corrupted animaiton,
-					 * while still avoiding false positive for empty arrays.
-					 */
-					$is_valid = count( $animations ) > 0;
+					if ( is_dir( $animationsDir ) ) {
+						$animations = scandir( $animationsDir );
 
-					foreach ( $animations as $animation ) {
-						if ( $animation === '.' || $animation === '..' ) {
-							continue;
-						}
-						$lottie = wp_json_file_decode( "$tempdir/animations/$animation", array( 'associative' => true ) );
-						if ( ! is_lottie_valid( $lottie ) ) {
-							$is_valid = false;
+						/**
+						 * Set this to true only if animations array has length,
+						 * so that we can iterate and catch any corrupted animaiton,
+						 * while still avoiding false positive for empty arrays.
+						 */
+						if ( (bool) $animations ) {
+							$is_valid = count( $animations ) > 0;
+
+							foreach ( $animations as $animation ) {
+								if ( $animation === '.' || $animation === '..' ) {
+									continue;
+								}
+								$lottie = wp_json_file_decode( "$animationsDir/$animation", array( 'associative' => true ) );
+								if ( ! is_lottie_valid( $lottie ) ) {
+									$is_valid = false;
+								}
+							}
 						}
 					}
 				}
