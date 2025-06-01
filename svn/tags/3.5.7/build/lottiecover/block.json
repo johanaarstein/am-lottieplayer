@@ -1,0 +1,216 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "gb/lottiecover",
+  "title": "AM LottieCover",
+  "category": "media",
+  "description": "Add a Lottie animation with a text overlay — great for headers.",
+  "keywords": [
+    "animation",
+    "gif",
+    "motion",
+    "vector",
+    "SVG",
+    "Lottie",
+    "dotLottie"
+  ],
+  "textdomain": "am-lottieplayer",
+  "attributes": {
+    "align": {
+      "enum": [
+        "none",
+        "left",
+        "right",
+        "center",
+        "wide",
+        "full"
+      ],
+      "default": "none"
+    },
+    "allowedBlocks": {
+      "type": "array",
+      "default": [
+        "core/paragraph",
+        "core/heading",
+        "core/buttons"
+      ]
+    },
+    "alt": {
+      "type": "string",
+      "default": ""
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": true
+    },
+    "controls": {
+      "type": "boolean"
+    },
+    "content": {
+      "type": "string",
+      "default": ""
+    },
+    "contentPosition": {
+      "type": "string",
+      "default": ""
+    },
+    "clickEvent": {
+      "type": "boolean",
+      "default": false
+    },
+    "dimRatio": {
+      "type": "number",
+      "default": 50
+    },
+    "direction": {
+      "type": "number",
+      "default": 1
+    },
+    "focalPoint": {
+      "type": "object",
+      "default": {}
+    },
+    "fullscreen": {
+      "type": "boolean",
+      "default": false
+    },
+    "hasParallax": {
+      "type": "boolean",
+      "default": false
+    },
+    "height": {
+      "type": "number",
+      "default": null
+    },
+    "heightUnit": {
+      "type": "string",
+      "default": "px"
+    },
+    "hover": {
+      "type": "boolean",
+      "default": false
+    },
+    "id": {
+      "type": "string",
+      "default": null
+    },
+    "intermission": {
+      "type": "number"
+    },
+    "isDark": {
+      "type": "boolean",
+      "default": true
+    },
+    "loop": {
+      "type": "boolean",
+      "default": true
+    },
+    "mode": {
+      "enum": [
+        "bounce",
+        "normal"
+      ],
+      "default": "normal"
+    },
+    "objectFit": {
+      "type": "string",
+      "default": "cover"
+    },
+    "once": {
+      "type": "boolean",
+      "default": false
+    },
+    "overlayColor": {
+      "type": "string",
+      "default": "transparent"
+    },
+    "mouseOut": {
+      "type": "string",
+      "default": "stop"
+    },
+    "renderer": {
+      "enum": [
+        "svg",
+        "canvas",
+        "html"
+      ],
+      "default": "svg"
+    },
+    "scrollEvent": {
+      "type": "boolean",
+      "default": false
+    },
+    "scrollDelay": {
+      "type": "number",
+      "default": null
+    },
+    "simple": {
+      "type": "boolean",
+      "default": true
+    },
+    "speed": {
+      "type": "number",
+      "default": 1
+    },
+    "src": {
+      "type": "string",
+      "default": ""
+    },
+    "subframe": {
+      "type": "boolean",
+      "default": true
+    },
+    "templateLock": {
+      "type": [
+        "string",
+        "boolean"
+      ],
+      "enum": [
+        "all",
+        "insert",
+        "contentOnly",
+        false
+      ]
+    },
+    "width": {
+      "type": "number",
+      "default": null
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "align": true,
+    "html": false,
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ],
+      "__experimentalDefaultControls": {
+        "padding": true,
+        "margin": true
+      }
+    },
+    "color": {
+      "text": false,
+      "background": false
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalDefaultControls": {
+        "fontSize": true
+      }
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

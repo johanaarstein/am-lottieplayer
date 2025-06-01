@@ -317,6 +317,19 @@ function render_lottieplayer( array $atts ) {
 		if ( isset( $atts['src']['url'] ) ) {
 			$src = $atts['src']['url'];
 		}
+
+		// Check if thumbnail svg is set by mistake
+		if ( str_contains( $src, 'lottie-thumbnail-' ) ) {
+			$src = str_replace( 'lottie-thumbnail-', '', $src );
+
+			$path = str_replace( home_url(), untrailingslashit( get_home_path() ), $src );
+
+			if ( file_exists( replace_extension( $path, 'lottie' ) ) ) {
+				$src = replace_extension( $src, 'lottie' );
+			} else {
+				$src = replace_extension( $src, 'json' );
+			}
+		}
 	}
 
 	\ob_start();
@@ -425,6 +438,11 @@ function render_shortcode( $atts ) {
 	return render_lottieplayer( $atts );
 }
 
+function replace_extension( $filename, $new_extension ) {
+	$path_parts = pathinfo( $filename );
+	return str_replace( $path_parts['extension'], $new_extension, $filename );
+}
+
 /**
  * Polyfill for `str_ends_with()` function added in PHP 8.0.
  *
@@ -446,6 +464,29 @@ function str_ends_with( $haystack, $needle ) {
 
 	$len = strlen( $needle );
 	return 0 === substr_compare( $haystack, $needle, -$len, $len );
+}
+
+/**
+ * Polyfill for `str_starts_with()` function added in PHP 8.0.
+ *
+ * Performs a case-sensitive check indicating if
+ * the haystack ends with needle.
+ *
+ * @param string $haystack The string to search in.
+ * @param string $needle   The substring to search for in the `$haystack`.
+ * @return bool True if `$haystack` ends with `$needle`, otherwise false.
+ */
+function str_starts_with( $haystack, $needle ) {
+	if ( function_exists( 'str_starts_with' ) ) {
+		return str_starts_with( $haystack, $needle );
+	}
+
+	if ( '' === $haystack && '' !== $needle ) {
+		return false;
+	}
+
+	$len = strlen( $needle );
+	return 0 === substr_compare( $haystack, $needle, 0, $len );
 }
 
 /**
@@ -503,6 +544,10 @@ function tempdir( $dir = null, $prefix = 'tmp_', $mode = 0700, $maxAttempts = 10
 	);
 
 	return $path;
+}
+
+function unleadingslashhit( $str ) {
+	return ltrim( $str, '/' );
 }
 
 /**
