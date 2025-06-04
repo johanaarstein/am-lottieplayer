@@ -52,7 +52,7 @@ class Builder {
 			'dotlottie-player-light',
 			get_script( 'dotlottie-player-light.min.js' ),
 			array(),
-			'5.2.12',
+			'5.2.18',
 			array(
 				'strategy'  => 'defer',
 				'in_footer' => true,

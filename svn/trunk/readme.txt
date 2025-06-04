@@ -132,6 +132,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 3.5.9 - June 4 2025 =
+* Fixed issue with data handling in animation engine.
+
 = 3.5.8 - June 2 2025 =
 * Fixed issue with modifiers not being rendered correctly
 * Fixed issue with parsing of layers, causing some animations to have mangled transforms
