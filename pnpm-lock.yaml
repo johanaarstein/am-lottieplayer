@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@aarsteinmedia/dotlottie-player-light':
-        specifier: ^5.2.23
-        version: 5.2.23(@types/react@18.3.23)
+        specifier: ^5.2.24
+        version: 5.2.24(@types/react@18.3.23)
       '@aarsteinmedia/lottie-web':
         specifier: ^0.4.4
         version: 0.4.4
@@ -140,8 +140,8 @@ importers:
 
 packages:
 
-  '@aarsteinmedia/dotlottie-player-light@5.2.23':
-    resolution: {integrity: sha512-dgCfBIAEXfOMVb0XciHo3gwBalSA3OAS5393wsYN2Pn3Ut7kOCRncd7NlJsAwshAU+iSlHxlescxBSJLR4aeXw==}
+  '@aarsteinmedia/dotlottie-player-light@5.2.24':
+    resolution: {integrity: sha512-TzjfjUDVsrBo1kgbXBsJnOEfqGlxNF8G6bcVLYAX1XQ2W+42CNxDU0aAogGJWNsrRlEs5wICV2+z78QGNLTRaw==}
     engines: {node: '>= 12.17.0'}
     peerDependencies:
       '@types/react': '>= 16.0.0'
@@ -8501,7 +8501,7 @@ packages:
 
 snapshots:
 
-  '@aarsteinmedia/dotlottie-player-light@5.2.23(@types/react@18.3.23)':
+  '@aarsteinmedia/dotlottie-player-light@5.2.24(@types/react@18.3.23)':
     dependencies:
       '@aarsteinmedia/lottie-web': 1.0.2
       '@types/react': 18.3.23
