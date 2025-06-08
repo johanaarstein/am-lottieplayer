@@ -198,7 +198,7 @@ vc_map(
 				'value'       => array(
 					__( 'SVG', 'am-lottieplayer' )    => 'svg',
 					__( 'Canvas', 'am-lottieplayer' ) => 'canvas',
-					__( 'HTML', 'am-lottieplayer' )   => 'html',
+					// __( 'HTML', 'am-lottieplayer' )   => 'html',
 				),
 				'std'         => 'svg',
 				'group'       => __( 'Advanced Options', 'am-lottieplayer' ),

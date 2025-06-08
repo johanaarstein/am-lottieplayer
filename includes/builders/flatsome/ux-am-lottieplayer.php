@@ -20,9 +20,9 @@ if ( ! function_exists( 'get_ux_template' ) ) {
 		);
 		// \ob_start();
 		// include_file(
-		// 	'builders/flatsome/ux-am-lottieplayer-template',
-		// 	null,
-		// 	'html'
+		// 'builders/flatsome/ux-am-lottieplayer-template',
+		// null,
+		// 'html'
 		// );
 		// return \ob_get_clean();
 	}
@@ -313,7 +313,7 @@ add_ux_builder_shortcode(
 						'options'     => array(
 							'svg'    => 'SVG',
 							'canvas' => 'Canvas',
-							'html'   => 'HTML',
+							// 'html'   => 'HTML',
 						),
 					),
 

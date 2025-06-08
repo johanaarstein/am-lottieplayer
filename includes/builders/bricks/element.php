@@ -332,7 +332,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'options'     => array(
 				'SVG'    => 'svg',
 				'Canvas' => 'canvas',
-				'HTML'   => 'html',
+				// 'HTML'   => 'html',
 			),
 			'default'     => 'svg',
 		);
