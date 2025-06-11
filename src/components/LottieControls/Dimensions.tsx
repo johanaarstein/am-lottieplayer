@@ -8,7 +8,6 @@ import {
   PanelRow,
   SelectControl,
 } from '@wordpress/components'
-import { useCallback } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
 
 import type { PlayerComponentProps } from '@/types'
@@ -31,14 +30,13 @@ export default function Dimensions ( {
       width,
     } = attributes,
 
-    parseWidth = useCallback(( num: number | string ) => {
+    parseWidth = ( num: number | string ) => {
       if ( align === Align.Full || align === Align.Wide ) {
         return '100%'
       }
 
       return ! num || num === '0' ? undefined : num
-    },
-    [ align ])
+    }
 
   return (
     <Panel>
