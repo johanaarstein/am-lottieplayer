@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import type { TemplateArray } from '@wordpress/blocks'
 
 import {
@@ -20,8 +21,8 @@ import ContextMenu from '@/components/ContextMenu'
 import LottieControls from '@/components/LottieControls'
 import Placeholder from '@/components/Placeholder'
 import ResizableCover from '@/components/ResizableCover'
-import PlayerWrapper from '@/context/PlayerWrapper'
-import { isTemporaryMedia } from '@/utils'
+import PlayerWrapper from '@/context/PlayerProvider'
+import { isTemporaryMedia } from '@/utils/media'
 import '@/lottiecover/editor.css'
 
 const getInnerBlocksTemplate = ( attributes: object ): TemplateArray => [
@@ -72,7 +73,7 @@ export default function Edit( {
     [ isPlaceholder, setIsPlaceholder ] = useState( true ),
     blockProps = useBlockProps( { ref } ),
     heightWithUnit =
-			height && heightUnit ? `${ height }${ heightUnit }` : height,
+			height ? `${ height }${ heightUnit }` : height,
     style = { minHeight: fullscreen ? '100vh' : heightWithUnit || undefined },
     // backgroundPosition = focalPoint
     // 	? mediaPosition( focalPoint )

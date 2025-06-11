@@ -1,9 +1,8 @@
 import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light'
 
-import {
-  useCallback, useEffect, useRef
-} from '@wordpress/element'
+import { useEffect, useRef } from '@wordpress/element'
 
+import useEventListener from '@/hooks/useEventListener'
 import { isTouch } from '@/utils'
 
 export default function BoomerangLottie( {
@@ -28,7 +27,7 @@ export default function BoomerangLottie( {
       boomerang.current?.setDirection( 1 )
       boomerang.current?.play()
     },
-    touchScroll = useCallback( () => {
+    touchScroll = () => {
       if ( ! isTouch() || ! boomerang.current ) {
         return
       }
@@ -39,27 +38,23 @@ export default function BoomerangLottie( {
         boomerang.current.setDirection( -1 )
         boomerang.current.play()
       }
-    }, [] )
+    }
 
+  useEventListener(
+    'scroll', touchScroll, {
+      capture: true,
+      passive: true
+    }
+  )
+
+  // eslint-disable-next-line react-you-might-not-need-an-effect/you-might-not-need-an-effect
   useEffect( () => {
-    addEventListener(
-      'scroll', touchScroll, {
-        capture: true,
-        passive: true,
-      }
-    )
-
-    if ( boomerang.current ) {
-      boomerang.current.onmouseover = mouseOver
-      boomerang.current.onmouseout = mouseOut
+    if (!boomerang.current) {
+      return
     }
-
-    return () => {
-      removeEventListener(
-        'scroll', touchScroll, true
-      )
-    }
-  }, [ touchScroll ] )
+    boomerang.current.onmouseover = mouseOver
+    boomerang.current.onmouseout = mouseOut
+  }, [] )
 
   return (
     <dotlottie-player

@@ -7,10 +7,10 @@ import { __ } from '@wordpress/i18n'
 
 import type { PlayerComponentProps } from '@/types'
 
-const Background = ( {
+export default function Background ( {
   attributes,
   setAttributes,
-}: BlockEditProps< PlayerComponentProps > ) => {
+}: BlockEditProps< PlayerComponentProps > ) {
   const { background } = attributes
 
   return (
@@ -30,5 +30,3 @@ const Background = ( {
     </Panel>
   )
 }
-
-export default Background

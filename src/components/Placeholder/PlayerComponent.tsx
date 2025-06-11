@@ -1,14 +1,14 @@
 import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light'
 
 import { useSelect } from '@wordpress/data'
-import {
-  useCallback, useEffect, useRef
-} from '@wordpress/element'
+import { useEffect, useRef } from '@wordpress/element'
 
 import type { PlayerComponentProps } from '@/types'
 
-import { usePlayerContext } from '@/context/PlayerWrapper'
+import { usePlayerContext } from '@/context/PlayerContext'
 import { Align } from '@/enums'
+import useDidComponentUpdate from '@/hooks/useDidComponentUpdate'
+import useEventListener from '@/hooks/useEventListener'
 import { debounce } from '@/utils'
 
 const parseSize = (num?: number | null) => {
@@ -31,14 +31,13 @@ export default function PlayerComponent( {
     { getBlockIndex }: { getBlockIndex: ( str: string ) => number } =
 			useSelect( ( select ) => select( 'core/block-editor' ), [] ),
     blockIndex = getBlockIndex( clientId ),
-    initialRender = useRef( true ),
     playerRef = useRef< DotLottiePlayer >( null ),
-    reloadPlayer = useCallback( () => {
+    reloadPlayer = () => {
       if ( ! player ) {
         return
       }
       void player.reload()
-    }, [ player ] ),
+    },
     parseWidth = ( num?: number | null ) => {
       if (
         attributes.align === Align.Wide ||
@@ -59,34 +58,24 @@ export default function PlayerComponent( {
     }
   }, [ setAnimationContext ] )
 
-  useEffect( () => {
-    player?.addEventListener( 'ready', () => {
-      setAnimationContext( ( prev ) => ( {
+  useEventListener(
+    'ready', () => {
+      setAnimationContext((prev) => ({
         ...prev,
-        animations: player.getManifest()?.animations ?? [],
-      } ) )
-    } )
-  }, [ player, setAnimationContext ] )
+        animations: player?.getManifest()?.animations ?? [],
+      }))
+    }, { element: player }
+  )
 
-  useEffect( () => {
-    if ( ! initialRender.current ) {
-      debounce( reloadPlayer, 300 )
-    }
-    initialRender.current = false
+  useDidComponentUpdate(() => {
+    debounce(reloadPlayer, 300)
   }, [
     blockIndex,
     attributes.intermission,
     attributes.src,
     attributes.objectFit,
     reloadPlayer,
-    // segment,
-  ] )
-
-  // useEffect( () => {
-  // 	if ( attributes.segment ) {
-  // 		playerRef.current?.setSegment( attributes.segment );
-  // 	}
-  // }, [ attributes.segment ] );
+  ])
 
   return (
     <dotlottie-player

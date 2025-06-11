@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light'
 import type { BlockEditProps } from '@wordpress/blocks'
 

@@ -10,7 +10,7 @@ import Animation from '@/components/LottieControls/Animation'
 import Background from '@/components/LottieControls/Background'
 import Dimensions from '@/components/LottieControls/Dimensions'
 import Interactions from '@/components/LottieControls/Interactions'
-import { usePlayerContext } from '@/context/PlayerWrapper'
+import { usePlayerContext } from '@/context/PlayerContext'
 
 export default function LottieControls( {
   attributes,
@@ -25,7 +25,7 @@ export default function LottieControls( {
 
   useEffect( () => {
     setAnimationContext( ( prev ) => {
-      if ( prev.animations?.length > 0 ) {
+      if (prev.animations.length > 0 ) {
         return prev
       }
 

@@ -3,7 +3,7 @@
   "env": {
     "tests": {
       "core": null,
-      "phpVersion": "8.3",
+      "phpVersion": "8.4",
       "config": {
         "WP_DEBUG_DISPLAY": false,
         "WP_DEBUG": true,

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import type { BlockEditProps } from '@wordpress/blocks'
 
 import {
@@ -18,10 +19,10 @@ import { OnMouseOut } from '@/enums'
 
 const domain = 'am-lottieplayer'
 
-const Interactions = ( {
+export default function Interactions ( {
   attributes,
   setAttributes,
-}: BlockEditProps< PlayerComponentProps > ) => {
+}: BlockEditProps< PlayerComponentProps > ) {
   const {
     clickEvent,
     hover,
@@ -197,5 +198,3 @@ const Interactions = ( {
     </Panel>
   )
 }
-
-export default Interactions

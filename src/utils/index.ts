@@ -1,7 +1,5 @@
 import type { KeyboardEvent } from 'react'
 
-import { isBlobURL } from '@wordpress/blob'
-
 const untrailingslashit = (str: string): string => {
   if (str.endsWith('/')) {
     return untrailingslashit(str.slice(0, Math.max(0, str.length - 1)))
@@ -10,30 +8,7 @@ const untrailingslashit = (str: string): string => {
   return str
 }
 
-export const attributesFromMedia =
-		( setAttributes: ( attrs: object ) => void, dimRatio?: number ) =>
-		  ( media: {
-		    url: string;
-		    id?: string;
-		    alt?: string
-		  } ) => {
-		    if ( !media.url ) {
-		      setAttributes( {
-		        id: undefined,
-		        src: undefined
-		      } )
-
-		      return
-		    }
-
-		    setAttributes( {
-		      alt: media.alt,
-		      dimRatio: dimRatio === 100 ? 50 : dimRatio,
-		      id: media.id,
-		      src: media.url,
-		    } )
-		  },
-  debounce = ( callBack: ( x: unknown ) => unknown, timeout = 100 ) => {
+export const debounce = ( callBack: ( x: unknown ) => unknown, timeout = 100 ) => {
     let timer: ReturnType< typeof setTimeout >
 
     return ( ...args: unknown[] ) => {
@@ -63,8 +38,6 @@ export const attributesFromMedia =
         key === 'r' )),
   isNumericInput = ( { key }: KeyboardEvent ) =>
     Number( key ) >= 0 && Number( key ) <= 9,
-  isTemporaryMedia = ( id?: string, url?: string ) =>
-    ! id && isBlobURL( url ),
   isTouch = () => 'ontouchstart' in window,
   isValidUrl = (url: string) => {
     const urlPattern = /^(?:https?:\/\/)?(?:[a-z0-9-]+\.)+[a-z]{2,}(?:\/\S*)?$/i

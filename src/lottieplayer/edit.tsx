@@ -8,8 +8,8 @@ import type { PlayerComponentProps } from '@/types'
 import ContextMenu from '@/components/ContextMenu'
 import LottieControls from '@/components/LottieControls'
 import Placeholder from '@/components/Placeholder'
-import PlayerWrapper from '@/context/PlayerWrapper'
-import { isTemporaryMedia } from '@/utils'
+import PlayerWrapper from '@/context/PlayerProvider'
+import { isTemporaryMedia } from '@/utils/media'
 import '@/lottieplayer/editor.css'
 
 export default function Edit( {

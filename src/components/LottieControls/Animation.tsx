@@ -16,15 +16,15 @@ import ProFeature from '@/assets/ProFeature'
 import NumberInput from '@/components/form/NumberInput'
 import SwitchLabel from '@/components/form/SwitchLabel'
 import ProLink from '@/components/ProLink'
-import { usePlayerContext } from '@/context/PlayerWrapper'
+import { usePlayerContext } from '@/context/PlayerContext'
 
 const domain = 'am-lottieplayer',
   premiumMessage = __('This feature is only available in the premium version', domain)
 
-const Animation = ({
+export default function Animation({
   attributes,
   setAttributes,
-}: BlockEditProps<PlayerComponentProps>) => {
+}: BlockEditProps<PlayerComponentProps>) {
   const {
       autoplay, controls, direction, intermission, loop, segment, speed, subframe
     } = attributes,
@@ -185,5 +185,3 @@ const Animation = ({
     </Panel>
   )
 }
-
-export default Animation

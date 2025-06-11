@@ -9,10 +9,10 @@ import type { PlayerComponentProps } from '@/types'
 import ProFeature from '@/assets/ProFeature'
 import ProLink from '@/components/ProLink'
 
-const Advanced = ( {
+export default function Advanced( {
   attributes,
   setAttributes,
-}: BlockEditProps< PlayerComponentProps > ) => {
+}: BlockEditProps< PlayerComponentProps > ) {
   const { alt } = attributes
 
   return (
@@ -55,5 +55,3 @@ const Advanced = ( {
     </InspectorAdvancedControls>
   )
 }
-
-export default Advanced

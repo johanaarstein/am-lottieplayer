@@ -3,13 +3,12 @@
     "baseUrl": "./",
     "rootDir": "./",
     "outDir": "./build",
-    "target": "ES2022",
+    "target": "ES2023",
     "jsx": "react-jsx",
     "module": "ESNext",
     "lib": [
       "DOM",
       "DOM.Iterable",
-      "ES2022",
       "ESNext"
     ],
     "noImplicitAny": false,
