@@ -13,10 +13,7 @@ import Lottie from '@/assets/Lottie'
 import ErrorNotice from '@/components/ErrorNotice'
 import { isValidUrl } from '@/utils'
 
-const domain = 'am-lottieplayer',
-  onError = (message: string) => {
-    ErrorNotice(message)
-  }
+const domain = 'am-lottieplayer'
 
 export default function UploadComponent({
   attributes,
@@ -26,34 +23,9 @@ export default function UploadComponent({
   readonly setAttributes: (attrs: Partial<PlayerComponentProps>) => void;
 }) {
   const [state, setState] = useState({
-      externalURL: attributes.src || '',
-      hasDropped: false,
-    }),
-    onSelectMedia = (props: {
-      id: number;
-      url: string;
-      alt?: string;
-    }) => {
-      try {
-        if (!props.url) {
-          setAttributes({
-            id: undefined,
-            src: undefined
-          })
-
-          return
-        }
-        setAttributes({
-          alt: props.alt,
-          id: props.id.toString(),
-          src: props.url,
-        })
-      } catch (error) {
-        console.error(error)
-        ErrorNotice(__('Failed to upload Lottie'))
-      }
-
-    }
+    externalURL: attributes.src || '',
+    hasDropped: false,
+  })
 
   useEffect(() => {
     if (
@@ -79,24 +51,47 @@ export default function UploadComponent({
               domain),
           title: __('AM Lottie Animation', domain),
         }}
-        onError={onError}
-        onSelect={onSelectMedia}
-        onHTMLDrop={() =>
-        { setState((prev) => ({
-          ...prev,
-          hasDropped: true
-        })) }
+        onError={(message) => {
+          ErrorNotice(message)
+        }}
+        onSelect={(props) => {
+          try {
+            if (!props.url) {
+              setAttributes({
+                id: undefined,
+                src: undefined
+              })
+
+              return
+            }
+            setAttributes({
+              alt: props.alt,
+              id: props.id.toString(),
+              src: props.url,
+            })
+          } catch (error) {
+            console.error(error)
+            ErrorNotice(__('Failed to upload Lottie'))
+          }
+        }}
+        onHTMLDrop={() => {
+          setState((prev) => ({
+            ...prev,
+            hasDropped: true
+          }))
+        }
         }
       >
         {
           (
             <URLInput
               value={state.externalURL}
-              onChange={(externalURL) =>
-              { setState((prev) => ({
-                ...prev,
-                externalURL,
-              })) }
+              onChange={(externalURL) => {
+                setState((prev) => ({
+                  ...prev,
+                  externalURL,
+                }))
+              }
               }
             />
           ) as unknown as undefined

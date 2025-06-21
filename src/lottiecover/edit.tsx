@@ -5,12 +5,12 @@ import {
   useBlockProps,
   useInnerBlocksProps,
   store as blockEditorStore,
-  useSetting,
+  // useSetting,
 } from '@wordpress/block-editor'
 import { Spinner } from '@wordpress/components'
 import { useSelect } from '@wordpress/data'
 import {
-  useEffect, useRef, useState
+  useMemo, useRef, useState
 } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
 import classNames from 'classnames'
@@ -75,23 +75,12 @@ export default function Edit( {
     heightWithUnit =
 			height ? `${ height }${ heightUnit }` : height,
     style = { minHeight: fullscreen ? '100vh' : heightWithUnit || undefined },
-    // backgroundPosition = focalPoint
-    // 	? mediaPosition( focalPoint )
-    // 	: undefined,
-    // bgStyle = { backgroundColor: overlayColor?.color },
-    // mediaStyle = {
-    // 	objectPosition: focalPoint
-    // 		? mediaPosition( focalPoint )
-    // 		: undefined,
-    /**
-     * },.
-     */
     hasInnerBlocks = useSelect(( select ) =>
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
       Boolean(select( blockEditorStore )?.getBlock( clientId )?.innerBlocks
         ?.length),
     [ clientId ]),
-    fontSizes = useSetting( 'typography.fontSizes' ),
-    innerBlocksTemplate = getInnerBlocksTemplate( { fontSize: fontSizes ? 'large' : undefined } ),
+    innerBlocksTemplate = getInnerBlocksTemplate( { fontSize: 'large' } ),
     innerBlocksProps = useInnerBlocksProps({ className: 'wp-block-gb-lottiecover__inner-container' },
       {
         allowedBlocks,
@@ -100,9 +89,9 @@ export default function Edit( {
         templateLock,
       })
 
-  useEffect( () => {
-    setIsPlaceholder( ! src || src === '' )
-  }, [ src ] )
+  useMemo(() => {
+    setIsPlaceholder(!src || src === '')
+  }, [src])
 
   return (
     <PlayerWrapper>

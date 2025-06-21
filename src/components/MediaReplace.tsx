@@ -40,6 +40,8 @@ export interface Media {
   url?: string;
 };
 
+const domain = 'am-lottieplayer'
+
 const onUploadError = (message: string) => {
   const safeMessage: string = stripHTML(message)
 
@@ -78,26 +80,28 @@ export default function MediaReplace( {
     }, [] ),
     allowedTypes = [ 'application/json', 'application/zip' ],
     accept = '.lottie,.json',
-    onSelectMedia = ( {
-      alt, id, url
-    }: Media ) => {
-      if ( ! url ) {
-        setAttributes( {
-          id: undefined,
-          src: undefined
-        } )
+    onSelectMedia = ( media: Media ) => {
+      try {
+        if (!media.url) {
+          setAttributes({
+            id: undefined,
+            src: undefined
+          })
 
-        return
+          return
+        }
+        setState((prev) => ({
+          ...prev,
+          mediaId: media.id
+        }))
+        setAttributes({
+          alt: media.alt,
+          id: media.id.toString(),
+          src: media.url,
+        })
+      } catch (error) {
+        ErrorNotice(__('There was an error uploading your file', domain))
       }
-      setState( ( prev ) => ( {
-        ...prev,
-        mediaId: id
-      } ) )
-      setAttributes( {
-        alt,
-        id: id.toString(),
-        src: url,
-      } )
     },
     selectMedia = ( media: Media, closeMenu: () => void ) => {
       closeMenu()
