@@ -8,12 +8,12 @@ importers:
 
   .:
     devDependencies:
-      '@aarsteinmedia/dotlottie-player-light':
-        specifier: ^5.3.0
-        version: 5.3.0(@types/react@18.3.23)
+      '@aarsteinmedia/dotlottie-player':
+        specifier: ^6.0.0
+        version: 6.0.0(@types/react@18.3.23)
       '@aarsteinmedia/lottie-web':
-        specifier: ^1.1.5
-        version: 1.1.5
+        specifier: ^1.1.7
+        version: 1.1.7
       '@playwright/test':
         specifier: ^1.53.1
         version: 1.53.1
@@ -140,14 +140,14 @@ importers:
 
 packages:
 
-  '@aarsteinmedia/dotlottie-player-light@5.3.0':
-    resolution: {integrity: sha512-CP2Us0ixSJ+RYiSpEUNjF6ey6UxI5EZfKi10/yiFUFd2RDtgmDu+4D79TypniQvfGZHSiRdzCju//Gr7P1Wa5Q==}
+  '@aarsteinmedia/dotlottie-player@6.0.0':
+    resolution: {integrity: sha512-bXz+Ogso3EXfOGC7M66bahNIyUvFkdBFYUbRgvZlPFdQQmbXNilEj3mP1cP4irMJh2BmpmmCSI7SrAcQY3gsIA==}
     engines: {node: '>= 12.17.0'}
     peerDependencies:
       '@types/react': '>= 16.0.0'
 
-  '@aarsteinmedia/lottie-web@1.1.5':
-    resolution: {integrity: sha512-X2BKANxZuDoD5vohrTiB6SGowm4jJUkgX0/QTbVDpk5aYHohnF3ReKbHkNdRjGXk6fEBjjFGjn4WBK3dm+Zj/w==}
+  '@aarsteinmedia/lottie-web@1.1.7':
+    resolution: {integrity: sha512-Nj4etZvqHc4v9uMoEP21jd3B5p9DvbK92oFemjhxCg1zpBjhX5j0JpQbwB17Q7atXBO8SflQdgM51iVBZWdPsg==}
     engines: {node: '>= 12.17.0'}
 
   '@ampproject/remapping@2.3.0':
@@ -8537,15 +8537,13 @@ packages:
 
 snapshots:
 
-  '@aarsteinmedia/dotlottie-player-light@5.3.0(@types/react@18.3.23)':
+  '@aarsteinmedia/dotlottie-player@6.0.0(@types/react@18.3.23)':
     dependencies:
-      '@aarsteinmedia/lottie-web': 1.1.5
+      '@aarsteinmedia/lottie-web': 1.1.7
       '@types/react': 18.3.23
       fflate: 0.8.2
 
-  '@aarsteinmedia/lottie-web@1.1.5':
-    dependencies:
-      fflate: 0.8.2
+  '@aarsteinmedia/lottie-web@1.1.7': {}
 
   '@ampproject/remapping@2.3.0':
     dependencies:
