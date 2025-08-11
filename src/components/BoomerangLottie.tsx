@@ -1,4 +1,4 @@
-import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light'
+import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player'
 
 import { useEffect, useRef } from '@wordpress/element'
 

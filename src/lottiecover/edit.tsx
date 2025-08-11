@@ -76,7 +76,7 @@ export default function Edit( {
 			height ? `${ height }${ heightUnit }` : height,
     style = { minHeight: fullscreen ? '100vh' : heightWithUnit || undefined },
     hasInnerBlocks = useSelect(( select ) =>
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unnecessary-condition
       Boolean(select( blockEditorStore )?.getBlock( clientId )?.innerBlocks
         ?.length),
     [ clientId ]),

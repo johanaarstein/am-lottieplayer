@@ -5,7 +5,7 @@ use function AAMD_Lottie\Utility\get_allowed_html;
 use function AAMD_Lottie\Utility\get_style;
 use function AAMD_Lottie\Utility\render_shortcode;
 
-\defined( 'ABSPATH' ) || exit;
+(\defined( 'ABSPATH' ) && \class_exists( '\Bricks\Element' )) || exit;
 
 class Element_Lottie_Player extends \Bricks\Element {
 	// Element properties

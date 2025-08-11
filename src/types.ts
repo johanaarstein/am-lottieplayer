@@ -1,4 +1,4 @@
-import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light'
+import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player'
 import type { AnimationSegment } from '@aarsteinmedia/lottie-web'
 import type { EditorTemplateLock } from '@wordpress/block-editor'
 import type { BlockEditProps } from '@wordpress/blocks'

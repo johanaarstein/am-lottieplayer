@@ -1,4 +1,4 @@
-import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light'
+import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player'
 import type { LottieAnimation } from '@aarsteinmedia/lottie-web'
 
 import { createContext, useContext } from '@wordpress/element'

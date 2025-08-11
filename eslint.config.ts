@@ -29,7 +29,7 @@ export default tseslint.config(
       '@stylistic/comma-spacing': 'warn',
       '@stylistic/func-call-spacing': 'warn',
       '@stylistic/function-paren-newline': ['warn', { minItems: 3 }],
-      '@stylistic/indent': ['warn', 2],
+      // '@stylistic/indent': ['warn', 2],
       '@stylistic/indent-binary-ops': ['warn', 2],
       '@stylistic/jsx-quotes': ['warn', 'prefer-double'],
       '@stylistic/key-spacing': 'warn',

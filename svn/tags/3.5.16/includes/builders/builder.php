@@ -20,7 +20,7 @@ class Builder {
 	public function __construct() {
 		// Builder initializations
 		// add_action( 'setup_theme', array( $this, 'override_divi_functions' ) );
-		add_action( 'init', array( $this, 'init_plugin' ) );
+		add_action( 'init', array( $this, 'init_plugin' ), 11 );
 		add_action( 'divi_extensions_init', array( $this, 'init_divi' ) );
 		add_action( 'elementor/widgets/register', array( $this, 'init_elementor' ) );
 		add_action( 'vc_before_init', array( $this, 'init_vc' ) );
@@ -52,7 +52,7 @@ class Builder {
 			'dotlottie-player-light',
 			get_script( 'dotlottie-player-light.min.js' ),
 			array(),
-			'5.2.28',
+			'6.0.0',
 			array(
 				'strategy'  => 'defer',
 				'in_footer' => true,

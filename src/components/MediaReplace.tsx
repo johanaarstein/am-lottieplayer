@@ -150,6 +150,7 @@ export default function MediaReplace( {
       ( state.externalURL.endsWith( '.lottie' ) ||
         state.externalURL.endsWith( '.json' ) )
     ) {
+      // eslint-disable-next-line react-you-might-not-need-an-effect/you-might-not-need-an-effect
       setAttributes( { src: state.externalURL } )
     }
   }, [ state.externalURL, setAttributes ] )

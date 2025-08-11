@@ -21,21 +21,21 @@ export const debounce = ( callBack: ( x: unknown ) => unknown, timeout = 100 ) =
   isModifierKey = ( {
     ctrlKey, key, metaKey, shiftKey
   }: KeyboardEvent ) =>
-    Boolean(shiftKey ||
-      key === 'End' ||
-      key === 'Home' ||
-      key === 'Backspace' ||
-      key === 'Tab' ||
-      key === 'Enter' ||
-      key === 'Delete' ||
-      ( ctrlKey || metaKey ) &&
-      ( key === 'a' ||
-        key === 'c' ||
-        key === 'v' ||
-        key === 'x' ||
-        key === 'z' ||
-        key === 't' ||
-        key === 'r' )),
+    shiftKey ||
+    key === 'End' ||
+    key === 'Home' ||
+    key === 'Backspace' ||
+    key === 'Tab' ||
+    key === 'Enter' ||
+    key === 'Delete' ||
+    ( ctrlKey || metaKey ) &&
+    ( key === 'a' ||
+      key === 'c' ||
+      key === 'v' ||
+      key === 'x' ||
+      key === 'z' ||
+      key === 't' ||
+      key === 'r' ),
   isNumericInput = ( { key }: KeyboardEvent ) =>
     Number( key ) >= 0 && Number( key ) <= 9,
   isTouch = () => 'ontouchstart' in window,
