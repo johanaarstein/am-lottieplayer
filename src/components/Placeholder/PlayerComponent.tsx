@@ -7,7 +7,7 @@ import type { PlayerComponentProps } from '@/types'
 
 import { usePlayerContext } from '@/context/PlayerContext'
 import { Align } from '@/enums'
-import useDidComponentUpdate from '@/hooks/useDidComponentUpdate'
+import useComponentDidUpdate from '@/hooks/useComponentDidUpdate'
 import useEventListener from '@/hooks/useEventListener'
 import { debounce } from '@/utils'
 
@@ -67,7 +67,7 @@ export default function PlayerComponent( {
     }, { element: player }
   )
 
-  useDidComponentUpdate(() => {
+  useComponentDidUpdate(() => {
     debounce(reloadPlayer, 300)
   }, [
     blockIndex,

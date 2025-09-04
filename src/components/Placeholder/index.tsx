@@ -6,7 +6,7 @@ import type { PlayerComponentProps } from '@/types'
 
 import PlayerComponent from '@/components/Placeholder/PlayerComponent'
 import UploadComponent from '@/components/Placeholder/UploadComponent'
-import useDidComponentUpdate from '@/hooks/useDidComponentUpdate'
+import useComponentDidUpdate from '@/hooks/useComponentDidUpdate'
 
 export default function Placeholder( {
   attributes,
@@ -15,8 +15,9 @@ export default function Placeholder( {
 }: BlockEditProps< PlayerComponentProps > ) {
   const [ state, setState ] = useState( { isPlaceholder: true } )
 
-  useDidComponentUpdate(() => {
+  useComponentDidUpdate(() => {
     setState(() => ({ isPlaceholder: !attributes.src || attributes.src === '' }))
+    // console.log('👸', attributes.src)
   }, [attributes.src])
 
   return (

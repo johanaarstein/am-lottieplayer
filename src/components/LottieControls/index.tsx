@@ -12,20 +12,20 @@ import Dimensions from '@/components/LottieControls/Dimensions'
 import Interactions from '@/components/LottieControls/Interactions'
 import { usePlayerContext } from '@/context/PlayerContext'
 
-export default function LottieControls( {
+export default function LottieControls({
   attributes,
   className,
   clientId,
   context,
   isSelected,
   setAttributes,
-}: BlockEditProps< PlayerComponentProps > ) {
+}: BlockEditProps<PlayerComponentProps>) {
   const generatedId = useId(),
     { setAnimationContext } = usePlayerContext()
 
-  useEffect( () => {
-    setAnimationContext( ( prev ) => {
-      if (prev.animations.length > 0 ) {
+  useEffect(() => {
+    setAnimationContext((prev) => {
+      if (prev.animations.length > 0) {
         return prev
       }
 
@@ -42,7 +42,7 @@ export default function LottieControls( {
           },
         ],
       }
-    } )
+    })
   }, [
     attributes.autoplay,
     attributes.direction,
@@ -52,52 +52,52 @@ export default function LottieControls( {
     attributes.speed,
     generatedId,
     setAnimationContext,
-  ] )
+  ])
 
   return (
     <>
       <InspectorControls>
         <Animation
-          attributes={ attributes }
-          className={ className }
-          clientId={ clientId }
-          context={ context }
-          isSelected={ isSelected }
-          setAttributes={ setAttributes }
+          attributes={attributes}
+          className={className}
+          clientId={clientId}
+          context={context}
+          isSelected={isSelected}
+          setAttributes={setAttributes}
         />
         <Interactions
-          attributes={ attributes }
-          className={ className }
-          clientId={ clientId }
-          context={ context }
-          isSelected={ isSelected }
-          setAttributes={ setAttributes }
+          attributes={attributes}
+          className={className}
+          clientId={clientId}
+          context={context}
+          isSelected={isSelected}
+          setAttributes={setAttributes}
         />
         <Advanced
-          attributes={ attributes }
-          className={ className }
-          clientId={ clientId }
-          context={ context }
-          isSelected={ isSelected }
-          setAttributes={ setAttributes }
+          attributes={attributes}
+          className={className}
+          clientId={clientId}
+          context={context}
+          isSelected={isSelected}
+          setAttributes={setAttributes}
         />
       </InspectorControls>
       <InspectorControls group="styles">
         <Dimensions
-          attributes={ attributes }
-          className={ className }
-          clientId={ clientId }
-          context={ context }
-          isSelected={ isSelected }
-          setAttributes={ setAttributes }
+          attributes={attributes}
+          className={className}
+          clientId={clientId}
+          context={context}
+          isSelected={isSelected}
+          setAttributes={setAttributes}
         />
         <Background
-          attributes={ attributes }
-          className={ className }
-          clientId={ clientId }
-          context={ context }
-          isSelected={ isSelected }
-          setAttributes={ setAttributes }
+          attributes={attributes}
+          className={className}
+          clientId={clientId}
+          context={context}
+          isSelected={isSelected}
+          setAttributes={setAttributes}
         />
       </InspectorControls>
     </>
