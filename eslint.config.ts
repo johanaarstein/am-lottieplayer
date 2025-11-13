@@ -2,6 +2,7 @@ import {
   sheriff, type SheriffSettings, tseslint
 } from 'eslint-config-sheriff'
 import perfectionist from 'eslint-plugin-perfectionist'
+import { defineConfig } from 'eslint/config'
 
 const sheriffOptions: SheriffSettings = {
   astro: false,
@@ -15,7 +16,8 @@ const sheriffOptions: SheriffSettings = {
   vitest: false,
 }
 
-export default tseslint.config(
+export default defineConfig(
+  // @ts-expect-error types not working correctly
   sheriff(sheriffOptions),
   {
     files: ['**/*.{ts,tsx,mjs,js}'],
@@ -24,7 +26,8 @@ export default tseslint.config(
     ],
     plugins: { perfectionist },
     rules: {
-      '@stylistic/array-element-newline': ['warn', { minItems: 3 }],
+      '@stylistic/array-element-newline': 'off',
+      // '@stylistic/array-element-newline': ['warn', { minItems: 3 }],
       '@stylistic/comma-dangle': ['warn', 'only-multiline'],
       '@stylistic/comma-spacing': 'warn',
       '@stylistic/func-call-spacing': 'warn',
