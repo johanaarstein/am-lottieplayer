@@ -5,7 +5,7 @@ use function AAMD_Lottie\Utility\get_allowed_html;
 use function AAMD_Lottie\Utility\get_style;
 use function AAMD_Lottie\Utility\render_shortcode;
 
-(\defined( 'ABSPATH' ) && \class_exists( '\Bricks\Element' )) || exit;
+( \defined( 'ABSPATH' ) && \class_exists( '\Bricks\Element' ) ) || exit;
 
 class Element_Lottie_Player extends \Bricks\Element {
 	// Element properties
@@ -13,7 +13,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 	public $name     = 'am-lottieplayer';
 	public $icon     = 'eicon-am-lottie';
 	// public $css_selector = '';
-	public $scripts  = AAMD_LOTTIE_IS_PRO ? array( 'am-frontend' ) : array( 'am-frontend-light' );
+	public $scripts  = AAMD_LOTTIE_IS_PRO ? array( 'dotlottie-player' ) : array( 'dotlottie-player-light' );
 	public $nestable = false;
 
 	// Methods: Builder-specific
@@ -82,7 +82,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'group'       => 'animation',
 			'label'       => esc_html__( 'Lottie animation', 'am-lottieplayer' ),
 			'type'        => 'file',
-			'allowed' => array('application/json', 'application/zip'),
+			'allowed'     => array( 'application/json', 'application/zip' ),
 			'pasteStyles' => false,
 			'required'    => array( 'source_type', '=', 'media' ),
 		);
@@ -122,7 +122,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'type'     => 'checkbox',
 			'default'  => false,
 			'required' => array(
-				'animate_on_scroll',
+				'animateonscroll',
 				'!=',
 				true,
 			),
@@ -134,7 +134,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'type'     => 'checkbox',
 			'default'  => false,
 			'required' => array(
-				'animate_on_scroll',
+				'animateonscroll',
 				'!=',
 				true,
 			),
@@ -147,7 +147,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'type'        => 'checkbox',
 			'default'     => false,
 			'required'    => array(
-				'animate_on_scroll',
+				'animateonscroll',
 				'!=',
 				true,
 			),
@@ -160,7 +160,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'type'     => 'checkbox',
 			'default'  => false,
 			'required' => array(
-				'animate_on_scroll',
+				'animateonscroll',
 				'!=',
 				true,
 			),
@@ -181,7 +181,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'step'     => 0.5,
 			'default'  => 1,
 			'required' => array(
-				'animate_on_scroll',
+				'animateonscroll',
 				'!=',
 				true,
 			),
@@ -222,7 +222,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 		);
 
 		// Interaction
-		$this->controls['animate_on_scroll'] = array(
+		$this->controls['animateonscroll']  = array(
 			'tab'         => 'content',
 			'group'       => 'interactions',
 			'label'       => $pro_feature . esc_html__( 'Animate on scroll', 'am-lottieplayer' ),
@@ -230,21 +230,21 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'type'        => 'checkbox',
 			'default'     => false,
 		);
-		$this->controls['onclick']           = array(
+		$this->controls['playonclick']      = array(
 			'tab'     => 'content',
 			'group'   => 'interactions',
 			'label'   => esc_html__( 'Play on click', 'am-lottieplayer' ),
 			'type'    => 'checkbox',
 			'default' => false,
 		);
-		$this->controls['onmouseover']       = array(
+		$this->controls['hover']            = array(
 			'tab'     => 'content',
 			'group'   => 'interactions',
 			'label'   => esc_html__( 'Play on mouseover', 'am-lottieplayer' ),
 			'type'    => 'checkbox',
 			'default' => false,
 		);
-		$this->controls['onmouseout']        = array(
+		$this->controls['mouseout']         = array(
 			'tab'      => 'content',
 			'group'    => 'interactions',
 			'label'    => esc_html__( 'On mouseout', 'am-lottieplayer' ),
@@ -257,12 +257,12 @@ class Element_Lottie_Player extends \Bricks\Element {
 			),
 			'default'  => 'void',
 			'required' => array(
-				'onmouseover',
+				'hover',
 				'=',
 				true,
 			),
 		);
-		$this->controls['selector']          = array(
+		$this->controls['selector']         = array(
 			'tab'         => 'content',
 			'description' => esc_html__( 'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer' ) . $pro_link,
 			'group'       => 'interactions',
@@ -270,7 +270,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'type'        => 'text',
 			'default'     => '#',
 		);
-		$this->controls['exclude_selector']  = array(
+		$this->controls['exclude_selector'] = array(
 			'tab'         => 'content',
 			'group'       => 'interactions',
 			'label'       => $pro_feature . esc_html__( 'Apply interaction only to trigger element', 'am-lottieplayer' ),
@@ -278,7 +278,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'type'        => 'checkbox',
 			'default'     => false,
 		);
-		$this->controls['scroll']            = array(
+		$this->controls['playonvisible']    = array(
 			'tab'     => 'content',
 			'group'   => 'interactions',
 			'label'   => esc_html__(
@@ -288,7 +288,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'type'    => 'checkbox',
 			'default' => false,
 		);
-		$this->controls['once']              = array(
+		$this->controls['once']             = array(
 			'tab'      => 'content',
 			'group'    => 'interactions',
 			'label'    => esc_html__(
@@ -298,45 +298,45 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'type'     => 'checkbox',
 			'default'  => false,
 			'required' => array(
-				'scroll',
+				'playonvisible',
 				'=',
 				true,
 			),
 		);
-		$this->controls['delay']             = array(
+		$this->controls['delay']            = array(
 			'tab'      => 'content',
 			'group'    => 'interactions',
 			'label'    => esc_html__(
-				'Delay, in 10th of a second',
+				'Delay, in milliseconds',
 				'am-lottieplayer'
 			),
 			'type'     => 'number',
 			'min'      => 0,
-			'max'      => 50,
+			'max'      => 5000,
 			'step'     => 1,
 			'default'  => 0,
 			'required' => array(
-				'scroll',
+				'playonvisible',
 				'=',
 				true,
 			),
 		);
 
 		// Advanced
-		$this->controls['renderer']       = array(
+		$this->controls['renderer'] = array(
 			'tab'         => 'content',
 			'group'       => 'advanced',
 			'label'       => $pro_feature . esc_html__( 'Renderer', 'am-lottieplayer' ),
 			'description' => $pro_link,
 			'type'        => 'select',
 			'options'     => array(
-				'SVG'    => 'svg',
-				'Canvas' => 'canvas',
+				'svg'    => 'SVG',
+				'canvas' => 'Canvas',
 				// 'HTML'   => 'html',
 			),
 			'default'     => 'svg',
 		);
-		$this->controls['alt']            = array(
+		$this->controls['description']    = array(
 			'tab'         => 'content',
 			'description' => esc_html__(
 				'Describe the animation. This is helpful for screen readers and search engines.',
@@ -507,11 +507,13 @@ class Element_Lottie_Player extends \Bricks\Element {
 			$renderer = $this->settings['renderer'];
 		}
 
-		$is_light = ! AAMD_LOTTIE_IS_PRO ||
-			( $renderer === 'svg' ) ||
-			(bool) get_option( 'am_lottieplayer_pro_load_light' );
+		$is_light = true;
 
-		wp_enqueue_script( $is_light ? 'am-frontend-light' : 'am-frontend' );
+		if ( AAMD_LOTTIE_IS_PRO && (bool) get_option( 'am_lottieplayer_pro_load_light' ) && $renderer !== 'svg' ) {
+			$is_light = false;
+		}
+
+		wp_enqueue_script( $is_light ? 'dotlottie-player-light' : 'dotlottie-player' );
 	}
 
 	public function render() {

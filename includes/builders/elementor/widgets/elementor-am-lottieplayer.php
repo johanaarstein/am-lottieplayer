@@ -41,7 +41,7 @@ class Elementor extends \Elementor\Widget_Base {
 	}
 
 	public function get_script_depends() {
-		return array( AAMD_LOTTIE_IS_PRO ? 'am-frontend' : 'am-frontend-light' );
+		return array( AAMD_LOTTIE_IS_PRO ? 'dotlottie-player' : 'dotlottie-player-light' );
 	}
 
 	public function get_name() {
@@ -133,7 +133,7 @@ class Elementor extends \Elementor\Widget_Base {
 				'conditions' => array(
 					'terms' => array(
 						array(
-							'name'     => 'animate_on_scroll',
+							'name'     => 'animateonscroll',
 							'operator' => '!==',
 							'value'    => 'yes',
 						),
@@ -158,7 +158,7 @@ class Elementor extends \Elementor\Widget_Base {
 				'conditions' => array(
 					'terms' => array(
 						array(
-							'name'     => 'animate_on_scroll',
+							'name'     => 'animateonscroll',
 							'operator' => '!==',
 							'value'    => 'yes',
 						),
@@ -184,7 +184,7 @@ class Elementor extends \Elementor\Widget_Base {
 					'conditions' => array(
 						'terms' => array(
 							array(
-								'name'     => 'animate_on_scroll',
+								'name'     => 'animateonscroll',
 								'operator' => '!==',
 								'value'    => 'yes',
 							),
@@ -209,7 +209,7 @@ class Elementor extends \Elementor\Widget_Base {
 				'conditions' => array(
 					'terms' => array(
 						array(
-							'name'     => 'animate_on_scroll',
+							'name'     => 'animateonscroll',
 							'operator' => '!==',
 							'value'    => 'yes',
 						),
@@ -234,7 +234,7 @@ class Elementor extends \Elementor\Widget_Base {
 				'conditions' => array(
 					'terms' => array(
 						array(
-							'name'     => 'animate_on_scroll',
+							'name'     => 'animateonscroll',
 							'operator' => '!==',
 							'value'    => 'yes',
 						),
@@ -260,7 +260,7 @@ class Elementor extends \Elementor\Widget_Base {
 					'conditions' => array(
 						'terms' => array(
 							array(
-								'name'     => 'animate_on_scroll',
+								'name'     => 'animateonscroll',
 								'operator' => '!==',
 								'value'    => 'yes',
 							),
@@ -286,7 +286,7 @@ class Elementor extends \Elementor\Widget_Base {
 				'conditions'  => array(
 					'terms' => array(
 						array(
-							'name'     => 'animate_on_scroll',
+							'name'     => 'animateonscroll',
 							'operator' => '!==',
 							'value'    => 'yes',
 						),
@@ -312,7 +312,7 @@ class Elementor extends \Elementor\Widget_Base {
 				'conditions' => array(
 					'terms' => array(
 						array(
-							'name'     => 'animate_on_scroll',
+							'name'     => 'animateonscroll',
 							'operator' => '!==',
 							'value'    => 'yes',
 						),
@@ -338,7 +338,7 @@ class Elementor extends \Elementor\Widget_Base {
 					'conditions' => array(
 						'terms' => array(
 							array(
-								'name'     => 'animate_on_scroll',
+								'name'     => 'animateonscroll',
 								'operator' => '!==',
 								'value'    => 'yes',
 							),
@@ -363,7 +363,7 @@ class Elementor extends \Elementor\Widget_Base {
 				'conditions' => array(
 					'terms' => array(
 						array(
-							'name'     => 'animate_on_scroll',
+							'name'     => 'animateonscroll',
 							'operator' => '!==',
 							'value'    => 'yes',
 						),
@@ -388,7 +388,7 @@ class Elementor extends \Elementor\Widget_Base {
 				'conditions' => array(
 					'terms' => array(
 						array(
-							'name'     => 'animate_on_scroll',
+							'name'     => 'animateonscroll',
 							'operator' => '!==',
 							'value'    => 'yes',
 						),
@@ -414,7 +414,7 @@ class Elementor extends \Elementor\Widget_Base {
 					'conditions' => array(
 						'terms' => array(
 							array(
-								'name'     => 'animate_on_scroll',
+								'name'     => 'animateonscroll',
 								'operator' => '!==',
 								'value'    => 'yes',
 							),
@@ -451,7 +451,7 @@ class Elementor extends \Elementor\Widget_Base {
 				'conditions'  => array(
 					'terms' => array(
 						array(
-							'name'     => 'animate_on_scroll',
+							'name'     => 'animateonscroll',
 							'operator' => '!==',
 							'value'    => 'yes',
 						),
@@ -477,7 +477,7 @@ class Elementor extends \Elementor\Widget_Base {
 				'conditions'  => array(
 					'terms' => array(
 						array(
-							'name'     => 'animate_on_scroll',
+							'name'     => 'animateonscroll',
 							'operator' => '!==',
 							'value'    => 'yes',
 						),
@@ -504,7 +504,7 @@ class Elementor extends \Elementor\Widget_Base {
 					'conditions'  => array(
 						'terms' => array(
 							array(
-								'name'     => 'animate_on_scroll',
+								'name'     => 'animateonscroll',
 								'operator' => '!==',
 								'value'    => 'yes',
 							),
@@ -635,7 +635,7 @@ class Elementor extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
-			'animate_on_scroll',
+			'animateonscroll',
 			array(
 				'label'       => $pro_feature . esc_html__( 'Animate on scroll', 'am-lottieplayer' ),
 				'description' => esc_html__( 'Make the animation play only when scrolling, relative to the speed and direction of the scroll', 'am-lottieplayer' ) . $pro_link,
@@ -648,33 +648,33 @@ class Elementor extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
-			'onclick',
+			'playonclick',
 			array(
 				'label'     => esc_html__( 'Play on click', 'am-lottieplayer' ),
 				'type'      => \Elementor\Controls_Manager::SWITCHER,
 				'label_on'  => esc_html__( 'Yes', 'am-lottieplayer' ),
 				'label_off' => esc_html__( 'No', 'am-lottieplayer' ),
 				'condition' => array(
-					'animate_on_scroll!' => 'yes',
+					'animateonscroll!' => 'yes',
 				),
 			)
 		);
 
 		$this->add_control(
-			'onmouseover',
+			'hover',
 			array(
 				'label'     => esc_html__( 'Play on mouseover', 'am-lottieplayer' ),
 				'type'      => \Elementor\Controls_Manager::SWITCHER,
 				'label_on'  => esc_html__( 'Yes', 'am-lottieplayer' ),
 				'label_off' => esc_html__( 'No', 'am-lottieplayer' ),
 				'condition' => array(
-					'animate_on_scroll!' => 'yes',
+					'animateonscroll!' => 'yes',
 				),
 			)
 		);
 
 		$this->add_control(
-			'onmouseout',
+			'mouseout',
 			array(
 				'label'     => esc_html__( 'On mouseout', 'am-lottieplayer' ),
 				'type'      => \Elementor\Controls_Manager::SELECT,
@@ -686,7 +686,7 @@ class Elementor extends \Elementor\Widget_Base {
 				),
 				'default'   => 'stop',
 				'condition' => array(
-					'onmouseover' => 'yes',
+					'hover' => 'yes',
 				),
 			)
 		);
@@ -703,12 +703,12 @@ class Elementor extends \Elementor\Widget_Base {
 					'relation' => 'or',
 					'terms'    => array(
 						array(
-							'name'     => 'onclick',
+							'name'     => 'playonclick',
 							'operator' => '===',
 							'value'    => 'yes',
 						),
 						array(
-							'name'     => 'onmouseover',
+							'name'     => 'hover',
 							'operator' => '===',
 							'value'    => 'yes',
 						),
@@ -731,12 +731,12 @@ class Elementor extends \Elementor\Widget_Base {
 					'relation' => 'or',
 					'terms'    => array(
 						array(
-							'name'     => 'onclick',
+							'name'     => 'playonclick',
 							'operator' => '===',
 							'value'    => 'yes',
 						),
 						array(
-							'name'     => 'onmouseover',
+							'name'     => 'hover',
 							'operator' => '===',
 							'value'    => 'yes',
 						),
@@ -746,14 +746,14 @@ class Elementor extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
-			'scroll',
+			'playonvisible',
 			array(
 				'label'     => esc_html__( 'Play on scroll, when visible in viewport', 'am-lottieplayer' ),
 				'type'      => \Elementor\Controls_Manager::SWITCHER,
 				'label_on'  => esc_html__( 'Yes', 'am-lottieplayer' ),
 				'label_off' => esc_html__( 'No', 'am-lottieplayer' ),
 				'condition' => array(
-					'animate_on_scroll!' => 'yes',
+					'animateonscroll!' => 'yes',
 				),
 			)
 		);
@@ -761,14 +761,14 @@ class Elementor extends \Elementor\Widget_Base {
 		$this->add_control(
 			'delay',
 			array(
-				'label'     => esc_html__( 'Delay, in 10th of a second', 'am-lottieplayer' ),
+				'label'     => esc_html__( 'Delay, in milliseconds', 'am-lottieplayer' ),
 				'type'      => \Elementor\Controls_Manager::NUMBER,
 				'step'      => 1,
 				'min'       => 0,
-				'max'       => 50,
+				'max'       => 5000,
 				'default'   => 0,
 				'condition' => array(
-					'scroll' => 'yes',
+					'playonvisible' => 'yes',
 				),
 			)
 		);
@@ -781,7 +781,7 @@ class Elementor extends \Elementor\Widget_Base {
 				'label_on'  => esc_html__( 'Yes', 'am-lottieplayer' ),
 				'label_off' => esc_html__( 'No', 'am-lottieplayer' ),
 				'condition' => array(
-					'scroll' => 'yes',
+					'playonvisible' => 'yes',
 				),
 			)
 		);
@@ -993,30 +993,30 @@ class Elementor extends \Elementor\Widget_Base {
 		$attrs = \array_merge(
 			$settings,
 			array(
-				'autoplay'                 => $this->_switcher_value( $settings['scroll'] ) ? false : $this->_switcher_value( $settings['autoplay'] ),
-				'align'                    => 'none',
-				'animate_on_scroll'        => $this->_switcher_value( $settings['animate_on_scroll'] ),
-				'background'               => 'transparent',
-				'class'                    => '',
-				'controls'                 => $this->_switcher_value( $settings['controls'] ),
-				'direction'                => $this->_switcher_value( $settings['reverse'] ) ? -1 : 1,
-				'id'                       => $id,
-				'subframe'                 => $this->_switcher_value( $settings['subframe'] ),
-				'loop'                     => $this->_switcher_value( $settings['loop'] ),
-				'multi_animation_settings' => $multiAnimationSettings,
-				'objectfit'                => $settings['object_fit'],
-				'onClick'                  => $this->_switcher_value( $settings['onclick'] ),
-				'onMouseOver'              => $this->_switcher_value( $settings['onmouseover'] ),
-				'scroll'                   => $this->_switcher_value( $settings['scroll'] ),
-				'once'                     => $this->_switcher_value( $settings['once'] ),
-				'height'                   => $settings['height_fixed'] ? $settings['height_fixed']['size'] : null,
-				'height_unit'              => $settings['height_fixed'] ? $settings['height_fixed']['unit'] : null,
-				'width'                    => $settings['width']['size'],
-				'width_unit'               => $settings['width']['unit'],
-				'alt'                      => $settings['description'],
-				'src'                      => $src,
-				'url'                      => null,
-				'target'                   => '_blank',
+				'autoplay'               => $this->_switcher_value( $settings['playonvisible'] ) ? false : $this->_switcher_value( $settings['autoplay'] ),
+				'align'                  => 'none',
+				'animateonscroll'        => $this->_switcher_value( $settings['animateonscroll'] ),
+				'background'             => 'transparent',
+				'class'                  => '',
+				'controls'               => $this->_switcher_value( $settings['controls'] ),
+				'direction'              => $this->_switcher_value( $settings['reverse'] ) ? -1 : 1,
+				'id'                     => $id,
+				'subframe'               => $this->_switcher_value( $settings['subframe'] ),
+				'loop'                   => $this->_switcher_value( $settings['loop'] ),
+				'multianimationsettings' => $multiAnimationSettings,
+				'objectfit'              => $settings['object_fit'],
+				'playonclick'            => $this->_switcher_value( $settings['playonclick'] ),
+				'hover'                  => $this->_switcher_value( $settings['hover'] ),
+				'playonvisible'          => $this->_switcher_value( $settings['playonvisible'] ),
+				'once'                   => $this->_switcher_value( $settings['once'] ),
+				'height'                 => $settings['height_fixed'] ? $settings['height_fixed']['size'] : null,
+				'height_unit'            => $settings['height_fixed'] ? $settings['height_fixed']['unit'] : null,
+				'width'                  => $settings['width']['size'],
+				'width_unit'             => $settings['width']['unit'],
+				'description'            => $settings['description'],
+				'src'                    => $src,
+				'url'                    => null,
+				'target'                 => '_blank',
 			),
 		);
 
@@ -1028,9 +1028,10 @@ class Elementor extends \Elementor\Widget_Base {
 
 	protected function content_template() {
 		?>
+		<!-- Backbone.js -->
 		<#
 			const autoplay = settings.autoplay === 'yes' ? 'autoplay' : '',
-				animateOnScroll = settings.animate_on_scroll === 'yes' ? 'animateonscroll' : '',
+				animateOnScroll = settings.animateonscroll === 'yes' ? 'animateonscroll' : '',
 				controls = settings.controls === 'yes' ? 'controls' : '',
 				loop = settings.loop === 'yes' ? 'loop' : '',
 				subframe = settings.subframe === 'yes' ? 'subframe' : '',
@@ -1065,12 +1066,12 @@ class Elementor extends \Elementor\Widget_Base {
 					speed="{{{ playbackSpeed }}}"
 					src="{{{ lottie.url }}}"
 					intermission="{{{ settings.intermission }}}"
-					data-mouseover="{{{ settings.onmouseover }}}"
-					date-mouseout="{{{ settings.onmouseout }}}"
-					data-click="{{{ settings.click }}}"
-					data-scroll="{{{ settings.scroll }}}"
-					data-delay="{{{ settings.delay }}}"
-					data-once="{{{ settings.once }}}"></dotlottie-player>
+					hover="{{{ settings.onmouseover }}}"
+					mouseout="{{{ settings.onmouseout }}}"
+					playonclick="{{{ settings.click }}}"
+					playonvisible="{{{ settings.scroll }}}"
+					delay="{{{ settings.delay }}}"
+					once="{{{ settings.once }}}"></dotlottie-player>
 			</figure>
 		<?php
 	}

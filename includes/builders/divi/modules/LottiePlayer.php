@@ -111,14 +111,14 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'choose_text'        => esc_attr__( 'Choose a Lottie JSON or a dotLottie', 'am-lottieplayer' ),
 				'update_text'        => esc_attr__( 'Set As Lottie', 'am-lottieplayer' ),
 				'hide_metadata'      => true,
-				'affects'            => array( 'alt' ),
+				'affects'            => array( 'description' ),
 				'description'        => esc_html__( 'Upload your desired animation in Lottie JSON format, dotLottie format, or type in the URL to the Lottie you would like to display', 'am-lottieplayer' ),
 				'toggle_slug'        => 'main_content',
 				'mobile_options'     => true,
 				'hover'              => 'tabs',
 				'default'            => esc_url( $aamd_lottie_media->get_default_file() ),
 			),
-			'alt'               => array(
+			'description'       => array(
 				'label'           => esc_html__( 'Animation Alternative Text', 'am-lottieplayer' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
@@ -206,7 +206,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'default_on_front' => 'off',
 				'toggle_slug'      => 'main_content',
 				'condition'        => array(
-					'animate_on_scroll' => 'off',
+					'animateonscroll' => 'off',
 				),
 			),
 			'loop'              => array(
@@ -221,7 +221,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'default_on_front' => 'off',
 				'toggle_slug'      => 'main_content',
 				'condition'        => array(
-					'animate_on_scroll' => 'off',
+					'animateonscroll' => 'off',
 				),
 			),
 			'mode'              => array(
@@ -236,7 +236,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'default_on_front' => 'off',
 				'toggle_slug'      => 'main_content',
 				'condition'        => array(
-					'animate_on_scroll' => 'off',
+					'animateonscroll' => 'off',
 				),
 				'readonly'         => ! AAMD_LOTTIE_IS_PRO,
 			),
@@ -252,7 +252,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'default_on_front' => 'off',
 				'toggle_slug'      => 'main_content',
 				'condition'        => array(
-					'animate_on_scroll' => 'off',
+					'animateonscroll' => 'off',
 				),
 			),
 			'subframe'          => array(
@@ -277,7 +277,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				),
 				'toggle_slug'    => 'main_content',
 				'condition'      => array(
-					'animate_on_scroll' => 'off',
+					'animateonscroll' => 'off',
 				),
 			),
 			'intermission'      => array(
@@ -309,7 +309,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'toggle_slug' => 'main_content',
 				'readonly'    => ! AAMD_LOTTIE_IS_PRO,
 			),
-			'animate_on_scroll' => array(
+			'animateonscroll'   => array(
 				'label'            => $pro_feature . esc_html__( 'Animate on scroll', 'am-lottieplayer' ),
 				'description'      => esc_html__( 'Make the animation play only when scrolling, relative to the speed and direction of the scroll', 'am-lottieplayer' ) . $pro_link,
 				'type'             => 'yes_no_button',
@@ -322,7 +322,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'toggle_slug'      => 'main_content',
 				'readonly'         => ! AAMD_LOTTIE_IS_PRO,
 			),
-			'onclick'           => array(
+			'playonclick'       => array(
 				'label'            => esc_html__( 'Play on click', 'am-lottieplayer' ),
 				'type'             => 'yes_no_button',
 				'option_category'  => 'basic_option',
@@ -337,7 +337,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'default_on_front' => 'off',
 				'toggle_slug'      => 'main_content',
 			),
-			'onmouseover'       => array(
+			'hover'             => array(
 				'label'            => esc_html__( 'Play on mouseover', 'am-lottieplayer' ),
 				'type'             => 'yes_no_button',
 				'option_category'  => 'basic_option',
@@ -346,14 +346,14 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 					'on'  => et_builder_i18n( 'Yes' ),
 				),
 				'affects'          => array(
-					'onmouseout',
+					'mouseout',
 					'selector',
 					'exclude_selector',
 				),
 				'default_on_front' => 'off',
 				'toggle_slug'      => 'main_content',
 			),
-			'onmouseout'        => array(
+			'mouseout'          => array(
 				'label'       => esc_html__( 'On mouseout', 'am-lottieplayer' ),
 				'type'        => 'select',
 				'options'     => array(
@@ -364,7 +364,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				),
 				'default'     => 'stop',
 				'condition'   => array(
-					'onmouseover' => 'on',
+					'hover' => 'on',
 				),
 				'toggle_slug' => 'main_content',
 			),
@@ -389,7 +389,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'toggle_slug'      => 'main_content',
 				'readonly'         => ! AAMD_LOTTIE_IS_PRO,
 			),
-			'scroll'            => array(
+			'playonvisible'     => array(
 				'label'            => esc_html__( 'Play on scroll, when visible in viewport', 'am-lottieplayer' ),
 				'type'             => 'yes_no_button',
 				'options_category' => 'basic_option',
@@ -405,17 +405,17 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'toggle_slug'      => 'main_content',
 			),
 			'delay'             => array(
-				'label'           => esc_html__( 'Delay, in 10th of a second', 'am-lottieplayer' ),
+				'label'           => esc_html__( 'Delay, in milliseconds', 'am-lottieplayer' ),
 				'option_category' => 'basic_option',
 				'toggle_slug'     => 'main_content',
 				'type'            => 'range',
-				'default'         => '1',
+				'default'         => '0',
 				'range_settings'  => array(
-					'max'  => '50',
+					'max'  => '5000',
 					'step' => '1',
 				),
 				'condition'       => array(
-					'scroll' => 'on',
+					'playonvisible' => 'on',
 				),
 			),
 			'once'              => array(
@@ -427,7 +427,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 					'on'  => et_builder_i18n( 'Yes' ),
 				),
 				'condition'        => array(
-					'scroll' => 'on',
+					'playonvisible' => 'on',
 				),
 				'default_on_front' => 'off',
 			),
@@ -469,25 +469,25 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 			$attrs,
 			$this->props,
 			array(
-				'animate_on_scroll' => $this->props['animate_on_scroll'] !== 'off',
-				'align'             => 'none', // TODO:
-				'autoplay'          => $this->props['autoplay'] !== 'off',
-				'background'        => 'transparent', // TODO:
-				'class'             => $this->module_classname( $render_slug ),
-				'controls'          => $this->props['controls'] !== 'off',
-				'direction'         => $this->props['reverse'] !== 'off' ? '-1' : '1',
-				'id'                => $this->module_id(),
-				'loop'              => $this->props['loop'] !== 'off',
-				'mode'              => $this->props['mode'] !== 'off' ? 'bounce' : 'normal',
-				'scroll'            => $this->props['scroll'] !== 'off',
-				'subframe'          => $this->props['subframe'] !== 'off',
-				'target'            => $this->props['url_new_window'] !== 'off' ? '_blank' : '_self',
-				'objectfit'         => $this->props['object_fit'],
-				'onmouseover'       => $this->props['onmouseover'] !== 'off',
-				'onclick'           => $this->props['onclick'] !== 'off' && ! \filter_var( $this->props['url'], FILTER_VALIDATE_URL ),
-				'once'              => $this->props['once'] !== 'off',
-				'width_unit'        => 'px', // TODO:
-				'height_unit'       => 'px', // TODO:
+				'animateonscroll' => $this->props['animateonscroll'] !== 'off',
+				'align'           => 'none', // TODO:
+				'autoplay'        => $this->props['autoplay'] !== 'off',
+				'background'      => 'transparent', // TODO:
+				'class'           => $this->module_classname( $render_slug ),
+				'controls'        => $this->props['controls'] !== 'off',
+				'direction'       => $this->props['reverse'] !== 'off' ? '-1' : '1',
+				'id'              => $this->module_id(),
+				'loop'            => $this->props['loop'] !== 'off',
+				'mode'            => $this->props['mode'] !== 'off' ? 'bounce' : 'normal',
+				'playonvisible'   => $this->props['playonvisible'] !== 'off',
+				'subframe'        => $this->props['subframe'] !== 'off',
+				'target'          => $this->props['url_new_window'] !== 'off' ? '_blank' : '_self',
+				'objectfit'       => $this->props['object_fit'],
+				'hover'           => $this->props['hover'] !== 'off',
+				'playonclick'     => $this->props['playonclick'] !== 'off' && ! \filter_var( $this->props['url'], FILTER_VALIDATE_URL ),
+				'once'            => $this->props['once'] !== 'off',
+				'width_unit'      => 'px', // TODO:
+				'height_unit'     => 'px', // TODO:
 			),
 		);
 

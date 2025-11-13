@@ -99,22 +99,22 @@ vc_map(
 				'type'        => 'checkbox',
 				'heading'     => $pro_feature . __( 'Animate on scroll', 'am-lottieplayer' ),
 				'description' => AAMD_LOTTIE_IS_PRO ? __( 'Make the animation play only when scrolling, relative to the speed and direction of the scroll', 'am-lottieplayer' ) : $pro_link,
-				'param_name'  => AAMD_LOTTIE_IS_PRO ? 'animate_on_scroll' : 'none',
+				'param_name'  => AAMD_LOTTIE_IS_PRO ? 'animateonscroll' : 'none',
 			),
 			array(
 				'type'       => 'checkbox',
 				'heading'    => __( 'Play on click', 'am-lottieplayer' ),
-				'param_name' => 'onclick',
+				'param_name' => 'playonclick',
 			),
 			array(
 				'type'       => 'checkbox',
 				'heading'    => __( 'Play on mouseover', 'am-lottieplayer' ),
-				'param_name' => 'onmouseover',
+				'param_name' => 'hover',
 			),
 			array(
 				'type'       => 'dropdown',
 				'heading'    => __( 'On mouseout', 'am-lottieplayer' ),
-				'param_name' => 'onmouseout',
+				'param_name' => 'mouseout',
 				'value'      => array(
 					__( 'No event', 'am-lottieplayer' ) => 'void',
 					__( 'Stop', 'am-lottieplayer' )     => 'stop',
@@ -123,7 +123,7 @@ vc_map(
 				),
 				'std'        => 'void',
 				'dependency' => array(
-					'element' => 'onmouseover',
+					'element' => 'hover',
 					'value'   => 'true',
 				),
 			),
@@ -143,14 +143,14 @@ vc_map(
 			array(
 				'type'       => 'checkbox',
 				'heading'    => __( 'Play on scroll, when visible in viewport', 'am-lottieplayer' ),
-				'param_name' => 'scroll',
+				'param_name' => 'playonvisible',
 			),
 			array(
 				'type'       => 'textfield',
-				'heading'    => __( 'Delay, in 10th of a second', 'am-lottieplayer' ),
+				'heading'    => __( 'Delay, in milliseconds', 'am-lottieplayer' ),
 				'param_name' => 'delay',
 				'dependency' => array(
-					'element' => 'scroll',
+					'element' => 'playonvisible',
 					'value'   => 'true',
 				),
 			),
@@ -159,7 +159,7 @@ vc_map(
 				'heading'    => __( 'Play only once', 'am-lottieplayer' ),
 				'param_name' => 'once',
 				'dependency' => array(
-					'element' => 'scroll',
+					'element' => 'playonvisible',
 					'value'   => 'true',
 				),
 			),
@@ -206,7 +206,7 @@ vc_map(
 			array(
 				'type'        => 'textfield',
 				'heading'     => __( 'Description', 'am-lottieplayer' ),
-				'param_name'  => 'alt',
+				'param_name'  => 'description',
 				'description' => __( 'Helpful for screen readers and search engines', 'am-lottieplayer' ),
 				'group'       => __( 'Advanced Options', 'am-lottieplayer' ),
 			),

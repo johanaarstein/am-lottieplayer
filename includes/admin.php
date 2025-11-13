@@ -185,7 +185,7 @@ class Admin {
 
 			wp_add_inline_script(
 				'am-lottieplayer-media',
-				"const aamdPHPVariables={pluginUrl:'{$pluginUrl}',nonce:'{$rest_api_nonce}'};",
+				"const aamdPHPVariables={pluginUrl:'{$pluginUrl}',endpoint:'{$endpoint}',nonce:'{$rest_api_nonce}'};",
 				'before'
 			);
 		}

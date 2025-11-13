@@ -44,3 +44,4 @@ phpcs.xml
 .phpcs.xml
 
 .svn
+build

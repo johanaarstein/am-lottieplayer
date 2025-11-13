@@ -28,18 +28,14 @@ function get_allowed_html() {
 			'style' => array(),
 		),
 		'dotlottie-player' => array(
-			'autoplay'        => array(),
 			'animateonscroll' => array(),
+			'autoplay'        => array(),
 			'background'      => array(),
 			'class'           => array(),
 			'controls'        => array(),
 			'count'           => array(),
-			'data-click'      => array(),
-			'data-delay'      => array(),
-			'data-mouseover'  => array(),
-			'date-mouseout'   => array(),
-			'data-once'       => array(),
-			'data-scroll'     => array(),
+			'data-*'          => array(),
+			'delay'           => array(),
 			'description'     => array(),
 			'direction'       => array(),
 			'hover'           => array(),
@@ -47,10 +43,15 @@ function get_allowed_html() {
 			'intermission'    => array(),
 			'loop'            => array(),
 			'mode'            => array(),
+			'mouseout'        => array(),
 			'objectfit'       => array(),
-			'onclick'         => array(),
-			'onmouseover'     => array(),
+			'once'            => array(),
+			'playonclick'     => array(),
+			'hover'           => array(),
+			'playonclick'     => array(),
+			'playonvisible'   => array(),
 			'renderer'        => array(),
+			'selector'        => array(),
 			'simple'          => array(),
 			'speed'           => array(),
 			'src'             => array(),
@@ -248,12 +249,12 @@ function is_true( $var ) {
  */
 function render_lottieplayer( array $atts ) {
 
-	$animate_on_scroll = '';
-	if ( is_true( $atts['animate_on_scroll'] ) ) {
-		$animate_on_scroll = "animateonscroll\n";
+	$animateonscroll = '';
+	if ( is_true( $atts['animateonscroll'] ) ) {
+		$animateonscroll = "animateonscroll\n";
 	}
 	$autoplay = '';
-	if ( is_true( $atts['autoplay'] ) && ! is_true( $atts['scroll'] ) ) {
+	if ( is_true( $atts['autoplay'] ) && ! is_true( $atts['playonvisible'] ) ) {
 		$autoplay = "autoplay\n";
 	}
 	$background = 'transparent';
@@ -271,6 +272,26 @@ function render_lottieplayer( array $atts ) {
 	$subframe = '';
 	if ( is_true( $atts['subframe'] ) ) {
 		$subframe = "subframe\n";
+	}
+
+	$hover = '';
+	if ( is_true( $atts['hover'] ) ) {
+		$hover = "hover\n";
+	}
+
+	$once = '';
+	if ( is_true( $atts['once'] ) ) {
+		$once = "once\n";
+	}
+
+	$playonclick = '';
+	if ( is_true( $atts['playonclick'] ) ) {
+		$playonclick = "playonclick\n";
+	}
+
+	$playonvisible = '';
+	if ( is_true( $atts['playonvisible'] ) ) {
+		$playonvisible = "playonvisible\n";
 	}
 
 	$unit_regex = '/\s*(\d+\s?)(px|em|rem|%)/';
@@ -293,13 +314,13 @@ function render_lottieplayer( array $atts ) {
 		}
 	}
 
-	$multi_animation_interactions = null;
-	if ( isset( $atts['multi_animation_interactions'] ) ) {
-		$multi_animation_interactions = $atts['multi_animation_interactions'];
+	$multianimationinteractions = null;
+	if ( isset( $atts['multianimationinteractions'] ) ) {
+		$multianimationinteractions = $atts['multianimationinteractions'];
 	}
-	$multi_animation_settings = null;
-	if ( isset( $atts['multi_animation_settings'] ) ) {
-		$multi_animation_settings = $atts['multi_animation_settings'];
+	$multianimationsettings = null;
+	if ( isset( $atts['multianimationsettings'] ) ) {
+		$multianimationsettings = $atts['multianimationsettings'];
 	}
 	$segment = null;
 	if ( isset( $atts['segment'] ) ) {
@@ -343,8 +364,12 @@ function render_lottieplayer( array $atts ) {
 			<?php echo esc_attr( $controls ); ?>
 			<?php echo esc_attr( $loop ); ?>
 			<?php echo esc_attr( $subframe ); ?>
-			<?php echo esc_attr( $animate_on_scroll ); ?>
-			description="<?php echo esc_attr( $atts['alt'] ); ?>"
+			<?php echo esc_attr( $animateonscroll ); ?>
+			<?php echo esc_attr( $hover ); ?>
+			<?php echo esc_attr( $playonclick ); ?>
+			<?php echo esc_attr( $playonvisible ); ?>
+			<?php echo esc_attr( $once ); ?>
+			description="<?php echo esc_attr( $atts['description'] ); ?>"
 			objectfit="<?php echo esc_attr( $atts['objectfit'] ); ?>"
 			src="<?php echo esc_url( $src ); ?>"
 			intermission="<?php echo esc_attr( $atts['intermission'] ); ?>"
@@ -359,16 +384,12 @@ function render_lottieplayer( array $atts ) {
 			?>
 			direction="<?php echo esc_attr( get_animation_direction( $atts['direction'] ) ); ?>"
 			data-direction="<?php echo esc_attr( get_animation_direction( $atts['direction'] ) ); ?>"
-			data-mouseover="<?php echo esc_attr( $atts['onmouseover'] ); ?>"
-			data-mouseout="<?php echo esc_attr( $atts['onmouseout'] ); ?>"
-			data-click="<?php echo esc_attr( boolean_to_string( $atts['onclick'] ) ); ?>"
-			data-scroll="<?php echo esc_attr( boolean_to_string( $atts['scroll'] ) ); ?>"
-			data-delay="<?php echo esc_attr( $atts['delay'] ); ?>"
-			data-once="<?php echo esc_attr( boolean_to_string( $atts['once'] ) ); ?>"></dotlottie-player>
+			mouseout="<?php echo esc_attr( $atts['mouseout'] ); ?>"
+			delay="<?php echo esc_attr( $atts['delay'] ); ?>"></dotlottie-player>
 			<script type="application/ld+json">
 				{
-					"multiAnimationInteractions": <?php echo wp_json_encode( $multi_animation_interactions ); ?>,
-					"multiAnimationSettings": <?php echo wp_json_encode( $multi_animation_settings ); ?>,
+					"multiAnimationInteractions": <?php echo wp_json_encode( $multianimationinteractions ); ?>,
+					"multiAnimationSettings": <?php echo wp_json_encode( $multianimationsettings ); ?>,
 					"selector": <?php echo wp_json_encode( $selector ); ?>,
 					"segment": <?php echo wp_json_encode( $segment ); ?>
 				}
@@ -398,39 +419,39 @@ function render_shortcode( $atts ) {
 	global $aamd_lottie_media;
 	$atts = shortcode_atts(
 		array(
-			'animate_on_scroll'            => false,
-			'align'                        => 'none',
-			'alt'                          => __( 'AM LottiePlayer animation', 'am-lottieplayer' ),
-			'autoplay'                     => false,
-			'background'                   => 'transparent',
-			'class'                        => '',
-			'controls'                     => false,
-			'delay'                        => 100,
-			'direction'                    => 1,
-			'height'                       => null,
-			'id'                           => null,
-			'intermission'                 => 0,
-			'loop'                         => false,
-			'mode'                         => 'normal',
-			'multi_animation_interactions' => null,
-			'multi_animation_settings'     => null,
-			'objectfit'                    => 'contain',
-			'renderer'                     => 'svg',
-			'scroll'                       => false,
-			'segment'                      => null,
-			'selector'                     => null,
-			'speed'                        => 1,
-			'src'                          => $aamd_lottie_media->get_default_file(),
-			'subframe'                     => true,
-			'url'                          => null,
-			'target'                       => '_blank',
-			'width'                        => null,
-			'onmouseover'                  => false,
-			'onclick'                      => false,
-			'onmouseout'                   => 'void',
-			'once'                         => false,
-			'width_unit'                   => 'px',
-			'height_unit'                  => 'px',
+			'animateonscroll'            => false,
+			'align'                      => 'none',
+			'autoplay'                   => false,
+			'background'                 => 'transparent',
+			'class'                      => '',
+			'controls'                   => false,
+			'delay'                      => 0,
+			'description'                => __( 'AM LottiePlayer animation', 'am-lottieplayer' ),
+			'direction'                  => 1,
+			'height'                     => null,
+			'hover'                      => false,
+			'id'                         => null,
+			'intermission'               => 0,
+			'loop'                       => false,
+			'mode'                       => 'normal',
+			'mouseout'                   => 'stop',
+			'multianimationinteractions' => null,
+			'multianimationsettings'     => null,
+			'objectfit'                  => 'contain',
+			'renderer'                   => 'svg',
+			'playonvisible'              => false,
+			'segment'                    => null,
+			'selector'                   => null,
+			'speed'                      => 1,
+			'src'                        => $aamd_lottie_media->get_default_file(),
+			'subframe'                   => true,
+			'url'                        => null,
+			'target'                     => '_blank',
+			'width'                      => null,
+			'playonclick'                => false,
+			'once'                       => false,
+			'width_unit'                 => 'px',
+			'height_unit'                => 'px',
 		),
 		$atts
 	);

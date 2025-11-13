@@ -16,12 +16,272 @@ class Media {
 		global $pagenow;
 		if ( $pagenow !== 'plugins.php' ) {
 
-			add_filter( 'wp_check_filetype_and_ext', array( $this, 'am_check_filetype_and_ext' ), 10, 5 );
-			add_filter( 'upload_mimes', array( $this, 'am_upload_mimes' ) );
-			add_filter( 'wp_generate_attachment_metadata', array( $this, 'am_generate_attachment_metadata' ), 10, 2 );
-			add_filter( 'wp_get_attachment_metadata', array( $this, 'am_get_attachment_metadata' ), 10, 2 );
-			add_filter( 'wp_handle_upload_prefilter', array( $this, 'am_handle_upload_prefilter' ) );
-			add_filter( 'wp_mime_type_icon', array( $this, 'am_mime_type_icon' ), 10, 2 );
+			add_filter(
+				'wp_check_filetype_and_ext',
+				function ( $data, $filepath, $filename, $mimes, $real_mime ) {
+					try {
+						if ( ! empty( $data['ext'] ) && ! empty( $data['type'] ) ) {
+							return $data;
+						}
+
+						$filetype = wp_check_filetype( $filename, $mimes );
+						$ext      = $filetype['ext'];
+
+						if ( 'lottie' !== $ext && 'json' !== $ext ) {
+							return $data;
+						}
+
+						if ( $real_mime !== 'application/json' &&
+						$real_mime !== 'application/zip' &&
+						$real_mime !== 'application/octet-stream' &&
+						$real_mime !== 'text/plain'
+						) {
+							return $data;
+						}
+
+						switch ( $ext ) {
+							case 'json':
+								$data['ext']  = 'json';
+								$data['type'] = 'application/json';
+								break;
+							case 'lottie':
+								$data['ext']  = 'lottie';
+								$data['type'] = 'application/zip';
+						}
+
+						return $data;
+					} catch ( \Exception $e ) {
+						return $e;
+					}
+				},
+				10,
+				5
+			);
+
+			// Adding Lottie mime types to list over accepted uploads
+			add_filter(
+				'upload_mimes',
+				function ( $mimes ) {
+					$mimes['json']        = 'application/json';
+					$mimes['lottie']      = 'application/zip';
+					$mimes['json|lottie'] = 'application/octet-stream';
+					return $mimes;
+				}
+			);
+
+			// Generate SVG Thumbnails.
+			add_filter(
+				'wp_generate_attachment_metadata',
+				function ( $metadata, $attachment_id ) {
+					$mime = get_post_mime_type( $attachment_id );
+					if ( $mime !== 'application/zip' && $mime !== 'application/json' ) {
+						return $metadata;
+					}
+
+					\usleep( 20000 );
+
+					$lottie_path = get_attached_file( $attachment_id );
+					// $upload_date         = get_the_date( 'Y/m', $attachment_id );
+					$upload_dir          = wp_upload_dir(); // $upload_date
+					$relative_path       = \str_replace( trailingslashit( $upload_dir['basedir'] ), '', $lottie_path );
+					$filename            = \basename( $lottie_path );
+					$thumbnail_file_name = 'lottie-thumbnail-' . \preg_replace( '/.(lottie|json)/i', '.svg', $filename );
+					$thumbnail_file_path = trailingslashit( $upload_dir['path'] ) . $thumbnail_file_name;
+					// $thumbnail_file_url  = trailingslashit( $upload_dir['url'] ) . $thumbnail_file_name;
+					$thumbnail_file_size = round( $metadata['filesize'] / 60 );
+
+					if ( \file_exists( $thumbnail_file_path ) ) {
+						$thumbnail_file_size = \filesize( $thumbnail_file_path );
+					}
+
+					$dimensions = $this->svg_dimensions( $thumbnail_file_path );
+
+					if ( ! $dimensions ) {
+						return $metadata;
+					}
+
+					$srcset = array(
+						'file'      => $thumbnail_file_name,
+						'width'     => $dimensions['width'],
+						'height'    => $dimensions['height'],
+						'mime-type' => 'image/svg+xml',
+						'filesize'  => $thumbnail_file_size,
+					);
+
+					$metadata = array_merge(
+						$metadata,
+						array(
+							'width'      => $dimensions['width'],
+							'height'     => $dimensions['height'],
+							'file'       => $relative_path,
+							'sizes'      => array(
+								'medium'       => $srcset,
+								'thumbnail'    => $srcset,
+								'medium_large' => $srcset,
+								'full'         => $srcset,
+							),
+							'image_meta' => array(
+								'aperture'          => 0,
+								'credit'            => '',
+								'camera'            => '',
+								'caption'           => '',
+								'created_timestamp' => 0,
+								'copyright'         => '',
+								'focal_length'      => 0,
+								'iso'               => 0,
+								'shutter_speed'     => 0,
+								'title'             => '',
+								'orientation'       => $dimensions['orientation'],
+								'keywords'          => array(),
+							),
+						)
+					);
+
+					return $metadata;
+				},
+				10,
+				2
+			);
+
+			// Filters the attachment meta data.
+			add_filter(
+				'wp_get_attachment_metadata',
+				function ( $data, $post_id ) {
+
+					// If it's a WP_Error regenerate metadata and save it
+					if ( is_wp_error( $data ) ) {
+						$data = wp_generate_attachment_metadata( $post_id, get_attached_file( $post_id ) );
+						wp_update_attachment_metadata( $post_id, $data );
+					}
+
+					return $data;
+				},
+				10,
+				2
+			);
+
+			// Validate before upload
+			add_filter(
+				'wp_handle_upload_prefilter',
+				function ( array $file ) {
+					try {
+						$validate = wp_check_filetype_and_ext( $file['tmp_name'], $file['name'] );
+						$ext      = $validate['ext'];
+
+						if (
+						$ext !== 'lottie' && $ext !== 'json'
+						) {
+							return $file;
+						}
+
+						$is_valid = false;
+
+						switch ( $file['type'] ) {
+							case 'application/json':
+								$lottie = wp_json_file_decode( $file['tmp_name'], array( 'associative' => true ) );
+								if ( (bool) is_lottie_valid( $lottie ) ) {
+									$is_valid = true;
+								}
+								break;
+							case 'application/zip':
+							case 'application/octet-stream': {
+								$zip = new \ZipArchive();
+								$res = $zip->open( $file['tmp_name'] );
+								if ( $res !== true ) {
+									break;
+								}
+
+								$tempdir = tempdir();
+								$zip->extractTo( $tempdir );
+								$zip->close();
+
+								$manifest = wp_json_file_decode( "$tempdir/manifest.json" );
+								if ( ! $manifest ) {
+									break;
+								}
+
+								$animationsDir = "$tempdir/animations";
+								if ( ! is_dir( $animationsDir ) ) {
+									$animationsDir = "$tempdir/a";
+								}
+
+								if ( is_dir( $animationsDir ) ) {
+									$animations = scandir( $animationsDir );
+
+									/**
+									 * Set this to true only if animations array has length,
+									 * so that we can iterate and catch any corrupted animaiton,
+									 * while still avoiding false positive for empty arrays.
+									 */
+									if ( (bool) $animations ) {
+										$is_valid = count( $animations ) > 0;
+
+										foreach ( $animations as $animation ) {
+											if ( $animation === '.' || $animation === '..' ) {
+												continue;
+											}
+											$lottie = wp_json_file_decode( "$animationsDir/$animation", array( 'associative' => true ) );
+											if ( ! is_lottie_valid( $lottie ) ) {
+												$is_valid = false;
+											}
+										}
+									}
+								}
+							}
+						}
+
+						if ( ! $is_valid ) {
+							$file['error'] = __( 'Invalid Lottie file.', 'am-lottieplayer' );
+						}
+
+						return $file;
+					} catch ( \Exception $e ) {
+						$error = new \WP_Error();
+						$error->add( $e->getCode(), $e->getMessage() );
+
+						return $error;
+					}
+				}
+			);
+
+			// Adding icon to Lottie filetype
+			add_filter(
+				'wp_mime_type_icon',
+				function ( $icon, $mime, $post_id ) {
+					if ( $mime === 'application/zip' || $mime === 'application/json' || $mime === 'text/plain' ) {
+						$icon = get_asset( 'lottie-icon.svg' );
+					}
+					return $icon;
+				},
+				10,
+				3
+			);
+
+			// add_filter(
+			// 'wp_get_attachment_image_src',
+			// function ( $image, $attachment_id, $size, $icon ) {
+			// $mime = get_post_mime_type( $attachment_id );
+
+			// if ( $icon && ( $mime === 'application/zip' || $mime === 'application/json' || $mime === 'text/plain' ) ) {
+
+			// $lottie_meta = wp_get_attachment_metadata( $attachment_id );
+			// if ( ! $lottie_meta || isset( $lottie_meta['sizes'] ) ) {
+			// return $image;
+			// }
+
+			// return array(
+			// get_asset( 'lottie-icon.svg' ),
+			// 48,        // width
+			// 64,        // height
+			// false,     // is intermediate
+			// );
+			// }
+
+			// return $image;
+			// },
+			// 10,
+			// 4
+			// );
 
 			// Disable SSL Check on dev
 			if ( WP_ENV === 'development' ) {
@@ -33,224 +293,6 @@ class Media {
 				// add_action( 'admin_notices', array( $this, 'security_notice' ) );
 			}
 		}
-	}
-
-	public function am_check_filetype_and_ext( $data, $filepath, $filename, $mimes, $real_mime ) {
-		try {
-			if ( ! empty( $data['ext'] ) && ! empty( $data['type'] ) ) {
-				return $data;
-			}
-
-			$filetype = wp_check_filetype( $filename, $mimes );
-			$ext      = $filetype['ext'];
-
-			if ( 'lottie' !== $ext && 'json' !== $ext ) {
-				return $data;
-			}
-
-			if ( $real_mime !== 'application/json' &&
-				$real_mime !== 'application/zip' &&
-				$real_mime !== 'application/octet-stream' &&
-				$real_mime !== 'text/plain'
-			) {
-				return $data;
-			}
-
-			switch ( $ext ) {
-				case 'json':
-					$data['ext']  = 'json';
-					$data['type'] = 'application/json';
-					break;
-				case 'lottie':
-					$data['ext']  = 'lottie';
-					$data['type'] = 'application/zip';
-			}
-
-			return $data;
-		} catch ( \Exception $e ) {
-			return $e;
-		}
-	}
-
-	// Adding Lottie mime types to list over accepted uploads
-	public function am_upload_mimes( $mimes ) {
-		$mimes['json']        = 'application/json';
-		$mimes['lottie']      = 'application/zip';
-		$mimes['json|lottie'] = 'application/octet-stream';
-		return $mimes;
-	}
-
-	/**
-	 * Skip regenerating SVGs
-	 */
-	public function am_generate_attachment_metadata( $metadata, $attachment_id ) {
-		$mime = get_post_mime_type( $attachment_id );
-		if ( $mime !== 'application/zip' && $mime !== 'application/json' ) {
-			return $metadata;
-		}
-
-		\usleep( 20000 );
-
-		$lottie_path         = get_attached_file( $attachment_id );
-		$upload_dir          = wp_upload_dir();
-		$relative_path       = \str_replace( trailingslashit( $upload_dir['basedir'] ), '', $lottie_path );
-		$filename            = \basename( $lottie_path );
-		$thumbnail_file_name = 'lottie-thumbnail-' . \preg_replace( '/.(lottie|json)/i', '.svg', $filename );
-		$thumbnail_file_path = trailingslashit( $upload_dir['path'] ) . $thumbnail_file_name;
-		// $thumbnail_file_url  = trailingslashit( $upload_dir['url'] ) . $thumbnail_file_name;
-		$thumbnail_file_size = round( $metadata['filesize'] / 60 );
-
-		if ( \file_exists( $thumbnail_file_path ) ) {
-			$thumbnail_file_size = \filesize( $thumbnail_file_path );
-		}
-
-		$dimensions = $this->svg_dimensions( $thumbnail_file_path );
-
-		if ( ! $dimensions ) {
-			return $metadata;
-		}
-
-		$srcset = array(
-			'file'      => $thumbnail_file_name,
-			'width'     => $dimensions['width'],
-			'height'    => $dimensions['height'],
-			'mime-type' => 'image/svg+xml',
-			'filesize'  => $thumbnail_file_size,
-		);
-
-		$metadata = array_merge(
-			$metadata,
-			array(
-				'width'      => $dimensions['width'],
-				'height'     => $dimensions['height'],
-				'file'       => $relative_path,
-				'sizes'      => array(
-					'medium'       => $srcset,
-					'thumbnail'    => $srcset,
-					'medium_large' => $srcset,
-					'full'         => $srcset,
-				),
-				'image_meta' => array(
-					'aperture'          => 0,
-					'credit'            => '',
-					'camera'            => '',
-					'caption'           => '',
-					'created_timestamp' => 0,
-					'copyright'         => '',
-					'focal_length'      => 0,
-					'iso'               => 0,
-					'shutter_speed'     => 0,
-					'title'             => '',
-					'orientation'       => $dimensions['orientation'],
-					'keywords'          => array(),
-				),
-			)
-		);
-
-		return $metadata;
-	}
-
-	/**
-	 * Filters the attachment meta data.
-	 */
-	public function am_get_attachment_metadata( $data, $post_id ) {
-
-		// If it's a WP_Error regenerate metadata and save it
-		if ( is_wp_error( $data ) ) {
-			$data = wp_generate_attachment_metadata( $post_id, get_attached_file( $post_id ) );
-			wp_update_attachment_metadata( $post_id, $data );
-		}
-
-		return $data;
-	}
-
-	// Validate before upload
-	public function am_handle_upload_prefilter( array $file ) {
-		try {
-			$validate = wp_check_filetype_and_ext( $file['tmp_name'], $file['name'] );
-			$ext      = $validate['ext'];
-
-			if (
-			$ext !== 'lottie' && $ext !== 'json'
-			) {
-				return $file;
-			}
-
-			$is_valid = false;
-
-			switch ( $file['type'] ) {
-				case 'application/json':
-					$lottie = wp_json_file_decode( $file['tmp_name'], array( 'associative' => true ) );
-					if ( (bool) is_lottie_valid( $lottie ) ) {
-						$is_valid = true;
-					}
-					break;
-				case 'application/zip':
-				case 'application/octet-stream': {
-					$zip = new \ZipArchive();
-					$res = $zip->open( $file['tmp_name'] );
-					if ( $res !== true ) {
-						break;
-					}
-
-					$tempdir = tempdir();
-					$zip->extractTo( $tempdir );
-					$zip->close();
-
-					$manifest = wp_json_file_decode( "$tempdir/manifest.json" );
-					if ( ! $manifest ) {
-						break;
-					}
-
-					$animationsDir = "$tempdir/animations";
-					if ( ! is_dir( $animationsDir ) ) {
-						$animationsDir = "$tempdir/a";
-					}
-
-					if ( is_dir( $animationsDir ) ) {
-						$animations = scandir( $animationsDir );
-
-						/**
-						 * Set this to true only if animations array has length,
-						 * so that we can iterate and catch any corrupted animaiton,
-						 * while still avoiding false positive for empty arrays.
-						 */
-						if ( (bool) $animations ) {
-							$is_valid = count( $animations ) > 0;
-
-							foreach ( $animations as $animation ) {
-								if ( $animation === '.' || $animation === '..' ) {
-									continue;
-								}
-								$lottie = wp_json_file_decode( "$animationsDir/$animation", array( 'associative' => true ) );
-								if ( ! is_lottie_valid( $lottie ) ) {
-									$is_valid = false;
-								}
-							}
-						}
-					}
-				}
-			}
-
-			if ( ! $is_valid ) {
-				$file['error'] = __( 'Invalid Lottie file.', 'am-lottieplayer' );
-			}
-
-			return $file;
-		} catch ( \Exception $e ) {
-			$error = new \WP_Error();
-			$error->add( $e->getCode(), $e->getMessage() );
-
-			return $error;
-		}
-	}
-
-	// Adding icon to Lottie filetype
-	public function am_mime_type_icon( $icon, $mime ) {
-		if ( $mime === 'application/zip' || $mime === 'application/json' || $mime === 'text/plain' ) {
-			return get_asset( 'lottie-icon.svg' );
-		}
-		return $icon;
 	}
 
 	// Adding preview for Media Library
