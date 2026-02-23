@@ -7,7 +7,7 @@ import {
 import { useEffect, useState } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
 
-import type { PlayerComponentProps } from '@/types'
+import type { LottieBlockAttributes } from '@/types'
 
 import Lottie from '@/assets/Lottie'
 import ErrorNotice from '@/components/ErrorNotice'
@@ -18,10 +18,7 @@ const domain = 'am-lottieplayer'
 export default function UploadComponent({
   attributes,
   setAttributes,
-}: {
-  readonly attributes: PlayerComponentProps;
-  readonly setAttributes: (attrs: Partial<PlayerComponentProps>) => void;
-}) {
+}: LottieBlockAttributes) {
   const [state, setState] = useState({
     externalURL: attributes.src || '',
     hasDropped: false,
@@ -33,8 +30,7 @@ export default function UploadComponent({
       (state.externalURL.endsWith('.lottie') ||
         state.externalURL.endsWith('.json'))
     ) {
-      // eslint-disable-next-line react-you-might-not-need-an-effect/you-might-not-need-an-effect
-      setAttributes({ src: state.externalURL })
+      setAttributes?.({ src: state.externalURL })
     }
   }, [state.externalURL, setAttributes])
 
@@ -57,14 +53,14 @@ export default function UploadComponent({
         onSelect={(props) => {
           try {
             if (!props.url) {
-              setAttributes({
+              setAttributes?.({
                 id: undefined,
                 src: undefined
               })
 
               return
             }
-            setAttributes({
+            setAttributes?.({
               alt: props.alt,
               id: props.id.toString(),
               src: props.url,

@@ -1,162 +1,211 @@
-import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player'
+import type DotLottiePlayerLight from '@aarsteinmedia/dotlottie-player/light'
 import type { AnimationSegment } from '@aarsteinmedia/lottie-web'
 import type { EditorTemplateLock } from '@wordpress/block-editor'
 import type { BlockEditProps } from '@wordpress/blocks'
 import type { ResizeStartCallback } from 're-resizable'
 import type { ReactNode } from 'react'
 
-import type { Align, OnMouseOut } from '@/enums'
+import type { Align, tagName } from '@/enums'
 
-export interface PlayerComponentProps extends Partial< DotLottiePlayer > {
-  $schema?: string;
-  align?: Align;
-  allowedBlocks?: string[];
-  alt?: string;
-  clickEvent?: boolean;
-  contentPosition?: string;
-  dimRatio?: number;
+export interface Interactions {
+  delay?: DotLottiePlayerLight['delay']
+  hover?: DotLottiePlayerLight['hover']
+  mouseout?: DotLottiePlayerLight['mouseout']
+  once?: DotLottiePlayerLight['once']
+  playOnClick?: DotLottiePlayerLight['playOnClick']
+  playOnVisible?: DotLottiePlayerLight['playOnVisible']
+  selector?: string | null
+}
+
+
+export interface PlayerComponentProps
+  extends Partial<DotLottiePlayerLight>,
+  Interactions {
+  $schema?: string
+  align?: Align
+  allowedBlocks?: string[]
+  alt?: string
+  contentPosition?: string
+  dimRatio?: number
   focalPoint?: {
-    x?: number;
-    y?: number;
-  };
-  fullscreen?: boolean;
-  hasParallax?: boolean;
-  height?: number;
-  heightUnit?: 'px' | '%';
-  id?: string;
-  isDark?: boolean;
-  mouseout?: OnMouseOut;
-  objectFit?: DotLottiePlayer[ 'objectfit' ];
-  once?: boolean;
-  scrollDelay?: number | null;
-  scrollEvent?: boolean;
-  segment?: AnimationSegment;
-  selector?: {
-    id?: string;
-    exclude?: boolean;
-  };
-  templateLock?: EditorTemplateLock;
-  width?: number | null;
+    x?: number
+    y?: number
+  }
+  fullscreen?: boolean
+  hasParallax?: boolean
+  height?: number
+  heightUnit?: 'px' | '%'
+  id?: string
+  isDark?: boolean
+  objectFit?: DotLottiePlayerLight[ 'objectfit' ]
+  once?: boolean
+  segment?: AnimationSegment
+  templateLock?: EditorTemplateLock
+  width?: number
 }
 
 export interface BlockCoverEditProps
-  extends BlockEditProps< PlayerComponentProps > {toggleSelection?: ( x: boolean ) => void;}
+  extends BlockEditProps< PlayerComponentProps > {toggleSelection?: ( x: boolean ) => void}
 
 export interface UploadProps {
-  children?: ReactNode;
-  instructions?: string;
-  mediaId?: number;
-  onError: ( message: string ) => void;
+  children?: ReactNode
+  instructions?: string
+  mediaId?: number
+  onError: ( message: string ) => void
   onSelectMedia: ( value: {
-    id: number;
-    url: string;
+    id: number
+    url: string
     alt: string
-  } ) => void;
+  } ) => void
 }
 
 export interface ResizableCoverProps {
-  [ x: string ]: unknown;
-  children?: ReactNode;
-  className?: string;
-  fullscreen?: boolean;
-  onResize: ( n: number ) => void;
-  onResizeStart: ResizeStartCallback;
-  onResizeStop: ( n: number ) => void;
-  showHandle?: boolean;
+  [ x: string ]: unknown
+  children?: ReactNode
+  className?: string
+  fullscreen?: boolean
+  onResize: ( n: number ) => void
+  onResizeStart: ResizeStartCallback
+  onResizeStop: ( n: number ) => void
+  showHandle?: boolean
 }
 
 interface LottieAsset {
   /** Whether the data is encoded or not. */
-  e: 0 | 1;
+  e: 0 | 1
   /** Name of asset – e.g. Image_0 / audio_0. */
-  id: string;
+  id: string
   /** Filename – e.g image_0.png / audio_0.mp3 | DataURL, Base64 encoded. */
-  p: string;
-  u: string;
+  p: string
+  u: string
 }
 
 export interface LottieJSON {
-  assets?: LottieAsset[];
-  ddd: number;
+  assets?: LottieAsset[]
+  ddd: number
   /** Frames per second, natively. */
-  fr: number;
+  fr: number
   /** Height of animation in pixels. */
-  h: number;
-  ip: number;
-  layers: unknown[];
-  markers: unknown[];
+  h: number
+  ip: number
+  layers: unknown[]
+  markers: unknown[]
   meta: {
-    a: string;
-    d: string;
+    a: string
+    d: string
     /** Generator. */
-    g: string;
-    k: string;
-    tc: string;
-  };
+    g: string
+    k: string
+    tc: string
+  }
   /** Name of animation, from rendering. */
-  nm: string;
+  nm: string
   /** Total number of frames. */
-  op: number;
+  op: number
   /** Version. */
-  v: string;
+  v: string
   /** Width of animation in pixels. */
-  w: number;
+  w: number
 }
 
 interface PHPVars {
-  endpoint: string;
-  nonce: string;
-  pluginUrl: string;
+  endpoint: string
+  nonce: string
+  pluginUrl: string
 }
 
 export interface Attachment {
-  alt?: string;
-  caption?: string;
-  description?: string;
-  filename: string;
-  filesizeHumanReadable: string;
-  filesizeInBytes: number;
-  icon: string;
-  id: number;
-  lottieJSON: LottieJSON[];
-  mime: string;
-  name: string;
-  subtype: string;
-  title: string;
-  type: string;
-  url: string;
+  alt?: string
+  caption?: string
+  description?: string
+  filename: string
+  filesizeHumanReadable: string
+  filesizeInBytes: number
+  icon: string
+  id: number
+  lottieJSON: LottieJSON[]
+  mime: string
+  name: string
+  subtype: string
+  title: string
+  type: string
+  url: string
 }
 
-interface AttachmentObj {toJSON: () => Attachment;}
+interface AttachmentObj {toJSON: () => Attachment}
 
-interface MediaState {get: ( event: string ) => AttachmentObj[];}
+interface MediaState {get: ( event: string ) => AttachmentObj[]}
+
+export interface MediaElement {
+  alt?: string
+  id: number
+  url?: string
+}
 
 export interface Media {
-  [ x: string ]: unknown;
-  on: ( event: string, callback: () => unknown ) => void;
-  open: () => void;
-  state: () => MediaState;
+  [ x: string ]: unknown
+  on: ( event: string, callback: () => unknown ) => void
+  open: () => void
+  state: () => MediaState
 }
 
 interface MediaOptions {
-  button: { text: string; };
-  library: { type?: string[]; };
-  multiple: boolean;
-  title: string;
+  button: { text: string }
+  library: { type?: string[] }
+  multiple: boolean
+  title: string
 }
 
 export interface NoticeProps {
-  message?: string;
-  show: boolean;
-  status: 'success' | 'error' | 'info';
+  message?: string
+  show: boolean
+  status: 'success' | 'error' | 'info'
 }
+
+export interface LottieBlockAttributes {
+  readonly attributes: PlayerComponentProps
+  readonly clientId?: string
+  readonly setAttributes?: (attrs: Partial<PlayerComponentProps>) => void
+}
+
+export type MediaUpload = (options: {
+  allowedTypes: string[]
+  filesList: FileList | null
+  onFileChange: (media: MediaElement[]) => void
+  onError: (message: string) => void
+}) => void
+
+export interface BlockEditor {
+  getBlockIndex: (clientId: string) => number
+  getSettings: () => { mediaUpload: MediaUpload }
+}
+
+interface WP {
+  [x: string]: unknown
+  media: (options: MediaOptions) => Media
+  // on: () => unknown
+}
+
 
 declare global {
   const aamdPHPVariables: PHPVars | undefined
 
-  function dotLottiePlayer(): DotLottiePlayer
-  const wp: {
-    [ x: string ]: unknown;
-    media: ( options: MediaOptions ) => Media;
+  interface HTMLElementTagNameMap { [tagName]: DotLottiePlayerLight }
+
+  function dotLottiePlayer(): DotLottiePlayerLight
+  const wp: WP
+}
+
+declare module 'react' {
+
+  type JSXLottiePlayer = Omit<Partial<DotLottiePlayerLight>, 'style'> & {
+    class?: string
+    ref?: React.RefObject<unknown>
+    style?: React.CSSProperties
+    src: string
+  }
+
+  namespace JSX {
+    interface IntrinsicElements { [tagName]: JSXLottiePlayer }
   }
 }

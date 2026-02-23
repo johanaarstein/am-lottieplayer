@@ -3,7 +3,7 @@ import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player'
 import { useSelect } from '@wordpress/data'
 import { useEffect, useRef } from '@wordpress/element'
 
-import type { PlayerComponentProps } from '@/types'
+import type { BlockEditor, LottieBlockAttributes } from '@/types'
 
 import { usePlayerContext } from '@/context/PlayerContext'
 import { Align } from '@/enums'
@@ -17,28 +17,25 @@ const parseSize = (num?: number | null) => {
   }
 }
 
-export default function PlayerComponent( {
+export default function PlayerComponent({
   attributes,
-  clientId,
-}: {
-  attributes: PlayerComponentProps;
-  clientId: string;
-} ) {
+  clientId = '',
+}: LottieBlockAttributes) {
   const {
-      animationContext: { player },
-      setAnimationContext,
-    } = usePlayerContext(),
-    { getBlockIndex }: { getBlockIndex: ( str: string ) => number } =
-			useSelect( ( select ) => select( 'core/block-editor' ), [] ),
-    blockIndex = getBlockIndex( clientId ),
-    playerRef = useRef< DotLottiePlayer >( null ),
+    animationContext: { player },
+    setAnimationContext,
+  } = usePlayerContext(),
+    { getBlockIndex }: BlockEditor =
+      useSelect((select) => select('core/block-editor'), []),
+    blockIndex = getBlockIndex(clientId),
+    playerRef = useRef<DotLottiePlayer>(null),
     reloadPlayer = () => {
-      if ( ! player ) {
+      if (!player) {
         return
       }
       void player.reload()
     },
-    parseWidth = ( num?: number | null ) => {
+    parseWidth = (num?: number | null) => {
       if (
         attributes.align === Align.Wide ||
         attributes.align === Align.Full
@@ -46,17 +43,17 @@ export default function PlayerComponent( {
         return '100%'
       }
 
-      return parseSize( num )
+      return parseSize(num)
     }
 
-  useEffect( () => {
-    if ( playerRef.current ) {
-      setAnimationContext( ( prev ) => ( {
+  useEffect(() => {
+    if (playerRef.current) {
+      setAnimationContext((prev) => ({
         ...prev,
         player: playerRef.current,
-      } ) )
+      }))
     }
-  }, [ setAnimationContext ] )
+  }, [setAnimationContext])
 
   useEventListener(
     'ready', () => {
@@ -80,26 +77,26 @@ export default function PlayerComponent( {
   return (
     <dotlottie-player
       simple
-      autoplay={ attributes.autoplay ? '' : null }
+      autoplay={attributes.autoplay ? '' : null}
       class="lottie-element"
-      controls={ attributes.controls ? '' : null }
-      description={ attributes.alt }
-      direction={ attributes.direction }
-      id={ attributes.id }
-      intermission={ attributes.intermission }
-      loop={ attributes.loop ? '' : null }
-      mode={ attributes.mode }
-      objectfit={ attributes.objectFit }
-      ref={ playerRef }
-      speed={ attributes.speed }
-      src={ attributes.src ?? '' }
-      subframe={ attributes.subframe ? '' : null }
-      style={ {
+      controls={attributes.controls ? '' : null}
+      description={attributes.alt}
+      direction={attributes.direction}
+      id={attributes.id}
+      intermission={attributes.intermission}
+      loop={attributes.loop ? '' : null}
+      mode={attributes.mode}
+      objectfit={attributes.objectFit}
+      ref={playerRef}
+      speed={attributes.speed}
+      src={attributes.src ?? ''}
+      subframe={attributes.subframe ? '' : null}
+      style={{
         backgroundColor: attributes.background,
-        height: parseSize( attributes.height ),
+        height: parseSize(attributes.height),
         margin: '0 auto',
-        width: parseWidth( attributes.width ),
-      } }
+        width: parseWidth(attributes.width),
+      }}
     />
   )
 }

@@ -47,7 +47,6 @@ export default function BoomerangLottie( {
     }
   )
 
-  // eslint-disable-next-line react-you-might-not-need-an-effect/you-might-not-need-an-effect
   useEffect( () => {
     if (!boomerang.current) {
       return

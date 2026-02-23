@@ -38,10 +38,6 @@
 			],
 			"default": "none"
 		},
-		"alt": {
-			"type": "string",
-			"default": ""
-		},
 		"autoplay": {
 			"type": "boolean"
 		},
@@ -53,9 +49,17 @@
 			"type": "boolean",
 			"default": true
 		},
-		"clickEvent": {
-			"type": "boolean",
-			"default": false
+		"count": {
+			"type": "number",
+			"default": null
+		},
+		"delay": {
+			"type": "number",
+			"default": null
+		},
+		"description": {
+			"type": "string",
+			"default": ""
 		},
 		"direction": {
 			"type": "number",
@@ -86,7 +90,12 @@
 			"default": "normal"
 		},
 		"mouseout": {
-			"type": "string",
+			"enum": [
+				"void",
+				"stop",
+				"pause",
+				"reverse"
+			],
 			"default": "stop"
 		},
 		"objectFit": {
@@ -97,22 +106,28 @@
 			"type": "boolean",
 			"default": false
 		},
-		"renderer": {
-			"enum": [
-				"svg"
-			],
-			"default": "svg"
-		},
-		"simple": {
-			"type": "boolean",
-			"default": true
-		},
-		"scrollEvent": {
+		"playOnClick": {
 			"type": "boolean",
 			"default": false
 		},
-		"scrollDelay": {
-			"type": "number",
+		"playOnVisible": {
+			"type": "boolean",
+			"default": false
+		},
+		"renderer": {
+			"enum": [
+				"svg",
+				"canvas",
+				"html"
+			],
+			"default": "svg"
+		},
+		"segment": {
+			"type": "array",
+			"default": null
+		},
+		"selector": {
+			"type": "string",
 			"default": null
 		},
 		"speed": {
@@ -121,11 +136,7 @@
 		},
 		"src": {
 			"type": "string",
-			"source": "attribute",
-			"selector": "dotlottie-player",
-			"attribute": "src",
-			"default": "",
-			"__experimentalRole": "content"
+			"default": ""
 		},
 		"subframe": {
 			"type": "boolean",

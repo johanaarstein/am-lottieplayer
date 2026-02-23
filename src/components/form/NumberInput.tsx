@@ -11,21 +11,23 @@ const keydownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
   }
 }
 
-export default function NumberInput({
-  disabled,
-  id = '',
-  onChange,
-  placeholder = '',
-  title,
-  value = '',
-}: {
+interface NumberProps {
   disabled?: boolean;
   id: string;
   onChange: (x?: number) => void;
   placeholder?: string;
   title?: string;
   value?: string | number;
-}) {
+}
+
+export default function NumberInput({
+  disabled,
+  id,
+  onChange,
+  placeholder = '',
+  title,
+  value = '',
+}: NumberProps) {
   return (
     <BaseControl
       className={'lottie-number-wrapper'}

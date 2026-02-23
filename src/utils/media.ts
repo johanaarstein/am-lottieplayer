@@ -1,12 +1,14 @@
 import { isBlobURL } from '@wordpress/blob'
 
+interface Media {
+  alt?: string
+  id?: string;
+  url: string;
+}
+
 export const attributesFromMedia =
   (setAttributes: (attrs: object) => void, dimRatio?: number) =>
-    (media: {
-      url: string;
-      id?: string;
-      alt?: string
-    }) => {
+    (media: Media) => {
       if (!media.url) {
         setAttributes({
           id: undefined,

@@ -25,30 +25,28 @@ export default function save( { attributes }: BlockSaveProps< PlayerComponentPro
       } }
     >
       <dotlottie-player
-        controls={ attributes.controls ? '' : null }
-        data-click={ attributes.clickEvent }
-        data-delay={ attributes.scrollDelay }
-        data-direction={ attributes.direction }
-        data-mouseout={ attributes.mouseout }
-        data-mouseover={ attributes.hover }
-        data-once={ attributes.once }
-        data-scroll={ attributes.scrollEvent }
-        description={ attributes.alt }
-        direction={ attributes.direction }
-        intermission={ attributes.intermission }
-        loop={ attributes.loop ? '' : null }
-        mode={ attributes.mode }
-        objectfit={ attributes.objectFit }
-        simple={ attributes.simple }
-        speed={ attributes.speed }
-        src={ attributes.src || '' }
-        subframe={ attributes.subframe ? '' : null }
+        simple
+        controls={attributes.controls ? '' : null}
+        playOnClick={attributes.playOnClick ? '' : null}
+        delay={attributes.delay}
+        mouseout={attributes.mouseout}
+        hover={attributes.hover ? '' : null}
+        once={attributes.once ? '' : null}
+        playOnVisible={attributes.playOnVisible ? '' : null}
+        description={attributes.description}
+        direction={attributes.direction}
+        id={`dotlottie-${attributes.id}`}
+        intermission={attributes.intermission}
+        loop={attributes.loop ? '' : null}
+        objectfit={attributes.objectFit}
+        speed={attributes.speed}
+        src={attributes.src || ''}
+        subframe={attributes.subframe ? '' : null}
         autoplay={
-          attributes.autoplay && ! attributes.scrollEvent ? '' : null
+          attributes.autoplay && !attributes.playOnVisible ? '' : null
         }
-        class={ `lottie-element${
-          attributes.selector?.id ? ' has-selector' : ''
-        }` }
+        class={`lottie-element${attributes.selector ? ' has-selector' : ''
+          }`}
       />
     </figure>
   )

@@ -28,7 +28,7 @@ export default function Animation({
   const {
       autoplay, controls, direction, intermission, loop, segment, speed, subframe
     } = attributes,
-    { animationContext: { animations = [], player } } = usePlayerContext(),
+    { animationContext: { animations, player } } = usePlayerContext(),
     [state, setState] = useState({
       hasMultipleAnimations: false,
       totalFrames: 0,

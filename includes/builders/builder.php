@@ -52,7 +52,7 @@ class Builder {
 			'dotlottie-player-light',
 			get_script( 'dotlottie-player-light.min.js' ),
 			array(),
-			'6.2.4',
+			'6.2.5',
 			array(
 				'strategy'  => 'defer',
 				'in_footer' => true,
@@ -202,9 +202,9 @@ class Builder {
 			foreach ( $shortcodes as $shortcode ) {
 				$atts = shortcode_parse_atts( $shortcode );
 
-				$renderer = $atts['renderer'];
+				$renderer = isset( $atts['renderer'] ) ? $atts['renderer'] : false;
 
-				if ( isset( $renderer ) && $renderer !== 'svg' ) {
+				if ( $renderer && $renderer !== 'svg' ) {
 					$is_light = false;
 				}
 			}
@@ -215,25 +215,15 @@ class Builder {
 
 		if ( ! is_admin() ) {
 
-			if ( $has_gutenberg || $has_shortcode || $has_divi || $isDiviBuilder || $isVCBuilder ) {
-				wp_enqueue_script(
-					$is_light && ! AAMD_LOTTIE_IS_PRO ?
-					'dotlottie-player-light' : 'dotlottie-player'
-				);
+			$handle = 'dotlottie-player-light';
+
+			if ( ! $is_light && AAMD_LOTTIE_IS_PRO ) {
+				$handle = 'dotlottie-player';
 			}
 
-			// if ( $has_gutenberg || $has_shortcode || $has_divi ) {
-			// wp_enqueue_script(
-			// $is_light && ! AAMD_LOTTIE_IS_PRO ?
-			// 'am-frontend-light' : 'am-frontend'
-			// );
-			// Add scripts for Divi/VC front-end builder, if either are installed and active
-			// } elseif ( $isDiviBuilder || $isVCBuilder ) {
-			// wp_enqueue_script(
-			// AAMD_LOTTIE_IS_PRO ?
-			// 'dotlottie-player' : 'dotlottie-player-light'
-			// );
-			// }
+			if ( $has_gutenberg || $has_shortcode || $has_divi || $isDiviBuilder || $isVCBuilder ) {
+				wp_enqueue_script( $handle );
+			}
 		}
 	}
 

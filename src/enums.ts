@@ -7,9 +7,11 @@ export enum Align {
   Wide = 'wide',
 }
 
-export enum OnMouseOut {
+export enum MouseOut {
   Pause = 'pause',
   Reverse = 'reverse',
   Stop = 'stop',
-  Void = 'void',
+  Void = 'void'
 }
+
+export const tagName = 'dotlottie-player'

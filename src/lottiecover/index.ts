@@ -9,8 +9,8 @@ import save from '@/lottiecover/save'
 import '@/lottiecover/style.css'
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-registerBlockType< PlayerComponentProps >( metadata as any, {
+registerBlockType<PlayerComponentProps>(metadata as any, {
   edit: Edit,
   icon,
   save,
-} )
+})

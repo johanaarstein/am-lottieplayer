@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/naming-convention */
+
 import type { BlockEditProps } from '@wordpress/blocks'
 
 import {
@@ -15,7 +15,7 @@ import ProFeature from '@/assets/ProFeature'
 import SwitchLabel from '@/components/form/SwitchLabel'
 import TextInput from '@/components/form/TextInput'
 import ProLink from '@/components/ProLink'
-import { OnMouseOut } from '@/enums'
+import { MouseOut } from '@/enums'
 
 const domain = 'am-lottieplayer'
 
@@ -23,15 +23,6 @@ export default function Interactions ( {
   attributes,
   setAttributes,
 }: BlockEditProps< PlayerComponentProps > ) {
-  const {
-    clickEvent,
-    hover,
-    mouseout,
-    once,
-    scrollDelay,
-    scrollEvent,
-    selector,
-  } = attributes
 
   return (
     <Panel>
@@ -62,51 +53,51 @@ export default function Interactions ( {
         <SwitchLabel
           id="am-lottieplayer-click-settings"
           title={ __( 'Play on click', domain ) }
-          value={ clickEvent }
+          value={ Boolean(attributes.playOnClick) }
           onChange={ ( value ) =>
-          { setAttributes( { clickEvent: value } ) }
+          { setAttributes({ playOnClick: value } ) }
           }
         />
         <SwitchLabel
           id="am-lottieplayer-hover-settings"
           title={ __( 'Play on mouseover', domain ) }
-          value={ hover }
+          value={Boolean(attributes.hover) }
           onChange={ ( value ) => { setAttributes( { hover: value } ) } }
         />
-        { hover &&
+        { attributes.hover &&
           <SelectControl
             label={ __( 'On mouseout', domain ) }
-            value={ mouseout }
+            value={ attributes.mouseout }
             options={ [
               {
                 label: __( 'No event', domain ),
-                value: OnMouseOut.Void,
+                value: MouseOut.Void,
               },
               {
                 label: __( 'Stop', domain ),
-                value: OnMouseOut.Stop,
+                value: MouseOut.Stop,
               },
               {
                 label: __( 'Pause', domain ),
-                value: OnMouseOut.Pause,
+                value: MouseOut.Pause,
               },
               {
                 label: __( 'Reverse', domain ),
-                value: OnMouseOut.Reverse,
+                value: MouseOut.Reverse,
               },
             ] }
             onChange={ ( val ) =>
-            { setAttributes( { mouseout: val as OnMouseOut } ) }
+            { setAttributes( { mouseout: val as MouseOut } ) }
             }
           />
         }
-        { ( hover || clickEvent ) &&
+        { ( attributes.hover || attributes.playOnClick ) &&
           <>
             <TextInput
               disabled
               id="am-lottieplayer-settings"
               placeholder={ '#' }
-              value={ selector?.id }
+              value={ attributes.selector }
               help={ __('Anchor tag (id) for an element you want to trigger the animation, either by hover or click.',
                 domain) }
               title={
@@ -123,15 +114,10 @@ export default function Interactions ( {
                 </>
               }
               onChange={ ( val ) =>
-              { setAttributes( {
-                selector: {
-                  ...selector,
-                  id: val
-                },
-              } ) }
+              { setAttributes( { selector: val } ) }
               }
             />
-            <SwitchLabel
+            {/* <SwitchLabel
               disabled
               id="am-lottieplayer-selector-settings"
               value={ selector?.exclude }
@@ -158,24 +144,24 @@ export default function Interactions ( {
                 },
               } ) }
               }
-            />
+            /> */}
           </>
         }
         <SwitchLabel
           id="am-lottieplayer-scroll-settings"
-          value={ scrollEvent }
+          value={ Boolean(attributes.playOnVisible) }
           title={ __('Play on scroll, when visible in viewport',
             domain) }
           onChange={ ( value ) =>
-          { setAttributes( { scrollEvent: value } ) }
+          { setAttributes( { playOnVisible: value } ) }
           }
         />
-        { scrollEvent &&
+        { attributes.playOnVisible &&
           <>
             <SwitchLabel
               id="am-lottieplayer-once-settings"
               title={ __( 'Play only once', domain ) }
-              value={ once }
+              value={ attributes.once }
               onChange={ ( value ) =>
               { setAttributes( { once: value } ) }
               }
@@ -184,11 +170,11 @@ export default function Interactions ( {
               max={ 50 }
               min={ 0 }
               step={ 1 }
-              value={ scrollDelay ?? 1 }
+              value={ attributes.delay ?? 1 }
               label={ __('Delay, in 10th of a second',
                 domain) }
               onChange={ ( value ) =>
-              { setAttributes( { scrollDelay: value } ) }
+              { setAttributes( { delay: value } ) }
               }
             />
           </>

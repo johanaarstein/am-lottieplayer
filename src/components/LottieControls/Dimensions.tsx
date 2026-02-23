@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player-light'
+import type DotLottiePlayerLight from '@aarsteinmedia/dotlottie-player/light'
 import type { BlockEditProps } from '@wordpress/blocks'
 
 import {
@@ -60,7 +60,7 @@ export default function Dimensions ( {
                   : 'auto'
               }
               onChange={ ( val ) =>
-              { setAttributes( { width: val ?? null } ) }
+              { setAttributes( { width: val } ) }
               }
             />
             <NumberInput
@@ -111,7 +111,7 @@ export default function Dimensions ( {
             },
           ] }
           onChange={ ( val ) => {
-            setAttributes( { objectFit: val as DotLottiePlayer[ 'objectfit' ] } )
+            setAttributes({ objectFit: val as DotLottiePlayerLight[ 'objectfit' ] } )
           } }
         />
       </PanelBody>

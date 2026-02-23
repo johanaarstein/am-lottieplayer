@@ -1,17 +1,14 @@
 import { BlockControls } from '@wordpress/block-editor'
 import { __ } from '@wordpress/i18n'
 
-import type { PlayerComponentProps } from '@/types'
+import type { LottieBlockAttributes } from '@/types'
 
 import MediaReplace from '@/components/MediaReplace'
 
 export default function ContextMenu( {
   attributes,
   setAttributes,
-}: {
-  attributes: PlayerComponentProps;
-  readonly setAttributes: ( attrs: Partial< PlayerComponentProps > ) => void;
-} ) {
+}: LottieBlockAttributes ) {
   return (
     <BlockControls>
       <MediaReplace

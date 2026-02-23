@@ -22,7 +22,7 @@ import { __ } from '@wordpress/i18n'
 import { upload } from '@wordpress/icons'
 import classNames from 'classnames'
 
-import type { PlayerComponentProps } from '@/types'
+import type { BlockEditor, LottieBlockAttributes } from '@/types'
 
 import Lottie from '@/assets/Lottie'
 import ErrorNotice from '@/components/ErrorNotice'
@@ -60,10 +60,7 @@ const onUploadError = (message: string) => {
 export default function MediaReplace({
   attributes,
   setAttributes,
-}: {
-  readonly attributes: PlayerComponentProps;
-  readonly setAttributes: (attrs: Partial<PlayerComponentProps>) => void;
-}) {
+}: LottieBlockAttributes) {
   const [state, setState] = useState({
     externalURL: attributes.src || '',
     mediaId: Number(attributes.id),
@@ -71,7 +68,7 @@ export default function MediaReplace({
     editMediaButtonRef = useRef<HTMLButtonElement>(null),
     mediaUpload: MediaUpload | undefined = useSelect((select) => {
       try {
-        const { getSettings }: { getSettings: () => { mediaUpload: MediaUpload } } =
+        const { getSettings }: BlockEditor =
           select('core/block-editor')
 
         return getSettings().mediaUpload
@@ -84,7 +81,7 @@ export default function MediaReplace({
     onSelectMedia = (media: Media) => {
       try {
         if (!media.url) {
-          setAttributes({
+          setAttributes?.({
             id: undefined,
             src: undefined
           })
@@ -95,7 +92,7 @@ export default function MediaReplace({
           ...prev,
           mediaId: media.id
         }))
-        setAttributes({
+        setAttributes?.({
           alt: media.alt,
           id: media.id.toString(),
           src: media.url,
@@ -151,8 +148,7 @@ export default function MediaReplace({
       (state.externalURL.endsWith('.lottie') ||
         state.externalURL.endsWith('.json'))
     ) {
-      // eslint-disable-next-line react-you-might-not-need-an-effect/you-might-not-need-an-effect
-      setAttributes({ src: state.externalURL })
+      setAttributes?.({ src: state.externalURL })
     }
   }, [state.externalURL, setAttributes])
 

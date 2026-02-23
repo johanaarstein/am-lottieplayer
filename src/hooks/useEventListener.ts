@@ -3,6 +3,20 @@ import { useEffect, useRef } from '@wordpress/element'
 
 export type EventHandler<E extends Event = Event> = (event: E) => void
 
+interface ElementOptions<T> {
+  element?:
+  | (Window & typeof globalThis)
+  | React.RefObject<T>
+  | Element
+  | ScreenOrientation
+  | Document
+  | null
+  | false
+}
+
+type EventOptions<T> = EventListenerOptions &
+  AddEventListenerOptions & ElementOptions<T>
+
 /**
  * `useEventListener` is a custom React hook that adds an event listener to a specified element.
  * It simplifies the process of handling events by managing the event listener and callback function.
@@ -17,17 +31,7 @@ export default function useEventListener<
 >(
   eventType: string,
   callback: EventHandler<E>,
-  options: EventListenerOptions &
-    AddEventListenerOptions & {
-      element?:
-      | (Window & typeof globalThis)
-      | React.RefObject<T>
-      | Element
-      | ScreenOrientation
-      | Document
-      | null
-      | false
-    } = {}
+  options: EventOptions<T> = {}
 ) {
   if (!options.element) {
     options.element = window
@@ -52,11 +56,6 @@ export default function useEventListener<
     const handler = (e: E) => {
       callbackRef.current(e)
     }
-
-    // if (eventType === 'complete') {
-    //   console.log(targetElement.addEventListener)
-    // }
-
 
     targetElement.addEventListener(
       eventType, handler as EventListener, options

@@ -17,7 +17,6 @@ const sheriffOptions: SheriffSettings = {
 }
 
 export default defineConfig(
-  // @ts-expect-error types not working correctly
   sheriff(sheriffOptions),
   {
     files: ['**/*.{ts,tsx,mjs,js}'],
@@ -120,6 +119,7 @@ export default defineConfig(
         },
       ],
       '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-namespace': ['error', { allowDeclarations: true }],
       '@typescript-eslint/no-unused-vars': [
         'error', {
           argsIgnorePattern: '^_',
@@ -151,11 +151,11 @@ export default defineConfig(
       'perfectionist/sort-imports': 'warn',
       'perfectionist/sort-interfaces': 'warn',
       'perfectionist/sort-objects': 'warn',
-      'react/function-component-definition': 0, //['warn', { namedComponents: 'function-declaration' }],
+      'react/function-component-definition': 0,
       'react/no-array-index-key': 'warn',
       'simple-import-sort/imports': 0,
       'unicorn/prefer-query-selector': 0,
-      'unicorn/template-indent': 'warn',
+      'unicorn/template-indent': 'warn'
     },
   },
   {

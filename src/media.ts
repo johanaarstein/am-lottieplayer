@@ -2,7 +2,15 @@
 /* eslint-disable prefer-rest-params */
 
 
-import { trailingslashit } from './utils'
+import { trailingslashit } from '@/utils'
+import Player from '@/utils/player'
+
+interface XHRChange {
+  _onreadystatechange?: (
+    this: XMLHttpRequest,
+    ev: Event
+  ) => unknown;
+}
 
 function overrideXHR() {
   const { open } = XMLHttpRequest.prototype,
@@ -28,12 +36,7 @@ function overrideXHR() {
       ])
   }
 
-  function sendReplacement(this: XMLHttpRequest & {
-    _onreadystatechange?: (
-      this: XMLHttpRequest,
-      ev: Event
-    ) => unknown;
-  },
+  function sendReplacement(this: XMLHttpRequest & XHRChange,
   data?: Document | XMLHttpRequestBodyInit | null) {
     if ( ! ( data instanceof FormData ) || ! aamdPHPVariables ) {
       send.apply(this,
@@ -80,14 +83,12 @@ function overrideXHR() {
         const lottieBlob = new Blob( [ target.result ] ),
           objectURL = URL.createObjectURL( lottieBlob )
 
-        const dlp = dotLottiePlayer()
+        Player.hidden = true
 
-        dlp.hidden = true
+        document.body.appendChild(Player )
 
-        document.body.appendChild( dlp )
-
-        await dlp.load( objectURL )
-        const svg = dlp.snapshot( false )
+        await Player.load( objectURL )
+        const svg = Player.snapshot( false )
 
         URL.revokeObjectURL( objectURL )
 

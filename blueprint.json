@@ -3,6 +3,6 @@
   "landingPage": "/wp-admin/plugins.php",
   "preferredVersions": {
     "php": "8.4",
-    "wp": "6.8"
+    "wp": "6.9"
   }
 }

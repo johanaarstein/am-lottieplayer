@@ -18,12 +18,12 @@
 	"attributes": {
 		"align": {
 			"enum": [
+				"center",
+				"full",
 				"none",
 				"left",
 				"right",
-				"center",
-				"wide",
-				"full"
+				"wide"
 			],
 			"default": "none"
 		},
@@ -34,10 +34,6 @@
 				"core/heading",
 				"core/buttons"
 			]
-		},
-		"alt": {
-			"type": "string",
-			"default": ""
 		},
 		"autoplay": {
 			"type": "boolean",
@@ -54,9 +50,17 @@
 			"type": "string",
 			"default": ""
 		},
-		"clickEvent": {
-			"type": "boolean",
-			"default": false
+		"count": {
+			"type": "number",
+			"default": null
+		},
+		"delay": {
+			"type": "number",
+			"default": null
+		},
+		"description": {
+			"type": "string",
+			"default": ""
 		},
 		"dimRatio": {
 			"type": "number",
@@ -112,6 +116,15 @@
 			],
 			"default": "normal"
 		},
+		"mouseout": {
+			"enum": [
+				"void",
+				"stop",
+				"pause",
+				"reverse"
+			],
+			"default": "stop"
+		},
 		"objectFit": {
 			"type": "string",
 			"default": "cover"
@@ -124,9 +137,13 @@
 			"type": "string",
 			"default": "transparent"
 		},
-		"mouseOut": {
-			"type": "string",
-			"default": "stop"
+		"playOnClick": {
+			"type": "boolean",
+			"default": false
+		},
+		"playOnVisible": {
+			"type": "boolean",
+			"default": false
 		},
 		"renderer": {
 			"enum": [
@@ -136,17 +153,13 @@
 			],
 			"default": "svg"
 		},
-		"scrollEvent": {
-			"type": "boolean",
-			"default": false
-		},
-		"scrollDelay": {
-			"type": "number",
+		"segment": {
+			"type": "array",
 			"default": null
 		},
-		"simple": {
-			"type": "boolean",
-			"default": true
+		"selector": {
+			"type": "string",
+			"default": null
 		},
 		"speed": {
 			"type": "number",
