@@ -1,3 +1,4 @@
+/* eslint-disable @eslint-react/no-leaked-conditional-rendering */
 
 import type { BlockEditProps } from '@wordpress/blocks'
 

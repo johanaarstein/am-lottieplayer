@@ -43,8 +43,6 @@
 		"@types/webpack": "^5.28.5",
 		"@types/wordpress__block-editor": "^15.0.3",
 		"@types/wordpress__blocks": "^12.5.18",
-		"@typescript-eslint/eslint-plugin": "^8.56.0",
-		"@typescript-eslint/parser": "^8.56.0",
 		"@wordpress/a11y": "^4.40.0",
 		"@wordpress/blob": "^4.40.0",
 		"@wordpress/block-editor": "^15.13.1",
@@ -80,7 +78,8 @@
 		"typescript": "^5.9.3"
 	},
 	"scripts": {
-		"predev": "wp-env start -- --update && pnpm dep",
+		"start": "wp-env start -- --update",
+		"predev": "pnpm start && pnpm dep",
 		"dev": "wp-scripts start --hot",
 		"css-minify": "css-minify -f styles/admin.css -o styles",
 		"prebuild": "pnpm dep && pnpm css-minify",

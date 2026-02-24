@@ -20,6 +20,35 @@ declare module '@wordpress/scripts/utils/config' {
   const getWebpackEntryPoints: () => EntryObject
 }
 
+interface Attachment {
+  alt?: string
+  caption?: string
+  description?: string
+  filename: string
+  filesizeHumanReadable: string
+  filesizeInBytes: number
+  icon: string
+  id: number
+  lottieJSON: import('@aarsteinmedia/lottie-web').AnimationData
+  mime: string
+  name: string
+  subtype: string
+  title: string
+  type: string
+  url: string
+}
+
+interface AttachmentObj { toJSON: () => Attachment }
+
+interface MediaState { get: (event: string) => AttachmentObj[] }
+
+interface Media {
+  [x: string]: unknown
+  on: (event: string, callback: () => unknown) => void
+  open: () => void
+  state: () => MediaState
+}
+
 interface MediaOptions {
   button: { text: string }
   library: { type?: string[] }

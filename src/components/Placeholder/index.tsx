@@ -8,12 +8,12 @@ import PlayerComponent from '@/components/Placeholder/PlayerComponent'
 import UploadComponent from '@/components/Placeholder/UploadComponent'
 import useComponentDidUpdate from '@/hooks/useComponentDidUpdate'
 
-export default function Placeholder( {
+export default function Placeholder({
   attributes,
   clientId,
   setAttributes,
-}: BlockEditProps< PlayerComponentProps > ) {
-  const [ state, setState ] = useState( { isPlaceholder: true } )
+}: BlockEditProps<PlayerComponentProps>) {
+  const [state, setState] = useState({ isPlaceholder: true })
 
   useComponentDidUpdate(() => {
     setState(() => ({ isPlaceholder: !attributes.src || attributes.src === '' }))
@@ -22,15 +22,15 @@ export default function Placeholder( {
 
   return (
     <>
-      { state.isPlaceholder ?
+      {state.isPlaceholder ?
         <UploadComponent
-          attributes={ attributes }
-          setAttributes={ setAttributes }
+          attributes={attributes}
+          setAttributes={setAttributes}
         />
         :
         <PlayerComponent
-          attributes={ attributes }
-          clientId={ clientId }
+          attributes={attributes}
+          clientId={clientId}
         />
       }
     </>

@@ -36,7 +36,8 @@ test.describe('dotLottiePlayer Block', () => {
 
     // Visit the frontend and assert the player element is present
     const postUrl = await page.evaluate(() =>
-      wp.data.select('core/editor').getPermalink())
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
+      wp.data.select('core/editor').getPermalink()) as string
 
     await page.goto(postUrl)
 

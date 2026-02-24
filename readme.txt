@@ -132,6 +132,11 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
+= 3.6.0 - Feb 24 2026 =
+* Tested with WP 6.9
+* Added limited support for parsing Lottie v2.0 files.
+* Various bugfixes
+
 = 3.5.17 - Sep 4 2025 =
 * Minor updates to animation engine.
 

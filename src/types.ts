@@ -70,83 +70,16 @@ export interface ResizableCoverProps {
   showHandle?: boolean
 }
 
-interface LottieAsset {
-  /** Whether the data is encoded or not. */
-  e: 0 | 1
-  /** Name of asset – e.g. Image_0 / audio_0. */
-  id: string
-  /** Filename – e.g image_0.png / audio_0.mp3 | DataURL, Base64 encoded. */
-  p: string
-  u: string
-}
-
-export interface LottieJSON {
-  assets?: LottieAsset[]
-  ddd: number
-  /** Frames per second, natively. */
-  fr: number
-  /** Height of animation in pixels. */
-  h: number
-  ip: number
-  layers: unknown[]
-  markers: unknown[]
-  meta: {
-    a: string
-    d: string
-    /** Generator. */
-    g: string
-    k: string
-    tc: string
-  }
-  /** Name of animation, from rendering. */
-  nm: string
-  /** Total number of frames. */
-  op: number
-  /** Version. */
-  v: string
-  /** Width of animation in pixels. */
-  w: number
-}
-
 interface PHPVars {
   endpoint: string
   nonce: string
   pluginUrl: string
 }
 
-export interface Attachment {
-  alt?: string
-  caption?: string
-  description?: string
-  filename: string
-  filesizeHumanReadable: string
-  filesizeInBytes: number
-  icon: string
-  id: number
-  lottieJSON: LottieJSON[]
-  mime: string
-  name: string
-  subtype: string
-  title: string
-  type: string
-  url: string
-}
-
-interface AttachmentObj {toJSON: () => Attachment}
-
-interface MediaState {get: ( event: string ) => AttachmentObj[]}
-
 export interface MediaElement {
   alt?: string
   id: number
   url?: string
-}
-
-export interface Media {
-  [ x: string ]: unknown
-  on: ( event: string, callback: () => unknown ) => void
-  open: () => void
-  state: () => MediaState
 }
 
 export interface NoticeProps {
@@ -173,12 +106,6 @@ export interface BlockEditor {
   getSettings: () => { mediaUpload: MediaUpload }
 }
 
-// interface WP {
-//   [x: string]: unknown
-//   media: (options: MediaOptions) => Media
-//   // on: () => unknown
-// }
-
 
 declare global {
   const aamdPHPVariables: PHPVars | undefined
@@ -186,7 +113,6 @@ declare global {
   interface HTMLElementTagNameMap { [tagName]: DotLottiePlayerLight }
 
   function dotLottiePlayer(): DotLottiePlayerLight
-  // const wp: WP
 }
 
 declare module 'react' {
