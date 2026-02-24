@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/wp-env.json",
+  "$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/wp-env.json",
   "core": null,
   "phpVersion": "8.4",
   "config": {
