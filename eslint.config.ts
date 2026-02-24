@@ -9,7 +9,7 @@ const sheriffOptions: SheriffSettings = {
   jest: false,
   lodash: false,
   next: false,
-  playwright: false,
+  playwright: true,
   react: true,
   remeda: false,
   storybook: false,

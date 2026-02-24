@@ -17,6 +17,9 @@ importers:
       '@playwright/test':
         specifier: ^1.58.2
         version: 1.58.2
+      '@types/mocha':
+        specifier: ^10.0.10
+        version: 10.0.10
       '@types/node':
         specifier: ^25.3.0
         version: 25.3.0
@@ -68,6 +71,9 @@ importers:
       '@wordpress/dom':
         specifier: ^4.40.0
         version: 4.40.0
+      '@wordpress/e2e-test-utils-playwright':
+        specifier: ^1.40.0
+        version: 1.40.0(@playwright/test@1.58.2)(@types/node@25.3.0)(bare-buffer@3.0.1)
       '@wordpress/element':
         specifier: ^6.40.0
         version: 6.40.0
@@ -2632,6 +2638,9 @@ packages:
   '@types/minimist@1.2.5':
     resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
 
+  '@types/mocha@10.0.10':
+    resolution: {integrity: sha512-xPyYSz1cMPnJQhl0CLMH68j3gprKZaTjG3s5Vi+fDgx+uhG9NOXwbVt52eFS8ECyXhyKcjDLCBEqBExKuiZb7Q==}
+
   '@types/mousetrap@1.6.15':
     resolution: {integrity: sha512-qL0hyIMNPow317QWW/63RvL1x5MVMV+Ru3NaY9f/CuEpCqrmb7WeuK2071ZY5hczOnm38qExWM2i2WtkXLSqFw==}
 
@@ -3994,8 +4003,8 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
-  basic-ftp@5.1.0:
-    resolution: {integrity: sha512-RkaJzeJKDbaDWTIPiJwubyljaEPwpVWkm9Rt5h9Nd6h7tEXTJ3VB4qxdZBioV7JO5yLUaOKwz7vDOzlncUsegw==}
+  basic-ftp@5.2.0:
+    resolution: {integrity: sha512-VoMINM2rqJwJgfdHq6RiUudKt2BV+FY5ZFezP/ypmwayk68+NzzAQy4XXLlqsGD4MCzq3DrmNFD/uUmBJuGoXw==}
     engines: {node: '>=10.0.0'}
 
   batch@0.6.1:
@@ -12796,6 +12805,8 @@ snapshots:
 
   '@types/minimist@1.2.5': {}
 
+  '@types/mocha@10.0.10': {}
+
   '@types/mousetrap@1.6.15': {}
 
   '@types/ms@2.1.0': {}
@@ -15073,7 +15084,7 @@ snapshots:
 
   baseline-browser-mapping@2.10.0: {}
 
-  basic-ftp@5.1.0: {}
+  basic-ftp@5.2.0: {}
 
   batch@0.6.1: {}
 
@@ -17305,7 +17316,7 @@ snapshots:
 
   get-uri@6.0.5:
     dependencies:
-      basic-ftp: 5.1.0
+      basic-ftp: 5.2.0
       data-uri-to-buffer: 6.0.2
       debug: 4.4.3
     transitivePeerDependencies:

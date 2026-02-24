@@ -149,13 +149,6 @@ export interface Media {
   state: () => MediaState
 }
 
-interface MediaOptions {
-  button: { text: string }
-  library: { type?: string[] }
-  multiple: boolean
-  title: string
-}
-
 export interface NoticeProps {
   message?: string
   show: boolean
@@ -180,11 +173,11 @@ export interface BlockEditor {
   getSettings: () => { mediaUpload: MediaUpload }
 }
 
-interface WP {
-  [x: string]: unknown
-  media: (options: MediaOptions) => Media
-  // on: () => unknown
-}
+// interface WP {
+//   [x: string]: unknown
+//   media: (options: MediaOptions) => Media
+//   // on: () => unknown
+// }
 
 
 declare global {
@@ -193,7 +186,7 @@ declare global {
   interface HTMLElementTagNameMap { [tagName]: DotLottiePlayerLight }
 
   function dotLottiePlayer(): DotLottiePlayerLight
-  const wp: WP
+  // const wp: WP
 }
 
 declare module 'react' {

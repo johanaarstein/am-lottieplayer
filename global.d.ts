@@ -19,3 +19,21 @@ declare module '@wordpress/scripts/utils/config' {
 
   const getWebpackEntryPoints: () => EntryObject
 }
+
+interface MediaOptions {
+  button: { text: string }
+  library: { type?: string[] }
+  multiple: boolean
+  title: string
+}
+
+interface WP {
+  blockEditor: typeof import('@wordpress/block-editor')
+  components: typeof import('@wordpress/components')
+  compose: typeof import('@wordpress/compose')
+  data: typeof import('@wordpress/data')
+  hooks: typeof import('@wordpress/hooks')
+  media: (options: MediaOptions) => Media
+}
+
+declare const wp: WP
