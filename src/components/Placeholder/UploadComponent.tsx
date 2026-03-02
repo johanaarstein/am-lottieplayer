@@ -41,10 +41,10 @@ export default function UploadComponent({
     }
 
     return {
-    externalURL: '',
-    hasDropped: false,
-  }
-})
+      externalURL: '',
+      hasDropped: false,
+    }
+  })
 
   return (
     <MediaUploadCheck>
@@ -95,14 +95,16 @@ export default function UploadComponent({
             <URLInput
               value={state.externalURL}
               onChange={(externalURL) => {
+                if (!validateUrl(externalURL)) {
+                  throw new Error('Invalid URL')
+                }
+
                 setState((prev) => ({
                   ...prev,
                   externalURL,
                 }))
 
-                if (validateUrl(externalURL)) {
-                  setAttributes?.({ src: externalURL })
-                }
+                setAttributes?.({ src: externalURL })
               }
               }
             />
