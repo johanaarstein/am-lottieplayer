@@ -35,7 +35,6 @@ export default function Interactions ( {
         <SwitchLabel
           disabled
           id={ 'am-lottieplayer-animateOnScroll-settings' }
-          value={ false }
           title={
             <>
               <span

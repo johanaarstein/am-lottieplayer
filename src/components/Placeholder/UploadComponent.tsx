@@ -4,7 +4,7 @@ import {
   MediaUploadCheck,
   URLInput,
 } from '@wordpress/block-editor'
-import { useEffect, useState } from '@wordpress/element'
+import { useState } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
 
 import type { LottieBlockAttributes } from '@/types'
@@ -13,26 +13,38 @@ import Lottie from '@/assets/Lottie'
 import ErrorNotice from '@/components/ErrorNotice'
 import { isValidUrl } from '@/utils'
 
-const domain = 'am-lottieplayer'
+const domain = 'am-lottieplayer',
+  validateUrl = (url: unknown): url is string => {
+    if (typeof url !== 'string') {
+      throw new TypeError('Invalid URL')
+    }
+
+    if (!isValidUrl(url) || !url.endsWith('.lottie') && !url.endsWith('.json')) {
+      throw new Error('Invalid URL')
+    }
+
+    return true
+  }
 
 export default function UploadComponent({
   attributes,
   setAttributes,
 }: LottieBlockAttributes) {
-  const [state, setState] = useState({
-    externalURL: attributes.src || '',
-    hasDropped: false,
-  })
+  const [state, setState] = useState(() => {
+    if (validateUrl(attributes.src)) {
+      setAttributes?.({ src: attributes.src })
 
-  useEffect(() => {
-    if (
-      isValidUrl(state.externalURL) &&
-      (state.externalURL.endsWith('.lottie') ||
-        state.externalURL.endsWith('.json'))
-    ) {
-      setAttributes?.({ src: state.externalURL })
+      return {
+        externalURL: attributes.src,
+        hasDropped: false
+      }
     }
-  }, [state.externalURL, setAttributes])
+
+    return {
+    externalURL: '',
+    hasDropped: false,
+  }
+})
 
   return (
     <MediaUploadCheck>
@@ -87,6 +99,10 @@ export default function UploadComponent({
                   ...prev,
                   externalURL,
                 }))
+
+                if (validateUrl(externalURL)) {
+                  setAttributes?.({ src: externalURL })
+                }
               }
               }
             />

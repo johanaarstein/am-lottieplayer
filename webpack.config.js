@@ -1,10 +1,9 @@
-const defaults = require('@wordpress/scripts/config/webpack.config'),
-  { resolve } = require('node:path')
+// import type { Configuration } from 'webpack'
 
-/**
- * @type {import('webpack').Configuration}
-  */
-module.exports = {
+const defaults = require('@wordpress/scripts/config/webpack.config'),
+ { resolve } = require('node:path')
+
+const config = {
   ...defaults,
   entry: {
     admin: resolve(
@@ -23,8 +22,16 @@ module.exports = {
   resolve: {
     ...defaults.resolve,
     alias: {
-      ...defaults.resolve.alias,
+      ...defaults.resolve?.alias ?? [],
       '@': resolve(__dirname, 'src'),
     },
+    extensions: [
+      ...defaults.resolve?.extensions ?? [],
+      '.ts',
+      '.tsx'
+    ],
   },
 }
+
+// export default config
+module.exports = config

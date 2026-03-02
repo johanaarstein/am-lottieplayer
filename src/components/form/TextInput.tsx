@@ -1,5 +1,3 @@
-import type React from 'react'
-
 import { BaseControl, TextControl } from '@wordpress/components'
 
 interface InlineInterface {
