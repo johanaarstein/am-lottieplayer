@@ -7,7 +7,7 @@ import {
   PanelRow,
   RangeControl,
 } from '@wordpress/components'
-import { useEffect, useState } from '@wordpress/element'
+import { useState } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
 
 import type { PlayerComponentProps } from '@/types'
@@ -29,19 +29,14 @@ export default function Animation({
       autoplay, controls, direction, intermission, loop, segment, speed, subframe
     } = attributes,
     { animationContext: { animations, player } } = usePlayerContext(),
-    [state, setState] = useState({
-      hasMultipleAnimations: false,
-      totalFrames: 0,
-    })
+    [state] = useState(() => {
+      const totalFrames = player?.getLottie()?.totalFrames ?? 0
 
-  useEffect(() => {
-    if (player) {
-      setState({
+      return {
         hasMultipleAnimations: animations.length > 1,
-        totalFrames: player.getLottie()?.totalFrames ?? 0,
-      })
-    }
-  }, [animations.length, player])
+        totalFrames,
+      }
+    })
 
   return (
     <Panel>
@@ -88,7 +83,6 @@ export default function Animation({
         <SwitchLabel
           disabled
           id="am-lottieplayer-playmode-settings"
-          value={false}
           title={
             <>
               <span
