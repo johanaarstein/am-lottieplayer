@@ -15,9 +15,7 @@ import {
 } from '@wordpress/components'
 import { useSelect } from '@wordpress/data'
 import { __unstableStripHTML as stripHTML } from '@wordpress/dom'
-import {
-  useEffect, useRef, useState
-} from '@wordpress/element'
+import { useRef, useState } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
 import { upload } from '@wordpress/icons'
 import classNames from 'classnames'
@@ -26,7 +24,7 @@ import type { BlockEditor, LottieBlockAttributes } from '@/types'
 
 import Lottie from '@/assets/Lottie'
 import ErrorNotice from '@/components/ErrorNotice'
-import { isValidUrl } from '@/utils'
+import { validateUrl } from '@/utils'
 
 type MediaUpload = (options: {
   allowedTypes: string[];
@@ -142,16 +140,6 @@ export default function MediaReplace({
       }
     }
 
-  useEffect(() => {
-    if (
-      isValidUrl(state.externalURL) &&
-      (state.externalURL.endsWith('.lottie') ||
-        state.externalURL.endsWith('.json'))
-    ) {
-      setAttributes?.({ src: state.externalURL })
-    }
-  }, [state.externalURL, setAttributes])
-
   return (
     <Dropdown
       contentClassName="block-editor-media-replace-flow__options"
@@ -209,12 +197,19 @@ export default function MediaReplace({
               showSuggestions={false}
               value={{ url: attributes.src }}
               onChange={(externalURL: string) => {
+                if (!validateUrl(externalURL)) {
+                  throw new Error('Invalid URL')
+                }
+
                 setState((prev) => ({
                   ...prev,
                   externalURL,
                 }))
+                setAttributes?.({ src: externalURL })
+
                 editMediaButtonRef.current?.focus()
-              }}
+              }
+              }
             />
           </form>
         </>

@@ -48,4 +48,15 @@ export const debounce = ( callBack: ( x: unknown ) => unknown, timeout = 100 ) =
     `${ Math.round( x * 100 ) }% ${ Math.round( y * 100 ) }%`,
   trailingslashit = ( str: string ) => {
     return `${ untrailingslashit( str ) }/`
+  },
+  validateUrl = (url: unknown): url is string => {
+    if (typeof url !== 'string') {
+      throw new TypeError('Invalid URL')
+    }
+
+    if (!isValidUrl(url) || !url.endsWith('.lottie') && !url.endsWith('.json')) {
+      throw new Error('Invalid URL')
+    }
+
+    return true
   }
