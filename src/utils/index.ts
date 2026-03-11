@@ -51,12 +51,8 @@ export const debounce = ( callBack: ( x: unknown ) => unknown, timeout = 100 ) =
   },
   validateUrl = (url: unknown): url is string => {
     if (typeof url !== 'string') {
-      throw new TypeError('Invalid URL')
+      return false
     }
 
-    if (!isValidUrl(url) || !url.endsWith('.lottie') && !url.endsWith('.json')) {
-      throw new Error('Invalid URL')
-    }
-
-    return true
+    return !(!isValidUrl(url) || !url.endsWith('.lottie') && !url.endsWith('.json'))
   }

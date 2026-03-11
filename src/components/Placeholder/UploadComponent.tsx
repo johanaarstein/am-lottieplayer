@@ -11,20 +11,9 @@ import type { LottieBlockAttributes } from '@/types'
 
 import Lottie from '@/assets/Lottie'
 import ErrorNotice from '@/components/ErrorNotice'
-import { isValidUrl } from '@/utils'
+import { validateUrl } from '@/utils'
 
-const domain = 'am-lottieplayer',
-  validateUrl = (url: unknown): url is string => {
-    if (typeof url !== 'string') {
-      throw new TypeError('Invalid URL')
-    }
-
-    if (!isValidUrl(url) || !url.endsWith('.lottie') && !url.endsWith('.json')) {
-      throw new Error('Invalid URL')
-    }
-
-    return true
-  }
+const domain = 'am-lottieplayer'
 
 export default function UploadComponent({
   attributes,

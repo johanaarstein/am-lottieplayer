@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 100 68">
+	<defs>
+    <radialGradient id="a" cx=".2" cy="1.07" r="1.2">
+      <stop offset="10%">
+        <animate attributeName="stop-color" values="#24708f;#e18d4c;#1f374c;#85c6e0;#24708f;" dur="12s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="90%">
+        <animate attributeName="stop-color" values="#85c6e0;#24708f;#e18d4c;#1f374c;#85c6e0;" dur="24s" repeatCount="indefinite" />
+      </stop>
+    </radialGradient>
+  </defs>
+  <path fill="url(#a)" d="M61.5 11h-23C32.2 11 27 16.2 27 22.5v22.7C27 51.8 32.2 57 38.5 57h22.7C67.5 57 73 51.8 73 45.5v-23C73 16.2 67.8 11 61.5 11zm2.8 34.3H60v-13c0-1.8.2-4.7.2-4.7h-.1s-.5 2.7-1 4.3l-3.9 13.4H53L46.7 28c-.5-1.3-1.2-3.3-1.2-3.3h-.1s-.6 2-1.1 3.3l-6.6 17.4h-2.1l8.6-22.7h2.4L53.2 40c.2-.8.7-3.5 1.4-5.9l3.2-11.4h6.6l-.1 22.6z"/>
+</svg>

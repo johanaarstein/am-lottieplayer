@@ -197,17 +197,15 @@ export default function MediaReplace({
               showSuggestions={false}
               value={{ url: attributes.src }}
               onChange={(externalURL: string) => {
-                if (!validateUrl(externalURL)) {
-                  throw new Error('Invalid URL')
-                }
-
                 setState((prev) => ({
                   ...prev,
                   externalURL,
                 }))
-                setAttributes?.({ src: externalURL })
 
-                editMediaButtonRef.current?.focus()
+                if (validateUrl(externalURL)) {
+                  setAttributes?.({ src: externalURL })
+                  editMediaButtonRef.current?.focus()
+                }
               }
               }
             />
