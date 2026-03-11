@@ -84,16 +84,14 @@ export default function UploadComponent({
             <URLInput
               value={state.externalURL}
               onChange={(externalURL) => {
-                if (!validateUrl(externalURL)) {
-                  throw new Error('Invalid URL')
-                }
-
                 setState((prev) => ({
                   ...prev,
                   externalURL,
                 }))
 
-                setAttributes?.({ src: externalURL })
+                if (validateUrl(externalURL)) {
+                  setAttributes?.({ src: externalURL })
+                }
               }
               }
             />
