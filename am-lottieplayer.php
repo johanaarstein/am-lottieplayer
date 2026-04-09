@@ -42,8 +42,6 @@ if ( ! \class_exists( 'AAMD_Lottie' ) ) {
 
 	class AAMD_Lottie {
 
-		private const _version = '3.6.3';
-
 		/**
 		 * Sets up Am LottiePlayer plugin
 		 */
@@ -53,7 +51,6 @@ if ( ! \class_exists( 'AAMD_Lottie' ) ) {
 			define( 'AAMD_LOTTIE_PATH', plugin_dir_path( __FILE__ ) );
 			define( 'AAMD_LOTTIE_SLUG', plugin_basename( __DIR__ ) );
 			define( 'AAMD_LOTTIE_BASENAME', plugin_basename( __FILE__ ) );
-			define( 'AAMD_LOTTIE_VERSION', self::_version );
 			define( 'AAMD_LOTTIE_URL', plugin_dir_url( __FILE__ ) );
 			/** Path to plugin main file */
 			define( 'AAMD_LOTTIE_FILE', AAMD_LOTTIE_PATH . AAMD_LOTTIE_SLUG . '.php' );

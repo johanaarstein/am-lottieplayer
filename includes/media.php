@@ -184,6 +184,7 @@ class Media {
 								}
 								break;
 							case 'application/zip':
+							case 'application/lottie':
 							case 'application/octet-stream': {
 								$zip = new \ZipArchive();
 								$res = $zip->open( $file['tmp_name'] );
@@ -256,32 +257,6 @@ class Media {
 				10,
 				3
 			);
-
-			// add_filter(
-			// 'wp_get_attachment_image_src',
-			// function ( $image, $attachment_id, $size, $icon ) {
-			// $mime = get_post_mime_type( $attachment_id );
-
-			// if ( $icon && ( $mime === 'application/zip' || $mime === 'application/json' || $mime === 'text/plain' ) ) {
-
-			// $lottie_meta = wp_get_attachment_metadata( $attachment_id );
-			// if ( ! $lottie_meta || isset( $lottie_meta['sizes'] ) ) {
-			// return $image;
-			// }
-
-			// return array(
-			// get_asset( 'lottie-icon.svg' ),
-			// 48,        // width
-			// 64,        // height
-			// false,     // is intermediate
-			// );
-			// }
-
-			// return $image;
-			// },
-			// 10,
-			// 4
-			// );
 
 			// Disable SSL Check on dev
 			if ( WP_ENV === 'development' ) {
