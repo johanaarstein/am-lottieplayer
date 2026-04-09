@@ -39,6 +39,8 @@ class Builder {
 	 * Initialize Gutenberg Blocks, global shortcode and register JavaScript
 	 */
 	public function init_plugin() {
+		define( 'AAMD_LOTTIE_VERSION', get_plugin_data( AAMD_LOTTIE_FILE )['Version'] );
+
 		add_shortcode( 'am-lottieplayer', 'AAMD_Lottie\Utility\render_shortcode' );
 
 		register_block_type(

@@ -34,20 +34,20 @@ class UploadThumbnail {
 			if ( ! current_user_can( 'upload_files' ) ||
 				! wp_verify_nonce( $_POST['aamd_thumbnail_submit'], 'wp_rest' )
 			) {
-				throw new Error( 'Unauthorized' );
+				throw new \Error( 'Unauthorized' );
 			}
 
 			$raw_name = isset( $_FILES['thumbnail']['name'] ) ? $_FILES['thumbnail']['name'] : false;
 
 			if ( ! $raw_name ) {
-				throw new Error( 'Invalid file upload' );
+				throw new \Error( 'Invalid file upload' );
 			}
 
 			$file_name = 'lottie-thumbnail-' . \basename( $raw_name );
 			$file_type = \pathinfo( $file_name, PATHINFO_EXTENSION );
 
 			if ( $file_type !== 'svg' ) {
-				throw new Error( 'Invalid file type' );
+				throw new \Error( 'Invalid file type' );
 			}
 
 			$file_url = trailingslashit( wp_get_upload_dir()['url'] ) . $file_name;
@@ -58,13 +58,13 @@ class UploadThumbnail {
 				$raw_tmp_name = isset( $_FILES['thumbnail']['tmp_name'] ) ? $_FILES['thumbnail']['tmp_name'] : false;
 
 				if ( ! $raw_tmp_name ) {
-					throw new Error( 'Upload failed' );
+					throw new \Error( 'Upload failed' );
 				}
 
 				$file_contents = \file_get_contents( $raw_tmp_name );
 
 				if ( ! $file_contents ) {
-					throw new Error( 'Upload failed' );
+					throw new \Error( 'Upload failed' );
 				}
 
 				// Remove inline scripts

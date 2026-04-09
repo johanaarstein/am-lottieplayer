@@ -1,7 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "baseUrl": ".",
     "rootDir": ".",
     "outDir": "./build",
     "target": "ES2023",

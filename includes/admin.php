@@ -162,13 +162,16 @@ class Admin {
 		$endpoint       = esc_url_raw( rest_url( '/wp/v2/media/' ) );
 		$rest_api_nonce = wp_create_nonce( 'wp_rest' );
 
-		// wp_register_development_scripts(
-		// 'am-lottieplayer-runtime',
-		// get_build( 'runtime.js' ),
-		// array(),
-		// '0.1.0',
-		// true
-		// );
+		$runtime = get_build_path( 'runtime.js' );
+		if ( file_exists( $runtime ) ) {
+			wp_enqueue_script(
+				'am-lottieplayer-runtime',
+				get_build( 'runtime.js' ),
+				array(),
+				filemtime( $runtime ),
+				true
+			);
+		}
 
 		if ( $page === 'upload.php' || $page === 'toplevel_page_am-lottieplayer-pro' ) {
 			$media_assets = require get_build_path( 'media.asset.php' );
@@ -176,6 +179,7 @@ class Admin {
 				'am-lottieplayer-media',
 				get_build( 'media.js' ),
 				array_merge(
+					file_exists( $runtime ) ? array( 'am-lottieplayer-runtime' ) : array(),
 					(array) $media_assets['dependencies'],
 					array( AAMD_LOTTIE_IS_PRO ? 'dotlottie-player' : 'dotlottie-player-light' )
 				),
