@@ -5,9 +5,9 @@ Author URI: https://www.aarstein.media
 Plugin URI: https://wordpress.org/plugins/am-lottieplayer/
 Tags: lottie, bodymovin, gutenberg, svg, gif
 Requires at least: 5.9
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 7.2
-Stable Tag: 3.6.3
+Stable Tag: 3.7.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 

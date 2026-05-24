@@ -4,8 +4,58 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fe9289d4eec87ce38c41affa627deb51",
-    "packages": [],
+    "content-hash": "4467cc073b7f70eb76afbca788540fc6",
+    "packages": [
+        {
+            "name": "aarsteinmedia/lottie-php",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aarsteinmedia/lottie-php.git",
+                "reference": "ed20a97e3ec94173e84db62c4d05f2dbb69040fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aarsteinmedia/lottie-php/zipball/ed20a97e3ec94173e84db62c4d05f2dbb69040fa",
+                "reference": "ed20a97e3ec94173e84db62c4d05f2dbb69040fa",
+                "shasum": ""
+            },
+            "require": {
+                "ext-zip": "*",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.95"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Utils/index.php",
+                    "src/Utils/Enums.php",
+                    "src/Utils/buildShapeString.php",
+                    "src/Utils/getFontProperties.php",
+                    "src/Utils/DotLottie/getAnimationData.php",
+                    "src/Utils/DotLottie/getLottieJSON.php",
+                    "src/Utils/DotLottie/resolveAssets.php",
+                    "src/Utils/Pooling/bezierLengthPool.php",
+                    "src/Utils/Pooling/domDocumentPool.php",
+                    "src/Utils/Pooling/double.php",
+                    "src/Utils/Pooling/pointPool.php",
+                    "src/Utils/Pooling/segmentLengthPool.php"
+                ],
+                "psr-4": {
+                    "LottiePHP\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Create still SVGs from Lottie Animations on the backend, for previews.",
+            "support": {
+                "issues": "https://github.com/aarsteinmedia/lottie-php/issues",
+                "source": "https://github.com/aarsteinmedia/lottie-php/tree/0.1.0"
+            },
+            "time": "2026-05-24T20:04:59+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "aarsteinmedia/bricks-stubs",
@@ -231,16 +281,16 @@
         },
         {
             "name": "dealerdirect/phpcodesniffer-composer-installer",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCSStandards/composer-installer.git",
-                "reference": "845eb62303d2ca9b289ef216356568ccc075ffd1"
+                "reference": "963f0c67bffde0eac41b56be71ac0e8ba132f0bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/composer-installer/zipball/845eb62303d2ca9b289ef216356568ccc075ffd1",
-                "reference": "845eb62303d2ca9b289ef216356568ccc075ffd1",
+                "url": "https://api.github.com/repos/PHPCSStandards/composer-installer/zipball/963f0c67bffde0eac41b56be71ac0e8ba132f0bd",
+                "reference": "963f0c67bffde0eac41b56be71ac0e8ba132f0bd",
                 "shasum": ""
             },
             "require": {
@@ -323,7 +373,7 @@
                     "type": "thanks_dev"
                 }
             ],
-            "time": "2025-11-11T04:32:07+00:00"
+            "time": "2026-05-06T08:26:05+00:00"
         },
         {
             "name": "phpcompatibility/php-compatibility",
@@ -717,5 +767,5 @@
         "php": ">=7.4"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }
