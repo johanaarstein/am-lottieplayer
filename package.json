@@ -31,7 +31,8 @@
 		"includes",
 		"scripts",
 		"styles",
-		"am-lottieplayer.php"
+		"am-lottieplayer.php",
+		"vendor/aarsteinmedia/lottie-php"
 	],
 	"main": "build/admin.js",
 	"devDependencies": {
@@ -77,9 +78,8 @@
 		"typescript": "^6.0.3"
 	},
 	"scripts": {
-		"start": "wp-env start --update",
-		"predev": "pnpm start && pnpm dep",
-		"dev": "wp-scripts start --hot",
+		"start": "wp-env start --update && open -a Firefox 'http://localhost:8888'",
+		"dev": "pnpm start && pnpm dep && wp-scripts start --hot; wp-env stop",
 		"css-minify": "css-minify -f styles/admin.css -o styles",
 		"prebuild": "pnpm dep && pnpm css-minify",
 		"build": "wp-scripts build",

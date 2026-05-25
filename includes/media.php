@@ -352,7 +352,7 @@ class Media {
 	/**
 	 * Get SVG size from the width/height or viewport.
 	 *
-	 * @param string path to svg
+	 * @param string $path path to svg
 	 *
 	 * @return array|bool
 	 */
@@ -427,7 +427,7 @@ class Media {
 	 * @param string     $desc Description of asset
 	 * @param 'id'|'src' $return_type What to return
 	 *
-	 * @return int|string|WP_Error
+	 * @return int|string|\WP_Error
 	 */
 	private function _media_sideload_lottie( $file, $post_id = 0, $desc = 'AM Lottie Animation', $return_type = 'id' ) {
 		try {

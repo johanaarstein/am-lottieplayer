@@ -15,9 +15,6 @@ const config = {
     'lottieplayer/index': resolve(
       __dirname, 'src', 'lottieplayer', 'index.ts'
     ),
-    media: resolve(
-      __dirname, 'src', 'media.ts'
-    ),
   },
   resolve: {
     ...defaults.resolve,
