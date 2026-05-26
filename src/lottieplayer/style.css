@@ -2,7 +2,7 @@
 	&:focus {
 		outline: 0;
 	}
-	.lottie-element {
+	& .lottie-element {
 		&:focus {
 			outline: 0;
 		}

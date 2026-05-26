@@ -8,9 +8,8 @@ import Edit from '@/lottieplayer/edit'
 import save from '@/lottieplayer/save'
 import '@/lottieplayer/style.css'
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-registerBlockType< PlayerComponentProps >( metadata as any, {
+registerBlockType<PlayerComponentProps>(metadata, {
   edit: Edit,
   icon,
   save,
-} )
+})

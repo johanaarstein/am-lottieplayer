@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import type { TemplateArray } from '@wordpress/blocks'
 
 import {
   useBlockProps,
@@ -25,7 +24,7 @@ import PlayerWrapper from '@/context/PlayerProvider'
 import { isTemporaryMedia } from '@/utils/media'
 import '@/lottiecover/editor.css'
 
-const getInnerBlocksTemplate = ( attributes: object ): TemplateArray => [
+const getInnerBlocksTemplate = ( attributes: object ) => [
   [
     'core/paragraph', {
       align: 'center',
@@ -64,11 +63,7 @@ export default function Edit( {
       src,
       templateLock,
     } = attributes,
-    // { gradientClass, gradientValue } = __experimentalUseGradient(),
-    /**
-     * OnSelectMedia = attributesFromMedia( setAttributes, dimRatio ),.
-     */
-    isUploadingMedia = isTemporaryMedia( id as string, src as string ),
+    isUploadingMedia = isTemporaryMedia( id, src ?? undefined ),
     ref = useRef(),
     [ isPlaceholder, setIsPlaceholder ] = useState( true ),
     blockProps = useBlockProps( { ref } ),
@@ -76,9 +71,7 @@ export default function Edit( {
 			height ? `${ height }${ heightUnit }` : height,
     style = { minHeight: fullscreen ? '100vh' : heightWithUnit || undefined },
     hasInnerBlocks = useSelect(( select ) =>
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unnecessary-condition
-      Boolean(select( blockEditorStore )?.getBlock( clientId )?.innerBlocks
-        ?.length),
+      Boolean(select( blockEditorStore ).getBlock( clientId )?.innerBlocks.length),
     [ clientId ]),
     innerBlocksTemplate = getInnerBlocksTemplate( { fontSize: 'large' } ),
     innerBlocksProps = useInnerBlocksProps({ className: 'wp-block-gb-lottiecover__inner-container' },

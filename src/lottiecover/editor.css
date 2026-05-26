@@ -37,11 +37,11 @@
 		min-height: auto !important;
 		padding: 0 !important;
 
-		.block-library-lottiecover__resize-container {
+		& .block-library-lottiecover__resize-container {
 			display: none;
 		}
 
-		.components-placeholder.is-large {
+		& .components-placeholder.is-large {
 			min-height: 240px;
 			justify-content: flex-start;
 			z-index: 1;
@@ -57,7 +57,7 @@
 		color: inherit;
 	}
 
-	.wp-block-gb-lottiecover__background {
+	& .wp-block-gb-lottiecover__background {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -72,7 +72,7 @@
 		opacity: 0.3;
 	}
 
-	.components-spinner {
+	& .components-spinner {
 		position: absolute;
 		z-index: 1;
 		top: 50%;
@@ -81,7 +81,7 @@
 		margin: 0;
 	}
 
-	.wp-block-gb-lottiecover__inner-container {
+	& .wp-block-gb-lottiecover__inner-container {
 		text-align: left;
 		margin-left: 0;
 		margin-right: 0;
@@ -90,11 +90,11 @@
 		z-index: 1;
 	}
 
-	.wp-block-gb-lottiecover__placeholder-background-options {
+	& .wp-block-gb-lottiecover__placeholder-background-options {
 		width: 100%;
 	}
 
-	.wp-block-gb-lottiecover__image--placeholder-image {
+	& .wp-block-gb-lottiecover__image--placeholder-image {
 		position: absolute;
 		top: 0;
 		right: 0;
@@ -102,7 +102,7 @@
 		left: 0;
 	}
 
-	.lottie-element {
+	& .lottie-element {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -124,8 +124,8 @@
 	box-sizing: border-box;
 }
 
-[data-align="left"] > .wp-block-gb-lottiecover,
-[data-align="right"] > .wp-block-gb-lottiecover {
+[data-align='left'] > .wp-block-gb-lottiecover,
+[data-align='right'] > .wp-block-gb-lottiecover {
 	max-width: 420px;
 	width: 100%;
 }
@@ -151,7 +151,7 @@
 	margin-bottom: 1em;
 	align-items: flex-start;
 
-	.lottie-number-wrapper {
+	& .lottie-number-wrapper {
 		flex: 1;
 		margin-bottom: 0 !important;
 

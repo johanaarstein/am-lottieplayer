@@ -87,7 +87,7 @@ export default function Interactions ( {
               },
             ] }
             onChange={ ( val ) =>
-            { setAttributes( { mouseout: val as MouseOut } ) }
+            { setAttributes( { mouseout: val } ) }
             }
           />
         }

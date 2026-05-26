@@ -20,7 +20,8 @@ export interface Interactions {
 
 export interface PlayerComponentProps
   extends Partial<DotLottiePlayerLight>,
-  Interactions {
+  Interactions,
+  Record<string, unknown> {
   $schema?: string
   align?: Align
   allowedBlocks?: string[]
@@ -37,7 +38,7 @@ export interface PlayerComponentProps
   heightUnit?: 'px' | '%'
   id?: string
   isDark?: boolean
-  objectFit?: DotLottiePlayerLight[ 'objectfit' ]
+  objectFit?: DotLottiePlayerLight['objectfit']
   once?: boolean
   segment?: AnimationSegment
   templateLock?: EditorTemplateLock
@@ -45,28 +46,28 @@ export interface PlayerComponentProps
 }
 
 export interface BlockCoverEditProps
-  extends BlockEditProps< PlayerComponentProps > {toggleSelection?: ( x: boolean ) => void}
+  extends BlockEditProps<PlayerComponentProps> { toggleSelection?: (x: boolean) => void }
 
 export interface UploadProps {
   children?: ReactNode
   instructions?: string
   mediaId?: number
-  onError: ( message: string ) => void
-  onSelectMedia: ( value: {
+  onError: (message: string) => void
+  onSelectMedia: (value: {
     id: number
     url: string
     alt: string
-  } ) => void
+  }) => void
 }
 
 export interface ResizableCoverProps {
-  [ x: string ]: unknown
+  [x: string]: unknown
   children?: ReactNode
   className?: string
   fullscreen?: boolean
-  onResize: ( n: number ) => void
+  onResize: (n: number) => void
   onResizeStart: ResizeStartCallback
-  onResizeStop: ( n: number ) => void
+  onResizeStop: (n: number) => void
   showHandle?: boolean
 }
 

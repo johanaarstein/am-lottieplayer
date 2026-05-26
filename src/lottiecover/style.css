@@ -8,7 +8,7 @@
 	padding: 1em;
 	box-sizing: border-box;
 
-	.lottie-element {
+	& .lottie-element {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -25,7 +25,7 @@
 		box-shadow: none;
 	}
 
-	.wp-block-gb-lottiecover__inner-container {
+	& .wp-block-gb-lottiecover__inner-container {
 		width: 100%;
 		z-index: 1;
 	}
