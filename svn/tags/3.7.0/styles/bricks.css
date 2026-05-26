@@ -1,0 +1,10 @@
+[data-controlkey="mode"] .control-inner,
+[data-controlkey="segment_in"] .control-inner,
+[data-controlkey="segment_out"] .control-inner,
+[data-controlkey="selector"] .control-inner,
+[data-controlkey="exclude_selector"] .control-inner,
+[data-controlkey="renderer"] .control-inner,
+[data-controlkey="animate_on_scroll"] .control-inner {
+	pointer-events: none !important;
+	opacity: 0.7;
+}

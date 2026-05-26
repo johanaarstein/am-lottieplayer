@@ -73,6 +73,10 @@ class Media {
 			add_filter(
 				'wp_generate_attachment_metadata',
 				function ( $metadata, $attachment_id ) {
+					if ( ! AAMD_LOTTIE_IS_PRO ) {
+						return $metadata;
+					}
+
 					$mime = get_post_mime_type( $attachment_id );
 					if ( $mime !== 'application/zip' && $mime !== 'application/json' ) {
 						return $metadata;
@@ -184,6 +188,7 @@ class Media {
 								}
 								break;
 							case 'application/zip':
+							case 'application/lottie':
 							case 'application/octet-stream': {
 								$zip = new \ZipArchive();
 								$res = $zip->open( $file['tmp_name'] );
@@ -256,32 +261,6 @@ class Media {
 				10,
 				3
 			);
-
-			// add_filter(
-			// 'wp_get_attachment_image_src',
-			// function ( $image, $attachment_id, $size, $icon ) {
-			// $mime = get_post_mime_type( $attachment_id );
-
-			// if ( $icon && ( $mime === 'application/zip' || $mime === 'application/json' || $mime === 'text/plain' ) ) {
-
-			// $lottie_meta = wp_get_attachment_metadata( $attachment_id );
-			// if ( ! $lottie_meta || isset( $lottie_meta['sizes'] ) ) {
-			// return $image;
-			// }
-
-			// return array(
-			// get_asset( 'lottie-icon.svg' ),
-			// 48,        // width
-			// 64,        // height
-			// false,     // is intermediate
-			// );
-			// }
-
-			// return $image;
-			// },
-			// 10,
-			// 4
-			// );
 
 			// Disable SSL Check on dev
 			if ( WP_ENV === 'development' ) {
@@ -377,7 +356,7 @@ class Media {
 	/**
 	 * Get SVG size from the width/height or viewport.
 	 *
-	 * @param string path to svg
+	 * @param string $path path to svg
 	 *
 	 * @return array|bool
 	 */
@@ -452,7 +431,7 @@ class Media {
 	 * @param string     $desc Description of asset
 	 * @param 'id'|'src' $return_type What to return
 	 *
-	 * @return int|string|WP_Error
+	 * @return int|string|\WP_Error
 	 */
 	private function _media_sideload_lottie( $file, $post_id = 0, $desc = 'AM Lottie Animation', $return_type = 'id' ) {
 		try {
