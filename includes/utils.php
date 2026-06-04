@@ -6,7 +6,7 @@ namespace AAMD_Lottie\Utility;
 /**
  * Normalize boolean input for string attributes
  */
-function boolean_to_string( $input ) {
+function boolean_to_string( mixed $input ) {
 	if ( $input !== 1 && $input !== '1' && $input !== true && $input !== 'true' ) {
 		return 'false';
 	}
@@ -47,8 +47,6 @@ function get_allowed_html() {
 			'objectfit'       => array(),
 			'once'            => array(),
 			'playonclick'     => array(),
-			'hover'           => array(),
-			'playonclick'     => array(),
 			'playonvisible'   => array(),
 			'renderer'        => array(),
 			'selector'        => array(),
@@ -63,14 +61,14 @@ function get_allowed_html() {
 	);
 }
 
-function get_animation_direction( $input ) {
+function get_animation_direction( int|string $input ) {
 	if ( $input === 1 || $input === '1' || $input === '0' ) {
 		return 1;
 	}
 	return -1;
 }
 
-function get_animation_mode( $input ) {
+function get_animation_mode( int|string|bool $input ) {
 	if (
 	$input === 'bounce' ||
 	$input === 1 ||
@@ -107,9 +105,7 @@ function get_build( $filename = '', $version = null ) {
 /**
  * Get path of build script
  *
- * @param string      $filename Name of file
- * @param string|null $version Version of stylesheet
- * @return string URL to script
+ * @param string $filename Name of file
  */
 function get_build_path( $filename = '' ) {
 	return AAMD_LOTTIE_PATH . "build/{$filename}";
@@ -118,8 +114,8 @@ function get_build_path( $filename = '' ) {
 /**
  * Returns the plugin path to a specified file.
  *
- * @param string $filename The specified file.
- * @return string
+ * @param string $path The specified file.
+ * @return string $ext Extention
  */
 function get_path( string $path = '', string $ext = 'php' ) {
 	$path = \preg_replace( '/\.[^.]*$/', '', \ltrim( $path, '/' ) ) . ".{$ext}";
@@ -204,8 +200,9 @@ function idify( $str = '' ) {
 /**
  * Includes a file within the plugins includes folder
  *
- * @param string $filename The specified file.
- * @param mixed  $arg (optional)
+ * @param string $path The specified file.
+ * @param object $args (optional)
+ * @param string $ext
  * @return void
  */
 function include_file( string $path = '', ?object $args = null, string $ext = 'php' ) {
@@ -219,9 +216,9 @@ function include_file( string $path = '', ?object $args = null, string $ext = 'p
 /**
  * Check if Lottie is valid
  *
- * @param array|null
+ * @param array|null $lottie
  */
-function is_lottie_valid( $lottie ) {
+function is_lottie_valid( ?array $lottie ) {
 	if ( $lottie && (
 		! array_key_exists( 'v', $lottie ) ||
 		! array_key_exists( 'fr', $lottie ) ||
@@ -238,9 +235,9 @@ function is_lottie_valid( $lottie ) {
 /**
  * Covert string booleans to booleans
  *
- * @param bool|string|null
+ * @param bool|string|null $var
  */
-function is_true( $var ) {
+function is_true( bool|string|null $var ) {
 	return ( isset( $var ) && $var && $var !== 'false' && $var !== '0' );
 }
 
@@ -415,7 +412,7 @@ function render_lottieplayer( array $atts ) {
 	return $output;
 }
 
-function render_shortcode( $atts ) {
+function render_shortcode( array $atts ) {
 	global $aamd_lottie_media;
 	$atts = shortcode_atts(
 		array(
@@ -459,7 +456,7 @@ function render_shortcode( $atts ) {
 	return render_lottieplayer( $atts );
 }
 
-function replace_extension( $filename, $new_extension ) {
+function replace_extension( string $filename, string $new_extension ) {
 	$path_parts = pathinfo( $filename );
 	return str_replace( $path_parts['extension'], $new_extension, $filename );
 }
@@ -567,7 +564,7 @@ function tempdir( $dir = null, $prefix = 'tmp_', $mode = 0700, $maxAttempts = 10
 	return $path;
 }
 
-function unleadingslashhit( $str ) {
+function unleadingslashhit( string $str ) {
 	return ltrim( $str, '/' );
 }
 

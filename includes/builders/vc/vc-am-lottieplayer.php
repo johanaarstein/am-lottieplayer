@@ -13,7 +13,7 @@ vc_add_shortcode_param(
 );
 
 if ( ! function_exists( 'am_vc_attach_field_settings' ) ) {
-	function am_vc_attach_field_settings( $settings ) {
+	function am_vc_attach_field_settings( array $settings ) {
 		\ob_start(); ?>
 		<div class="am-upload">
 			<button

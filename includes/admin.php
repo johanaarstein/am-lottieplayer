@@ -11,8 +11,6 @@ class Admin {
 
 	/**
 	 * Constructor
-	 *
-	 * @param void
 	 */
 	public function __construct() {
 		register_activation_hook(
@@ -140,7 +138,7 @@ class Admin {
 	/**
 	 * Enqueue JavaScript and CSS for backend
 	 */
-	public function enqueue_backend_scripts( $page ) {
+	public function enqueue_backend_scripts( string $page ) {
 		wp_enqueue_style(
 			'am-backend-style',
 			get_style( 'admin.min.css' ),
@@ -243,9 +241,9 @@ class Admin {
 	 *
 	 * @param array $links Array of links for the plugins, adapted when the current plugin is found.
 	 *
-	 * @return array
+	 * @return array $_
 	 */
-	public function add_action_link( $links, $_ ) {
+	public function add_action_link( array $links, ?string $_ ) {
 		// Add link to docs.
 		$support_link = '<a href="' . esc_url( 'https://www.aarstein.media/en/account#support' ) . '" target="_blank">' . __( 'Support', 'am-lottieplayer' ) . '</a>';
 		\array_unshift( $links, $support_link );

@@ -19,7 +19,6 @@ class Builder {
 	 */
 	public function __construct() {
 		// Builder initializations
-		// add_action( 'setup_theme', array( $this, 'override_divi_functions' ) );
 		add_action( 'init', array( $this, 'init_plugin' ), 11 );
 		add_action( 'divi_extensions_init', array( $this, 'init_divi' ) );
 		add_action( 'elementor/widgets/register', array( $this, 'init_elementor' ) );
@@ -27,13 +26,6 @@ class Builder {
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_enqueue' ) );
 	}
-
-	/**
-	 * TODO: Find a better hook, so this doesn't fire all the time.
-	 */
-	// public function override_divi_functions() {
-	// include_file( 'builders/divi/functions' );
-	// }
 
 	/**
 	 * Initialize Gutenberg Blocks, global shortcode and register JavaScript
@@ -115,11 +107,13 @@ class Builder {
 	/**
 	 * Initialize Elementor Widget
 	 */
-	public function init_elementor( $widgets_manager ) {
+	public function init_elementor( object $widgets_manager ) {
 		if ( ! \class_exists( '\Elementor\Widget_Base' ) ) {
 			return;
 		}
 		include_file( 'builders/elementor/widgets/elementor-am-lottieplayer', $widgets_manager );
+
+		$widgets_manager->register( new Elementor() );
 	}
 
 	/**

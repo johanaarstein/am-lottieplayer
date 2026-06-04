@@ -50,8 +50,11 @@ class Media {
 						}
 
 						return $data;
-					} catch ( \Exception $e ) {
-						return $e;
+					} catch ( \Throwable $e ) {
+						$error = new \WP_Error();
+						$error->add( $e->getCode(), $e->getMessage() );
+
+						return $error;
 					}
 				},
 				10,
@@ -240,7 +243,7 @@ class Media {
 						}
 
 						return $file;
-					} catch ( \Exception $e ) {
+					} catch ( \Throwable $e ) {
 						$error = new \WP_Error();
 						$error->add( $e->getCode(), $e->getMessage() );
 
@@ -280,7 +283,7 @@ class Media {
 			$error = new \WP_Error();
 			$error->add( 'remove_action_failed', esc_html__( 'Could not remove admin footer.', 'am-lottieplayer' ), array( 'status' => 400 ) );
 
-			throw $error;
+			return $error;
 		}
 		add_action( 'admin_footer', array( $this, 'print_media_templates' ) );
 	}
@@ -442,7 +445,7 @@ class Media {
 					__( 'Invalid Lottie URL.', 'am-lottieplayer' ),
 					array( 'status' => 400 )
 				);
-				throw $error;
+				return $error;
 			}
 
 			$allowed_extensions = array( 'lottie', 'json' );
@@ -460,7 +463,7 @@ class Media {
 					array( 'status' => 400 )
 				);
 
-				throw $error;
+				return $error;
 			}
 
 			$file_array         = array();
@@ -500,7 +503,7 @@ class Media {
 					__( 'Invalid Lottie URL.', 'am-lottieplayer' ),
 					array( 'status' => 400 )
 				);
-				throw $error;
+				return $error;
 			}
 			if ( 'src' === $return_type ) {
 				return $src;
@@ -510,8 +513,11 @@ class Media {
 			$html = '<img src="' . esc_url( $src ) . '" alt="' . esc_attr( $alt ) . '" />';
 
 			return $html;
-		} catch ( \Exception $e ) {
-			return $e;
+		} catch ( \Throwable $e ) {
+			$error = new \WP_Error();
+			$error->add( $e->getCode(), $e->getMessage() );
+
+			return $error;
 		}
 	}
 
