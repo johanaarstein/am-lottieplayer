@@ -19,7 +19,6 @@ class Builder {
 	 */
 	public function __construct() {
 		// Builder initializations
-		// add_action( 'setup_theme', array( $this, 'override_divi_functions' ) );
 		add_action( 'init', array( $this, 'init_plugin' ), 11 );
 		add_action( 'divi_extensions_init', array( $this, 'init_divi' ) );
 		add_action( 'elementor/widgets/register', array( $this, 'init_elementor' ) );
@@ -28,20 +27,18 @@ class Builder {
 		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_enqueue' ) );
 	}
 
-	/**
-	 * TODO: Find a better hook, so this doesn't fire all the time.
-	 */
-	// public function override_divi_functions() {
-	// include_file( 'builders/divi/functions' );
-	// }
+	private function _set_version() {
+		if ( ! defined( 'AAMD_LOTTIE_VERSION' ) ) {
+			define( 'AAMD_LOTTIE_VERSION', get_plugin_data( AAMD_LOTTIE_FILE )['Version'] );
+		}
+	}
 
 	/**
 	 * Initialize Gutenberg Blocks, global shortcode and register JavaScript
 	 */
 	public function init_plugin() {
-		if ( ! defined( 'AAMD_LOTTIE_VERSION' ) ) {
-			define( 'AAMD_LOTTIE_VERSION', get_plugin_data( AAMD_LOTTIE_FILE )['Version'] );
-		}
+
+		$this->_set_version();
 
 		add_shortcode( 'am-lottieplayer', 'AAMD_Lottie\Utility\render_shortcode' );
 
@@ -109,17 +106,23 @@ class Builder {
 		) {
 			return;
 		}
+
+		$this->_set_version();
 		include_file( 'builders/divi/LottieDiviModules' );
 	}
 
 	/**
 	 * Initialize Elementor Widget
 	 */
-	public function init_elementor( $widgets_manager ) {
+	public function init_elementor( object $widgets_manager ) {
 		if ( ! \class_exists( '\Elementor\Widget_Base' ) ) {
 			return;
 		}
+
+		$this->_set_version();
 		include_file( 'builders/elementor/widgets/elementor-am-lottieplayer', $widgets_manager );
+
+		$widgets_manager->register( new Elementor() );
 	}
 
 	/**
@@ -139,6 +142,9 @@ class Builder {
 		if ( ! function_exists( 'vc_map' ) ) {
 			return;
 		}
+
+		$this->_set_version();
+
 		include_file( 'builders/vc/vc-am-lottieplayer' );
 	}
 
