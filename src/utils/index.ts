@@ -29,13 +29,15 @@ export const debounce = ( callBack: ( x: unknown ) => unknown, timeout = 100 ) =
     key === 'Enter' ||
     key === 'Delete' ||
     ( ctrlKey || metaKey ) &&
-    ( key === 'a' ||
-      key === 'c' ||
-      key === 'v' ||
-      key === 'x' ||
-      key === 'z' ||
-      key === 't' ||
-      key === 'r' ),
+    [
+      'a',
+      'c',
+      'v',
+      'x',
+      'z',
+      't',
+      'r'
+    ].includes(key),
   isNumericInput = ( { key }: KeyboardEvent ) =>
     Number( key ) >= 0 && Number( key ) <= 9,
   isTouch = () => 'ontouchstart' in window,

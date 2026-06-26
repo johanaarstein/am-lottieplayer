@@ -4,7 +4,6 @@ import {
   useBlockProps,
   useInnerBlocksProps,
   store as blockEditorStore,
-  // useSetting,
 } from '@wordpress/block-editor'
 import { Spinner } from '@wordpress/components'
 import { useSelect } from '@wordpress/data'
