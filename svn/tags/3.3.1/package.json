@@ -1,0 +1,107 @@
+{
+	"name": "am-lottieplayer",
+	"version": "3.3.1",
+	"description": "This is best free Lottie Player plugin. It is lightweight, versatile and easy to use, and it has integrations for Gutenberg, Divi, Elementor, Flatsome and WPBakery.",
+	"author": {
+		"name": "Aarstein Media",
+		"email": "johan@aarstein.media",
+		"url": "https://www.aarstein.media",
+		"organization": "Aarstein Media"
+	},
+	"license": "GPL-2.0-or-later",
+	"keywords": [
+		"lottie",
+		"bodymovin",
+		"gutenberg",
+		"svg",
+		"gif"
+	],
+	"homepage": "https://wordpress.org/plugins/am-lottieplayer",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/johanaarstein/am-lottieplayer"
+	},
+	"bugs": {
+		"url": "https://github.com/johanaarstein/am-lottieplayer/issues",
+		"email": "johan@aarstein.media"
+	},
+	"files": [
+		"assets",
+		"build",
+		"includes",
+		"scripts",
+		"styles",
+		"am-lottieplayer.php"
+	],
+	"main": "build/admin.js",
+	"devDependencies": {
+		"@aarsteinmedia/dotlottie-player-light": "^4.0.1",
+		"@playwright/test": "^1.48.2",
+		"@types/node": "^22.8.2",
+		"@types/react": "^18.3.12",
+		"@types/webpack": "^5.28.5",
+		"@types/wordpress__block-editor": "^11.5.15",
+		"@types/wordpress__blocks": "^12.5.14",
+		"@typescript-eslint/eslint-plugin": "^8.12.1",
+		"@typescript-eslint/parser": "^8.12.1",
+		"@wordpress/a11y": "^4.10.0",
+		"@wordpress/blob": "^4.10.0",
+		"@wordpress/block-editor": "^14.5.0",
+		"@wordpress/blocks": "^13.10.0",
+		"@wordpress/components": "^28.10.0",
+		"@wordpress/compose": "^7.10.0",
+		"@wordpress/core-data": "^7.10.0",
+		"@wordpress/data": "^10.10.0",
+		"@wordpress/dom": "^4.10.0",
+		"@wordpress/element": "^6.10.0",
+		"@wordpress/i18n": "^5.10.0",
+		"@wordpress/icons": "^10.10.0",
+		"@wordpress/scripts": "^30.3.0",
+		"classnames": "^2.5.1",
+		"eslint-import-resolver-typescript": "^3.6.3",
+		"eslint-plugin-import": "^2.31.0",
+		"eslint-plugin-jest": "^28.8.3",
+		"eslint-plugin-perfectionist": "^3.9.1",
+		"eslint-plugin-react": "^7.37.2",
+		"eslint-plugin-react-hooks": "^5.0.0",
+		"lottie-web": "^5.12.2",
+		"re-resizable": "^6.10.0",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"sass": "^1.80.4",
+		"stylelint": "^16.10.0",
+		"stylelint-config-standard-scss": "^13.1.0",
+		"ts-loader": "^9.5.1",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.6.3"
+	},
+	"scripts": {
+		"build": "wp-scripts build && pnpm dep && pnpm scss && pnpm svn",
+		"check-engines": "wp-scripts check-engines",
+		"check-licenses": "wp-scripts check-licenses",
+		"format": "wp-scripts format",
+		"lint:css": "npx stylelint **/*.scss",
+		"lint:css:fix": "npx stylelint **/*.scss --fix",
+		"lint:js": "wp-scripts lint-js",
+		"lint:js:fix": "wp-scripts lint-js --fix",
+		"lint:md:docs": "wp-scripts lint-md-docs",
+		"lint:pkg-json": "wp-scripts lint-pkg-json",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"start": "wp-scripts start",
+		"test:e2e": "wp-scripts test-e2e",
+		"test:unit": "wp-scripts test-unit-js",
+		"stash": "wp-scripts build && wp-scripts plugin-zip",
+		"scss": "sass --no-source-map --style=compressed sass:styles",
+		"dep": "cp ./node_modules/@aarsteinmedia/dotlottie-player-light/dist/index.js ./scripts/dotlottie-player-light.min.js",
+		"svn": "cp -R ./assets ./build ./includes ./scripts ./styles ./svn/trunk && cp ./am-lottieplayer.php ./LICENSE ./package.json ./readme.txt ./svn/trunk"
+	},
+	"cde": {
+		"gettext": "am-lottieplayer",
+		"prefix": "am"
+	},
+	"funding": {
+		"type": "paypal",
+		"url": "https://www.paypal.com/donate/?hosted_button_id=E7C7DMN8KSQ6A"
+	}
+}
