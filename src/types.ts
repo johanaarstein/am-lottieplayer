@@ -103,6 +103,7 @@ export type MediaUpload = (options: {
 }) => void
 
 export interface BlockEditor {
+  getBlock: (clientId: string) => { innerBlocks: unknown[] } | null
   getBlockIndex: (clientId: string) => number
   getSettings: () => { mediaUpload: MediaUpload }
 }

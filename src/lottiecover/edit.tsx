@@ -10,7 +10,7 @@ import { useMemo, useRef } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
 import classNames from 'classnames'
 
-import type { BlockCoverEditProps } from '@/types'
+import type { BlockCoverEditProps, BlockEditor } from '@/types'
 
 import ContextMenu from '@/components/ContextMenu'
 import LottieControls from '@/components/LottieControls'
@@ -66,19 +66,25 @@ export default function Edit({
     heightWithUnit =
       height ? `${height}${heightUnit}` : height,
     style = { minHeight: fullscreen ? '100vh' : heightWithUnit || undefined },
-    hasInnerBlocks = useSelect((select) =>
-      // @ts-expect-error: @wordpress/data is not complete
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      Boolean(select(blockEditorStore).getBlock(clientId)?.innerBlocks.length),
-      [clientId]),
-    innerBlocksTemplate = getInnerBlocksTemplate({ fontSize: 'large' }),
-    innerBlocksProps = useInnerBlocksProps({ className: 'wp-block-gb-lottiecover__inner-container' },
-      {
-        allowedBlocks,
-        template: hasInnerBlocks ? undefined : innerBlocksTemplate as any,
-        templateInsertUpdatesSelection: true,
-        templateLock,
-      })
+    hasInnerBlocks = useSelect((select) => {
+      const { getBlock } = select(blockEditorStore) as BlockEditor
+
+      return Boolean(getBlock(clientId)?.innerBlocks.length)
+    }, [clientId])
+
+  let innerBlocksTemplate
+
+  if (!hasInnerBlocks) {
+    innerBlocksTemplate = getInnerBlocksTemplate({ fontSize: 'large' })
+  }
+
+  const innerBlocksProps = useInnerBlocksProps({ className: 'wp-block-gb-lottiecover__inner-container' },
+    {
+      allowedBlocks,
+      template: innerBlocksTemplate,
+      templateInsertUpdatesSelection: true,
+      templateLock,
+    })
 
   return (
     <PlayerWrapper>
