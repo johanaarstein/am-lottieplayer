@@ -1,7 +1,11 @@
-/* eslint-disable fsecond/valid-event-listener */
+/* eslint-disable @typescript-eslint/naming-convention */
 import { useEffect, useRef } from '@wordpress/element'
 
 export type EventHandler<E extends Event = Event> = (event: E) => void
+
+const isRefObject = <T>(value: unknown): value is React.RefObject<T> => {
+  return value !== null && typeof value === 'object' && 'current' in value
+}
 
 interface ElementOptions<T> {
   element?:
@@ -15,7 +19,7 @@ interface ElementOptions<T> {
 }
 
 type EventOptions<T> = EventListenerOptions &
-  AddEventListenerOptions & ElementOptions<T>
+  AddEventListenerOptions & ElementOptions<T> & { enabled?: boolean }
 
 /**
  * `useEventListener` is a custom React hook that adds an event listener to a specified element.
@@ -25,48 +29,108 @@ type EventOptions<T> = EventListenerOptions &
  * @param callback - The function to execute when the event occurs.
  * @param options - The element to add the event listener to. Default is the window.
  */
+
 export default function useEventListener<
   E extends Event = Event,
   T extends Element | null = Element,
 >(
   eventType: string,
   callback: EventHandler<E>,
-  options: EventOptions<T> = {}
+  options: EventOptions<T>
 ) {
-  if (!options.element) {
-    options.element = window
-  }
+  const {
+    capture: isCapture, element: elementOptions, enabled: isEnabled = true, passive: isPassive
+  } = options,
 
-  const callbackRef = useRef(callback)
+    element =
+      elementOptions === undefined ? window : elementOptions,
+
+    isElementRef = isRefObject(element),
+    resolvedElement = isElementRef ? element.current : element,
+
+    callbackRef = useRef(callback)
 
   useEffect(() => {
     callbackRef.current = callback
   }, [callback])
 
   useEffect(() => {
-    const targetElement =
-      options.element && 'current' in options.element
-        ? options.element.current
-        : options.element
-
-    if (!targetElement) {
+    if (!isEnabled) {
       return
     }
 
-    const handler = (e: E) => {
-      callbackRef.current(e)
+    let removeListener: (() => void) | undefined,
+      cancelled = false,
+      frameId = 0
+
+    const attach = () => {
+      const targetElement = isElementRef ? element.current : element
+
+      if (!targetElement) {
+        return false
+      }
+
+      const listenerOptions = {
+        capture: isCapture,
+        passive: isPassive
+      },
+        handler = ((e: E) => {
+          callbackRef.current(e)
+        }) as EventListener
+
+        /* AnimationItem::addEventListener is not directly compatible
+        with standard Element::addEventListener, but not in a way that
+        will cause trouble */
+        ; (targetElement as Window).addEventListener(
+          eventType, handler, listenerOptions
+        )
+
+      removeListener = () => {
+        ; (targetElement as Window).removeEventListener(
+          eventType,
+          handler,
+          listenerOptions
+        )
+      }
+
+      return true
     }
 
-    targetElement.addEventListener(
-      eventType, handler as EventListener, options
-    )
+    if (!attach() && isElementRef) {
+      const waitForElement = () => {
+        if (cancelled) {
+          return
+        }
+        if (attach()) {
+          return
+        }
+        frameId = requestAnimationFrame(waitForElement)
+      }
+
+      frameId = requestAnimationFrame(waitForElement)
+    }
 
     return () => {
-      targetElement.removeEventListener(
-        eventType,
-        handler as EventListener,
-        options.capture
-      )
+      cancelled = true
+      cancelAnimationFrame(frameId)
+      removeListener?.()
     }
-  }, [eventType, options])
+  }, [
+    element,
+    eventType,
+    isCapture,
+    isElementRef,
+    isEnabled,
+    isPassive,
+    resolvedElement
+  ])
 }
+
+export const WINDOW_LISTENER_OPTS = {
+  capture: false,
+  passive: true
+} as const,
+  SCROLL_LISTENER_OPTS = {
+    capture: true,
+    passive: true
+  } as const

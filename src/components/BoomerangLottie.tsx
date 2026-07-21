@@ -1,68 +1,67 @@
 import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player'
 
-import { useEffect, useRef } from '@wordpress/element'
+import { useRef } from '@wordpress/element'
 
 import useEventListener from '@/hooks/useEventListener'
 import { isTouch } from '@/utils'
 
-export default function BoomerangLottie( {
+export default function BoomerangLottie({
   autoplay,
   className = '',
   speed = 1,
   src,
   subframe,
-}: Partial< DotLottiePlayer > ) {
-  const boomerang = useRef< DotLottiePlayer >( null ),
+}: Partial<DotLottiePlayer>) {
+  const boomerang = useRef<DotLottiePlayer>(null),
     mouseOut = () => {
-      if ( isTouch() ) {
+      if (isTouch()) {
         return
       }
-      boomerang.current?.setDirection( -1 )
+      boomerang.current?.setDirection(-1)
       boomerang.current?.play()
     },
     mouseOver = () => {
-      if ( isTouch() ) {
+      if (isTouch()) {
         return
       }
-      boomerang.current?.setDirection( 1 )
+      boomerang.current?.setDirection(1)
       boomerang.current?.play()
     },
     touchScroll = () => {
-      if ( ! isTouch() || ! boomerang.current ) {
+      if (!isTouch() || !boomerang.current) {
         return
       }
-      if ( boomerang.current.getBoundingClientRect().top < 150 ) {
-        boomerang.current.setDirection( 1 )
+      if (boomerang.current.getBoundingClientRect().top < 150) {
+        boomerang.current.setDirection(1)
         boomerang.current.play()
       } else {
-        boomerang.current.setDirection( -1 )
+        boomerang.current.setDirection(-1)
         boomerang.current.play()
       }
     }
 
   useEventListener(
     'scroll', touchScroll, {
-      capture: true,
-      passive: true
-    }
+    capture: true,
+    passive: true
+  }
   )
 
-  useEffect( () => {
-    if (!boomerang.current) {
-      return
-    }
-    boomerang.current.onmouseover = mouseOver
-    boomerang.current.onmouseout = mouseOut
-  }, [] )
+  useEventListener(
+    'mouseover', mouseOver, { element: boomerang }
+  )
+  useEventListener(
+    'mouseout', mouseOut, { element: boomerang }
+  )
 
   return (
     <dotlottie-player
-      autoplay={ autoplay }
-      class={ className }
-      ref={ boomerang }
-      speed={ speed }
-      src={ src ?? '' }
-      subframe={ subframe }
+      autoplay={autoplay}
+      class={className}
+      ref={boomerang}
+      speed={speed}
+      src={src ?? ''}
+      subframe={subframe}
     />
   )
 }

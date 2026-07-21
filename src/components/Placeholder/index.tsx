@@ -17,7 +17,6 @@ export default function Placeholder({
 
   useComponentDidUpdate(() => {
     setState(() => ({ isPlaceholder: !attributes.src || attributes.src === '' }))
-    // console.log('👸', attributes.src)
   }, [attributes.src])
 
   return (
