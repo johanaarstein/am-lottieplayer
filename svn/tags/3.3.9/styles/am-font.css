@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'am-lottieplayer';
+  src:
+    url('../assets/am-lottieplayer.woff2?wmhn8e') format('woff2'),
+    url('../assets/am-lottieplayer.woff?wmhn8e') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.elementor .elementor-widget .elementor-widget-container figure.align-left {
+  float: left;
+}
+
+.elementor .elementor-widget .elementor-widget-container figure.align-right {
+  float: right;
+}
+
+.elementor .elementor-widget .elementor-widget-container figure.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.disable {
+  pointer-events: none !important;
+  opacity: 0.4;
+}
+
+.eicon-am-lottie {
+  font-family: 'am-lottieplayer' !important;
+}
+
+.eicon-am-lottie:before {
+  content: "\e945";
+}
