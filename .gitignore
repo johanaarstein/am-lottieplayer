@@ -16,6 +16,7 @@ node_modules/
 
 # Optional npm cache directory
 .npm
+.pnpm
 
 # Optional eslint cache
 .eslintcache
@@ -29,7 +30,7 @@ node_modules/
 *.tar.gz
 
 # dotenv environment variables file
-.env
+*.env
 
 .DS_Store
 *.pem
@@ -45,3 +46,9 @@ phpcs.xml
 
 .svn
 build
+
+
+# Test files
+test-results/
+playwright-report/
+artifacts/

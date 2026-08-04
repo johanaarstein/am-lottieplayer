@@ -3,19 +3,18 @@ import { test } from '@wordpress/e2e-test-utils-playwright'
 
 
 test.describe('dotLottiePlayer Block', () => {
-  test.use({ baseURL: 'http://localhost:8889' })
-
   // Wire up the WordPress test utilities
   test.beforeEach(async ({ admin }) => {
     await admin.createNewPost()
   })
 
+  // TODO: Implement api v3
 
   test('can insert Lottie block', async ({ editor }) => {
     await editor.insertBlock({ name: 'gb/lottieplayer' })
 
     // Assert the block appeared in the editor
-    const block = editor.canvas.getByLabel('Block: Lottie Animation')
+    const block = editor.canvas.getByLabel('Block: AM LottiePlayer')
 
     await expect(block).toBeVisible()
   })
@@ -24,12 +23,13 @@ test.describe('dotLottiePlayer Block', () => {
     await editor.insertBlock({ name: 'gb/lottieplayer' })
 
     // Open block settings and configure — adjust selectors to match your UI
-    const block = editor.canvas.getByLabel('Block: Lottie Animation')
+    const block = editor.canvas.getByLabel('Block: AM LottiePlayer')
 
     await block.click()
 
     // Example: set an animation URL via the sidebar
-    await page.getByLabel('Animation URL').fill('https://example.com/animation.json')
+    await page.locator('.lottie-animation-url').fill('https://storage.googleapis.com/aarsteinmedia/am.lottie')
+    // await page.getByLabel('Animation URL').fill('https://storage.googleapis.com/aarsteinmedia/am.lottie')
 
     // Save the post
     await editor.publishPost()
@@ -42,6 +42,6 @@ test.describe('dotLottiePlayer Block', () => {
     await page.goto(postUrl)
 
     // Adjust this selector to match your plugin's frontend output
-    await expect(page.locator('.lottie-player, dotlottie-player, lottie-player')).toBeVisible()
+    await expect(page.locator('.am-lottie-player, dotlottie-player')).toBeVisible()
   })
 })

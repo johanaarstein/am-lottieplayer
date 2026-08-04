@@ -82,6 +82,7 @@ export default function UploadComponent({
         {
           (
             <URLInput
+              className="lottie-animation-url"
               value={state.externalURL}
               onChange={(externalURL) => {
                 setState((prev) => ({
