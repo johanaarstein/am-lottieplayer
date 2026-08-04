@@ -7,3 +7,4 @@ allowBuilds:
 minimumReleaseAgeExclude:
   - '@aarsteinmedia/dotlottie-player@6.3.11'
   - '@aarsteinmedia/lottie-web@1.5.1'
+  - eslint-plugin-perfectionist@5.10.1

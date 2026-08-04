@@ -1,6 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 2,
+	"apiVersion": 3,
 	"name": "gb/lottiecover",
 	"title": "AM LottieCover",
 	"category": "media",
@@ -225,5 +225,6 @@
 	},
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
+	"script": "dotlottie-player-light",
 	"style": "file:./style-index.css"
 }

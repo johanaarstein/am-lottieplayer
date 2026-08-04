@@ -152,6 +152,10 @@ class Builder {
 	 * Enqueue JavaScript for frontend
 	 */
 	public function frontend_enqueue() {
+		if ( is_admin() ) {
+			return;
+		}
+
 		global $post;
 		$content = '';
 
@@ -223,17 +227,14 @@ class Builder {
 		// Check if post has Divi shortcode, and Divi Builder is not active
 		$has_divi = ! $isDiviBuilder && ( $has_divi || has_shortcode( $content, 'et_pb_lottieplayer' ) );
 
-		if ( ! is_admin() ) {
+		$handle = 'dotlottie-player-light';
 
-			$handle = 'dotlottie-player-light';
+		if ( ! $is_light && AAMD_LOTTIE_IS_PRO ) {
+			$handle = 'dotlottie-player';
+		}
 
-			if ( ! $is_light && AAMD_LOTTIE_IS_PRO ) {
-				$handle = 'dotlottie-player';
-			}
-
-			if ( $has_gutenberg || $has_shortcode || $has_divi || $isDiviBuilder || $isVCBuilder ) {
-				wp_enqueue_script( $handle );
-			}
+		if ( ! $has_gutenberg && ( $has_shortcode || $has_divi || $isDiviBuilder || $isVCBuilder ) ) {
+			wp_enqueue_script( $handle );
 		}
 	}
 

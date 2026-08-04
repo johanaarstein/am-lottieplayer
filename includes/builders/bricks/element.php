@@ -513,7 +513,12 @@ class Element_Lottie_Player extends \Bricks\Element {
 			$is_light = false;
 		}
 
-		wp_enqueue_script( $is_light ? 'dotlottie-player-light' : 'dotlottie-player' );
+		$handle = 'dotlottie-player-light';
+		if ( ! $is_light ) {
+			$handle = 'dotlottie-player';
+		}
+
+		wp_enqueue_script( $handle );
 	}
 
 	public function render() {

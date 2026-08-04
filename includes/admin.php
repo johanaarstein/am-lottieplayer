@@ -146,7 +146,12 @@ class Admin {
 			'1.0.1'
 		);
 
-		wp_enqueue_script( AAMD_LOTTIE_IS_PRO ? 'dotlottie-player' : 'dotlottie-player-light' );
+		$handle = 'dotlottie-player-light';
+		if ( AAMD_LOTTIE_IS_PRO ) {
+			$handle = 'dotlottie-player';
+		}
+
+		wp_enqueue_script( $handle );
 
 		if (
 			( ! AAMD_LOTTIE_IS_PRO && $page !== 'index.php' ) &&
