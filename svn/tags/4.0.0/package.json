@@ -36,8 +36,8 @@
 	],
 	"main": "build/admin.js",
 	"devDependencies": {
-		"@aarsteinmedia/dotlottie-player": "^6.3.12",
-		"@aarsteinmedia/lottie-web": "^1.5.2",
+		"@aarsteinmedia/dotlottie-player": "^6.3.13",
+		"@aarsteinmedia/lottie-web": "^1.5.3",
 		"@playwright/test": "^1.62.1",
 		"@types/node": "^26.1.2",
 		"@types/react": "^19.2.18",

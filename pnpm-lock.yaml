@@ -9,11 +9,11 @@ importers:
   .:
     devDependencies:
       '@aarsteinmedia/dotlottie-player':
-        specifier: ^6.3.12
-        version: 6.3.12(@types/react@19.2.18)(fflate@0.8.3)
+        specifier: ^6.3.13
+        version: 6.3.13(@types/react@19.2.18)(fflate@0.8.3)
       '@aarsteinmedia/lottie-web':
-        specifier: ^1.5.2
-        version: 1.5.2(fflate@0.8.3)
+        specifier: ^1.5.3
+        version: 1.5.3(fflate@0.8.3)
       '@playwright/test':
         specifier: ^1.62.1
         version: 1.62.1
@@ -131,14 +131,14 @@ importers:
 
 packages:
 
-  '@aarsteinmedia/dotlottie-player@6.3.12':
-    resolution: {integrity: sha512-nU+Obl/lz/c8s9n7l4SARV93zWcNLOr60L3Qzr+JAMvVx6luhSZnKm8ZL6qcrj+EVxnvZO75AYRHdqqCkH3rFg==}
+  '@aarsteinmedia/dotlottie-player@6.3.13':
+    resolution: {integrity: sha512-UNnT338KHPvcKIjmyidDIIsfM/mzGHouOAoWbhnD+livED9hg74rr+7kS7ohMQ8r22f/lbZrG5WNbSjHxD3Ouw==}
     engines: {node: '>= 12.17.0'}
     peerDependencies:
       '@types/react': '>= 16.0.0'
 
-  '@aarsteinmedia/lottie-web@1.5.2':
-    resolution: {integrity: sha512-6midWMQ4/NL3Yz/T/hnfyjkcWizZEllfz5H/tQ0joQTvvg6Tl0cDW2WXDD5FdfSB34ez5QXpxdX4GPlDdtvnAw==}
+  '@aarsteinmedia/lottie-web@1.5.3':
+    resolution: {integrity: sha512-oosvHnPqCgIEpGyewAbzvZ25gF6FDT3/MfjsHHaj1rgJI230et/9LsR/IzHM+Q2adiPk9UpqVxAJIdfm/Khxug==}
     engines: {node: '>= 12.17.0'}
     peerDependencies:
       fflate: ^0.8.3
@@ -827,8 +827,8 @@ packages:
     resolution: {integrity: sha512-Vj1jF3cPfxg7OAfoI7QnVKLoILlm2JF9pnVHrX8qx7AHMiYWT+NDAA7jChlNgRS4WTLc/fD1lXLmPixluj+3Gg==}
     engines: {node: '>=6.9.0'}
 
-  '@base-ui/react@1.6.0':
-    resolution: {integrity: sha512-/jzjTWJYXhRFO45Bev9lc3cHbmjzCMpUqbMZ2AgKy/z25mY9B6shGSNcXcjQar9n5doM0KYW1W8fcFv2jZBuMw==}
+  '@base-ui/react@1.7.0':
+    resolution: {integrity: sha512-j+8QjX44C32jrXD/qyEAGpFr70FRpGL2CY61mQd9nBPWN737CK0xxD1ceJ055rW4RtdvFDT1e7otzdlfxvsYug==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@date-fns/tz': ^1.2.0
@@ -844,8 +844,8 @@ packages:
       date-fns:
         optional: true
 
-  '@base-ui/utils@0.3.1':
-    resolution: {integrity: sha512-gFFiltORVmW/N6IILTGxizP3PBpVpysqML1ALY5Vk0mH+7faVkCknOU31goYHN5Aoek2dkjxva1XOD2Ce9WuIg==}
+  '@base-ui/utils@0.3.2':
+    resolution: {integrity: sha512-oWy1aq/I2GmYjpl4PhEAhzflF8VPGKgZeq0xAWTbfD5KBWyxcN0ZP2+WHSUm/5Z6lVMBDLReLcoXwSYoRc/zNQ==}
     peerDependencies:
       '@types/react': ^17 || ^18 || ^19
       react: ^17 || ^18 || ^19
@@ -5990,8 +5990,8 @@ packages:
     resolution: {integrity: sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==}
     engines: {node: '>= 0.10'}
 
-  ipaddr.js@2.4.0:
-    resolution: {integrity: sha512-9VGk3HGanVE6JoZXHiCpnGy5X0jYDnN4EA4lntFPj+1vIWlFhIylq2CrrCOJH9EAhc5CYhq18F2Av2tgoAPsYQ==}
+  ipaddr.js@2.5.0:
+    resolution: {integrity: sha512-aq+t5NAc+cS6rZQQVWC2x98CPqGtKKTMDd4Gaodv0wShnItdKg/51djkGJ1hqH+Oy0ivDftCbSLCQob8zso01w==}
     engines: {node: '>= 10'}
 
   irregular-plurals@3.5.0:
@@ -9380,14 +9380,14 @@ packages:
 
 snapshots:
 
-  '@aarsteinmedia/dotlottie-player@6.3.12(@types/react@19.2.18)(fflate@0.8.3)':
+  '@aarsteinmedia/dotlottie-player@6.3.13(@types/react@19.2.18)(fflate@0.8.3)':
     dependencies:
-      '@aarsteinmedia/lottie-web': 1.5.2(fflate@0.8.3)
+      '@aarsteinmedia/lottie-web': 1.5.3(fflate@0.8.3)
       '@types/react': 19.2.18
     transitivePeerDependencies:
       - fflate
 
-  '@aarsteinmedia/lottie-web@1.5.2(fflate@0.8.3)':
+  '@aarsteinmedia/lottie-web@1.5.3(fflate@0.8.3)':
     dependencies:
       fflate: 0.8.3
 
@@ -10274,10 +10274,10 @@ snapshots:
       '@babel/helper-string-parser': 7.29.7
       '@babel/helper-validator-identifier': 7.29.7
 
-  '@base-ui/react@1.6.0(@date-fns/tz@1.5.0)(@types/react@19.2.18)(date-fns@4.4.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
+  '@base-ui/react@1.7.0(@date-fns/tz@1.5.0)(@types/react@19.2.18)(date-fns@4.4.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
     dependencies:
       '@babel/runtime': 7.29.7
-      '@base-ui/utils': 0.3.1(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      '@base-ui/utils': 0.3.2(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@floating-ui/react-dom': 2.1.9(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@floating-ui/utils': 0.2.12
       react: 19.2.8
@@ -10288,7 +10288,7 @@ snapshots:
       '@types/react': 19.2.18
       date-fns: 4.4.0
 
-  '@base-ui/utils@0.3.1(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
+  '@base-ui/utils@0.3.2(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
     dependencies:
       '@babel/runtime': 7.29.7
       '@floating-ui/utils': 0.2.12
@@ -14303,7 +14303,7 @@ snapshots:
 
   '@wordpress/ui@0.19.0(@date-fns/tz@1.5.0)(@types/react@19.2.18)(date-fns@4.4.0)(postcss@8.5.25)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(stylelint@17.14.1(supports-color@10.2.2)(typescript@6.0.3))':
     dependencies:
-      '@base-ui/react': 1.6.0(@date-fns/tz@1.5.0)(@types/react@19.2.18)(date-fns@4.4.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      '@base-ui/react': 1.7.0(@date-fns/tz@1.5.0)(@types/react@19.2.18)(date-fns@4.4.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@wordpress/a11y': 4.52.0
       '@wordpress/compose': 8.5.0(@types/react@19.2.18)(react@19.2.8)
       '@wordpress/element': 8.4.0
@@ -17326,7 +17326,7 @@ snapshots:
 
   ipaddr.js@1.9.1: {}
 
-  ipaddr.js@2.4.0: {}
+  ipaddr.js@2.5.0: {}
 
   irregular-plurals@3.5.0: {}
 
@@ -20834,7 +20834,7 @@ snapshots:
       express: 4.22.2(supports-color@10.2.2)
       graceful-fs: 4.2.11
       http-proxy-middleware: 2.0.10(@types/express@4.17.25)(debug@4.4.3(supports-color@10.2.2))
-      ipaddr.js: 2.4.0
+      ipaddr.js: 2.5.0
       launch-editor: 2.14.1
       open: 10.2.0
       p-retry: 6.2.1
