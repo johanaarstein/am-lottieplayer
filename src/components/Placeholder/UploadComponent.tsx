@@ -19,20 +19,14 @@ export default function UploadComponent({
   attributes,
   setAttributes,
 }: LottieBlockAttributes) {
-  const [state, setState] = useState(() => {
+  const [externalURL, setExternalURL] = useState(() => {
     if (validateUrl(attributes.src)) {
       setAttributes?.({ src: attributes.src })
 
-      return {
-        externalURL: attributes.src,
-        hasDropped: false
-      }
+      return attributes.src
     }
 
-    return {
-      externalURL: '',
-      hasDropped: false,
-    }
+    return ''
   })
 
   return (
@@ -42,10 +36,7 @@ export default function UploadComponent({
         allowedTypes={['application/json', 'application/zip']}
         icon={<BlockIcon icon={Lottie} />}
         labels={{
-          instructions: state.hasDropped
-            ? __('Dropped!', domain)
-            : __('Add Lottie animations from your Media Library to your WordPress post.',
-              domain),
+          instructions: __('Add Lottie animations from your Media Library to your WordPress post.', domain),
           title: __('AM Lottie Animation', domain),
         }}
         onError={(message) => {
@@ -71,27 +62,17 @@ export default function UploadComponent({
             ErrorNotice(__('Failed to upload Lottie'))
           }
         }}
-        onHTMLDrop={() => {
-          setState((prev) => ({
-            ...prev,
-            hasDropped: true
-          }))
-        }
-        }
       >
         {
           (
             <URLInput
               className="lottie-animation-url"
-              value={state.externalURL}
-              onChange={(externalURL) => {
-                setState((prev) => ({
-                  ...prev,
-                  externalURL,
-                }))
+              value={externalURL}
+              onChange={(url) => {
+                setExternalURL(url)
 
-                if (validateUrl(externalURL)) {
-                  setAttributes?.({ src: externalURL })
+                if (validateUrl(url)) {
+                  setAttributes?.({ src: url })
                 }
               }
               }

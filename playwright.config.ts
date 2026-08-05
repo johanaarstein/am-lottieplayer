@@ -6,12 +6,16 @@ const STORAGE_STATE = join(process.cwd(),
 
 export default defineConfig({
   fullyParallel: false, // wp-env is a single instance, keep this false
-  globalSetup: require.resolve('./tests/e2e/global-setup'),
   projects: [
     {
+      name: 'global-setup',
+      testMatch: /global\.setup\.ts/
+    },
+    {
+      dependencies: ['global-setup'],
       name: 'gutenberg',
       testMatch: '**/gutenberg/**/*.spec.ts',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'] }
     },
   ],
   reporter: 'html',

@@ -8,8 +8,6 @@ test.describe('dotLottiePlayer Block', () => {
     await admin.createNewPost()
   })
 
-  // TODO: Implement api v3
-
   test('can insert Lottie block', async ({ editor }) => {
     await editor.insertBlock({ name: 'gb/lottieplayer' })
 
@@ -25,11 +23,11 @@ test.describe('dotLottiePlayer Block', () => {
     // Open block settings and configure — adjust selectors to match your UI
     const block = editor.canvas.getByLabel('Block: AM LottiePlayer')
 
+    // Select AM LottiePlayer Block
     await block.click()
 
-    // Example: set an animation URL via the sidebar
-    await page.locator('.lottie-animation-url').fill('https://storage.googleapis.com/aarsteinmedia/am.lottie')
-    // await page.getByLabel('Animation URL').fill('https://storage.googleapis.com/aarsteinmedia/am.lottie')
+    // Add external URL
+    await block.getByPlaceholder('Paste URL or type to search').fill('https://storage.googleapis.com/aarsteinmedia/am.lottie')
 
     // Save the post
     await editor.publishPost()
