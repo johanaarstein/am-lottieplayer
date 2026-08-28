@@ -25,8 +25,8 @@ export interface PlayerComponentProps
   $schema?: string
   align?: Align
   allowedBlocks?: string[]
-  alt?: string
   contentPosition?: string
+  description?: string
   dimRatio?: number
   focalPoint?: {
     x?: number

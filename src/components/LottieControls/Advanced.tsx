@@ -9,30 +9,30 @@ import type { PlayerComponentProps } from '@/types'
 import ProFeature from '@/assets/ProFeature'
 import ProLink from '@/components/ProLink'
 
-export default function Advanced( {
+export default function Advanced({
   attributes,
   setAttributes,
-}: BlockEditProps< PlayerComponentProps > ) {
-  const { alt } = attributes
+}: BlockEditProps<PlayerComponentProps>) {
+  const { description } = attributes
 
   return (
     <InspectorAdvancedControls>
       <SelectControl
         disabled
-        help={ <ProLink /> }
+        help={<ProLink />}
         value="svg"
         label={
           <>
             <span
               className="pro-feature"
-              style={ { marginRight: '1em' } }
+              style={{ marginRight: '1em' }}
             >
-              { __( 'Renderer' ) }
+              {__('Renderer')}
             </span>
             <ProFeature />
           </>
         }
-        options={ [
+        options={[
           {
             label: 'SVG',
             value: 'svg'
@@ -40,17 +40,16 @@ export default function Advanced( {
             label: 'Canvas',
             value: 'canvas'
           },
-        ] }
-        onChange={ () =>
-        { console.warn('This feature is only available in the premium version') }
+        ]}
+        onChange={() => { console.warn('This feature is only available in the premium version') }
         }
       />
       <TextareaControl
-        label={ __( 'Description', 'am-lottieplayer' ) }
-        value={ alt as string }
-        help={ __('Describe the animation. This is helpful for screen readers and search engines.',
-          'am-lottieplayer') }
-        onChange={ ( value ) => { setAttributes( { alt: value } ) } }
+        label={__('Description', 'am-lottieplayer')}
+        value={description ?? ''}
+        help={__('Describe the animation. This is helpful for screen readers and search engines.',
+          'am-lottieplayer')}
+        onChange={(value) => { setAttributes({ description: value }) }}
       />
     </InspectorAdvancedControls>
   )

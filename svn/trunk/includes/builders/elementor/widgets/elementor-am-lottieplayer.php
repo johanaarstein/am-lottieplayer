@@ -937,9 +937,8 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'description',
 			array(
-				'label'   => esc_html__( 'Description', 'am-lottieplayer' ),
-				'type'    => Controls_Manager::TEXT,
-				'default' => esc_html__( 'AM LottiePlayer animation', 'am-lottieplayer' ),
+				'label' => esc_html__( 'Description', 'am-lottieplayer' ),
+				'type'  => Controls_Manager::TEXT,
 			)
 		);
 

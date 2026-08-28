@@ -423,7 +423,7 @@ function render_shortcode( array $atts ) {
 			'class'                      => '',
 			'controls'                   => false,
 			'delay'                      => 0,
-			'description'                => __( 'AM LottiePlayer animation', 'am-lottieplayer' ),
+			'description'                => null,
 			'direction'                  => 1,
 			'height'                     => null,
 			'hover'                      => false,

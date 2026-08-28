@@ -5,9 +5,9 @@ Author URI: https://www.aarstein.media
 Plugin URI: https://wordpress.org/plugins/am-lottieplayer/
 Tags: lottie, bodymovin, gutenberg, svg, gif
 Requires at least: 5.9
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.2
-Stable Tag: 4.0.0
+Stable Tag: 4.0.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -131,6 +131,10 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 5. …and Bricks!
 
 == Changelog ==
+
+= 4.0.1 - August 28 2026 =
+* Tested with WP 7.1
+* Fixed bug causing accessible labels not to appear in Gutenberg.
 
 = 4.0.0 - August 5 2026 =
 * Tested with WP 7.0

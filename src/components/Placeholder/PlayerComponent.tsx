@@ -1,13 +1,14 @@
 import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player'
 
 import { useSelect } from '@wordpress/data'
-import { useEffect, useRef } from '@wordpress/element'
+import {
+ useCallback, useEffect, useRef
+} from '@wordpress/element'
 
 import type { BlockEditor, LottieBlockAttributes } from '@/types'
 
 import { usePlayerContext } from '@/context/PlayerContext'
 import { Align } from '@/enums'
-import useComponentDidUpdate from '@/hooks/useComponentDidUpdate'
 import useEventListener from '@/hooks/useEventListener'
 import { debounce } from '@/utils'
 
@@ -29,12 +30,12 @@ export default function PlayerComponent({
       useSelect((select) => select('core/block-editor'), []),
     blockIndex = getBlockIndex(clientId),
     playerRef = useRef<DotLottiePlayer>(null),
-    reloadPlayer = () => {
+    reloadPlayer = useCallback(() => {
       if (!player) {
         return
       }
       void player.reload()
-    },
+    }, [player]),
     parseWidth = (num?: number | null) => {
       if (
         attributes.align === Align.Wide ||
@@ -64,7 +65,7 @@ export default function PlayerComponent({
     }, { element: player }
   )
 
-  useComponentDidUpdate(() => {
+  useEffect(() => {
     debounce(reloadPlayer, 300)
   }, [
     blockIndex,
@@ -80,7 +81,7 @@ export default function PlayerComponent({
       autoplay={attributes.autoplay ? '' : null}
       class="lottie-element"
       controls={attributes.controls ? '' : null}
-      description={attributes.alt}
+      description={attributes.description}
       direction={attributes.direction}
       id={attributes.id}
       intermission={attributes.intermission}
