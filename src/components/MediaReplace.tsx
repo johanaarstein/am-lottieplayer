@@ -1,7 +1,6 @@
 import { speak } from '@wordpress/a11y'
 import {
-  // @ts-expect-error
-  __experimentalLinkControl as LinkControl,
+  LinkControl,
   BlockIcon,
   MediaUpload as MediaUploadComponent,
   MediaUploadCheck,
@@ -195,8 +194,10 @@ export default function MediaReplace({
             <LinkControl
               settings={[]}
               showSuggestions={false}
-              value={{ url: attributes.src }}
-              onChange={(externalURL: string) => {
+              value={{ url: attributes.src ?? undefined }}
+              onChange={(prevValue) => {
+                const externalURL = prevValue?.url ?? ''
+
                 setState((prev) => ({
                   ...prev,
                   externalURL,

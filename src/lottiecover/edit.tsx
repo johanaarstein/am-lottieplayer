@@ -60,7 +60,7 @@ export default function Edit({
     templateLock,
   } = attributes,
     isUploadingMedia = isTemporaryMedia(id, src ?? undefined),
-    ref = useRef(),
+    ref = useRef(null),
     isPlaceholder = useMemo(() => !src || src === '', [src]),
     blockProps = useBlockProps({ ref }),
     heightWithUnit =
