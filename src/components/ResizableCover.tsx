@@ -1,8 +1,16 @@
+import type { ResizeStartCallback } from 're-resizable'
+
 import { ResizableBox } from '@wordpress/components'
 import { useState } from '@wordpress/element'
 import classnames from 'classnames'
 
-import type { ResizableCoverProps } from '@/types'
+interface Props {
+  fullscreen?: boolean
+  onResize: (n: number) => void
+  onResizeStart: ResizeStartCallback
+  onResizeStop: (n: number) => void
+  showHandle?: boolean
+}
 
 export default function ResizableCover( {
   children,
@@ -13,7 +21,7 @@ export default function ResizableCover( {
   onResizeStop,
   showHandle,
   ...rest
-}: ResizableCoverProps ) {
+}: React.HTMLAttributes<HTMLElement> & Props) {
   const [ isResizing, setIsResizing ] = useState( false )
 
   return (

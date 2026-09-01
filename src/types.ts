@@ -2,8 +2,6 @@ import type DotLottiePlayerLight from '@aarsteinmedia/dotlottie-player/light'
 import type { AnimationSegment } from '@aarsteinmedia/lottie-web'
 import type { EditorTemplateLock } from '@wordpress/block-editor'
 import type { BlockEditProps } from '@wordpress/blocks'
-import type { ResizeStartCallback } from 're-resizable'
-import type { ReactNode } from 'react'
 
 import type { Align, tagName } from '@/enums'
 
@@ -49,7 +47,7 @@ export interface BlockCoverEditProps
   extends BlockEditProps<PlayerComponentProps> { toggleSelection?: (x: boolean) => void }
 
 export interface UploadProps {
-  children?: ReactNode
+  children?: React.ReactNode
   instructions?: string
   mediaId?: number
   onError: (message: string) => void
@@ -58,17 +56,6 @@ export interface UploadProps {
     url: string
     alt: string
   }) => void
-}
-
-export interface ResizableCoverProps {
-  [x: string]: unknown
-  children?: ReactNode
-  className?: string
-  fullscreen?: boolean
-  onResize: (n: number) => void
-  onResizeStart: ResizeStartCallback
-  onResizeStop: (n: number) => void
-  showHandle?: boolean
 }
 
 interface PHPVars {

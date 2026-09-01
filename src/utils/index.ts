@@ -1,5 +1,3 @@
-import type { KeyboardEvent } from 'react'
-
 const untrailingslashit = (str: string): string => {
   if (str.endsWith('/')) {
     return untrailingslashit(str.slice(0, Math.max(0, str.length - 1)))
@@ -20,7 +18,7 @@ export const debounce = ( callBack: ( x: unknown ) => unknown, timeout = 100 ) =
   },
   isModifierKey = ( {
     ctrlKey, key, metaKey, shiftKey
-  }: KeyboardEvent ) =>
+  }: React.KeyboardEvent ) =>
     shiftKey ||
     key === 'End' ||
     key === 'Home' ||
@@ -38,7 +36,7 @@ export const debounce = ( callBack: ( x: unknown ) => unknown, timeout = 100 ) =
       't',
       'r'
     ].includes(key),
-  isNumericInput = ( { key }: KeyboardEvent ) =>
+  isNumericInput = ( { key }: React.KeyboardEvent ) =>
     Number( key ) >= 0 && Number( key ) <= 9,
   isTouch = () => 'ontouchstart' in window,
   isValidUrl = (url: string) => {

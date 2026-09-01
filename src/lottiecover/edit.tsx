@@ -3,6 +3,7 @@ import {
   useBlockProps,
   useInnerBlocksProps,
   store as blockEditorStore,
+  type InnerBlocks
 } from '@wordpress/block-editor'
 import { Spinner } from '@wordpress/components'
 import { useSelect } from '@wordpress/data'
@@ -20,7 +21,9 @@ import '@/lottiecover/editor.css'
 import PlayerWrapper from '@/context/PlayerProvider'
 import { isTemporaryMedia } from '@/utils/media'
 
-const getInnerBlocksTemplate = (attributes: object) => [
+type TemplateArray = InnerBlocks.Props['template']
+
+const getInnerBlocksTemplate = (attributes: object): TemplateArray => [
   [
     'core/paragraph', {
       align: 'center',
@@ -72,7 +75,7 @@ export default function Edit({
       return Boolean(getBlock(clientId)?.innerBlocks.length)
     }, [clientId])
 
-  let innerBlocksTemplate
+  let innerBlocksTemplate: TemplateArray | undefined
 
   if (!hasInnerBlocks) {
     innerBlocksTemplate = getInnerBlocksTemplate({ fontSize: 'large' })

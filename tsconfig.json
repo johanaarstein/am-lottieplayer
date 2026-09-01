@@ -11,6 +11,12 @@
       "DOM.Iterable",
       "ES2023"
     ],
+    "types": [
+      "node",
+      "react",
+      "webpack",
+      "wordpress__block-editor"
+    ],
     "noImplicitAny": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
