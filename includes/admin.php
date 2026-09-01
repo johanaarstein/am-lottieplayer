@@ -205,8 +205,8 @@ class Admin {
 		wp_enqueue_script(
 			'am-lottieplayer-options',
 			get_build( 'admin.js' ),
-			$admin_assets['dependencies'],
-			'0.1.0',
+			array( ...$admin_assets['dependencies'], $handle ),
+			'0.1.1',
 			true
 		);
 
