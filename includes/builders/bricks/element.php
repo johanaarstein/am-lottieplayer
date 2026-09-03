@@ -71,8 +71,6 @@ class Element_Lottie_Player extends \Bricks\Element {
 	#[\Override]
 	public function set_controls() {
 
-		/** @var Media $aamd_lottie_media */
-		global $aamd_lottie_media;
 		global $pro_link;
 		global $pro_feature;
 
@@ -84,12 +82,11 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'type'  => 'separator',
 		);
 		$this->controls['external_url']       = array(
-			'tab'         => 'content',
-			'group'       => 'animation',
-			'label'       => esc_html__( 'Lottie URL', 'am-lottieplayer' ),
-			'type'        => 'text',
-			'placeholder' => esc_url( $aamd_lottie_media->get_default_file() ),
-			'required'    => array( 'source_type', '=', 'url' ),
+			'tab'      => 'content',
+			'group'    => 'animation',
+			'label'    => esc_html__( 'Lottie URL', 'am-lottieplayer' ),
+			'type'     => 'text',
+			'required' => array( 'source_type', '=', 'url' ),
 		);
 		$this->controls['media_library_file'] = array(
 			'tab'         => 'content',
@@ -98,9 +95,10 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'type'        => 'file',
 			'allowed'     => array( 'application/json', 'application/zip' ),
 			'pasteStyles' => false,
+
 			'required'    => array( 'source_type', '=', 'media' ),
 		);
-		$this->controls['source_type']        = array(
+		$this->controls['source_type'] = array(
 			'tab'         => 'content',
 			'group'       => 'animation',
 			'label'       => esc_html__( 'Source Type', 'am-lottieplayer' ),
@@ -538,11 +536,17 @@ class Element_Lottie_Player extends \Bricks\Element {
 			return;
 		}
 
+		/** @var \AAMD_Lottie\Media $aamd_lottie_media */
 		global $aamd_lottie_media;
 
+		$placeholder = $aamd_lottie_media->get_default_file();
+
+		error_log( $placeholder );
+
 		$source_type = isset( $settings['source_type'] ) ? $settings['source_type'] : false;
-		$url         = isset( $settings['external_url'] ) ? $this->render_dynamic_data( $settings['external_url'] ) : esc_url( $aamd_lottie_media->get_default_file() );
+		$url         = isset( $settings['external_url'] ) ? $this->render_dynamic_data( $settings['external_url'] ) : '';
 		$json_file   = isset( $settings['media_library_file'] ) ? esc_url( $settings['media_library_file']['url'] ) : '';
+		$src         = $source_type === 'url' ? $url : $json_file;
 
 		$direction = 1;
 		if ( isset( $settings['reverse'] ) && $settings['reverse'] ) {
@@ -562,13 +566,23 @@ class Element_Lottie_Player extends \Bricks\Element {
 				'objectfit'   => $settings['object_fit'],
 				'width_unit'  => 'px', // TODO:
 				'height_unit' => 'px', // TODO:
-				'src'         => $source_type === 'url' ? $url : $json_file,
+				'src'         => $src,
 			),
 		);
 
-		echo wp_kses(
-			render_shortcode( $attrs ),
-			get_allowed_html()
-		);
+		if ( ! empty( $src ) ) {
+			echo wp_kses(
+				render_shortcode( $attrs ),
+				get_allowed_html()
+			);
+		} else { ?>
+<div class="bricks-element-placeholder am-lottieplayer-placeholder" data-type="info">
+	<i class="ti-image brx-child-node"></i>
+	<div class="placeholder-inner brx-child-node">
+		<div class="placeholder-title"><?php echo __( 'No Lottie selected', 'am-lottieplayer' ); ?></div>
+	</div>
+</div>
+			<?php
+		}
 	}
 }

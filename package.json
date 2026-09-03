@@ -78,8 +78,10 @@
 		"typescript": "^6.0.3"
 	},
 	"scripts": {
-		"start": "wp-env start --update && open -a Firefox 'http://localhost:8888'",
-		"dev": "pnpm start && pnpm dep && wp-scripts start --hot --config webpack.config.ts; wp-env stop",
+		"open": "open -a Firefox 'http://localhost:8888'",
+		"start": "wp-env start",
+		"predev": "wp-env start --update && pnpm open && pnpm dep",
+		"dev": "wp-scripts start --hot --config webpack.config.ts; wp-env stop",
 		"css-minify": "css-minify -f styles/admin.css -o styles",
 		"prebuild": "pnpm dep && pnpm css-minify",
 		"build": "wp-scripts build --config webpack.config.ts",
@@ -105,9 +107,9 @@
 		"svn:commit": "svn commit ./svn/trunk ./svn/assets -m \"Release ${npm_package_version}\"",
 		"svn:tag": "svn copy https://plugins.svn.wordpress.org/am-lottieplayer/trunk https://plugins.svn.wordpress.org/am-lottieplayer/tags/${npm_package_version} -m \"Tagging ${npm_package_version}\"",
 		"deploy": "pnpm svn:update && pnpm svn:stage && pnpm svn:commit && pnpm svn:tag",
-		"test:e2e": "WP_BASE_URL=http://localhost:8888 playwright test",
-		"test:e2e:ui": "WP_BASE_URL=http://localhost:8888 playwright test --ui",
-		"test:e2e:debug": "WP_BASE_URL=http://localhost:8888 playwright test --debug"
+		"test:e2e": "WP_BASE_URL=http://localhost:8888 playwright test; wp-env stop",
+		"test:e2e:ui": "WP_BASE_URL=http://localhost:8888 playwright test --ui; wp-env stop",
+		"test:e2e:debug": "WP_BASE_URL=http://localhost:8888 playwright test --debug; wp-env stop"
 	},
 	"cde": {
 		"gettext": "am-lottieplayer",
