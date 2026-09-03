@@ -4,6 +4,7 @@
 use function AAMD_Lottie\Utility\get_asset;
 use function AAMD_Lottie\Utility\get_script;
 
+/** @var AAMD_Lottie\Media $aamd_lottie_media */
 global $aamd_lottie_media;
 
 vc_add_shortcode_param(

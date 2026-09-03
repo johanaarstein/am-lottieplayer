@@ -233,7 +233,16 @@ class Builder {
 			$handle = 'dotlottie-player';
 		}
 
-		if ( ! $has_gutenberg && ( $has_shortcode || $has_divi || $isDiviBuilder || $isVCBuilder ) ) {
+		if ( $has_gutenberg ) {
+			if ( $handle === 'dotlottie-player-light' ) {
+				wp_enqueue_script( 'dotlottie-player-light' );
+				wp_dequeue_script( 'dotlottie-player' );
+			}
+
+			return;
+		}
+
+		if ( $has_shortcode || $has_divi || $isDiviBuilder || $isVCBuilder ) {
 			wp_enqueue_script( $handle );
 		}
 	}

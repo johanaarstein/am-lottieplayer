@@ -20,7 +20,10 @@ const __dirname = dirname(fileURLToPath(import.meta.url)),
     },
     resolve: {
       ...defaults.resolve,
-      alias: { '@': resolve(__dirname, 'src') },
+      alias: {
+        '@': resolve(__dirname, 'src'),
+        '@test': resolve(__dirname, 'tests')
+      },
       extensions: [
         ...defaults.resolve?.extensions ?? [],
         '.ts',

@@ -97,6 +97,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 	}
 
 	public function get_fields() {
+		/** @var Media $aamd_lottie_media */
 		global $aamd_lottie_media;
 		global $pro_link;
 		global $pro_feature;

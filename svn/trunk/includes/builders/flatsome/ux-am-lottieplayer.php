@@ -6,6 +6,7 @@ use function AAMD_Lottie\Utility\get_script;
 
 \defined( 'ABSPATH' ) || exit;
 
+/** @var Media $aamd_lottie_media */
 global $aamd_lottie_media;
 
 // This check prevent the function from being loaded more than once

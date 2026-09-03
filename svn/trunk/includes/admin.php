@@ -62,6 +62,7 @@ class Admin {
 			return;
 		}
 
+		/** @var Media $aamd_lottie_media */
 		global $aamd_lottie_media;
 
 		$aamd_lottie_media->set_default_file();
@@ -205,8 +206,8 @@ class Admin {
 		wp_enqueue_script(
 			'am-lottieplayer-options',
 			get_build( 'admin.js' ),
-			$admin_assets['dependencies'],
-			'0.1.0',
+			array( ...$admin_assets['dependencies'], $handle ),
+			'0.1.1',
 			true
 		);
 

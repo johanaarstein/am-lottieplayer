@@ -1,4 +1,5 @@
 import { expect } from '@playwright/test'
+// import { deletePost } from '@test/e2e/utils'
 import { test } from '@wordpress/e2e-test-utils-playwright'
 
 
@@ -6,6 +7,11 @@ test.describe('dotLottiePlayer Block', () => {
   // Wire up the WordPress test utilities
   test.beforeEach(async ({ admin }) => {
     await admin.createNewPost()
+  })
+
+  test.afterEach(async ({ requestUtils }) => {
+    // await deletePost(page, requestUtils)
+    await requestUtils.deleteAllPosts()
   })
 
   test('can insert Lottie block', async ({ editor }) => {
@@ -39,7 +45,6 @@ test.describe('dotLottiePlayer Block', () => {
 
     await page.goto(postUrl)
 
-    // Adjust this selector to match your plugin's frontend output
-    await expect(page.locator('.am-lottie-player, dotlottie-player')).toBeVisible()
+    await expect(page.locator('dotlottie-player')).toBeVisible()
   })
 })
