@@ -8,3 +8,9 @@ minimumReleaseAgeExclude:
   - '@aarsteinmedia/dotlottie-player@6.3.11 || 6.3.12 || 6.3.13 || 6.4.6'
   - '@aarsteinmedia/lottie-web@1.5.1 || 1.5.2 || 1.5.3'
   - eslint-plugin-perfectionist@5.10.1
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - core-js
+  - core-js-pure
+  - fs-ext-extra-prebuilt
+  - unrs-resolver
