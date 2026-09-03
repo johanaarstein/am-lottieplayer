@@ -54,7 +54,7 @@ test.describe('dotLottiePlayer Element', () => {
     await page.locator('#controls').click()
     await expect(controls).toBeHidden()
 
-    // await page.getByText('Publish').click()
+    await page.locator('[data-balloon="Save draft"]').click()
     await page.locator('[data-balloon=Publish]').click()
 
     await page.goto(getPostURL(page, 'page'))
