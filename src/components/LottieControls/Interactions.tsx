@@ -1,5 +1,4 @@
 /* eslint-disable @eslint-react/no-leaked-conditional-rendering */
-
 import type { BlockEditProps } from '@wordpress/blocks'
 
 import {
@@ -17,104 +16,99 @@ import SwitchLabel from '@/components/form/SwitchLabel'
 import TextInput from '@/components/form/TextInput'
 import ProLink from '@/components/ProLink'
 import { MouseOut } from '@/enums'
+import { domain } from '@/utils/constants'
 
-const domain = 'am-lottieplayer'
-
-export default function Interactions ( {
+export default function Interactions({
   attributes,
   setAttributes,
-}: BlockEditProps< PlayerComponentProps > ) {
+}: BlockEditProps<PlayerComponentProps>) {
 
   return (
     <Panel>
       <PanelBody
         initialOpen
         className="am-lottieplayer-settings"
-        title={ __( 'Interactions', domain ) }
+        title={__('Interactions', domain)}
       >
         <SwitchLabel
           disabled
-          id={ 'am-lottieplayer-animateOnScroll-settings' }
+          id={'am-lottieplayer-animateOnScroll-settings'}
           title={
             <>
               <span
                 className="pro-feature"
-                style={ { marginRight: '1em' } }
+                style={{ marginRight: '1em' }}
               >
-                { __( 'Animate on scroll', domain ) }
+                {__('Animate on scroll', domain)}
               </span>
               <ProFeature />
             </>
           }
-          onChange={ () =>
-          { console.warn('This feature is only available in the premium version') }
+          onChange={() => { console.warn('This feature is only available in the premium version') }
           }
         />
         <SwitchLabel
           id="am-lottieplayer-click-settings"
-          title={ __( 'Play on click', domain ) }
-          value={ Boolean(attributes.playOnClick) }
-          onChange={ ( value ) =>
-          { setAttributes({ playOnClick: value } ) }
+          title={__('Play on click', domain)}
+          value={Boolean(attributes.playOnClick)}
+          onChange={(value) => { setAttributes({ playOnClick: value }) }
           }
         />
         <SwitchLabel
           id="am-lottieplayer-hover-settings"
-          title={ __( 'Play on mouseover', domain ) }
-          value={Boolean(attributes.hover) }
-          onChange={ ( value ) => { setAttributes( { hover: value } ) } }
+          title={__('Play on mouseover', domain)}
+          value={Boolean(attributes.hover)}
+          onChange={(value) => { setAttributes({ hover: value }) }}
         />
-        { attributes.hover &&
+        {attributes.hover &&
           <SelectControl
-            label={ __( 'On mouseout', domain ) }
-            value={ attributes.mouseout }
-            options={ [
+            label={__('On mouseout', domain)}
+            value={attributes.mouseout}
+            options={[
               {
-                label: __( 'No event', domain ),
+                label: __('No event', domain),
                 value: MouseOut.Void,
               },
               {
-                label: __( 'Stop', domain ),
+                label: __('Stop', domain),
                 value: MouseOut.Stop,
               },
               {
-                label: __( 'Pause', domain ),
+                label: __('Pause', domain),
                 value: MouseOut.Pause,
               },
               {
-                label: __( 'Reverse', domain ),
+                label: __('Reverse', domain),
                 value: MouseOut.Reverse,
               },
-            ] }
-            onChange={ ( val ) =>
-            { setAttributes( { mouseout: val } ) }
+            ]}
+            onChange={(val) => { setAttributes({ mouseout: val }) }
             }
           />
         }
-        { ( attributes.hover || attributes.playOnClick ) &&
+        {(attributes.hover || attributes.playOnClick) &&
           <>
             <TextInput
               disabled
               id="am-lottieplayer-settings"
-              placeholder={ '#' }
-              value={ attributes.selector }
-              help={ __('Anchor tag (id) for an element you want to trigger the animation, either by hover or click.',
-                domain) }
+              placeholder={'#'}
+              value={attributes.selector}
+              help={__('Anchor tag (id) for an element you want to trigger the animation, either by hover or click.',
+                domain)}
               title={
                 <>
                   <span
                     className="pro-feature"
-                    style={ { marginRight: '1em' } }
+                    style={{ marginRight: '1em' }}
                   >
-                    { __('Trigger element',
-                      domain) }
+                    {__('Trigger element',
+                      domain)}
                   </span>
 
                   <ProFeature />
                 </>
               }
-              onChange={ ( val ) =>
-              { setAttributes( { selector: val } ) }
+              onChange={(val) => { setAttributes({ selector: val }) }
               }
             />
             {/* <SwitchLabel
@@ -149,32 +143,29 @@ export default function Interactions ( {
         }
         <SwitchLabel
           id="am-lottieplayer-scroll-settings"
-          value={ Boolean(attributes.playOnVisible) }
-          title={ __('Play on scroll, when visible in viewport',
-            domain) }
-          onChange={ ( value ) =>
-          { setAttributes( { playOnVisible: value } ) }
+          value={Boolean(attributes.playOnVisible)}
+          title={__('Play on scroll, when visible in viewport',
+            domain)}
+          onChange={(value) => { setAttributes({ playOnVisible: value }) }
           }
         />
-        { attributes.playOnVisible &&
+        {attributes.playOnVisible &&
           <>
             <SwitchLabel
               id="am-lottieplayer-once-settings"
-              title={ __( 'Play only once', domain ) }
-              value={ attributes.once }
-              onChange={ ( value ) =>
-              { setAttributes( { once: value } ) }
+              title={__('Play only once', domain)}
+              value={attributes.once}
+              onChange={(value) => { setAttributes({ once: value }) }
               }
             ></SwitchLabel>
             <RangeControl
-              max={ 50 }
-              min={ 0 }
-              step={ 1 }
-              value={ attributes.delay ?? 1 }
-              label={ __('Delay, in 10th of a second',
-                domain) }
-              onChange={ ( value ) =>
-              { setAttributes( { delay: value } ) }
+              max={50}
+              min={0}
+              step={1}
+              value={attributes.delay ?? 1}
+              label={__('Delay, in 10th of a second',
+                domain)}
+              onChange={(value) => { setAttributes({ delay: value }) }
               }
             />
           </>

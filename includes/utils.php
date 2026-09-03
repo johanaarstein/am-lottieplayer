@@ -413,6 +413,7 @@ function render_lottieplayer( array $atts ) {
 }
 
 function render_shortcode( array $atts ) {
+	/** @var \AAMD_Lottie\Media $aamd_lottie_media */
 	global $aamd_lottie_media;
 	$atts = shortcode_atts(
 		array(

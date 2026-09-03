@@ -10,7 +10,7 @@ import Animation from '@/components/LottieControls/Animation'
 import Background from '@/components/LottieControls/Background'
 import Dimensions from '@/components/LottieControls/Dimensions'
 import Interactions from '@/components/LottieControls/Interactions'
-import { usePlayerContext } from '@/context/PlayerContext'
+import usePlayerContext from '@/hooks/usePlayerContext'
 
 export default function LottieControls({
   attributes,

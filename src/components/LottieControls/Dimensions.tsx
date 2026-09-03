@@ -15,8 +15,7 @@ import type { PlayerComponentProps } from '@/types'
 import NumberInput from '@/components/form/NumberInput'
 import SwitchLabel from '@/components/form/SwitchLabel'
 import { Align } from '@/enums'
-
-const domain = 'am-lottieplayer'
+import { domain } from '@/utils/constants'
 
 export default function Dimensions ( {
   attributes,

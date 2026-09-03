@@ -16,18 +16,18 @@ import ProFeature from '@/assets/ProFeature'
 import NumberInput from '@/components/form/NumberInput'
 import SwitchLabel from '@/components/form/SwitchLabel'
 import ProLink from '@/components/ProLink'
-import { usePlayerContext } from '@/context/PlayerContext'
+import usePlayerContext from '@/hooks/usePlayerContext'
+import { domain } from '@/utils/constants'
 
-const domain = 'am-lottieplayer',
-  premiumMessage = __('This feature is only available in the premium version', domain)
+const premiumMessage = __('This feature is only available in the premium version', domain)
 
 export default function Animation({
   attributes,
   setAttributes,
 }: BlockEditProps<PlayerComponentProps>) {
   const {
-      autoplay, controls, direction, intermission, loop, segment, speed, subframe
-    } = attributes,
+    autoplay, controls, direction, intermission, loop, segment, speed, subframe
+  } = attributes,
     { animationContext: { animations, player } } = usePlayerContext(),
     [state] = useState(() => {
       const totalFrames = player?.getLottie()?.totalFrames ?? 0
@@ -60,8 +60,7 @@ export default function Animation({
           id="am-lottieplayer-controls-settings"
           title={__('Show controls', domain)}
           value={Boolean(controls)}
-          onChange={(value) =>
-          { setAttributes({ controls: value }) }
+          onChange={(value) => { setAttributes({ controls: value }) }
           }
         />
         <SwitchLabel
@@ -94,16 +93,14 @@ export default function Animation({
               <ProFeature />
             </>
           }
-          onChange={() =>
-          { console.warn(premiumMessage) }
+          onChange={() => { console.warn(premiumMessage) }
           }
         />
         <SwitchLabel
           id="am-lottieplayer-reverse-settings"
           title={__('Reverse', domain)}
           value={direction === -1}
-          onChange={(value) =>
-          { setAttributes({ direction: value ? -1 : 1 }) }
+          onChange={(value) => { setAttributes({ direction: value ? -1 : 1 }) }
           }
         />
         <SwitchLabel
@@ -112,8 +109,7 @@ export default function Animation({
           value={Boolean(subframe)}
           subTitle={__('Makes the animation smoother, at the cost of RAM usage',
             domain)}
-          onChange={(value) =>
-          { setAttributes({ subframe: value }) }
+          onChange={(value) => { setAttributes({ subframe: value }) }
           }
         />
         <RangeControl
@@ -140,8 +136,7 @@ export default function Animation({
             placeholder={'1'}
             title={__('First frame', domain)}
             value={segment?.[0]}
-            onChange={() =>
-            { console.warn(premiumMessage) }
+            onChange={() => { console.warn(premiumMessage) }
             }
           />
           <NumberInput
@@ -150,8 +145,7 @@ export default function Animation({
             placeholder={(state.totalFrames + 1).toString()}
             title={__('Last frame', domain)}
             value={segment?.[1]}
-            onChange={() =>
-            { console.warn(premiumMessage) }
+            onChange={() => { console.warn(premiumMessage) }
             }
           />
         </PanelRow>
@@ -167,8 +161,7 @@ export default function Animation({
                 value={intermission}
                 title={__('Pause between loops, in miliseconds. 1s = 1000',
                   domain)}
-                onChange={(val) =>
-                { setAttributes({ intermission: val }) }
+                onChange={(val) => { setAttributes({ intermission: val }) }
                 }
               />
             </PanelRow>

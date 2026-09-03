@@ -24,6 +24,7 @@ import type { BlockEditor, LottieBlockAttributes } from '@/types'
 import Lottie from '@/assets/Lottie'
 import ErrorNotice from '@/components/ErrorNotice'
 import { validateUrl } from '@/utils'
+import { domain } from '@/utils/constants'
 
 type MediaUpload = (options: {
   allowedTypes: string[];
@@ -33,12 +34,10 @@ type MediaUpload = (options: {
 }) => void
 
 export interface Media {
-  alt?: string;
-  id: number;
-  url?: string;
-};
-
-const domain = 'am-lottieplayer'
+  alt?: string
+  id: number
+  url?: string
+}
 
 const onUploadError = (message: string) => {
   const safeMessage: string = stripHTML(message)

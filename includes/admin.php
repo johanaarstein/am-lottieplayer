@@ -62,6 +62,7 @@ class Admin {
 			return;
 		}
 
+		/** @var Media $aamd_lottie_media */
 		global $aamd_lottie_media;
 
 		$aamd_lottie_media->set_default_file();

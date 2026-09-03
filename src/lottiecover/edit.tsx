@@ -19,6 +19,7 @@ import Placeholder from '@/components/Placeholder'
 import ResizableCover from '@/components/ResizableCover'
 import '@/lottiecover/editor.css'
 import PlayerWrapper from '@/context/PlayerProvider'
+import { domain } from '@/utils/constants'
 import { isTemporaryMedia } from '@/utils/media'
 
 type TemplateArray = InnerBlocks.Props['template']
@@ -27,7 +28,7 @@ const getInnerBlocksTemplate = (attributes: object): TemplateArray => [
   [
     'core/paragraph', {
       align: 'center',
-      placeholder: __('Write title…', 'am-lottieplayer'),
+      placeholder: __('Write title…', domain),
       ...attributes,
     },
   ],

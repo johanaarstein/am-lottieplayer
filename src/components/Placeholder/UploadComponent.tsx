@@ -12,8 +12,7 @@ import type { LottieBlockAttributes } from '@/types'
 import Lottie from '@/assets/Lottie'
 import ErrorNotice from '@/components/ErrorNotice'
 import { validateUrl } from '@/utils'
-
-const domain = 'am-lottieplayer'
+import { domain } from '@/utils/constants'
 
 export default function UploadComponent({
   attributes,

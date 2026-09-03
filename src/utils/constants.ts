@@ -1,0 +1,1 @@
+export const domain = 'am-lottieplayer'

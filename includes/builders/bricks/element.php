@@ -17,9 +17,19 @@ class Element_Lottie_Player extends \Bricks\Element {
 	public $nestable = false;
 
 	// Methods: Builder-specific
+	#[\Override]
+	public function add_actions() {
+		parent::add_actions();
+
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_backend' ) );
+	}
+
+	#[\Override]
 	public function get_label() {
 		return esc_html__( 'AM LottiePlayer', 'am-lottieplayer' );
 	}
+
+	#[\Override]
 	public function get_keywords() {
 		return array(
 			'lottie',
@@ -30,6 +40,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 		);
 	}
 
+	#[\Override]
 	public function set_control_groups() {
 		$this->control_groups['animation'] = array(
 			'title' => esc_html__( 'Animation', 'am-lottieplayer' ),
@@ -56,8 +67,11 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'tab'   => 'style',
 		);
 	}
+
+	#[\Override]
 	public function set_controls() {
 
+		/** @var Media $aamd_lottie_media */
 		global $aamd_lottie_media;
 		global $pro_link;
 		global $pro_feature;
@@ -476,12 +490,6 @@ class Element_Lottie_Player extends \Bricks\Element {
 		);
 	}
 
-	public function add_actions() {
-		parent::add_actions();
-
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_backend' ) );
-	}
-
 	public function enqueue_backend() {
 		wp_register_style(
 			'bricks-backend-style',
@@ -501,6 +509,8 @@ class Element_Lottie_Player extends \Bricks\Element {
 	}
 
 	// Methods: Frontend-specific
+
+	#[\Override]
 	public function enqueue_scripts() {
 		$renderer = 'svg';
 		if ( isset( $this->settings['renderer'] ) ) {
@@ -521,6 +531,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 		wp_enqueue_script( $handle );
 	}
 
+	#[\Override]
 	public function render() {
 		$settings = $this->settings;
 		if ( ! $settings ) {

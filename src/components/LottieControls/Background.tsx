@@ -7,10 +7,12 @@ import { __ } from '@wordpress/i18n'
 
 import type { PlayerComponentProps } from '@/types'
 
-export default function Background ( {
+import { domain } from '@/utils/constants'
+
+export default function Background({
   attributes,
   setAttributes,
-}: BlockEditProps< PlayerComponentProps > ) {
+}: BlockEditProps<PlayerComponentProps>) {
   const { background } = attributes
 
   return (
@@ -18,12 +20,11 @@ export default function Background ( {
       <PanelBody
         initialOpen
         className="am-lottieplayer-settings"
-        title={ __( 'Background Color', 'am-lottieplayer' ) }
+        title={__('Background Color', domain)}
       >
         <ColorPicker
-          color={ background }
-          onChange={ ( color ) =>
-          { setAttributes( { background: color } ) }
+          color={background}
+          onChange={(color) => { setAttributes({ background: color }) }
           }
         />
       </PanelBody>

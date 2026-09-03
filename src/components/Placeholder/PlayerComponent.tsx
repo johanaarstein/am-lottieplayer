@@ -7,9 +7,9 @@ import {
 
 import type { BlockEditor, LottieBlockAttributes } from '@/types'
 
-import { usePlayerContext } from '@/context/PlayerContext'
 import { Align } from '@/enums'
 import useEventListener from '@/hooks/useEventListener'
+import usePlayerContext from '@/hooks/usePlayerContext'
 import { debounce } from '@/utils'
 
 const parseSize = (num?: number | null) => {
