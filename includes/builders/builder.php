@@ -1,6 +1,7 @@
 <?php
 namespace AAMD_Lottie;
 
+use function AAMD_Lottie\Utility\compare_versions;
 use function AAMD_Lottie\Utility\get_build_path;
 use function AAMD_Lottie\Utility\get_script;
 use function AAMD_Lottie\Utility\get_shortcode_instances;
@@ -102,13 +103,22 @@ class Builder {
 		if (
 			! \class_exists( '\DiviExtension' ) ||
 			! \class_exists( '\ET_Builder_Module' ) ||
-			! \class_exists( '\ET_Builder_Element' )
+			! \class_exists( '\ET_Builder_Element' ) ||
+			! \defined( 'ET_BUILDER_PRODUCT_VERSION' )
 		) {
 			return;
 		}
 
 		$this->_set_version();
-		include_file( 'builders/divi/LottieDiviModules' );
+
+		/**
+		 * Check if Divi 5 or >
+		 */
+		if ( compare_versions( '5.0.0', \ET_BUILDER_PRODUCT_VERSION ) ) {
+			// TODO: Create compatible module
+		} else {
+			include_file( 'builders/divi/legacy/LottieDiviModules' );
+		}
 	}
 
 	/**
