@@ -64,7 +64,7 @@ class Media {
 			// Adding Lottie mime types to list over accepted uploads
 			add_filter(
 				'upload_mimes',
-				function ( $mimes ) {
+				function ( array $mimes ) {
 					$mimes['json']        = 'application/json';
 					$mimes['lottie']      = 'application/zip';
 					$mimes['json|lottie'] = 'application/octet-stream';
