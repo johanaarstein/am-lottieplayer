@@ -1,0 +1,10 @@
+{
+  "module": {
+    "align": "module.advanced.align.*",
+    "force_fullwidth": "module.advanced.sizing.*.forceFullwidth",
+    "show_bottom_space": "module.advanced.spacing.*.showBottomSpace",
+    "src": "image.innerContent.*.src",
+    "url": "image.innerContent.*.linkUrl",
+    "url_new_window": "image.innerContent.*.linkTarget"
+  }
+}

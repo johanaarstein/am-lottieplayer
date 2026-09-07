@@ -14,7 +14,7 @@ if ( ! function_exists( 'get_ux_template' ) ) {
 	function get_ux_template() {
 		wp_enqueue_script(
 			'am-backend-ux',
-			get_script( 'am-backend-ux.min.js' ),
+			get_script( 'flatsome/am-backend-ux.min.js' ),
 			array( AAMD_LOTTIE_IS_PRO ? 'dotlottie-player' : 'dotlottie-player-light' ),
 			'1.0.1',
 			true

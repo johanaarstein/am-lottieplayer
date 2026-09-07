@@ -115,7 +115,7 @@ class Builder {
 		 * Check if Divi 5 or >
 		 */
 		if ( compare_versions( '5.0.0', \ET_BUILDER_PRODUCT_VERSION ) ) {
-			// TODO: Create compatible module
+			include_file( 'builders/divi/loader' );
 		} else {
 			include_file( 'builders/divi/legacy/LottieDiviModules' );
 		}

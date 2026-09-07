@@ -35,6 +35,7 @@
 		"am-lottieplayer.php"
 	],
 	"main": "build/admin.js",
+	"packageManager": "pnpm@12.3.4+sha512.961aa41fb077da3a04a441d9f8e15ebc0c96da8ef710b2eb67bf9ee7cb0610eabd48f1fd85f51cffe73846785fa0f87c56a3a872a1d893f8446741b5cce45457",
 	"devDependencies": {
 		"@aarsteinmedia/dotlottie-player": "^6.4.9",
 		"@aarsteinmedia/lottie-web": "^1.5.9",
@@ -66,7 +67,6 @@
 		"eslint": "^9.39.5",
 		"eslint-config-sheriff": "^31.4.0",
 		"eslint-plugin-perfectionist": "^5.11.0",
-		"jiti": "^2.7.0",
 		"re-resizable": "^6.11.2",
 		"react": "^19.2.8",
 		"react-dom": "^19.2.8",

@@ -54,23 +54,23 @@
         },
         {
             "name": "aarsteinmedia/divi-stubs",
-            "version": "4.27.7",
+            "version": "4.28.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aarsteinmedia/divi-stubs.git",
-                "reference": "f84b729c206f81c4d71c3d0078c9ff30582e4d9b"
+                "reference": "e92745f7db4bb4ccc70f105b1ce278fe39d2df71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aarsteinmedia/divi-stubs/zipball/f84b729c206f81c4d71c3d0078c9ff30582e4d9b",
-                "reference": "f84b729c206f81c4d71c3d0078c9ff30582e4d9b",
+                "url": "https://api.github.com/repos/aarsteinmedia/divi-stubs/zipball/e92745f7db4bb4ccc70f105b1ce278fe39d2df71",
+                "reference": "e92745f7db4bb4ccc70f105b1ce278fe39d2df71",
                 "shasum": ""
             },
             "require-dev": {
                 "dealerdirect/phpcodesniffer-composer-installer": "*",
                 "ext-gettext": "*",
                 "giacocorsiglia/stubs-generator": "^0.5.0",
-                "php": ">=7.1",
+                "php": ">=7.4",
                 "squizlabs/php_codesniffer": "*",
                 "wp-coding-standards/wpcs": "*"
             },
@@ -93,9 +93,9 @@
             ],
             "support": {
                 "issues": "https://github.com/aarsteinmedia/divi-stubs/issues",
-                "source": "https://github.com/aarsteinmedia/divi-stubs/tree/4.27.7"
+                "source": "https://github.com/aarsteinmedia/divi-stubs/tree/4.28.4"
             },
-            "time": "2024-10-26T15:37:32+00:00"
+            "time": "2026-09-06T22:30:22+00:00"
         },
         {
             "name": "aarsteinmedia/flatsome-stubs",
