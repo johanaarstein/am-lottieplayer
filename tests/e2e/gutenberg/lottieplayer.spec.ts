@@ -4,7 +4,10 @@ import { test } from '@wordpress/e2e-test-utils-playwright'
 
 
 test.describe('dotLottiePlayer Block', () => {
-  // Wire up the WordPress test utilities
+  test.beforeAll(async ({ requestUtils }) => {
+    await requestUtils.activateTheme('twentytwentyfive')
+  })
+
   test.beforeEach(async ({ admin }) => {
     await admin.createNewPost()
   })

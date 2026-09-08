@@ -40,7 +40,7 @@
 		"@aarsteinmedia/dotlottie-player": "^6.4.9",
 		"@aarsteinmedia/lottie-web": "^1.5.9",
 		"@playwright/test": "^1.63.0",
-		"@types/node": "^26.4.1",
+		"@types/node": "^26.5.0",
 		"@types/react": "^19.2.18",
 		"@types/webpack": "^5.28.5",
 		"@types/wordpress__block-editor": "^15.0.6",

@@ -1,0 +1,56 @@
+import { expect } from '@playwright/test'
+import {
+ DIVI_TEXT_DOMAIN, getDiviFrame, getPostURL, insertModuleDivi, selectAttachmentFromModal
+} from '@test/e2e/utils'
+import { test } from '@wordpress/e2e-test-utils-playwright'
+import { __ } from '@wordpress/i18n'
+
+test.describe('dotLottiePlayer Module', () => {
+  test.beforeAll(async ({ requestUtils }) => {
+    await requestUtils.activateTheme('Divi')
+  })
+
+  test.beforeEach(async ({ admin, editor }) => {
+    await admin.createNewPost({ postType: 'page' })
+    await editor.canvas.locator('#et-switch-to-divi').click()
+  })
+
+  test.afterEach(async ({ requestUtils }) => {
+    await requestUtils.deleteAllPages()
+  })
+
+  test('can insert Lottie Module', async ({ page }) => {
+    const frame = getDiviFrame(page),
+      placeholder = await insertModuleDivi(frame)
+
+    await expect(placeholder).toBeVisible()
+  })
+
+  test('can configure and save Lottie Module', async ({ page }) => {
+    const frame = getDiviFrame(page),
+      placeholder = await insertModuleDivi(frame)
+
+    await placeholder.click()
+
+    await page.getByRole('button', { name: __('Select file', DIVI_TEXT_DOMAIN) }).click()
+
+    await selectAttachmentFromModal(page)
+
+    const controls = placeholder.locator('slot[name=controls]')
+
+    await expect(controls).toBeVisible()
+
+    await page.getByRole('button', { name: 'lottie-innerContent--controls' }).click()
+    await expect(controls).toBeHidden()
+
+    await page.getByRole('button', { name: __('Save Dropdown', DIVI_TEXT_DOMAIN) }).click()
+    await page.getByRole('button', { name: __('Save & Publish', DIVI_TEXT_DOMAIN) }).click()
+
+    await page.goto(getPostURL(page, 'page'))
+
+    const player = page.locator('dotlottie-player')
+
+    await expect(player).toBeVisible()
+    await expect(player.locator('slot[name=controls]')).toBeHidden()
+  })
+})

@@ -1,6 +1,7 @@
 import { expect } from '@playwright/test'
 import {
- getBricksFrame, getPostURL, insertElementBricks
+ getBricksFrame, getPostURL, insertElementBricks,
+ selectAttachmentFromModal
 } from '@test/e2e/utils'
 import { test } from '@wordpress/e2e-test-utils-playwright'
 
@@ -21,13 +22,15 @@ test.describe('dotLottiePlayer Element', () => {
   })
 
   test('can insert Lottie Element', async ({ page }) => {
-    const placeholder = await insertElementBricks(page)
+    const frame = getBricksFrame(page),
+      placeholder = await insertElementBricks(page, frame)
 
     await expect(placeholder).toBeVisible()
   })
 
   test('can configure and save a Lottie Element', async ({ page }) => {
-    const placeholder = await insertElementBricks(page)
+    const frame = getBricksFrame(page),
+      placeholder = await insertElementBricks(page, frame)
 
     await placeholder.click()
 
@@ -35,17 +38,9 @@ test.describe('dotLottiePlayer Element', () => {
     await page.locator('[data-control-group=animation]').click()
     await page.getByRole('button', { name: 'Select file' }).click()
 
-    const uploadDialog = page.locator('#wp-media-modal'),
-      insertButton = uploadDialog.getByRole('button', { name: 'Insert' })
+    await selectAttachmentFromModal(page)
 
-    await expect(uploadDialog).toBeVisible()
-    await uploadDialog.locator('.attachment.save-ready').first().click()
-    await expect(insertButton).toBeEnabled()
-
-    await insertButton.click()
-
-    const frame = getBricksFrame(page),
-      dotLottiePlayer = frame.locator('dotlottie-player').first(),
+    const dotLottiePlayer = frame.locator('dotlottie-player').first(),
       controls = dotLottiePlayer.locator('slot[name=controls]')
 
     await expect(dotLottiePlayer).toBeVisible()
@@ -59,6 +54,9 @@ test.describe('dotLottiePlayer Element', () => {
 
     await page.goto(getPostURL(page, 'page'))
 
-    await expect(page.locator('dotlottie-player')).toBeVisible()
+    const player = page.locator('dotlottie-player')
+
+    await expect(player).toBeVisible()
+    await expect(player.locator('slot[name=controls]')).toBeHidden()
   })
 })

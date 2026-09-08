@@ -1,9 +1,13 @@
 import type { RequestUtils } from '@wordpress/e2e-test-utils-playwright'
 
-import { expect, type Page } from '@playwright/test'
+import {
+ expect, type FrameLocator, type Page
+} from '@playwright/test'
 import { __ } from '@wordpress/i18n'
 
 import { domain } from '@/utils/constants'
+
+export const DIVI_TEXT_DOMAIN = 'Divi'
 
 type PostType = 'post' | 'page'
 
@@ -40,7 +44,10 @@ page: Page, requestUtils: RequestUtils, postType: PostType = 'post'
   getBricksFrame = (page: Page) => {
     return page.frameLocator('#bricks-builder-iframe')
   },
-  insertElementBricks = async (page: Page) => {
+  getDiviFrame = (page: Page) => {
+    return page.frameLocator('#et-vb-app-frame')
+  },
+  insertElementBricks = async (page: Page, frame: FrameLocator) => {
     const searchfield = page.locator('#bricks-panel-search')
 
     await searchfield.waitFor({ state: 'visible' })
@@ -51,8 +58,45 @@ page: Page, requestUtils: RequestUtils, postType: PostType = 'post'
     await expect(elementSelector).toBeVisible()
     await elementSelector.click()
 
-    const frame = getBricksFrame(page),
-      placeholder = frame.getByText(__('No Lottie selected', domain))
+    const placeholder = frame.getByText(__('No Lottie selected', domain))
 
     return placeholder
+  },
+  insertModuleDivi = async (frame: FrameLocator) => {
+    await frame.getByRole('button', { name: __('Add row', DIVI_TEXT_DOMAIN) }).click()
+
+    const modal = frame.locator('.et-vb-modal--add-module')
+
+    await expect(modal).toBeVisible()
+    await modal.getByAltText('equal-columns_1').click()
+
+    const searchfield = frame.locator('#et-vb-field-input-text-filter-option')
+
+    await searchfield.waitFor({ state: 'visible' })
+    await searchfield.fill('AM Lottie')
+
+    const moduleSelector = frame.getByRole('button', { name: 'AM Lottie' })
+
+    await expect(moduleSelector).toBeVisible()
+    await moduleSelector.click()
+
+    const placeholder = frame.locator('dotlottie-player')
+
+    return placeholder
+  },
+  selectAttachmentFromModal = async (page: Page, id?: number) => {
+    const uploadDialog = page.locator('#wp-media-modal'),
+      insertButton = uploadDialog.getByRole('button', { name: 'Insert' })
+
+    await expect(uploadDialog).toBeVisible()
+
+    if (id) {
+      await uploadDialog.locator(`[data-id=${id}`).click()
+    } else {
+      await uploadDialog.locator('.attachment.save-ready').first().click()
+    }
+
+    await expect(insertButton).toBeEnabled()
+
+    await insertButton.click()
   }
