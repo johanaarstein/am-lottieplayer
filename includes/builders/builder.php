@@ -161,114 +161,44 @@ class Builder {
 			return;
 		}
 
+		$is_divi_builder = ! empty( $_GET['et_fb'] );
+		$is_vc_builder   = function_exists( 'vc_is_inline' ) && vc_is_inline();
+
 		global $post;
-		$content = '';
+		$content = is_a( $post, '\WP_Post' ) ? $post->post_content : '';
 
-		$has_divi        = false;
-		$divi_shortcodes = array();
+		$divi_layout_contents = $this->_get_divi_layout_contents();
 
-		// Check if any front-end builders are active
-		$isDiviBuilder = isset( $_GET['et_fb'] ) && ! empty( $_GET['et_fb'] );
-		$isVCBuilder   = function_exists( 'vc_is_inline' ) && vc_is_inline();
-
-		if ( is_a( $post, '\WP_Post' ) ) {
-			$content = $post->post_content;
-		}
-
-		// Check for Lottie in Divi Templates
-		// TODO: Adjust for DIVI5 if relevant
-		if ( function_exists( 'et_theme_builder_get_template_layouts' ) ) {
-			$layouts = et_theme_builder_get_template_layouts();
-			if ( ! empty( $layouts ) ) {
-				foreach ( array( 'header', 'body', 'footer' ) as $part ) {
-					$divi_shortcodes = $this->_get_divi_shortcodes_from_layouts(
-						$layouts,
-						$divi_shortcodes,
-						$part
-					);
-				}
-			}
-
-			$has_divi = count( $divi_shortcodes ) > 0;
-		}
-
-		// Check if post has Gutenberg blocks
 		$has_gutenberg = has_block( 'gb/lottieplayer' ) || has_block( 'gb/lottiecover' );
-
-		// Check if full version is needed on the front-end
-		$is_light = ! AAMD_LOTTIE_IS_PRO || (bool) get_option( 'am_lottieplayer_pro_load_light' );
-
-		if ( AAMD_LOTTIE_IS_PRO && $is_light && ( $has_gutenberg || $has_divi ) ) {
-			$lottie_blocks = $this->_flatten_blocks(
-				parse_blocks( $content ),
-				array(
-					'gb/lottieplayer',
-					'gb/lottiecover',
-					'am/lottieplayer-module',
-				)
-			);
-
-			foreach ( $lottie_blocks as $block ) {
-				$renderer = $block['attrs']['renderer'] ?? null;
-
-				// Divi 5 stores attrs under the module metadata tree.
-				if ( $block['blockName'] === 'am/lottieplayer-module' ) {
-					$renderer = $block['attrs']['lottie']['innerContent']['desktop']['value']['renderer'] ?? $renderer;
-				}
-
-				if ( $renderer && $renderer !== 'svg' ) {
-					$is_light = false;
-
-					break;
-				}
-			}
-		}
-
-		// Check if post has general shortcode, and VC frontend builder is not active
-		$has_shortcode = has_shortcode( $content, 'am-lottieplayer' ) && ! $isVCBuilder;
-
-		if ( AAMD_LOTTIE_IS_PRO && $is_light ) {
-			$shortcodes = array_merge(
-				get_shortcode_instances( $content, 'am-lottieplayer' ) ?? array(),
-				get_shortcode_instances( $content, 'et_pb_lottieplayer' ) ?? array()
-			);
-
-			foreach ( $shortcodes as $shortcode ) {
-				$atts = shortcode_parse_atts( $shortcode );
-
-				$renderer = isset( $atts['renderer'] ) ? $atts['renderer'] : false;
-
-				if ( $renderer && $renderer !== 'svg' ) {
-					$is_light = false;
-				}
-			}
-		}
-
-		// Check if post has Divi shortcode, and Divi Builder is not active
-		$has_divi = ! $isDiviBuilder && (
-			$has_divi ||
+		$has_shortcode = has_shortcode( $content, 'am-lottieplayer' ) && ! $is_vc_builder;
+		$has_divi      = ! $is_divi_builder && (
+			! empty( $divi_layout_contents ) ||
 			has_shortcode( $content, 'et_pb_lottieplayer' ) ||
 			has_block( 'am/lottieplayer-module' )
 		);
 
-		$handle = 'dotlottie-player-light';
-
-		if ( ! $is_light && AAMD_LOTTIE_IS_PRO ) {
-			$handle = 'dotlottie-player';
+		if ( ! $has_gutenberg && ! $has_shortcode && ! $has_divi && ! $is_divi_builder && ! $is_vc_builder ) {
+			return;
 		}
 
+		$handle = 'dotlottie-player-light';
+		if ( AAMD_LOTTIE_IS_PRO ) {
+			$load_light = (bool) get_option( 'am_lottieplayer_pro_load_light' );
+			if ( ! $load_light || $this->_has_non_svg_renderer( $content, $divi_layout_contents ) ) {
+				$handle = 'dotlottie-player';
+			}
+		}
+
+		// Gutenberg blocks register `dotlottie-player-light` in block.json.
 		if ( $has_gutenberg ) {
 			if ( $handle === 'dotlottie-player-light' ) {
 				wp_enqueue_script( 'dotlottie-player-light' );
 				wp_dequeue_script( 'dotlottie-player' );
 			}
-
 			return;
 		}
 
-		if ( $has_shortcode || $has_divi || $isDiviBuilder || $isVCBuilder ) {
-			wp_enqueue_script( $handle );
-		}
+		wp_enqueue_script( $handle );
 	}
 
 	/**
@@ -296,29 +226,93 @@ class Builder {
 	}
 
 	/**
-	 * Check if Divi shortcode is present in content
-	 * and return them if they are
+	 * Content of overridden Divi Theme Builder header/body/footer layouts
+	 * that contain a Lottie shortcode.
+	 *
+	 * TODO: Adjust for DIVI 5 if relevant
+	 *
+	 * @return string[]
 	 */
-	private function _get_divi_shortcodes_from_layouts(
-		array $layouts,
-		array $divi_shortcodes,
-		string $part
-	) {
-		if ( $layouts[ "et_{$part}_layout" ]['override'] ) {
-			$content = null;
-			if ( get_post( $layouts[ "et_{$part}_layout" ]['id'] ) ) {
-				$content = get_post( $layouts[ "et_{$part}_layout" ]['id'] )->post_content;
+	private function _get_divi_layout_contents() {
+		if ( ! function_exists( 'et_theme_builder_get_template_layouts' ) ) {
+			return array();
+		}
+
+		$layouts = et_theme_builder_get_template_layouts();
+		if ( empty( $layouts ) ) {
+			return array();
+		}
+
+		$contents = array();
+
+		foreach ( array( 'header', 'body', 'footer' ) as $part ) {
+			$layout = $layouts[ "et_{$part}_layout" ] ?? array();
+			if ( empty( $layout['override'] ) || empty( $layout['id'] ) ) {
+				continue;
 			}
-			if ( $content && has_shortcode( $content, 'et_pb_lottieplayer' ) ) {
-				// This is used to determine whether to load full or light version
-				$divi_shortcodes = array_merge(
-					get_shortcode_instances( $content, 'et_pb_lottieplayer' ) ?? array(),
-					$divi_shortcodes
-				);
+
+			$layout_post = get_post( $layout['id'] );
+			if ( $layout_post && has_shortcode( $layout_post->post_content, 'et_pb_lottieplayer' ) ) {
+				$contents[] = $layout_post->post_content;
 			}
 		}
 
-		return $divi_shortcodes;
+		return $contents;
+	}
+
+	/**
+	 * Whether any Lottie instance uses a non-SVG renderer (canvas/html).
+	 *
+	 * @param string   $content          Post content.
+	 * @param string[] $layout_contents  Divi layout contents that contain Lottie.
+	 */
+	private function _has_non_svg_renderer( $content, array $layout_contents ) {
+		if ( has_blocks( $content ) ) {
+			$blocks = $this->_flatten_blocks(
+				parse_blocks( $content ),
+				array(
+					'gb/lottieplayer',
+					'gb/lottiecover',
+					'am/lottieplayer-module',
+				)
+			);
+
+			foreach ( $blocks as $block ) {
+				$renderer = $block['attrs']['renderer'] ?? null;
+
+				// Divi 5 stores attrs under the module metadata tree.
+				if ( ( $block['blockName'] ?? '' ) === 'am/lottieplayer-module' ) {
+					$renderer = $block['attrs']['lottie']['innerContent']['desktop']['value']['renderer'] ?? $renderer;
+				}
+
+				if ( $renderer && $renderer !== 'svg' ) {
+					return true;
+				}
+			}
+		}
+
+		$shortcodes = array_merge(
+			get_shortcode_instances( $content, 'am-lottieplayer' ) ?? array(),
+			get_shortcode_instances( $content, 'et_pb_lottieplayer' ) ?? array()
+		);
+
+		foreach ( $layout_contents as $layout_content ) {
+			$shortcodes = array_merge(
+				$shortcodes,
+				get_shortcode_instances( $layout_content, 'et_pb_lottieplayer' ) ?? array()
+			);
+		}
+
+		foreach ( $shortcodes as $shortcode ) {
+			$atts     = shortcode_parse_atts( $shortcode );
+			$renderer = is_array( $atts ) ? ( $atts['renderer'] ?? false ) : false;
+
+			if ( $renderer && $renderer !== 'svg' ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }
 
