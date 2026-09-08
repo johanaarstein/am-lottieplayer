@@ -54,7 +54,7 @@ if ( ! \class_exists( 'AAMD_Lottie' ) ) {
 			define( 'AAMD_LOTTIE_URL', plugin_dir_url( __FILE__ ) );
 			/** Path to plugin main file */
 			define( 'AAMD_LOTTIE_FILE', AAMD_LOTTIE_PATH . AAMD_LOTTIE_SLUG . '.php' );
-			define( 'AAMD_LOTTIE_HOMEPAGE', 'https://www.aarstein.media/en/am-lottieplayer/pro' );
+			define( 'AAMD_LOTTIE_HOMEPAGE', 'https://www.am-lottieplayer.com' );
 			define( 'AAMD_LOTTIE_IS_PRO', false );
 
 			if ( ! defined( 'WP_ENV' ) ) {

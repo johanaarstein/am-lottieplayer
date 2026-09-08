@@ -5,9 +5,16 @@ namespace AAMD_Lottie;
 \defined( 'ABSPATH' ) || exit;
 
 use function AAMD_Lottie\Utility\include_file;
+use ET\Builder\Framework\DependencyManagement\DependencyTree;
 
-// Load Divi 5 module.
-include_file( 'builders/divi/module' );
+// Register module.
+add_action(
+	'divi_module_library_modules_dependency_tree',
+	function ( DependencyTree $dependency_tree ) {
+		include_file( 'builders/divi/module' );
+		$dependency_tree->add_dependency( new AMLottiePlayerModule() );
+	}
+);
 
 /**
  * Enqueue Divi 5 Visual Builder Assets
@@ -43,12 +50,13 @@ function am_lottieplayer_module_enqueue_visual_builder_assets() {
 	wp_localize_script(
 		$player_script_handle,
 		'amLottiePlayer',
-		wp_json_encode(
-			array(
-				'isPro' => (bool) AAMD_LOTTIE_IS_PRO,
-			)
+		array(
+			'isPRO' => (bool) AAMD_LOTTIE_IS_PRO,
 		)
 	);
 }
 
-add_action( 'divi_visual_builder_assets_before_enqueue_scripts', 'am_lottieplayer_module_enqueue_visual_builder_assets' );
+add_action(
+	'divi_visual_builder_assets_before_enqueue_scripts',
+	__NAMESPACE__ . '\am_lottieplayer_module_enqueue_visual_builder_assets'
+);

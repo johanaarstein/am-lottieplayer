@@ -3,11 +3,8 @@ namespace AAMD_Lottie;
 
 \defined( 'ABSPATH' ) || exit;
 
-require_once ABSPATH . 'wp-content/themes/Divi/includes/builder-5/server/Framework/DependencyManagement/Interfaces/DependencyInterface.php';
-
-use ET\Builder\Framework\DependencyManagement\DependencyTree;
 use ET\Builder\Framework\DependencyManagement\Interfaces\DependencyInterface;
-use ET\Builder\Framework\Utility\HTMLUtility;
+// use ET\Builder\Framework\Utility\HTMLUtility;
 use ET\Builder\FrontEnd\Module\Style;
 use ET\Builder\Packages\Module\Module;
 use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
@@ -32,13 +29,23 @@ class AMLottiePlayerModule implements DependencyInterface {
 	 */
 	public static function register_module() {
 		// Path to module metadata that is shared between Frontend and Visual Builder.
-		$module_json_folder_path = dirname( __DIR__, 1 ) . '/visual-builder/src';
+		// $module_json_folder_path = dirname( __DIR__, 1 ) . '/visual-builder/src';
 
 		ModuleRegistration::register_module(
-			$module_json_folder_path,
+			__DIR__,
 			array(
 				'render_callback' => array( self::class, 'render_callback' ),
 			)
+		);
+
+		$metadata = json_decode(
+			file_get_contents( __DIR__ . '/module.json' ),
+			true
+		);
+
+		ModuleRegistration::process_conversion_outline(
+			$metadata,
+			__DIR__ . '/conversion-outline.json'
 		);
 	}
 
@@ -111,23 +118,24 @@ class AMLottiePlayerModule implements DependencyInterface {
 	 * Render module HTML output.
 	 */
 	public static function render_callback( array $attrs, $content, \WP_Block $block, object $elements ) {
-		$module_inner = HTMLUtility::render(
-			array(
-				'tag'               => 'div',
-				'attributes'        => array(
-					'class' => 'et_pb_image_wrap',
-				),
-				'childrenSanitizer' => 'et_core_esc_previously',
-				'children'          => '',
-			)
-		);
 
-		// This are the module elements that will be rendered in the frontend.
-		$module_elements = $elements->style_components(
-			array(
-				'attrName' => 'module',
-			)
-		);
+		// $module_inner = HTMLUtility::render(
+		// array(
+		// 'tag'               => 'div',
+		// 'attributes'        => array(
+		// 'class' => 'et_pb_image_wrap',
+		// ),
+		// 'childrenSanitizer' => 'et_core_esc_previously',
+		// 'children'          => '',
+		// )
+		// );
+
+		// // This are the module elements that will be rendered in the frontend.
+		// $module_elements = $elements->style_components(
+		// array(
+		// 'attrName' => 'module',
+		// )
+		// );
 
 		$lottie_atts = $attrs['lottie']['innerContent']['desktop']['value'] ?? array();
 
@@ -155,8 +163,6 @@ class AMLottiePlayerModule implements DependencyInterface {
 			),
 		);
 
-		// return render_shortcode( $mergedAttrs );
-
 		// This are the children of the module container, which are the module elements and the module inner.
 		$module_container_children = render_shortcode( $mergedAttrs ); // $module_elements . $module_inner;
 
@@ -181,11 +187,3 @@ class AMLottiePlayerModule implements DependencyInterface {
 		);
 	}
 }
-
-// Register module.
-add_action(
-	'divi_module_library_modules_dependency_tree',
-	function ( DependencyTree $dependency_tree ) {
-			$dependency_tree->add_dependency( new AMLottiePlayerModule() );
-	}
-);

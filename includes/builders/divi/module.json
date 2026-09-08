@@ -280,7 +280,7 @@
                 "props": {
                   "chooseText": "Choose a Lottie JSON or a dotLottie",
                   "uploadButtonText": "Use animation",
-                  "dataType": ["json", "lottie"]
+                  "dataType": "json"
                 }
               }
             },

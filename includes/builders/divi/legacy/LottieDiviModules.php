@@ -40,6 +40,24 @@ class DiviModules extends \DiviExtension {
 		wp_enqueue_style( 'am_lottie_et_styles' );
 		wp_add_inline_style( 'am_lottie_et_styles', $this->_custom_style() );
 	}
+
+	/**
+	 * Change default behavior, so we can place scripts where we damned well please!
+	 */
+	#[\Override]
+	protected function _enqueue_bundles() {
+		// Frontend Bundle.
+		$bundle_url = "{$this->plugin_dir_url}scripts/divi/legacy/frontend-bundle.min.js";
+
+		wp_enqueue_script( "{$this->name}-frontend-bundle", $bundle_url, $this->_bundle_dependencies['frontend'], $this->version, true );
+
+		if ( et_core_is_fb_enabled() ) {
+			// Builder Bundle.
+			$bundle_url = "{$this->plugin_dir_url}scripts/divi/legacy/builder-bundle.min.js";
+
+			wp_enqueue_script( "{$this->name}-builder-bundle", $bundle_url, $this->_bundle_dependencies['builder'], $this->version, true );
+		}
+	}
 }
 
 new DiviModules();

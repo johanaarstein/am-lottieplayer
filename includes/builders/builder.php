@@ -1,7 +1,6 @@
 <?php
 namespace AAMD_Lottie;
 
-use function AAMD_Lottie\Utility\compare_versions;
 use function AAMD_Lottie\Utility\get_build_path;
 use function AAMD_Lottie\Utility\get_script;
 use function AAMD_Lottie\Utility\get_shortcode_instances;
@@ -21,7 +20,7 @@ class Builder {
 	public function __construct() {
 		// Builder initializations
 		add_action( 'init', array( $this, 'init_plugin' ), 11 );
-		add_action( 'divi_extensions_init', array( $this, 'init_divi' ) );
+		add_action( 'after_setup_theme', array( $this, 'init_divi' ) );
 		add_action( 'elementor/widgets/register', array( $this, 'init_elementor' ) );
 		add_action( 'vc_before_init', array( $this, 'init_vc' ) );
 
@@ -100,24 +99,20 @@ class Builder {
 	 * Initialize DIVI Extension
 	 */
 	public function init_divi() {
-		if (
-			! \class_exists( '\DiviExtension' ) ||
-			! \class_exists( '\ET_Builder_Module' ) ||
-			! \class_exists( '\ET_Builder_Element' ) ||
-			! \defined( 'ET_BUILDER_PRODUCT_VERSION' )
-		) {
+		if ( \function_exists( 'et_builder_d5_enabled' ) && et_builder_d5_enabled() ) {
+			include_file( 'builders/divi/loader' );
+
 			return;
 		}
 
-		$this->_set_version();
-
-		/**
-		 * Check if Divi 5 or >
-		 */
-		if ( compare_versions( '5.0.0', \ET_BUILDER_PRODUCT_VERSION ) ) {
-			include_file( 'builders/divi/loader' );
-		} else {
-			include_file( 'builders/divi/legacy/LottieDiviModules' );
+		// DIVI <= 4 Legacy
+		if ( \function_exists( 'et_setup_builder' ) ) {
+			add_action(
+				'divi_extensions_init',
+				function () {
+					include_file( 'builders/divi/legacy/LottieDiviModules' );
+				}
+			);
 		}
 	}
 
@@ -181,6 +176,7 @@ class Builder {
 		}
 
 		// Check for Lottie in Divi Templates
+		// TODO: Adjust for DIVI5 if relevant
 		if ( function_exists( 'et_theme_builder_get_template_layouts' ) ) {
 			$layouts = et_theme_builder_get_template_layouts();
 			if ( ! empty( $layouts ) ) {
@@ -202,14 +198,28 @@ class Builder {
 		// Check if full version is needed on the front-end
 		$is_light = ! AAMD_LOTTIE_IS_PRO || (bool) get_option( 'am_lottieplayer_pro_load_light' );
 
-		if ( AAMD_LOTTIE_IS_PRO && $is_light && $has_gutenberg ) {
-			$blocks = parse_blocks( $content );
-			foreach ( $blocks as $block ) {
-				if ( $block['blockName'] !== 'gb/lottieplayer' && $block['blockName'] !== 'gb/lottiecover' ) {
-					continue;
+		if ( AAMD_LOTTIE_IS_PRO && $is_light && ( $has_gutenberg || $has_divi ) ) {
+			$lottie_blocks = $this->_flatten_blocks(
+				parse_blocks( $content ),
+				array(
+					'gb/lottieplayer',
+					'gb/lottiecover',
+					'am/lottieplayer-module',
+				)
+			);
+
+			foreach ( $lottie_blocks as $block ) {
+				$renderer = $block['attrs']['renderer'] ?? null;
+
+				// Divi 5 stores attrs under the module metadata tree.
+				if ( $block['blockName'] === 'am/lottieplayer-module' ) {
+					$renderer = $block['attrs']['lottie']['innerContent']['desktop']['value']['renderer'] ?? $renderer;
 				}
-				if ( isset( $block['attrs']['renderer'] ) && $block['attrs']['renderer'] !== 'svg' ) {
+
+				if ( $renderer && $renderer !== 'svg' ) {
 					$is_light = false;
+
+					break;
 				}
 			}
 		}
@@ -235,7 +245,11 @@ class Builder {
 		}
 
 		// Check if post has Divi shortcode, and Divi Builder is not active
-		$has_divi = ! $isDiviBuilder && ( $has_divi || has_shortcode( $content, 'et_pb_lottieplayer' ) );
+		$has_divi = ! $isDiviBuilder && (
+			$has_divi ||
+			has_shortcode( $content, 'et_pb_lottieplayer' ) ||
+			has_block( 'am/lottieplayer-module' )
+		);
 
 		$handle = 'dotlottie-player-light';
 
@@ -255,6 +269,30 @@ class Builder {
 		if ( $has_shortcode || $has_divi || $isDiviBuilder || $isVCBuilder ) {
 			wp_enqueue_script( $handle );
 		}
+	}
+
+	/**
+	 * Flatten a parsed block tree, optionally keeping only given block names.
+	 *
+	 * @param array<int, array> $blocks Result of parse_blocks().
+	 * @param string[]          $names  Empty = keep every named block.
+	 * @return array<int, array>
+	 */
+	private function _flatten_blocks( array $blocks, array $names = array() ) {
+		$found = array();
+		foreach ( $blocks as $block ) {
+			$name = $block['blockName'] ?? null;
+			if ( $name && ( empty( $names ) || in_array( $name, $names, true ) ) ) {
+				$found[] = $block;
+			}
+			if ( ! empty( $block['innerBlocks'] ) ) {
+				$found = array_merge(
+					$found,
+					$this->_flatten_blocks( $block['innerBlocks'], $names )
+				);
+			}
+		}
+		return $found;
 	}
 
 	/**
