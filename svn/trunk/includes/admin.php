@@ -122,9 +122,9 @@ class Admin {
 			return;
 		}
 
-		$message = __( 'AM LottiePlayer and AM LottiePlayer PRO should not be active at the same time. We\'ve automatically deactivated AM LottiePlayer.', 'am-lottieplayer' );
+		$message = __( 'AM LottiePlayer and AM LottiePlayer PRO should not be active at the same time. We\'ve automatically deactivated AM LottiePlayer.', TEXT_DOMAIN );
 		if ( 2 === $deactivated_notice_id ) {
-			$message = __( 'AM LottiePlayer and AM LottiePlayer PRO should not be active at the same time. We\'ve automatically deactivated AM LottiePlayer PRO.', 'am-lottieplayer' );
+			$message = __( 'AM LottiePlayer and AM LottiePlayer PRO should not be active at the same time. We\'ve automatically deactivated AM LottiePlayer PRO.', TEXT_DOMAIN );
 		}
 
 		?>
@@ -251,11 +251,11 @@ class Admin {
 	 */
 	public function add_action_link( array $links, ?string $_ ) {
 		// Add link to docs.
-		$support_link = '<a href="' . esc_url( 'https://www.aarstein.media/en/account#support' ) . '" target="_blank">' . __( 'Support', 'am-lottieplayer' ) . '</a>';
+		$support_link = '<a href="' . esc_url( AAMD_LOTTIE_HOMEPAGE . '/account#support' ) . '" target="_blank">' . __( 'Support', TEXT_DOMAIN ) . '</a>';
 		\array_unshift( $links, $support_link );
 
 		// Add link to premium landing page.
-		$premium_link = '<a style="font-weight: bold;" href="' . esc_url( AAMD_LOTTIE_HOMEPAGE ) . '" target="_blank">' . __( 'Get Premium', 'am-lottieplayer' ) . '</a>';
+		$premium_link = '<a style="font-weight: bold;" href="' . esc_url( AAMD_LOTTIE_HOMEPAGE ) . '" target="_blank">' . __( 'Get Premium', TEXT_DOMAIN ) . '</a>';
 		\array_unshift( $links, $premium_link );
 
 		return $links;

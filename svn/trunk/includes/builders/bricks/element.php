@@ -2,6 +2,7 @@
 namespace AAMD_Lottie;
 
 use function AAMD_Lottie\Utility\get_allowed_html;
+use function AAMD_Lottie\Utility\get_script;
 use function AAMD_Lottie\Utility\get_style;
 use function AAMD_Lottie\Utility\render_shortcode;
 
@@ -26,7 +27,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 
 	#[\Override]
 	public function get_label() {
-		return esc_html__( 'AM LottiePlayer', 'am-lottieplayer' );
+		return esc_html__( 'AM LottiePlayer', TEXT_DOMAIN );
 	}
 
 	#[\Override]
@@ -43,27 +44,27 @@ class Element_Lottie_Player extends \Bricks\Element {
 	#[\Override]
 	public function set_control_groups() {
 		$this->control_groups['animation'] = array(
-			'title' => esc_html__( 'Animation', 'am-lottieplayer' ),
+			'title' => esc_html__( 'Animation', TEXT_DOMAIN ),
 			'tab'   => 'content',
 		);
 
 		$this->control_groups['interactions'] = array(
-			'title' => esc_html__( 'Interactions', 'am-lottieplayer' ),
+			'title' => esc_html__( 'Interactions', TEXT_DOMAIN ),
 			'tab'   => 'content',
 		);
 
 		$this->control_groups['advanced'] = array(
-			'title' => esc_html__( 'Advanced', 'am-lottieplayer' ),
+			'title' => esc_html__( 'Advanced', TEXT_DOMAIN ),
 			'tab'   => 'content',
 		);
 
 		$this->control_groups['dimensions'] = array(
-			'title' => esc_html__( 'Dimensions', 'am-lottieplayer' ),
+			'title' => esc_html__( 'Dimensions', TEXT_DOMAIN ),
 			'tab'   => 'style',
 		);
 
 		$this->control_groups['background'] = array(
-			'title' => esc_html__( 'Background', 'am-lottieplayer' ),
+			'title' => esc_html__( 'Background', TEXT_DOMAIN ),
 			'tab'   => 'style',
 		);
 	}
@@ -75,62 +76,62 @@ class Element_Lottie_Player extends \Bricks\Element {
 		global $pro_feature;
 
 		// File
-		$this->controls['source_separator']   = array(
+		$this->controls['source_separator'] = array(
 			'tab'   => 'content',
 			'group' => 'animation',
-			'label' => esc_html__( 'Source', 'am-lottieplayer' ),
+			'label' => esc_html__( 'Source', TEXT_DOMAIN ),
 			'type'  => 'separator',
 		);
-		$this->controls['external_url']       = array(
+		$this->controls['external_url']     = array(
 			'tab'      => 'content',
 			'group'    => 'animation',
-			'label'    => esc_html__( 'Lottie URL', 'am-lottieplayer' ),
+			'label'    => esc_html__( 'Lottie URL', TEXT_DOMAIN ),
 			'type'     => 'text',
 			'required' => array( 'source_type', '=', 'url' ),
 		);
+		// `file` is an undocumented Bricks control. It always opens wp.media with
+		// type "any"; MIME filtering is applied in am-backend-bricks.js.
 		$this->controls['media_library_file'] = array(
 			'tab'         => 'content',
 			'group'       => 'animation',
-			'label'       => esc_html__( 'Lottie animation', 'am-lottieplayer' ),
+			'label'       => esc_html__( 'Lottie animation', TEXT_DOMAIN ),
 			'type'        => 'file',
-			'allowed'     => array( 'application/json', 'application/zip' ),
 			'pasteStyles' => false,
-
 			'required'    => array( 'source_type', '=', 'media' ),
 		);
-		$this->controls['source_type'] = array(
+		$this->controls['source_type']        = array(
 			'tab'         => 'content',
 			'group'       => 'animation',
-			'label'       => esc_html__( 'Source Type', 'am-lottieplayer' ),
+			'label'       => esc_html__( 'Source Type', TEXT_DOMAIN ),
 			'small'       => true,
 			'inline'      => true,
 			'type'        => 'select',
 			'options'     => array(
-				'media' => esc_html__( 'Media Library', 'am-lottieplayer' ),
-				'url'   => esc_html__( 'External URL', 'am-lottieplayer' ),
+				'media' => esc_html__( 'Media Library', TEXT_DOMAIN ),
+				'url'   => esc_html__( 'External URL', TEXT_DOMAIN ),
 			),
 			'default'     => 'media',
-			'placeholder' => esc_html__( 'Media Library', 'am-lottieplayer' ),
+			'placeholder' => esc_html__( 'Media Library', TEXT_DOMAIN ),
 		);
 
 		// Settings
 		$this->controls['settings_separator'] = array(
 			'tab'   => 'content',
 			'group' => 'animation',
-			'label' => esc_html__( 'Animation settings', 'am-lottieplayer' ),
+			'label' => esc_html__( 'Animation settings', TEXT_DOMAIN ),
 			'type'  => 'separator',
 		);
 		$this->controls['controls']           = array(
 			'tab'     => 'content',
 			'group'   => 'animation',
-			'label'   => esc_html__( 'Show controls', 'am-lottieplayer' ),
+			'label'   => esc_html__( 'Show controls', TEXT_DOMAIN ),
 			'type'    => 'checkbox',
 			'default' => true,
 		);
 		$this->controls['autoplay']           = array(
 			'tab'      => 'content',
 			'group'    => 'animation',
-			'label'    => esc_html__( 'Autoplay', 'am-lottieplayer' ),
+			'label'    => esc_html__( 'Autoplay', TEXT_DOMAIN ),
 			'type'     => 'checkbox',
 			'default'  => false,
 			'required' => array(
@@ -142,7 +143,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 		$this->controls['loop']               = array(
 			'tab'      => 'content',
 			'group'    => 'animation',
-			'label'    => esc_html__( 'Loop', 'am-lottieplayer' ),
+			'label'    => esc_html__( 'Loop', TEXT_DOMAIN ),
 			'type'     => 'checkbox',
 			'default'  => false,
 			'required' => array(
@@ -154,7 +155,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 		$this->controls['mode']               = array(
 			'tab'         => 'content',
 			'group'       => 'animation',
-			'label'       => $pro_feature . esc_html__( 'Boomerang', 'am-lottieplayer' ),
+			'label'       => $pro_feature . esc_html__( 'Boomerang', TEXT_DOMAIN ),
 			'description' => $pro_link,
 			'type'        => 'checkbox',
 			'default'     => false,
@@ -168,7 +169,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 		$this->controls['reverse']            = array(
 			'tab'      => 'content',
 			'group'    => 'animation',
-			'label'    => esc_html__( 'Reverse', 'am-lottieplayer' ),
+			'label'    => esc_html__( 'Reverse', TEXT_DOMAIN ),
 			'type'     => 'checkbox',
 			'default'  => false,
 			'required' => array(
@@ -180,14 +181,14 @@ class Element_Lottie_Player extends \Bricks\Element {
 		$this->controls['subframe']           = array(
 			'tab'     => 'content',
 			'group'   => 'animation',
-			'label'   => esc_html__( 'Subframe', 'am-lottieplayer' ),
+			'label'   => esc_html__( 'Subframe', TEXT_DOMAIN ),
 			'type'    => 'checkbox',
 			'default' => true,
 		);
 		$this->controls['speed']              = array(
 			'tab'      => 'content',
 			'group'    => 'animation',
-			'label'    => esc_html__( 'Speed', 'am-lottieplayer' ),
+			'label'    => esc_html__( 'Speed', TEXT_DOMAIN ),
 			'type'     => 'number',
 			'min'      => 1,
 			'step'     => 0.5,
@@ -201,7 +202,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 		$this->controls['segment_in']         = array(
 			'tab'         => 'content',
 			'group'       => 'animation',
-			'label'       => $pro_feature . esc_html__( 'Choose where to start', 'am-lottieplayer' ),
+			'label'       => $pro_feature . esc_html__( 'Choose where to start', TEXT_DOMAIN ),
 			'description' => $pro_link,
 			'type'        => 'number',
 			'min'         => 0,
@@ -211,7 +212,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 		$this->controls['segment_out']        = array(
 			'tab'         => 'content',
 			'group'       => 'animation',
-			'label'       => $pro_feature . esc_html__( 'And where to end', 'am-lottieplayer' ),
+			'label'       => $pro_feature . esc_html__( 'And where to end', TEXT_DOMAIN ),
 			'description' => $pro_link,
 			'type'        => 'number',
 			'min'         => 0,
@@ -221,7 +222,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 		$this->controls['intermission']       = array(
 			'tab'      => 'content',
 			'group'    => 'animation',
-			'label'    => esc_html__( 'Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer' ),
+			'label'    => esc_html__( 'Pause between loops, in miliseconds. 1s = 1000', TEXT_DOMAIN ),
 			'type'     => 'number',
 			'min'      => 0,
 			'step'     => 1,
@@ -237,7 +238,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 		$this->controls['animateonscroll']  = array(
 			'tab'         => 'content',
 			'group'       => 'interactions',
-			'label'       => $pro_feature . esc_html__( 'Animate on scroll', 'am-lottieplayer' ),
+			'label'       => $pro_feature . esc_html__( 'Animate on scroll', TEXT_DOMAIN ),
 			'description' => $pro_link,
 			'type'        => 'checkbox',
 			'default'     => false,
@@ -245,21 +246,21 @@ class Element_Lottie_Player extends \Bricks\Element {
 		$this->controls['playonclick']      = array(
 			'tab'     => 'content',
 			'group'   => 'interactions',
-			'label'   => esc_html__( 'Play on click', 'am-lottieplayer' ),
+			'label'   => esc_html__( 'Play on click', TEXT_DOMAIN ),
 			'type'    => 'checkbox',
 			'default' => false,
 		);
 		$this->controls['hover']            = array(
 			'tab'     => 'content',
 			'group'   => 'interactions',
-			'label'   => esc_html__( 'Play on mouseover', 'am-lottieplayer' ),
+			'label'   => esc_html__( 'Play on mouseover', TEXT_DOMAIN ),
 			'type'    => 'checkbox',
 			'default' => false,
 		);
 		$this->controls['mouseout']         = array(
 			'tab'      => 'content',
 			'group'    => 'interactions',
-			'label'    => esc_html__( 'On mouseout', 'am-lottieplayer' ),
+			'label'    => esc_html__( 'On mouseout', TEXT_DOMAIN ),
 			'type'     => 'select',
 			'options'  => array(
 				'void',
@@ -276,16 +277,16 @@ class Element_Lottie_Player extends \Bricks\Element {
 		);
 		$this->controls['selector']         = array(
 			'tab'         => 'content',
-			'description' => esc_html__( 'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer' ) . $pro_link,
+			'description' => esc_html__( 'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', TEXT_DOMAIN ) . $pro_link,
 			'group'       => 'interactions',
-			'label'       => $pro_feature . esc_html__( 'Trigger element', 'am-lottieplayer' ),
+			'label'       => $pro_feature . esc_html__( 'Trigger element', TEXT_DOMAIN ),
 			'type'        => 'text',
 			'default'     => '#',
 		);
 		$this->controls['exclude_selector'] = array(
 			'tab'         => 'content',
 			'group'       => 'interactions',
-			'label'       => $pro_feature . esc_html__( 'Apply interaction only to trigger element', 'am-lottieplayer' ),
+			'label'       => $pro_feature . esc_html__( 'Apply interaction only to trigger element', TEXT_DOMAIN ),
 			'description' => $pro_link,
 			'type'        => 'checkbox',
 			'default'     => false,
@@ -295,7 +296,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'group'   => 'interactions',
 			'label'   => esc_html__(
 				'Play on scroll, when visible in viewport',
-				'am-lottieplayer'
+				TEXT_DOMAIN
 			),
 			'type'    => 'checkbox',
 			'default' => false,
@@ -305,7 +306,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'group'    => 'interactions',
 			'label'    => esc_html__(
 				'Play only once',
-				'am-lottieplayer'
+				TEXT_DOMAIN
 			),
 			'type'     => 'checkbox',
 			'default'  => false,
@@ -320,7 +321,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'group'    => 'interactions',
 			'label'    => esc_html__(
 				'Delay, in milliseconds',
-				'am-lottieplayer'
+				TEXT_DOMAIN
 			),
 			'type'     => 'number',
 			'min'      => 0,
@@ -338,7 +339,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 		$this->controls['renderer'] = array(
 			'tab'         => 'content',
 			'group'       => 'advanced',
-			'label'       => $pro_feature . esc_html__( 'Renderer', 'am-lottieplayer' ),
+			'label'       => $pro_feature . esc_html__( 'Renderer', TEXT_DOMAIN ),
 			'description' => $pro_link,
 			'type'        => 'select',
 			'options'     => array(
@@ -352,35 +353,35 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'tab'         => 'content',
 			'description' => esc_html__(
 				'Describe the animation. This is helpful for screen readers and search engines.',
-				'am-lottieplayer'
+				TEXT_DOMAIN
 			),
 			'group'       => 'advanced',
-			'label'       => esc_html__( 'Description', 'am-lottieplayer' ),
+			'label'       => esc_html__( 'Description', TEXT_DOMAIN ),
 			'type'        => 'text',
 			'default'     => '',
 		);
 		$this->controls['class']          = array(
 			'tab'     => 'content',
 			'group'   => 'advanced',
-			'label'   => esc_html__( 'CSS Class Selector', 'am-lottieplayer' ),
+			'label'   => esc_html__( 'CSS Class Selector', TEXT_DOMAIN ),
 			'type'    => 'text',
 			'default' => '',
 		);
 		$this->controls['url']            = array(
 			'tab'         => 'content',
 			'group'       => 'advanced',
-			'label'       => esc_html__( 'Animation Link URL', 'am-lottieplayer' ),
-			'description' => esc_html__( 'If you would like your Lottie to be a link, input your destination URL here. No link will be created if this field is left blank.', 'am-lottieplayer' ),
+			'label'       => esc_html__( 'Animation Link URL', TEXT_DOMAIN ),
+			'description' => esc_html__( 'If you would like your Lottie to be a link, input your destination URL here. No link will be created if this field is left blank.', TEXT_DOMAIN ),
 			'type'        => 'text',
 			'default'     => '',
 		);
 		$this->controls['url_new_window'] = array(
-			'label'       => esc_html__( 'Animation Link Target', 'am-lottieplayer' ),
-			'description' => esc_html__( 'Here you can choose whether or not your link opens in a new window', 'am-lottieplayer' ),
+			'label'       => esc_html__( 'Animation Link Target', TEXT_DOMAIN ),
+			'description' => esc_html__( 'Here you can choose whether or not your link opens in a new window', TEXT_DOMAIN ),
 			'type'        => 'select',
 			'options'     => array(
-				false => esc_html__( 'In The Same Window', 'am-lottieplayer' ),
-				true  => esc_html__( 'In The New Tab', 'am-lottieplayer' ),
+				false => esc_html__( 'In The Same Window', TEXT_DOMAIN ),
+				true  => esc_html__( 'In The New Tab', TEXT_DOMAIN ),
 			),
 		);
 
@@ -393,7 +394,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'group'   => 'dimensions',
 			'label'   => esc_html__(
 				'Width',
-				'am-lottieplayer'
+				TEXT_DOMAIN
 			),
 			'type'    => 'slider',
 			'css'     => array(
@@ -418,7 +419,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'group'   => 'dimensions',
 			'label'   => esc_html__(
 				'Height',
-				'am-lottieplayer'
+				TEXT_DOMAIN
 			),
 			'type'    => 'slider',
 			'css'     => array(
@@ -441,7 +442,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 		$this->controls['align']      = array(
 			'tab'     => 'style',
 			'group'   => 'dimensions',
-			'label'   => esc_html__( 'Align', 'am-lottieplayer' ),
+			'label'   => esc_html__( 'Align', TEXT_DOMAIN ),
 			'type'    => 'select',
 			'options' => array(
 				'Left'   => 'left',
@@ -457,7 +458,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'group'   => 'dimensions',
 			'label'   => esc_html__(
 				'Object fit',
-				'am-lottieplayer'
+				TEXT_DOMAIN
 			),
 			'type'    => 'select',
 			'options' => array(
@@ -474,7 +475,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'group'   => 'background',
 			'label'   => esc_html__(
 				'Background Color',
-				'am-lottieplayer'
+				TEXT_DOMAIN
 			),
 			'type'    => 'color',
 			'inline'  => true,
@@ -502,6 +503,29 @@ class Element_Lottie_Player extends \Bricks\Element {
 				get_style( 'am-font.css' ),
 				AAMD_LOTTIE_IS_PRO ? array() : array( 'bricks-backend-style' ),
 				'1.0.0'
+			);
+		}
+
+		if ( \function_exists( 'bricks_is_builder_main' ) && \bricks_is_builder_main() ) {
+			wp_enqueue_script(
+				'am-backend-bricks',
+				get_script( 'bricks/am-backend-bricks.js' ),
+				array( 'bricks-builder', 'media-editor' ),
+				AAMD_LOTTIE_VERSION,
+				true
+			);
+
+			wp_localize_script(
+				'am-backend-bricks',
+				'amLottieplayerBricks',
+				array(
+					'controlKey' => 'media_library_file',
+					'mimeTypes'  => array(
+						'application/json',
+						'application/zip',
+						'application/zip+dotlottie',
+					),
+				)
 			);
 		}
 	}
@@ -537,11 +561,9 @@ class Element_Lottie_Player extends \Bricks\Element {
 		}
 
 		/** @var \AAMD_Lottie\Media $aamd_lottie_media */
-		global $aamd_lottie_media;
+		// global $aamd_lottie_media;
 
-		$placeholder = $aamd_lottie_media->get_default_file();
-
-		error_log( $placeholder );
+		// $placeholder = $aamd_lottie_media->get_default_file();
 
 		$source_type = isset( $settings['source_type'] ) ? $settings['source_type'] : false;
 		$url         = isset( $settings['external_url'] ) ? $this->render_dynamic_data( $settings['external_url'] ) : '';
@@ -579,7 +601,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 <div class="bricks-element-placeholder am-lottieplayer-placeholder" data-type="info">
 	<i class="ti-image brx-child-node"></i>
 	<div class="placeholder-inner brx-child-node">
-		<div class="placeholder-title"><?php echo __( 'No Lottie selected', 'am-lottieplayer' ); ?></div>
+		<div class="placeholder-title"><?php echo __( 'No Lottie selected', TEXT_DOMAIN ); ?></div>
 	</div>
 </div>
 			<?php

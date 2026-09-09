@@ -1,0 +1,66 @@
+{
+  "advanced": {
+    "admin_label": "module.meta.adminLabel",
+    "animation": "module.decoration.animation",
+    "background": "module.decoration.background",
+    "borders": {
+      "default": "lottie.decoration.border"
+    },
+    "box_shadow": {
+      "default": "lottie.decoration.boxShadow"
+    },
+    "disabled_on": "module.decoration.disabledOn",
+    "display_conditions": "module.decoration.conditions",
+    "filters": {
+      "default": "module.decoration.filters"
+    },
+    "height": "module.decoration.sizing",
+    "margin_padding": "module.decoration.spacing",
+    "max_width": "module.decoration.sizing",
+    "module": "module.advanced.htmlAttributes",
+    "overflow": "module.decoration.overflow",
+    "position_fields": "module.decoration.position",
+    "scroll": "module.decoration.scroll",
+    "sticky": "module.decoration.sticky",
+    "transform": "module.decoration.transform",
+    "transition": "module.decoration.transition",
+    "z_index": "module.decoration.zIndex"
+  },
+  "css": {
+    "after": "css.*.after",
+    "before": "css.*.before",
+    "free_form": "css.*.freeForm",
+    "main_element": "css.*.mainElement"
+  },
+  "module": {
+    "align": "module.advanced.align.*",
+    "force_fullwidth": "module.advanced.sizing.*.forceFullwidth",
+    "show_bottom_space": "module.advanced.spacing.*.showBottomSpace",
+    "src": "lottie.innerContent.*.src",
+    "controls": "lottie.innerContent.*.controls",
+    "autoplay": "lottie.innerContent.*.autoplay",
+    "loop": "lottie.innerContent.*.loop",
+    "mode": "lottie.innerContent.*.mode",
+    "reverse": "lottie.innerContent.*.reverse",
+    "subframe": "lottie.innerContent.*.subframe",
+    "speed": "lottie.innerContent.*.speed",
+    "intermission": "lottie.innerContent.*.intermission",
+    "segment_in": "lottie.innerContent.*.segment_in",
+    "segment_out": "lottie.innerContent.*.segment_out",
+    "animateonscroll": "lottie.innerContent.*.animateonscroll",
+    "playonclick": "lottie.innerContent.*.playonclick",
+    "hover": "lottie.innerContent.*.hover",
+    "mouseout": "lottie.innerContent.*.mouseout",
+    "selector": "lottie.innerContent.*.selector",
+    "exclude_selector": "lottie.innerContent.*.exclude_selector",
+    "playonvisible": "lottie.innerContent.*.playonvisible",
+    "delay": "lottie.innerContent.*.delay",
+    "once": "lottie.innerContent.*.once",
+    "object_fit": "lottie.innerContent.*.objectfit",
+    "renderer": "lottie.innerContent.*.renderer",
+    "url": "lottie.innerContent.*.url",
+    "url_new_window": "lottie.innerContent.*.url_new_window",
+    "alt": "lottie.innerContent.*.description",
+    "description": "lottie.innerContent.*.description"
+  }
+}

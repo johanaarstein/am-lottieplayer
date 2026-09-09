@@ -14,6 +14,52 @@ function boolean_to_string( mixed $input ) {
 }
 
 /**
+ * Parse semver strings
+ */
+function parse_version( string $version ) {
+	$arr = explode( '.', $version );
+
+	if ( count( $arr ) > 3 ) {
+		throw new \Error( 'Misformed version string' );
+	}
+
+	return array(
+		'major' => (int) ( $arr[0] ),
+		'minor' => (int) ( $arr[1] ?? 0 ),
+		'patch' => (int) ( $arr[2] ?? 0 ),
+	);
+}
+
+/**
+ * Compare semver strings
+ */
+function compare_versions( string $oldVersion, string $newVersion ) {
+	$old = parse_version( $oldVersion );
+	[
+		'major' => $major, 'minor' => $minor, 'patch' => $patch
+	]    = parse_version( $newVersion );
+
+	if ( $major > $old['major'] ) {
+		return true;
+	}
+
+	if ( $major < $old['major'] ) {
+		return false;
+	}
+
+	if ( $minor > $old['minor'] ) {
+		return true;
+	}
+
+	if ( $minor < $old['minor'] ) {
+		return false;
+	}
+
+	// Allow same version
+	return $patch >= $old['patch'];
+}
+
+/**
  * Get allowed attributes for shortcode
  */
 function get_allowed_html() {
