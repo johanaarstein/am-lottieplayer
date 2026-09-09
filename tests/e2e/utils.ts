@@ -11,17 +11,30 @@ export const DIVI_TEXT_DOMAIN = 'Divi',
 
 type PostType = 'post' | 'page'
 
-export const getPostId = (page: Page, postType: PostType = 'post') => {
-  const { searchParams } = new URL(page.url())
+export const handleBricksLicense = async (page: Page) => {
+  const activateButton = page.getByRole('button', { name: __('Activate license', BRICKS_TEXT_DOMAIN) })
 
-  let param: string = postType
-
-  if (postType === 'page') {
-    param = 'page_id'
+  if (await activateButton.isHidden()) {
+    return
   }
 
-  return searchParams.get(param)
+  if (await page.locator('.status.no_license').isVisible()) {
+    await page.getByRole('button', { name: __('Deactivate license', BRICKS_TEXT_DOMAIN) }).click()
+  }
+  await page.locator('[type=password]').fill(process.env.BRICKS_LICENSE ?? '')
+  await activateButton.click()
 },
+  getPostId = (page: Page, postType: PostType = 'post') => {
+    const { searchParams } = new URL(page.url())
+
+    let param: string = postType
+
+    if (postType === 'page') {
+      param = 'page_id'
+    }
+
+    return searchParams.get(param)
+  },
   getPostURL = (page: Page, postType: PostType = 'post') => {
     const { origin } = new URL(page.url())
 

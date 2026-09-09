@@ -36,16 +36,6 @@ class AMLottiePlayerModule implements DependencyInterface {
 				'render_callback' => array( self::class, 'render_callback' ),
 			)
 		);
-
-		$metadata = json_decode(
-			file_get_contents( __DIR__ . '/module.json' ),
-			true
-		);
-
-		ModuleRegistration::process_conversion_outline(
-			$metadata,
-			__DIR__ . '/conversion-outline.json'
-		);
 	}
 
 	/**

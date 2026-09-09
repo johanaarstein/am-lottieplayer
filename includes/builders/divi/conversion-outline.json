@@ -56,7 +56,7 @@
     "playonvisible": "lottie.innerContent.*.playonvisible",
     "delay": "lottie.innerContent.*.delay",
     "once": "lottie.innerContent.*.once",
-    "objectfit": "lottie.innerContent.*.objectfit",
+    "object_fit": "lottie.innerContent.*.objectfit",
     "renderer": "lottie.innerContent.*.renderer",
     "url": "lottie.innerContent.*.url",
     "url_new_window": "lottie.innerContent.*.url_new_window",

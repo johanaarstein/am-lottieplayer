@@ -1,15 +1,19 @@
 import { defineConfig, devices } from '@playwright/test'
-import { join } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import dotenv from 'dotenv'
 
 const STORAGE_STATE = join(process.cwd(),
-  'artifacts/storage-states/admin.json')
+  'artifacts/storage-states/admin.json'),
+  __dirname = dirname(fileURLToPath(import.meta.url))
+
+dotenv.config({ path: resolve(__dirname, '.env.local') })
 
 process.env.STORAGE_STATE_PATH = process.env.STORAGE_STATE_PATH ?? STORAGE_STATE
 
 export default defineConfig({
   fullyParallel: false, // wp-env is a single instance, keep this false
-  globalSetup: fileURLToPath(new URL('./tests/global.setup.ts', import.meta.url)),
+  globalSetup: resolve(__dirname, 'tests', 'global.setup.ts'),
   projects: [
     {
       name: 'gutenberg',

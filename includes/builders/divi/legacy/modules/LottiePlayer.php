@@ -9,8 +9,6 @@ use function AAMD_Lottie\Utility\render_shortcode;
 class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 
 	/** Load customized svg icon and use it on builder as module icon. */
-	public string $icon_path;
-
 	public function init() {
 
 		$this->name       = esc_html__( 'AM Lottie', TEXT_DOMAIN );

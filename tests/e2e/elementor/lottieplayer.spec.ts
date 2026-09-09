@@ -1,4 +1,3 @@
-import { expect } from '@playwright/test'
 import {
   ELEMENTOR_TEXT_DOMAIN,
   getElementorFrame,
@@ -6,7 +5,7 @@ import {
   insertWidgetElementor,
   selectAttachmentFromModal
 } from '@test/e2e/utils'
-import { test } from '@wordpress/e2e-test-utils-playwright'
+import { expect, test } from '@wordpress/e2e-test-utils-playwright'
 import { __ } from '@wordpress/i18n'
 
 test.describe('dotlottiePlayer Widget', () => {
@@ -17,6 +16,11 @@ test.describe('dotlottiePlayer Widget', () => {
 
   test.beforeEach(async ({ admin, page }) => {
     await admin.createNewPost({ postType: 'page' })
+    const patternDialog = page.getByRole('dialog', { name: __('Choose a pattern', ELEMENTOR_TEXT_DOMAIN) })
+    if (await patternDialog.isVisible()) {
+      await patternDialog.getByRole('button', { name: __('Close', ELEMENTOR_TEXT_DOMAIN)}).click()
+    }
+
     await page.locator('#elementor-switch-mode-button').click()
   })
 

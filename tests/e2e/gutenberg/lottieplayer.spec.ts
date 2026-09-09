@@ -1,6 +1,5 @@
-import { expect } from '@playwright/test'
 // import { deletePost } from '@test/e2e/utils'
-import { test } from '@wordpress/e2e-test-utils-playwright'
+import { expect, test } from '@wordpress/e2e-test-utils-playwright'
 
 
 test.describe('dotLottiePlayer Block', () => {

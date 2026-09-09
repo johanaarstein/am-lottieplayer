@@ -64,6 +64,7 @@
 		"@wordpress/scripts": "^34.2.0",
 		"classnames": "^2.5.1",
 		"css-minify": "^2.1.0",
+		"dotenv": "^17.4.2",
 		"eslint": "^9.39.5",
 		"eslint-config-sheriff": "^31.4.0",
 		"eslint-plugin-perfectionist": "^5.11.0",
@@ -80,7 +81,8 @@
 	"scripts": {
 		"open": "open -a Firefox 'http://localhost:8888'",
 		"start": "wp-env start",
-		"predev": "open -a Docker && wp-env start --update && pnpm open && pnpm dep",
+		"docker": "open -a Docker && while ! pgrep -i Docker > /dev/null; do sleep 0.5; done",
+		"predev": "pnpm docker && wp-env start --update && pnpm open && pnpm dep",
 		"dev": "wp-scripts start --hot --config webpack.config.ts; wp-env stop",
 		"css-minify": "css-minify -f styles/admin.css -o styles",
 		"prebuild": "pnpm dep && pnpm css-minify",

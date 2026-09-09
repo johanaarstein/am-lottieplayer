@@ -19,8 +19,14 @@ class Builder {
 	 */
 	public function __construct() {
 		// Builder initializations
+		add_action(
+			'after_setup_theme',
+			function () {
+				$this->_set_version();
+				$this->init_divi();
+			}
+		);
 		add_action( 'init', array( $this, 'init_plugin' ), 11 );
-		add_action( 'after_setup_theme', array( $this, 'init_divi' ) );
 		add_action( 'elementor/widgets/register', array( $this, 'init_elementor' ) );
 		add_action( 'vc_before_init', array( $this, 'init_vc' ) );
 
@@ -37,8 +43,6 @@ class Builder {
 	 * Initialize Gutenberg Blocks, global shortcode and register JavaScript
 	 */
 	public function init_plugin() {
-
-		$this->_set_version();
 
 		// Shortcode is the same as Text Domain.
 		add_shortcode( TEXT_DOMAIN, 'AAMD_Lottie\Utility\render_shortcode' );
@@ -102,11 +106,9 @@ class Builder {
 	public function init_divi() {
 		if ( \function_exists( 'et_builder_d5_enabled' ) && et_builder_d5_enabled() ) {
 			include_file( 'builders/divi/loader' );
-
-			return;
 		}
 
-		// DIVI <= 4 Legacy
+		// D5 still renders unconverted layouts via the D4 shortcode.
 		if ( \function_exists( 'et_setup_builder' ) ) {
 			add_action(
 				'divi_extensions_init',
@@ -125,7 +127,6 @@ class Builder {
 			return;
 		}
 
-		$this->_set_version();
 		include_file( 'builders/elementor/widgets/elementor-am-lottieplayer', $widgets_manager );
 
 		$widgets_manager->register( new Elementor() );
@@ -148,8 +149,6 @@ class Builder {
 		if ( ! function_exists( 'vc_map' ) ) {
 			return;
 		}
-
-		$this->_set_version();
 
 		include_file( 'builders/vc/vc-am-lottieplayer' );
 	}
