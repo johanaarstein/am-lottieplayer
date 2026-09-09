@@ -50,7 +50,11 @@ test.describe('dotlottiePlayer Widget', () => {
     await page.locator('div.elementor-control-controls .elementor-switch').click()
     await expect(controls).toBeHidden()
 
-    await page.getByRole('button', { name: __('Publish', ELEMENTOR_TEXT_DOMAIN) }).click()
+    const publishButton = page.getByRole('button', { name: __('Publish', ELEMENTOR_TEXT_DOMAIN) })
+
+    await expect(publishButton).toBeEnabled()
+    await publishButton.click()
+    await expect(publishButton).toBeDisabled()
 
     // Elementor treats pages as posts, when it comes to url pattern.
     await page.goto(getPostURL(page))
