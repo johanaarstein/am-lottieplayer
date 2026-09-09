@@ -1,10 +1,11 @@
-import { expect } from '@playwright/test'
 import {
   BRICKS_TEXT_DOMAIN,
- getBricksFrame, getPostURL, insertElementBricks,
- selectAttachmentFromModal
+  getBricksFrame,
+  getPostURL,
+  insertElementBricks,
+  selectAttachmentFromModal
 } from '@test/e2e/utils'
-import { test } from '@wordpress/e2e-test-utils-playwright'
+import { test, expect } from '@wordpress/e2e-test-utils-playwright'
 import { __ } from '@wordpress/i18n'
 
 test.describe('dotLottiePlayer Element', () => {
@@ -12,14 +13,12 @@ test.describe('dotLottiePlayer Element', () => {
     await requestUtils.activateTheme('bricks')
   })
 
-  // Wire up the WordPress test utilities
   test.beforeEach(async ({ admin, page }) => {
     await admin.createNewPost({ postType: 'page' })
     await page.locator('#toolbar-edit_with_bricks').click()
   })
 
   test.afterEach(async ({ requestUtils }) => {
-    // await deletePost(page, requestUtils)
     await requestUtils.deleteAllPages()
   })
 
@@ -40,7 +39,7 @@ test.describe('dotLottiePlayer Element', () => {
     await page.locator('[data-control-group=animation]').click()
     await page.getByRole('button', { name: 'Select file' }).click()
 
-    await selectAttachmentFromModal(page, __('Insert', BRICKS_TEXT_DOMAIN))
+    await selectAttachmentFromModal(page)
 
     const dotLottiePlayer = frame.locator('dotlottie-player').first(),
       controls = dotLottiePlayer.locator('slot[name=controls]')

@@ -15,7 +15,7 @@
   "plugins": [
     ".",
     "../premium-plugins/js_composer",
-    "https://downloads.wordpress.org/plugin/elementor.latest-stable.zip"
+    "https://downloads.wordpress.org/plugin/elementor.zip"
   ],
   "themes": [
     "../premium-themes/flatsome",

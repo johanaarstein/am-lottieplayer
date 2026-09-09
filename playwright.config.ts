@@ -21,6 +21,16 @@ export default defineConfig({
       testMatch: '**/bricks/**/*.spec.ts',
       use: { ...devices['Desktop Chrome'] }
     },
+    {
+      name: 'divi',
+      testMatch: '**/divi/**/*.spec.ts',
+      use: { ...devices['Desktop Chrome'] }
+    },
+    {
+      name: 'elementor',
+      testMatch: '**/elementor/**/*.spec.ts',
+      use: { ...devices['Desktop Chrome'] }
+    },
   ],
   reporter: 'html',
   retries: 1,

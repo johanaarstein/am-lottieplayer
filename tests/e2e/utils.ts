@@ -1,14 +1,13 @@
-import type { RequestUtils } from '@wordpress/e2e-test-utils-playwright'
+import type { FrameLocator, Page } from '@playwright/test'
 
-import {
-  expect, type FrameLocator, type Page
-} from '@playwright/test'
+import { expect, type RequestUtils } from '@wordpress/e2e-test-utils-playwright'
 import { __ } from '@wordpress/i18n'
 
 import { domain } from '@/utils/constants'
 
 export const DIVI_TEXT_DOMAIN = 'Divi',
-  BRICKS_TEXT_DOMAIN = 'bricks'
+  BRICKS_TEXT_DOMAIN = 'bricks',
+  ELEMENTOR_TEXT_DOMAIN = 'elementor'
 
 type PostType = 'post' | 'page'
 
@@ -47,6 +46,9 @@ export const getPostId = (page: Page, postType: PostType = 'post') => {
   },
   getDiviFrame = (page: Page) => {
     return page.frameLocator('#et-vb-app-frame')
+  },
+  getElementorFrame = (page: Page) => {
+    return page.frameLocator('#elementor-preview-iframe')
   },
   insertElementBricks = async (page: Page, frame: FrameLocator) => {
     const searchfield = page.locator('#bricks-panel-search')
@@ -87,11 +89,22 @@ export const getPostId = (page: Page, postType: PostType = 'post') => {
 
     return placeholder
   },
-  selectAttachmentFromModal = async (
-    page: Page, name = 'Insert', id?: number
-  ) => {
+  insertWidgetElementor = async (page: Page, frame: FrameLocator) => {
+    const searchfield = page.locator('#elementor-panel-elements-search-input')
+
+    await searchfield.waitFor({ state: 'visible' })
+    await searchfield.fill('AM Lottie')
+
+    const widgetSelector = page.getByRole('button', { name: 'AM LottiePlayer' })
+
+    await expect(widgetSelector).toBeVisible()
+    await widgetSelector.click()
+
+    return frame.locator('div.elementor-widget-am_lottieplayer_widget.elementor-widget-empty')
+  },
+  selectAttachmentFromModal = async (page: Page, id?: number) => {
     const uploadDialog = page.locator('#wp-media-modal'),
-      insertButton = uploadDialog.getByRole('button', { name })
+      insertButton = uploadDialog.locator('button.media-button')
 
     await expect(uploadDialog).toBeVisible()
 

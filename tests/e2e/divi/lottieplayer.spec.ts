@@ -34,7 +34,7 @@ test.describe('dotLottiePlayer Module', () => {
 
     await page.getByRole('button', { name: __('Upload', DIVI_TEXT_DOMAIN) }).click()
 
-    await selectAttachmentFromModal(page, __('Use animation', DIVI_TEXT_DOMAIN))
+    await selectAttachmentFromModal(page)
 
     const controls = placeholder.locator('slot[name=controls]')
 
