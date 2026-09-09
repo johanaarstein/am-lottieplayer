@@ -1,13 +1,14 @@
 import type { RequestUtils } from '@wordpress/e2e-test-utils-playwright'
 
 import {
- expect, type FrameLocator, type Page
+  expect, type FrameLocator, type Page
 } from '@playwright/test'
 import { __ } from '@wordpress/i18n'
 
 import { domain } from '@/utils/constants'
 
-export const DIVI_TEXT_DOMAIN = 'Divi'
+export const DIVI_TEXT_DOMAIN = 'Divi',
+  BRICKS_TEXT_DOMAIN = 'bricks'
 
 type PostType = 'post' | 'page'
 
@@ -28,19 +29,19 @@ export const getPostId = (page: Page, postType: PostType = 'post') => {
     return `${origin}?p=${getPostId(page, postType)}`
   },
   deletePost = async (
-page: Page, requestUtils: RequestUtils, postType: PostType = 'post'
-) => {
-  const postId = getPostId(page)
+    page: Page, requestUtils: RequestUtils, postType: PostType = 'post'
+  ) => {
+    const postId = getPostId(page)
 
-  if (!postId) {
-    return
-  }
+    if (!postId) {
+      return
+    }
 
-  await requestUtils.rest({
-    method: 'DELETE',
-    path: `/wp/v2/${postType}s/${postId}`
-  })
-},
+    await requestUtils.rest({
+      method: 'DELETE',
+      path: `/wp/v2/${postType}s/${postId}`
+    })
+  },
   getBricksFrame = (page: Page) => {
     return page.frameLocator('#bricks-builder-iframe')
   },
@@ -53,7 +54,7 @@ page: Page, requestUtils: RequestUtils, postType: PostType = 'post'
     await searchfield.waitFor({ state: 'visible' })
     await searchfield.fill('AM LottiePlayer')
 
-    const elementSelector = page.locator('div.element-label[title="AM LottiePlayer"]')
+    const elementSelector = page.locator('li.bricks-add-element[data-element-name=am-lottieplayer]')
 
     await expect(elementSelector).toBeVisible()
     await elementSelector.click()
@@ -62,31 +63,35 @@ page: Page, requestUtils: RequestUtils, postType: PostType = 'post'
 
     return placeholder
   },
-  insertModuleDivi = async (frame: FrameLocator) => {
+  insertModuleDivi = async (page: Page, frame: FrameLocator) => {
     await frame.getByRole('button', { name: __('Add row', DIVI_TEXT_DOMAIN) }).click()
 
-    const modal = frame.locator('.et-vb-modal--add-module')
+    const modal = page.locator('.et-vb-modal--add-module')
 
     await expect(modal).toBeVisible()
-    await modal.getByAltText('equal-columns_1').click()
+    await modal.getByRole('button', { name: 'equal-columns_1' }).click()
 
-    const searchfield = frame.locator('#et-vb-field-input-text-filter-option')
+    const searchfield = modal.locator('#et-vb-field-input-text-filter-option')
 
     await searchfield.waitFor({ state: 'visible' })
     await searchfield.fill('AM Lottie')
 
-    const moduleSelector = frame.getByRole('button', { name: 'AM Lottie' })
+    const moduleSelector = modal.getByRole('button', { name: 'AM Lottie' })
 
     await expect(moduleSelector).toBeVisible()
     await moduleSelector.click()
 
     const placeholder = frame.locator('dotlottie-player')
 
+    await expect(placeholder.locator('.error')).toBeHidden()
+
     return placeholder
   },
-  selectAttachmentFromModal = async (page: Page, id?: number) => {
+  selectAttachmentFromModal = async (
+    page: Page, name = 'Insert', id?: number
+  ) => {
     const uploadDialog = page.locator('#wp-media-modal'),
-      insertButton = uploadDialog.getByRole('button', { name: 'Insert' })
+      insertButton = uploadDialog.getByRole('button', { name })
 
     await expect(uploadDialog).toBeVisible()
 

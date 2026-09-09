@@ -21,20 +21,20 @@ test.describe('dotLottiePlayer Module', () => {
 
   test('can insert Lottie Module', async ({ page }) => {
     const frame = getDiviFrame(page),
-      placeholder = await insertModuleDivi(frame)
+      placeholder = await insertModuleDivi(page, frame)
 
     await expect(placeholder).toBeVisible()
   })
 
   test('can configure and save Lottie Module', async ({ page }) => {
     const frame = getDiviFrame(page),
-      placeholder = await insertModuleDivi(frame)
+      placeholder = await insertModuleDivi(page, frame)
 
     await placeholder.click()
 
-    await page.getByRole('button', { name: __('Select file', DIVI_TEXT_DOMAIN) }).click()
+    await page.getByRole('button', { name: __('Upload', DIVI_TEXT_DOMAIN) }).click()
 
-    await selectAttachmentFromModal(page)
+    await selectAttachmentFromModal(page, __('Use animation', DIVI_TEXT_DOMAIN))
 
     const controls = placeholder.locator('slot[name=controls]')
 

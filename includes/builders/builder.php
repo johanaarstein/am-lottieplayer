@@ -40,7 +40,8 @@ class Builder {
 
 		$this->_set_version();
 
-		add_shortcode( 'am-lottieplayer', 'AAMD_Lottie\Utility\render_shortcode' );
+		// Shortcode is the same as Text Domain.
+		add_shortcode( TEXT_DOMAIN, 'AAMD_Lottie\Utility\render_shortcode' );
 
 		register_block_type(
 			get_build_path( 'lottieplayer' )
@@ -63,13 +64,13 @@ class Builder {
 		global $pro_feature;
 		if ( ! isset( $pro_feature ) ) {
 			$pro_feature = AAMD_LOTTIE_IS_PRO ?
-			'' : esc_html__( 'Pro Feature: ', 'am-lottieplayer' );
+			'' : esc_html__( 'Pro Feature: ', TEXT_DOMAIN );
 		}
 
 		global $pro_link;
 		if ( ! isset( $pro_link ) ) {
 			$pro_link = AAMD_LOTTIE_IS_PRO ?
-			'' : esc_html__( 'This feature will only work in the premium version.', 'am-lottieplayer' ) . ' <a href="' . esc_url( 'https://www.aarstein.media/en/am-lottieplayer/pro', 'am-lottieplayer' ) . '" target="_blank" rel="noreferrer">' . esc_html__( 'Read about additional features in AM LottiePlayer PRO', 'am-lottieplayer' ) . '<span class="dashicons dashicons-external" style="font-size: 1em;"></span></a>';
+			'' : esc_html__( 'This feature will only work in the premium version.', TEXT_DOMAIN ) . ' <a href="' . esc_url( 'https://www.am-lottieplayer.com', TEXT_DOMAIN ) . '" target="_blank" rel="noreferrer">' . esc_html__( 'Read about additional features in AM LottiePlayer PRO', TEXT_DOMAIN ) . '<span class="dashicons dashicons-external" style="font-size: 1em;"></span></a>';
 		}
 
 		// INIT BRICKS
@@ -170,7 +171,7 @@ class Builder {
 		$divi_layout_contents = $this->_get_divi_layout_contents();
 
 		$has_gutenberg = has_block( 'gb/lottieplayer' ) || has_block( 'gb/lottiecover' );
-		$has_shortcode = has_shortcode( $content, 'am-lottieplayer' ) && ! $is_vc_builder;
+		$has_shortcode = has_shortcode( $content, TEXT_DOMAIN ) && ! $is_vc_builder;
 		$has_divi      = ! $is_divi_builder && (
 			! empty( $divi_layout_contents ) ||
 			has_shortcode( $content, 'et_pb_lottieplayer' ) ||
@@ -292,7 +293,7 @@ class Builder {
 		}
 
 		$shortcodes = array_merge(
-			get_shortcode_instances( $content, 'am-lottieplayer' ) ?? array(),
+			get_shortcode_instances( $content, TEXT_DOMAIN ) ?? array(),
 			get_shortcode_instances( $content, 'et_pb_lottieplayer' ) ?? array()
 		);
 

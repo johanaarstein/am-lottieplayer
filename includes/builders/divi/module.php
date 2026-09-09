@@ -4,7 +4,6 @@ namespace AAMD_Lottie;
 \defined( 'ABSPATH' ) || exit;
 
 use ET\Builder\Framework\DependencyManagement\Interfaces\DependencyInterface;
-// use ET\Builder\Framework\Utility\HTMLUtility;
 use ET\Builder\FrontEnd\Module\Style;
 use ET\Builder\Packages\Module\Module;
 use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
@@ -22,15 +21,15 @@ class AMLottiePlayerModule implements DependencyInterface {
 	public function load() {
 		// Register module.
 		add_action( 'init', array( self::class, 'register_module' ) );
+
+		add_filter( 'ajax_query_attachments_args', array( $this, 'expand_lottie_attachment_query' ) );
+		add_filter( 'rest_attachment_query', array( $this, 'expand_lottie_attachment_query' ) );
 	}
 
 	/**
 	 * Register module.
 	 */
 	public static function register_module() {
-		// Path to module metadata that is shared between Frontend and Visual Builder.
-		// $module_json_folder_path = dirname( __DIR__, 1 ) . '/visual-builder/src';
-
 		ModuleRegistration::register_module(
 			__DIR__,
 			array(
@@ -53,7 +52,6 @@ class AMLottiePlayerModule implements DependencyInterface {
 	 * Render module style.
 	 */
 	public static function module_styles( array $args ) {
-		// $attrs    = $args['attrs'] ?? array();
 		$elements = $args['elements'];
 
 		Style::add(
@@ -115,27 +113,82 @@ class AMLottiePlayerModule implements DependencyInterface {
 	}
 
 	/**
+	 * Normalize a media-library mime query into individual type strings.
+	 *
+	 * @param mixed $mime Mime query from WP_Query / REST.
+	 * @return string[]
+	 */
+	private function _normalize_mime_query( $mime ) {
+		if ( is_array( $mime ) ) {
+			$values = array();
+			foreach ( $mime as $item ) {
+				$values = array_merge( $values, $this->_normalize_mime_query( $item ) );
+			}
+			return array_values( array_filter( $values ) );
+		}
+
+		if ( ! is_string( $mime ) || $mime === '' ) {
+			return array();
+		}
+
+		return array_values(
+			array_filter(
+				array_map( 'trim', explode( ',', $mime ) )
+			)
+		);
+	}
+
+	/**
+	 * Whether this attachment query is a Lottie / JSON media picker.
+	 *
+	 * @param mixed $mime Mime query from WP_Query / REST.
+	 */
+	private function _is_lottie_mime_query( $mime ) {
+		foreach ( $this->_normalize_mime_query( $mime ) as $value ) {
+			$value = strtolower( $value );
+			if (
+				$value === 'json' ||
+				str_contains( $value, 'json' ) ||
+				str_contains( $value, 'lottie' )
+			) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Expand Divi 5 JSON media queries so JSON and .lottie files both appear.
+	 *
+	 * @param array $args Attachment query args.
+	 * @return array
+	 */
+	public function expand_lottie_attachment_query( array $args ) {
+		if (
+			! $this->_is_lottie_mime_query( $args['post_mime_type'] ?? '' ) ||
+			/**
+			 * Divi creates as comma separated list of mimetypes.
+			 * By checking is_array we don't affect the behavior
+			 * of Combine/Convert – which also utilizes wp.media.
+			 * */
+			is_array( $args['post_mime_type'] )
+		) {
+			return $args;
+		}
+
+		/** @var Media $aamd_lottie_media */
+		global $aamd_lottie_media;
+
+		$args['post_mime_type'] = $aamd_lottie_media->lottie_mime_types();
+
+		return $args;
+	}
+
+	/**
 	 * Render module HTML output.
 	 */
 	public static function render_callback( array $attrs, $content, \WP_Block $block, object $elements ) {
-
-		// $module_inner = HTMLUtility::render(
-		// array(
-		// 'tag'               => 'div',
-		// 'attributes'        => array(
-		// 'class' => 'et_pb_image_wrap',
-		// ),
-		// 'childrenSanitizer' => 'et_core_esc_previously',
-		// 'children'          => '',
-		// )
-		// );
-
-		// // This are the module elements that will be rendered in the frontend.
-		// $module_elements = $elements->style_components(
-		// array(
-		// 'attrName' => 'module',
-		// )
-		// );
 
 		$lottie_atts = $attrs['lottie']['innerContent']['desktop']['value'] ?? array();
 
@@ -163,8 +216,7 @@ class AMLottiePlayerModule implements DependencyInterface {
 			),
 		);
 
-		// This are the children of the module container, which are the module elements and the module inner.
-		$module_container_children = render_shortcode( $mergedAttrs ); // $module_elements . $module_inner;
+		$dotlottie_player = render_shortcode( $mergedAttrs );
 
 		return Module::render(
 			array(
@@ -182,7 +234,7 @@ class AMLottiePlayerModule implements DependencyInterface {
 				'moduleCategory'      => $block->block_type->category,
 				'stylesComponent'     => array( self::class, 'module_styles' ),
 				'scriptDataComponent' => array( self::class, 'module_script_data' ),
-				'children'            => $module_container_children,
+				'children'            => $dotlottie_player,
 			)
 		);
 	}

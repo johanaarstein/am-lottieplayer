@@ -51,7 +51,7 @@ class Elementor extends Widget_Base {
 	}
 
 	public function get_title() {
-		return esc_html__( 'AM LottiePlayer', 'am-lottieplayer' );
+		return esc_html__( 'AM LottiePlayer', TEXT_DOMAIN );
 	}
 
 	public function get_icon() {
@@ -74,7 +74,7 @@ class Elementor extends Widget_Base {
 		$this->start_controls_section(
 			'animation_section',
 			array(
-				'label' => esc_html__( 'AM Lottie', 'am-lottieplayer' ),
+				'label' => esc_html__( 'AM Lottie', TEXT_DOMAIN ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -82,11 +82,12 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'lottie',
 			array(
-				'label'      => esc_html__( 'Choose animation', 'am-lottieplayer' ),
+				'label'      => esc_html__( 'Choose animation', TEXT_DOMAIN ),
 				'type'       => Controls_Manager::MEDIA,
 				'media_type' => array(
 					'application/json',
 					'application/zip',
+					'application/zip+dotlottie',
 				),
 				'default'    => array(
 					'url' => esc_url( $aamd_lottie_media->get_default_file() ),
@@ -105,7 +106,7 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'num_of_animations',
 			array(
-				'label'       => $pro_feature . esc_html__( 'Number of animations', 'am-lottieplayer' ),
+				'label'       => $pro_feature . esc_html__( 'Number of animations', TEXT_DOMAIN ),
 				'description' => $pro_link,
 				'type'        => Controls_Manager::NUMBER,
 				'default'     => 1,
@@ -117,10 +118,10 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'controls',
 			array(
-				'label'     => esc_html__( 'Controls', 'am-lottieplayer' ),
+				'label'     => esc_html__( 'Controls', TEXT_DOMAIN ),
 				'type'      => Controls_Manager::SWITCHER,
-				'label_on'  => esc_html__( 'Show', 'am-lottieplayer' ),
-				'label_off' => esc_html__( 'Hide', 'am-lottieplayer' ),
+				'label_on'  => esc_html__( 'Show', TEXT_DOMAIN ),
+				'label_off' => esc_html__( 'Hide', TEXT_DOMAIN ),
 				'default'   => 'yes',
 			)
 		);
@@ -128,10 +129,10 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'autoplay',
 			array(
-				'label'      => esc_html__( 'Autoplay', 'am-lottieplayer' ),
+				'label'      => esc_html__( 'Autoplay', TEXT_DOMAIN ),
 				'type'       => Controls_Manager::SWITCHER,
-				'label_on'   => esc_html__( 'On', 'am-lottieplayer' ),
-				'label_off'  => esc_html__( 'Off', 'am-lottieplayer' ),
+				'label_on'   => esc_html__( 'On', TEXT_DOMAIN ),
+				'label_off'  => esc_html__( 'Off', TEXT_DOMAIN ),
 				'conditions' => array(
 					'terms' => array(
 						array(
@@ -149,40 +150,15 @@ class Elementor extends Widget_Base {
 			)
 		);
 
-		// TODO: Make this more elegant
-		$this->add_control(
-			'autoplay_1',
-			array(
-				'label'      => esc_html__( 'Autoplay 1', 'am-lottieplayer' ),
-				'type'       => Controls_Manager::SWITCHER,
-				'label_on'   => esc_html__( 'On', 'am-lottieplayer' ),
-				'label_off'  => esc_html__( 'Off', 'am-lottieplayer' ),
-				'conditions' => array(
-					'terms' => array(
-						array(
-							'name'     => 'animateonscroll',
-							'operator' => '!==',
-							'value'    => 'yes',
-						),
-						array(
-							'name'     => 'num_of_animations',
-							'operator' => '>',
-							'value'    => 1,
-						),
-					),
-				),
-			)
-		);
-
-		for ( $i = 2; $i <= $this->_num_of_animaitons; $i++ ) {
+		for ( $i = 1; $i <= $this->_num_of_animaitons; $i++ ) {
 			$this->add_control(
 				"autoplay_{$i}",
 				array(
 					/* translators: %d: animation interation */
-					'label'      => \sprintf( esc_html__( 'Autoplay %d', 'am-lottieplayer' ), $i ),
+					'label'      => \sprintf( esc_html__( 'Autoplay %d', TEXT_DOMAIN ), $i ),
 					'type'       => Controls_Manager::SWITCHER,
-					'label_on'   => esc_html__( 'On', 'am-lottieplayer' ),
-					'label_off'  => esc_html__( 'Off', 'am-lottieplayer' ),
+					'label_on'   => esc_html__( 'On', TEXT_DOMAIN ),
+					'label_off'  => esc_html__( 'Off', TEXT_DOMAIN ),
 					'conditions' => array(
 						'terms' => array(
 							array(
@@ -204,10 +180,10 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'loop',
 			array(
-				'label'      => esc_html__( 'Loop', 'am-lottieplayer' ),
+				'label'      => esc_html__( 'Loop', TEXT_DOMAIN ),
 				'type'       => Controls_Manager::SWITCHER,
-				'label_on'   => esc_html__( 'On', 'am-lottieplayer' ),
-				'label_off'  => esc_html__( 'Off', 'am-lottieplayer' ),
+				'label_on'   => esc_html__( 'On', TEXT_DOMAIN ),
+				'label_off'  => esc_html__( 'Off', TEXT_DOMAIN ),
 				'conditions' => array(
 					'terms' => array(
 						array(
@@ -225,40 +201,15 @@ class Elementor extends Widget_Base {
 			)
 		);
 
-		// TODO:
-		$this->add_control(
-			'loop_1',
-			array(
-				'label'      => esc_html__( 'Loop 1', 'am-lottieplayer' ),
-				'type'       => Controls_Manager::SWITCHER,
-				'label_on'   => esc_html__( 'On', 'am-lottieplayer' ),
-				'label_off'  => esc_html__( 'Off', 'am-lottieplayer' ),
-				'conditions' => array(
-					'terms' => array(
-						array(
-							'name'     => 'animateonscroll',
-							'operator' => '!==',
-							'value'    => 'yes',
-						),
-						array(
-							'name'     => 'num_of_animations',
-							'operator' => '>',
-							'value'    => 1,
-						),
-					),
-				),
-			)
-		);
-
-		for ( $i = 2; $i < $this->_num_of_animaitons; $i++ ) {
+		for ( $i = 1; $i < $this->_num_of_animaitons; $i++ ) {
 			$this->add_control(
 				"loop_{$i}",
 				array(
 					/* translators: %d: animation interation */
-					'label'      => \sprintf( esc_html__( 'Loop %d', 'am-lottieplayer' ), $i ),
+					'label'      => \sprintf( esc_html__( 'Loop %d', TEXT_DOMAIN ), $i ),
 					'type'       => Controls_Manager::SWITCHER,
-					'label_on'   => esc_html__( 'On', 'am-lottieplayer' ),
-					'label_off'  => esc_html__( 'Off', 'am-lottieplayer' ),
+					'label_on'   => esc_html__( 'On', TEXT_DOMAIN ),
+					'label_off'  => esc_html__( 'Off', TEXT_DOMAIN ),
 					'conditions' => array(
 						'terms' => array(
 							array(
@@ -280,11 +231,11 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'mode',
 			array(
-				'label'       => $pro_feature . esc_html__( 'Boomerang', 'am-lottieplayer' ),
+				'label'       => $pro_feature . esc_html__( 'Boomerang', TEXT_DOMAIN ),
 				'description' => $pro_link,
 				'type'        => Controls_Manager::SWITCHER,
-				'label_on'    => esc_html__( 'On', 'am-lottieplayer' ),
-				'label_off'   => esc_html__( 'Off', 'am-lottieplayer' ),
+				'label_on'    => esc_html__( 'On', TEXT_DOMAIN ),
+				'label_off'   => esc_html__( 'Off', TEXT_DOMAIN ),
 				'conditions'  => array(
 					'terms' => array(
 						array(
@@ -303,40 +254,15 @@ class Elementor extends Widget_Base {
 			)
 		);
 
-		// TODO:
-		$this->add_control(
-			'mode_1',
-			array(
-				'label'      => esc_html__( 'Boomerang 1', 'am-lottieplayer' ),
-				'type'       => Controls_Manager::SWITCHER,
-				'label_on'   => esc_html__( 'On', 'am-lottieplayer' ),
-				'label_off'  => esc_html__( 'Off', 'am-lottieplayer' ),
-				'conditions' => array(
-					'terms' => array(
-						array(
-							'name'     => 'animateonscroll',
-							'operator' => '!==',
-							'value'    => 'yes',
-						),
-						array(
-							'name'     => 'num_of_animations',
-							'operator' => '>',
-							'value'    => 1,
-						),
-					),
-				),
-			)
-		);
-
-		for ( $i = 2; $i < $this->_num_of_animaitons; $i++ ) {
+		for ( $i = 1; $i < $this->_num_of_animaitons; $i++ ) {
 			$this->add_control(
 				"mode_{$i}",
 				array(
 					/* translators: %d: animation interation */
-					'label'      => \sprintf( esc_html__( 'Boomerang %d', 'am-lottieplayer' ), $i ),
+					'label'      => \sprintf( esc_html__( 'Boomerang %d', TEXT_DOMAIN ), $i ),
 					'type'       => Controls_Manager::SWITCHER,
-					'label_on'   => esc_html__( 'On', 'am-lottieplayer' ),
-					'label_off'  => esc_html__( 'Off', 'am-lottieplayer' ),
+					'label_on'   => esc_html__( 'On', TEXT_DOMAIN ),
+					'label_off'  => esc_html__( 'Off', TEXT_DOMAIN ),
 					'conditions' => array(
 						'terms' => array(
 							array(
@@ -358,10 +284,10 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'reverse',
 			array(
-				'label'      => esc_html__( 'Reverse', 'am-lottieplayer' ),
+				'label'      => esc_html__( 'Reverse', TEXT_DOMAIN ),
 				'type'       => Controls_Manager::SWITCHER,
-				'label_on'   => esc_html__( 'Yes', 'am-lottieplayer' ),
-				'label_off'  => esc_html__( 'No', 'am-lottieplayer' ),
+				'label_on'   => esc_html__( 'Yes', TEXT_DOMAIN ),
+				'label_off'  => esc_html__( 'No', TEXT_DOMAIN ),
 				'conditions' => array(
 					'terms' => array(
 						array(
@@ -379,40 +305,15 @@ class Elementor extends Widget_Base {
 			)
 		);
 
-		// TODO:
-		$this->add_control(
-			'reverse_1',
-			array(
-				'label'      => esc_html__( 'Reverse 1', 'am-lottieplayer' ),
-				'type'       => Controls_Manager::SWITCHER,
-				'label_on'   => esc_html__( 'Yes', 'am-lottieplayer' ),
-				'label_off'  => esc_html__( 'No', 'am-lottieplayer' ),
-				'conditions' => array(
-					'terms' => array(
-						array(
-							'name'     => 'animateonscroll',
-							'operator' => '!==',
-							'value'    => 'yes',
-						),
-						array(
-							'name'     => 'num_of_animations',
-							'operator' => '>',
-							'value'    => 1,
-						),
-					),
-				),
-			)
-		);
-
-		for ( $i = 2; $i < $this->_num_of_animaitons; $i++ ) {
+		for ( $i = 1; $i < $this->_num_of_animaitons; $i++ ) {
 			$this->add_control(
 				"reverse_{$i}",
 				array(
 					/* translators: %d: animation interation */
-					'label'      => \sprintf( esc_html__( 'Reverse %d', 'am-lottieplayer' ), $i ),
+					'label'      => \sprintf( esc_html__( 'Reverse %d', TEXT_DOMAIN ), $i ),
 					'type'       => Controls_Manager::SWITCHER,
-					'label_on'   => esc_html__( 'Yes', 'am-lottieplayer' ),
-					'label_off'  => esc_html__( 'No', 'am-lottieplayer' ),
+					'label_on'   => esc_html__( 'Yes', TEXT_DOMAIN ),
+					'label_off'  => esc_html__( 'No', TEXT_DOMAIN ),
 					'conditions' => array(
 						'terms' => array(
 							array(
@@ -434,10 +335,10 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'subframe',
 			array(
-				'label'     => esc_html__( 'Subframe', 'am-lottieplayer' ),
+				'label'     => esc_html__( 'Subframe', TEXT_DOMAIN ),
 				'type'      => Controls_Manager::SWITCHER,
-				'label_on'  => esc_html__( 'Yes', 'am-lottieplayer' ),
-				'label_off' => esc_html__( 'No', 'am-lottieplayer' ),
+				'label_on'  => esc_html__( 'Yes', TEXT_DOMAIN ),
+				'label_off' => esc_html__( 'No', TEXT_DOMAIN ),
 				'default'   => 'yes',
 			)
 		);
@@ -445,7 +346,7 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'speed',
 			array(
-				'label'       => esc_html__( 'Playback speed', 'am-lottieplayer' ),
+				'label'       => esc_html__( 'Playback speed', TEXT_DOMAIN ),
 				'type'        => Controls_Manager::NUMBER,
 				'step'        => 0.1,
 				'placeholder' => 1,
@@ -467,38 +368,12 @@ class Elementor extends Widget_Base {
 			)
 		);
 
-		// TODO:
-		$this->add_control(
-			'speed_1',
-			array(
-				'label'       => esc_html__( 'Playback speed 1', 'am-lottieplayer' ),
-				'type'        => Controls_Manager::NUMBER,
-				'step'        => 0.1,
-				'placeholder' => 1,
-				'default'     => 1,
-				'conditions'  => array(
-					'terms' => array(
-						array(
-							'name'     => 'animateonscroll',
-							'operator' => '!==',
-							'value'    => 'yes',
-						),
-						array(
-							'name'     => 'num_of_animations',
-							'operator' => '>',
-							'value'    => 1,
-						),
-					),
-				),
-			)
-		);
-
-		for ( $i = 2; $i < $this->_num_of_animaitons; $i++ ) {
+		for ( $i = 1; $i < $this->_num_of_animaitons; $i++ ) {
 			$this->add_control(
 				"speed_{$i}",
 				array(
 					/* translators: %d: animation interation */
-					'label'       => \sprintf( esc_html__( 'Playback speed %d', 'am-lottieplayer' ), $i ),
+					'label'       => \sprintf( esc_html__( 'Playback speed %d', TEXT_DOMAIN ), $i ),
 					'type'        => Controls_Manager::NUMBER,
 					'step'        => 0.1,
 					'placeholder' => 1,
@@ -524,8 +399,8 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'intermission',
 			array(
-				'label'       => esc_html__( 'Intermission', 'am-lottieplayer' ),
-				'description' => esc_html__( 'Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer' ),
+				'label'       => esc_html__( 'Intermission', TEXT_DOMAIN ),
+				'description' => esc_html__( 'Pause between loops, in miliseconds. 1s = 1000', TEXT_DOMAIN ),
 				'type'        => Controls_Manager::NUMBER,
 				'step'        => 100,
 				'min'         => 0,
@@ -550,8 +425,8 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'intermission_1',
 			array(
-				'label'       => esc_html__( 'Intermission 1', 'am-lottieplayer' ),
-				'description' => esc_html__( 'Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer' ),
+				'label'       => esc_html__( 'Intermission 1', TEXT_DOMAIN ),
+				'description' => esc_html__( 'Pause between loops, in miliseconds. 1s = 1000', TEXT_DOMAIN ),
 				'type'        => Controls_Manager::NUMBER,
 				'step'        => 100,
 				'min'         => 0,
@@ -578,8 +453,8 @@ class Elementor extends Widget_Base {
 				"intermisson_{$i}",
 				array(
 					/* translators: %d: animation interation */
-					'label'       => \sprintf( esc_html__( 'Intermission %d', 'am-lottieplayer' ), $i ),
-					'description' => esc_html__( 'Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer' ),
+					'label'       => \sprintf( esc_html__( 'Intermission %d', TEXT_DOMAIN ), $i ),
+					'description' => esc_html__( 'Pause between loops, in miliseconds. 1s = 1000', TEXT_DOMAIN ),
 					'type'        => Controls_Manager::NUMBER,
 					'step'        => 100,
 					'min'         => 0,
@@ -605,7 +480,7 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'segment_in',
 			array(
-				'label'       => $pro_feature . esc_html__( 'Choose where to start', 'am-lottieplayer' ),
+				'label'       => $pro_feature . esc_html__( 'Choose where to start', TEXT_DOMAIN ),
 				'description' => $pro_link,
 				'type'        => Controls_Manager::NUMBER,
 				'step'        => 1,
@@ -618,7 +493,7 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'segment_out',
 			array(
-				'label'       => $pro_feature . esc_html__( 'And where to end', 'am-lottieplayer' ),
+				'label'       => $pro_feature . esc_html__( 'And where to end', TEXT_DOMAIN ),
 				'description' => $pro_link,
 				'type'        => Controls_Manager::NUMBER,
 				'step'        => 1,
@@ -639,11 +514,11 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'animateonscroll',
 			array(
-				'label'       => $pro_feature . esc_html__( 'Animate on scroll', 'am-lottieplayer' ),
-				'description' => esc_html__( 'Make the animation play only when scrolling, relative to the speed and direction of the scroll', 'am-lottieplayer' ) . $pro_link,
+				'label'       => $pro_feature . esc_html__( 'Animate on scroll', TEXT_DOMAIN ),
+				'description' => esc_html__( 'Make the animation play only when scrolling, relative to the speed and direction of the scroll', TEXT_DOMAIN ) . $pro_link,
 				'type'        => Controls_Manager::SWITCHER,
-				'label_on'    => esc_html__( 'Yes', 'am-lottieplayer' ),
-				'label_off'   => esc_html__( 'No', 'am-lottieplayer' ),
+				'label_on'    => esc_html__( 'Yes', TEXT_DOMAIN ),
+				'label_off'   => esc_html__( 'No', TEXT_DOMAIN ),
 				'classes'     => AAMD_LOTTIE_IS_PRO ? '' : 'disable',
 				'default'     => 'no',
 			)
@@ -652,10 +527,10 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'playonclick',
 			array(
-				'label'     => esc_html__( 'Play on click', 'am-lottieplayer' ),
+				'label'     => esc_html__( 'Play on click', TEXT_DOMAIN ),
 				'type'      => Controls_Manager::SWITCHER,
-				'label_on'  => esc_html__( 'Yes', 'am-lottieplayer' ),
-				'label_off' => esc_html__( 'No', 'am-lottieplayer' ),
+				'label_on'  => esc_html__( 'Yes', TEXT_DOMAIN ),
+				'label_off' => esc_html__( 'No', TEXT_DOMAIN ),
 				'condition' => array(
 					'animateonscroll!' => 'yes',
 				),
@@ -665,10 +540,10 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'hover',
 			array(
-				'label'     => esc_html__( 'Play on mouseover', 'am-lottieplayer' ),
+				'label'     => esc_html__( 'Play on mouseover', TEXT_DOMAIN ),
 				'type'      => Controls_Manager::SWITCHER,
-				'label_on'  => esc_html__( 'Yes', 'am-lottieplayer' ),
-				'label_off' => esc_html__( 'No', 'am-lottieplayer' ),
+				'label_on'  => esc_html__( 'Yes', TEXT_DOMAIN ),
+				'label_off' => esc_html__( 'No', TEXT_DOMAIN ),
 				'condition' => array(
 					'animateonscroll!' => 'yes',
 				),
@@ -678,13 +553,13 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'mouseout',
 			array(
-				'label'     => esc_html__( 'On mouseout', 'am-lottieplayer' ),
+				'label'     => esc_html__( 'On mouseout', TEXT_DOMAIN ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => array(
-					'void'    => esc_html__( 'No event', 'am-lottieplayer' ),
-					'stop'    => esc_html__( 'Stop', 'am-lottieplayer' ),
-					'pause'   => esc_html__( 'Pause', 'am-lottieplayer' ),
-					'reverse' => esc_html__( 'Reverse', 'am-lottieplayer' ),
+					'void'    => esc_html__( 'No event', TEXT_DOMAIN ),
+					'stop'    => esc_html__( 'Stop', TEXT_DOMAIN ),
+					'pause'   => esc_html__( 'Pause', TEXT_DOMAIN ),
+					'reverse' => esc_html__( 'Reverse', TEXT_DOMAIN ),
 				),
 				'default'   => 'stop',
 				'condition' => array(
@@ -696,8 +571,8 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'selector',
 			array(
-				'label'       => $pro_feature . esc_html__( 'Trigger element', 'am-lottieplayer' ),
-				'description' => esc_html__( 'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer' ) . $pro_link,
+				'label'       => $pro_feature . esc_html__( 'Trigger element', TEXT_DOMAIN ),
+				'description' => esc_html__( 'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', TEXT_DOMAIN ) . $pro_link,
 				'type'        => Controls_Manager::TEXT,
 				'placeholder' => '#',
 				'classes'     => AAMD_LOTTIE_IS_PRO ? '' : 'disable',
@@ -722,11 +597,11 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'exclude_selector',
 			array(
-				'label'       => $pro_feature . esc_html__( 'Apply interaction only to trigger element', 'am-lottieplayer' ),
+				'label'       => $pro_feature . esc_html__( 'Apply interaction only to trigger element', TEXT_DOMAIN ),
 				'description' => $pro_link,
 				'type'        => Controls_Manager::SWITCHER,
-				'label_on'    => esc_html__( 'Yes', 'am-lottieplayer' ),
-				'label_off'   => esc_html__( 'No', 'am-lottieplayer' ),
+				'label_on'    => esc_html__( 'Yes', TEXT_DOMAIN ),
+				'label_off'   => esc_html__( 'No', TEXT_DOMAIN ),
 				'default'     => 'no',
 				'classes'     => AAMD_LOTTIE_IS_PRO ? '' : 'disable',
 				'conditions'  => array(
@@ -750,10 +625,10 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'playonvisible',
 			array(
-				'label'     => esc_html__( 'Play on scroll, when visible in viewport', 'am-lottieplayer' ),
+				'label'     => esc_html__( 'Play on scroll, when visible in viewport', TEXT_DOMAIN ),
 				'type'      => Controls_Manager::SWITCHER,
-				'label_on'  => esc_html__( 'Yes', 'am-lottieplayer' ),
-				'label_off' => esc_html__( 'No', 'am-lottieplayer' ),
+				'label_on'  => esc_html__( 'Yes', TEXT_DOMAIN ),
+				'label_off' => esc_html__( 'No', TEXT_DOMAIN ),
 				'condition' => array(
 					'animateonscroll!' => 'yes',
 				),
@@ -763,7 +638,7 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'delay',
 			array(
-				'label'     => esc_html__( 'Delay, in milliseconds', 'am-lottieplayer' ),
+				'label'     => esc_html__( 'Delay, in milliseconds', TEXT_DOMAIN ),
 				'type'      => Controls_Manager::NUMBER,
 				'step'      => 1,
 				'min'       => 0,
@@ -778,10 +653,10 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'once',
 			array(
-				'label'     => esc_html__( 'Play only once', 'am-lottieplayer' ),
+				'label'     => esc_html__( 'Play only once', TEXT_DOMAIN ),
 				'type'      => Controls_Manager::SWITCHER,
-				'label_on'  => esc_html__( 'Yes', 'am-lottieplayer' ),
-				'label_off' => esc_html__( 'No', 'am-lottieplayer' ),
+				'label_on'  => esc_html__( 'Yes', TEXT_DOMAIN ),
+				'label_off' => esc_html__( 'No', TEXT_DOMAIN ),
 				'condition' => array(
 					'playonvisible' => 'yes',
 				),
@@ -799,19 +674,19 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'align',
 			array(
-				'label'   => esc_html__( 'Align', 'am-lottieplayer' ),
+				'label'   => esc_html__( 'Align', TEXT_DOMAIN ),
 				'type'    => Controls_Manager::CHOOSE,
 				'options' => array(
 					'left'   => array(
-						'title' => esc_html__( 'Left', 'am-lottieplayer' ),
+						'title' => esc_html__( 'Left', TEXT_DOMAIN ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'am-lottieplayer' ),
+						'title' => esc_html__( 'Center', TEXT_DOMAIN ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
-						'title' => esc_html__( 'Right', 'am-lottieplayer' ),
+						'title' => esc_html__( 'Right', TEXT_DOMAIN ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -822,7 +697,7 @@ class Elementor extends Widget_Base {
 		$this->add_responsive_control(
 			'width',
 			array(
-				'label'          => esc_html__( 'Width', 'am-lottieplayer' ),
+				'label'          => esc_html__( 'Width', TEXT_DOMAIN ),
 				'type'           => Controls_Manager::SLIDER,
 				'default'        => array(
 					'unit' => '%',
@@ -859,10 +734,10 @@ class Elementor extends Widget_Base {
 		$this->add_responsive_control(
 			'height_auto',
 			array(
-				'label'     => esc_html__( 'Height', 'am-lottieplayer' ),
+				'label'     => esc_html__( 'Height', TEXT_DOMAIN ),
 				'type'      => Controls_Manager::SWITCHER,
-				'label_on'  => esc_html__( 'Fixed', 'am-lottieplayer' ),
-				'label_off' => esc_html__( 'Auto', 'am-lottieplayer' ),
+				'label_on'  => esc_html__( 'Fixed', TEXT_DOMAIN ),
+				'label_off' => esc_html__( 'Auto', TEXT_DOMAIN ),
 			)
 		);
 
@@ -907,13 +782,13 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'object_fit',
 			array(
-				'label'   => esc_html__( 'Object fit', 'am-lottieplayer' ),
+				'label'   => esc_html__( 'Object fit', TEXT_DOMAIN ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
-					'contain' => esc_html__( 'Contain', 'am-lottieplayer' ),
-					'cover'   => esc_html__( 'Cover', 'am-lottieplayer' ),
-					'fill'    => esc_html__( 'Fill', 'am-lottieplayer' ),
-					'none'    => esc_html__( 'None', 'am-lottieplayer' ),
+					'contain' => esc_html__( 'Contain', TEXT_DOMAIN ),
+					'cover'   => esc_html__( 'Cover', TEXT_DOMAIN ),
+					'fill'    => esc_html__( 'Fill', TEXT_DOMAIN ),
+					'none'    => esc_html__( 'None', TEXT_DOMAIN ),
 				),
 				'default' => 'contain',
 			)
@@ -922,12 +797,12 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'renderer',
 			array(
-				'label'       => $pro_feature . esc_html__( 'Renderer', 'am-lottieplayer' ),
+				'label'       => $pro_feature . esc_html__( 'Renderer', TEXT_DOMAIN ),
 				'description' => $pro_link,
 				'type'        => Controls_Manager::SELECT,
 				'options'     => array(
-					'svg'    => esc_html__( 'SVG', 'am-lottieplayer' ),
-					'canvas' => esc_html__( 'Canvas', 'am-lottieplayer' ),
+					'svg'    => esc_html__( 'SVG', TEXT_DOMAIN ),
+					'canvas' => esc_html__( 'Canvas', TEXT_DOMAIN ),
 				),
 				'default'     => 'svg',
 				'classes'     => AAMD_LOTTIE_IS_PRO ? '' : 'disable',
@@ -937,7 +812,7 @@ class Elementor extends Widget_Base {
 		$this->add_control(
 			'description',
 			array(
-				'label' => esc_html__( 'Description', 'am-lottieplayer' ),
+				'label' => esc_html__( 'Description', TEXT_DOMAIN ),
 				'type'  => Controls_Manager::TEXT,
 			)
 		);

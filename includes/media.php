@@ -33,7 +33,7 @@ class Media {
 						return $data;
 					}
 
-					if ( ! in_array( $real_mime, $this->_lottie_mime_types() ) ) {
+					if ( ! in_array( $real_mime, $this->lottie_mime_types() ) ) {
 						return $data;
 					}
 
@@ -156,7 +156,7 @@ class Media {
 					}
 
 					if ( ! $is_valid ) {
-						$file['error'] = __( 'Invalid Lottie file.', 'am-lottieplayer' );
+						$file['error'] = __( 'Invalid Lottie file.', TEXT_DOMAIN );
 					}
 
 					return $file;
@@ -166,14 +166,11 @@ class Media {
 			}
 		);
 
-		add_filter( 'ajax_query_attachments_args', array( $this, 'expand_lottie_attachment_query' ) );
-		add_filter( 'rest_attachment_query', array( $this, 'expand_lottie_attachment_query' ) );
-
 		// Adding icon to Lottie filetype
 		add_filter(
 			'wp_mime_type_icon',
 			function ( $icon, $mime, $post_id ) {
-				if ( in_array( $mime, $this->_lottie_mime_types() ) ) {
+				if ( in_array( $mime, $this->lottie_mime_types() ) ) {
 					$icon = get_asset( 'lottie-icon.svg' );
 				}
 				return $icon;
@@ -195,7 +192,7 @@ class Media {
 	 *
 	 * @return string[]
 	 */
-	private function _lottie_mime_types() {
+	public function lottie_mime_types() {
 		return array(
 			'application/json',
 			'application/vnd.api+json',
@@ -210,93 +207,16 @@ class Media {
 		);
 	}
 
-	/**
-	 * Normalize a media-library mime query into individual type strings.
-	 *
-	 * Divi 5 passes JSON uploads as one comma-separated post_mime_type string.
-	 * WP_Query only ORs mime types when given an array, so that string matches nothing.
-	 *
-	 * @param mixed $mime Mime query from WP_Query / REST.
-	 * @return string[]
-	 */
-	private function normalize_mime_query( $mime ) {
-		if ( is_array( $mime ) ) {
-			$values = array();
-			foreach ( $mime as $item ) {
-				$values = array_merge( $values, $this->normalize_mime_query( $item ) );
-			}
-			return array_values( array_filter( $values ) );
-		}
-
-		if ( ! is_string( $mime ) || $mime === '' ) {
-			return array();
-		}
-
-		return array_values(
-			array_filter(
-				array_map( 'trim', explode( ',', $mime ) )
-			)
-		);
-	}
-
-	/**
-	 * Whether this attachment query is a Lottie / JSON media picker.
-	 *
-	 * @param mixed $mime Mime query from WP_Query / REST.
-	 */
-	private function is_lottie_mime_query( $mime ) {
-		foreach ( $this->normalize_mime_query( $mime ) as $value ) {
-			$value = strtolower( $value );
-			if (
-				$value === 'json' ||
-				str_contains( $value, 'json' ) ||
-				str_contains( $value, 'lottie' )
-			) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/**
-	 * Expand Divi 5 JSON media queries so JSON and .lottie files both appear.
-	 *
-	 * @param array $args Attachment query args.
-	 * @return array
-	 */
-	public function expand_lottie_attachment_query( array $args ) {
-		if ( ! $this->is_lottie_mime_query( $args['post_mime_type'] ?? '' ) ) {
-			return $args;
-		}
-
-		$args['post_mime_type'] = $this->_lottie_mime_types();
-
-		return $args;
-	}
-
 	// Adding preview for Media Library
 	public function override_media_templates() {
 		if ( ! remove_action( 'admin_footer', 'wp_print_media_templates' ) ) {
 			return new \WP_Error(
 				'remove_action_failed',
-				esc_html__( 'Could not remove admin footer.', 'am-lottieplayer' ),
+				esc_html__( 'Could not remove admin footer.', TEXT_DOMAIN ),
 				array( 'status' => 400 )
 			);
 		}
 		add_action( 'admin_footer', array( $this, 'print_media_templates' ) );
-	}
-
-	public function security_notice() {
-		global $pagenow;
-		if ( $pagenow !== 'upload.php' ) {
-			return;
-		}
-		?>
-		<div class="notice notice-info is-dismissible">
-			<p><?php echo esc_html__( 'AM LottiePlayer: Prior to version 3.5.0 this plugin did not thoroughly parse uploads for script injection. Always be careful when uploading Lottie files from untrusted sources. If you have doubts about a specific file you can delete it and re-upload it.', 'am-lottieplayer' ); ?></p>
-		</div>
-		<?php
 	}
 
 	public function print_media_templates() {
@@ -441,7 +361,7 @@ class Media {
 			if ( empty( $file ) ) {
 				$error->add(
 					'image_sideload_failed',
-					__( 'Invalid Lottie URL.', 'am-lottieplayer' ),
+					__( 'Invalid Lottie URL.', TEXT_DOMAIN ),
 					array( 'status' => 400 )
 				);
 				return $error;
@@ -458,7 +378,7 @@ class Media {
 			if ( ! $matches ) {
 				$error->add(
 					'image_sideload_failed',
-					__( 'Invalid Lottie URL.', 'am-lottieplayer' ),
+					__( 'Invalid Lottie URL.', TEXT_DOMAIN ),
 					array( 'status' => 400 )
 				);
 
@@ -499,7 +419,7 @@ class Media {
 			if ( empty( $src ) ) {
 				$error->add(
 					'image_sideload_failed',
-					__( 'Invalid Lottie URL.', 'am-lottieplayer' ),
+					__( 'Invalid Lottie URL.', TEXT_DOMAIN ),
 					array( 'status' => 400 )
 				);
 				return $error;
