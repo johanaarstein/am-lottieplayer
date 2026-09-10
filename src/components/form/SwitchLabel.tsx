@@ -2,7 +2,7 @@ import { BaseControl, FormToggle } from '@wordpress/components'
 
 interface SwitchProps {
   disabled?: boolean
-  id: string;
+  id: string
   onChange: (x: boolean) => unknown
   subTitle?: string
   title?: React.ReactNode

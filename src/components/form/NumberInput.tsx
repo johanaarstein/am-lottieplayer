@@ -12,12 +12,12 @@ const keydownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
 }
 
 interface NumberProps {
-  disabled?: boolean;
-  id: string;
-  onChange: (x?: number) => void;
-  placeholder?: string;
-  title?: string;
-  value?: string | number;
+  disabled?: boolean
+  id: string
+  onChange: (x?: number) => void
+  placeholder?: string
+  title?: string
+  value?: string | number
 }
 
 export default function NumberInput({

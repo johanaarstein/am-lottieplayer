@@ -7,8 +7,6 @@ import { __ } from '@wordpress/i18n'
 
 import type { PlayerComponentProps } from '@/types'
 
-import { domain } from '@/utils/constants'
-
 export default function Background({
   attributes,
   setAttributes,
@@ -20,7 +18,7 @@ export default function Background({
       <PanelBody
         initialOpen
         className="am-lottieplayer-settings"
-        title={__('Background Color', domain)}
+        title={__('Background Color', 'am-lottieplayer')}
       >
         <ColorPicker
           color={background}

@@ -1,17 +1,15 @@
 import { __ } from '@wordpress/i18n'
 
-import { domain } from '@/utils/constants'
-
 export default function ProLink() {
   return (
     <a
       rel="noreferrer"
       target="_blank"
       href={__('https://www.aarstein.media/en/am-lottieplayer/pro',
-        domain)}
+        'am-lottieplayer')}
     >
       {__('Read about additional features in AM LottiePlayer PRO',
-        domain)}
+        'am-lottieplayer')}
       <sup
         style={{ verticalAlign: 'super' }}
       >

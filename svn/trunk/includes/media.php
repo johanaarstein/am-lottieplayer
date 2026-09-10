@@ -156,7 +156,7 @@ class Media {
 					}
 
 					if ( ! $is_valid ) {
-						$file['error'] = __( 'Invalid Lottie file.', TEXT_DOMAIN );
+						$file['error'] = __( 'Invalid Lottie file.', 'am-lottieplayer' );
 					}
 
 					return $file;
@@ -212,7 +212,7 @@ class Media {
 		if ( ! remove_action( 'admin_footer', 'wp_print_media_templates' ) ) {
 			return new \WP_Error(
 				'remove_action_failed',
-				esc_html__( 'Could not remove admin footer.', TEXT_DOMAIN ),
+				esc_html__( 'Could not remove admin footer.', 'am-lottieplayer' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -239,6 +239,7 @@ class Media {
 
 		\ob_start();
 		wp_print_media_templates();
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Core Underscore media templates; escaping would break <# #> / <script type="text/html"> syntax.
 		echo \preg_replace(
 			\array_keys( $replaces ),
 			\array_values( $replaces ),
@@ -361,7 +362,7 @@ class Media {
 			if ( empty( $file ) ) {
 				$error->add(
 					'image_sideload_failed',
-					__( 'Invalid Lottie URL.', TEXT_DOMAIN ),
+					__( 'Invalid Lottie URL.', 'am-lottieplayer' ),
 					array( 'status' => 400 )
 				);
 				return $error;
@@ -378,7 +379,7 @@ class Media {
 			if ( ! $matches ) {
 				$error->add(
 					'image_sideload_failed',
-					__( 'Invalid Lottie URL.', TEXT_DOMAIN ),
+					__( 'Invalid Lottie URL.', 'am-lottieplayer' ),
 					array( 'status' => 400 )
 				);
 
@@ -419,7 +420,7 @@ class Media {
 			if ( empty( $src ) ) {
 				$error->add(
 					'image_sideload_failed',
-					__( 'Invalid Lottie URL.', TEXT_DOMAIN ),
+					__( 'Invalid Lottie URL.', 'am-lottieplayer' ),
 					array( 'status' => 400 )
 				);
 				return $error;

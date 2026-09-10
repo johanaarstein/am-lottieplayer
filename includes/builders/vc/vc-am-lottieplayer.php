@@ -9,118 +9,118 @@ global $aamd_lottie_media;
 
 vc_add_shortcode_param(
 	'attach_lottie',
-	'am_vc_attach_field_settings',
+	'aamd_vc_attach_field_settings',
 	get_script( 'vc/am-backend-vc-options.min.js', '1.0.1' )
 );
 
-if ( ! function_exists( 'am_vc_attach_field_settings' ) ) {
-	function am_vc_attach_field_settings( array $settings ) {
+if ( ! function_exists( 'aamd_vc_attach_field_settings' ) ) {
+	function aamd_vc_attach_field_settings( array $settings ) {
 		\ob_start(); ?>
 		<div class="am-upload">
 			<button
 				id="<?php echo esc_attr( $settings['param_name'] ); ?>-button"
 				style="all:unset;cursor:pointer;background:#007cba;color:#fff;font-size:13px;padding:6px 12px;border-radius:2px;height:36px;align-items:center;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;appearance:none;"
 				class="<?php echo esc_attr( $settings['param_name'] ) . ' ' . esc_attr( $settings['type'] ); ?>_field"
-				><?php echo esc_html__( 'Media Library', TEXT_DOMAIN ); ?></button>
+				><?php echo esc_html__( 'Media Library', 'am-lottieplayer' ); ?></button>
 		</div>
 		<?php
 		return \ob_get_clean();
 	}
 }
 
-global $pro_feature;
-global $pro_link;
+global $aamd_pro_feature;
+global $aamd_pro_link;
 
 vc_map(
 	array(
-		'name'     => __( 'AM LottiePlayer', TEXT_DOMAIN ),
-		'base'     => TEXT_DOMAIN,
+		'name'     => __( 'AM LottiePlayer', 'am-lottieplayer' ),
+		'base'     => 'am-lottieplayer',
 		'controls' => 'full',
 		'icon'     => get_asset( 'vc-icon.svg' ),
-		'category' => __( 'Animation', TEXT_DOMAIN ),
+		'category' => __( 'Animation', 'am-lottieplayer' ),
 		'params'   => array(
 			array(
 				'type'       => 'textfield',
-				'heading'    => __( 'Lottie url', TEXT_DOMAIN ),
+				'heading'    => __( 'Lottie url', 'am-lottieplayer' ),
 				'value'      => $aamd_lottie_media->get_default_file(),
 				'param_name' => 'src',
 			),
 			array(
 				'type'       => 'attach_lottie',
-				'heading'    => __( 'Choose Lottie', TEXT_DOMAIN ),
+				'heading'    => __( 'Choose Lottie', 'am-lottieplayer' ),
 				'value'      => '',
 				'param_name' => 'attach_src',
 			),
 			array(
 				'type'       => 'checkbox',
-				'heading'    => __( 'Show controls', TEXT_DOMAIN ),
+				'heading'    => __( 'Show controls', 'am-lottieplayer' ),
 				'param_name' => 'controls',
 			),
 			array(
 				'type'       => 'checkbox',
-				'heading'    => __( 'Autoplay', TEXT_DOMAIN ),
+				'heading'    => __( 'Autoplay', 'am-lottieplayer' ),
 				'param_name' => 'autoplay',
 			),
 			array(
 				'type'       => 'checkbox',
-				'heading'    => __( 'Loop', TEXT_DOMAIN ),
+				'heading'    => __( 'Loop', 'am-lottieplayer' ),
 				'param_name' => 'loop',
 			),
 			array(
 				'type'        => 'checkbox',
-				'description' => $pro_link,
-				'heading'     => $pro_feature . __( 'Boomerang', TEXT_DOMAIN ),
+				'description' => $aamd_pro_link,
+				'heading'     => $aamd_pro_feature . __( 'Boomerang', 'am-lottieplayer' ),
 				'param_name'  => 'mode',
 			),
 			array(
 				'type'       => 'checkbox',
-				'heading'    => __( 'Reverse', TEXT_DOMAIN ),
+				'heading'    => __( 'Reverse', 'am-lottieplayer' ),
 				'param_name' => 'direction',
 			),
 			array(
 				'type'       => 'checkbox',
-				'heading'    => __( 'Subframe', TEXT_DOMAIN ),
+				'heading'    => __( 'Subframe', 'am-lottieplayer' ),
 				'param_name' => 'subframe',
 				'checked'    => 'true',
 			),
 			array(
 				'type'       => 'textfield',
-				'heading'    => __( 'Speed', TEXT_DOMAIN ),
+				'heading'    => __( 'Speed', 'am-lottieplayer' ),
 				'param_name' => 'speed',
 				'value'      => '1',
 			),
 			array(
 				'type'        => 'textfield',
-				'heading'     => __( 'Intermission', TEXT_DOMAIN ),
-				'description' => __( 'Pause between loops, in miliseconds. 1s = 1000', TEXT_DOMAIN ),
+				'heading'     => __( 'Intermission', 'am-lottieplayer' ),
+				'description' => __( 'Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer' ),
 				'param_name'  => 'speed',
 				'value'       => '0',
 			),
 			array(
 				'type'        => 'checkbox',
-				'heading'     => $pro_feature . __( 'Animate on scroll', TEXT_DOMAIN ),
-				'description' => AAMD_LOTTIE_IS_PRO ? __( 'Make the animation play only when scrolling, relative to the speed and direction of the scroll', TEXT_DOMAIN ) : $pro_link,
+				'heading'     => $aamd_pro_feature . __( 'Animate on scroll', 'am-lottieplayer' ),
+				'description' => AAMD_LOTTIE_IS_PRO ? __( 'Make the animation play only when scrolling, relative to the speed and direction of the scroll', 'am-lottieplayer' ) : $aamd_pro_link,
 				'param_name'  => AAMD_LOTTIE_IS_PRO ? 'animateonscroll' : 'none',
 			),
 			array(
 				'type'       => 'checkbox',
-				'heading'    => __( 'Play on click', TEXT_DOMAIN ),
+				'heading'    => __( 'Play on click', 'am-lottieplayer' ),
 				'param_name' => 'playonclick',
 			),
 			array(
 				'type'       => 'checkbox',
-				'heading'    => __( 'Play on mouseover', TEXT_DOMAIN ),
+				'heading'    => __( 'Play on mouseover', 'am-lottieplayer' ),
 				'param_name' => 'hover',
 			),
 			array(
 				'type'       => 'dropdown',
-				'heading'    => __( 'On mouseout', TEXT_DOMAIN ),
+				'heading'    => __( 'On mouseout', 'am-lottieplayer' ),
 				'param_name' => 'mouseout',
 				'value'      => array(
-					__( 'No event', TEXT_DOMAIN ) => 'void',
-					__( 'Stop', TEXT_DOMAIN )     => 'stop',
-					__( 'Pause', TEXT_DOMAIN )    => 'pause',
-					__( 'Reverse', TEXT_DOMAIN )  => 'reverse',
+					__( 'No event', 'am-lottieplayer' ) => 'void',
+					__( 'Stop', 'am-lottieplayer' )     => 'stop',
+					__( 'Pause', 'am-lottieplayer' )    => 'pause',
+					__( 'Reverse', 'am-lottieplayer' )  => 'reverse',
 				),
 				'std'        => 'void',
 				'dependency' => array(
@@ -130,25 +130,25 @@ vc_map(
 			),
 			array(
 				'type'        => 'textfield',
-				'heading'     => $pro_feature . __( 'Trigger element', TEXT_DOMAIN ),
-				'description' => AAMD_LOTTIE_IS_PRO ? __( 'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', TEXT_DOMAIN ) : $pro_link,
+				'heading'     => $aamd_pro_feature . __( 'Trigger element', 'am-lottieplayer' ),
+				'description' => AAMD_LOTTIE_IS_PRO ? __( 'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer' ) : $aamd_pro_link,
 				'param_name'  => 'selector',
 				'value'       => '',
 			),
 			array(
 				'type'        => 'checkbox',
-				'heading'     => $pro_feature . __( 'Apply interaction only to trigger element', TEXT_DOMAIN ),
-				'description' => $pro_link,
+				'heading'     => $aamd_pro_feature . __( 'Apply interaction only to trigger element', 'am-lottieplayer' ),
+				'description' => $aamd_pro_link,
 				'param_name'  => 'exclude_selector',
 			),
 			array(
 				'type'       => 'checkbox',
-				'heading'    => __( 'Play on scroll, when visible in viewport', TEXT_DOMAIN ),
+				'heading'    => __( 'Play on scroll, when visible in viewport', 'am-lottieplayer' ),
 				'param_name' => 'playonvisible',
 			),
 			array(
 				'type'       => 'textfield',
-				'heading'    => __( 'Delay, in milliseconds', TEXT_DOMAIN ),
+				'heading'    => __( 'Delay, in milliseconds', 'am-lottieplayer' ),
 				'param_name' => 'delay',
 				'dependency' => array(
 					'element' => 'playonvisible',
@@ -157,7 +157,7 @@ vc_map(
 			),
 			array(
 				'type'       => 'checkbox',
-				'heading'    => __( 'Play only once', TEXT_DOMAIN ),
+				'heading'    => __( 'Play only once', 'am-lottieplayer' ),
 				'param_name' => 'once',
 				'dependency' => array(
 					'element' => 'playonvisible',
@@ -166,50 +166,50 @@ vc_map(
 			),
 			array(
 				'type'       => 'textfield',
-				'heading'    => __( 'Width', TEXT_DOMAIN ),
+				'heading'    => __( 'Width', 'am-lottieplayer' ),
 				'param_name' => 'width',
 				'value'      => null,
-				'group'      => __( 'Layout Options', TEXT_DOMAIN ),
+				'group'      => __( 'Layout Options', 'am-lottieplayer' ),
 			),
 			array(
 				'type'       => 'textfield',
-				'heading'    => __( 'Height', TEXT_DOMAIN ),
+				'heading'    => __( 'Height', 'am-lottieplayer' ),
 				'param_name' => 'height',
 				'value'      => null,
-				'group'      => __( 'Layout Options', TEXT_DOMAIN ),
+				'group'      => __( 'Layout Options', 'am-lottieplayer' ),
 			),
 			array(
 				'type'       => 'dropdown',
-				'heading'    => __( 'Object fit', TEXT_DOMAIN ),
+				'heading'    => __( 'Object fit', 'am-lottieplayer' ),
 				'param_name' => 'objectfit',
 				'value'      => array(
-					__( 'Contain', TEXT_DOMAIN ) => 'contain',
-					__( 'Cover', TEXT_DOMAIN )   => 'cover',
-					__( 'Fill', TEXT_DOMAIN )    => 'fill',
-					__( 'None', TEXT_DOMAIN )    => 'none',
+					__( 'Contain', 'am-lottieplayer' ) => 'contain',
+					__( 'Cover', 'am-lottieplayer' )   => 'cover',
+					__( 'Fill', 'am-lottieplayer' )    => 'fill',
+					__( 'None', 'am-lottieplayer' )    => 'none',
 				),
 				'std'        => 'contain',
-				'group'      => __( 'Layout Options', TEXT_DOMAIN ),
+				'group'      => __( 'Layout Options', 'am-lottieplayer' ),
 			),
 			array(
 				'type'        => 'dropdown',
-				'heading'     => $pro_feature . __( 'Renderer', TEXT_DOMAIN ),
-				'description' => $pro_link,
+				'heading'     => $aamd_pro_feature . __( 'Renderer', 'am-lottieplayer' ),
+				'description' => $aamd_pro_link,
 				'param_name'  => 'renderer',
 				'value'       => array(
-					__( 'SVG', TEXT_DOMAIN )    => 'svg',
-					__( 'Canvas', TEXT_DOMAIN ) => 'canvas',
-					// __( 'HTML', TEXT_DOMAIN )   => 'html',
+					__( 'SVG', 'am-lottieplayer' )    => 'svg',
+					__( 'Canvas', 'am-lottieplayer' ) => 'canvas',
+					// __( 'HTML', 'am-lottieplayer' )   => 'html',
 				),
 				'std'         => 'svg',
-				'group'       => __( 'Advanced Options', TEXT_DOMAIN ),
+				'group'       => __( 'Advanced Options', 'am-lottieplayer' ),
 			),
 			array(
 				'type'        => 'textfield',
-				'heading'     => __( 'Description', TEXT_DOMAIN ),
+				'heading'     => __( 'Description', 'am-lottieplayer' ),
 				'param_name'  => 'description',
-				'description' => __( 'Helpful for screen readers and search engines', TEXT_DOMAIN ),
-				'group'       => __( 'Advanced Options', TEXT_DOMAIN ),
+				'description' => __( 'Helpful for screen readers and search engines', 'am-lottieplayer' ),
+				'group'       => __( 'Advanced Options', 'am-lottieplayer' ),
 			),
 		),
 	)

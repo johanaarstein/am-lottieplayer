@@ -2,8 +2,8 @@ import { isBlobURL } from '@wordpress/blob'
 
 interface Media {
   alt?: string
-  id?: string;
-  url: string;
+  id?: string
+  url: string
 }
 
 export const attributesFromMedia =

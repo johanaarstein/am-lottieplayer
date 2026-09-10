@@ -12,7 +12,6 @@ import type { LottieBlockAttributes } from '@/types'
 import Lottie from '@/assets/Lottie'
 import ErrorNotice from '@/components/ErrorNotice'
 import { validateUrl } from '@/utils'
-import { domain } from '@/utils/constants'
 
 export default function UploadComponent({
   attributes,
@@ -35,8 +34,8 @@ export default function UploadComponent({
         allowedTypes={['application/json', 'application/zip']}
         icon={<BlockIcon icon={Lottie} />}
         labels={{
-          instructions: __('Add Lottie animations from your Media Library to your WordPress post.', domain),
-          title: __('AM Lottie Animation', domain),
+          instructions: __('Add Lottie animations from your Media Library to your WordPress post.', 'am-lottieplayer'),
+          title: __('AM Lottie Animation', 'am-lottieplayer'),
         }}
         onError={(message) => {
           ErrorNotice(message)

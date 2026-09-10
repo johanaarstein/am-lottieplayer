@@ -1,7 +1,6 @@
 import { __ } from '@wordpress/i18n'
 
 import BoomerangLottie from '@/components/BoomerangLottie'
-import { domain } from '@/utils/constants'
 
 export default function Widget() {
   if (!aamdPHPVariables) {
@@ -27,22 +26,22 @@ export default function Widget() {
         <p>
           <strong>
             {__('Thank you for using AM LottiePlayer!',
-              domain)}
+              'am-lottieplayer')}
           </strong>
         </p>
         <p>
           {__('We\'re proud to announce that we\'ve launched a premium version of this plugin with even more features – like combining & controlling animations in a single file, converting JSON to dotLottie and more.',
-            domain)}
+            'am-lottieplayer')}
         </p>
         <a
           rel="noreferrer"
           style={{ color: '#d98f56' }}
           target="_blank"
           href={__('https://www.aarstein.media/en/am-lottieplayer/pro',
-            domain)}
+            'am-lottieplayer')}
         >
           {__('Read more about AM LottiePlayer PRO here!',
-            domain)}
+            'am-lottieplayer')}
         </a>
       </div>
     </div>

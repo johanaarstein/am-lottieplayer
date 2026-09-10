@@ -1,15 +1,15 @@
 <?php
 \defined( 'ABSPATH' ) || exit;
 
-$module_files = \glob( __DIR__ . '/modules/*.php' );
+$aamd_module_files = \glob( __DIR__ . '/modules/*.php' );
 
-if ( ! $module_files ) {
+if ( ! $aamd_module_files ) {
 	return;
 }
 
-foreach ( (array) $module_files as $module_file ) {
-	if ( ! $module_file ) {
+foreach ( (array) $aamd_module_files as $aamd_module_file ) {
+	if ( ! $aamd_module_file ) {
 		continue;
 	}
-	require_once $module_file;
+	require_once $aamd_module_file;
 }

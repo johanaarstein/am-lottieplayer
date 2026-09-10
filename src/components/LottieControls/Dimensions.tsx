@@ -15,26 +15,25 @@ import type { PlayerComponentProps } from '@/types'
 import NumberInput from '@/components/form/NumberInput'
 import SwitchLabel from '@/components/form/SwitchLabel'
 import { Align } from '@/enums'
-import { domain } from '@/utils/constants'
 
-export default function Dimensions ( {
+export default function Dimensions({
   attributes,
   setAttributes,
-}: BlockEditProps< PlayerComponentProps > ) {
+}: BlockEditProps<PlayerComponentProps>) {
   const {
-      align,
-      fullscreen,
-      height,
-      objectFit = 'contain',
-      width,
-    } = attributes,
+    align,
+    fullscreen,
+    height,
+    objectFit = 'contain',
+    width,
+  } = attributes,
 
-    parseWidth = ( num: number | string ) => {
-      if ( align === Align.Full || align === Align.Wide ) {
+    parseWidth = (num: number | string) => {
+      if (align === Align.Full || align === Align.Wide) {
         return '100%'
       }
 
-      return ! num || num === '0' ? undefined : num
+      return !num || num === '0' ? undefined : num
     }
 
   return (
@@ -42,14 +41,14 @@ export default function Dimensions ( {
       <PanelBody
         initialOpen
         className="am-lottieplayer-settings"
-        title={ __( 'Dimensions', domain ) }
+        title={__('Dimensions', 'am-lottieplayer')}
       >
-        { ( ! fullscreen || align !== Align.Full ) &&
+        {(!fullscreen || align !== Align.Full) &&
           <PanelRow className="lottie-dimensions">
             <NumberInput
               id="am-lottieplayer-width-settings"
-              title={ __( 'Width', domain ) }
-              value={ parseWidth( width as number ) }
+              title={__('Width', 'am-lottieplayer')}
+              value={parseWidth(width as number)}
               disabled={
                 align === Align.Full || align === Align.Wide
               }
@@ -58,60 +57,57 @@ export default function Dimensions ( {
                   ? '100%'
                   : 'auto'
               }
-              onChange={ ( val ) =>
-              { setAttributes( { width: val } ) }
+              onChange={(val) => { setAttributes({ width: val }) }
               }
             />
             <NumberInput
-              disabled={ fullscreen }
+              disabled={fullscreen}
               id="am-lottieplayer-height-settings"
-              placeholder={ 'auto' }
-              title={ __( 'Height', domain ) }
+              placeholder={'auto'}
+              title={__('Height', 'am-lottieplayer')}
               value={
-                ! height || height.toString() === '0'
+                !height || height.toString() === '0'
                   ? undefined
                   : height
               }
-              onChange={ ( val ) =>
-              { setAttributes( { height: val } ) }
+              onChange={(val) => { setAttributes({ height: val }) }
               }
             />
           </PanelRow>
         }
-        { ( align === Align.Full || align === Align.Wide ) &&
+        {(align === Align.Full || align === Align.Wide) &&
           <SwitchLabel
             id="am-lottieplayer-fullscreen-settings"
-            title={ __( 'Fill screen', domain ) }
-            value={ fullscreen }
-            onChange={ ( value ) =>
-            { setAttributes( { fullscreen: value } ) }
+            title={__('Fill screen', 'am-lottieplayer')}
+            value={fullscreen}
+            onChange={(value) => { setAttributes({ fullscreen: value }) }
             }
           />
         }
         <SelectControl
-          label={ __( 'Object fit' ) }
-          value={ objectFit as 'contain' | 'cover' | 'fill' | 'none' }
-          options={ [
+          label={__('Object fit')}
+          value={objectFit as 'contain' | 'cover' | 'fill' | 'none'}
+          options={[
             {
-              label: __( 'Contain', domain ),
+              label: __('Contain', 'am-lottieplayer'),
               value: 'contain',
             },
             {
-              label: __( 'Cover', domain ),
+              label: __('Cover', 'am-lottieplayer'),
               value: 'cover',
             },
             {
-              label: __( 'Fill', domain ),
+              label: __('Fill', 'am-lottieplayer'),
               value: 'fill',
             },
             {
-              label: __( 'None', domain ),
+              label: __('None', 'am-lottieplayer'),
               value: 'none',
             },
-          ] }
-          onChange={ ( val ) => {
-            setAttributes({ objectFit: val as DotLottiePlayerLight[ 'objectfit' ] } )
-          } }
+          ]}
+          onChange={(val) => {
+            setAttributes({ objectFit: val as DotLottiePlayerLight['objectfit'] })
+          }}
         />
       </PanelBody>
     </Panel>

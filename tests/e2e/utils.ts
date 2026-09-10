@@ -3,8 +3,6 @@ import type { FrameLocator, Page } from '@playwright/test'
 import { expect, type RequestUtils } from '@wordpress/e2e-test-utils-playwright'
 import { __ } from '@wordpress/i18n'
 
-import { domain } from '@/utils/constants'
-
 export const DIVI_TEXT_DOMAIN = 'Divi',
   BRICKS_TEXT_DOMAIN = 'bricks',
   ELEMENTOR_TEXT_DOMAIN = 'elementor'
@@ -74,7 +72,7 @@ export const handleBricksLicense = async (page: Page) => {
     await expect(elementSelector).toBeVisible()
     await elementSelector.click()
 
-    const placeholder = frame.getByText(__('No Lottie selected', domain))
+    const placeholder = frame.getByText(__('No Lottie selected', 'am-lottieplayer'))
 
     return placeholder
   },

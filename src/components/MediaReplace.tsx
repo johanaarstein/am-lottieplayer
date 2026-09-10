@@ -24,13 +24,12 @@ import type { BlockEditor, LottieBlockAttributes } from '@/types'
 import Lottie from '@/assets/Lottie'
 import ErrorNotice from '@/components/ErrorNotice'
 import { validateUrl } from '@/utils'
-import { domain } from '@/utils/constants'
 
 type MediaUpload = (options: {
-  allowedTypes: string[];
-  filesList: FileList | null;
-  onFileChange: (media: Media[]) => void;
-  onError: (message: string) => void;
+  allowedTypes: string[]
+  filesList: FileList | null
+  onFileChange: (media: Media[]) => void
+  onError: (message: string) => void
 }) => void
 
 export interface Media {
@@ -94,7 +93,7 @@ export default function MediaReplace({
           src: media.url,
         })
       } catch (error) {
-        ErrorNotice(__('There was an error uploading your file', domain))
+        ErrorNotice(__('There was an error uploading your file', 'am-lottieplayer'))
       }
     },
     selectMedia = (media: Media, closeMenu: () => void) => {

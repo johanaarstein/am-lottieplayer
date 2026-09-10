@@ -2,12 +2,12 @@ import { BaseControl, TextControl } from '@wordpress/components'
 
 interface InlineInterface {
   disabled?: boolean
-  help?: string;
-  id?: string;
-  onChange: (x: string) => void;
-  placeholder?: string;
-  title?: React.ReactNode;
-  value?: null | string;
+  help?: string
+  id?: string
+  onChange: (x: string) => void
+  placeholder?: string
+  title?: React.ReactNode
+  value?: null | string
 }
 export default function TextInput( {
   disabled,

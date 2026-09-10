@@ -11,8 +11,8 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 	/** Load customized svg icon and use it on builder as module icon. */
 	public function init() {
 
-		$this->name       = esc_html__( 'AM Lottie', TEXT_DOMAIN );
-		$this->plural     = esc_html__( 'AM Lotties', TEXT_DOMAIN );
+		$this->name       = esc_html__( 'AM Lottie', 'am-lottieplayer' );
+		$this->plural     = esc_html__( 'AM Lotties', 'am-lottieplayer' );
 		$this->slug       = 'et_pb_lottieplayer';
 		$this->vb_support = 'on';
 		$this->icon_path  = get_asset( 'divi-icon.svg' );
@@ -20,14 +20,14 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 		$this->settings_modal_toggles = array(
 			'general'    => array(
 				'toggles' => array(
-					'main_content' => esc_html__( 'Animation', TEXT_DOMAIN ),
+					'main_content' => esc_html__( 'Animation', 'am-lottieplayer' ),
 					'link'         => et_builder_i18n( 'Link' ),
 				),
 			),
 			'advanced'   => array(
 				'toggles' => array(
 					'overlay'   => et_builder_i18n( 'Overlay' ),
-					'alignment' => esc_html__( 'Alignment', TEXT_DOMAIN ),
+					'alignment' => esc_html__( 'Alignment', 'am-lottieplayer' ),
 					'width'     => array(
 						'title'    => et_builder_i18n( 'Sizing' ),
 						'priority' => 65,
@@ -37,11 +37,11 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 			'custom_css' => array(
 				'toggles' => array(
 					'animation'  => array(
-						'title'    => esc_html__( 'Animation', TEXT_DOMAIN ),
+						'title'    => esc_html__( 'Animation', 'am-lottieplayer' ),
 						'priority' => 90,
 					),
 					'attributes' => array(
-						'title'    => esc_html__( 'Attributes', TEXT_DOMAIN ),
+						'title'    => esc_html__( 'Attributes', 'am-lottieplayer' ),
 						'priority' => 95,
 					),
 				),
@@ -97,61 +97,61 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 	public function get_fields() {
 		/** @var Media $aamd_lottie_media */
 		global $aamd_lottie_media;
-		global $pro_link;
-		global $pro_feature;
+		global $aamd_pro_link;
+		global $aamd_pro_feature;
 
 		$fields = array(
 			'src'               => array(
-				'label'              => esc_html__( 'AM Lottie', TEXT_DOMAIN ),
+				'label'              => esc_html__( 'AM Lottie', 'am-lottieplayer' ),
 				'type'               => 'upload',
 				'option_category'    => 'basic_option',
 				'data_type'          => array( 'application/zip', 'application/zip+dotlottie', 'application/json', 'text/plain' ),
-				'upload_button_text' => esc_attr__( 'Use animation', TEXT_DOMAIN ),
-				'choose_text'        => esc_attr__( 'Choose a Lottie JSON or a dotLottie', TEXT_DOMAIN ),
-				'update_text'        => esc_attr__( 'Set As Lottie', TEXT_DOMAIN ),
+				'upload_button_text' => esc_attr__( 'Use animation', 'am-lottieplayer' ),
+				'choose_text'        => esc_attr__( 'Choose a Lottie JSON or a dotLottie', 'am-lottieplayer' ),
+				'update_text'        => esc_attr__( 'Set As Lottie', 'am-lottieplayer' ),
 				'hide_metadata'      => true,
 				'affects'            => array( 'description' ),
-				'description'        => esc_html__( 'Upload your desired animation in Lottie JSON format, dotLottie format, or type in the URL to the Lottie you would like to display', TEXT_DOMAIN ),
+				'description'        => esc_html__( 'Upload your desired animation in Lottie JSON format, dotLottie format, or type in the URL to the Lottie you would like to display', 'am-lottieplayer' ),
 				'toggle_slug'        => 'main_content',
 				'mobile_options'     => true,
 				'hover'              => 'tabs',
 				'default'            => esc_url( $aamd_lottie_media->get_default_file() ),
 			),
 			'description'       => array(
-				'label'           => esc_html__( 'Animation Alternative Text', TEXT_DOMAIN ),
+				'label'           => esc_html__( 'Animation Alternative Text', 'am-lottieplayer' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
 				'depends_show_if' => 'on',
 				'depends_on'      => array( 'src' ),
-				'description'     => esc_html__( 'This defines the HTML ALT text. A short description of your animation can be placed here. Helpful for screen readers.', TEXT_DOMAIN ),
+				'description'     => esc_html__( 'This defines the HTML ALT text. A short description of your animation can be placed here. Helpful for screen readers.', 'am-lottieplayer' ),
 				'tab_slug'        => 'custom_css',
 				'toggle_slug'     => 'attributes',
 				'dynamic_content' => 'text',
 			),
 			'url'               => array(
-				'label'           => esc_html__( 'Animation Link URL', TEXT_DOMAIN ),
+				'label'           => esc_html__( 'Animation Link URL', 'am-lottieplayer' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
 				'depends_show_if' => 'off',
-				'description'     => esc_html__( 'If you would like your Lottie to be a link, input your destination URL here. No link will be created if this field is left blank.', TEXT_DOMAIN ),
+				'description'     => esc_html__( 'If you would like your Lottie to be a link, input your destination URL here. No link will be created if this field is left blank.', 'am-lottieplayer' ),
 				'toggle_slug'     => 'link',
 				'dynamic_content' => 'url',
 			),
 			'url_new_window'    => array(
-				'label'            => esc_html__( 'Animation Link Target', TEXT_DOMAIN ),
+				'label'            => esc_html__( 'Animation Link Target', 'am-lottieplayer' ),
 				'type'             => 'select',
 				'option_category'  => 'configuration',
 				'options'          => array(
-					'off' => esc_html__( 'In The Same Window', TEXT_DOMAIN ),
-					'on'  => esc_html__( 'In The New Tab', TEXT_DOMAIN ),
+					'off' => esc_html__( 'In The Same Window', 'am-lottieplayer' ),
+					'on'  => esc_html__( 'In The New Tab', 'am-lottieplayer' ),
 				),
 				'default_on_front' => 'off',
 				'depends_show_if'  => 'off',
 				'toggle_slug'      => 'link',
-				'description'      => esc_html__( 'Here you can choose whether or not your link opens in a new window', TEXT_DOMAIN ),
+				'description'      => esc_html__( 'Here you can choose whether or not your link opens in a new window', 'am-lottieplayer' ),
 			),
 			'show_bottom_space' => array(
-				'label'            => esc_html__( 'Show Space Below The Animation', TEXT_DOMAIN ),
+				'label'            => esc_html__( 'Show Space Below The Animation', 'am-lottieplayer' ),
 				'type'             => 'yes_no_button',
 				'option_category'  => 'layout',
 				'options'          => array(
@@ -161,12 +161,12 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'default_on_front' => 'on',
 				'tab_slug'         => 'advanced',
 				'toggle_slug'      => 'margin_padding',
-				'description'      => esc_html__( 'Here you can choose whether or not the animation should have a space below it.', TEXT_DOMAIN ),
+				'description'      => esc_html__( 'Here you can choose whether or not the animation should have a space below it.', 'am-lottieplayer' ),
 				'mobile_options'   => true,
 			),
 			'force_fullwidth'   => array(
-				'label'            => esc_html__( 'Force Fullwidth', TEXT_DOMAIN ),
-				'description'      => esc_html__( "When enabled, this will force your animation to extend 100% of the width of the column it's in.", TEXT_DOMAIN ),
+				'label'            => esc_html__( 'Force Fullwidth', 'am-lottieplayer' ),
+				'description'      => esc_html__( "When enabled, this will force your animation to extend 100% of the width of the column it's in.", 'am-lottieplayer' ),
 				'type'             => 'yes_no_button',
 				'option_category'  => 'layout',
 				'options'          => array(
@@ -182,8 +182,8 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				),
 			),
 			'controls'          => array(
-				'label'            => esc_html__( 'Show controls', TEXT_DOMAIN ),
-				'description'      => esc_html__( 'Show or hide controls.', TEXT_DOMAIN ),
+				'label'            => esc_html__( 'Show controls', 'am-lottieplayer' ),
+				'description'      => esc_html__( 'Show or hide controls.', 'am-lottieplayer' ),
 				'type'             => 'yes_no_button',
 				'option_category'  => 'basic_option',
 				'options'          => array(
@@ -194,8 +194,8 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'toggle_slug'      => 'main_content',
 			),
 			'autoplay'          => array(
-				'label'            => esc_html__( 'Autoplay', TEXT_DOMAIN ),
-				'description'      => esc_html__( 'Control whether the animation plays on page load or not.', TEXT_DOMAIN ),
+				'label'            => esc_html__( 'Autoplay', 'am-lottieplayer' ),
+				'description'      => esc_html__( 'Control whether the animation plays on page load or not.', 'am-lottieplayer' ),
 				'type'             => 'yes_no_button',
 				'option_category'  => 'basic_option',
 				'options'          => array(
@@ -209,8 +209,8 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				),
 			),
 			'loop'              => array(
-				'label'            => esc_html__( 'Loop', TEXT_DOMAIN ),
-				'description'      => esc_html__( 'Loop the animation.', TEXT_DOMAIN ),
+				'label'            => esc_html__( 'Loop', 'am-lottieplayer' ),
+				'description'      => esc_html__( 'Loop the animation.', 'am-lottieplayer' ),
 				'type'             => 'yes_no_button',
 				'option_category'  => 'basic_option',
 				'options'          => array(
@@ -224,9 +224,9 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				),
 			),
 			'mode'              => array(
-				'label'            => $pro_feature . esc_html__( 'Boomerang', TEXT_DOMAIN ),
+				'label'            => $aamd_pro_feature . esc_html__( 'Boomerang', 'am-lottieplayer' ),
 				'type'             => 'yes_no_button',
-				'description'      => $pro_link,
+				'description'      => $aamd_pro_link,
 				'option_category'  => 'basic_option',
 				'options'          => array(
 					'off' => et_builder_i18n( 'No' ),
@@ -240,8 +240,8 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'readonly'         => ! AAMD_LOTTIE_IS_PRO,
 			),
 			'reverse'           => array(
-				'label'            => esc_html__( 'Reverse', TEXT_DOMAIN ),
-				'description'      => esc_html__( 'Reverse the animation.', TEXT_DOMAIN ),
+				'label'            => esc_html__( 'Reverse', 'am-lottieplayer' ),
+				'description'      => esc_html__( 'Reverse the animation.', 'am-lottieplayer' ),
 				'type'             => 'yes_no_button',
 				'option_category'  => 'basic_option',
 				'options'          => array(
@@ -255,8 +255,8 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				),
 			),
 			'subframe'          => array(
-				'label'            => esc_html__( 'Subframe', TEXT_DOMAIN ),
-				'description'      => esc_html__( 'Enabling this can sometimes reduce flicker', TEXT_DOMAIN ),
+				'label'            => esc_html__( 'Subframe', 'am-lottieplayer' ),
+				'description'      => esc_html__( 'Enabling this can sometimes reduce flicker', 'am-lottieplayer' ),
 				'type'             => 'yes_no_button',
 				'option_category'  => 'basic_option',
 				'options'          => array(
@@ -267,7 +267,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'toggle_slug'      => 'main_content',
 			),
 			'speed'             => array(
-				'label'          => esc_html__( 'Playback speed', TEXT_DOMAIN ),
+				'label'          => esc_html__( 'Playback speed', 'am-lottieplayer' ),
 				'type'           => 'range',
 				'default'        => '1',
 				'range_settings' => array(
@@ -280,8 +280,8 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				),
 			),
 			'intermission'      => array(
-				'label'          => esc_html__( 'Intermission', TEXT_DOMAIN ),
-				'description'    => esc_html__( 'Pause between loops, in miliseconds. 1s = 1000', TEXT_DOMAIN ),
+				'label'          => esc_html__( 'Intermission', 'am-lottieplayer' ),
+				'description'    => esc_html__( 'Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer' ),
 				'type'           => 'range',
 				'range_settings' => array(
 					'max'  => '5000',
@@ -293,24 +293,24 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				),
 			),
 			'segment_in'        => array(
-				'label'       => $pro_feature . esc_html__( 'Choose where to start', TEXT_DOMAIN ),
-				'description' => $pro_link,
+				'label'       => $aamd_pro_feature . esc_html__( 'Choose where to start', 'am-lottieplayer' ),
+				'description' => $aamd_pro_link,
 				'type'        => 'range',
 				'default'     => '1',
 				'toggle_slug' => 'main_content',
 				'readonly'    => ! AAMD_LOTTIE_IS_PRO,
 			),
 			'segment_out'       => array(
-				'label'       => $pro_feature . esc_html__( 'And where to end', TEXT_DOMAIN ),
-				'description' => $pro_link,
+				'label'       => $aamd_pro_feature . esc_html__( 'And where to end', 'am-lottieplayer' ),
+				'description' => $aamd_pro_link,
 				'type'        => 'range',
 				'default'     => '',
 				'toggle_slug' => 'main_content',
 				'readonly'    => ! AAMD_LOTTIE_IS_PRO,
 			),
 			'animateonscroll'   => array(
-				'label'            => $pro_feature . esc_html__( 'Animate on scroll', TEXT_DOMAIN ),
-				'description'      => esc_html__( 'Make the animation play only when scrolling, relative to the speed and direction of the scroll', TEXT_DOMAIN ) . $pro_link,
+				'label'            => $aamd_pro_feature . esc_html__( 'Animate on scroll', 'am-lottieplayer' ),
+				'description'      => esc_html__( 'Make the animation play only when scrolling, relative to the speed and direction of the scroll', 'am-lottieplayer' ) . $aamd_pro_link,
 				'type'             => 'yes_no_button',
 				'option_category'  => 'basic_option',
 				'options'          => array(
@@ -322,7 +322,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'readonly'         => ! AAMD_LOTTIE_IS_PRO,
 			),
 			'playonclick'       => array(
-				'label'            => esc_html__( 'Play on click', TEXT_DOMAIN ),
+				'label'            => esc_html__( 'Play on click', 'am-lottieplayer' ),
 				'type'             => 'yes_no_button',
 				'option_category'  => 'basic_option',
 				'options'          => array(
@@ -337,7 +337,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'toggle_slug'      => 'main_content',
 			),
 			'hover'             => array(
-				'label'            => esc_html__( 'Play on mouseover', TEXT_DOMAIN ),
+				'label'            => esc_html__( 'Play on mouseover', 'am-lottieplayer' ),
 				'type'             => 'yes_no_button',
 				'option_category'  => 'basic_option',
 				'options'          => array(
@@ -353,13 +353,13 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'toggle_slug'      => 'main_content',
 			),
 			'mouseout'          => array(
-				'label'       => esc_html__( 'On mouseout', TEXT_DOMAIN ),
+				'label'       => esc_html__( 'On mouseout', 'am-lottieplayer' ),
 				'type'        => 'select',
 				'options'     => array(
-					'void'    => esc_html__( 'No event', TEXT_DOMAIN ),
-					'stop'    => esc_html__( 'Stop', TEXT_DOMAIN ),
-					'pause'   => esc_html__( 'Pause', TEXT_DOMAIN ),
-					'reverse' => esc_html__( 'Reverse', TEXT_DOMAIN ),
+					'void'    => esc_html__( 'No event', 'am-lottieplayer' ),
+					'stop'    => esc_html__( 'Stop', 'am-lottieplayer' ),
+					'pause'   => esc_html__( 'Pause', 'am-lottieplayer' ),
+					'reverse' => esc_html__( 'Reverse', 'am-lottieplayer' ),
 				),
 				'default'     => 'stop',
 				'condition'   => array(
@@ -368,17 +368,17 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'toggle_slug' => 'main_content',
 			),
 			'selector'          => array(
-				'label'           => $pro_feature . esc_html__( 'Trigger element', TEXT_DOMAIN ),
+				'label'           => $aamd_pro_feature . esc_html__( 'Trigger element', 'am-lottieplayer' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__( 'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', TEXT_DOMAIN ) . $pro_link,
+				'description'     => esc_html__( 'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer' ) . $aamd_pro_link,
 				'toggle_slug'     => 'main_content',
 				'readonly'        => ! AAMD_LOTTIE_IS_PRO,
 			),
 			'exclude_selector'  => array(
-				'label'            => $pro_feature . esc_html__( 'Apply interaction only to trigger element', TEXT_DOMAIN ),
+				'label'            => $aamd_pro_feature . esc_html__( 'Apply interaction only to trigger element', 'am-lottieplayer' ),
 				'type'             => 'yes_no_button',
-				'description'      => $pro_link,
+				'description'      => $aamd_pro_link,
 				'option_category'  => 'basic_option',
 				'options'          => array(
 					'off' => et_builder_i18n( 'No' ),
@@ -389,7 +389,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'readonly'         => ! AAMD_LOTTIE_IS_PRO,
 			),
 			'playonvisible'     => array(
-				'label'            => esc_html__( 'Play on scroll, when visible in viewport', TEXT_DOMAIN ),
+				'label'            => esc_html__( 'Play on scroll, when visible in viewport', 'am-lottieplayer' ),
 				'type'             => 'yes_no_button',
 				'options_category' => 'basic_option',
 				'options'          => array(
@@ -404,7 +404,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'toggle_slug'      => 'main_content',
 			),
 			'delay'             => array(
-				'label'           => esc_html__( 'Delay, in milliseconds', TEXT_DOMAIN ),
+				'label'           => esc_html__( 'Delay, in milliseconds', 'am-lottieplayer' ),
 				'option_category' => 'basic_option',
 				'toggle_slug'     => 'main_content',
 				'type'            => 'range',
@@ -418,7 +418,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				),
 			),
 			'once'              => array(
-				'label'            => esc_html__( 'Play only once', TEXT_DOMAIN ),
+				'label'            => esc_html__( 'Play only once', 'am-lottieplayer' ),
 				'type'             => 'yes_no_button',
 				'options_category' => 'basic_option',
 				'options'          => array(
@@ -431,27 +431,27 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'default_on_front' => 'off',
 			),
 			'object_fit'        => array(
-				'label'           => esc_html__( 'Object Fit', TEXT_DOMAIN ),
-				'description'     => esc_html__( 'Choose how to scale the animation', TEXT_DOMAIN ),
+				'label'           => esc_html__( 'Object Fit', 'am-lottieplayer' ),
+				'description'     => esc_html__( 'Choose how to scale the animation', 'am-lottieplayer' ),
 				'type'            => 'select',
 				'option_category' => 'basic_option',
 				'options'         => array(
-					'contain' => esc_html__( 'Contain', TEXT_DOMAIN ),
-					'cover'   => esc_html__( 'Cover', TEXT_DOMAIN ),
-					'fill'    => esc_html__( 'Fill', TEXT_DOMAIN ),
-					'none'    => esc_html__( 'None', TEXT_DOMAIN ),
+					'contain' => esc_html__( 'Contain', 'am-lottieplayer' ),
+					'cover'   => esc_html__( 'Cover', 'am-lottieplayer' ),
+					'fill'    => esc_html__( 'Fill', 'am-lottieplayer' ),
+					'none'    => esc_html__( 'None', 'am-lottieplayer' ),
 				),
 				'default'         => 'contain',
 				'toggle_slug'     => 'main_content',
 			),
 			'renderer'          => array(
-				'label'           => $pro_feature . esc_html__( 'Renderer', TEXT_DOMAIN ),
-				'description'     => esc_html__( 'Choose renderer', TEXT_DOMAIN ) . $pro_link,
+				'label'           => $aamd_pro_feature . esc_html__( 'Renderer', 'am-lottieplayer' ),
+				'description'     => esc_html__( 'Choose renderer', 'am-lottieplayer' ) . $aamd_pro_link,
 				'type'            => 'select',
 				'option_category' => 'configuration',
 				'options'         => array(
-					'svg'    => esc_html__( 'SVG', TEXT_DOMAIN ),
-					'canvas' => esc_html__( 'Canvas', TEXT_DOMAIN ),
+					'svg'    => esc_html__( 'SVG', 'am-lottieplayer' ),
+					'canvas' => esc_html__( 'Canvas', 'am-lottieplayer' ),
 				),
 				'default'         => 'svg',
 				'toggle_slug'     => 'main_content',

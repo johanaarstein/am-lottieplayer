@@ -8,7 +8,6 @@ import type { PlayerComponentProps } from '@/types'
 
 import ProFeature from '@/assets/ProFeature'
 import ProLink from '@/components/ProLink'
-import { domain } from '@/utils/constants'
 
 export default function Advanced({
   attributes,
@@ -46,10 +45,10 @@ export default function Advanced({
         }
       />
       <TextareaControl
-        label={__('Description', domain)}
+        label={__('Description', 'am-lottieplayer')}
         value={description ?? ''}
         help={__('Describe the animation. This is helpful for screen readers and search engines.',
-          domain)}
+          'am-lottieplayer')}
         onChange={(value) => { setAttributes({ description: value }) }}
       />
     </InspectorAdvancedControls>

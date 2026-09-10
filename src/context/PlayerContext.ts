@@ -4,13 +4,13 @@ import type { LottieAnimation } from '@aarsteinmedia/lottie-web'
 import { createContext } from '@wordpress/element'
 
 export interface AnimationContext {
-  animations: LottieAnimation[];
-  player: null | DotLottiePlayer;
+  animations: LottieAnimation[]
+  player: null | DotLottiePlayer
 }
 
 const PlayerContext = createContext<{
-  setAnimationContext: React.Dispatch<React.SetStateAction<AnimationContext>>;
-  animationContext: AnimationContext;
+  setAnimationContext: React.Dispatch<React.SetStateAction<AnimationContext>>
+  animationContext: AnimationContext
 }>({
   animationContext: {
     animations: [],

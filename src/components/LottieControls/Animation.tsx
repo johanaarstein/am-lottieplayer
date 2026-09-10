@@ -17,9 +17,8 @@ import NumberInput from '@/components/form/NumberInput'
 import SwitchLabel from '@/components/form/SwitchLabel'
 import ProLink from '@/components/ProLink'
 import usePlayerContext from '@/hooks/usePlayerContext'
-import { domain } from '@/utils/constants'
 
-const premiumMessage = __('This feature is only available in the premium version', domain)
+const premiumMessage = __('This feature is only available in the premium version', 'am-lottieplayer')
 
 export default function Animation({
   attributes,
@@ -43,7 +42,7 @@ export default function Animation({
       <PanelBody
         initialOpen
         className="am-lottieplayer-settings"
-        title={__('Animation Settings', domain)}
+        title={__('Animation Settings', 'am-lottieplayer')}
       >
         {state.hasMultipleAnimations &&
           <div style={{ marginBottom: '1em' }}>
@@ -52,20 +51,20 @@ export default function Animation({
             </p>
             <p>
               {__('This file contains multiple animations. To control each of them individually you need to upgrade to AM LottiePlayer PRO.',
-                domain)}
+                'am-lottieplayer')}
             </p>
           </div>
         }
         <SwitchLabel
           id="am-lottieplayer-controls-settings"
-          title={__('Show controls', domain)}
+          title={__('Show controls', 'am-lottieplayer')}
           value={Boolean(controls)}
           onChange={(value) => { setAttributes({ controls: value }) }
           }
         />
         <SwitchLabel
           id="am-lottieplayer-autoplay-settings"
-          title={__('Autoplay', domain)}
+          title={__('Autoplay', 'am-lottieplayer')}
           value={Boolean(autoplay)}
           onChange={(value) => {
             setAttributes({ autoplay: value })
@@ -73,7 +72,7 @@ export default function Animation({
         />
         <SwitchLabel
           id="am-lottieplayer-loop-settings"
-          title={__('Loop', domain)}
+          title={__('Loop', 'am-lottieplayer')}
           value={Boolean(loop)}
           onChange={(value) => {
             setAttributes({ loop: value })
@@ -88,7 +87,7 @@ export default function Animation({
                 className="pro-feature"
                 style={{ marginRight: '1em' }}
               >
-                {__('Boomerang', domain)}
+                {__('Boomerang', 'am-lottieplayer')}
               </span>
               <ProFeature />
             </>
@@ -98,22 +97,22 @@ export default function Animation({
         />
         <SwitchLabel
           id="am-lottieplayer-reverse-settings"
-          title={__('Reverse', domain)}
+          title={__('Reverse', 'am-lottieplayer')}
           value={direction === -1}
           onChange={(value) => { setAttributes({ direction: value ? -1 : 1 }) }
           }
         />
         <SwitchLabel
           id="am-lottieplayer-subframe-settings"
-          title={__('Subframe', domain)}
+          title={__('Subframe', 'am-lottieplayer')}
           value={Boolean(subframe)}
           subTitle={__('Makes the animation smoother, at the cost of RAM usage',
-            domain)}
+            'am-lottieplayer')}
           onChange={(value) => { setAttributes({ subframe: value }) }
           }
         />
         <RangeControl
-          label={__('Speed', domain)}
+          label={__('Speed', 'am-lottieplayer')}
           max={5}
           min={0.5}
           step={0.5}
@@ -126,7 +125,7 @@ export default function Animation({
           </p>
           <span className="pro-feature">
             {__('Play only part of the animation',
-              domain)}
+              'am-lottieplayer')}
           </span>
         </BaseControl.VisualLabel>
         <PanelRow className="lottie-segment">
@@ -134,7 +133,7 @@ export default function Animation({
             disabled
             id="am-lottieplayer-segment-in"
             placeholder={'1'}
-            title={__('First frame', domain)}
+            title={__('First frame', 'am-lottieplayer')}
             value={segment?.[0]}
             onChange={() => { console.warn(premiumMessage) }
             }
@@ -143,7 +142,7 @@ export default function Animation({
             disabled
             id="am-lottieplayer-segment-out"
             placeholder={(state.totalFrames + 1).toString()}
-            title={__('Last frame', domain)}
+            title={__('Last frame', 'am-lottieplayer')}
             value={segment?.[1]}
             onChange={() => { console.warn(premiumMessage) }
             }
@@ -152,7 +151,7 @@ export default function Animation({
         {Boolean(loop) &&
           <>
             <BaseControl.VisualLabel>
-              {__('Intermission', domain)}
+            {__('Intermission', 'am-lottieplayer')}
             </BaseControl.VisualLabel>
             <PanelRow className="lottie-intermission">
               <NumberInput
@@ -160,7 +159,7 @@ export default function Animation({
                 placeholder={'0'}
                 value={intermission}
                 title={__('Pause between loops, in miliseconds. 1s = 1000',
-                  domain)}
+                  'am-lottieplayer')}
                 onChange={(val) => { setAttributes({ intermission: val }) }
                 }
               />
