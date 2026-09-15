@@ -113,7 +113,7 @@
 		"test:e2e": "WP_BASE_URL=http://localhost:8888 playwright test; wp-env stop",
 		"test:e2e:ui": "WP_BASE_URL=http://localhost:8888 playwright test --ui; wp-env stop",
 		"test:e2e:debug": "WP_BASE_URL=http://localhost:8888 playwright test --debug; wp-env stop",
-		"clean:composer": "rm -rf vendor"
+		"clean": "pnpm pm clean && rm -rf test-results playwright-report vendor"
 	},
 	"cde": {
 		"gettext": "am-lottieplayer",
