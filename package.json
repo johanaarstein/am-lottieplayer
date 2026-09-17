@@ -37,7 +37,7 @@
 	"main": "build/admin.js",
 	"packageManager": "pnpm@12.4.2",
 	"devDependencies": {
-		"@aarsteinmedia/dotlottie-player": "^6.5.1",
+		"@aarsteinmedia/dotlottie-player": "^6.5.2",
 		"@aarsteinmedia/lottie-web": "^1.6.1",
 		"@eslint-react/eslint-plugin": "^5.19.1",
 		"@eslint/compat": "^2.1.1",

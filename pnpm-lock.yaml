@@ -167,8 +167,8 @@ importers:
   .:
     devDependencies:
       '@aarsteinmedia/dotlottie-player':
-        specifier: ^6.5.1
-        version: 6.5.1(@types/react@19.3.0)(fflate@0.8.3)
+        specifier: ^6.5.2
+        version: 6.5.2(@types/react@19.3.0)(fflate@0.8.3)
       '@aarsteinmedia/lottie-web':
         specifier: ^1.6.1
         version: 1.6.1(fflate@0.8.3)
@@ -349,8 +349,8 @@ importers:
 
 packages:
 
-  '@aarsteinmedia/dotlottie-player@6.5.1':
-    resolution: {integrity: sha512-F1eC4KOYb0PbTL1Bf2WXB7l1nqHYRbpeKHZjbs47YZP7m0JVN2Ku/fDgj3Ypk7/YNkroMIft6PrZ0QSE6DxnhQ==}
+  '@aarsteinmedia/dotlottie-player@6.5.2':
+    resolution: {integrity: sha512-cJUt5l6RbanfSLjn1H90fqyZKOROYJ5z89QdsxvpUvNkBpKMwTdq8PBvV7ZvYmgH7TBHYetUxTWsWAz2Ad4Zjg==}
     engines: {node: '>=22'}
     peerDependencies:
       '@types/react': '>= 16.0.0'
@@ -9043,7 +9043,7 @@ packages:
 
 snapshots:
 
-  '@aarsteinmedia/dotlottie-player@6.5.1(@types/react@19.3.0)(fflate@0.8.3)':
+  '@aarsteinmedia/dotlottie-player@6.5.2(@types/react@19.3.0)(fflate@0.8.3)':
     dependencies:
       '@aarsteinmedia/lottie-web': 1.6.1(fflate@0.8.3)
       '@types/react': 19.3.0
