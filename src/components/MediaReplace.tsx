@@ -43,7 +43,7 @@ const onUploadError = (message: string) => {
 
   // We need to set a timeout for showing the notice
   // so that VoiceOver and possibly other screen readers
-  // can announce the error afer the toolbar button
+  // can announce the error after the toolbar button
   // regains focus once the upload dialog closes.
   // Otherwise VO simply skips over the notice and announces
   // the focused element and the open menu.

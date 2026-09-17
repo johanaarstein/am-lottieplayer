@@ -7,7 +7,7 @@ Tags: lottie, bodymovin, gutenberg, svg, gif
 Requires at least: 5.9
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable Tag: 4.2.0
+Stable Tag: 4.2.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -132,7 +132,7 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 == Changelog ==
 
-= 4.2.0 - September 17 2026 =
+= 4.2.1 - September 17 2026 =
 * Added accessibility check for `prefers-reduced-motion: reduce`. This overrides and disables `autoplay` and `playOnVisible`.
 
 = 4.1.1 - September 10 2026 =

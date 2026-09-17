@@ -158,7 +158,7 @@ export default function Animation({
                 id={'am-lottieplayer-intermission'}
                 placeholder={'0'}
                 value={intermission}
-                title={__('Pause between loops, in miliseconds. 1s = 1000',
+                title={__('Pause between loops, in milliseconds. 1s = 1000',
                   'am-lottieplayer')}
                 onChange={(val) => { setAttributes({ intermission: val }) }
                 }
