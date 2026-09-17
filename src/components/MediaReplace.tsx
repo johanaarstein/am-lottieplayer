@@ -57,9 +57,9 @@ export default function MediaReplace({
   setAttributes,
 }: LottieBlockAttributes) {
   const [state, setState] = useState({
-    externalURL: attributes.src || '',
-    mediaId: Number(attributes.id),
-  }),
+      externalURL: attributes.src || '',
+      mediaId: Number(attributes.id),
+    }),
     editMediaButtonRef = useRef<HTMLButtonElement>(null),
     mediaUpload: MediaUpload | undefined = useSelect((select) => {
       try {
@@ -92,6 +92,7 @@ export default function MediaReplace({
           id: media.id.toString(),
           src: media.url,
         })
+      // eslint-disable-next-line sonarjs/no-ignored-exceptions
       } catch (error) {
         ErrorNotice(__('There was an error uploading your file', 'am-lottieplayer'))
       }

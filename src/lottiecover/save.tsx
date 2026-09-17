@@ -8,9 +8,9 @@ import { Align } from '@/enums'
 
 export default function save({ attributes }: BlockSaveProps<PlayerComponentProps>) {
   const heightWithUnit =
-    attributes.height && attributes.heightUnit
-      ? `${attributes.height}${attributes.heightUnit}`
-      : attributes.height,
+      attributes.height && attributes.heightUnit
+        ? `${attributes.height}${attributes.heightUnit}`
+        : attributes.height,
     style = {
       minHeight: attributes.fullscreen
         ? '100vh'
@@ -56,7 +56,7 @@ export default function save({ attributes }: BlockSaveProps<PlayerComponentProps
           attributes.autoplay && !attributes.playOnVisible ? '' : null
         }
         class={`lottie-element${attributes.selector ? ' has-selector' : ''
-          }`}
+        }`}
         style={{
           backgroundColor: attributes.background,
           height:

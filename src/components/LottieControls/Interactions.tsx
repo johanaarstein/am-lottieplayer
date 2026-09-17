@@ -1,4 +1,4 @@
-/* eslint-disable @eslint-react/no-leaked-conditional-rendering */
+
 import type { BlockEditProps } from '@wordpress/blocks'
 
 import {
@@ -20,7 +20,7 @@ import { MouseOut } from '@/enums'
 export default function Interactions({
   attributes,
   setAttributes,
-}: BlockEditProps<PlayerComponentProps>) {
+}: Readonly<BlockEditProps<PlayerComponentProps>>) {
 
   return (
     <Panel>
@@ -61,7 +61,7 @@ export default function Interactions({
         />
         {attributes.hover &&
           <SelectControl
-          label={__('On mouseout', 'am-lottieplayer')}
+            label={__('On mouseout', 'am-lottieplayer')}
             value={attributes.mouseout}
             options={[
               {
@@ -87,28 +87,28 @@ export default function Interactions({
         }
         {(attributes.hover || attributes.playOnClick) &&
           <TextInput
-              disabled
-              id="am-lottieplayer-settings"
-              placeholder={'#'}
-              value={attributes.selector}
-              help={__('Anchor tag (id) for an element you want to trigger the animation, either by hover or click.',
-                'am-lottieplayer')}
-              title={
-                <>
-                  <span
-                    className="pro-feature"
-                    style={{ marginRight: '1em' }}
-                  >
-                    {__('Trigger element',
-                      'am-lottieplayer')}
-                  </span>
+            disabled
+            id="am-lottieplayer-settings"
+            placeholder={'#'}
+            value={attributes.selector}
+            help={__('Anchor tag (id) for an element you want to trigger the animation, either by hover or click.',
+              'am-lottieplayer')}
+            title={
+              <>
+                <span
+                  className="pro-feature"
+                  style={{ marginRight: '1em' }}
+                >
+                  {__('Trigger element',
+                    'am-lottieplayer')}
+                </span>
 
-                  <ProFeature />
-                </>
-              }
-              onChange={(val) => { setAttributes({ selector: val }) }
-              }
-            />
+                <ProFeature />
+              </>
+            }
+            onChange={(val) => { setAttributes({ selector: val }) }
+            }
+          />
         }
         <SwitchLabel
           id="am-lottieplayer-scroll-settings"
@@ -122,7 +122,7 @@ export default function Interactions({
           <>
             <SwitchLabel
               id="am-lottieplayer-once-settings"
-            title={__('Play only once', 'am-lottieplayer')}
+              title={__('Play only once', 'am-lottieplayer')}
               value={attributes.once}
               onChange={(value) => { setAttributes({ once: value }) }
               }

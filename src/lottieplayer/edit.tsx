@@ -12,41 +12,41 @@ import PlayerWrapper from '@/context/PlayerProvider'
 import { isTemporaryMedia } from '@/utils/media'
 import '@/lottieplayer/editor.css'
 
-export default function Edit( {
+export default function Edit({
   attributes,
   className,
   clientId,
   context,
   isSelected,
   setAttributes,
-}: BlockEditProps< PlayerComponentProps > ) {
+}: Readonly<BlockEditProps<PlayerComponentProps>>) {
   const isUploadingMedia = isTemporaryMedia(attributes.id,
     attributes.src || undefined)
 
   return (
     <PlayerWrapper>
       <LottieControls
-        attributes={ attributes }
-        className={ className }
-        clientId={ clientId }
-        context={ context }
-        isSelected={ isSelected }
-        setAttributes={ setAttributes }
+        attributes={attributes}
+        className={className}
+        clientId={clientId}
+        context={context}
+        isSelected={isSelected}
+        setAttributes={setAttributes}
       />
-      { isUploadingMedia && <Spinner /> }
-      <div { ...useBlockProps() }>
+      {isUploadingMedia && <Spinner />}
+      <div {...useBlockProps()}>
         <Placeholder
-          attributes={ attributes }
-          className={ className }
-          clientId={ clientId }
-          context={ context }
-          isSelected={ isSelected }
-          setAttributes={ setAttributes }
+          attributes={attributes}
+          className={className}
+          clientId={clientId}
+          context={context}
+          isSelected={isSelected}
+          setAttributes={setAttributes}
         />
         <ContextMenu
-          attributes={ attributes }
+          attributes={attributes}
           // clientId={ clientId }
-          setAttributes={ setAttributes }
+          setAttributes={setAttributes}
         />
       </div>
     </PlayerWrapper>

@@ -19,15 +19,16 @@ import { Align } from '@/enums'
 export default function Dimensions({
   attributes,
   setAttributes,
-}: BlockEditProps<PlayerComponentProps>) {
+}: Readonly<BlockEditProps<PlayerComponentProps>>) {
   const {
-    align,
-    fullscreen,
-    height,
-    objectFit = 'contain',
-    width,
-  } = attributes,
+      align,
+      fullscreen,
+      height,
+      objectFit = 'contain',
+      width,
+    } = attributes,
 
+    // eslint-disable-next-line sonarjs/function-return-type
     parseWidth = (num: number | string) => {
       if (align === Align.Full || align === Align.Wide) {
         return '100%'

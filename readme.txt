@@ -7,7 +7,7 @@ Tags: lottie, bodymovin, gutenberg, svg, gif
 Requires at least: 5.9
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable Tag: 4.1.1
+Stable Tag: 4.2.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -17,7 +17,7 @@ The most complete Lottie Player plugin! It is lightweight, versatile and easy to
 
 **The most complete free Lottie Player yet.**
 
-AM LottiePlayer is easy to use, lightweight, and gives you total control over how to implement crisp, vectorized animations to your website. Easily set up user interactions, choose between JSON or the optimized dotLottie format, choose whether to serve the files from a CDN or your own *Media Library*, choose how to scale the animation, add a nice description for screen readers and search eninge crawlers, and you're off to the races!
+AM LottiePlayer is easy to use, lightweight, and gives you total control over how to implement crisp, vectorized animations to your website. Easily set up user interactions, choose between JSON or the optimized dotLottie format, choose whether to serve the files from a CDN or your own *Media Library*, choose how to scale the animation, add a nice description for screen readers and search engine crawlers, and you're off to the races!
 
 Upload Lottie animations to WordPress and add them to Gutenberg, Divi, Elementor, Bricks, Flatsome UX Builder, or via the shortcode `[am-lottieplayer]`. This plugin also offer partial support for WPBakery (formerly Visual Studio).
 
@@ -28,7 +28,7 @@ Upload Lottie animations to WordPress and add them to Gutenberg, Divi, Elementor
 - Contains an Elementor Widget
 - Contains a Bricks Element
 - Contains the shortcode `[am-lottieplayer]`
-- Has intergration for Flatsome UX Builder
+- Has integration for Flatsome UX Builder
 - Has partial support for WPBakery (formerly Visual Studio)
 - Scripts are only loaded for pages where the player is used
 - Upload Lottie JSON or dotLottie files to your *Media Library*
@@ -46,7 +46,7 @@ Upload Lottie animations to WordPress and add them to Gutenberg, Divi, Elementor
 AM LottiePlayer is also available in a professional version, which includes more functionality and flexibility. The AM LottiePlayer PRO features are:
 
 * Combine animations in a single file via drag and drop
-* Control interactions and behaviour of each animation in multi-animation files
+* Control interactions and behavior of each animation in multi-animation files
 * Convert JSON-lotties to dotLottie in an easy-to use GUI
 * Choose renderer: SVG, Canvas or HTML
 * More of the functionality from animations made with After Effects
@@ -114,7 +114,7 @@ The shortcode `[am-lottieplayer]` has the following parameters:
 - loop: `true` | `false`, default: `false`
 - objectfit: `cover` | `contain` | `none`, default: `contain`
 - speed: `number` (1 – 5), default: `1`
-- intermission: `number` in miliseconds
+- intermission: `number` in milliseconds
 - direction: `1` | `-1`, default: `1`
 - onclick: `true` | `false`, default: `false`
 - onmouseover: `true` | `false`, default: `false`
@@ -131,6 +131,9 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 5. …and Bricks!
 
 == Changelog ==
+
+= 4.2.0 - September 17 2026 =
+* Added accessibility check for `prefers-reduced-motion: reduce`. This overrides and disables `autoplay` and `playOnVisible`.
 
 = 4.1.1 - September 10 2026 =
 * Fixed issue with text domain
@@ -203,7 +206,7 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 * Enhanced sanitation of SVG thumbnails.
 
 = 3.5.2 - April 3 2025 =
-* Fixed compability issues with older versions of PHP, causing sanitation not to work properly.
+* Fixed compatibility issues with older versions of PHP, causing sanitation not to work properly.
 
 = 3.5.1 - March 28 2025 =
 * Enhancing of sanitation method
@@ -252,14 +255,14 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 * Fixed critical bug
 
 = 3.3.4 - October 4 2024 =
-* Added thumbnail previews for Meda Library
+* Added thumbnail previews for Media Library
 
 = 3.3.1 - October 2 2024 =
 * Fixed bug with Flatsome template
 
 = 3.3.0 - October 28 2024 =
 * Refactored codebase
-* Implemention of namespace to avoid conflict
+* Implementation of namespace to avoid conflict
 * Migrated away from rich data to text attributes
 
 = 3.2.5 - October 20 2024 =
@@ -286,7 +289,7 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 * Bugfix to admin.css, where broad selectors created unwanted behavior
 
 = 3.1.7 - June 13 2024 =
-* Bugfix to backend script, fixing unwanted behaviour on blur event
+* Bugfix to backend script, fixing unwanted behavior on blur event
 
 = 3.1.6 - June 6 2024 =
 * Bugfix to frontend script
@@ -334,13 +337,13 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 * Because we've launched a [PRO version of this plugin](https://www.aarstein.media/en/am-lottieplayer/pro) some features, like boomerang, animation segments, external selector and the option to choose renderer has been removed from the free tier. Certain methods from animations made with After Effects (like loopOut) has also been omitted. The upside is that this plugin is now even more lightweight and less RAM intensive than before. To anyone who still might experiences this as a downgrade: you're free to continue to use [any version of this plugin below 3.0.0](https://wordpress.org/plugins/am-lottieplayer/advanced/). However, if you'd like to support the development of this plugin, the premium version starts at $2.75 a month ($33 a year), and contains several requested features like the ability to combine and control multiple animations in a single file, or convert and optimize JSON to dotLottie. [Read more about AM LottiePlayer PRO here!](https://www.aarstein.media/en/am-lottieplayer/pro)
 
 = 2.5.17 - Nov 23 2023 =
-* Bugfix: Fixed compability issue with PHP 7.4
+* Bugfix: Fixed compatibility issue with PHP 7.4
 
 = 2.5.16 - Nov 15 2023 =
 * Bugfix: Fixed loading issue for third party builders
 
 = 2.5.15 - Nov 11 2023 =
-* Compability with WordPress 6.4
+* Compatibility with WordPress 6.4
 
 = 2.5.14 - Sep 22 2023 =
 * Bugfix: Fixed playback error on Divi Shortcode
@@ -374,7 +377,7 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 * New Feature: Added option to play animation only once on scroll
 
 = 2.5.3 =
-* Bugfix: Play on scoll functionality wasn't working properly in certain browsers.
+* Bugfix: Play on scroll functionality wasn't working properly in certain browsers.
 
 = 2.5.2 =
 * Minor bugfix.
@@ -390,7 +393,7 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 
 = 2.4 =
 * New Feature: Added possibility to play segments, in Gutenberg editor
-* Compability: Checked compability with new release of WordPress
+* Compatibility: Checked compatibility with new release of WordPress
 
 = 2.3.3 =
 * Bugfix: Fixed issue with shortcode and namings
@@ -409,7 +412,7 @@ Here's an example: `[am-lottieplayer src="https://storage.googleapis.com/aarstei
 * Bugfix: Issue prevented Gutenberg backend from working properly
 
 = 2.2.1 =
-* Optimization: Preparatioins for future functionality expansion
+* Optimization: Preparations for future functionality expansion
 
 = 2.2.0 =
 * New Feature: Adding preview of animations in Media Library

@@ -1,6 +1,6 @@
 import { BaseControl, TextControl } from '@wordpress/components'
 
-interface InlineInterface {
+interface Props {
   disabled?: boolean
   help?: string
   id?: string
@@ -9,7 +9,7 @@ interface InlineInterface {
   title?: React.ReactNode
   value?: null | string
 }
-export default function TextInput( {
+export default function TextInput({
   disabled,
   help,
   id = '',
@@ -17,7 +17,7 @@ export default function TextInput( {
   placeholder = '',
   title,
   value = '',
-}: InlineInterface ) {
+}: Readonly<Props>) {
   return (
     <BaseControl
       className={ 'lottie-number-wrapper' }
@@ -29,7 +29,7 @@ export default function TextInput( {
         placeholder={ placeholder }
         value={ value ?? '' }
         disabled={disabled}
-        onChange={ ( n ) => { onChange( n ) } }
+        onChange={ (n) => { onChange(n) } }
       />
     </BaseControl>
   )

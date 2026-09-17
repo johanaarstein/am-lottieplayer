@@ -9,7 +9,7 @@ export default function Placeholder({
   attributes,
   clientId,
   setAttributes,
-}: BlockEditProps<PlayerComponentProps>) {
+}: Readonly<BlockEditProps<PlayerComponentProps>>) {
 
   return (
     <>

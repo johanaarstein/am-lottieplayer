@@ -10,7 +10,7 @@ import type { PlayerComponentProps } from '@/types'
 export default function Background({
   attributes,
   setAttributes,
-}: BlockEditProps<PlayerComponentProps>) {
+}: Readonly<BlockEditProps<PlayerComponentProps>>) {
   const { background } = attributes
 
   return (

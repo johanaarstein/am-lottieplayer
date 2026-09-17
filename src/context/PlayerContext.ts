@@ -8,7 +8,7 @@ export interface AnimationContext {
   player: null | DotLottiePlayer
 }
 
-const PlayerContext = createContext<{
+export const PlayerContext = createContext<{
   setAnimationContext: React.Dispatch<React.SetStateAction<AnimationContext>>
   animationContext: AnimationContext
 }>({
@@ -19,5 +19,3 @@ const PlayerContext = createContext<{
   setAnimationContext: (value: React.SetStateAction<AnimationContext>) =>
     value,
 })
-
-export default PlayerContext

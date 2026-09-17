@@ -16,7 +16,7 @@ export default function SwitchLabel({
   subTitle,
   title,
   value = false,
-}: SwitchProps) {
+}: Readonly<SwitchProps>) {
   return (
     <BaseControl
       className={'lottie-switch-label'}

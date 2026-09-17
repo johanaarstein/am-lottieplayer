@@ -4,7 +4,7 @@ import { useBlockProps } from '@wordpress/block-editor'
 
 import type { PlayerComponentProps } from '@/types'
 
-export default function save( { attributes }: BlockSaveProps< PlayerComponentProps > ) {
+export default function save({ attributes }: BlockSaveProps< PlayerComponentProps >) {
   const blockProps = useBlockProps.save({ className: `align${attributes.align ?? 'none'}` })
 
   return (
@@ -46,7 +46,7 @@ export default function save( { attributes }: BlockSaveProps< PlayerComponentPro
           attributes.autoplay && !attributes.playOnVisible ? '' : null
         }
         class={`lottie-element${attributes.selector ? ' has-selector' : ''
-          }`}
+        }`}
       />
     </figure>
   )

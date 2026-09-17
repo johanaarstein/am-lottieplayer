@@ -1,5 +1,5 @@
 import {
- DIVI_TEXT_DOMAIN, getDiviFrame, getPostURL, insertModuleDivi, selectAttachmentFromModal
+  DIVI_TEXT_DOMAIN, getDiviFrame, getPostURL, insertModuleDivi, selectAttachmentFromModal
 } from '@test/e2e/utils'
 import { expect, test } from '@wordpress/e2e-test-utils-playwright'
 import { __ } from '@wordpress/i18n'
@@ -9,16 +9,20 @@ test.describe('dotLottiePlayer Module', () => {
     await requestUtils.activateTheme('Divi')
   })
 
-  test.beforeEach(async ({ admin, editor, page }) => {
+  test.beforeEach(async ({
+    admin, editor, page
+  }) => {
     await admin.createNewPost({ postType: 'page' })
     await editor.canvas.locator('#et-switch-to-divi').click()
 
     const creationModal = page.locator('.et-vb-modal--page-creation')
+
     if (await creationModal.isVisible()) {
       await creationModal.locator('.et-vb-modal-header-button--close').click()
     }
     // For some reason this sometimes will pop up.
     const aiPrompt = page.locator('.et-common-prompt__container')
+
     if (await aiPrompt.isVisible()) {
       await aiPrompt.locator('[data-testid=ClosePrompt]').click()
     }

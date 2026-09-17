@@ -9,13 +9,13 @@ const isRefObject = <T>(value: unknown): value is React.RefObject<T> => {
 
 interface ElementOptions<T> {
   element?:
-  | (Window & typeof globalThis)
-  | React.RefObject<T>
-  | Element
-  | ScreenOrientation
-  | Document
-  | null
-  | false
+    | Window & typeof globalThis
+    | React.RefObject<T>
+    | Element
+    | ScreenOrientation
+    | Document
+    | null
+    | false
 }
 
 type EventOptions<T> = EventListenerOptions &
@@ -30,7 +30,7 @@ type EventOptions<T> = EventListenerOptions &
  * @param options - The element to add the event listener to. Default is the window.
  */
 
-export default function useEventListener<
+export function useEventListener<
   E extends Event = Event,
   T extends Element | null = Element,
 >(
@@ -39,8 +39,8 @@ export default function useEventListener<
   options: EventOptions<T>
 ) {
   const {
-    capture: isCapture, element: elementOptions, enabled: isEnabled = true, passive: isPassive
-  } = options,
+      capture: isCapture, element: elementOptions, enabled: isEnabled = true, passive: isPassive
+    } = options,
 
     element =
       elementOptions === undefined ? window : elementOptions,
@@ -71,9 +71,9 @@ export default function useEventListener<
       }
 
       const listenerOptions = {
-        capture: isCapture,
-        passive: isPassive
-      },
+          capture: isCapture,
+          passive: isPassive
+        },
         handler = ((e: E) => {
           callbackRef.current(e)
         }) as EventListener
@@ -82,8 +82,8 @@ export default function useEventListener<
         with standard Element::addEventListener, but not in a way that
         will cause trouble */
         ; (targetElement as Window).addEventListener(
-          eventType, handler, listenerOptions
-        )
+        eventType, handler, listenerOptions
+      )
 
       removeListener = () => {
         ; (targetElement as Window).removeEventListener(
@@ -127,9 +127,9 @@ export default function useEventListener<
 }
 
 export const WINDOW_LISTENER_OPTS = {
-  capture: false,
-  passive: true
-} as const,
+    capture: false,
+    passive: true
+  } as const,
   SCROLL_LISTENER_OPTS = {
     capture: true,
     passive: true

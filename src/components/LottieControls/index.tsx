@@ -10,7 +10,7 @@ import Animation from '@/components/LottieControls/Animation'
 import Background from '@/components/LottieControls/Background'
 import Dimensions from '@/components/LottieControls/Dimensions'
 import Interactions from '@/components/LottieControls/Interactions'
-import usePlayerContext from '@/hooks/usePlayerContext'
+import { usePlayerContext } from '@/hooks/usePlayerContext'
 
 export default function LottieControls({
   attributes,
@@ -19,7 +19,7 @@ export default function LottieControls({
   context,
   isSelected,
   setAttributes,
-}: BlockEditProps<PlayerComponentProps>) {
+}: Readonly<BlockEditProps<PlayerComponentProps>>) {
   const generatedId = useId(),
     { setAnimationContext } = usePlayerContext()
 

@@ -2,7 +2,7 @@ import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player'
 
 import { useRef } from '@wordpress/element'
 
-import useEventListener from '@/hooks/useEventListener'
+import { useEventListener } from '@/hooks/useEventListener'
 import { isTouch } from '@/utils'
 
 export default function BoomerangLottie({
@@ -11,7 +11,7 @@ export default function BoomerangLottie({
   speed = 1,
   src,
   subframe,
-}: Partial<DotLottiePlayer>) {
+}: Readonly<Partial<DotLottiePlayer>>) {
   const boomerang = useRef<DotLottiePlayer>(null),
     mouseOut = () => {
       if (isTouch()) {
@@ -42,9 +42,9 @@ export default function BoomerangLottie({
 
   useEventListener(
     'scroll', touchScroll, {
-    capture: true,
-    passive: true
-  }
+      capture: true,
+      passive: true
+    }
   )
 
   useEventListener(

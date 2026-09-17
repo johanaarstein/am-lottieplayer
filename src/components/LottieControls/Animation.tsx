@@ -16,17 +16,17 @@ import ProFeature from '@/assets/ProFeature'
 import NumberInput from '@/components/form/NumberInput'
 import SwitchLabel from '@/components/form/SwitchLabel'
 import ProLink from '@/components/ProLink'
-import usePlayerContext from '@/hooks/usePlayerContext'
+import { usePlayerContext } from '@/hooks/usePlayerContext'
 
 const premiumMessage = __('This feature is only available in the premium version', 'am-lottieplayer')
 
 export default function Animation({
   attributes,
   setAttributes,
-}: BlockEditProps<PlayerComponentProps>) {
+}: Readonly<BlockEditProps<PlayerComponentProps>>) {
   const {
-    autoplay, controls, direction, intermission, loop, segment, speed, subframe
-  } = attributes,
+      autoplay, controls, direction, intermission, loop, segment, speed, subframe
+    } = attributes,
     { animationContext: { animations, player } } = usePlayerContext(),
     [state] = useState(() => {
       const totalFrames = player?.getLottie()?.totalFrames ?? 0
@@ -151,7 +151,7 @@ export default function Animation({
         {Boolean(loop) &&
           <>
             <BaseControl.VisualLabel>
-            {__('Intermission', 'am-lottieplayer')}
+              {__('Intermission', 'am-lottieplayer')}
             </BaseControl.VisualLabel>
             <PanelRow className="lottie-intermission">
               <NumberInput

@@ -58,7 +58,7 @@ export interface UploadProps {
   }) => void
 }
 
-interface PHPVars {pluginUrl: string}
+interface PHPVars { pluginUrl: string }
 
 export interface MediaElement {
   alt?: string

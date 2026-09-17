@@ -7,15 +7,15 @@ const untrailingslashit = (str: string): string => {
 }
 
 export const debounce = (callBack: (x: unknown) => unknown, timeout = 100) => {
-  let timer: ReturnType<typeof setTimeout>
+    let timer: ReturnType<typeof setTimeout>
 
-  return (...args: unknown[]) => {
-    clearTimeout(timer)
-    timer = setTimeout(() => {
-      callBack([...args])
-    }, timeout)
-  }
-},
+    return (...args: unknown[]) => {
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        callBack([...args])
+      }, timeout)
+    }
+  },
   isModifierKey = ({
     ctrlKey, key, metaKey, shiftKey
   }: React.KeyboardEvent) =>

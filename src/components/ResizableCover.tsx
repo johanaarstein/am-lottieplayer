@@ -12,7 +12,7 @@ interface Props {
   showHandle?: boolean
 }
 
-export default function ResizableCover( {
+export default function ResizableCover({
   children,
   className,
   fullscreen,
@@ -22,11 +22,11 @@ export default function ResizableCover( {
   showHandle,
   ...rest
 }: React.HTMLAttributes<HTMLElement> & Props) {
-  const [ isResizing, setIsResizing ] = useState( false )
+  const [ isResizing, setIsResizing ] = useState(false)
 
   return (
     <ResizableBox
-      className={ classnames( className, { 'is-resizing': isResizing } ) }
+      className={ classnames(className, { 'is-resizing': isResizing }) }
       enable={ { bottom: ! fullscreen } }
       minHeight={ 10 }
       showHandle={ showHandle }
@@ -34,16 +34,16 @@ export default function ResizableCover( {
       onResize={ (
         _e, _dir, el
       ) => {
-        onResize( el.clientHeight )
-        if ( ! isResizing ) {
-          setIsResizing( true )
+        onResize(el.clientHeight)
+        if (! isResizing) {
+          setIsResizing(true)
         }
       } }
       onResizeStop={ (
         _e, _dir, el
       ) => {
-        onResizeStop( el.clientHeight )
-        setIsResizing( false )
+        onResizeStop(el.clientHeight)
+        setIsResizing(false)
       } }
       { ...rest }
     >

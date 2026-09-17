@@ -27,7 +27,7 @@ export default function NumberInput({
   placeholder = '',
   title,
   value = '',
-}: NumberProps) {
+}: Readonly<NumberProps>) {
   return (
     <BaseControl
       className={'lottie-number-wrapper'}

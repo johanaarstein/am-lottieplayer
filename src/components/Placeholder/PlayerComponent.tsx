@@ -2,14 +2,14 @@ import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player'
 
 import { useSelect } from '@wordpress/data'
 import {
- useCallback, useEffect, useRef
+  useCallback, useEffect, useRef
 } from '@wordpress/element'
 
 import type { BlockEditor, LottieBlockAttributes } from '@/types'
 
 import { Align } from '@/enums'
-import useEventListener from '@/hooks/useEventListener'
-import usePlayerContext from '@/hooks/usePlayerContext'
+import { useEventListener } from '@/hooks/useEventListener'
+import { usePlayerContext } from '@/hooks/usePlayerContext'
 import { debounce } from '@/utils'
 
 const parseSize = (num?: number | null) => {
@@ -23,9 +23,9 @@ export default function PlayerComponent({
   clientId = '',
 }: LottieBlockAttributes) {
   const {
-    animationContext: { player },
-    setAnimationContext,
-  } = usePlayerContext(),
+      animationContext: { player },
+      setAnimationContext,
+    } = usePlayerContext(),
     { getBlockIndex }: BlockEditor =
       useSelect((select) => select('core/block-editor'), []),
     blockIndex = getBlockIndex(clientId),

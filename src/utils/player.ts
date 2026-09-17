@@ -1,3 +1,1 @@
-const Player = dotLottiePlayer()
-
-export default Player
+export const Player = dotLottiePlayer()

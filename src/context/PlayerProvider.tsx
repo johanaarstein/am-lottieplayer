@@ -1,6 +1,6 @@
 import { useState } from '@wordpress/element'
 
-import PlayerContext, { type AnimationContext } from '@/context/PlayerContext'
+import { PlayerContext, type AnimationContext } from '@/context/PlayerContext'
 
 export default function PlayerWrapper({ children }) {
   const [animationContext, setAnimationContext] =

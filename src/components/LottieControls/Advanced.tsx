@@ -12,7 +12,7 @@ import ProLink from '@/components/ProLink'
 export default function Advanced({
   attributes,
   setAttributes,
-}: BlockEditProps<PlayerComponentProps>) {
+}: Readonly<BlockEditProps<PlayerComponentProps>>) {
   const { description } = attributes
 
   return (
