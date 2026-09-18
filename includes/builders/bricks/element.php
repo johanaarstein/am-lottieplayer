@@ -223,7 +223,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 		$this->controls['intermission']       = array(
 			'tab'      => 'content',
 			'group'    => 'animation',
-			'label'    => esc_html__( 'Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer' ),
+			'label'    => esc_html__( 'Pause between loops, in milliseconds. 1s = 1000', 'am-lottieplayer' ),
 			'type'     => 'number',
 			'min'      => 0,
 			'step'     => 1,
@@ -464,7 +464,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'type'    => 'select',
 			'options' => array(
 				'Contain' => 'contain',
-				'Coveer'  => 'cover',
+				'Cover'  => 'cover',
 				'Fill'    => 'fill',
 				'None'    => 'none',
 			),

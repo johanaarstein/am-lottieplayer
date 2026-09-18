@@ -36,7 +36,7 @@ class Elementor extends Widget_Base {
 	private string $_preview_id;
 
 	/** This is the limit of how many animations in one file you can control */
-	private $_num_of_animaitons = 6;
+	private $_num_of_animations = 6;
 
 	private function _set_preview_id( ?string $id ) {
 		$this->_preview_id = use_id() . ( $id ?? '' );
@@ -110,7 +110,7 @@ class Elementor extends Widget_Base {
 				'description' => $aamd_pro_link,
 				'type'        => Controls_Manager::NUMBER,
 				'default'     => 1,
-				'max'         => $this->_num_of_animaitons,
+				'max'         => $this->_num_of_animations,
 				'classes'     => AAMD_LOTTIE_IS_PRO ? '' : 'disable',
 			)
 		);
@@ -150,11 +150,11 @@ class Elementor extends Widget_Base {
 			)
 		);
 
-		for ( $i = 1; $i <= $this->_num_of_animaitons; $i++ ) {
+		for ( $i = 1; $i <= $this->_num_of_animations; $i++ ) {
 			$this->add_control(
 				"autoplay_{$i}",
 				array(
-					/* translators: %d: animation interation */
+					/* translators: %d: animation iteration */
 					'label'      => \sprintf( esc_html__( 'Autoplay %d', 'am-lottieplayer' ), $i ),
 					'type'       => Controls_Manager::SWITCHER,
 					'label_on'   => esc_html__( 'On', 'am-lottieplayer' ),
@@ -201,11 +201,11 @@ class Elementor extends Widget_Base {
 			)
 		);
 
-		for ( $i = 1; $i < $this->_num_of_animaitons; $i++ ) {
+		for ( $i = 1; $i < $this->_num_of_animations; $i++ ) {
 			$this->add_control(
 				"loop_{$i}",
 				array(
-					/* translators: %d: animation interation */
+					/* translators: %d: animation iteration */
 					'label'      => \sprintf( esc_html__( 'Loop %d', 'am-lottieplayer' ), $i ),
 					'type'       => Controls_Manager::SWITCHER,
 					'label_on'   => esc_html__( 'On', 'am-lottieplayer' ),
@@ -254,11 +254,11 @@ class Elementor extends Widget_Base {
 			)
 		);
 
-		for ( $i = 1; $i < $this->_num_of_animaitons; $i++ ) {
+		for ( $i = 1; $i < $this->_num_of_animations; $i++ ) {
 			$this->add_control(
 				"mode_{$i}",
 				array(
-					/* translators: %d: animation interation */
+					/* translators: %d: animation iteration */
 					'label'      => \sprintf( esc_html__( 'Boomerang %d', 'am-lottieplayer' ), $i ),
 					'type'       => Controls_Manager::SWITCHER,
 					'label_on'   => esc_html__( 'On', 'am-lottieplayer' ),
@@ -305,11 +305,11 @@ class Elementor extends Widget_Base {
 			)
 		);
 
-		for ( $i = 1; $i < $this->_num_of_animaitons; $i++ ) {
+		for ( $i = 1; $i < $this->_num_of_animations; $i++ ) {
 			$this->add_control(
 				"reverse_{$i}",
 				array(
-					/* translators: %d: animation interation */
+					/* translators: %d: animation iteration */
 					'label'      => \sprintf( esc_html__( 'Reverse %d', 'am-lottieplayer' ), $i ),
 					'type'       => Controls_Manager::SWITCHER,
 					'label_on'   => esc_html__( 'Yes', 'am-lottieplayer' ),
@@ -368,11 +368,11 @@ class Elementor extends Widget_Base {
 			)
 		);
 
-		for ( $i = 1; $i < $this->_num_of_animaitons; $i++ ) {
+		for ( $i = 1; $i < $this->_num_of_animations; $i++ ) {
 			$this->add_control(
 				"speed_{$i}",
 				array(
-					/* translators: %d: animation interation */
+					/* translators: %d: animation iteration */
 					'label'       => \sprintf( esc_html__( 'Playback speed %d', 'am-lottieplayer' ), $i ),
 					'type'        => Controls_Manager::NUMBER,
 					'step'        => 0.1,
@@ -400,7 +400,7 @@ class Elementor extends Widget_Base {
 			'intermission',
 			array(
 				'label'       => esc_html__( 'Intermission', 'am-lottieplayer' ),
-				'description' => esc_html__( 'Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer' ),
+				'description' => esc_html__( 'Pause between loops, in milliseconds. 1s = 1000', 'am-lottieplayer' ),
 				'type'        => Controls_Manager::NUMBER,
 				'step'        => 100,
 				'min'         => 0,
@@ -426,7 +426,7 @@ class Elementor extends Widget_Base {
 			'intermission_1',
 			array(
 				'label'       => esc_html__( 'Intermission 1', 'am-lottieplayer' ),
-				'description' => esc_html__( 'Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer' ),
+				'description' => esc_html__( 'Pause between loops, in milliseconds. 1s = 1000', 'am-lottieplayer' ),
 				'type'        => Controls_Manager::NUMBER,
 				'step'        => 100,
 				'min'         => 0,
@@ -448,13 +448,13 @@ class Elementor extends Widget_Base {
 			),
 		);
 
-		for ( $i = 2; $i < $this->_num_of_animaitons; $i++ ) {
+		for ( $i = 2; $i < $this->_num_of_animations; $i++ ) {
 			$this->add_control(
-				"intermisson_{$i}",
+				"intermission_{$i}",
 				array(
-					/* translators: %d: animation interation */
+					/* translators: %d: animation iteration */
 					'label'       => \sprintf( esc_html__( 'Intermission %d', 'am-lottieplayer' ), $i ),
-					'description' => esc_html__( 'Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer' ),
+					'description' => esc_html__( 'Pause between loops, in milliseconds. 1s = 1000', 'am-lottieplayer' ),
 					'type'        => Controls_Manager::NUMBER,
 					'step'        => 100,
 					'min'         => 0,
@@ -835,7 +835,7 @@ class Elementor extends Widget_Base {
 			return;
 		}
 
-		$this->_num_of_animaitons = $settings['num_of_animations'];
+		$this->_num_of_animations = $settings['num_of_animations'];
 
 		$src = $settings['lottie']['url'];
 		$ext = \pathinfo( $src, PATHINFO_EXTENSION );
@@ -846,8 +846,8 @@ class Elementor extends Widget_Base {
 
 		$multiAnimationSettings = array();
 
-		if ( $this->_num_of_animaitons > 1 ) {
-			for ( $i = 1; $i <= $this->_num_of_animaitons; $i++ ) {
+		if ( $this->_num_of_animations > 1 ) {
+			for ( $i = 1; $i <= $this->_num_of_animations; $i++ ) {
 				\array_push(
 					$multiAnimationSettings,
 					(object) array(

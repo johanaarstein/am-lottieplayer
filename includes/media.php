@@ -135,7 +135,7 @@ class Media {
 
 								/**
 								 * Set this to true only if animations array has length,
-								 * so that we can iterate and catch any corrupted animaiton,
+								 * so that we can iterate and catch any corrupted animation,
 								 * while still avoiding false positive for empty arrays.
 								 */
 								if ( (bool) $animations ) {

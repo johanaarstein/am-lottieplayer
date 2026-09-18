@@ -281,7 +281,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 			),
 			'intermission'      => array(
 				'label'          => esc_html__( 'Intermission', 'am-lottieplayer' ),
-				'description'    => esc_html__( 'Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer' ),
+				'description'    => esc_html__( 'Pause between loops, in milliseconds. 1s = 1000', 'am-lottieplayer' ),
 				'type'           => 'range',
 				'range_settings' => array(
 					'max'  => '5000',
@@ -469,9 +469,9 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 			$this->props,
 			array(
 				'animateonscroll' => $this->props['animateonscroll'] !== 'off',
-				'align'           => 'none', // TODO:
+				'align'           => 'none',
 				'autoplay'        => $this->props['autoplay'] !== 'off',
-				'background'      => 'transparent', // TODO:
+				'background'      => 'transparent',
 				'class'           => $this->module_classname( $render_slug ),
 				'controls'        => $this->props['controls'] !== 'off',
 				'direction'       => $this->props['reverse'] !== 'off' ? '-1' : '1',
@@ -485,8 +485,8 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'hover'           => $this->props['hover'] !== 'off',
 				'playonclick'     => $this->props['playonclick'] !== 'off' && ! \filter_var( $this->props['url'], FILTER_VALIDATE_URL ),
 				'once'            => $this->props['once'] !== 'off',
-				'width_unit'      => 'px', // TODO:
-				'height_unit'     => 'px', // TODO:
+				'width_unit'      => 'px',
+				'height_unit'     => 'px',
 			),
 		);
 

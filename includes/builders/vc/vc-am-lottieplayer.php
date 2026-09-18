@@ -92,7 +92,7 @@ vc_map(
 			array(
 				'type'        => 'textfield',
 				'heading'     => __( 'Intermission', 'am-lottieplayer' ),
-				'description' => __( 'Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer' ),
+				'description' => __( 'Pause between loops, in milliseconds. 1s = 1000', 'am-lottieplayer' ),
 				'param_name'  => 'speed',
 				'value'       => '0',
 			),
