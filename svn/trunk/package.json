@@ -37,7 +37,7 @@
 	"main": "build/admin.js",
 	"packageManager": "pnpm@12.4.2",
 	"devDependencies": {
-		"@aarsteinmedia/dotlottie-player": "^6.5.1",
+		"@aarsteinmedia/dotlottie-player": "^6.5.3",
 		"@aarsteinmedia/lottie-web": "^1.6.1",
 		"@eslint-react/eslint-plugin": "^5.19.1",
 		"@eslint/compat": "^2.1.1",
@@ -133,7 +133,8 @@
 		"test:e2e": "WP_BASE_URL=http://localhost:8888 playwright test; wp-env stop",
 		"test:e2e:ui": "WP_BASE_URL=http://localhost:8888 playwright test --ui; wp-env stop",
 		"test:e2e:debug": "WP_BASE_URL=http://localhost:8888 playwright test --debug; wp-env stop",
-		"clean": "pnpm pm clean && rm -rf test-results playwright-report vendor"
+		"clean": "pnpm pm clean && rm -rf test-results playwright-report vendor",
+		"update": "pnpm pm update && composer update"
 	},
 	"cde": {
 		"gettext": "am-lottieplayer",
