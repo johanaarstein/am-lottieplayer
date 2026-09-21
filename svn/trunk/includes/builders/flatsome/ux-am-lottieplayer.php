@@ -160,7 +160,7 @@ add_ux_builder_shortcode(
 					'intermission'     => array(
 						'type'        => 'slider',
 						'heading'     => esc_html__( 'Intermission', 'am-lottieplayer' ),
-						'description' => esc_html__( 'Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer' ),
+						'description' => esc_html__( 'Pause between loops, in milliseconds. 1s = 1000', 'am-lottieplayer' ),
 						'default'     => 0,
 						'min'         => 0,
 						'max'         => 5000,
@@ -338,7 +338,7 @@ add_ux_builder_shortcode(
 						'options' => array(
 							''                => esc_html__( 'Visible', 'am-lottieplayer' ),
 							'hidden'          => esc_html__( 'Hidden', 'am-lottieplayer' ),
-							'hide-for-medium' => esc_html__( 'Only for Desktiop', 'am-lottieplayer' ),
+							'hide-for-medium' => esc_html__( 'Only for Desktop', 'am-lottieplayer' ),
 							'show-for-small'  => esc_html__( 'Only for Mobile', 'am-lottieplayer' ),
 							'show-for-medium hide-for-small' => esc_html__( 'Only for Tablet', 'am-lottieplayer' ),
 							'show-for-medium' => esc_html__( 'Hide for Desktop', 'am-lottieplayer' ),

@@ -407,7 +407,7 @@
               "groupSlug": "contentAnimation",
               "subName": "intermission",
               "label": "Intermission",
-              "description": "Pause between loops, in miliseconds. 1s = 1000",
+              "description": "Pause between loops, in milliseconds. 1s = 1000",
               "render": true,
               "priority": 90,
               "features": {

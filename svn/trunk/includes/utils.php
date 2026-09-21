@@ -161,7 +161,7 @@ function get_build_path( $filename = '' ) {
  * Returns the plugin path to a specified file.
  *
  * @param string $path The specified file.
- * @return string $ext Extention
+ * @return string $ext Extension
  */
 function get_path( string $path = '', string $ext = 'php' ) {
 	$path = \preg_replace( '/\.[^.]*$/', '', \ltrim( $path, '/' ) ) . ".{$ext}";

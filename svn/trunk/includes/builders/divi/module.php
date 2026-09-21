@@ -158,7 +158,7 @@ class AMLottiePlayerModule implements DependencyInterface {
 		if (
 			! $this->_is_lottie_mime_query( $args['post_mime_type'] ?? '' ) ||
 			/**
-			 * Divi creates as comma separated list of mimetypes.
+			 * Divi creates as comma separated list of mime-types.
 			 * By checking is_array we don't affect the behavior
 			 * of Combine/Convert – which also utilizes wp.media.
 			 * */

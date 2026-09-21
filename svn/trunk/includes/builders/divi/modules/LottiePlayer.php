@@ -9,6 +9,8 @@ use function AAMD_Lottie\Utility\render_shortcode;
 class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 
 	/** Load customized svg icon and use it on builder as module icon. */
+	public string $icon_path;
+
 	public function init() {
 
 		$this->name       = esc_html__( 'AM Lottie', 'am-lottieplayer' );
@@ -95,17 +97,16 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 	}
 
 	public function get_fields() {
-		/** @var Media $aamd_lottie_media */
 		global $aamd_lottie_media;
-		global $aamd_pro_link;
-		global $aamd_pro_feature;
+		global $pro_link;
+		global $pro_feature;
 
 		$fields = array(
 			'src'               => array(
 				'label'              => esc_html__( 'AM Lottie', 'am-lottieplayer' ),
 				'type'               => 'upload',
 				'option_category'    => 'basic_option',
-				'data_type'          => array( 'application/zip', 'application/zip+dotlottie', 'application/json', 'text/plain' ),
+				'data_type'          => array( 'application/zip', 'application/json', 'text/plain' ),
 				'upload_button_text' => esc_attr__( 'Use animation', 'am-lottieplayer' ),
 				'choose_text'        => esc_attr__( 'Choose a Lottie JSON or a dotLottie', 'am-lottieplayer' ),
 				'update_text'        => esc_attr__( 'Set As Lottie', 'am-lottieplayer' ),
@@ -224,9 +225,9 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				),
 			),
 			'mode'              => array(
-				'label'            => $aamd_pro_feature . esc_html__( 'Boomerang', 'am-lottieplayer' ),
+				'label'            => $pro_feature . esc_html__( 'Boomerang', 'am-lottieplayer' ),
 				'type'             => 'yes_no_button',
-				'description'      => $aamd_pro_link,
+				'description'      => $pro_link,
 				'option_category'  => 'basic_option',
 				'options'          => array(
 					'off' => et_builder_i18n( 'No' ),
@@ -281,7 +282,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 			),
 			'intermission'      => array(
 				'label'          => esc_html__( 'Intermission', 'am-lottieplayer' ),
-				'description'    => esc_html__( 'Pause between loops, in milliseconds. 1s = 1000', 'am-lottieplayer' ),
+				'description'    => esc_html__( 'Pause between loops, in miliseconds. 1s = 1000', 'am-lottieplayer' ),
 				'type'           => 'range',
 				'range_settings' => array(
 					'max'  => '5000',
@@ -293,24 +294,24 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				),
 			),
 			'segment_in'        => array(
-				'label'       => $aamd_pro_feature . esc_html__( 'Choose where to start', 'am-lottieplayer' ),
-				'description' => $aamd_pro_link,
+				'label'       => $pro_feature . esc_html__( 'Choose where to start', 'am-lottieplayer' ),
+				'description' => $pro_link,
 				'type'        => 'range',
 				'default'     => '1',
 				'toggle_slug' => 'main_content',
 				'readonly'    => ! AAMD_LOTTIE_IS_PRO,
 			),
 			'segment_out'       => array(
-				'label'       => $aamd_pro_feature . esc_html__( 'And where to end', 'am-lottieplayer' ),
-				'description' => $aamd_pro_link,
+				'label'       => $pro_feature . esc_html__( 'And where to end', 'am-lottieplayer' ),
+				'description' => $pro_link,
 				'type'        => 'range',
 				'default'     => '',
 				'toggle_slug' => 'main_content',
 				'readonly'    => ! AAMD_LOTTIE_IS_PRO,
 			),
 			'animateonscroll'   => array(
-				'label'            => $aamd_pro_feature . esc_html__( 'Animate on scroll', 'am-lottieplayer' ),
-				'description'      => esc_html__( 'Make the animation play only when scrolling, relative to the speed and direction of the scroll', 'am-lottieplayer' ) . $aamd_pro_link,
+				'label'            => $pro_feature . esc_html__( 'Animate on scroll', 'am-lottieplayer' ),
+				'description'      => esc_html__( 'Make the animation play only when scrolling, relative to the speed and direction of the scroll', 'am-lottieplayer' ) . $pro_link,
 				'type'             => 'yes_no_button',
 				'option_category'  => 'basic_option',
 				'options'          => array(
@@ -368,17 +369,17 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'toggle_slug' => 'main_content',
 			),
 			'selector'          => array(
-				'label'           => $aamd_pro_feature . esc_html__( 'Trigger element', 'am-lottieplayer' ),
+				'label'           => $pro_feature . esc_html__( 'Trigger element', 'am-lottieplayer' ),
 				'type'            => 'text',
 				'option_category' => 'basic_option',
-				'description'     => esc_html__( 'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer' ) . $aamd_pro_link,
+				'description'     => esc_html__( 'Anchor tag (id) for an element you want to trigger the animation, either by hover or click.', 'am-lottieplayer' ) . $pro_link,
 				'toggle_slug'     => 'main_content',
 				'readonly'        => ! AAMD_LOTTIE_IS_PRO,
 			),
 			'exclude_selector'  => array(
-				'label'            => $aamd_pro_feature . esc_html__( 'Apply interaction only to trigger element', 'am-lottieplayer' ),
+				'label'            => $pro_feature . esc_html__( 'Apply interaction only to trigger element', 'am-lottieplayer' ),
 				'type'             => 'yes_no_button',
-				'description'      => $aamd_pro_link,
+				'description'      => $pro_link,
 				'option_category'  => 'basic_option',
 				'options'          => array(
 					'off' => et_builder_i18n( 'No' ),
@@ -445,8 +446,8 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'toggle_slug'     => 'main_content',
 			),
 			'renderer'          => array(
-				'label'           => $aamd_pro_feature . esc_html__( 'Renderer', 'am-lottieplayer' ),
-				'description'     => esc_html__( 'Choose renderer', 'am-lottieplayer' ) . $aamd_pro_link,
+				'label'           => $pro_feature . esc_html__( 'Renderer', 'am-lottieplayer' ),
+				'description'     => esc_html__( 'Choose renderer', 'am-lottieplayer' ) . $pro_link,
 				'type'            => 'select',
 				'option_category' => 'configuration',
 				'options'         => array(
@@ -469,9 +470,9 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 			$this->props,
 			array(
 				'animateonscroll' => $this->props['animateonscroll'] !== 'off',
-				'align'           => 'none',
+				'align'           => 'none', // TODO:
 				'autoplay'        => $this->props['autoplay'] !== 'off',
-				'background'      => 'transparent',
+				'background'      => 'transparent', // TODO:
 				'class'           => $this->module_classname( $render_slug ),
 				'controls'        => $this->props['controls'] !== 'off',
 				'direction'       => $this->props['reverse'] !== 'off' ? '-1' : '1',
@@ -485,8 +486,8 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'hover'           => $this->props['hover'] !== 'off',
 				'playonclick'     => $this->props['playonclick'] !== 'off' && ! \filter_var( $this->props['url'], FILTER_VALIDATE_URL ),
 				'once'            => $this->props['once'] !== 'off',
-				'width_unit'      => 'px',
-				'height_unit'     => 'px',
+				'width_unit'      => 'px', // TODO:
+				'height_unit'     => 'px', // TODO:
 			),
 		);
 
