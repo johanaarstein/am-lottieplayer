@@ -1,6 +1,12 @@
 {
 	"name": "am-lottieplayer",
+<<<<<<< .mine
+	"version": "4.2.3",
+||||||| .r3702118
+	"version": "4.2.0",
+=======
 	"version": "4.2.2",
+>>>>>>> .r3722264
 	"description": "This is best free Lottie Player plugin. It is lightweight, versatile and easy to use, and it has integrations for Gutenberg, Divi, Elementor, Flatsome and WPBakery.",
 	"type": "module",
 	"author": {
@@ -37,9 +43,19 @@
 	"main": "build/admin.js",
 	"packageManager": "pnpm@12.4.2",
 	"devDependencies": {
+<<<<<<< .mine
+		"@aarsteinmedia/dotlottie-player": "^6.5.5",
+		"@aarsteinmedia/lottie-web": "^1.6.3",
+		"@eslint-react/eslint-plugin": "^5.23.1",
+||||||| .r3702118
+		"@aarsteinmedia/dotlottie-player": "^6.4.10",
+		"@aarsteinmedia/lottie-web": "^1.5.11",
+		"@eslint-react/eslint-plugin": "^5.19.1",
+=======
 		"@aarsteinmedia/dotlottie-player": "^6.5.4",
 		"@aarsteinmedia/lottie-web": "^1.6.2",
 		"@eslint-react/eslint-plugin": "^5.20.1",
+>>>>>>> .r3722264
 		"@eslint/compat": "^2.1.1",
 		"@eslint/core": "^1.2.1",
 		"@eslint/js": "^10.0.1",
@@ -47,17 +63,58 @@
 		"@regru/eslint-plugin-prefer-early-return": "^1.0.0",
 		"@stylistic/eslint-plugin": "^5.10.0",
 		"@types/eslint-plugin-jsx-a11y": "^6.10.1",
+<<<<<<< .mine
+		"@types/node": "^26.6.3",
+||||||| .r3702118
+		"@types/node": "^26.6.1",
+=======
 		"@types/node": "^26.6.2",
+>>>>>>> .r3722264
 		"@types/react": "^19.3.0",
 		"@types/react-dom": "^19.3.0",
 		"@types/webpack": "^5.28.5",
 		"@types/wordpress__block-editor": "^15.0.6",
-		"@wordpress/a11y": "^4.55.0",
-		"@wordpress/blob": "^4.55.0",
+		"@wordpress/a11y": "^4.56.0",
+		"@wordpress/blob": "^4.56.0",
 		"@wordpress/block-editor": "^17.1.0",
+<<<<<<< .mine
+		"@wordpress/blocks": "^16.1.0",
+		"@wordpress/browserslist-config": "^6.56.0",
+||||||| .r3702118
+		"@wordpress/blocks": "^15.27.0",
+		"@wordpress/browserslist-config": "^6.55.0",
+=======
 		"@wordpress/blocks": "^16.0.0",
 		"@wordpress/browserslist-config": "^6.55.0",
+>>>>>>> .r3722264
 		"@wordpress/components": "^40.1.0",
+<<<<<<< .mine
+		"@wordpress/compose": "^8.9.0",
+		"@wordpress/core-data": "^8.1.0",
+		"@wordpress/data": "^10.56.0",
+		"@wordpress/dom": "^4.56.0",
+		"@wordpress/e2e-test-utils-playwright": "^2.1.0",
+		"@wordpress/element": "^8.8.0",
+		"@wordpress/env": "^11.16.0",
+		"@wordpress/hooks": "^4.56.0",
+		"@wordpress/i18n": "^6.29.0",
+		"@wordpress/icons": "^16.0.0",
+		"@wordpress/media-utils": "^5.56.0",
+		"@wordpress/scripts": "^35.0.0",
+||||||| .r3702118
+		"@wordpress/compose": "^8.8.0",
+		"@wordpress/core-data": "^7.54.0",
+		"@wordpress/data": "^10.55.0",
+		"@wordpress/dom": "^4.55.0",
+		"@wordpress/e2e-test-utils-playwright": "^1.54.0",
+		"@wordpress/element": "^8.7.0",
+		"@wordpress/env": "^11.15.0",
+		"@wordpress/hooks": "^4.55.0",
+		"@wordpress/i18n": "^6.28.0",
+		"@wordpress/icons": "^15.5.0",
+		"@wordpress/media-utils": "^5.55.0",
+		"@wordpress/scripts": "^34.2.0",
+=======
 		"@wordpress/compose": "^8.8.0",
 		"@wordpress/core-data": "^8.0.0",
 		"@wordpress/data": "^10.55.0",
@@ -70,6 +127,7 @@
 		"@wordpress/icons": "^16.0.0",
 		"@wordpress/media-utils": "^5.55.0",
 		"@wordpress/scripts": "^35.0.0",
+>>>>>>> .r3722264
 		"classnames": "^2.5.1",
 		"css-minify": "^2.1.0",
 		"dotenv": "^17.4.2",
@@ -79,13 +137,23 @@
 		"eslint-plugin-fsecond": "^1.5.0",
 		"eslint-plugin-import-x": "^4.17.1",
 		"eslint-plugin-jsx-a11y": "^6.10.2",
-		"eslint-plugin-perfectionist": "^5.11.1",
+		"eslint-plugin-perfectionist": "^5.12.1",
 		"eslint-plugin-react-hooks": "^7.1.1",
 		"eslint-plugin-react-refresh": "^0.5.7",
 		"eslint-plugin-react-you-might-not-need-an-effect": "^1.0.2",
+<<<<<<< .mine
+		"eslint-plugin-regexp": "^3.3.1",
+		"eslint-plugin-sonarjs": "^4.2.2",
+		"eslint-plugin-unicorn": "^76.0.0",
+||||||| .r3702118
+		"eslint-plugin-regexp": "^3.3.0",
+		"eslint-plugin-sonarjs": "^4.2.1",
+		"eslint-plugin-unicorn": "^75.0.0",
+=======
 		"eslint-plugin-regexp": "^3.3.1",
 		"eslint-plugin-sonarjs": "^4.2.1",
 		"eslint-plugin-unicorn": "^76.0.0",
+>>>>>>> .r3722264
 		"globals": "^17.12.0",
 		"re-resizable": "^6.11.2",
 		"react": "^19.3.0",
@@ -96,7 +164,7 @@
 		"ts-loader": "^9.6.2",
 		"ts-node": "^10.9.2",
 		"typescript": "^6.0.3",
-		"typescript-eslint": "^8.70.0"
+		"typescript-eslint": "^8.71.0"
 	},
 	"scripts": {
 		"open": "open -a Firefox 'http://localhost:8888'",
