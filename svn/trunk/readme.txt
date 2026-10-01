@@ -7,13 +7,7 @@ Tags: lottie, bodymovin, gutenberg, svg, gif
 Requires at least: 5.9
 Tested up to: 7.1
 Requires PHP: 7.4
-<<<<<<< .mine
 Stable Tag: 4.2.3
-||||||| .r3702118
-Stable Tag: 4.2.0
-=======
-Stable Tag: 4.2.2
->>>>>>> .r3722264
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
