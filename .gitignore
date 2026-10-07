@@ -45,6 +45,8 @@ phpcs.xml
 .phpcs.xml
 
 .svn
+svn/tags
+svn/trunk
 build
 
 

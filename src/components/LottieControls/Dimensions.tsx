@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import type DotLottiePlayerLight from '@aarsteinmedia/dotlottie-player/light'
 import type { BlockEditProps } from '@wordpress/blocks'
 
+import { ObjectFit } from '@aarsteinmedia/dotlottie-player/utils'
 import {
   Panel,
   PanelBody,
@@ -24,7 +24,7 @@ export default function Dimensions({
       align,
       fullscreen,
       height,
-      objectFit = 'contain',
+      objectFit = ObjectFit.Contain,
       width,
     } = attributes,
 
@@ -87,27 +87,31 @@ export default function Dimensions({
         }
         <SelectControl
           label={__('Object fit')}
-          value={objectFit as 'contain' | 'cover' | 'fill' | 'none'}
+          value={objectFit}
           options={[
             {
               label: __('Contain', 'am-lottieplayer'),
-              value: 'contain',
+              value: ObjectFit.Contain,
             },
             {
               label: __('Cover', 'am-lottieplayer'),
-              value: 'cover',
+              value: ObjectFit.Cover,
             },
             {
               label: __('Fill', 'am-lottieplayer'),
-              value: 'fill',
+              value: ObjectFit.Fill,
             },
             {
               label: __('None', 'am-lottieplayer'),
-              value: 'none',
+              value: ObjectFit.None,
+            },
+            {
+              label: __('Scale down', 'am-lottieplayer'),
+              value: ObjectFit.ScaleDown,
             },
           ]}
           onChange={(val) => {
-            setAttributes({ objectFit: val as DotLottiePlayerLight['objectfit'] })
+            setAttributes({ objectFit: val })
           }}
         />
       </PanelBody>

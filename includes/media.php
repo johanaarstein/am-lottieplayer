@@ -179,8 +179,8 @@ class Media {
 			3
 		);
 
-			// Disable SSL Check on dev
-		if ( WP_ENV === 'development' ) {
+		// Disable SSL Check on dev
+		if ( wp_get_environment_type() === 'local' ) {
 			add_filter( 'https_ssl_verify', '__return_false' );
 		}
 

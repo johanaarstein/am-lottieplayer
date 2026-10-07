@@ -1,9 +1,10 @@
 import type DotLottiePlayerLight from '@aarsteinmedia/dotlottie-player/light'
+import type { tagName } from '@aarsteinmedia/dotlottie-player/utils'
 import type { AnimationSegment } from '@aarsteinmedia/lottie-web'
 import type { EditorTemplateLock } from '@wordpress/block-editor'
 import type { BlockEditProps } from '@wordpress/blocks'
 
-import type { Align, tagName } from '@/enums'
+import type { Align } from '@/enums'
 
 export interface Interactions {
   delay?: DotLottiePlayerLight['delay']

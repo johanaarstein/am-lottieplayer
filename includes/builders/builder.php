@@ -22,7 +22,6 @@ class Builder {
 		add_action(
 			'after_setup_theme',
 			function () {
-				$this->_set_version();
 				$this->init_divi();
 			}
 		);
@@ -31,12 +30,6 @@ class Builder {
 		add_action( 'vc_before_init', array( $this, 'init_vc' ) );
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_enqueue' ) );
-	}
-
-	private function _set_version() {
-		if ( ! defined( 'AAMD_LOTTIE_VERSION' ) ) {
-			define( 'AAMD_LOTTIE_VERSION', get_plugin_data( AAMD_LOTTIE_FILE )['Version'] );
-		}
 	}
 
 	/**
@@ -58,7 +51,7 @@ class Builder {
 			'dotlottie-player-light',
 			get_script( 'dotlottie-player-light.min.js' ),
 			array(),
-			'6.4.9',
+			'6.6.1',
 			array(
 				'strategy'  => 'defer',
 				'in_footer' => true,

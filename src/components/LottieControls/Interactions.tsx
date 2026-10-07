@@ -1,6 +1,7 @@
 
 import type { BlockEditProps } from '@wordpress/blocks'
 
+import { MouseOut } from '@aarsteinmedia/dotlottie-player/utils'
 import {
   Panel,
   PanelBody,
@@ -15,7 +16,6 @@ import ProFeature from '@/assets/ProFeature'
 import SwitchLabel from '@/components/form/SwitchLabel'
 import TextInput from '@/components/form/TextInput'
 import ProLink from '@/components/ProLink'
-import { MouseOut } from '@/enums'
 
 export default function Interactions({
   attributes,

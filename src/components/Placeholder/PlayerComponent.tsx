@@ -2,7 +2,7 @@ import type DotLottiePlayer from '@aarsteinmedia/dotlottie-player'
 
 import { useSelect } from '@wordpress/data'
 import {
-  useCallback, useEffect, useRef
+  useCallback, useEffect, useMemo, useRef
 } from '@wordpress/element'
 
 import type { BlockEditor, LottieBlockAttributes } from '@/types'
@@ -45,7 +45,10 @@ export default function PlayerComponent({
       }
 
       return parseSize(num)
-    }
+    },
+    reload = useMemo(() => {
+      return debounce(reloadPlayer, 300)
+    }, [reloadPlayer])
 
   useEffect(() => {
     if (playerRef.current) {
@@ -66,14 +69,8 @@ export default function PlayerComponent({
   )
 
   useEffect(() => {
-    debounce(reloadPlayer, 300)
-  }, [
-    blockIndex,
-    attributes.intermission,
-    attributes.src,
-    attributes.objectFit,
-    reloadPlayer,
-  ])
+    reload()
+  }, [blockIndex, attributes.intermission, attributes.src, attributes.objectFit, reload])
 
   return (
     <dotlottie-player

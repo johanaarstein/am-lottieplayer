@@ -203,10 +203,6 @@ function get_shortcode_instances( $content, $tag ) {
 		\array_push( $shortcodes, $match[0] );
 	}
 
-	if ( empty( $shortcodes ) ) {
-		return null;
-	}
-
 	return $shortcodes;
 }
 
@@ -251,10 +247,9 @@ function idify( $str = '' ) {
  * @param string $ext
  * @return void
  */
-function include_file( string $path = '', ?object $args = null, string $ext = 'php' ) {
+function include_file( string $path = '', string $ext = 'php' ) {
 	$path = get_path( 'includes/' . \ltrim( $path, '/' ), $ext );
 	if ( \file_exists( $path ) ) {
-		$args;
 		include_once $path;
 	}
 }
