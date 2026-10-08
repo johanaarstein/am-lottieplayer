@@ -464,7 +464,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 			'type'    => 'select',
 			'options' => array(
 				'Contain' => 'contain',
-				'Cover'  => 'cover',
+				'Cover'   => 'cover',
 				'Fill'    => 'fill',
 				'None'    => 'none',
 			),
@@ -560,11 +560,6 @@ class Element_Lottie_Player extends \Bricks\Element {
 		if ( ! $settings ) {
 			return;
 		}
-
-		/** @var \AAMD_Lottie\Media $aamd_lottie_media */
-		// global $aamd_lottie_media;
-
-		// $placeholder = $aamd_lottie_media->get_default_file();
 
 		$source_type = isset( $settings['source_type'] ) ? $settings['source_type'] : false;
 		$url         = isset( $settings['external_url'] ) ? $this->render_dynamic_data( $settings['external_url'] ) : '';

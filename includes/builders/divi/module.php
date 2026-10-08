@@ -138,8 +138,8 @@ class AMLottiePlayerModule implements DependencyInterface {
 			$value = strtolower( $value );
 			if (
 				$value === 'json' ||
-				str_contains( $value, 'json' ) ||
-				str_contains( $value, 'lottie' )
+				\str_contains( $value, 'json' ) ||
+				\str_contains( $value, 'lottie' )
 			) {
 				return true;
 			}

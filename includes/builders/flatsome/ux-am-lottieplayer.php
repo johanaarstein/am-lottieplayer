@@ -80,7 +80,7 @@ add_ux_builder_shortcode(
 			'src'               => array(
 				'type'        => 'textfield',
 				'full_width'  => true,
-				'default'     => $aamd_lottie_media->get_default_file(),
+				'default'     => esc_url( get_asset( 'am.lottie' ) ),
 				'heading'     => esc_html__( 'Lottie url', 'am-lottieplayer' ),
 				'description' => esc_html__( 'Paste in url to Lottie, either from CDN or you local Media Library.', 'am-lottieplayer' ),
 			),

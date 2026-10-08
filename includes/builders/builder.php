@@ -2,6 +2,7 @@
 namespace AAMD_Lottie;
 
 use function AAMD_Lottie\Utility\get_build_path;
+use function AAMD_Lottie\Utility\get_path;
 use function AAMD_Lottie\Utility\get_script;
 use function AAMD_Lottie\Utility\get_shortcode_instances;
 use function AAMD_Lottie\Utility\include_file;
@@ -47,16 +48,20 @@ class Builder {
 			get_build_path( 'lottiecover' )
 		);
 
-		wp_register_script(
-			'dotlottie-player-light',
-			get_script( 'dotlottie-player-light.min.js' ),
-			array(),
-			'6.6.1',
-			array(
-				'strategy'  => 'defer',
-				'in_footer' => true,
-			)
-		);
+		$manifest = wp_json_file_decode( get_path( 'scripts/vendor-manifest', 'json' ) );
+
+		foreach ( $manifest as $handle => $entry ) {
+			wp_register_script(
+				$handle,
+				get_script( $entry->file ),
+				array(),
+				$entry->version,
+				array(
+					'strategy'  => 'defer',
+					'in_footer' => true,
+				)
+			);
+		}
 
 		global $aamd_pro_feature;
 		if ( ! isset( $aamd_pro_feature ) ) {

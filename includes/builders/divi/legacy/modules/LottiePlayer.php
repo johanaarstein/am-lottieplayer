@@ -115,7 +115,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'toggle_slug'        => 'main_content',
 				'mobile_options'     => true,
 				'hover'              => 'tabs',
-				'default'            => esc_url( $aamd_lottie_media->get_default_file() ),
+				'default'            => esc_url( get_asset( 'am.lottie' ) ),
 			),
 			'description'       => array(
 				'label'           => esc_html__( 'Animation Alternative Text', 'am-lottieplayer' ),

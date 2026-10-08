@@ -5,6 +5,7 @@ use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 
 use function AAMD_Lottie\Utility\get_allowed_html;
+use function AAMD_Lottie\Utility\get_asset;
 use function AAMD_Lottie\Utility\get_style;
 use function AAMD_Lottie\Utility\render_shortcode;
 use function AAMD_Lottie\Utility\use_id;
@@ -90,7 +91,7 @@ class Elementor extends Widget_Base {
 					'application/zip+dotlottie',
 				),
 				'default'    => array(
-					'url' => esc_url( $aamd_lottie_media->get_default_file() ),
+					'url' => esc_url( get_asset( 'am.lottie' ) ),
 				),
 			)
 		);

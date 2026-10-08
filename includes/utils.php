@@ -247,9 +247,10 @@ function idify( $str = '' ) {
  * @param string $ext
  * @return void
  */
-function include_file( string $path = '', string $ext = 'php' ) {
+function include_file( string $path = '', ?object $args = null, string $ext = 'php' ) {
 	$path = get_path( 'includes/' . \ltrim( $path, '/' ), $ext );
 	if ( \file_exists( $path ) ) {
+		$args;
 		include_once $path;
 	}
 }
@@ -270,6 +271,61 @@ function is_lottie_valid( ?array $lottie ) {
 	) ) {
 		return false;
 	}
+	return true;
+}
+
+function is_safe_zip( string $zip_path ): bool {
+	$zip = new \ZipArchive();
+	if ( $zip->open( $zip_path ) !== true ) {
+		return false;
+	}
+
+	// Baseline Security Thresholds
+	$max_file_count         = 1000;
+	$max_total_uncompressed = 100 * 1024 * 1024; // 100 MB
+	$max_single_file_size   = 50 * 1024 * 1024;  // 50 MB
+	$max_ratio              = 100;               // 100:1 ratio
+
+	// 1. Check total entry count
+	if ( $zip->numFiles > $max_file_count ) {
+		$zip->close();
+		return false;
+	}
+
+	$total_uncompressed = 0;
+
+	// 2. Iterate through headers without extracting
+	for ( $i = 0; $i < $zip->numFiles; $i++ ) {
+		$stat = $zip->statIndex( $i );
+		if ( ! $stat ) {
+			continue;
+		}
+
+		$uncompressed = $stat['size'];
+		$compressed   = $stat['comp_size'];
+
+		// Single file size limit
+		if ( $uncompressed > $max_single_file_size ) {
+			$zip->close();
+			return false;
+		}
+
+		// Compression ratio check (ignore 0-byte or uncompressed entries)
+		if ( $compressed > 0 && ( $uncompressed / $compressed ) > $max_ratio ) {
+			$zip->close();
+			return false;
+		}
+
+		$total_uncompressed += $uncompressed;
+
+		// Total expanded size limit
+		if ( $total_uncompressed > $max_total_uncompressed ) {
+			$zip->close();
+			return false;
+		}
+	}
+
+	$zip->close();
 	return true;
 }
 
@@ -332,7 +388,7 @@ function render_lottieplayer( array $atts ) {
 		$playonvisible = "playonvisible\n";
 	}
 
-	$unit_regex = '/\s*(\d+\s?)(px|em|rem|%)/';
+	$unit_regex = '/\s*(((?:\d*\.)?\d+)\s?)(px|em|rem|vw|vh|%)/';
 
 	$height = 'auto';
 	if ( is_true( $atts['height'] ) ) {
@@ -346,7 +402,7 @@ function render_lottieplayer( array $atts ) {
 	$width = 'auto';
 	if ( is_true( $atts['width'] ) ) {
 		if ( preg_match( $unit_regex, $atts['width'] ) ) {
-			$height = $atts['width'];
+			$width = $atts['width'];
 		} else {
 			$width = $atts['width'] . $atts['width_unit'];
 		}
@@ -378,10 +434,10 @@ function render_lottieplayer( array $atts ) {
 		}
 
 		// Check if thumbnail svg is set by mistake
-		if ( str_contains( $src, 'lottie-thumbnail-' ) ) {
-			$src = str_replace( 'lottie-thumbnail-', '', $src );
+		if ( \str_contains( $src, 'lottie-thumbnail-' ) ) {
+			$src = \str_replace( 'lottie-thumbnail-', '', $src );
 
-			$path = str_replace( home_url(), untrailingslashit( get_home_path() ), $src );
+			$path = \str_replace( home_url(), untrailingslashit( get_home_path() ), $src );
 
 			if ( file_exists( replace_extension( $path, 'lottie' ) ) ) {
 				$src = replace_extension( $src, 'lottie' );
@@ -424,7 +480,7 @@ function render_lottieplayer( array $atts ) {
 			data-direction="<?php echo esc_attr( get_animation_direction( $atts['direction'] ) ); ?>"
 			mouseout="<?php echo esc_attr( $atts['mouseout'] ); ?>"
 			delay="<?php echo esc_attr( $atts['delay'] ); ?>"></dotlottie-player>
-			<script type="application/ld+json">
+			<script class="aamd_inline_script" type="application/json">
 				{
 					"multiAnimationInteractions": <?php echo wp_json_encode( $multianimationinteractions ); ?>,
 					"multiAnimationSettings": <?php echo wp_json_encode( $multianimationsettings ); ?>,
@@ -482,7 +538,7 @@ function render_shortcode( array $atts ) {
 			'segment'                    => null,
 			'selector'                   => null,
 			'speed'                      => 1,
-			'src'                        => $aamd_lottie_media->get_default_file(),
+			'src'                        => get_asset( 'am.lottie' ),
 			'subframe'                   => true,
 			'url'                        => null,
 			'target'                     => '_blank',
@@ -500,53 +556,12 @@ function render_shortcode( array $atts ) {
 
 function replace_extension( string $filename, string $new_extension ) {
 	$path_parts = pathinfo( $filename );
-	return str_replace( $path_parts['extension'], $new_extension, $filename );
-}
 
-/**
- * Polyfill for `str_ends_with()` function added in PHP 8.0.
- *
- * Performs a case-sensitive check indicating if
- * the haystack ends with needle.
- *
- * @param string $haystack The string to search in.
- * @param string $needle   The substring to search for in the `$haystack`.
- * @return bool True if `$haystack` ends with `$needle`, otherwise false.
- */
-function str_ends_with( $haystack, $needle ) {
-	if ( function_exists( 'str_ends_with' ) ) {
-		return str_ends_with( $haystack, $needle );
+	if ( empty( $path_parts['extension'] ) ) {
+		return $filename;
 	}
 
-	if ( '' === $haystack && '' !== $needle ) {
-		return false;
-	}
-
-	$len = strlen( $needle );
-	return 0 === substr_compare( $haystack, $needle, -$len, $len );
-}
-
-/**
- * Polyfill for `str_starts_with()` function added in PHP 8.0.
- *
- * Performs a case-sensitive check indicating if
- * the haystack ends with needle.
- *
- * @param string $haystack The string to search in.
- * @param string $needle   The substring to search for in the `$haystack`.
- * @return bool True if `$haystack` ends with `$needle`, otherwise false.
- */
-function str_starts_with( $haystack, $needle ) {
-	if ( function_exists( 'str_starts_with' ) ) {
-		return str_starts_with( $haystack, $needle );
-	}
-
-	if ( '' === $haystack && '' !== $needle ) {
-		return false;
-	}
-
-	$len = strlen( $needle );
-	return 0 === substr_compare( $haystack, $needle, 0, $len );
+	return substr_replace( $filename, $new_extension, -strlen( $path_parts['extension'] ) );
 }
 
 /**

@@ -42,7 +42,7 @@ vc_map(
 			array(
 				'type'       => 'textfield',
 				'heading'    => __( 'Lottie url', 'am-lottieplayer' ),
-				'value'      => $aamd_lottie_media->get_default_file(),
+				'value'      => esc_url( get_asset( 'am.lottie' ) ),
 				'param_name' => 'src',
 			),
 			array(

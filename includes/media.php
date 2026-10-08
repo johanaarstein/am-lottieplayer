@@ -3,6 +3,7 @@ namespace AAMD_Lottie;
 
 use function AAMD_Lottie\Utility\get_asset;
 use function AAMD_Lottie\Utility\is_lottie_valid;
+use function AAMD_Lottie\Utility\is_safe_zip;
 use function AAMD_Lottie\Utility\tempdir;
 
 \defined( 'ABSPATH' ) || exit;
@@ -113,21 +114,23 @@ class Media {
 							$zip = new \ZipArchive();
 							$res = $zip->open( $file['tmp_name'] );
 							if ( $res !== true ) {
+								throw new \Error( 'Could not open ZIP archive' );
+							}
+
+							if ( ! is_safe_zip( $file['tmp_name'] ) ) {
 								break;
 							}
 
-							$tempdir = tempdir();
-							$zip->extractTo( $tempdir );
-							$zip->close();
+							$manifest = wp_json_file_decode( $zip->getFromName( 'manifest.json' ) );
 
-							$manifest = wp_json_file_decode( "$tempdir/manifest.json" );
 							if ( ! $manifest ) {
+								$zip->close();
 								break;
 							}
 
-							$animationsDir = "$tempdir/animations";
+							$animationsDir = $zip->getFromName( 'animations' );
 							if ( ! is_dir( $animationsDir ) ) {
-								$animationsDir = "$tempdir/a";
+								$animationsDir = $zip->getFromName( 'a' );
 							}
 
 							if ( is_dir( $animationsDir ) ) {
@@ -152,6 +155,7 @@ class Media {
 									}
 								}
 							}
+							$zip->close();
 						}
 					}
 
@@ -169,14 +173,14 @@ class Media {
 		// Adding icon to Lottie filetype
 		add_filter(
 			'wp_mime_type_icon',
-			function ( $icon, $mime, $post_id ) {
+			function ( $icon, $mime ) {
 				if ( in_array( $mime, $this->lottie_mime_types() ) ) {
 					$icon = get_asset( 'lottie-icon.svg' );
 				}
 				return $icon;
 			},
 			10,
-			3
+			2
 		);
 
 		// Disable SSL Check on dev
@@ -264,19 +268,6 @@ class Media {
 	}
 
 	/**
-	 * Get URL to placeholder animation.
-	 */
-	public function get_default_file() {
-		if ( $this->_defaultFile ) {
-			return $this->_defaultFile;
-		}
-
-		$this->set_default_file();
-
-		return $this->_defaultFile;
-	}
-
-	/**
 	 * Get SVG size from the width/height or viewport.
 	 *
 	 * @param string $path path to svg
@@ -318,8 +309,8 @@ class Media {
 		isset( $attributes->width, $attributes->height ) &&
 		\is_numeric( (float) $attributes->width ) &&
 		\is_numeric( (float) $attributes->height ) &&
-		! str_ends_with( (string) $attributes->width, '%' ) &&
-		! str_ends_with( (string) $attributes->height, '%' )
+		! \str_ends_with( (string) $attributes->width, '%' ) &&
+		! \str_ends_with( (string) $attributes->height, '%' )
 		) {
 			$attr_width  = floatval( $attributes->width );
 			$attr_height = floatval( $attributes->height );
@@ -449,23 +440,28 @@ class Media {
 			return $url;
 		}
 
-		if ( ! function_exists( 'post_exists' ) ) {
+		if ( ! function_exists( 'get_post_status' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/post.php';
 		}
 
-		$post_id = post_exists( 'AM Lottie Animation' );
+		$post_id = get_option( 'aamd_default_lottie_animation' );
 
-		if ( ! $post_id ) {
+		if ( ! $post_id || ! is_string( get_post_status( $post_id ) ) ) {
 			if ( ! function_exists( 'media_sideload_image' ) ) {
 				require_once ABSPATH . 'wp-admin/includes/media.php';
 				require_once ABSPATH . 'wp-admin/includes/file.php';
 				require_once ABSPATH . 'wp-admin/includes/image.php';
 			}
 
-			return $this->_media_sideload_lottie( $url );
+			$post_id = $this->_media_sideload_lottie( $url );
+
+			add_option(
+				'aamd_default_lottie_animation',
+				$post_id
+			);
 		}
 
-		return get_permalink( $post_id );
+		return $post_id;
 	}
 
 	/**
