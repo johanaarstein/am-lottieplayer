@@ -15,10 +15,10 @@ test.describe('dotLottiePlayer Element', () => {
   })
 
   test.beforeEach(async ({ admin, page }) => {
+    await handleBricksLicense(page)
+
     await admin.createNewPost({ postType: 'page' })
     await page.locator('#toolbar-edit_with_bricks').click()
-
-    await handleBricksLicense(page)
   })
 
   test.afterEach(async ({ requestUtils }) => {

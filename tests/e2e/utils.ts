@@ -1,4 +1,6 @@
-import type { FrameLocator, Page } from '@playwright/test'
+import type {
+  FrameLocator, Locator, Page
+} from '@playwright/test'
 
 import { expect, type RequestUtils } from '@wordpress/e2e-test-utils-playwright'
 import { __ } from '@wordpress/i18n'
@@ -9,19 +11,36 @@ export const DIVI_TEXT_DOMAIN = 'Divi',
 
 type PostType = 'post' | 'page'
 
+const hasClass = async (locator: Locator, className: string) => {
+  const classAttr = await locator.getAttribute('class')
+
+  return Boolean(classAttr?.includes(className))
+}
+
 export const handleBricksLicense = async (page: Page) => {
-    await page.waitForURL('/wp-admin/admin.php?page=bricks-license', { timeout: 3000 })
+    await page.goto('/wp-admin/admin.php?page=bricks-license')
 
-    const activateButton = page.getByRole('button', { name: __('Activate license', BRICKS_TEXT_DOMAIN) })
+    const statusLabel = page.locator('.status')
 
-    if (await activateButton.isHidden()) {
-      return
+    if (await statusLabel.isVisible()) {
+      // Bail if Theme is activated.
+      if (!await hasClass(statusLabel, 'no_license')) {
+        return
+      }
     }
 
-    if (await page.locator('.status.no_license').isVisible()) {
-      await page.getByRole('button', { name: __('Deactivate license', BRICKS_TEXT_DOMAIN) }).click()
+    const deactivateButton = page.getByRole('button', { name: __('Deactivate license', BRICKS_TEXT_DOMAIN) })
+
+    if (await deactivateButton.isVisible()) {
+      await deactivateButton.click()
     }
-    await page.locator('[type=password]').fill(process.env.BRICKS_LICENSE ?? '')
+
+    const activateButton = page.getByRole('button', { name: __('Activate license', BRICKS_TEXT_DOMAIN) }),
+      licenseField = page.locator('[name=license_key]')
+
+    await expect(activateButton).toBeVisible()
+    await expect(licenseField).toBeEnabled()
+    await licenseField.fill(process.env.BRICKS_LICENSE ?? '')
     await activateButton.click()
   },
   getPostId = (page: Page, postType: PostType = 'post') => {
@@ -54,6 +73,9 @@ export const handleBricksLicense = async (page: Page) => {
       path: `/wp/v2/${postType}s/${postId}`
     })
   },
+  getVCFrame = (page: Page) => {
+    return page.frameLocator('#vc_inline-frame')
+  },
   getBricksFrame = (page: Page) => {
     return page.frameLocator('#bricks-builder-iframe')
   },
@@ -62,6 +84,17 @@ export const handleBricksLicense = async (page: Page) => {
   },
   getElementorFrame = (page: Page) => {
     return page.frameLocator('#elementor-preview-iframe')
+  },
+  insertElementVC = async (page: Page, frame: FrameLocator) => {
+    await page.locator('#vc_no-content-add-element').click()
+    await page.locator('#vc_elements_name_filter').fill('AM LottiePlayer')
+
+    const elementSelector = page.locator('a#am-lottieplayer')
+
+    await expect(elementSelector).toBeVisible()
+    await elementSelector.click()
+
+    return frame.locator('.vc_am-lottieplayer')
   },
   insertElementBricks = async (page: Page, frame: FrameLocator) => {
     const searchfield = page.locator('#bricks-panel-search')

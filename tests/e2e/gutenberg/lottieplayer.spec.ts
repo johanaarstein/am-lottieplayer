@@ -1,4 +1,3 @@
-// import { deletePost } from '@test/e2e/utils'
 import { expect, test } from '@wordpress/e2e-test-utils-playwright'
 
 
