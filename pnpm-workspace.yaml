@@ -21,3 +21,6 @@ onlyBuiltDependencies:
   - core-js-pure
   - fs-ext-extra-prebuilt
   - unrs-resolver
+overrides:
+  '@types/react': ^19.3.0
+  '@types/react-dom': ^19.3.0

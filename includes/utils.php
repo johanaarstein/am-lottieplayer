@@ -158,6 +158,18 @@ function get_build_path( $filename = '' ) {
 }
 
 /**
+ * Array with all options, with default value
+ * and associated methods for sanitizing
+ */
+function get_options() {
+	return array(
+		'am_lottieplayer_pro_load_light'        => array( null, 'rest_sanitize_boolean' ),
+		'am_lottieplayer_pro_license'           => array( null, 'sanitize_text_field' ),
+		'am_lottieplayer_pro_license_activated' => array( false, 'rest_sanitize_boolean' ),
+	);
+}
+
+/**
  * Returns the plugin path to a specified file.
  *
  * @param string $path The specified file.
@@ -225,7 +237,11 @@ function include_file( string $path = '', ?object $args = null, string $ext = 'p
 	if ( \file_exists( $path ) ) {
 		$args;
 		include_once $path;
+
+		return;
 	}
+
+	throw new \Error( 'Could not find path: ' . $path );
 }
 
 /**
@@ -234,17 +250,18 @@ function include_file( string $path = '', ?object $args = null, string $ext = 'p
  * @param array|null $lottie
  */
 function is_lottie_valid( ?array $lottie ) {
-	if ( $lottie && (
-		! array_key_exists( 'v', $lottie ) ||
-		! array_key_exists( 'fr', $lottie ) ||
-		! array_key_exists( 'ip', $lottie ) ||
-		! array_key_exists( 'op', $lottie ) ||
-		! array_key_exists( 'w', $lottie ) ||
-		! array_key_exists( 'h', $lottie )
-	) ) {
+	if ( ! $lottie ) {
 		return false;
 	}
-	return true;
+
+	return (
+		array_key_exists( 'v', $lottie ) &&
+		array_key_exists( 'fr', $lottie ) &&
+		array_key_exists( 'ip', $lottie ) &&
+		array_key_exists( 'op', $lottie ) &&
+		array_key_exists( 'w', $lottie ) &&
+		array_key_exists( 'h', $lottie )
+	);
 }
 
 function is_safe_zip( \ZipArchive $zip ): bool {
@@ -299,6 +316,15 @@ function is_safe_zip( \ZipArchive $zip ): bool {
  */
 function is_true( bool|string|null $var ) {
 	return ( isset( $var ) && $var && $var !== 'false' && $var !== '0' );
+}
+
+/**
+ * Converts slug to snake_case
+ *
+ * @param string $str
+ */
+function snakeify( $str ) {
+	return \strtolower( \preg_replace( '/[\-]/', '_', $str ) );
 }
 
 /**
@@ -398,21 +424,27 @@ function render_lottieplayer( array $atts ) {
 
 		// Check if thumbnail svg is set by mistake
 		if ( \str_contains( $src, 'lottie-thumbnail-' ) ) {
-			$src = \str_replace( 'lottie-thumbnail-', '', $src );
+			$uploads = wp_upload_dir( null, false );
+			$baseurl = set_url_scheme( $uploads['baseurl'] );
+			$src     = set_url_scheme( \str_replace( 'lottie-thumbnail-', '', $src ) );
 
-			$path = \str_replace( home_url(), untrailingslashit( get_home_path() ), $src );
-
-			if ( file_exists( replace_extension( $path, 'lottie' ) ) ) {
-				$src = replace_extension( $src, 'lottie' );
-			} else {
-				$src = replace_extension( $src, 'json' );
+			if ( \str_starts_with( $src, $baseurl ) ) {
+				$path = $uploads['basedir'] . \substr( $src, \strlen( $baseurl ) );
+				$src  = replace_extension(
+					$src,
+					\file_exists( replace_extension( $path, 'lottie' ) ) ? 'lottie' : 'json'
+				);
 			}
 		}
 	}
 
 	$handle = 'dotlottie-player-light';
 
-	if ( AAMD_LOTTIE_IS_PRO && $atts['renderer'] === 'canvas' ) {
+	if (
+		AAMD_LOTTIE_IS_PRO &&
+		( ! (bool) get_option( 'am_lottieplayer_pro_load_light' ) ||
+		$atts['renderer'] !== 'svg' )
+		) {
 		$handle = 'dotlottie-player';
 	}
 

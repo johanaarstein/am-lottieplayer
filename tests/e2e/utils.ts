@@ -7,7 +7,8 @@ import { __ } from '@wordpress/i18n'
 
 export const DIVI_TEXT_DOMAIN = 'Divi',
   BRICKS_TEXT_DOMAIN = 'bricks',
-  ELEMENTOR_TEXT_DOMAIN = 'elementor'
+  ELEMENTOR_TEXT_DOMAIN = 'elementor',
+  VC_TEXT_DOMAIN = 'js_composer'
 
 type PostType = 'post' | 'page'
 

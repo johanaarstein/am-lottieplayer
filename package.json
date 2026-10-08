@@ -1,6 +1,6 @@
 {
 	"name": "am-lottieplayer",
-	"version": "4.2.5",
+	"version": "4.2.6",
 	"description": "This is best free Lottie Player plugin. It is lightweight, versatile and easy to use, and it has integrations for Gutenberg, Divi, Elementor, Flatsome and WPBakery.",
 	"type": "module",
 	"author": {
@@ -43,7 +43,7 @@
 		"@eslint/compat": "^2.1.1",
 		"@eslint/core": "^1.2.1",
 		"@eslint/js": "^10.0.1",
-		"@playwright/test": "^1.63.0",
+		"@playwright/test": "^1.64.0",
 		"@regru/eslint-plugin-prefer-early-return": "^1.0.0",
 		"@stylistic/eslint-plugin": "^5.10.0",
 		"@types/eslint-plugin-jsx-a11y": "^6.10.1",

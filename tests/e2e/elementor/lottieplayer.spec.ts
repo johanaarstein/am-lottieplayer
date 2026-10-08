@@ -15,6 +15,12 @@ test.describe('dotlottiePlayer Widget', () => {
   })
 
   test.beforeEach(async ({ admin, page }) => {
+    const skipSetup = page.getByText(__('Skip setup', ELEMENTOR_TEXT_DOMAIN))
+
+    if (await skipSetup.isVisible()) {
+      await skipSetup.click()
+    }
+
     await admin.createNewPost({ postType: 'page' })
     const patternDialog = page.getByRole('dialog', { name: __('Choose a pattern', ELEMENTOR_TEXT_DOMAIN) })
 

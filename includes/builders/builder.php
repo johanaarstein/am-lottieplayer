@@ -187,7 +187,12 @@ class Builder {
 		$handle = 'dotlottie-player-light';
 		if ( AAMD_LOTTIE_IS_PRO ) {
 			$load_light = (bool) get_option( 'am_lottieplayer_pro_load_light' );
-			if ( ! $load_light || $this->_has_non_svg_renderer( $content, $divi_layout_contents ) ) {
+			if (
+				! $load_light ||
+				$this->_has_non_svg_renderer(
+					array( $content, ...$divi_layout_contents )
+				)
+			) {
 				$handle = 'dotlottie-player';
 			}
 		}
@@ -266,30 +271,32 @@ class Builder {
 	/**
 	 * Whether any Lottie instance uses a non-SVG renderer (canvas/html).
 	 *
-	 * @param string   $content          Post content.
-	 * @param string[] $layout_contents  Divi layout contents that contain Lottie.
+	 * @param string[] $content          Post content.
 	 */
-	private function _has_non_svg_renderer( $content ) {
-		if ( has_blocks( $content ) ) {
-			$blocks = $this->_flatten_blocks(
-				parse_blocks( $content ),
-				array(
-					'gb/lottieplayer',
-					'gb/lottiecover',
-					'am/lottieplayer-module',
-				)
-			);
+	private function _has_non_svg_renderer( array $contents ) {
 
-			foreach ( $blocks as $block ) {
-				$renderer = $block['attrs']['renderer'] ?? null;
+		foreach ( $contents as $content ) {
+			if ( has_blocks( $content ) ) {
+				$blocks = $this->_flatten_blocks(
+					parse_blocks( $content ),
+					array(
+						'gb/lottieplayer',
+						'gb/lottiecover',
+						'am/lottieplayer-module',
+					)
+				);
 
-				// Divi 5 stores attrs under the module metadata tree.
-				if ( ( $block['blockName'] ?? '' ) === 'am/lottieplayer-module' ) {
-					$renderer = $block['attrs']['lottie']['innerContent']['desktop']['value']['renderer'] ?? $renderer;
-				}
+				foreach ( $blocks as $block ) {
+					$renderer = $block['attrs']['renderer'] ?? null;
 
-				if ( $renderer && $renderer !== 'svg' ) {
-					return true;
+					// Divi 5 stores attrs under the module metadata tree.
+					if ( ( $block['blockName'] ?? '' ) === 'am/lottieplayer-module' ) {
+						$renderer = $block['attrs']['lottie']['innerContent']['desktop']['value']['renderer'] ?? $renderer;
+					}
+
+					if ( $renderer && $renderer !== 'svg' ) {
+						return true;
+					}
 				}
 			}
 		}
@@ -305,7 +312,7 @@ class Builder {
  */
 ( function () {
 	global $aamd_lottie_builder;
-	if ( ! AAMD_LOTTIE_IS_PRO && ! isset( $aamd_lottie_builder ) ) {
+	if ( ! isset( $aamd_lottie_builder ) ) {
 		$aamd_lottie_builder = new Builder();
 	}
 

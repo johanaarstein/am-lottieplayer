@@ -49,7 +49,7 @@ class Media {
 
 					return $data;
 				} catch ( \Throwable $e ) {
-					return new \WP_Error( $e->getCode(), $e->getMessage() );
+					return new \WP_Error( 'aamd_error_filetype', $e->getMessage() );
 				}
 			},
 			10,
@@ -248,15 +248,15 @@ class Media {
 	 * Media Library if it doesn't exist.
 	 */
 	public function set_default_file() {
-		if ( $this->_defaultFile && ! is_wp_error( $this->_defaultFile ) ) {
+		if ( $this->defaultFile && ! is_wp_error( $this->defaultFile ) ) {
 			return;
 		}
 		$asset = $this->_lottie_asset();
 		if ( is_wp_error( $asset ) ) {
-			$this->_defaultFile = $asset;
+			$this->defaultFile = $asset;
 			return;
 		}
-		$this->_defaultFile = wp_get_attachment_url( $asset );
+		$this->defaultFile = wp_get_attachment_url( $asset );
 	}
 
 	/**
@@ -417,7 +417,7 @@ class Media {
 
 			return $html;
 		} catch ( \Throwable $e ) {
-			return new \WP_Error( $e->getCode(), $e->getMessage() );
+			return new \WP_Error( 'aamd_error_sideload', $e->getMessage() );
 		}
 	}
 
@@ -459,12 +459,12 @@ class Media {
 	 *
 	 * @var string|false|int|\WP_Error
 	 */
-	private $_defaultFile = false;
+	public $defaultFile = false;
 }(
 	function () {
 		global $aamd_lottie_media;
 
-		if ( ! isset( $aamd_lottie_media ) ) {
+		if ( ! AAMD_LOTTIE_IS_PRO && ! isset( $aamd_lottie_media ) ) {
 				$aamd_lottie_media = new Media();
 		}
 
