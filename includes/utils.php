@@ -180,33 +180,6 @@ function get_script( $filename = '', $version = null ) {
 }
 
 /**
- * Get all instances of shortcode in text
- *
- * @param string $content
- * @param string $tag
- * @return string[] | null
- */
-function get_shortcode_instances( $content, $tag ) {
-	if ( ! \str_contains( $content, '[' ) || ! shortcode_exists( $tag ) ) {
-		return null;
-	}
-
-	\preg_match_all( '/\[' . $tag . '[^\]]*\]/', $content, $matches, PREG_SET_ORDER );
-
-	if ( empty( $matches ) ) {
-		return null;
-	}
-
-	$shortcodes = array();
-
-	foreach ( $matches as $match ) {
-		\array_push( $shortcodes, $match[0] );
-	}
-
-	return $shortcodes;
-}
-
-/**
  * Get url of static file
  *
  * @param string      $type `'assets'|'build'|'scripts'|'styles'`
@@ -274,12 +247,7 @@ function is_lottie_valid( ?array $lottie ) {
 	return true;
 }
 
-function is_safe_zip( string $zip_path ): bool {
-	$zip = new \ZipArchive();
-	if ( $zip->open( $zip_path ) !== true ) {
-		return false;
-	}
-
+function is_safe_zip( \ZipArchive $zip ): bool {
 	// Baseline Security Thresholds
 	$max_file_count         = 1000;
 	$max_total_uncompressed = 100 * 1024 * 1024; // 100 MB
@@ -288,7 +256,6 @@ function is_safe_zip( string $zip_path ): bool {
 
 	// 1. Check total entry count
 	if ( $zip->numFiles > $max_file_count ) {
-		$zip->close();
 		return false;
 	}
 
@@ -306,13 +273,11 @@ function is_safe_zip( string $zip_path ): bool {
 
 		// Single file size limit
 		if ( $uncompressed > $max_single_file_size ) {
-			$zip->close();
 			return false;
 		}
 
 		// Compression ratio check (ignore 0-byte or uncompressed entries)
 		if ( $compressed > 0 && ( $uncompressed / $compressed ) > $max_ratio ) {
-			$zip->close();
 			return false;
 		}
 
@@ -320,12 +285,10 @@ function is_safe_zip( string $zip_path ): bool {
 
 		// Total expanded size limit
 		if ( $total_uncompressed > $max_total_uncompressed ) {
-			$zip->close();
 			return false;
 		}
 	}
 
-	$zip->close();
 	return true;
 }
 
@@ -388,7 +351,7 @@ function render_lottieplayer( array $atts ) {
 		$playonvisible = "playonvisible\n";
 	}
 
-	$unit_regex = '/\s*(((?:\d*\.)?\d+)\s?)(px|em|rem|vw|vh|%)/';
+	$unit_regex = '/^\s*\d*\.?\d+\s?(px|em|rem|vw|vh|%)\s*$/';
 
 	$height = 'auto';
 	if ( is_true( $atts['height'] ) ) {
@@ -446,6 +409,18 @@ function render_lottieplayer( array $atts ) {
 			}
 		}
 	}
+
+	$handle = 'dotlottie-player-light';
+
+	if ( AAMD_LOTTIE_IS_PRO && $atts['renderer'] === 'canvas' ) {
+		$handle = 'dotlottie-player';
+	}
+
+	if ( $handle !== 'dotlottie-player-light' && wp_script_is( 'dotlottie-player-light' ) ) {
+		wp_dequeue_script( 'dotlottie-player-light' );
+	}
+
+	wp_enqueue_script( $handle );
 
 	\ob_start();
 	?>
@@ -510,8 +485,6 @@ function render_lottieplayer( array $atts ) {
 }
 
 function render_shortcode( array $atts ) {
-	/** @var \AAMD_Lottie\Media $aamd_lottie_media */
-	global $aamd_lottie_media;
 	$atts = shortcode_atts(
 		array(
 			'animateonscroll'            => false,
@@ -562,63 +535,6 @@ function replace_extension( string $filename, string $new_extension ) {
 	}
 
 	return substr_replace( $filename, $new_extension, -strlen( $path_parts['extension'] ) );
-}
-
-/**
- * Creates a random unique temporary directory, with specified parameters,
- * that does not already exist (like tempnam(), but for dirs).
- *
- * Created dir will begin with the specified prefix, followed by random
- * numbers.
- *
- * @link https://php.net/manual/en/function.tempnam.php
- *
- * @param string|null $dir Base directory under which to create temp dir.
- *     If null, the default system temp dir (sys_get_temp_dir()) will be
- *     used.
- * @param string      $prefix String with which to prefix created dirs.
- * @param int         $mode Octal file permission mask for the newly-created dir.
- *             Should begin with a 0.
- * @param int         $maxAttempts Maximum attempts before giving up (to prevent
- *             endless loops).
- * @return string|bool Full path to newly-created dir, or false on failure.
- */
-function tempdir( $dir = null, $prefix = 'tmp_', $mode = 0700, $maxAttempts = 1000 ) {
-	/* Use the system temp dir by default. */
-	if ( is_null( $dir ) ) {
-		$dir = sys_get_temp_dir();
-	}
-
-	/* Trim trailing slashes from $dir. */
-	$dir = rtrim( $dir, DIRECTORY_SEPARATOR );
-
-	/*
-	If we don't have permission to create a directory, fail, otherwise we will
-	 * be stuck in an endless loop.
-	 */
-	if ( ! is_dir( $dir ) || ! wp_is_writable( $dir ) ) {
-		return false;
-	}
-
-	/* Make sure characters in prefix are safe. */
-	if ( strpbrk( $prefix, '\\/:*?"<>|' ) !== false ) {
-		return false;
-	}
-
-	/*
-	Attempt to create a random directory until it works. Abort if we reach
-	 * $maxAttempts. Something screwy could be happening with the filesystem
-	 * and our loop could otherwise become endless.
-	 */
-	$attempts = 0;
-	do {
-		$path = sprintf( '%s%s%s%s', $dir, DIRECTORY_SEPARATOR, $prefix, wp_rand( 100000, mt_getrandmax() ) );
-	} while (
-		! wp_mkdir_p( $path ) &&
-		$attempts++ < $maxAttempts
-	);
-
-	return $path;
 }
 
 function unleadingslashhit( string $str ) {

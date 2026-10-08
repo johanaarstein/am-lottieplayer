@@ -4,7 +4,6 @@ namespace AAMD_Lottie;
 use function AAMD_Lottie\Utility\get_asset;
 use function AAMD_Lottie\Utility\is_lottie_valid;
 use function AAMD_Lottie\Utility\is_safe_zip;
-use function AAMD_Lottie\Utility\tempdir;
 
 \defined( 'ABSPATH' ) || exit;
 
@@ -67,22 +66,24 @@ class Media {
 			}
 		);
 
-		// Filters the attachment meta data.
-		add_filter(
-			'wp_get_attachment_metadata',
-			function ( $data, $post_id ) {
+		if ( is_admin() ) {
+			// Filters the attachment meta data.
+			add_filter(
+				'wp_get_attachment_metadata',
+				function ( $data, $post_id ) {
 
-				// If it's a WP_Error regenerate metadata and save it
-				if ( is_wp_error( $data ) ) {
-					$data = wp_generate_attachment_metadata( $post_id, get_attached_file( $post_id ) );
-					wp_update_attachment_metadata( $post_id, $data );
-				}
+					// If it's a WP_Error regenerate metadata and save it
+					if ( is_wp_error( $data ) ) {
+						$data = wp_generate_attachment_metadata( $post_id, get_attached_file( $post_id ) );
+						wp_update_attachment_metadata( $post_id, $data );
+					}
 
-				return $data;
-			},
-			10,
-			2
-		);
+					return $data;
+				},
+				10,
+				2
+			);
+		}
 
 		// Validate before upload
 		add_filter(
@@ -114,47 +115,35 @@ class Media {
 							$zip = new \ZipArchive();
 							$res = $zip->open( $file['tmp_name'] );
 							if ( $res !== true ) {
-								throw new \Error( 'Could not open ZIP archive' );
-							}
-
-							if ( ! is_safe_zip( $file['tmp_name'] ) ) {
 								break;
 							}
 
-							$manifest = wp_json_file_decode( $zip->getFromName( 'manifest.json' ) );
+							if ( ! is_safe_zip( $zip ) ) {
+								$zip->close();
+								break;
+							}
+
+							$manifest = \json_decode( (string) $zip->getFromName( 'manifest.json' ), true );
 
 							if ( ! $manifest ) {
 								$zip->close();
 								break;
 							}
 
-							$animationsDir = $zip->getFromName( 'animations' );
-							if ( ! is_dir( $animationsDir ) ) {
-								$animationsDir = $zip->getFromName( 'a' );
-							}
+							for ( $i = 0; $i < $zip->numFiles; $i++ ) {
+								$name = $zip->getNameIndex( $i );
+								if ( ! preg_match( '#^(animations|a)/[^/]+\.json$#', $name ) ) {
+									continue;
+								}
 
-							if ( is_dir( $animationsDir ) ) {
-								$animations = scandir( $animationsDir );
+								$is_valid = true;
 
-								/**
-								 * Set this to true only if animations array has length,
-								 * so that we can iterate and catch any corrupted animation,
-								 * while still avoiding false positive for empty arrays.
-								 */
-								if ( (bool) $animations ) {
-									$is_valid = count( $animations ) > 0;
-
-									foreach ( $animations as $animation ) {
-										if ( $animation === '.' || $animation === '..' ) {
-											continue;
-										}
-										$lottie = wp_json_file_decode( "$animationsDir/$animation", array( 'associative' => true ) );
-										if ( ! is_lottie_valid( $lottie ) ) {
-											$is_valid = false;
-										}
-									}
+								if ( ! is_lottie_valid( json_decode( (string) $zip->getFromIndex( $i ), true ) ) ) {
+									$is_valid = false;
+									break;
 								}
 							}
+
 							$zip->close();
 						}
 					}
@@ -165,7 +154,9 @@ class Media {
 
 					return $file;
 				} catch ( \Throwable $e ) {
-					return new \WP_Error( $e->getCode(), $e->getMessage() );
+					$file['error'] = $e->getMessage();
+
+					return $file;
 				}
 			}
 		);
@@ -260,11 +251,12 @@ class Media {
 		if ( $this->_defaultFile && ! is_wp_error( $this->_defaultFile ) ) {
 			return;
 		}
-		if ( is_wp_error( $this->_lottie_asset() ) ) {
-			$this->_defaultFile = $this->_lottie_asset( true );
+		$asset = $this->_lottie_asset();
+		if ( is_wp_error( $asset ) ) {
+			$this->_defaultFile = $asset;
 			return;
 		}
-		$this->_defaultFile = wp_get_attachment_url( $this->_lottie_asset() );
+		$this->_defaultFile = wp_get_attachment_url( $asset );
 	}
 
 	/**
@@ -431,14 +423,9 @@ class Media {
 
 	/**
 	 * Save default Lottie animation to Media Library
-	 *
-	 * @param boolean $default
 	 */
-	private function _lottie_asset( $default = false ) {
+	private function _lottie_asset() {
 		$url = get_asset( 'am.lottie' );
-		if ( $default && filter_var( $url, FILTER_VALIDATE_URL ) ) {
-			return $url;
-		}
 
 		if ( ! function_exists( 'get_post_status' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/post.php';
@@ -455,10 +442,13 @@ class Media {
 
 			$post_id = $this->_media_sideload_lottie( $url );
 
-			add_option(
-				'aamd_default_lottie_animation',
-				$post_id
-			);
+			if ( ! is_wp_error( $post_id ) ) {
+				update_option(
+					'aamd_default_lottie_animation',
+					$post_id,
+					false
+				);
+			}
 		}
 
 		return $post_id;

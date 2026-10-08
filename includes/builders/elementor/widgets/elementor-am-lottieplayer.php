@@ -68,7 +68,6 @@ class Elementor extends Widget_Base {
 	}
 
 	protected function register_controls() {
-		global $aamd_lottie_media;
 		global $aamd_pro_link;
 		global $aamd_pro_feature;
 
@@ -786,10 +785,11 @@ class Elementor extends Widget_Base {
 				'label'   => esc_html__( 'Object fit', 'am-lottieplayer' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
-					'contain' => esc_html__( 'Contain', 'am-lottieplayer' ),
-					'cover'   => esc_html__( 'Cover', 'am-lottieplayer' ),
-					'fill'    => esc_html__( 'Fill', 'am-lottieplayer' ),
-					'none'    => esc_html__( 'None', 'am-lottieplayer' ),
+					'contain'    => esc_html__( 'Contain', 'am-lottieplayer' ),
+					'cover'      => esc_html__( 'Cover', 'am-lottieplayer' ),
+					'fill'       => esc_html__( 'Fill', 'am-lottieplayer' ),
+					'scale-down' => esc_html__( 'Scale down', 'am-lottieplayer' ),
+					'none'       => esc_html__( 'None', 'am-lottieplayer' ),
 				),
 				'default' => 'contain',
 			)

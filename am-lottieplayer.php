@@ -57,7 +57,7 @@ if ( ! \class_exists( 'AAMD_Lottie' ) ) {
 			define( 'AAMD_LOTTIE_HOMEPAGE', 'https://www.am-lottieplayer.com' );
 			define( 'AAMD_LOTTIE_IS_PRO', false );
 
-			define('AAMD_LOTTIE_VERSION', '4.2.5');
+			define( 'AAMD_LOTTIE_VERSION', '4.2.5' );
 
 			if ( ! defined( 'WP_ENV' ) ) {
 				// Used to check for 'development' or 'production'

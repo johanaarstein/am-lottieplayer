@@ -1,5 +1,5 @@
 import type DotLottiePlayerLight from '@aarsteinmedia/dotlottie-player/light'
-import type { tagName } from '@aarsteinmedia/dotlottie-player/utils'
+import type { ObjectFit, tagName } from '@aarsteinmedia/dotlottie-player/utils'
 import type { AnimationSegment } from '@aarsteinmedia/lottie-web'
 import type { EditorTemplateLock } from '@wordpress/block-editor'
 import type { BlockEditProps } from '@wordpress/blocks'
@@ -37,7 +37,7 @@ export interface PlayerComponentProps
   heightUnit?: 'px' | '%'
   id?: string
   isDark?: boolean
-  objectFit?: DotLottiePlayerLight['objectfit']
+  objectFit?: ObjectFit
   once?: boolean
   segment?: AnimationSegment
   templateLock?: EditorTemplateLock

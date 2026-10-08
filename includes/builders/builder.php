@@ -4,7 +4,6 @@ namespace AAMD_Lottie;
 use function AAMD_Lottie\Utility\get_build_path;
 use function AAMD_Lottie\Utility\get_path;
 use function AAMD_Lottie\Utility\get_script;
-use function AAMD_Lottie\Utility\get_shortcode_instances;
 use function AAMD_Lottie\Utility\include_file;
 
 \defined( 'ABSPATH' ) || exit;
@@ -49,6 +48,10 @@ class Builder {
 		);
 
 		$manifest = wp_json_file_decode( get_path( 'scripts/vendor-manifest', 'json' ) );
+
+		if ( ! $manifest ) {
+			return;
+		}
 
 		foreach ( $manifest as $handle => $entry ) {
 			wp_register_script(
@@ -163,19 +166,21 @@ class Builder {
 		$is_vc_builder   = function_exists( 'vc_is_inline' ) && vc_is_inline();
 
 		global $post;
-		$content = is_a( $post, '\WP_Post' ) ? $post->post_content : '';
+		$content = '';
+
+		if ( is_a( $post, '\WP_Post' ) ) {
+			$content = $post->post_content;
+		}
 
 		$divi_layout_contents = $this->_get_divi_layout_contents();
-
-		$has_gutenberg = has_block( 'gb/lottieplayer' ) || has_block( 'gb/lottiecover' );
-		$has_shortcode = has_shortcode( $content, 'am-lottieplayer' ) && ! $is_vc_builder;
-		$has_divi      = ! $is_divi_builder && (
+		$has_gutenberg        = has_block( 'gb/lottieplayer' ) || has_block( 'gb/lottiecover' );
+		$has_divi             = ! $is_divi_builder && (
 			! empty( $divi_layout_contents ) ||
 			has_shortcode( $content, 'et_pb_lottieplayer' ) ||
 			has_block( 'am/lottieplayer-module' )
 		);
 
-		if ( ! $has_gutenberg && ! $has_shortcode && ! $has_divi && ! $is_divi_builder && ! $is_vc_builder ) {
+		if ( ! $has_gutenberg && ! $has_divi && ! $is_divi_builder && ! $is_vc_builder ) {
 			return;
 		}
 
@@ -264,7 +269,7 @@ class Builder {
 	 * @param string   $content          Post content.
 	 * @param string[] $layout_contents  Divi layout contents that contain Lottie.
 	 */
-	private function _has_non_svg_renderer( $content, array $layout_contents ) {
+	private function _has_non_svg_renderer( $content ) {
 		if ( has_blocks( $content ) ) {
 			$blocks = $this->_flatten_blocks(
 				parse_blocks( $content ),
@@ -286,27 +291,6 @@ class Builder {
 				if ( $renderer && $renderer !== 'svg' ) {
 					return true;
 				}
-			}
-		}
-
-		$shortcodes = array_merge(
-			get_shortcode_instances( $content, 'am-lottieplayer' ) ?? array(),
-			get_shortcode_instances( $content, 'et_pb_lottieplayer' ) ?? array()
-		);
-
-		foreach ( $layout_contents as $layout_content ) {
-			$shortcodes = array_merge(
-				$shortcodes,
-				get_shortcode_instances( $layout_content, 'et_pb_lottieplayer' ) ?? array()
-			);
-		}
-
-		foreach ( $shortcodes as $shortcode ) {
-			$atts     = shortcode_parse_atts( $shortcode );
-			$renderer = is_array( $atts ) ? ( $atts['renderer'] ?? false ) : false;
-
-			if ( $renderer && $renderer !== 'svg' ) {
-				return true;
 			}
 		}
 

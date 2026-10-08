@@ -126,7 +126,13 @@
 			"default": "stop"
 		},
 		"objectFit": {
-			"type": "string",
+			"enum": [
+				"contain",
+				"cover",
+				"fill",
+				"none",
+				"scale-down"
+			],
 			"default": "cover"
 		},
 		"once": {

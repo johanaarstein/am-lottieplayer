@@ -44,7 +44,7 @@ dependencies.forEach(({
   if (!fs.existsSync(pkgJsonPath)) {
     console.error(`Package ${name} not found. Run pnpm install first.`)
 
-    return
+    process.exit(1)
   }
 
   // Read package.json to extract SemVer

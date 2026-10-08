@@ -4,9 +4,6 @@
 use function AAMD_Lottie\Utility\get_asset;
 use function AAMD_Lottie\Utility\get_script;
 
-/** @var AAMD_Lottie\Media $aamd_lottie_media */
-global $aamd_lottie_media;
-
 vc_add_shortcode_param(
 	'attach_lottie',
 	'aamd_vc_attach_field_settings',
@@ -183,10 +180,11 @@ vc_map(
 				'heading'    => __( 'Object fit', 'am-lottieplayer' ),
 				'param_name' => 'objectfit',
 				'value'      => array(
-					__( 'Contain', 'am-lottieplayer' ) => 'contain',
-					__( 'Cover', 'am-lottieplayer' )   => 'cover',
-					__( 'Fill', 'am-lottieplayer' )    => 'fill',
-					__( 'None', 'am-lottieplayer' )    => 'none',
+					__( 'Contain', 'am-lottieplayer' )    => 'contain',
+					__( 'Cover', 'am-lottieplayer' )      => 'cover',
+					__( 'Fill', 'am-lottieplayer' )       => 'fill',
+					__( 'Scale down', 'am-lottieplayer' ) => 'scale-down',
+					__( 'None', 'am-lottieplayer' )       => 'none',
 				),
 				'std'        => 'contain',
 				'group'      => __( 'Layout Options', 'am-lottieplayer' ),

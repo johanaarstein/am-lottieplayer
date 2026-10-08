@@ -10,6 +10,8 @@ export const DIVI_TEXT_DOMAIN = 'Divi',
 type PostType = 'post' | 'page'
 
 export const handleBricksLicense = async (page: Page) => {
+    await page.waitForURL('/wp-admin/admin.php?page=bricks-license', { timeout: 3000 })
+
     const activateButton = page.getByRole('button', { name: __('Activate license', BRICKS_TEXT_DOMAIN) })
 
     if (await activateButton.isHidden()) {

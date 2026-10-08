@@ -463,10 +463,11 @@ class Element_Lottie_Player extends \Bricks\Element {
 			),
 			'type'    => 'select',
 			'options' => array(
-				'Contain' => 'contain',
-				'Cover'   => 'cover',
-				'Fill'    => 'fill',
-				'None'    => 'none',
+				__( 'Contain', 'am-lottieplayer' )    => 'contain',
+				__( 'Cover', 'am-lottieplayer' )      => 'cover',
+				__( 'Fill', 'am-lottieplayer' )       => 'fill',
+				__( 'Scale down', 'am-lottieplayer' ) => 'scale-down',
+				__( 'None', 'am-lottieplayer' )       => 'none',
 			),
 			'default' => 'contain',
 		);
