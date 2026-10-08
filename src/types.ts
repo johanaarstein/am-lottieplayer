@@ -96,9 +96,8 @@ export interface BlockEditor {
 declare global {
   const aamdPHPVariables: PHPVars | undefined
 
+  // @ts-expect-error: For this plugin, only light is in use
   interface HTMLElementTagNameMap { [tagName]: DotLottiePlayerLight }
-
-  function dotLottiePlayer(): DotLottiePlayerLight
 }
 
 declare module 'react' {
