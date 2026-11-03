@@ -43,7 +43,7 @@ export default function BoomerangLottie({
   useEventListener(
     'scroll', touchScroll, {
       capture: true,
-      passive: true
+      passive: true,
     }
   )
 

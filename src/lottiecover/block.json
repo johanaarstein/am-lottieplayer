@@ -17,23 +17,12 @@
 	"textdomain": "am-lottieplayer",
 	"attributes": {
 		"align": {
-			"enum": [
-				"center",
-				"full",
-				"none",
-				"left",
-				"right",
-				"wide"
-			],
+			"enum": ["center", "full", "none", "left", "right", "wide"],
 			"default": "none"
 		},
 		"allowedBlocks": {
 			"type": "array",
-			"default": [
-				"core/paragraph",
-				"core/heading",
-				"core/buttons"
-			]
+			"default": ["core/paragraph", "core/heading", "core/buttons"]
 		},
 		"autoplay": {
 			"type": "boolean",
@@ -110,29 +99,15 @@
 			"default": true
 		},
 		"mode": {
-			"enum": [
-				"bounce",
-				"normal"
-			],
+			"enum": ["bounce", "normal"],
 			"default": "normal"
 		},
 		"mouseout": {
-			"enum": [
-				"void",
-				"stop",
-				"pause",
-				"reverse"
-			],
+			"enum": ["void", "stop", "pause", "reverse"],
 			"default": "stop"
 		},
 		"objectFit": {
-			"enum": [
-				"contain",
-				"cover",
-				"fill",
-				"none",
-				"scale-down"
-			],
+			"enum": ["contain", "cover", "fill", "none", "scale-down"],
 			"default": "cover"
 		},
 		"once": {
@@ -152,11 +127,7 @@
 			"default": false
 		},
 		"renderer": {
-			"enum": [
-				"svg",
-				"canvas",
-				"html"
-			],
+			"enum": ["svg", "canvas", "html"],
 			"default": "svg"
 		},
 		"segment": {
@@ -180,16 +151,8 @@
 			"default": true
 		},
 		"templateLock": {
-			"type": [
-				"string",
-				"boolean"
-			],
-			"enum": [
-				"all",
-				"insert",
-				"contentOnly",
-				false
-			]
+			"type": ["string", "boolean"],
+			"enum": ["all", "insert", "contentOnly", false]
 		},
 		"width": {
 			"type": "number",
@@ -202,10 +165,7 @@
 		"html": false,
 		"spacing": {
 			"padding": true,
-			"margin": [
-				"top",
-				"bottom"
-			],
+			"margin": ["top", "bottom"],
 			"__experimentalDefaultControls": {
 				"padding": true,
 				"margin": true

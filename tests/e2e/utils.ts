@@ -61,7 +61,9 @@ export const handleBricksLicense = async (page: Page) => {
     return `${origin}?p=${getPostId(page, postType)}`
   },
   deletePost = async (
-    page: Page, requestUtils: RequestUtils, postType: PostType = 'post'
+    page: Page,
+    requestUtils: RequestUtils,
+    postType: PostType = 'post'
   ) => {
     const postId = getPostId(page)
 
@@ -71,7 +73,7 @@ export const handleBricksLicense = async (page: Page) => {
 
     await requestUtils.rest({
       method: 'DELETE',
-      path: `/wp/v2/${postType}s/${postId}`
+      path: `/wp/v2/${postType}s/${postId}`,
     })
   },
   getVCFrame = (page: Page) => {
@@ -113,7 +115,9 @@ export const handleBricksLicense = async (page: Page) => {
     return placeholder
   },
   insertModuleDivi = async (page: Page, frame: FrameLocator) => {
-    await frame.getByRole('button', { name: __('Add row', DIVI_TEXT_DOMAIN) }).click()
+    await frame
+      .getByRole('button', { name: __('Add row', DIVI_TEXT_DOMAIN) })
+      .click()
 
     const modal = page.locator('.et-vb-modal--add-module')
 

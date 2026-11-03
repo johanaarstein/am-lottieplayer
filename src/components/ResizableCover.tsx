@@ -22,32 +22,32 @@ export default function ResizableCover({
   showHandle,
   ...rest
 }: React.HTMLAttributes<HTMLElement> & Props) {
-  const [ isResizing, setIsResizing ] = useState(false)
+  const [isResizing, setIsResizing] = useState(false)
 
   return (
     <ResizableBox
-      className={ classnames(className, { 'is-resizing': isResizing }) }
-      enable={ { bottom: ! fullscreen } }
-      minHeight={ 10 }
-      showHandle={ showHandle }
-      onResizeStart={ onResizeStart }
-      onResize={ (
+      className={classnames(className, { 'is-resizing': isResizing })}
+      enable={{ bottom: !fullscreen }}
+      minHeight={10}
+      showHandle={showHandle}
+      onResizeStart={onResizeStart}
+      onResize={(
         _e, _dir, el
       ) => {
         onResize(el.clientHeight)
-        if (! isResizing) {
+        if (!isResizing) {
           setIsResizing(true)
         }
-      } }
-      onResizeStop={ (
+      }}
+      onResizeStop={(
         _e, _dir, el
       ) => {
         onResizeStop(el.clientHeight)
         setIsResizing(false)
-      } }
-      { ...rest }
+      }}
+      {...rest}
     >
-      { children }
+      {children}
     </ResizableBox>
   )
 }

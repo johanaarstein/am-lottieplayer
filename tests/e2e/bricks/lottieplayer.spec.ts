@@ -4,7 +4,7 @@ import {
   getPostURL,
   handleBricksLicense,
   insertElementBricks,
-  selectAttachmentFromModal
+  selectAttachmentFromModal,
 } from '@test/e2e/utils'
 import { test, expect } from '@wordpress/e2e-test-utils-playwright'
 import { __ } from '@wordpress/i18n'
@@ -53,8 +53,12 @@ test.describe('dotLottiePlayer Element', () => {
     await page.locator('#controls').click()
     await expect(controls).toBeHidden()
 
-    await page.locator(`li[data-balloon="${__('Save draft', BRICKS_TEXT_DOMAIN)}"]`).click()
-    await page.locator(`li[data-balloon=${__('Publish', BRICKS_TEXT_DOMAIN)}]`).click()
+    await page
+      .locator(`li[data-balloon="${__('Save draft', BRICKS_TEXT_DOMAIN)}"]`)
+      .click()
+    await page
+      .locator(`li[data-balloon=${__('Publish', BRICKS_TEXT_DOMAIN)}]`)
+      .click()
     // Wait for success or error message before navigation
     await page.locator('#bricks-message').isVisible()
 

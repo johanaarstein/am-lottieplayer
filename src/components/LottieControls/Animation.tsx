@@ -18,14 +18,22 @@ import SwitchLabel from '@/components/form/SwitchLabel'
 import ProLink from '@/components/ProLink'
 import { usePlayerContext } from '@/hooks/usePlayerContext'
 
-const premiumMessage = __('This feature is only available in the premium version', 'am-lottieplayer')
+const premiumMessage = __('This feature is only available in the premium version',
+  'am-lottieplayer')
 
 export default function Animation({
   attributes,
   setAttributes,
 }: Readonly<BlockEditProps<PlayerComponentProps>>) {
   const {
-      autoplay, controls, direction, intermission, loop, segment, speed, subframe
+      autoplay,
+      controls,
+      direction,
+      intermission,
+      loop,
+      segment,
+      speed,
+      subframe,
     } = attributes,
     { animationContext: { animations, player } } = usePlayerContext(),
     [state] = useState(() => {
@@ -59,8 +67,9 @@ export default function Animation({
           id="am-lottieplayer-controls-settings"
           title={__('Show controls', 'am-lottieplayer')}
           value={Boolean(controls)}
-          onChange={(value) => { setAttributes({ controls: value }) }
-          }
+          onChange={(value) => {
+            setAttributes({ controls: value })
+          }}
         />
         <SwitchLabel
           id="am-lottieplayer-autoplay-settings"
@@ -83,24 +92,23 @@ export default function Animation({
           id="am-lottieplayer-playmode-settings"
           title={
             <>
-              <span
-                className="pro-feature"
-                style={{ marginRight: '1em' }}
-              >
+              <span className="pro-feature" style={{ marginRight: '1em' }}>
                 {__('Boomerang', 'am-lottieplayer')}
               </span>
               <ProFeature />
             </>
           }
-          onChange={() => { console.warn(premiumMessage) }
-          }
+          onChange={() => {
+            console.warn(premiumMessage)
+          }}
         />
         <SwitchLabel
           id="am-lottieplayer-reverse-settings"
           title={__('Reverse', 'am-lottieplayer')}
           value={direction === -1}
-          onChange={(value) => { setAttributes({ direction: value ? -1 : 1 }) }
-          }
+          onChange={(value) => {
+            setAttributes({ direction: value ? -1 : 1 })
+          }}
         />
         <SwitchLabel
           id="am-lottieplayer-subframe-settings"
@@ -108,8 +116,9 @@ export default function Animation({
           value={Boolean(subframe)}
           subTitle={__('Makes the animation smoother, at the cost of RAM usage',
             'am-lottieplayer')}
-          onChange={(value) => { setAttributes({ subframe: value }) }
-          }
+          onChange={(value) => {
+            setAttributes({ subframe: value })
+          }}
         />
         <RangeControl
           label={__('Speed', 'am-lottieplayer')}
@@ -117,15 +126,16 @@ export default function Animation({
           min={0.5}
           step={0.5}
           value={speed}
-          onChange={(value) => { setAttributes({ speed: value }) }}
+          onChange={(value) => {
+            setAttributes({ speed: value })
+          }}
         />
         <BaseControl.VisualLabel>
           <p>
             <ProFeature />
           </p>
           <span className="pro-feature">
-            {__('Play only part of the animation',
-              'am-lottieplayer')}
+            {__('Play only part of the animation', 'am-lottieplayer')}
           </span>
         </BaseControl.VisualLabel>
         <PanelRow className="lottie-segment">
@@ -135,8 +145,9 @@ export default function Animation({
             placeholder={'1'}
             title={__('First frame', 'am-lottieplayer')}
             value={segment?.[0]}
-            onChange={() => { console.warn(premiumMessage) }
-            }
+            onChange={() => {
+              console.warn(premiumMessage)
+            }}
           />
           <NumberInput
             disabled
@@ -144,8 +155,9 @@ export default function Animation({
             placeholder={(state.totalFrames + 1).toString()}
             title={__('Last frame', 'am-lottieplayer')}
             value={segment?.[1]}
-            onChange={() => { console.warn(premiumMessage) }
-            }
+            onChange={() => {
+              console.warn(premiumMessage)
+            }}
           />
         </PanelRow>
         {Boolean(loop) &&
@@ -160,8 +172,9 @@ export default function Animation({
                 value={intermission}
                 title={__('Pause between loops, in milliseconds. 1s = 1000',
                   'am-lottieplayer')}
-                onChange={(val) => { setAttributes({ intermission: val }) }
-                }
+                onChange={(val) => {
+                  setAttributes({ intermission: val })
+                }}
               />
             </PanelRow>
           </>

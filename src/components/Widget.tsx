@@ -18,15 +18,11 @@ export default function Widget() {
         padding: '1em 0',
       }}
     >
-      <BoomerangLottie
-        autoplay
-        src={`${pluginUrl}assets/banner_top.lottie`}
-      />
+      <BoomerangLottie autoplay src={`${pluginUrl}assets/banner_top.lottie`} />
       <div style={{ margin: '1em' }}>
         <p>
           <strong>
-            {__('Thank you for using AM LottiePlayer!',
-              'am-lottieplayer')}
+            {__('Thank you for using AM LottiePlayer!', 'am-lottieplayer')}
           </strong>
         </p>
         <p>
@@ -40,8 +36,7 @@ export default function Widget() {
           href={__('https://www.aarstein.media/en/am-lottieplayer/pro',
             'am-lottieplayer')}
         >
-          {__('Read more about AM LottiePlayer PRO here!',
-            'am-lottieplayer')}
+          {__('Read more about AM LottiePlayer PRO here!', 'am-lottieplayer')}
         </a>
       </div>
     </div>

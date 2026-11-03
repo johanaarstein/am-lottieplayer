@@ -1,5 +1,9 @@
 import {
-  DIVI_TEXT_DOMAIN, getDiviFrame, getPostURL, insertModuleDivi, selectAttachmentFromModal
+  DIVI_TEXT_DOMAIN,
+  getDiviFrame,
+  getPostURL,
+  insertModuleDivi,
+  selectAttachmentFromModal,
 } from '@test/e2e/utils'
 import { expect, test } from '@wordpress/e2e-test-utils-playwright'
 import { __ } from '@wordpress/i18n'
@@ -45,7 +49,9 @@ test.describe('dotLottiePlayer Module', () => {
 
     await placeholder.click()
 
-    await page.getByRole('button', { name: __('Upload', DIVI_TEXT_DOMAIN) }).click()
+    await page
+      .getByRole('button', { name: __('Upload', DIVI_TEXT_DOMAIN) })
+      .click()
 
     await selectAttachmentFromModal(page)
 
@@ -53,11 +59,17 @@ test.describe('dotLottiePlayer Module', () => {
 
     await expect(controls).toBeVisible()
 
-    await page.getByRole('button', { name: 'lottie-innerContent--controls' }).click()
+    await page
+      .getByRole('button', { name: 'lottie-innerContent--controls' })
+      .click()
     await expect(controls).toBeHidden()
 
-    await page.getByRole('button', { name: __('Save Dropdown', DIVI_TEXT_DOMAIN) }).click()
-    await page.getByRole('button', { name: __('Save & Publish', DIVI_TEXT_DOMAIN) }).click()
+    await page
+      .getByRole('button', { name: __('Save Dropdown', DIVI_TEXT_DOMAIN) })
+      .click()
+    await page
+      .getByRole('button', { name: __('Save & Publish', DIVI_TEXT_DOMAIN) })
+      .click()
 
     await page.goto(getPostURL(page, 'page'))
 

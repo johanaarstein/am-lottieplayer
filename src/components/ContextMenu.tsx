@@ -10,10 +10,7 @@ export default function ContextMenu({
 }: LottieBlockAttributes) {
   return (
     <BlockControls>
-      <MediaReplace
-        attributes={ attributes }
-        setAttributes={ setAttributes }
-      />
+      <MediaReplace attributes={attributes} setAttributes={setAttributes} />
     </BlockControls>
   )
 }

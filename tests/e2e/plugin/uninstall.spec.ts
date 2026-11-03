@@ -12,37 +12,29 @@ const PLUGIN = 'am-lottieplayer-pro',
   DEFAULT_ANIMATION_OPTION = 'aamd_default_lottie_animation',
   // Run the project's wp-env with this Node binary, rather than looking either up on PATH.
   WP_ENV = resolve(
-    process.cwd(), 'node_modules', '@wordpress', 'env', 'bin', 'wp-env'
+    process.cwd(),
+    'node_modules',
+    '@wordpress',
+    'env',
+    'bin',
+    'wp-env'
   ),
-
   /**
-   * Run a WP-CLI command in the wp-env cli container and return its stdout.
-   * wp-env passes args through to `docker compose exec` as an array, and writes
-   * its spinner to stderr, so stdout is the command output only.
-   */
-  wp = (...args: string[]) => execFileSync(
-    process.execPath,
-    [
-      WP_ENV,
-      'run',
-      'cli',
-      'wp',
-      ...args
-    ],
-    {
-      encoding: 'utf8',
-      stdio: [
-        'ignore',
-        'pipe',
-        'pipe'
-      ]
-    }
-  ).trim(),
-
+	 * Run a WP-CLI command in the wp-env cli container and return its stdout.
+	 * wp-env passes args through to `docker compose exec` as an array, and writes
+	 * its spinner to stderr, so stdout is the command output only.
+	 */
+  wp = (...args: string[]) =>
+    execFileSync(
+      process.execPath, [WP_ENV, 'run', 'cli', 'wp', ...args], {
+        encoding: 'utf8',
+        stdio: ['ignore', 'pipe', 'pipe'],
+      }
+    ).trim(),
   /**
-   * Names of options matching a `wp option list --search` pattern.
-   * Transients are stored as options too (wp-env has no object cache).
-   */
+	 * Names of options matching a `wp option list --search` pattern.
+	 * Transients are stored as options too (wp-env has no object cache).
+	 */
   listOptions = (search: string) => {
     const lines = wp(
         'option',
@@ -55,7 +47,6 @@ const PLUGIN = 'am-lottieplayer-pro',
 
     return rows
   },
-
   /** Whether a post with the given ID exists. `wp post exists` exits 1 if not. */
   postExists = (id: string) => {
     try {
@@ -94,13 +85,16 @@ test.describe('uninstall.php', () => {
     )
 
     // A bare attachment post stands in for the sideloaded default animation.
-    attachmentId = wp(
-      'post',
-      'create',
-      '--post_type=attachment',
-      '--post_title=AM Lottie e2e default animation',
-      '--porcelain'
-    ).split('\n').at(-1) ?? ''
+    attachmentId =
+      wp(
+        'post',
+        'create',
+        '--post_type=attachment',
+        '--post_title=AM Lottie e2e default animation',
+        '--porcelain'
+      )
+        .split('\n')
+        .at(-1) ?? ''
 
     wp(
       'option', 'update', DEFAULT_ANIMATION_OPTION, attachmentId

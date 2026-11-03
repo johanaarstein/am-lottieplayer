@@ -1,52 +1,31 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "compilerOptions": {
-    "rootDir": ".",
-    "outDir": "./build",
-    "target": "ES2024",
-    "jsx": "react-jsx",
-    "module": "ESNext",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ES2024"
-    ],
-    "types": [
-      "node",
-      "react",
-      "webpack",
-      "wordpress__block-editor"
-    ],
-    "noImplicitAny": false,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "moduleResolution": "Bundler",
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@test/*": [
-        "./tests/*"
-      ]
-    }
-  },
-  "ts-node": {
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
-  },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "**/build",
-    "**/node_modules",
-    "**/assets",
-    "**/scripts"
-  ]
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"compilerOptions": {
+		"rootDir": ".",
+		"outDir": "./build",
+		"target": "ES2024",
+		"jsx": "react-jsx",
+		"module": "ESNext",
+		"lib": ["DOM", "DOM.Iterable", "ES2024"],
+		"types": ["node", "react", "webpack", "wordpress__block-editor"],
+		"noImplicitAny": false,
+		"allowSyntheticDefaultImports": true,
+		"strict": true,
+		"moduleResolution": "Bundler",
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
+		"verbatimModuleSyntax": true,
+		"isolatedModules": true,
+		"paths": {
+			"@/*": ["./src/*"],
+			"@test/*": ["./tests/*"]
+		}
+	},
+	"ts-node": {
+		"compilerOptions": {
+			"module": "CommonJS"
+		}
+	},
+	"include": ["**/*.ts", "**/*.tsx"],
+	"exclude": ["**/build", "**/node_modules", "**/assets", "**/scripts"]
 }

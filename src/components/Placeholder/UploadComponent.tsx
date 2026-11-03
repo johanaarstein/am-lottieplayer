@@ -35,7 +35,8 @@ export default function UploadComponent({
         allowedTypes={ALLOWED_TYPES}
         icon={<BlockIcon icon={Lottie} />}
         labels={{
-          instructions: __('Add Lottie animations from your Media Library to your WordPress post.', 'am-lottieplayer'),
+          instructions: __('Add Lottie animations from your Media Library to your WordPress post.',
+            'am-lottieplayer'),
           title: __('AM Lottie Animation', 'am-lottieplayer'),
         }}
         onError={(message) => {
@@ -46,7 +47,7 @@ export default function UploadComponent({
             if (!props.url) {
               setAttributes?.({
                 id: undefined,
-                src: undefined
+                src: undefined,
               })
 
               return
@@ -73,8 +74,7 @@ export default function UploadComponent({
                 if (validateUrl(url)) {
                   setAttributes?.({ src: url })
                 }
-              }
-              }
+              }}
             />
           ) as unknown as undefined
         }

@@ -10,9 +10,7 @@ export default function ProLink() {
     >
       {__('Read about additional features in AM LottiePlayer PRO',
         'am-lottieplayer')}
-      <sup
-        style={{ verticalAlign: 'super' }}
-      >
+      <sup style={{ verticalAlign: 'super' }}>
         <span
           className="dashicons dashicons-external"
           style={{ fontSize: '1em' }}

@@ -21,13 +21,9 @@ const config: typeof defaults = {
     ...defaults.resolve,
     alias: {
       '@': resolve(__dirname, 'src'),
-      '@test': resolve(__dirname, 'tests')
+      '@test': resolve(__dirname, 'tests'),
     },
-    extensions: [
-      ...defaults.resolve?.extensions ?? [],
-      '.ts',
-      '.tsx'
-    ],
+    extensions: [...defaults.resolve?.extensions ?? [], '.ts', '.tsx'],
   },
 }
 

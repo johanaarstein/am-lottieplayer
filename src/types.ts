@@ -4,7 +4,7 @@ import type { AnimationSegment } from '@aarsteinmedia/lottie-web'
 import type { EditorTemplateLock } from '@wordpress/block-editor'
 import type { BlockEditProps } from '@wordpress/blocks'
 
-import type { Align } from '@/enums'
+import type { Align } from '@/utils/enums'
 
 export interface Interactions {
   delay?: DotLottiePlayerLight['delay']
@@ -16,11 +16,8 @@ export interface Interactions {
   selector?: string | null
 }
 
-
 export interface PlayerComponentProps
-  extends Partial<DotLottiePlayerLight>,
-  Interactions,
-  Record<string, unknown> {
+  extends Partial<DotLottiePlayerLight>, Interactions, Record<string, unknown> {
   $schema?: string
   align?: Align
   allowedBlocks?: string[]
@@ -44,8 +41,7 @@ export interface PlayerComponentProps
   width?: number
 }
 
-export interface BlockCoverEditProps
-  extends BlockEditProps<PlayerComponentProps> { toggleSelection?: (x: boolean) => void }
+export interface BlockCoverEditProps extends BlockEditProps<PlayerComponentProps> { toggleSelection?: (x: boolean) => void }
 
 export interface UploadProps {
   children?: React.ReactNode
@@ -53,8 +49,8 @@ export interface UploadProps {
   mediaId?: number
   onError: (message: string) => void
   onSelectMedia: (value: {
-    id: number
-    url: string
+    id: number;
+    url: string;
     alt: string
   }) => void
 }
@@ -92,7 +88,6 @@ export interface BlockEditor {
   getSettings: () => { mediaUpload: MediaUpload }
 }
 
-
 declare global {
   const aamdPHPVariables: PHPVars | undefined
 
@@ -101,7 +96,6 @@ declare global {
 }
 
 declare module 'react' {
-
   type JSXLottiePlayer = Omit<Partial<DotLottiePlayerLight>, 'style'> & {
     class?: string
     ref?: React.RefObject<unknown>

@@ -22,8 +22,9 @@ export default function Background({
       >
         <ColorPicker
           color={background}
-          onChange={(color) => { setAttributes({ background: color }) }
-          }
+          onChange={(color) => {
+            setAttributes({ background: color })
+          }}
         />
       </PanelBody>
     </Panel>

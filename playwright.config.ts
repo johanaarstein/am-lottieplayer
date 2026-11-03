@@ -22,22 +22,22 @@ export default defineConfig({
     {
       name: 'gutenberg',
       testMatch: '**/gutenberg/**/*.spec.ts',
-      use: { ...devices['Desktop Chrome'] }
+      use: { ...devices['Desktop Chrome'] },
     },
     {
       name: 'bricks',
       testMatch: '**/bricks/**/*.spec.ts',
-      use: { ...devices['Desktop Chrome'] }
+      use: { ...devices['Desktop Chrome'] },
     },
     {
       name: 'divi',
       testMatch: '**/divi/**/*.spec.ts',
-      use: { ...devices['Desktop Chrome'] }
+      use: { ...devices['Desktop Chrome'] },
     },
     {
       name: 'elementor',
       testMatch: '**/elementor/**/*.spec.ts',
-      use: { ...devices['Desktop Chrome'] }
+      use: { ...devices['Desktop Chrome'] },
     },
   ],
   reporter: 'html',
@@ -50,12 +50,16 @@ export default defineConfig({
     trace: 'retain-on-failure',
     video: 'retain-on-failure',
   },
-  webServer: [{
-    command: 'pnpm exec wp-scripts build --config webpack.config.ts && pnpm exec wp-env start',
-    ignoreHTTPSErrors: true,
-    reuseExistingServer: !process.env.CI,
-    timeout: 180_000,
-    url: 'http://localhost:8888'
-  }, { command: 'open -a Docker' }],
+  webServer: [
+    {
+      command:
+				'pnpm exec wp-scripts build --config webpack.config.ts && pnpm exec wp-env start',
+      ignoreHTTPSErrors: true,
+      reuseExistingServer: !process.env.CI,
+      timeout: 180_000,
+      url: 'http://localhost:8888',
+    },
+    { command: 'open -a Docker' },
+  ],
   workers: 1,
 })

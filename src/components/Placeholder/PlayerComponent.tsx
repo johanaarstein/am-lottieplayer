@@ -7,7 +7,7 @@ import {
 
 import type { BlockEditor, LottieBlockAttributes } from '@/types'
 
-import { Align } from '@/enums'
+import { Align } from '@/utils/enums'
 import { useEventListener } from '@/hooks/useEventListener'
 import { usePlayerContext } from '@/hooks/usePlayerContext'
 import { debounce } from '@/utils'
@@ -26,8 +26,8 @@ export default function PlayerComponent({
       animationContext: { player },
       setAnimationContext,
     } = usePlayerContext(),
-    { getBlockIndex }: BlockEditor =
-      useSelect((select) => select('core/block-editor'), []),
+    { getBlockIndex }: BlockEditor = useSelect((select) => select('core/block-editor'),
+      []),
     blockIndex = getBlockIndex(clientId),
     playerRef = useRef<DotLottiePlayer>(null),
     reloadPlayer = useCallback(() => {
@@ -37,10 +37,7 @@ export default function PlayerComponent({
       void player.reload()
     }, [player]),
     parseWidth = (num?: number | null) => {
-      if (
-        attributes.align === Align.Wide ||
-        attributes.align === Align.Full
-      ) {
+      if (attributes.align === Align.Wide || attributes.align === Align.Full) {
         return '100%'
       }
 
@@ -60,17 +57,25 @@ export default function PlayerComponent({
   }, [setAnimationContext])
 
   useEventListener(
-    'ready', () => {
+    'ready',
+    () => {
       setAnimationContext((prev) => ({
         ...prev,
         animations: player?.getManifest()?.animations ?? [],
       }))
-    }, { element: player }
+    },
+    { element: player }
   )
 
   useEffect(() => {
     reload()
-  }, [blockIndex, attributes.intermission, attributes.src, attributes.objectFit, reload])
+  }, [
+    blockIndex,
+    attributes.intermission,
+    attributes.src,
+    attributes.objectFit,
+    reload,
+  ])
 
   return (
     <dotlottie-player

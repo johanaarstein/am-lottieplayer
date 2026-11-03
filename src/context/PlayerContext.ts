@@ -16,6 +16,5 @@ export const PlayerContext = createContext<{
     animations: [],
     player: null,
   },
-  setAnimationContext: (value: React.SetStateAction<AnimationContext>) =>
-    value,
+  setAnimationContext: (value: React.SetStateAction<AnimationContext>) => value,
 })

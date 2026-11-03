@@ -11,8 +11,8 @@ const dependencies = [
     dest: 'dotlottie-player-light.min.js',
     handle: 'dotlottie-player-light',
     name: '@aarsteinmedia/dotlottie-player',
-    src: 'dist/unpkg-light.js'
-  }
+    src: 'dist/unpkg-light.js',
+  },
 ]
 
 const destDir = resolve(__dirname, 'scripts')
@@ -31,10 +31,7 @@ interface Manifest {
 const manifest: Manifest = {}
 
 dependencies.forEach(({
-  dest,
-  handle,
-  name,
-  src
+  dest, handle, name, src
 }) => {
   const pkgDir = resolve(
     __dirname, 'node_modules', name
@@ -49,7 +46,6 @@ dependencies.forEach(({
 
   // Read package.json to extract SemVer
   const pkgJson: typeof pkg = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf8')),
-
     // Copy script file
     srcPath = resolve(pkgDir, src),
     destPath = resolve(destDir, dest)

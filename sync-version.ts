@@ -41,11 +41,12 @@ targets.forEach(({ file, patterns }) => {
       process.exit(1)
     }
 
-    content = content.replace(pattern, (
-      _match, before: string, after: unknown
-    ) =>
+    content = content.replace(pattern,
+      (
+        _match, before: string, after: unknown
+      ) =>
       // `after` is the match offset (a number) when the pattern has only one group
-      `${before}${version}${typeof after === 'string' ? after : ''}`)
+        `${before}${version}${typeof after === 'string' ? after : ''}`)
   })
 
   if (content !== original) {

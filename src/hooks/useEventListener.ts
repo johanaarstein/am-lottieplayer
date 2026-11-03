@@ -19,7 +19,8 @@ interface ElementOptions<T> {
 }
 
 type EventOptions<T> = EventListenerOptions &
-  AddEventListenerOptions & ElementOptions<T> & { enabled?: boolean }
+  AddEventListenerOptions &
+  ElementOptions<T> & { enabled?: boolean }
 
 /**
  * `useEventListener` is a custom React hook that adds an event listener to a specified element.
@@ -34,20 +35,17 @@ export function useEventListener<
   E extends Event = Event,
   T extends Element | null = Element,
 >(
-  eventType: string,
-  callback: EventHandler<E>,
-  options: EventOptions<T>
+  eventType: string, callback: EventHandler<E>, options: EventOptions<T>
 ) {
   const {
-      capture: isCapture, element: elementOptions, enabled: isEnabled = true, passive: isPassive
+      capture: isCapture,
+      element: elementOptions,
+      enabled: isEnabled = true,
+      passive: isPassive,
     } = options,
-
-    element =
-      elementOptions === undefined ? window : elementOptions,
-
+    element = elementOptions === undefined ? window : elementOptions,
     isElementRef = isRefObject(element),
     resolvedElement = isElementRef ? element.current : element,
-
     callbackRef = useRef(callback)
 
   useEffect(() => {
@@ -72,21 +70,23 @@ export function useEventListener<
 
       const listenerOptions = {
           capture: isCapture,
-          passive: isPassive
+          passive: isPassive,
         },
         handler = ((e: E) => {
           callbackRef.current(e)
         }) as EventListener
 
-        /* AnimationItem::addEventListener is not directly compatible
+			/* AnimationItem::addEventListener is not directly compatible
         with standard Element::addEventListener, but not in a way that
         will cause trouble */
-        ; (targetElement as Window).addEventListener(
-        eventType, handler, listenerOptions
+			;(targetElement as Window).addEventListener(
+        eventType,
+        handler,
+        listenerOptions
       )
 
       removeListener = () => {
-        ; (targetElement as Window).removeEventListener(
+        ;(targetElement as Window).removeEventListener(
           eventType,
           handler,
           listenerOptions
@@ -122,15 +122,15 @@ export function useEventListener<
     isElementRef,
     isEnabled,
     isPassive,
-    resolvedElement
+    resolvedElement,
   ])
 }
 
 export const WINDOW_LISTENER_OPTS = {
     capture: false,
-    passive: true
+    passive: true,
   } as const,
   SCROLL_LISTENER_OPTS = {
     capture: true,
-    passive: true
+    passive: true,
   } as const

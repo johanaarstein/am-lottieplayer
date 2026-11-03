@@ -13,7 +13,6 @@ export default function Advanced({
   attributes: { description = '' },
   setAttributes,
 }: Readonly<BlockEditProps<PlayerComponentProps>>) {
-
   return (
     <InspectorAdvancedControls>
       <SelectControl
@@ -22,10 +21,7 @@ export default function Advanced({
         value="svg"
         label={
           <>
-            <span
-              className="pro-feature"
-              style={{ marginRight: '1em' }}
-            >
+            <span className="pro-feature" style={{ marginRight: '1em' }}>
               {__('Renderer')}
             </span>
             <ProFeature />
@@ -34,22 +30,25 @@ export default function Advanced({
         options={[
           {
             label: 'SVG',
-            value: 'svg'
-          }, {
+            value: 'svg',
+          },
+          {
             label: 'Canvas',
-            value: 'canvas'
+            value: 'canvas',
           },
         ]}
         onChange={() => {
-          console.warn('This feature is only available in the premium version') }
-        }
+          console.warn('This feature is only available in the premium version')
+        }}
       />
       <TextareaControl
         label={__('Description', 'am-lottieplayer')}
         value={description}
         help={__('Describe the animation. This is helpful for screen readers and search engines.',
           'am-lottieplayer')}
-        onChange={(value) => { setAttributes({ description: value }) }}
+        onChange={(value) => {
+          setAttributes({ description: value })
+        }}
       />
     </InspectorAdvancedControls>
   )

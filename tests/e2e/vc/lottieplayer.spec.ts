@@ -1,11 +1,12 @@
 import {
   getPostURL,
-  getVCFrame, insertElementVC, selectAttachmentFromModal,
-  VC_TEXT_DOMAIN
+  getVCFrame,
+  insertElementVC,
+  selectAttachmentFromModal,
+  VC_TEXT_DOMAIN,
 } from '@test/e2e/utils'
 import { expect, test } from '@wordpress/e2e-test-utils-playwright'
 import { __ } from '@wordpress/i18n'
-
 
 test.describe('dotLottiePlayer Element', () => {
   test.beforeAll(async ({ requestUtils }) => {
@@ -19,7 +20,9 @@ test.describe('dotLottiePlayer Element', () => {
     const dialog = page.getByRole('dialog', { name: __('Choose a pattern', VC_TEXT_DOMAIN) })
 
     if (await dialog.isVisible()) {
-      await dialog.getByRole('button', { name: __('Close', VC_TEXT_DOMAIN) }).click()
+      await dialog
+        .getByRole('button', { name: __('Close', VC_TEXT_DOMAIN) })
+        .click()
     }
 
     await page.locator('.wpb_switch-to-composer').click()

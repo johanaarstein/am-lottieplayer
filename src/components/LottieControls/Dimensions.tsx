@@ -14,7 +14,7 @@ import type { PlayerComponentProps } from '@/types'
 
 import NumberInput from '@/components/form/NumberInput'
 import SwitchLabel from '@/components/form/SwitchLabel'
-import { Align } from '@/enums'
+import { Align } from '@/utils/enums'
 
 export default function Dimensions({
   attributes,
@@ -27,7 +27,6 @@ export default function Dimensions({
       objectFit = ObjectFit.Contain,
       width,
     } = attributes,
-
     // eslint-disable-next-line sonarjs/function-return-type
     parseWidth = (num: number | string) => {
       if (align === Align.Full || align === Align.Wide) {
@@ -50,29 +49,23 @@ export default function Dimensions({
               id="am-lottieplayer-width-settings"
               title={__('Width', 'am-lottieplayer')}
               value={parseWidth(width as number)}
-              disabled={
-                align === Align.Full || align === Align.Wide
-              }
+              disabled={align === Align.Full || align === Align.Wide}
               placeholder={
-                align === Align.Full || align === Align.Wide
-                  ? '100%'
-                  : 'auto'
+                align === Align.Full || align === Align.Wide ? '100%' : 'auto'
               }
-              onChange={(val) => { setAttributes({ width: val }) }
-              }
+              onChange={(val) => {
+                setAttributes({ width: val })
+              }}
             />
             <NumberInput
               disabled={fullscreen}
               id="am-lottieplayer-height-settings"
               placeholder={'auto'}
               title={__('Height', 'am-lottieplayer')}
-              value={
-                !height || height.toString() === '0'
-                  ? undefined
-                  : height
-              }
-              onChange={(val) => { setAttributes({ height: val }) }
-              }
+              value={!height || height.toString() === '0' ? undefined : height}
+              onChange={(val) => {
+                setAttributes({ height: val })
+              }}
             />
           </PanelRow>
         }
@@ -81,8 +74,9 @@ export default function Dimensions({
             id="am-lottieplayer-fullscreen-settings"
             title={__('Fill screen', 'am-lottieplayer')}
             value={fullscreen}
-            onChange={(value) => { setAttributes({ fullscreen: value }) }
-            }
+            onChange={(value) => {
+              setAttributes({ fullscreen: value })
+            }}
           />
         }
         <SelectControl

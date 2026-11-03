@@ -29,11 +29,7 @@ export default function NumberInput({
   value = '',
 }: Readonly<NumberProps>) {
   return (
-    <BaseControl
-      className={'lottie-number-wrapper'}
-      help={title}
-      id={id}
-    >
+    <BaseControl className={'lottie-number-wrapper'} help={title} id={id}>
       <TextControl
         disabled={disabled}
         placeholder={placeholder}

@@ -12,7 +12,7 @@ export const attributesFromMedia =
         if (!media.url) {
           setAttributes({
             id: undefined,
-            src: undefined
+            src: undefined,
           })
 
           return
@@ -25,5 +25,4 @@ export const attributesFromMedia =
           src: media.url,
         })
       },
-  isTemporaryMedia = (id?: string, url?: string) =>
-    !id && isBlobURL(url)
+  isTemporaryMedia = (id?: string, url?: string) => !id && isBlobURL(url)

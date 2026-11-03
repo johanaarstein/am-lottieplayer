@@ -3,7 +3,7 @@ import {
   useBlockProps,
   useInnerBlocksProps,
   store as blockEditorStore,
-  type InnerBlocks
+  type InnerBlocks,
 } from '@wordpress/block-editor'
 import { Spinner } from '@wordpress/components'
 import { useSelect } from '@wordpress/data'
@@ -25,7 +25,8 @@ type TemplateArray = InnerBlocks.Props['template']
 
 const getInnerBlocksTemplate = (attributes: object): TemplateArray => [
   [
-    'core/paragraph', {
+    'core/paragraph',
+    {
       align: 'center',
       placeholder: __('Write title…', 'am-lottieplayer'),
       ...attributes,
@@ -43,11 +44,7 @@ export default function Edit({
   toggleSelection,
 }: Readonly<BlockCoverEditProps>) {
   const {
-      allowedBlocks = [
-        'core/paragraph',
-        'core/heading',
-        'core/buttons',
-      ],
+      allowedBlocks = ['core/paragraph', 'core/heading', 'core/buttons'],
       // alt,
       background,
       fullscreen,
@@ -66,14 +63,14 @@ export default function Edit({
     ref = useRef(null),
     isPlaceholder = useMemo(() => !src || src === '', [src]),
     blockProps = useBlockProps({ ref }),
-    heightWithUnit =
-      height ? `${height}${heightUnit}` : height,
+    heightWithUnit = height ? `${height}${heightUnit}` : height,
     style = { minHeight: fullscreen ? '100vh' : heightWithUnit || undefined },
     hasInnerBlocks = useSelect((select) => {
       const { getBlock } = select(blockEditorStore) as BlockEditor
 
       return Boolean(getBlock(clientId)?.innerBlocks.length)
-    }, [clientId])
+    },
+    [clientId])
 
   let innerBlocksTemplate: TemplateArray | undefined
 
@@ -105,7 +102,7 @@ export default function Edit({
           blockProps.className)}
         style={{
           ...style,
-          ...blockProps.style
+          ...blockProps.style,
         }}
       >
         <ResizableCover
@@ -143,10 +140,7 @@ export default function Edit({
           isSelected={isSelected}
           setAttributes={setAttributes}
         />
-        <ContextMenu
-          attributes={attributes}
-          setAttributes={setAttributes}
-        />
+        <ContextMenu attributes={attributes} setAttributes={setAttributes} />
         {!isPlaceholder && <div {...innerBlocksProps} />}
       </div>
     </PlayerWrapper>

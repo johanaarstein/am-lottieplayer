@@ -1,4 +1,3 @@
-
 import type { BlockEditProps } from '@wordpress/blocks'
 
 import { MouseOut } from '@aarsteinmedia/dotlottie-player/utils'
@@ -21,7 +20,6 @@ export default function Interactions({
   attributes,
   setAttributes,
 }: Readonly<BlockEditProps<PlayerComponentProps>>) {
-
   return (
     <Panel>
       <PanelBody
@@ -34,30 +32,31 @@ export default function Interactions({
           id={'am-lottieplayer-animateOnScroll-settings'}
           title={
             <>
-              <span
-                className="pro-feature"
-                style={{ marginRight: '1em' }}
-              >
+              <span className="pro-feature" style={{ marginRight: '1em' }}>
                 {__('Animate on scroll', 'am-lottieplayer')}
               </span>
               <ProFeature />
             </>
           }
-          onChange={() => { console.warn('This feature is only available in the premium version') }
-          }
+          onChange={() => {
+            console.warn('This feature is only available in the premium version')
+          }}
         />
         <SwitchLabel
           id="am-lottieplayer-click-settings"
           title={__('Play on click', 'am-lottieplayer')}
           value={Boolean(attributes.playOnClick)}
-          onChange={(value) => { setAttributes({ playOnClick: value }) }
-          }
+          onChange={(value) => {
+            setAttributes({ playOnClick: value })
+          }}
         />
         <SwitchLabel
           id="am-lottieplayer-hover-settings"
           title={__('Play on mouseover', 'am-lottieplayer')}
           value={Boolean(attributes.hover)}
-          onChange={(value) => { setAttributes({ hover: value }) }}
+          onChange={(value) => {
+            setAttributes({ hover: value })
+          }}
         />
         {attributes.hover &&
           <SelectControl
@@ -81,8 +80,9 @@ export default function Interactions({
                 value: MouseOut.Reverse,
               },
             ]}
-            onChange={(val) => { setAttributes({ mouseout: val }) }
-            }
+            onChange={(val) => {
+              setAttributes({ mouseout: val })
+            }}
           />
         }
         {(attributes.hover || attributes.playOnClick) &&
@@ -95,19 +95,16 @@ export default function Interactions({
               'am-lottieplayer')}
             title={
               <>
-                <span
-                  className="pro-feature"
-                  style={{ marginRight: '1em' }}
-                >
-                  {__('Trigger element',
-                    'am-lottieplayer')}
+                <span className="pro-feature" style={{ marginRight: '1em' }}>
+                  {__('Trigger element', 'am-lottieplayer')}
                 </span>
 
                 <ProFeature />
               </>
             }
-            onChange={(val) => { setAttributes({ selector: val }) }
-            }
+            onChange={(val) => {
+              setAttributes({ selector: val })
+            }}
           />
         }
         <SwitchLabel
@@ -115,8 +112,9 @@ export default function Interactions({
           value={Boolean(attributes.playOnVisible)}
           title={__('Play on scroll, when visible in viewport',
             'am-lottieplayer')}
-          onChange={(value) => { setAttributes({ playOnVisible: value }) }
-          }
+          onChange={(value) => {
+            setAttributes({ playOnVisible: value })
+          }}
         />
         {attributes.playOnVisible &&
           <>
@@ -124,18 +122,19 @@ export default function Interactions({
               id="am-lottieplayer-once-settings"
               title={__('Play only once', 'am-lottieplayer')}
               value={attributes.once}
-              onChange={(value) => { setAttributes({ once: value }) }
-              }
+              onChange={(value) => {
+                setAttributes({ once: value })
+              }}
             ></SwitchLabel>
             <RangeControl
               max={50}
               min={0}
               step={1}
               value={attributes.delay ?? 1}
-              label={__('Delay, in 10th of a second',
-                'am-lottieplayer')}
-              onChange={(value) => { setAttributes({ delay: value }) }
-              }
+              label={__('Delay, in 10th of a second', 'am-lottieplayer')}
+              onChange={(value) => {
+                setAttributes({ delay: value })
+              }}
             />
           </>
         }

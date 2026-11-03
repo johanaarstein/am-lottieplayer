@@ -4,23 +4,16 @@ import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor'
 
 import type { PlayerComponentProps } from '@/types'
 
-import { Align } from '@/enums'
+import { Align } from '@/utils/enums'
 
 export default function save({ attributes }: BlockSaveProps<PlayerComponentProps>) {
   const heightWithUnit =
       attributes.height && attributes.heightUnit
         ? `${attributes.height}${attributes.heightUnit}`
         : attributes.height,
-    style = {
-      minHeight: attributes.fullscreen
-        ? '100vh'
-        : heightWithUnit || undefined,
-    },
+    style = { minHeight: attributes.fullscreen ? '100vh' : heightWithUnit || undefined },
     parseWidth = (num?: number) => {
-      if (
-        attributes.align === Align.Wide ||
-        attributes.align === Align.Full
-      ) {
+      if (attributes.align === Align.Wide || attributes.align === Align.Full) {
         return '100%'
       }
       if (num && typeof num === 'number') {
@@ -52,18 +45,14 @@ export default function save({ attributes }: BlockSaveProps<PlayerComponentProps
         speed={attributes.speed}
         src={attributes.src || ''}
         subframe={attributes.subframe ? '' : null}
-        autoplay={
-          attributes.autoplay && !attributes.playOnVisible ? '' : null
-        }
-        class={`lottie-element${attributes.selector ? ' has-selector' : ''
-        }`}
+        autoplay={attributes.autoplay && !attributes.playOnVisible ? '' : null}
+        class={`lottie-element${attributes.selector ? ' has-selector' : ''}`}
         style={{
           backgroundColor: attributes.background,
           height:
-            attributes.height &&
-            typeof attributes.height === 'number'
-              ? `${attributes.height}px`
-              : undefined,
+						attributes.height && typeof attributes.height === 'number'
+						  ? `${attributes.height}px`
+						  : undefined,
           width: parseWidth(attributes.width),
         }}
       />

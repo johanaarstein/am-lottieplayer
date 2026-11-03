@@ -18,11 +18,7 @@ export default function SwitchLabel({
   value = false,
 }: Readonly<SwitchProps>) {
   return (
-    <BaseControl
-      className={'lottie-switch-label'}
-      help={subTitle}
-      id={id}
-    >
+    <BaseControl className={'lottie-switch-label'} help={subTitle} id={id}>
       <BaseControl.VisualLabel>{title}</BaseControl.VisualLabel>
       <FormToggle
         disabled={disabled}

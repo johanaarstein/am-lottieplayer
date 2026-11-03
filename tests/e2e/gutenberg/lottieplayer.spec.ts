@@ -1,6 +1,5 @@
 import { expect, test } from '@wordpress/e2e-test-utils-playwright'
 
-
 test.describe('dotLottiePlayer Block', () => {
   test.beforeAll(async ({ requestUtils }) => {
     await requestUtils.activateTheme('twentytwentyfive')
@@ -34,15 +33,17 @@ test.describe('dotLottiePlayer Block', () => {
     await block.click()
 
     // Add external URL
-    await block.getByPlaceholder('Paste URL or type to search').fill('https://storage.googleapis.com/aarsteinmedia/am.lottie')
+    await block
+      .getByPlaceholder('Paste URL or type to search')
+      .fill('https://storage.googleapis.com/aarsteinmedia/am.lottie')
 
     // Save the post
     await editor.publishPost()
 
     // Visit the frontend and assert the player element is present
-    const postUrl = await page.evaluate(() =>
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
-      wp.data.select('core/editor').getPermalink()) as string
+    const postUrl = (await page.evaluate(() =>
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
+      wp.data.select('core/editor').getPermalink())) as string
 
     await page.goto(postUrl)
 

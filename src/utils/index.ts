@@ -26,16 +26,7 @@ export const debounce = (callBack: (x: unknown) => unknown, timeout = 100) => {
     key === 'Tab' ||
     key === 'Enter' ||
     key === 'Delete' ||
-    (ctrlKey || metaKey) &&
-    [
-      'a',
-      'c',
-      'v',
-      'x',
-      'z',
-      't',
-      'r'
-    ].includes(key),
+    (ctrlKey || metaKey) && ['a', 'c', 'v', 'x', 'z', 't', 'r'].includes(key),
   isNumericInput = ({ key }: React.KeyboardEvent) =>
     Number(key) >= 0 && Number(key) <= 9,
   isTouch = () => 'ontouchstart' in window,
@@ -54,5 +45,8 @@ export const debounce = (callBack: (x: unknown) => unknown, timeout = 100) => {
       return false
     }
 
-    return !(!isValidUrl(url) || !url.endsWith('.lottie') && !url.endsWith('.json'))
+    return !(
+      !isValidUrl(url) ||
+      !url.endsWith('.lottie') && !url.endsWith('.json')
+    )
   }

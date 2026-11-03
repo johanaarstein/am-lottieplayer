@@ -28,14 +28,7 @@
 	"textdomain": "am-lottieplayer",
 	"attributes": {
 		"align": {
-			"enum": [
-				"center",
-				"full",
-				"none",
-				"left",
-				"right",
-				"wide"
-			],
+			"enum": ["center", "full", "none", "left", "right", "wide"],
 			"default": "none"
 		},
 		"autoplay": {
@@ -83,29 +76,15 @@
 			"type": "boolean"
 		},
 		"mode": {
-			"enum": [
-				"bounce",
-				"normal"
-			],
+			"enum": ["bounce", "normal"],
 			"default": "normal"
 		},
 		"mouseout": {
-			"enum": [
-				"void",
-				"stop",
-				"pause",
-				"reverse"
-			],
+			"enum": ["void", "stop", "pause", "reverse"],
 			"default": "stop"
 		},
 		"objectFit": {
-			"enum": [
-				"contain",
-				"cover",
-				"fill",
-				"none",
-				"scale-down"
-			],
+			"enum": ["contain", "cover", "fill", "none", "scale-down"],
 			"default": "contain"
 		},
 		"once": {
@@ -121,11 +100,7 @@
 			"default": false
 		},
 		"renderer": {
-			"enum": [
-				"svg",
-				"canvas",
-				"html"
-			],
+			"enum": ["svg", "canvas", "html"],
 			"default": "svg"
 		},
 		"segment": {

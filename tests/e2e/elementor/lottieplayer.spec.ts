@@ -3,7 +3,7 @@ import {
   getElementorFrame,
   getPostURL,
   insertWidgetElementor,
-  selectAttachmentFromModal
+  selectAttachmentFromModal,
 } from '@test/e2e/utils'
 import { expect, test } from '@wordpress/e2e-test-utils-playwright'
 import { __ } from '@wordpress/i18n'
@@ -25,7 +25,9 @@ test.describe('dotlottiePlayer Widget', () => {
     const patternDialog = page.getByRole('dialog', { name: __('Choose a pattern', ELEMENTOR_TEXT_DOMAIN) })
 
     if (await patternDialog.isVisible()) {
-      await patternDialog.getByRole('button', { name: __('Close', ELEMENTOR_TEXT_DOMAIN) }).click()
+      await patternDialog
+        .getByRole('button', { name: __('Close', ELEMENTOR_TEXT_DOMAIN) })
+        .click()
     }
 
     await page.locator('#elementor-switch-mode-button').click()
@@ -46,7 +48,9 @@ test.describe('dotlottiePlayer Widget', () => {
     const frame = getElementorFrame(page)
 
     await insertWidgetElementor(page, frame)
-    await page.locator(`div[data-tooltip="${__('Upload', ELEMENTOR_TEXT_DOMAIN)}"]`).click()
+    await page
+      .locator(`div[data-tooltip="${__('Upload', ELEMENTOR_TEXT_DOMAIN)}"]`)
+      .click()
     await selectAttachmentFromModal(page)
 
     const dotLottiePlayer = frame.locator('dotlottie-player').first()
@@ -58,7 +62,9 @@ test.describe('dotlottiePlayer Widget', () => {
     await expect(dotLottiePlayer).toBeVisible()
     await expect(controls).toBeVisible()
 
-    await page.locator('div.elementor-control-controls .elementor-switch').click()
+    await page
+      .locator('div.elementor-control-controls .elementor-switch')
+      .click()
     await expect(controls).toBeHidden()
 
     const publishButton = page.getByRole('button', { name: __('Publish', ELEMENTOR_TEXT_DOMAIN) })

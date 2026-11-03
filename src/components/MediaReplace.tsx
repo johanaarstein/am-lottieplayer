@@ -64,8 +64,7 @@ export default function MediaReplace({
     editMediaButtonRef = useRef<HTMLButtonElement>(null),
     mediaUpload: MediaUpload | undefined = useSelect((select) => {
       try {
-        const { getSettings }: BlockEditor =
-          select('core/block-editor')
+        const { getSettings }: BlockEditor = select('core/block-editor')
 
         return getSettings().mediaUpload
       } catch (error) {
@@ -77,21 +76,21 @@ export default function MediaReplace({
         if (!media.url) {
           setAttributes?.({
             id: undefined,
-            src: undefined
+            src: undefined,
           })
 
           return
         }
         setState((prev) => ({
           ...prev,
-          mediaId: media.id
+          mediaId: media.id,
         }))
         setAttributes?.({
           alt: media.alt,
           id: media.id.toString(),
           src: media.url,
         })
-      // eslint-disable-next-line sonarjs/no-ignored-exceptions
+        // eslint-disable-next-line sonarjs/no-ignored-exceptions
       } catch (error) {
         ErrorNotice(__('There was an error uploading your file', 'am-lottieplayer'))
       }
@@ -149,17 +148,13 @@ export default function MediaReplace({
                 multiple={false}
                 value={state.mediaId}
                 render={({ open }) =>
-                  <MenuItem
-                    icon={<BlockIcon icon={Lottie} />}
-                    onClick={open}
-                  >
+                  <MenuItem icon={<BlockIcon icon={Lottie} />} onClick={open}>
                     {__('Open Media Library')}
                   </MenuItem>
                 }
                 onSelect={(media) => {
                   selectMedia(media, onClose)
-                }
-                }
+                }}
               />
               <FormFileUpload
                 accept={ACCEPT}
@@ -182,8 +177,7 @@ export default function MediaReplace({
             </MediaUploadCheck>
           </NavigableMenu>
           <form
-            className={classNames('block-editor-media-flow__url-input',
-              { 'has-siblings': Boolean(mediaUpload) })}
+            className={classNames('block-editor-media-flow__url-input', { 'has-siblings': Boolean(mediaUpload) })}
           >
             <span className="block-editor-media-replace-flow__image-url-label">
               {__('Current media URL:')}
@@ -205,8 +199,7 @@ export default function MediaReplace({
                   setAttributes?.({ src: externalURL })
                   editMediaButtonRef.current?.focus()
                 }
-              }
-              }
+              }}
             />
           </form>
         </>

@@ -10,7 +10,6 @@ export default function Placeholder({
   clientId,
   setAttributes,
 }: Readonly<BlockEditProps<PlayerComponentProps>>) {
-
   return (
     <>
       {!attributes.src || attributes.src === '' ?
@@ -19,10 +18,7 @@ export default function Placeholder({
           setAttributes={setAttributes}
         />
         :
-        <PlayerComponent
-          attributes={attributes}
-          clientId={clientId}
-        />
+        <PlayerComponent attributes={attributes} clientId={clientId} />
       }
     </>
   )
