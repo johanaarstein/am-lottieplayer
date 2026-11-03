@@ -23,4 +23,4 @@ jobs:
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SLUG: am-lottieplayer
           BUILD_DIR: dist/am-lottieplayer
-          DRY_RUN: true
+          DRY_RUN: false
