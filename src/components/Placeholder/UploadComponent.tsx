@@ -12,6 +12,7 @@ import type { LottieBlockAttributes } from '@/types'
 import Lottie from '@/assets/Lottie'
 import ErrorNotice from '@/components/ErrorNotice'
 import { validateUrl } from '@/utils'
+import { ACCEPT, ALLOWED_TYPES } from '@/utils/constants'
 
 export default function UploadComponent({
   attributes,
@@ -30,8 +31,8 @@ export default function UploadComponent({
   return (
     <MediaUploadCheck>
       <MediaPlaceholder
-        accept={'.lottie, .json'}
-        allowedTypes={['application/json', 'application/zip']}
+        accept={ACCEPT}
+        allowedTypes={ALLOWED_TYPES}
         icon={<BlockIcon icon={Lottie} />}
         labels={{
           instructions: __('Add Lottie animations from your Media Library to your WordPress post.', 'am-lottieplayer'),

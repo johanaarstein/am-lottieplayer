@@ -10,10 +10,9 @@ import ProFeature from '@/assets/ProFeature'
 import ProLink from '@/components/ProLink'
 
 export default function Advanced({
-  attributes,
+  attributes: { description = '' },
   setAttributes,
 }: Readonly<BlockEditProps<PlayerComponentProps>>) {
-  const { description } = attributes
 
   return (
     <InspectorAdvancedControls>
@@ -41,12 +40,13 @@ export default function Advanced({
             value: 'canvas'
           },
         ]}
-        onChange={() => { console.warn('This feature is only available in the premium version') }
+        onChange={() => {
+          console.warn('This feature is only available in the premium version') }
         }
       />
       <TextareaControl
         label={__('Description', 'am-lottieplayer')}
-        value={description ?? ''}
+        value={description}
         help={__('Describe the animation. This is helpful for screen readers and search engines.',
           'am-lottieplayer')}
         onChange={(value) => { setAttributes({ description: value }) }}

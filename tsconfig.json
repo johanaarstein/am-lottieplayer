@@ -44,7 +44,6 @@
     "**/*.tsx"
   ],
   "exclude": [
-    "**/svn",
     "**/build",
     "**/node_modules",
     "**/assets",

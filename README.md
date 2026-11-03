@@ -1,6 +1,6 @@
 # AM LottiePlayer – Vector animations for WordPress
 
-![Awesome Vector Animations](/svn/assets/banner-1544x500.png)
+![Awesome Vector Animations](/.wordpress-org/banner-1544x500.png)
 
 The most complete Lottie Player yet. Lightweight, easy to use, accepts LottieJSON and dotLottie, and works with Gutenberg, Divi Builder, Elementor and Flatsome UX Builder.
 

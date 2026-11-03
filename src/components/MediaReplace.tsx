@@ -24,6 +24,7 @@ import type { BlockEditor, LottieBlockAttributes } from '@/types'
 import Lottie from '@/assets/Lottie'
 import ErrorNotice from '@/components/ErrorNotice'
 import { validateUrl } from '@/utils'
+import { ACCEPT, ALLOWED_TYPES } from '@/utils/constants'
 
 type MediaUpload = (options: {
   allowedTypes: string[]
@@ -71,8 +72,6 @@ export default function MediaReplace({
         console.error(error)
       }
     }, []),
-    allowedTypes = ['application/json', 'application/zip'],
-    accept = '.lottie,.json',
     onSelectMedia = (media: Media) => {
       try {
         if (!media.url) {
@@ -112,7 +111,7 @@ export default function MediaReplace({
         const { files } = target
 
         mediaUpload({
-          allowedTypes,
+          allowedTypes: ALLOWED_TYPES,
           filesList: files,
           onError: onUploadError,
           onFileChange: ([media]) => {
@@ -146,7 +145,7 @@ export default function MediaReplace({
           <NavigableMenu className="block-editor-media-replace-flow__media-upload-menu">
             <MediaUploadCheck>
               <MediaUploadComponent
-                allowedTypes={allowedTypes}
+                allowedTypes={ALLOWED_TYPES}
                 multiple={false}
                 value={state.mediaId}
                 render={({ open }) =>
@@ -163,7 +162,7 @@ export default function MediaReplace({
                 }
               />
               <FormFileUpload
-                accept={accept}
+                accept={ACCEPT}
                 render={({ openFileDialog }) => {
                   return (
                     <MenuItem
