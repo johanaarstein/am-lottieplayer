@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4eb628ad6536e8419bbd3dc826491406",
+    "content-hash": "ee547f0a8022514cf0c06fd4f53a4a16",
     "packages": [],
     "packages-dev": [
         {
@@ -50,7 +50,8 @@
                 "issues": "https://github.com/aarsteinmedia/bricks-stubs/issues",
                 "source": "https://github.com/aarsteinmedia/bricks-stubs/tree/1.10.7"
             },
-            "time": "2024-11-12T23:14:18+00:00"
+            "time": "2024-11-12T23:14:18+00:00",
+            "published-time": "2024-11-12T23:15:40+00:00"
         },
         {
             "name": "aarsteinmedia/divi-stubs",
@@ -95,7 +96,8 @@
                 "issues": "https://github.com/aarsteinmedia/divi-stubs/issues",
                 "source": "https://github.com/aarsteinmedia/divi-stubs/tree/4.28.4"
             },
-            "time": "2026-09-06T22:30:22+00:00"
+            "time": "2026-09-06T22:30:22+00:00",
+            "published-time": "2026-09-06T22:31:05+00:00"
         },
         {
             "name": "aarsteinmedia/flatsome-stubs",
@@ -140,7 +142,8 @@
                 "issues": "https://github.com/aarsteinmedia/flatsome-stubs/issues",
                 "source": "https://github.com/aarsteinmedia/flatsome-stubs/tree/3.19.3"
             },
-            "time": "2024-10-26T19:44:31+00:00"
+            "time": "2024-10-26T19:44:31+00:00",
+            "published-time": "2024-10-26T19:45:41+00:00"
         },
         {
             "name": "aarsteinmedia/js_composer-stubs",
@@ -185,7 +188,8 @@
                 "issues": "https://github.com/aarsteinmedia/js_composer-stubs/issues",
                 "source": "https://github.com/aarsteinmedia/js_composer-stubs/tree/6.10.1"
             },
-            "time": "2024-10-26T19:08:58+00:00"
+            "time": "2024-10-26T19:08:58+00:00",
+            "published-time": "2024-10-26T19:09:49+00:00"
         },
         {
             "name": "arifpavel/elementor-stubs",
@@ -227,7 +231,8 @@
                 "issues": "https://github.com/arifpavel/elementor-stubs/issues",
                 "source": "https://github.com/arifpavel/elementor-stubs/tree/3.1.4.1"
             },
-            "time": "2021-04-05T11:32:53+00:00"
+            "time": "2021-04-05T11:32:53+00:00",
+            "published-time": "2021-04-05T11:52:12+00:00"
         },
         {
             "name": "dealerdirect/phpcodesniffer-composer-installer",
@@ -323,7 +328,8 @@
                     "type": "thanks_dev"
                 }
             ],
-            "time": "2026-05-06T08:26:05+00:00"
+            "time": "2026-05-06T08:26:05+00:00",
+            "published-time": "2026-05-06T12:56:03+00:00"
         },
         {
             "name": "phpcompatibility/php-compatibility",
@@ -385,7 +391,8 @@
                 "issues": "https://github.com/PHPCompatibility/PHPCompatibility/issues",
                 "source": "https://github.com/PHPCompatibility/PHPCompatibility"
             },
-            "time": "2019-12-27T09:44:58+00:00"
+            "time": "2019-12-27T09:44:58+00:00",
+            "published-time": "2019-12-27T10:11:56+00:00"
         },
         {
             "name": "phpcsstandards/phpcsextra",
@@ -467,7 +474,8 @@
                     "type": "thanks_dev"
                 }
             ],
-            "time": "2026-07-27T11:13:17+00:00"
+            "time": "2026-07-27T11:13:17+00:00",
+            "published-time": "2026-07-27T11:19:59+00:00"
         },
         {
             "name": "phpcsstandards/phpcsutils",
@@ -560,7 +568,8 @@
                     "type": "thanks_dev"
                 }
             ],
-            "time": "2026-07-27T10:28:41+00:00"
+            "time": "2026-07-27T10:28:41+00:00",
+            "published-time": "2026-07-27T10:36:31+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -639,7 +648,8 @@
                     "type": "thanks_dev"
                 }
             ],
-            "time": "2026-08-06T00:17:32+00:00"
+            "time": "2026-08-06T00:17:32+00:00",
+            "published-time": "2026-08-06T01:05:02+00:00"
         },
         {
             "name": "wp-coding-standards/wpcs",
@@ -705,7 +715,8 @@
                     "type": "custom"
                 }
             ],
-            "time": "2026-07-27T11:53:23+00:00"
+            "time": "2026-07-27T11:53:23+00:00",
+            "published-time": "2026-07-27T11:55:52+00:00"
         }
     ],
     "aliases": [],
@@ -714,8 +725,8 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.0"
+        "php": ">=8.1"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.11.0"
 }

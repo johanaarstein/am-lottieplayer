@@ -1,4 +1,5 @@
-import { BaseControl, FormToggle } from '@wordpress/components'
+import { BaseControl } from '@wordpress/components'
+import { Switch } from '@wordpress/ui'
 
 interface SwitchProps {
   disabled?: boolean
@@ -20,10 +21,10 @@ export default function SwitchLabel({
   return (
     <BaseControl className={'lottie-switch-label'} help={subTitle} id={id}>
       <BaseControl.VisualLabel>{title}</BaseControl.VisualLabel>
-      <FormToggle
+      <Switch
         disabled={disabled}
         checked={value}
-        onChange={() => onChange(!value)}
+        onCheckedChange={() => onChange(!value)}
       />
     </BaseControl>
   )

@@ -19,7 +19,9 @@ import { __ } from '@wordpress/i18n'
 import { upload } from '@wordpress/icons'
 import classNames from 'classnames'
 
-import type { BlockEditor, LottieBlockAttributes } from '@/types'
+import type {
+  BlockEditor, LottieBlockAttributes, MediaElement
+} from '@/types'
 
 import Lottie from '@/assets/Lottie'
 import ErrorNotice from '@/components/ErrorNotice'
@@ -152,7 +154,7 @@ export default function MediaReplace({
                     {__('Open Media Library')}
                   </MenuItem>
                 }
-                onSelect={(media) => {
+                onSelect={(media: MediaElement) => {
                   selectMedia(media, onClose)
                 }}
               />
@@ -188,7 +190,7 @@ export default function MediaReplace({
               showSuggestions={false}
               value={{ url: attributes.src ?? undefined }}
               onChange={(prevValue) => {
-                const externalURL = prevValue?.url ?? ''
+                const externalURL = prevValue.url ?? ''
 
                 setState((prev) => ({
                   ...prev,

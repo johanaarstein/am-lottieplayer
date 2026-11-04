@@ -1,10 +1,7 @@
 <?php
 namespace AAMD_Lottie;
 
-use function AAMD_Lottie\Utility\get_allowed_html;
-use function AAMD_Lottie\Utility\get_script;
-use function AAMD_Lottie\Utility\get_style;
-use function AAMD_Lottie\Utility\render_shortcode;
+use AAMD_Lottie\Utility;
 
 \defined( 'ABSPATH' ) || exit;
 \class_exists( '\Bricks\Element' ) || exit;
@@ -494,7 +491,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 	public function enqueue_backend() {
 		wp_register_style(
 			'bricks-backend-style',
-			get_style( 'bricks.css' ),
+			Utility::get_style( 'bricks.css' ),
 			array(),
 			'1.0.0'
 		);
@@ -502,7 +499,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 		if ( \bricks_is_builder() ) {
 			wp_enqueue_style(
 				'am-icon-font',
-				get_style( 'am-font.css' ),
+				Utility::get_style( 'am-font.css' ),
 				AAMD_LOTTIE_IS_PRO ? array() : array( 'bricks-backend-style' ),
 				'1.0.0'
 			);
@@ -511,7 +508,7 @@ class Element_Lottie_Player extends \Bricks\Element {
 		if ( \function_exists( 'bricks_is_builder_main' ) && \bricks_is_builder_main() ) {
 			wp_enqueue_script(
 				'am-backend-bricks',
-				get_script( 'bricks/am-backend-bricks.js' ),
+				Utility::get_script( 'bricks/am-backend-bricks.js' ),
 				array( 'bricks-builder', 'media-editor' ),
 				AAMD_LOTTIE_VERSION,
 				true
@@ -591,8 +588,8 @@ class Element_Lottie_Player extends \Bricks\Element {
 
 		if ( ! empty( $src ) ) {
 			echo wp_kses(
-				render_shortcode( $attrs ),
-				get_allowed_html()
+				Utility::render_shortcode( $attrs ),
+				Utility::get_allowed_html()
 			);
 		} else { ?>
 <div class="bricks-element-placeholder am-lottieplayer-placeholder" data-type="info">

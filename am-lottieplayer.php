@@ -49,7 +49,7 @@ if ( ! \class_exists( 'AAMD_Lottie' ) ) {
 
 			// Define constants
 			define( 'AAMD_LOTTIE_PATH', plugin_dir_path( __FILE__ ) );
-			define( 'AAMD_LOTTIE_SLUG', plugin_basename( __DIR__ ) );
+			define( 'AAMD_LOTTIE_SLUG', 'am-lottieplayer' );
 			define( 'AAMD_LOTTIE_BASENAME', plugin_basename( __FILE__ ) );
 			define( 'AAMD_LOTTIE_URL', plugin_dir_url( __FILE__ ) );
 			/** Path to plugin main file */

@@ -4,14 +4,14 @@ namespace AAMD_Lottie;
 
 \defined( 'ABSPATH' ) || exit;
 
-use function AAMD_Lottie\Utility\include_file;
+use AAMD_Lottie\Utility;
 use ET\Builder\Framework\DependencyManagement\DependencyTree;
 
 // Register module.
 add_action(
 	'divi_module_library_modules_dependency_tree',
 	function ( DependencyTree $dependency_tree ) {
-		include_file( 'builders/divi/module' );
+		Utility::include_file( 'builders/divi/module' );
 		$dependency_tree->add_dependency( new AMLottiePlayerModule() );
 	}
 );

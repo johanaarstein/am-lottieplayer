@@ -3,8 +3,7 @@ namespace AAMD_Lottie;
 
 \defined( 'ABSPATH' ) || exit;
 
-use function AAMD_Lottie\Utility\get_asset;
-use function AAMD_Lottie\Utility\render_shortcode;
+use AAMD_Lottie\Utility;
 
 class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 
@@ -15,7 +14,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 		$this->plural     = esc_html__( 'AM Lotties', 'am-lottieplayer' );
 		$this->slug       = 'et_pb_lottieplayer';
 		$this->vb_support = 'on';
-		$this->icon_path  = get_asset( 'divi-icon.svg' );
+		$this->icon_path  = Utility::get_asset( 'divi-icon.svg' );
 
 		$this->settings_modal_toggles = array(
 			'general'    => array(
@@ -113,7 +112,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 				'toggle_slug'        => 'main_content',
 				'mobile_options'     => true,
 				'hover'              => 'tabs',
-				'default'            => esc_url( get_asset( 'am.lottie' ) ),
+				'default'            => esc_url( Utility::get_asset( 'am.lottie' ) ),
 			),
 			'description'       => array(
 				'label'           => esc_html__( 'Animation Alternative Text', 'am-lottieplayer' ),
@@ -489,7 +488,7 @@ class ET_Builder_Module_LottiePlayer extends \ET_Builder_Module {
 			),
 		);
 
-		return render_shortcode( $mergedAttrs );
+		return Utility::render_shortcode( $mergedAttrs );
 	}
 }
 

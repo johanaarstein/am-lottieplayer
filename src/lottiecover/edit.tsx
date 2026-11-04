@@ -3,7 +3,6 @@ import {
   useBlockProps,
   useInnerBlocksProps,
   store as blockEditorStore,
-  type InnerBlocks,
 } from '@wordpress/block-editor'
 import { Spinner } from '@wordpress/components'
 import { useSelect } from '@wordpress/data'
@@ -11,7 +10,7 @@ import { useMemo, useRef } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
 import classNames from 'classnames'
 
-import type { BlockCoverEditProps, BlockEditor } from '@/types'
+import type { BlockCoverEditProps } from '@/types'
 
 import ContextMenu from '@/components/ContextMenu'
 import LottieControls from '@/components/LottieControls'
@@ -21,9 +20,7 @@ import '@/lottiecover/editor.css'
 import PlayerWrapper from '@/context/PlayerProvider'
 import { isTemporaryMedia } from '@/utils/media'
 
-type TemplateArray = InnerBlocks.Props['template']
-
-const getInnerBlocksTemplate = (attributes: object): TemplateArray => [
+const getInnerBlocksTemplate = (attributes: object) => [
   [
     'core/paragraph',
     {
@@ -45,17 +42,11 @@ export default function Edit({
 }: Readonly<BlockCoverEditProps>) {
   const {
       allowedBlocks = ['core/paragraph', 'core/heading', 'core/buttons'],
-      // alt,
       background,
       fullscreen,
-      // contentPosition,
-      // dimRatio,
-      // focalPoint,
-      // hasParallax,
       height,
       heightUnit = 'px',
       id,
-      // isDark,
       src,
       templateLock,
     } = attributes,
@@ -66,13 +57,13 @@ export default function Edit({
     heightWithUnit = height ? `${height}${heightUnit}` : height,
     style = { minHeight: fullscreen ? '100vh' : heightWithUnit || undefined },
     hasInnerBlocks = useSelect((select) => {
-      const { getBlock } = select(blockEditorStore) as BlockEditor
+      const { getBlock } = select(blockEditorStore)
 
       return Boolean(getBlock(clientId)?.innerBlocks.length)
     },
     [clientId])
 
-  let innerBlocksTemplate: TemplateArray | undefined
+  let innerBlocksTemplate
 
   if (!hasInnerBlocks) {
     innerBlocksTemplate = getInnerBlocksTemplate({ fontSize: 'large' })

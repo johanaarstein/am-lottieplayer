@@ -1,13 +1,12 @@
 <?php
 \defined( 'ABSPATH' ) || exit;
 
-use function AAMD_Lottie\Utility\get_asset;
-use function AAMD_Lottie\Utility\get_script;
+use AAMD_Lottie\Utility;
 
 vc_add_shortcode_param(
 	'attach_lottie',
 	'aamd_vc_attach_field_settings',
-	get_script( 'vc/am-backend-vc-options.min.js', '1.0.1' )
+	Utility::get_script( 'vc/am-backend-vc-options.min.js', '1.0.1' )
 );
 
 if ( ! function_exists( 'aamd_vc_attach_field_settings' ) ) {
@@ -33,13 +32,13 @@ vc_map(
 		'name'     => __( 'AM LottiePlayer', 'am-lottieplayer' ),
 		'base'     => 'am-lottieplayer',
 		'controls' => 'full',
-		'icon'     => get_asset( 'vc-icon.svg' ),
+		'icon'     => Utility::get_asset( 'vc-icon.svg' ),
 		'category' => __( 'Animation', 'am-lottieplayer' ),
 		'params'   => array(
 			array(
 				'type'       => 'textfield',
 				'heading'    => __( 'Lottie url', 'am-lottieplayer' ),
-				'value'      => esc_url( get_asset( 'am.lottie' ) ),
+				'value'      => esc_url( Utility::get_asset( 'am.lottie' ) ),
 				'param_name' => 'src',
 			),
 			array(

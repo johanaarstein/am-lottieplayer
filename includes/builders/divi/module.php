@@ -8,7 +8,7 @@ use ET\Builder\FrontEnd\Module\Style;
 use ET\Builder\Packages\Module\Module;
 use ET\Builder\Packages\Module\Options\Element\ElementClassnames;
 use ET\Builder\Packages\ModuleLibrary\ModuleRegistration;
-use function AAMD_Lottie\Utility\render_shortcode;
+use AAMD_Lottie\Utility;
 
 /**
  * Class that handle "Simple Quick Module" module output in frontend.
@@ -206,7 +206,7 @@ class AMLottiePlayerModule implements DependencyInterface {
 			),
 		);
 
-		$dotlottie_player = render_shortcode( $mergedAttrs );
+		$dotlottie_player = Utility::render_shortcode( $mergedAttrs );
 
 		return Module::render(
 			array(

@@ -1,8 +1,7 @@
 <?php
 namespace AAMD_Lottie;
 
-use function AAMD_Lottie\Utility\get_asset;
-use function AAMD_Lottie\Utility\get_script;
+use AAMD_Lottie\Utility;
 
 \defined( 'ABSPATH' ) || exit;
 
@@ -11,7 +10,7 @@ if ( ! function_exists( 'get_ux_template' ) ) {
 	function get_ux_template() {
 		wp_enqueue_script(
 			'am-backend-ux',
-			get_script( 'flatsome/am-backend-ux.min.js' ),
+			Utility::get_script( 'flatsome/am-backend-ux.min.js' ),
 			array( AAMD_LOTTIE_IS_PRO ? 'dotlottie-player' : 'dotlottie-player-light' ),
 			'1.0.1',
 			true
@@ -66,7 +65,7 @@ add_ux_builder_shortcode(
 		'category'          => esc_html__( 'Content', 'am-lottieplayer' ),
 		'template'          => get_ux_template(),
 		'toolbar_thumbnail' => 'img',
-		'thumbnail'         => get_asset( 'ux-icon.svg' ),
+		'thumbnail'         => Utility::get_asset( 'ux-icon.svg' ),
 		'allow_in'          => array( 'text_box' ),
 		'inline'            => true,
 		'wrap'              => false,
@@ -77,7 +76,7 @@ add_ux_builder_shortcode(
 			'src'               => array(
 				'type'        => 'textfield',
 				'full_width'  => true,
-				'default'     => esc_url( get_asset( 'am.lottie' ) ),
+				'default'     => esc_url( Utility::get_asset( 'am.lottie' ) ),
 				'heading'     => esc_html__( 'Lottie url', 'am-lottieplayer' ),
 				'description' => esc_html__( 'Paste in url to Lottie, either from CDN or you local Media Library.', 'am-lottieplayer' ),
 			),

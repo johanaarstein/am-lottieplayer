@@ -1,9 +1,7 @@
 <?php
 namespace AAMD_Lottie;
 
-use function AAMD_Lottie\Utility\get_build;
-use function AAMD_Lottie\Utility\get_build_path;
-use function AAMD_Lottie\Utility\get_style;
+use AAMD_Lottie\Utility;
 
 \defined( 'ABSPATH' ) || exit;
 
@@ -142,7 +140,7 @@ class Admin {
 	public function enqueue_backend_scripts( string $page ) {
 		wp_enqueue_style(
 			'am-backend-style',
-			get_style( 'admin.min.css' ),
+			Utility::get_style( 'admin.min.css' ),
 			array(),
 			'1.0.1'
 		);
@@ -163,11 +161,12 @@ class Admin {
 		}
 
 		$pluginUrl = AAMD_LOTTIE_URL;
-		$runtime   = get_build_path( 'runtime.js' );
+		$runtime   = Utility::get_build_path( 'runtime.js' );
+
 		if ( file_exists( $runtime ) ) {
 			wp_enqueue_script(
 				'am-lottieplayer-runtime',
-				get_build( 'runtime.js' ),
+				Utility::get_build( 'runtime.js' ),
 				array(),
 				filemtime( $runtime ),
 				true
@@ -175,10 +174,10 @@ class Admin {
 		}
 
 		if ( ! AAMD_LOTTIE_IS_PRO && $page === 'index.php' ) {
-			$admin_assets = require get_build_path( 'admin.asset.php' );
+			$admin_assets = require Utility::get_build_path( 'admin.asset.php' );
 			wp_enqueue_script(
 				'am-lottieplayer-widget',
-				get_build( 'admin.js' ),
+				Utility::get_build( 'admin.js' ),
 				$admin_assets['dependencies'],
 				'0.1.0',
 				true
@@ -201,11 +200,11 @@ class Admin {
 
 		wp_enqueue_media();
 
-		$admin_assets = require get_build_path( 'admin.asset.php' );
+		$admin_assets = require Utility::get_build_path( 'admin.asset.php' );
 
 		wp_enqueue_script(
 			'am-lottieplayer-options',
-			get_build( 'admin.js' ),
+			Utility::get_build( 'admin.js' ),
 			array( ...$admin_assets['dependencies'], $handle ),
 			'0.1.1',
 			true

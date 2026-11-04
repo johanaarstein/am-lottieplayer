@@ -1,10 +1,7 @@
 <?php
 namespace AAMD_Lottie;
 
-use function AAMD_Lottie\Utility\get_build_path;
-use function AAMD_Lottie\Utility\get_path;
-use function AAMD_Lottie\Utility\get_script;
-use function AAMD_Lottie\Utility\include_file;
+use AAMD_Lottie\Utility;
 
 \defined( 'ABSPATH' ) || exit;
 
@@ -38,16 +35,16 @@ class Builder {
 	public function init_plugin() {
 
 		// Shortcode is the same as Text Domain.
-		add_shortcode( 'am-lottieplayer', 'AAMD_Lottie\Utility\render_shortcode' );
+		add_shortcode( 'am-lottieplayer', 'AAMD_Lottie\Utility::render_shortcode' );
 
 		register_block_type(
-			get_build_path( 'lottieplayer' )
+			Utility::get_build_path( 'lottieplayer' )
 		);
 		register_block_type(
-			get_build_path( 'lottiecover' )
+			Utility::get_build_path( 'lottiecover' )
 		);
 
-		$manifest = wp_json_file_decode( get_path( 'scripts/vendor-manifest', 'json' ) );
+		$manifest = wp_json_file_decode( Utility::get_path( 'scripts/vendor-manifest', 'json' ) );
 
 		if ( ! $manifest ) {
 			return;
@@ -56,7 +53,7 @@ class Builder {
 		foreach ( $manifest as $handle => $entry ) {
 			wp_register_script(
 				$handle,
-				get_script( $entry->file ),
+				Utility::get_script( $entry->file ),
 				array(),
 				$entry->version,
 				array(
@@ -106,7 +103,7 @@ class Builder {
 	 */
 	public function init_divi() {
 		if ( \function_exists( 'et_builder_d5_enabled' ) && et_builder_d5_enabled() ) {
-			include_file( 'builders/divi/loader' );
+			Utility::include_file( 'builders/divi/loader' );
 		}
 
 		// D5 still renders unconverted layouts via the D4 shortcode.
@@ -114,7 +111,7 @@ class Builder {
 			add_action(
 				'divi_extensions_init',
 				function () {
-					include_file( 'builders/divi/legacy/LottieDiviModules' );
+					Utility::include_file( 'builders/divi/legacy/LottieDiviModules' );
 				}
 			);
 		}
@@ -128,7 +125,7 @@ class Builder {
 			return;
 		}
 
-		include_file( 'builders/elementor/widgets/elementor-am-lottieplayer', $widgets_manager );
+		Utility::include_file( 'builders/elementor/widgets/elementor-am-lottieplayer', $widgets_manager );
 
 		$widgets_manager->register( new Elementor() );
 	}
@@ -140,7 +137,7 @@ class Builder {
 		if ( ! function_exists( 'add_ux_builder_shortcode' ) ) {
 			return;
 		}
-		include_file( 'builders/flatsome/ux-am-lottieplayer' );
+		Utility::include_file( 'builders/flatsome/ux-am-lottieplayer' );
 	}
 
 	/**
@@ -151,7 +148,7 @@ class Builder {
 			return;
 		}
 
-		include_file( 'builders/vc/vc-am-lottieplayer' );
+		Utility::include_file( 'builders/vc/vc-am-lottieplayer' );
 	}
 
 	/**
@@ -271,7 +268,7 @@ class Builder {
 	/**
 	 * Whether any Lottie instance uses a non-SVG renderer (canvas/html).
 	 *
-	 * @param string[] $content          Post content.
+	 * @param string[] $contents          Post content.
 	 */
 	private function _has_non_svg_renderer( array $contents ) {
 

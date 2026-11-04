@@ -7,10 +7,10 @@ import {
 
 import type { BlockEditor, LottieBlockAttributes } from '@/types'
 
-import { Align } from '@/utils/enums'
 import { useEventListener } from '@/hooks/useEventListener'
 import { usePlayerContext } from '@/hooks/usePlayerContext'
 import { debounce } from '@/utils'
+import { Align } from '@/utils/enums'
 
 const parseSize = (num?: number | null) => {
   if (num && typeof num === 'number') {

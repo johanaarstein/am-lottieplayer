@@ -3,12 +3,7 @@ namespace AAMD_Lottie;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
-
-use function AAMD_Lottie\Utility\get_allowed_html;
-use function AAMD_Lottie\Utility\get_asset;
-use function AAMD_Lottie\Utility\get_style;
-use function AAMD_Lottie\Utility\render_shortcode;
-use function AAMD_Lottie\Utility\use_id;
+use AAMD_Lottie\Utility;
 
 \defined( 'ABSPATH' ) || exit;
 
@@ -19,14 +14,14 @@ class Elementor extends Widget_Base {
 
 		wp_register_style(
 			'elementor-backend-style',
-			get_style( 'elementor.css' ),
+			Utility::get_style( 'elementor.css' ),
 			array(),
 			'1.0.1'
 		);
 
 		wp_enqueue_style(
 			'am-icon-font',
-			get_style( 'am-font.css' ),
+			Utility::get_style( 'am-font.css' ),
 			array( 'elementor-backend-style' ),
 			'1.0.0'
 		);
@@ -40,7 +35,7 @@ class Elementor extends Widget_Base {
 	private $_num_of_animations = 6;
 
 	private function _set_preview_id( ?string $id ) {
-		$this->_preview_id = use_id() . ( $id ?? '' );
+		$this->_preview_id = Utility::use_id() . ( $id ?? '' );
 	}
 
 	public function get_script_depends() {
@@ -90,7 +85,7 @@ class Elementor extends Widget_Base {
 					'application/zip+dotlottie',
 				),
 				'default'    => array(
-					'url' => esc_url( get_asset( 'am.lottie' ) ),
+					'url' => esc_url( Utility::get_asset( 'am.lottie' ) ),
 				),
 			)
 		);
@@ -898,8 +893,8 @@ class Elementor extends Widget_Base {
 		);
 
 		echo wp_kses(
-			render_shortcode( $attrs ),
-			get_allowed_html()
+			Utility::render_shortcode( $attrs ),
+			Utility::get_allowed_html()
 		);
 	}
 }

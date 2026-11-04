@@ -7,7 +7,7 @@ import {
 import { useState } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
 
-import type { LottieBlockAttributes } from '@/types'
+import type { LottieBlockAttributes, MediaElement } from '@/types'
 
 import Lottie from '@/assets/Lottie'
 import ErrorNotice from '@/components/ErrorNotice'
@@ -42,7 +42,7 @@ export default function UploadComponent({
         onError={(message) => {
           ErrorNotice(message)
         }}
-        onSelect={(props) => {
+        onSelect={(props: MediaElement) => {
           try {
             if (!props.url) {
               setAttributes?.({
@@ -64,19 +64,17 @@ export default function UploadComponent({
         }}
       >
         {
-          (
-            <URLInput
-              className="lottie-animation-url"
-              value={externalURL}
-              onChange={(url) => {
-                setExternalURL(url)
+          <URLInput
+            className="lottie-animation-url"
+            value={externalURL}
+            onChange={(url) => {
+              setExternalURL(url)
 
-                if (validateUrl(url)) {
-                  setAttributes?.({ src: url })
-                }
-              }}
-            />
-          ) as unknown as undefined
+              if (validateUrl(url)) {
+                setAttributes?.({ src: url })
+              }
+            }}
+          />
         }
       </MediaPlaceholder>
     </MediaUploadCheck>
