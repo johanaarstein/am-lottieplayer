@@ -7,7 +7,13 @@
 		"jsx": "react-jsx",
 		"module": "ESNext",
 		"lib": ["DOM", "DOM.Iterable", "ES2024"],
-		"types": ["node", "react", "webpack", "wordpress__block-editor"],
+		"types": [
+			"node",
+			"react",
+			"react-dom",
+			"webpack",
+			"wordpress__block-editor"
+		],
 		"noImplicitAny": false,
 		"allowSyntheticDefaultImports": true,
 		"strict": true,
