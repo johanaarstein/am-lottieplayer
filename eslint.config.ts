@@ -166,6 +166,7 @@ export default defineConfig(
       unicorn,
     },
     rules: {
+      ...eslintReact.configs.recommended.rules,
       ...reactYouMightNotNeedAnEffect.configs.strict.rules,
       ...reactHooks.configs.flat['recommended-latest'].rules,
       ...sonarConfigs.recommended.rules,

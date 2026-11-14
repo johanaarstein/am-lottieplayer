@@ -12,31 +12,31 @@ export default function BoomerangLottie({
   src,
   subframe,
 }: Readonly<Partial<DotLottiePlayer>>) {
-  const boomerang = useRef<DotLottiePlayer>(null),
+  const boomerangRef = useRef<DotLottiePlayer>(null),
     mouseOut = () => {
       if (isTouch()) {
         return
       }
-      boomerang.current?.setDirection(-1)
-      boomerang.current?.play()
+      boomerangRef.current?.setDirection(-1)
+      boomerangRef.current?.play()
     },
     mouseOver = () => {
       if (isTouch()) {
         return
       }
-      boomerang.current?.setDirection(1)
-      boomerang.current?.play()
+      boomerangRef.current?.setDirection(1)
+      boomerangRef.current?.play()
     },
     touchScroll = () => {
-      if (!isTouch() || !boomerang.current) {
+      if (!isTouch() || !boomerangRef.current) {
         return
       }
-      if (boomerang.current.getBoundingClientRect().top < 150) {
-        boomerang.current.setDirection(1)
-        boomerang.current.play()
+      if (boomerangRef.current.getBoundingClientRect().top < 150) {
+        boomerangRef.current.setDirection(1)
+        boomerangRef.current.play()
       } else {
-        boomerang.current.setDirection(-1)
-        boomerang.current.play()
+        boomerangRef.current.setDirection(-1)
+        boomerangRef.current.play()
       }
     }
 
@@ -48,17 +48,17 @@ export default function BoomerangLottie({
   )
 
   useEventListener(
-    'mouseover', mouseOver, { element: boomerang }
+    'mouseover', mouseOver, { element: boomerangRef }
   )
   useEventListener(
-    'mouseout', mouseOut, { element: boomerang }
+    'mouseout', mouseOut, { element: boomerangRef }
   )
 
   return (
     <dotlottie-player
       autoplay={autoplay}
       class={className}
-      ref={boomerang}
+      ref={boomerangRef}
       speed={speed}
       src={src ?? ''}
       subframe={subframe}

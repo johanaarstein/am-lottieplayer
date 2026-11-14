@@ -6,13 +6,13 @@ const untrailingslashit = (str: string): string => {
   return str
 }
 
-export const debounce = (callBack: (x: unknown) => unknown, timeout = 100) => {
+export const debounce = <A extends unknown[]>(callBack: (...args: A) => unknown, timeout = 100) => {
     let timer: ReturnType<typeof setTimeout>
 
-    return (...args: unknown[]) => {
+    return (...args: A) => {
       clearTimeout(timer)
       timer = setTimeout(() => {
-        callBack([...args])
+        callBack(...args)
       }, timeout)
     }
   },
