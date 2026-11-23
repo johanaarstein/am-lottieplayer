@@ -7,7 +7,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const config: typeof defaults = {
   ...defaults,
   entry: {
-    admin: resolve(
+    'admin': resolve(
       __dirname, 'src', 'admin.tsx'
     ),
     'lottiecover/index': resolve(
@@ -23,7 +23,9 @@ const config: typeof defaults = {
       '@': resolve(__dirname, 'src'),
       '@test': resolve(__dirname, 'tests'),
     },
-    extensions: [...defaults.resolve?.extensions ?? [], '.ts', '.tsx'],
+    extensions: [...defaults.resolve?.extensions ?? [],
+      '.ts',
+      '.tsx'],
   },
 }
 

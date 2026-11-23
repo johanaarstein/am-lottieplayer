@@ -29,15 +29,15 @@ export default function Interactions({
       >
         <SwitchLabel
           disabled
-          id={'am-lottieplayer-animateOnScroll-settings'}
-          title={
+          id="am-lottieplayer-animateOnScroll-settings"
+          title={(
             <>
               <span className="pro-feature" style={{ marginRight: '1em' }}>
                 {__('Animate on scroll', 'am-lottieplayer')}
               </span>
               <ProFeature />
             </>
-          }
+          )}
           onChange={() => {
             console.warn('This feature is only available in the premium version')
           }}
@@ -58,55 +58,57 @@ export default function Interactions({
             setAttributes({ hover: value })
           }}
         />
-        {attributes.hover &&
-          <SelectControl
-            label={__('On mouseout', 'am-lottieplayer')}
-            value={attributes.mouseout}
-            options={[
-              {
-                label: __('No event', 'am-lottieplayer'),
-                value: MouseOut.Void,
-              },
-              {
-                label: __('Stop', 'am-lottieplayer'),
-                value: MouseOut.Stop,
-              },
-              {
-                label: __('Pause', 'am-lottieplayer'),
-                value: MouseOut.Pause,
-              },
-              {
-                label: __('Reverse', 'am-lottieplayer'),
-                value: MouseOut.Reverse,
-              },
-            ]}
-            onChange={(val) => {
-              setAttributes({ mouseout: val })
-            }}
-          />
-        }
-        {(attributes.hover || attributes.playOnClick) &&
-          <TextInput
-            disabled
-            id="am-lottieplayer-settings"
-            placeholder={'#'}
-            value={attributes.selector}
-            help={__('Anchor tag (id) for an element you want to trigger the animation, either by hover or click.',
-              'am-lottieplayer')}
-            title={
-              <>
-                <span className="pro-feature" style={{ marginRight: '1em' }}>
-                  {__('Trigger element', 'am-lottieplayer')}
-                </span>
+        {attributes.hover
+          && (
+            <SelectControl
+              label={__('On mouseout', 'am-lottieplayer')}
+              value={attributes.mouseout}
+              options={[
+                {
+                  label: __('No event', 'am-lottieplayer'),
+                  value: MouseOut.Void,
+                },
+                {
+                  label: __('Stop', 'am-lottieplayer'),
+                  value: MouseOut.Stop,
+                },
+                {
+                  label: __('Pause', 'am-lottieplayer'),
+                  value: MouseOut.Pause,
+                },
+                {
+                  label: __('Reverse', 'am-lottieplayer'),
+                  value: MouseOut.Reverse,
+                },
+              ]}
+              onChange={(val) => {
+                setAttributes({ mouseout: val })
+              }}
+            />
+          )}
+        {(attributes.hover || attributes.playOnClick)
+          && (
+            <TextInput
+              disabled
+              id="am-lottieplayer-settings"
+              placeholder="#"
+              value={attributes.selector}
+              help={__('Anchor tag (id) for an element you want to trigger the animation, either by hover or click.',
+                'am-lottieplayer')}
+              title={(
+                <>
+                  <span className="pro-feature" style={{ marginRight: '1em' }}>
+                    {__('Trigger element', 'am-lottieplayer')}
+                  </span>
 
-                <ProFeature />
-              </>
-            }
-            onChange={(val) => {
-              setAttributes({ selector: val })
-            }}
-          />
-        }
+                  <ProFeature />
+                </>
+              )}
+              onChange={(val) => {
+                setAttributes({ selector: val })
+              }}
+            />
+          )}
         <SwitchLabel
           id="am-lottieplayer-scroll-settings"
           value={Boolean(attributes.playOnVisible)}
@@ -116,28 +118,30 @@ export default function Interactions({
             setAttributes({ playOnVisible: value })
           }}
         />
-        {attributes.playOnVisible &&
-          <>
-            <SwitchLabel
-              id="am-lottieplayer-once-settings"
-              title={__('Play only once', 'am-lottieplayer')}
-              value={attributes.once}
-              onChange={(value) => {
-                setAttributes({ once: value })
-              }}
-            ></SwitchLabel>
-            <RangeControl
-              max={50}
-              min={0}
-              step={1}
-              value={attributes.delay ?? 1}
-              label={__('Delay, in 10th of a second', 'am-lottieplayer')}
-              onChange={(value) => {
-                setAttributes({ delay: value })
-              }}
-            />
-          </>
-        }
+        {attributes.playOnVisible
+          && (
+            <>
+              <SwitchLabel
+                id="am-lottieplayer-once-settings"
+                title={__('Play only once', 'am-lottieplayer')}
+                value={attributes.once}
+                onChange={(value) => {
+                  setAttributes({ once: value })
+                }}
+              >
+              </SwitchLabel>
+              <RangeControl
+                max={50}
+                min={0}
+                step={1}
+                value={attributes.delay ?? 1}
+                label={__('Delay, in 10th of a second', 'am-lottieplayer')}
+                onChange={(value) => {
+                  setAttributes({ delay: value })
+                }}
+              />
+            </>
+          )}
         <ProLink />
       </PanelBody>
     </Panel>

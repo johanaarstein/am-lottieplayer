@@ -16,13 +16,9 @@ const targets = [
   {
     file: 'am-lottieplayer.php',
     patterns: [
-      // Plugin header
-      /^( \* Version: +)\S+/m,
-      // Version constant
-      /(define\(\s*'AAMD_LOTTIE_VERSION',\s*')[^']+(')/,
+      /^( \* Version: +)\S+/m, /(define\(\s*'AAMD_LOTTIE_VERSION',\s*')[^']+(')/,
     ],
-  },
-  {
+  }, {
     file: 'readme.txt',
     patterns: [/^(Stable Tag:\s*)\S+/im],
   },

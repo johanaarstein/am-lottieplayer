@@ -19,14 +19,20 @@ export const debounce = <A extends unknown[]>(callBack: (...args: A) => unknown,
   isModifierKey = ({
     ctrlKey, key, metaKey, shiftKey
   }: React.KeyboardEvent) =>
-    shiftKey ||
-    key === 'End' ||
-    key === 'Home' ||
-    key === 'Backspace' ||
-    key === 'Tab' ||
-    key === 'Enter' ||
-    key === 'Delete' ||
-    (ctrlKey || metaKey) && ['a', 'c', 'v', 'x', 'z', 't', 'r'].includes(key),
+    shiftKey
+    || key === 'End'
+    || key === 'Home'
+    || key === 'Backspace'
+    || key === 'Tab'
+    || key === 'Enter'
+    || key === 'Delete'
+    || ((ctrlKey || metaKey) && ['a',
+      'c',
+      'v',
+      'x',
+      'z',
+      't',
+      'r'].includes(key)),
   isNumericInput = ({ key }: React.KeyboardEvent) =>
     Number(key) >= 0 && Number(key) <= 9,
   isTouch = () => 'ontouchstart' in window,
@@ -46,7 +52,7 @@ export const debounce = <A extends unknown[]>(callBack: (...args: A) => unknown,
     }
 
     return !(
-      !isValidUrl(url) ||
-      !url.endsWith('.lottie') && !url.endsWith('.json')
+      !isValidUrl(url)
+      || (!url.endsWith('.lottie') && !url.endsWith('.json'))
     )
   }

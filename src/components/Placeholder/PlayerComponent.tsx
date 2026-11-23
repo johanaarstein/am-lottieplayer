@@ -26,7 +26,7 @@ export default function PlayerComponent({
       animationContext: { player },
       setAnimationContext,
     } = usePlayerContext(),
-    { getBlockIndex }: BlockEditor = useSelect((select) => select('core/block-editor'),
+    { getBlockIndex }: BlockEditor = useSelect(select => select('core/block-editor'),
       []),
     blockIndex = getBlockIndex(clientId),
     playerRef = useRef<DotLottiePlayer>(null),
@@ -49,7 +49,7 @@ export default function PlayerComponent({
 
   useEffect(() => {
     if (playerRef.current) {
-      setAnimationContext((prev) => ({
+      setAnimationContext(prev => ({
         ...prev,
         player: playerRef.current,
       }))
@@ -59,7 +59,7 @@ export default function PlayerComponent({
   useEventListener(
     'ready',
     () => {
-      setAnimationContext((prev) => ({
+      setAnimationContext(prev => ({
         ...prev,
         animations: player?.getManifest()?.animations ?? [],
       }))

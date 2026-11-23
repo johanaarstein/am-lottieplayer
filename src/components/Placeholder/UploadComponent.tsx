@@ -63,19 +63,17 @@ export default function UploadComponent({
           }
         }}
       >
-        {
-          <URLInput
-            className="lottie-animation-url"
-            value={externalURL}
-            onChange={(url) => {
-              setExternalURL(url)
+        <URLInput
+          className="lottie-animation-url"
+          value={externalURL}
+          onChange={(url) => {
+            setExternalURL(url)
 
-              if (validateUrl(url)) {
-                setAttributes?.({ src: url })
-              }
-            }}
-          />
-        }
+            if (validateUrl(url)) {
+              setAttributes?.({ src: url })
+            }
+          }}
+        />
       </MediaPlaceholder>
     </MediaUploadCheck>
   )

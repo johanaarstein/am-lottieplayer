@@ -18,7 +18,9 @@ export default function ProFeature() {
         textTransform: 'none',
       }}
     >
-      <strong>PRO</strong> {__('feature', 'am-lottieplayer')}
+      <strong>PRO</strong>
+      {' '}
+      {__('feature', 'am-lottieplayer')}
     </a>
   )
 }

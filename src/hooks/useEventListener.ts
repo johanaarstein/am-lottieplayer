@@ -18,9 +18,9 @@ interface ElementOptions<T> {
     | false
 }
 
-type EventOptions<T> = EventListenerOptions &
-  AddEventListenerOptions &
-  ElementOptions<T> & { enabled?: boolean }
+type EventOptions<T> = EventListenerOptions
+  & AddEventListenerOptions
+  & ElementOptions<T> & { enabled?: boolean }
 
 /**
  * `useEventListener` is a custom React hook that adds an event listener to a specified element.

@@ -19,7 +19,7 @@ export default function TextInput({
   value = '',
 }: Readonly<Props>) {
   return (
-    <BaseControl className={'lottie-number-wrapper'} help={help} id={id}>
+    <BaseControl className="lottie-number-wrapper" help={help} id={id}>
       <BaseControl.VisualLabel>{title}</BaseControl.VisualLabel>
       <TextControl
         placeholder={placeholder}

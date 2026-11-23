@@ -6,8 +6,8 @@ const NONCE_PATTERN = /^[a-f0-9]+$/,
 
 export default async function globalSetup({ projects }: FullConfig) {
   const { baseURL, storageState } = projects[0].use,
-    storageStatePath =
-      typeof storageState === 'string' ? storageState : undefined,
+    storageStatePath
+      = typeof storageState === 'string' ? storageState : undefined,
     requestContext = await request.newContext({ baseURL }),
     requestUtils = new RequestUtils(requestContext, {
       storageStatePath,

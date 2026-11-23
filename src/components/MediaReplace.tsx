@@ -83,7 +83,7 @@ export default function MediaReplace({
 
           return
         }
-        setState((prev) => ({
+        setState(prev => ({
           ...prev,
           mediaId: media.id,
         }))
@@ -131,8 +131,8 @@ export default function MediaReplace({
       }
       e.preventDefault()
       if (
-        e.target instanceof HTMLAnchorElement ||
-        e.target instanceof HTMLButtonElement
+        e.target instanceof HTMLAnchorElement
+        || e.target instanceof HTMLButtonElement
       ) {
         e.target.click()
       }
@@ -141,7 +141,7 @@ export default function MediaReplace({
   return (
     <Dropdown
       contentClassName="block-editor-media-replace-flow__options"
-      renderContent={({ onClose }) =>
+      renderContent={({ onClose }) => (
         <>
           <NavigableMenu className="block-editor-media-replace-flow__media-upload-menu">
             <MediaUploadCheck>
@@ -149,11 +149,11 @@ export default function MediaReplace({
                 allowedTypes={ALLOWED_TYPES}
                 multiple={false}
                 value={state.mediaId}
-                render={({ open }) =>
+                render={({ open }) => (
                   <MenuItem icon={<BlockIcon icon={Lottie} />} onClick={open}>
                     {__('Open Media Library')}
                   </MenuItem>
-                }
+                )}
                 onSelect={(media: MediaElement) => {
                   selectMedia(media, onClose)
                 }}
@@ -192,7 +192,7 @@ export default function MediaReplace({
               onChange={(prevValue) => {
                 const externalURL = prevValue.url ?? ''
 
-                setState((prev) => ({
+                setState(prev => ({
                   ...prev,
                   externalURL,
                 }))
@@ -205,8 +205,8 @@ export default function MediaReplace({
             />
           </form>
         </>
-      }
-      renderToggle={({ isOpen, onToggle }) =>
+      )}
+      renderToggle={({ isOpen, onToggle }) => (
         <ToolbarButton
           aria-expanded={isOpen}
           aria-haspopup="true"
@@ -216,7 +216,7 @@ export default function MediaReplace({
         >
           {__('Replace')}
         </ToolbarButton>
-      }
+      )}
     />
   )
 }

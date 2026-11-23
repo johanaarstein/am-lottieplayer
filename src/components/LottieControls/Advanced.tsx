@@ -19,20 +19,19 @@ export default function Advanced({
         disabled
         help={<ProLink />}
         value="svg"
-        label={
+        label={(
           <>
             <span className="pro-feature" style={{ marginRight: '1em' }}>
               {__('Renderer')}
             </span>
             <ProFeature />
           </>
-        }
+        )}
         options={[
           {
             label: 'SVG',
             value: 'svg',
-          },
-          {
+          }, {
             label: 'Canvas',
             value: 'canvas',
           },

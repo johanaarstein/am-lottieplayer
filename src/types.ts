@@ -49,8 +49,8 @@ export interface UploadProps {
   mediaId?: number
   onError: (message: string) => void
   onSelectMedia: (value: {
-    id: number;
-    url: string;
+    id: number
+    url: string
     alt: string
   }) => void
 }

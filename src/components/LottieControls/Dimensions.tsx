@@ -43,42 +43,44 @@ export default function Dimensions({
         className="am-lottieplayer-settings"
         title={__('Dimensions', 'am-lottieplayer')}
       >
-        {(!fullscreen || align !== Align.Full) &&
-          <PanelRow className="lottie-dimensions">
-            <NumberInput
-              id="am-lottieplayer-width-settings"
-              title={__('Width', 'am-lottieplayer')}
-              value={parseWidth(width as number)}
-              disabled={align === Align.Full || align === Align.Wide}
-              placeholder={
-                align === Align.Full || align === Align.Wide ? '100%' : 'auto'
-              }
-              onChange={(val) => {
-                setAttributes({ width: val })
+        {(!fullscreen || align !== Align.Full)
+          && (
+            <PanelRow className="lottie-dimensions">
+              <NumberInput
+                id="am-lottieplayer-width-settings"
+                title={__('Width', 'am-lottieplayer')}
+                value={parseWidth(width as number)}
+                disabled={align === Align.Full || align === Align.Wide}
+                placeholder={
+                  align === Align.Full || align === Align.Wide ? '100%' : 'auto'
+                }
+                onChange={(val) => {
+                  setAttributes({ width: val })
+                }}
+              />
+              <NumberInput
+                disabled={fullscreen}
+                id="am-lottieplayer-height-settings"
+                placeholder="auto"
+                title={__('Height', 'am-lottieplayer')}
+                value={!height || height.toString() === '0' ? undefined : height}
+                onChange={(val) => {
+                  setAttributes({ height: val })
+                }}
+              />
+            </PanelRow>
+          )}
+        {(align === Align.Full || align === Align.Wide)
+          && (
+            <SwitchLabel
+              id="am-lottieplayer-fullscreen-settings"
+              title={__('Fill screen', 'am-lottieplayer')}
+              value={fullscreen}
+              onChange={(value) => {
+                setAttributes({ fullscreen: value })
               }}
             />
-            <NumberInput
-              disabled={fullscreen}
-              id="am-lottieplayer-height-settings"
-              placeholder={'auto'}
-              title={__('Height', 'am-lottieplayer')}
-              value={!height || height.toString() === '0' ? undefined : height}
-              onChange={(val) => {
-                setAttributes({ height: val })
-              }}
-            />
-          </PanelRow>
-        }
-        {(align === Align.Full || align === Align.Wide) &&
-          <SwitchLabel
-            id="am-lottieplayer-fullscreen-settings"
-            title={__('Fill screen', 'am-lottieplayer')}
-            value={fullscreen}
-            onChange={(value) => {
-              setAttributes({ fullscreen: value })
-            }}
-          />
-        }
+          )}
         <SelectControl
           label={__('Object fit')}
           value={objectFit}

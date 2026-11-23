@@ -52,17 +52,18 @@ export default function Animation({
         className="am-lottieplayer-settings"
         title={__('Animation Settings', 'am-lottieplayer')}
       >
-        {state.hasMultipleAnimations &&
-          <div style={{ marginBottom: '1em' }}>
-            <p>
-              <ProFeature />
-            </p>
-            <p>
-              {__('This file contains multiple animations. To control each of them individually you need to upgrade to AM LottiePlayer PRO.',
-                'am-lottieplayer')}
-            </p>
-          </div>
-        }
+        {state.hasMultipleAnimations
+          && (
+            <div style={{ marginBottom: '1em' }}>
+              <p>
+                <ProFeature />
+              </p>
+              <p>
+                {__('This file contains multiple animations. To control each of them individually you need to upgrade to AM LottiePlayer PRO.',
+                  'am-lottieplayer')}
+              </p>
+            </div>
+          )}
         <SwitchLabel
           id="am-lottieplayer-controls-settings"
           title={__('Show controls', 'am-lottieplayer')}
@@ -90,14 +91,14 @@ export default function Animation({
         <SwitchLabel
           disabled
           id="am-lottieplayer-playmode-settings"
-          title={
+          title={(
             <>
               <span className="pro-feature" style={{ marginRight: '1em' }}>
                 {__('Boomerang', 'am-lottieplayer')}
               </span>
               <ProFeature />
             </>
-          }
+          )}
           onChange={() => {
             console.warn(premiumMessage)
           }}
@@ -142,7 +143,7 @@ export default function Animation({
           <NumberInput
             disabled
             id="am-lottieplayer-segment-in"
-            placeholder={'1'}
+            placeholder="1"
             title={__('First frame', 'am-lottieplayer')}
             value={segment?.[0]}
             onChange={() => {
@@ -160,25 +161,26 @@ export default function Animation({
             }}
           />
         </PanelRow>
-        {Boolean(loop) &&
-          <>
-            <BaseControl.VisualLabel>
-              {__('Intermission', 'am-lottieplayer')}
-            </BaseControl.VisualLabel>
-            <PanelRow className="lottie-intermission">
-              <NumberInput
-                id={'am-lottieplayer-intermission'}
-                placeholder={'0'}
-                value={intermission}
-                title={__('Pause between loops, in milliseconds. 1s = 1000',
-                  'am-lottieplayer')}
-                onChange={(val) => {
-                  setAttributes({ intermission: val })
-                }}
-              />
-            </PanelRow>
-          </>
-        }
+        {Boolean(loop)
+          && (
+            <>
+              <BaseControl.VisualLabel>
+                {__('Intermission', 'am-lottieplayer')}
+              </BaseControl.VisualLabel>
+              <PanelRow className="lottie-intermission">
+                <NumberInput
+                  id="am-lottieplayer-intermission"
+                  placeholder="0"
+                  value={intermission}
+                  title={__('Pause between loops, in milliseconds. 1s = 1000',
+                    'am-lottieplayer')}
+                  onChange={(val) => {
+                    setAttributes({ intermission: val })
+                  }}
+                />
+              </PanelRow>
+            </>
+          )}
         <ProLink />
       </PanelBody>
     </Panel>

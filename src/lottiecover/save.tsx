@@ -7,8 +7,8 @@ import type { PlayerComponentProps } from '@/types'
 import { Align } from '@/utils/enums'
 
 export default function save({ attributes }: BlockSaveProps<PlayerComponentProps>) {
-  const heightWithUnit =
-      attributes.height && attributes.heightUnit
+  const heightWithUnit
+      = attributes.height && attributes.heightUnit
         ? `${attributes.height}${attributes.heightUnit}`
         : attributes.height,
     style = { minHeight: attributes.fullscreen ? '100vh' : heightWithUnit || undefined },
@@ -25,7 +25,7 @@ export default function save({ attributes }: BlockSaveProps<PlayerComponentProps
     <div {...useBlockProps.save({ style })}>
       <span
         aria-hidden="true"
-        className={'wp-block-gb-lottiecover__background'}
+        className="wp-block-gb-lottiecover__background"
         style={{ backgroundColor: attributes.background }}
       />
       <dotlottie-player
@@ -50,9 +50,9 @@ export default function save({ attributes }: BlockSaveProps<PlayerComponentProps
         style={{
           backgroundColor: attributes.background,
           height:
-						attributes.height && typeof attributes.height === 'number'
-						  ? `${attributes.height}px`
-						  : undefined,
+          attributes.height && typeof attributes.height === 'number'
+            ? `${attributes.height}px`
+            : undefined,
           width: parseWidth(attributes.width),
         }}
       />

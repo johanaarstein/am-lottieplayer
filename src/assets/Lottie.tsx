@@ -10,13 +10,13 @@ export default function Lottie() {
     >
       <style>
         {`
-				.am-lottieplayer-path {
-					fill: url(#a)
-				}
-				.block-editor-block-toolbar .am-lottieplayer-path,
-				.components-panel .am-lottieplayer-path {
-					fill: var(--wp-admin-theme-color-darker-10)
-				}`}
+        .am-lottieplayer-path {
+          fill: url(#a)
+        }
+        .block-editor-block-toolbar .am-lottieplayer-path,
+        .components-panel .am-lottieplayer-path {
+          fill: var(--wp-admin-theme-color-darker-10)
+        }`}
       </style>
       <defs>
         <radialGradient cx=".2" cy="1.07" id="a" r="1.2">

@@ -15,13 +15,13 @@ export default function save({ attributes }: BlockSaveProps<PlayerComponentProps
         ...(blockProps.style as Record<string, string>),
         backgroundColor: attributes.background,
         height:
-					!attributes.height || attributes.height === 0
-					  ? 'auto'
-					  : attributes.height,
+        !attributes.height || attributes.height === 0
+          ? 'auto'
+          : attributes.height,
         width:
-					!attributes.width || attributes.width === 0
-					  ? 'auto'
-					  : attributes.width,
+        !attributes.width || attributes.width === 0
+          ? 'auto'
+          : attributes.width,
       }}
     >
       <dotlottie-player

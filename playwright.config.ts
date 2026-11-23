@@ -52,14 +52,12 @@ export default defineConfig({
   },
   webServer: [
     {
-      command:
-				'pnpm exec wp-scripts build --config webpack.config.ts && pnpm exec wp-env start',
+      command: 'pnpm exec wp-scripts build --config webpack.config.ts && pnpm exec wp-env start',
       ignoreHTTPSErrors: true,
       reuseExistingServer: !process.env.CI,
       timeout: 180_000,
       url: 'http://localhost:8888',
-    },
-    { command: 'open -a Docker' },
+    }, { command: 'open -a Docker' },
   ],
   workers: 1,
 })

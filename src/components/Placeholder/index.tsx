@@ -12,14 +12,14 @@ export default function Placeholder({
 }: Readonly<BlockEditProps<PlayerComponentProps>>) {
   return (
     <>
-      {!attributes.src || attributes.src === '' ?
-        <UploadComponent
-          attributes={attributes}
-          setAttributes={setAttributes}
-        />
-        :
-        <PlayerComponent attributes={attributes} clientId={clientId} />
-      }
+      {!attributes.src || attributes.src === ''
+        ? (
+          <UploadComponent
+            attributes={attributes}
+            setAttributes={setAttributes}
+          />
+        )
+        : <PlayerComponent attributes={attributes} clientId={clientId} />}
     </>
   )
 }

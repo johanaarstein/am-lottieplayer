@@ -6,8 +6,8 @@ interface Media {
   url: string
 }
 
-export const attributesFromMedia =
-    (setAttributes: (attrs: object) => void, dimRatio?: number) =>
+export const attributesFromMedia
+    = (setAttributes: (attrs: object) => void, dimRatio?: number) =>
       (media: Media) => {
         if (!media.url) {
           setAttributes({

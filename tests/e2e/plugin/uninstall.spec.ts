@@ -20,21 +20,27 @@ const PLUGIN = 'am-lottieplayer-pro',
     'wp-env'
   ),
   /**
-	 * Run a WP-CLI command in the wp-env cli container and return its stdout.
-	 * wp-env passes args through to `docker compose exec` as an array, and writes
-	 * its spinner to stderr, so stdout is the command output only.
-	 */
+   * Run a WP-CLI command in the wp-env cli container and return its stdout.
+   * wp-env passes args through to `docker compose exec` as an array, and writes
+   * its spinner to stderr, so stdout is the command output only.
+   */
   wp = (...args: string[]) =>
     execFileSync(
-      process.execPath, [WP_ENV, 'run', 'cli', 'wp', ...args], {
+      process.execPath, [WP_ENV,
+        'run',
+        'cli',
+        'wp',
+        ...args], {
         encoding: 'utf8',
-        stdio: ['ignore', 'pipe', 'pipe'],
+        stdio: ['ignore',
+          'pipe',
+          'pipe'],
       }
     ).trim(),
   /**
-	 * Names of options matching a `wp option list --search` pattern.
-	 * Transients are stored as options too (wp-env has no object cache).
-	 */
+   * Names of options matching a `wp option list --search` pattern.
+   * Transients are stored as options too (wp-env has no object cache).
+   */
   listOptions = (search: string) => {
     const lines = wp(
         'option',
@@ -85,8 +91,8 @@ test.describe('uninstall.php', () => {
     )
 
     // A bare attachment post stands in for the sideloaded default animation.
-    attachmentId =
-      wp(
+    attachmentId
+      = wp(
         'post',
         'create',
         '--post_type=attachment',

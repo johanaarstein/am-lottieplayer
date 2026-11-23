@@ -22,8 +22,7 @@ import { isTemporaryMedia } from '@/utils/media'
 
 const getInnerBlocksTemplate = (attributes: object) => [
   [
-    'core/paragraph',
-    {
+    'core/paragraph', {
       align: 'center',
       placeholder: __('Write title…', 'am-lottieplayer'),
       ...attributes,
@@ -41,7 +40,9 @@ export default function Edit({
   toggleSelection,
 }: Readonly<BlockCoverEditProps>) {
   const {
-      allowedBlocks = ['core/paragraph', 'core/heading', 'core/buttons'],
+      allowedBlocks = ['core/paragraph',
+        'core/heading',
+        'core/buttons'],
       background,
       fullscreen,
       height,
@@ -97,7 +98,7 @@ export default function Edit({
         }}
       >
         <ResizableCover
-          className={'block-library-lottiecover__resize-container'}
+          className="block-library-lottiecover__resize-container"
           fullscreen={fullscreen}
           showHandle={isSelected}
           onResize={(value: number) => {
@@ -118,7 +119,7 @@ export default function Edit({
         />
         <span
           aria-hidden="true"
-          className={'wp-block-gb-lottiecover__background'}
+          className="wp-block-gb-lottiecover__background"
           hidden={isPlaceholder}
           style={{ backgroundColor: background }}
         />
