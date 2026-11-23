@@ -30,9 +30,7 @@ declare module '@wordpress/scripts/utils/config' {
 interface WP {
   blockEditor: typeof import('@wordpress/block-editor')
   components: typeof import('@wordpress/components')
-  compose: typeof import('@wordpress/compose')
   data: typeof import('@wordpress/data')
-  hooks: typeof import('@wordpress/hooks')
   media: (options: {
     button: { text: string }
     library: { type?: string[] }
