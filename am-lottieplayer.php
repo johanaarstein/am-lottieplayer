@@ -36,7 +36,7 @@
 
 \defined( 'ABSPATH' ) || exit;
 
-use function AAMD_Lottie\Utility\include_file;
+use AAMD_Lottie\Utility;
 
 if ( ! \class_exists( 'AAMD_Lottie' ) ) {
 
@@ -67,10 +67,10 @@ if ( ! \class_exists( 'AAMD_Lottie' ) ) {
 			// Include utility functions
 			include_once AAMD_LOTTIE_PATH . 'includes/utils.php';
 
-			include_file( 'media' );
-			include_file( 'builders/builder' );
+			Utility::include_file( 'media' );
+			Utility::include_file( 'builders/builder' );
 			if ( is_admin() ) {
-				include_file( 'admin' );
+				Utility::include_file( 'admin' );
 			}
 		}
 	}
